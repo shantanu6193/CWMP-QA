@@ -220,6 +220,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CWMP_Application_Lead_Email__c</fullName>
+        <description>Email of the Application Lead.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of the Application Lead.</inlineHelpText>
+        <label>CWMP Application Lead Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CWMP_Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -231,6 +244,19 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CWMP_Community_County_Queue_Email__c</fullName>
+        <description>Email Address of the CWMP Community County Queue.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Email Address of the CWMP Community County Queue.</inlineHelpText>
+        <label>CWMP Community County Queue Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Cal_OES_Comment__c</fullName>

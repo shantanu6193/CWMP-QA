@@ -563,6 +563,20 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Community_County_Queue_Email__c</fullName>
+        <description>Email of the community County Queue.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Email of the community County Queue.</inlineHelpText>
+        <label>Community County Queue Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Community_Rejection_Reason__c</fullName>
         <description>Application Rejection reason from Community</description>
         <encryptionScheme>None</encryptionScheme>
@@ -2065,24 +2079,24 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>&lt; 80%</fullName>
+                    <fullName>Less than 80%</fullName>
                     <default>false</default>
-                    <label>&lt; 80%</label>
+                    <label>Less than 80%</label>
                 </value>
                 <value>
-                    <fullName>&lt; 120% AMI</fullName>
+                    <fullName>80% through 120%</fullName>
                     <default>false</default>
-                    <label>&lt; 120% AMI</label>
+                    <label>80% through 120%</label>
                 </value>
                 <value>
-                    <fullName>120-200% AMI</fullName>
+                    <fullName>Above 120% to 200%</fullName>
                     <default>false</default>
-                    <label>120-200% AMI</label>
+                    <label>Above 120% to 200%</label>
                 </value>
                 <value>
-                    <fullName>&gt; 200% AMI</fullName>
+                    <fullName>Greater than 200%</fullName>
                     <default>false</default>
-                    <label>&gt; 200% AMI</label>
+                    <label>Greater than 200%</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3641,6 +3655,7 @@ Disability Definition: A physical or mental impairment that substantially limits
         <columns>Submission_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Community_County_Queue_Email__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -3703,7 +3718,7 @@ Disability Definition: A physical or mental impairment that substantially limits
         <columns>Submission_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
-        <filterScope>Mine</filterScope>
+        <filterScope>Everything</filterScope>
         <filters>
             <field>Stage__c</field>
             <operation>equals</operation>
@@ -5009,19 +5024,19 @@ Disability Definition: A physical or mental impairment that substantially limits
         <picklistValues>
             <picklist>Income_Bracket__c</picklist>
             <values>
-                <fullName>%3C 120%25 AMI</fullName>
+                <fullName>80%25 through 120%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>%3C 80%25</fullName>
+                <fullName>Above 120%25 to 200%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>%3E 200%25 AMI</fullName>
+                <fullName>Greater than 200%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>120-200%25 AMI</fullName>
+                <fullName>Less than 80%25</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6656,19 +6671,19 @@ Disability Definition: A physical or mental impairment that substantially limits
         <picklistValues>
             <picklist>Income_Bracket__c</picklist>
             <values>
-                <fullName>%3C 120%25 AMI</fullName>
+                <fullName>80%25 through 120%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>%3C 80%25</fullName>
+                <fullName>Above 120%25 to 200%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>%3E 200%25 AMI</fullName>
+                <fullName>Greater than 200%25</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>120-200%25 AMI</fullName>
+                <fullName>Less than 80%25</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
