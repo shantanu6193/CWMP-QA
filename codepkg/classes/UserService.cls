@@ -294,6 +294,8 @@ public without sharing class UserService {
                         updateContact.AccountId = userReg.State_Agency__c;
                     }else if(string.isNotBlank(userReg.Fire_Agency__c)){
                         updateContact.AccountId = userReg.Fire_Agency__c;
+                    }else if(string.isNotBlank(userReg.Federal_Agency__c)){
+                        updateContact.AccountId = userReg.Federal_Agency__c;
                     }else if(string.isNotBlank(userReg.MARS_Paying_Entity__c)){
                         updateContact.AccountId = userReg.MARS_Paying_Entity__c;
                     }else if(String.isNotBlank(userReg.Federal_Tax_ID__c)){
@@ -347,6 +349,8 @@ public without sharing class UserService {
                     c.AccountId = userReg.State_Agency__c;
                 }else if(string.isNotBlank(userReg.Fire_Agency__c)){
                     c.AccountId = userReg.Fire_Agency__c;
+                }else if(string.isNotBlank(userReg.Federal_Agency__c)){
+                    c.AccountId = userReg.Federal_Agency__c;
                 }else if(string.isNotBlank(userReg.MARS_Paying_Entity__c)){
                     c.AccountId = userReg.MARS_Paying_Entity__c;
                 }else if(String.isNotBlank(userReg.Federal_Tax_ID__c)){

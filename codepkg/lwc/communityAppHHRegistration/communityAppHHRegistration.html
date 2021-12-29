@@ -48,12 +48,12 @@
 										</template>
 										</td>
 									</tr>
-									<tr>
+									<tr if:true={showCountyPicklist}>
 										<th class="slds-p-right_large slds-p-bottom_small Description ">County<span style="color:red">*</span></th>
 										<td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">
 											<template if:true={countyPicklistValues}>
 												<template if:true={countyPicklistValues.data}>
-													<lightning-combobox name="UserType" 
+													<lightning-combobox name="county" 
 																							value={countyName}
 																							variant="label-hidden"
 																							onchange={countyChanged}

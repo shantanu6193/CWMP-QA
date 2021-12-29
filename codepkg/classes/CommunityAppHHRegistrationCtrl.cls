@@ -38,7 +38,7 @@ public without sharing class CommunityAppHHRegistrationCtrl {
             if (userType == HH_CONSTANTS.UserRegistration_UserType_Community) {
                 processCommunityUserRequest(accountId, contactId, userType, countyName);
             } else if (userType == HH_CONSTANTS.UserRegistration_UserType_FEMA) {
-                //processFEMAUserRequest(accountId, contactId, userType);
+                processFEMAUserRequest(accountId, contactId, userType);
             }
     }
 
@@ -71,6 +71,7 @@ public without sharing class CommunityAppHHRegistrationCtrl {
         registration.Last_Name__c = userRec.LastName;
         registration.Email__c = userRec.Email;
         registration.User_Type__c = userType;
+        registration.Entity_Type__c = userRec.Contact.Account.Entity_Type__c;
         registration.Status__c = 'App Requested';
         registration.County__c = countyName;
         registration.Contact_Name__c = contactId;
@@ -86,7 +87,7 @@ public without sharing class CommunityAppHHRegistrationCtrl {
     * Input : string accountId, string contactId, String userType, String countyName
     * Description: This method will create User_Registration__c request of CWMP App for FEMA User.
     *********************************************/
-    /*private static void processFEMAUserRequest(String accountId, String contactId, String userType) {
+    private static void processFEMAUserRequest(String accountId, String contactId, String userType) {
         User userRec =  ApexUtils.getCurrentUserDetails();
         List<Group> groupList = [SELECT Id FROM Group  WHERE Type='Queue' AND DeveloperName =:HH_CONSTANTS.HH_CalOESInternal_User_Queue_APIName];       
         if(groupList.size() == 0) {
@@ -105,10 +106,12 @@ public without sharing class CommunityAppHHRegistrationCtrl {
         registration.Last_Name__c = userRec.LastName;
         registration.Email__c = userRec.Email;
         registration.User_Type__c = userType;
+        registration.Entity_Type__c = userRec.Contact.Account.Entity_Type__c;
+        registration.Federal_Agency__c = userRec.AccountId;
         registration.Status__c = 'App Requested';
         registration.Contact_Name__c = contactId;
         registration.User__c = UserInfo.getUserId();
         registration.OwnerId = groupList.get(0).Id;
         insert registration;
-    }*/
+    }
 }

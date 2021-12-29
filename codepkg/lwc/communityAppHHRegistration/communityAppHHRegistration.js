@@ -72,6 +72,11 @@ export default class CommunityAppHHRegistration extends Utility {
 
 	userTypeChanged(event) {
 		this.userType = event.target.value;
+		if(this.userType == 'Community') {
+			this.showCountyPicklist = true;
+		} else {
+			this.showCountyPicklist = false;
+		}
 	}
 
 	countyChanged(event) {

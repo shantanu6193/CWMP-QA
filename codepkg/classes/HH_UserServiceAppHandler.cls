@@ -62,8 +62,8 @@ public without sharing class HH_UserServiceAppHandler implements UserServiceAppH
                 Contact uc = new Contact(Id = ureg.Contact_Name__c, Contact_Type__c = HH_CONSTANTS.HH_Contact_Type_Community);
                 contactsToUpdate.add(uc);
             } else if (ureg.User_Type__c == HH_CONSTANTS.UserRegistration_UserType_FEMA) {
-                // Contact uc = new Contact(Id = ureg.Contact_Name__c, Contact_Type__c = HH_CONSTANTS.HH_Contact_Type_FEMA);
-                // contactsToUpdate.add(uc);
+                Contact uc = new Contact(Id = ureg.Contact_Name__c, Contact_Type__c = HH_CONSTANTS.HH_Contact_Type_FEMA);
+                contactsToUpdate.add(uc);
             }
             if(app.Parent__c != null) {
                 Community_Application_to_User__c parentAppToUser = new Community_Application_to_User__c();
@@ -108,18 +108,18 @@ public without sharing class HH_UserServiceAppHandler implements UserServiceAppH
     * Description: This method will add fema users to group and queue.
     *********************************************/
     public void addFEMAUserToGroup(List<String> femaUserIds) {
-        // List<String> groupQueueNames = new List<String>();
-        // groupQueueNames.add(HH_CONSTANTS.HH_FEMA_User_Group_APIName);
-        // groupQueueNames.add(HH_CONSTANTS.HH_FEMA_User_Queue_APIName);
-        // List<Group> groups = [SELECT Id, Name, DeveloperName FROM Group WHERE DeveloperName IN : groupQueueNames];  
-        // List<GroupMember> membersToBeAdded = new List<GroupMember>();
-        // for (Group g1 : groups) {
-        //     addUsersToGroup(g1.Id, femaUserIds, membersToBeAdded);
-        // }
-        // if(membersToBeAdded.size() > 0){
-        //     String memberToBeAddedJson = JSON.serialize(membersToBeAdded);
-        //     insertMembers(memberToBeAddedJson);   
-        // }
+        List<String> groupQueueNames = new List<String>();
+        groupQueueNames.add(HH_CONSTANTS.HH_FEMA_User_Group_APIName);
+        groupQueueNames.add(HH_CONSTANTS.HH_FEMA_User_Queue_APIName);
+        List<Group> groups = [SELECT Id, Name, DeveloperName FROM Group WHERE DeveloperName IN : groupQueueNames];  
+        List<GroupMember> membersToBeAdded = new List<GroupMember>();
+        for (Group g1 : groups) {
+            addUsersToGroup(g1.Id, femaUserIds, membersToBeAdded);
+        }
+        if(membersToBeAdded.size() > 0){
+            String memberToBeAddedJson = JSON.serialize(membersToBeAdded);
+            insertMembers(memberToBeAddedJson);   
+        }
     }
 
      /***********************************************

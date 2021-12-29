@@ -208,7 +208,23 @@
                                     <br/>
                                 </template>
                             </template>
-
+                            <template if:true={isFederalEntity}>
+                                <c-lookup
+                                        data-custom="lookup"
+                                        label="Federal Agency"
+                                        data-lookup="Federal_Agency__c"
+                                        onsearch={handleFederalAgencySearch}
+                                        onselectionchange={handleFederalAgencyChange}
+                                        placeholder="Search Federal Agency"
+                                        is-multi-entry={isMultiEntry}
+                                        load-data-on-init = {loadLookupDataOnLoad}
+                                        local-search = {loadLookupDataOnLoad}
+                                        scroll-after-n-items = "10"
+                                        errors={federalAgencyRequired}
+                                        required>
+                                </c-lookup>
+                                <br/>
+                            </template>
                             <template if:true={isMARSPayingEntity}>
                                 <c-lookup
                                         data-custom="lookup"

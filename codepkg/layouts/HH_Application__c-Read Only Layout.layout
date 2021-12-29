@@ -101,6 +101,10 @@
                 <behavior>Readonly</behavior>
                 <field>Applicant__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Community_County_Queue_Email__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

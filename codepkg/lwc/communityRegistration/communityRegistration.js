@@ -12,6 +12,7 @@ import saveRecord from '@salesforce/apex/CommunityRegistrationCtrl.createUserReg
 import { NavigationMixin } from 'lightning/navigation';
 import apexSearchStateAgency from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchStateAgency';
 import apexSearchFireAgency from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchFireAgency';
+import apexSearchFederalAgency from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchFederalAgency';
 import apexSearchMARSpayingEntity from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchMARSpayingEntity';
 import apexSearchCity from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchCity';
 import apexSearchTribal from '@salesforce/apex/CommunityRegistrationCtrl.apexSearchTribal';
@@ -36,6 +37,7 @@ export default class CommunityRegistration extends Utility {
     @api buttonlabel;
     stateRequired = [];
     fireagencyRequired = [];
+    federalAgencyRequired = [];
     marspayingentityrequired = [];
     courtsRequired = [];
     spclDistRequired = [];
@@ -244,6 +246,18 @@ export default class CommunityRegistration extends Utility {
       /*
     * Check whether contact Entity_Type__c equals MARS Paying Entity
     */
+
+    get isFederalEntity() {
+
+        if(this.recordLocal != undefined && this.recordLocal.Entity_Type__c == 'Federal Agency') {
+            return true;
+        }
+        return false;
+    }
+
+      /*
+    * Check whether contact Entity_Type__c equals MARS Paying Entity
+    */
       get isMARSPayingEntity() {
         if(this.recordLocal != undefined && this.recordLocal.Entity_Type__c == 'MARS Paying Entity') {
             return true;
@@ -373,6 +387,7 @@ export default class CommunityRegistration extends Utility {
         this.healthCareRequired = [];
         this.stateRequired = [];
         this.fireagencyRequired = [];
+        this.federalAgencyRequired = [];
         this.cityRequired = [];
         this.spclDistRequired = [];
         this.tribalRequired = [];
@@ -382,6 +397,9 @@ export default class CommunityRegistration extends Utility {
         }
         if(this.recordLocal.Entity_Type__c == 'Fire Agency') {
             this.validateLookups('Fire_Agency__c','Fire Agency',this.fireagencyRequired);
+        }
+        if(this.recordLocal.Entity_Type__c == 'Federal Agency') {
+            this.validateLookups('Federal_Agency__c','Federal Agency',this.federalAgencyRequired);
         }
         if(this.recordLocal.Entity_Type__c == 'MARS Paying Entity') {
             this.validateLookups('MARS_Paying_Entity__c','MARS Paying Entity',this.marspayingentityrequired);
@@ -606,6 +624,35 @@ export default class CommunityRegistration extends Utility {
         }
         if(response.detail != null && response.detail.selectedItem.id != undefined) {
             this.recordLocal.Fire_Agency__c = response.detail.selectedItem.id;
+        }
+    }
+
+
+     /*
+    * Searches account with Entity_Type__c equals Federal_Agency__c
+    */
+     handleFederalAgencySearch(event) {
+        apexSearchFederalAgency(event.detail)
+        .then((results) => {
+            console.log('results----', results);
+            this.template.querySelector('[data-lookup="Federal_Agency__c"]').setSearchResults(results);
+        })
+        .catch((error) => {
+            this.error('Lookup Error', 'An error occured while searching with the lookup field.');
+            console.error('Lookup error', JSON.stringify(error));
+            this.errors = [error];
+        });
+    }
+
+    /*
+    * Lookup selection for Federal_Agency__c
+    */
+    handleFederalAgencyChange(response) {
+        if(!response.detail){
+           this.recordLocal.Federal_Agency__c = '';
+        }
+        if(response.detail != null && response.detail.selectedItem.id != undefined) {
+            this.recordLocal.Federal_Agency__c = response.detail.selectedItem.id;
         }
     }
 

@@ -352,7 +352,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                  *      - This condition is to check if the user has HH CalOES User Permission.
                  * This Condition is added to prevent CalOES User from changing Application Stage and Status,
                  * after the submitting for FEMA Review except Open RFI and to Withdraw the Application. */
-                else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName)
+                /*else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName)
                         && !(((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                                     || hhApplicationToProcess.Status__c != oldRecord.Status__c)
                                 && ((oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
@@ -372,67 +372,16 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
                                 || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn))) {
                     hhApplicationToProcess.addError('Application not editable.');
-                }
+                } */
 
                 /** Post MVP - After FEMA User Gets Introduce - To remove the above three Else If block and uncomment the below. */
-                /** Community User - Allow Stage/Status Change */
-
-                /* This Condition is added to allow Community County User to change the Application Stage and Status.
-                 * Condition Criteria - !((1 OR 2) AND (3 OR 4)) AND 5
-                 *      - This condition is added to allow Homeowner to update the Record except the Stage and Status.
-                 * 1. Stage of the Application is Updated.
-                 * 2. Status of the Application is updated.
-                 * 3. Stage - Draft/Community Review/Community Decision/Assessment/Assessment Decision/
-                 *              Cal OES Review(Only from Assessment to Pending Status)/Rejected-Closed
-                 * 4. Application Status is "Withdrawn".
-                 * 5. User has HH Community County User Permission Set.
-                else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CommunityUser_APIName)
-                            && (hhApplicationToProcess.Stage__c != oldRecord.Stage__c
-                                || hhApplicationToProcess.Status__c != oldRecord.Status__c)
-                            && !(hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
-                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
-                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityDecision
-                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
-                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_AssessmentDecision
-                                || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
-                                    && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
-                                    && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewPending)
-                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
-                                || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
-                    hhApplicationToProcess.addError('Application not editable.');
-                }
-                This condition is added to allow Community County user to make changes to Application,
-                 *      without changing the Stage or Status in the particular Stage and Status mentioned in the condition.
-                 * Condition Criteria - (1 AND 2 AND 3 AND !4 AND 5)
-                 *      - This condition is added to allow Homeowner to update the Record except the Stage and Status.
-                 * 1. Record is been updated.
-                 * 2. Stage of the Application is not Updated.
-                 * 3. Status of the Application is not updated.
-                 * 4. Stage - Draft/Community Review/Community Decision/Assessment/Assessment Decision/
-                 *              Cal OES Review(Only Open RFI Status)/FEMA Review(Only Open RFI Status)
-                 * 6. User has HH Community User Permission Set.
-                else if(userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CommunityUser_APIName)
-                        && hhApplicationToProcess != oldRecord
-                        && hhApplicationToProcess.Stage__c == oldRecord.Stage__c
-                        && hhApplicationToProcess.Status__c == oldRecord.Status__c
-                        && !(hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
-                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
-                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityDecision
-                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
-                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_AssessmentDecision
-                            || (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
-                                && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI)
-                            || (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
-                                && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewOpenRFI))) {
-                    hhApplicationToProcess.addError('Application not editable.');
-                }
-                 Condition Criteria - (1 OR 2) AND !(3 OR 4) AND 5
+                /** Condition Criteria - (1 OR 2) AND !(3 OR 4) AND 5
                  *      - This Condition is added to allow FEMA User to change the Application Stage and Status.
                  * 1. Stage of the Application is Updated.
                  * 2. Status of the Application is updated.
                  * 3. Stage - FEMA Review/FEMA Decision/Approved-Converted/Rejected-Closed.
                  * 4. Application Status is "Withdrawn".
-                 * 5. User has CWMP FEMA User Permission Set.
+                 * 5. User has CWMP FEMA User Permission Set.*/
                 else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName)
                         && (hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                                 || hhApplicationToProcess.Status__c != oldRecord.Status__c)
@@ -444,7 +393,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                             || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
                             || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.addError('Application not editable.');
-                }*/
+                }
             }
         }
     }
@@ -486,14 +435,14 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
             }
             /** Post MVP Changes - After FEMA User Gets Introduce */
             /** This condition is to check if the Application is submitted for FEMA Review, In order to change the owner to FEMA Users Queue. */
-            /*else if ((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
+            else if ((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                     || hhApplicationToProcess.Status__c != oldRecord.Status__c)
                     && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
                     && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending) {
 
                 QueueAPINames.add(HH_CONSTANTS.HH_FEMA_User_Queue_APIName);
                 hhApplicationToProcessList.add(hhApplicationToProcess);
-            }*/
+            }
         }
 
         if (hhApplicationToProcessList?.size() > 0) {
@@ -502,8 +451,9 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
             /** This Map collection is to store the County name  as Key and Queue API name as Value in order to fetch the related Queue record,
              * while changing the owner of the Application. */
             Map<String, String> countyNameToQueueApiNameMap = new Map<String, String>();
+            Map<String, County_Config__mdt> countyNameToCountyConfigRecord = new Map<String, County_Config__mdt>();
             if (countyNameList?.size() > 0) {
-                countyConfigMetaRecordList = [SELECT Id, Label, Application_Type__c, Public_Group_API_Name__c, Queue_API_Name__c
+                countyConfigMetaRecordList = [SELECT Id, Label, Application_Type__c, Public_Group_API_Name__c, Queue_API_Name__c, Emails__c
                                                 FROM County_Config__mdt WHERE Label IN :countyNameList
                                                 AND Application_Type__c = :HH_CONSTANTS.HH_Application_APIName_CountyConfig];
             }
@@ -513,6 +463,8 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                     if (countyConfig.Queue_API_Name__c != null) {
                         QueueAPINames.add(countyConfig.Queue_API_Name__c);
                         countyNameToQueueApiNameMap.put(countyConfig.Label, countyConfig.Queue_API_Name__c);
+
+                        countyNameToCountyConfigRecord.put(countyConfig.Label, countyConfig);
                     }
                 }
             }
@@ -520,7 +472,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
             if (QueueAPINames?.size() > 0) {
                 /** Fetching the Public Group Info in order to share the record. */
                 List<Group> publicGroupInfoList = [
-                        SELECT Id, Name, DeveloperName, Type
+                        SELECT Id, Name, DeveloperName, Type, Email
                         FROM Group
                         WHERE DeveloperName IN :QueueAPINames AND Type = 'Queue'
                 ];
@@ -542,6 +494,11 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                 && hhApplicationToChangeOwner.Status__c == HH_CONSTANTS.HHApplication_Status_CommunityReviewPending
                                 && queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Id != null) {
                             hhApplicationToChangeOwner.OwnerId = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Id;
+                            if(countyNameToCountyConfigRecord?.get(hhApplicationToChangeOwner?.County__c)?.Emails__c != null) {
+                                //hhApplicationToChangeOwner.Community_County_Queue_Email__c = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Email;
+                                List<String> emails = countyNameToCountyConfigRecord?.get(hhApplicationToChangeOwner?.County__c)?.Emails__c.split(';');
+                                hhApplicationToChangeOwner.Community_County_Queue_Email__c = emails[0];
+                            } 
                             hhApplicationToChangeOwner.Owner_Name__c = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Name;
                         }
                         /** This condition is to check if the Application is submitted for Cal OES Review,
@@ -556,12 +513,12 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                         /** Post MVP Changes - After FEMA User Gets Introduce */
                         /** This condition is to check if the Application is submitted for FEMA Review,
                          * In order to change the owner to FEMA Users Queue. */
-                        /*else if (hhApplicationToChangeOwner.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
+                        else if (hhApplicationToChangeOwner.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
                                 && hhApplicationToChangeOwner.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending
                                 && queueDeveloperNameToQueueRecordMap?.get(HH_CONSTANTS.HH_FEMA_User_Queue_APIName)?.Id != null) {
                             hhApplicationToChangeOwner.OwnerId = queueDeveloperNameToQueueRecordMap?.get(HH_CONSTANTS.HH_FEMA_User_Queue_APIName)?.Id;
                             hhApplicationToChangeOwner.Owner_Name__c = queueDeveloperNameToQueueRecordMap?.get(HH_CONSTANTS.HH_FEMA_User_Queue_APIName)?.Name;
-                        }*/
+                        }
                     }
                 }
             }
@@ -603,14 +560,14 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                 }
             /** Post MVP Changes - After FEMA User Gets Introduce */
             /** This condition is to check if the Application is submitted for FEMA Review, In order to share th record with FEMA User group. */
-            /*else if ((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
+            else if ((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                         || hhApplicationToProcess.Status__c != oldRecord.Status__c)
                     && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
                     && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending) {
 
                 hhApplicationIdToHhApplicationShareMap.put(hhApplicationToProcess.Id, hhApplicationToProcess);
                 publicGroupApiNames.add(HH_CONSTANTS.HH_FEMA_User_Group_APIName);
-            }*/
+            }
             }
 
         if (hhApplicationIdToHhApplicationShareMap?.size() > 0) {
@@ -697,7 +654,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                 }
                 /** Post MVP Changes - After FEMA User Gets Introduce */
                 /** Sharing the record with FEMA user group when the Application is submitted for FEMA Review. */
-                /*else if (hhApplicationToShare.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview) {
+                else if (hhApplicationToShare.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview) {
                     HH_Application__Share appShareToFemaRecord = new HH_Application__Share();
                     appShareToFemaRecord.ParentId = hhApplicationToShare.Id;
                     appShareToFemaRecord.RowCause = HH_Application__Share.RowCause.FEMAUser__c;
@@ -705,7 +662,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                     appShareToFemaRecord.AccessLevel = HH_CONSTANTS.HHApplication_ShareObject_AccessLevel_Edit;
 
                     appShareToOwnerRecordList.add(appShareToFemaRecord);
-                }*/
+                }
                     }
 
             if (appShareToOwnerRecordList?.size() > 0) {
@@ -1046,7 +1003,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                      *      from - OES Decision
                      *      to - Community Review / Community Decision / Assessment / Assessment Decision
                     *            / Cal OES Review /Cal OES Decision / FEMA Review */
-                    /*else if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
+                    else if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
                             && oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
                             && (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityDecision
@@ -1056,7 +1013,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESDecision
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview)) {
                         hhApplicationToProcess.addError('Application not editable.');
-                    }*/
+                    }
                 }
 
                 /** Condition to check -
@@ -1115,7 +1072,8 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                 if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
                         && oldRecord.Status__c != hhApplicationToProcess.Status__c
                         && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn
-                        && !(oldRecord.Stage__c == hhApplicationToProcess.Stage__c
+                        && (userIdToAssignedPermissionSetsMap.get(UserInfo.getUserId())?.contains(HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) 
+                            || !(oldRecord.Stage__c == hhApplicationToProcess.Stage__c
                             && ((oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
                                 && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_AppealApprovalResubmit)
                             || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
@@ -1137,44 +1095,9 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                     || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewInProgress
                                     || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI))
                             || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESDecision
-                                    && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria)))) {
+                                        && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria))))) {
                     hhApplicationToProcess.addError('Application not editable.');
                 }
-
-                /** Post MVP - After FEMA User Gets Introduce - Need to remove above If condition and to uncomment the below If condition. */
-                /*if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
-                        && oldRecord.Status__c != hhApplicationToProcess.Status__c
-                        && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn
-                        && !((oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
-                                    && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_AppealApprovalResubmit)
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_CommunityReviewPending
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_CommunityReviewInProgress
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OpenRFINeedMoreInfo))
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityDecision
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_ApprovedForAssessment
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria))
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_AssessmentPending
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_AssessmentInProgress
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_AssessmentComplete))
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_AssessmentDecision
-                                && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedNotEligible)
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewPending
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewInProgress
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI))
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESDecision
-                                && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria)
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewInProgress
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewOpenRFI))
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
-                                && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion
-                                    || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria)))) {
-                    hhApplicationToProcess.addError('Application not editable.');
-                }*/
             }
         }
     }

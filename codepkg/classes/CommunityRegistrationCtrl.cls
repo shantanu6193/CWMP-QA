@@ -101,6 +101,46 @@ public without sharing class CommunityRegistrationCtrl {
         return results;
     }
 
+
+     /***********************************************
+    * Method Name : apexSearchFederalAgency
+    * Author : Shantanu
+    * Inputs : String searchTerm, List<String> selectedIds
+    * Description: This method return list of LookupSearchResult from Accounts with Entity Type Fire Agency
+    *********************************************/
+    @AuraEnabled(Cacheable=true)
+    public static List<LookupSearchResult> apexSearchFederalAgency(String searchTerm, List<String> selectedIds) {
+        // Prepare query paramters
+        //searchTerm += '*';
+        String fireAgency = 'Federal Agency';
+        String query = 'Select Id,Name From Account';
+        searchTerm = searchTerm.replace(' ','%');
+        query += ' Where Entity_Type__c = \'' + fireAgency + '\'';
+        if(String.isNotEmpty(searchTerm)) {
+            query += ' AND ( Name like\'%' + searchTerm + '%\')';
+        }
+        query += ' Limit ' + MAX_RESULTS;
+        List<Account> accounts = Database.query(query);
+        List<LookupSearchResult> results = new List<LookupSearchResult>();
+        String accountIcon = 'standard:account';
+        for (Account opAccountReference : accounts) {
+            results.add(
+                    new LookupSearchResult(
+                            opAccountReference.Id,
+                            'Account',
+                            accountIcon,
+                            opAccountReference.Name,
+                            null,
+                            opAccountReference
+                    )
+            );
+        }
+
+        // Optionnaly sort all results on title
+        results.sort();
+        return results;
+    }
+
      /***********************************************
     * Method Name : apexSearchMARSpayingEntity
     * Author : Sravan Reddy Pinninti

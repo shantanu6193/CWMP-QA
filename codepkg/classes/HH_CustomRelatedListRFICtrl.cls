@@ -41,7 +41,7 @@ public with sharing class HH_CustomRelatedListRFICtrl {
                         result.put('isFemaUser', false);
                         break;
                     } else if (perSet.PermissionSet.Name == HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName) {
-                        result.put('isRFICreatable',false);
+                        result.put('isRFICreatable',true);
                         result.put('isHomeowner', false);
                         result.put('isCommunityUser', false);
                         result.put('isCaloesUser', true);

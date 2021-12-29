@@ -31,6 +31,7 @@
                         <img class="tile-images image-div" src={orderLogo} alt="Projects">
                     </div>
                 </div>
+                <template if:true={isNotFEMAUser}>
                 <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
                     <div class="slds-p-bottom_medium">
                         <p class="slds-text-align_center lower-heading">{label.HH_EN_Submit_Applications}</p>
@@ -39,6 +40,7 @@
                         <img class="tile-images image-div" src={closeoutLogo} alt="Closeout Request">
                     </div>
                 </div>
+                </template>
                 <template if:true={isNotHomeOwner}>
                     <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
                         <div class="slds-p-bottom_medium">

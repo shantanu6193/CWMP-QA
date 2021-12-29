@@ -37,6 +37,7 @@
         HH_EN_View_Dashboards
     }
     @track isNotHomeOwner;
+    @track isNotFEMAUser
 
     navigateToSubmitApplication() {
         window.location.href = this.label.HH_Community_Relative_Url+'/s/check-draft-applications';
@@ -82,13 +83,9 @@
     connectedCallback()	{
         getUserDetail()
             .then(result => {
-                console.log('result----1', result.isNotHomeOwner);
-                if(result.isNotHomeOwner == 'true'){
-                    this.isNotHomeOwner = true;
-                }else{
-                    this.isNotHomeOwner = false;
-                }
-                console.log('result----12', this.isNotHomeOwner);
+                this.isNotFEMAUser = result.isNotFEMAUser == 'true' ? true:false;
+                this.isNotHomeOwner = result.isNotHomeOwner == 'true'? true: false;
+                console.log('result', result);
             })
             .catch(error => {
                 console.log('Error---', error);

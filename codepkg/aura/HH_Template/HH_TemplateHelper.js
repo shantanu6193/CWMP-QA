@@ -8,6 +8,7 @@
                 let returnValue = response.getReturnValue();
                 component.set('v.userName', returnValue['userName']);
                 component.set('v.isNotHomeOwner', returnValue['isNotHomeOwner']);
+                component.set('v.isNotFEMAUser', returnValue['isNotFEMAUser']);
             } else {
                 component.set('v.userName','');
             }

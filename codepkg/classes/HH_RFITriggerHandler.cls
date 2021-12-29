@@ -73,7 +73,8 @@ public without sharing class HH_RFITriggerHandler  extends TriggerHandler implem
         if (cwmpRfiToProcessList?.size() > 0) {
             /** Fetching CWMP Application records in order to check for the Stage and Status of teh record before creating the RFI record. */
             Map<Id, HH_Application__c> appIdToApplicationRecordMap = new Map<Id, HH_Application__c>(
-                                                            [SELECT Id, Name, Stage__c, Status__c, Applicant__r.Email FROM HH_Application__c WHERE Id IN : cwmpApplicationIdSet]);
+                                                            [SELECT Id, Name, Stage__c, Status__c, Community_County_Queue_Email__c, 
+                                                                Applicant__r.Email, Application_Lead__r.Email FROM HH_Application__c WHERE Id IN : cwmpApplicationIdSet]);
 
             Map<Id, Set<String>> userIdToSetOfPermissionSetApiNameMap = getCurrentUserPermissionSet(userIds);
 
@@ -194,7 +195,7 @@ public without sharing class HH_RFITriggerHandler  extends TriggerHandler implem
         if (rfiToProcessList?.size() > 0) {
             /** Fetching CWMP Application records which are related to RFI which needs to be processed. */
             Map<Id, HH_Application__c> appIdToApplicationRecordMap = new Map<Id, HH_Application__c>(
-                    [SELECT Id, Name, County__c, Applicant__r.Name FROM HH_Application__c WHERE Id IN : applicationIdSet]);
+                    [SELECT Id, Name, County__c, Stage__c, Applicant__r.Name FROM HH_Application__c WHERE Id IN : applicationIdSet]);
             /** Set collection to store the name of the Counties of the related CWMP Application records. */
             Set<String> countySet = new Set<String>();
             /** Set collection to store the Applicant(Related Contact) Ids. */
@@ -260,7 +261,9 @@ public without sharing class HH_RFITriggerHandler  extends TriggerHandler implem
             List<Request_For_Information__Share> refShareToInsertList = new List<Request_For_Information__Share>();
             for (Request_For_Information__c rfiToShare : rfiToProcessList) {
                 /** Sharing record to Homeowner User. */
-                if (contactIdToHomeownerUserRecordMap?.get(appIdToApplicationRecordMap?.get(rfiToShare.CWMP_Application__c)?.Applicant__c)?.Id != null) {
+                if ((appIdToApplicationRecordMap?.get(rfiToShare.CWMP_Application__c)?.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview 
+                        || appIdToApplicationRecordMap?.get(rfiToShare.CWMP_Application__c)?.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment) 
+                    && contactIdToHomeownerUserRecordMap?.get(appIdToApplicationRecordMap?.get(rfiToShare.CWMP_Application__c)?.Applicant__c)?.Id != null) {
                     Request_For_Information__Share rfiShareToInsert1 = new Request_For_Information__Share();
                     rfiShareToInsert1.ParentId = rfiToShare.Id;
                     rfiShareToInsert1.AccessLevel = HH_CONSTANTS.HHApplication_ShareObject_AccessLevel_Edit;
@@ -309,6 +312,12 @@ public without sharing class HH_RFITriggerHandler  extends TriggerHandler implem
         if (rfiToProcess.RFI_Type__c == HH_CONSTANTS.Rfi_RFIType_CWMP) {
             rfiToProcess.Status__c = HH_CONSTANTS.RFI_RFIStatus_Requested;
         }
+            if(hhApplicationToProcess?.Community_County_Queue_Email__c != null) {
+                rfiToProcess.CWMP_Community_County_Queue_Email__c = hhApplicationToProcess?.Community_County_Queue_Email__c;
+            }
+            if(hhApplicationToProcess?.Application_Lead__r?.Email != null) {
+                rfiToProcess.CWMP_Application_Lead_Email__c = hhApplicationToProcess?.Application_Lead__r?.Email;
+            }
     }
 
         if (Trigger.isUpdate) {

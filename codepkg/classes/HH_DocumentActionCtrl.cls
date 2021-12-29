@@ -31,8 +31,8 @@ public without sharing class HH_DocumentActionCtrl implements DocumentUploadInte
         if(app.size() == 0) {
             return docWrapperList;
         }
-        /** To check current user is home owner on not **/
-        List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName AND Assignee.Id =:UserInfo.getUserId()];
+        /** To check current user is home owner/FEMA User on not **/
+        List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE (PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName OR PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) AND Assignee.Id =:UserInfo.getUserId()];
             /** If current user is homeOwner then hide all actions**/
         System.debug('permissionSetAssignments.size()--'+permissionSetAssignments.size());
             if(permissionSetAssignments.size() > 0){

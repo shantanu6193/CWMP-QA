@@ -19,6 +19,7 @@
     <aura:attribute name="hhCommunityRelativeUrl" type="String" default="" /> 
     <aura:attribute name="userName" type="String" default="" /> 
     <aura:attribute name="isNotHomeOwner" type="String" default="false" /> 
+    <aura:attribute name="isNotFEMAUser" type="String" default="true" /> 
     <aura:attribute name="submitApplicationUrl" type="String" default="" /> 
     <aura:attribute name="applicationsUrl" type="String" default="" /> 
     <aura:attribute name="homeUrl" type="String" default="" /> 
@@ -62,11 +63,13 @@
                                                         <span class="slds-truncate" title="{!$Label.c.HH_EN_Applications}">{!$Label.c.HH_EN_Applications}</span>
                                                     </a>
                                                 </li>
+                                                <aura:if isTrue="{!v.isNotFEMAUser}">
                                                 <li class="slds-dropdown__item" role="presentation">
                                                     <a href="{!v.submitApplicationUrl}" role="menuitem" tabindex="-1">
                                                         <span class="slds-truncate" title="{!$Label.c.HH_EN_Submit_Applications}">{!$Label.c.HH_EN_Submit_Applications}</span>
                                                     </a> 
                                                 </li>
+                                                </aura:if>
                                                 <aura:if isTrue="{!v.isNotHomeOwner}">
                                                     <li class="slds-dropdown__item" role="presentation">
                                                         <a href="{!v.viewReportsUrl}" role="menuitem" tabindex="-1">
@@ -90,9 +93,11 @@
                                 <div class="slds-col slds-p-right_medium desktop-only">
                                     <a href="{!v.applicationsUrl}" class="slds-text-color_inverse header-link">{!$Label.c.HH_EN_Applications}</a>
                                 </div>
+                                <aura:if isTrue="{!v.isNotFEMAUser}">
                                 <div class="slds-col slds-p-right_medium desktop-only">
                                   <a href="{!v.submitApplicationUrl}" class="slds-text-color_inverse header-link">{!$Label.c.HH_EN_Submit_Applications}</a>
                                 </div>
+                                </aura:if>
                                 <aura:if isTrue="{!v.isNotHomeOwner}">
                                     <div class="slds-col desktop-only">
                                         <div aura:id="dropdown1" id="dropdown1" class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close" >

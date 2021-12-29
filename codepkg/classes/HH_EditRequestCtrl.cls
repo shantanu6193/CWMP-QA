@@ -26,7 +26,7 @@ public without sharing class HH_EditRequestCtrl {
                     Boolean isEdit;
                     //if (userRecord[0].AccountId != null) {
                         HH_Application__c app = [SELECT Id,Stage__c,Status__c From HH_Application__c WHERE Id=:appId];
-                        if(app.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
+                        if(!prSet.contains(HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) && app.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
                             && app.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn) {
                             isEdit = true;
                         } else if (prSet.contains(HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName)
