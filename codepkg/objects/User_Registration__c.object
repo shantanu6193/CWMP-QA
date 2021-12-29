@@ -147,7 +147,16 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>User_Registration_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Entity_Type__c</fields>
+        <fields>Contact_Name__c</fields>
+        <fields>Email__c</fields>
+        <fields>User__c</fields>
+        <label>User Registration Compact Layout</label>
+    </compactLayouts>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -2254,6 +2263,11 @@
                     <default>false</default>
                     <label>MARS Paying Entity</label>
                 </value>
+                <value>
+                    <fullName>Federal Agency</fullName>
+                    <default>false</default>
+                    <label>Federal Agency</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -2291,6 +2305,19 @@
         <relationshipName>User_Registrations5</relationshipName>
         <required>false</required>
         <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Agency__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Federal Agency</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>User Registrations (Federal Agency)</relationshipLabel>
+        <relationshipName>User_Registrations8</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -4202,6 +4229,11 @@
                     <default>false</default>
                     <label>Community</label>
                 </value>
+                <value>
+                    <fullName>FEMA</fullName>
+                    <default>false</default>
+                    <label>FEMA</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -4414,6 +4446,7 @@
     <recordTypes>
         <fullName>HH_Registration</fullName>
         <active>true</active>
+        <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
         <label>HH Registration</label>
         <picklistValues>
             <picklist>Access_Level__c</picklist>
@@ -5645,6 +5678,10 @@
                 <default>false</default>
             </values>
             <values>
+                <fullName>Federal Agency</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Fire Agency</fullName>
                 <default>false</default>
             </values>
@@ -6826,11 +6863,16 @@
                 <fullName>Community</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>FEMA</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
     </recordTypes>
     <recordTypes>
         <fullName>HMA</fullName>
         <active>true</active>
+        <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
         <label>HMA</label>
         <picklistValues>
             <picklist>Access_Level__c</picklist>
@@ -9165,6 +9207,7 @@
     <recordTypes>
         <fullName>MARS</fullName>
         <active>true</active>
+        <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
         <description>This recordtype is used for MARS Application access requests</description>
         <label>MARS</label>
         <picklistValues>
@@ -11799,6 +11842,7 @@
     <recordTypes>
         <fullName>PHOS</fullName>
         <active>true</active>
+        <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
         <label>PHOS</label>
         <picklistValues>
             <picklist>Access_Level__c</picklist>
@@ -14396,6 +14440,7 @@
     <recordTypes>
         <fullName>Registration</fullName>
         <active>true</active>
+        <compactLayoutAssignment>User_Registration_Compact_Layout</compactLayoutAssignment>
         <label>Registration</label>
         <picklistValues>
             <picklist>Access_Level__c</picklist>
@@ -15856,6 +15901,10 @@
             </values>
             <values>
                 <fullName>Courts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal Agency</fullName>
                 <default>false</default>
             </values>
             <values>
