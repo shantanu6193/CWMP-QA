@@ -1,0 +1,21 @@
+.hidden_text {
+    position:relative;
+    z-index: 1;
+}
+.slds-modal__content {overflow: auto !important;}
+.slds-table thead th {background-color: #e7f3fd;}
+
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+.toppaddin-div{
+    padding-top: 60px
+}
+.slds-scrollable {
+    overflow: visible !important;
+}
+.outputfont{
+    font-weight: bold;
+    font-size: medium;
+}

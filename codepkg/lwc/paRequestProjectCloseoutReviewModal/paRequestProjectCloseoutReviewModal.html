@@ -1,0 +1,64 @@
+<template>
+    <div if:true={renderQuestions}>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_11-of-12">
+
+                <lightning-radio-group
+                                    label={radioLabel}
+                                    options={options}
+                                    value={recordLocal.Response__c}
+                                    data-field="Response__c"
+                                    onchange={fieldRadioSelectionCustom}
+                                    type="radio"
+                                    required="true"
+                                    class="input" message-when-value-missing="This is a required field">
+                </lightning-radio-group>
+            </div>
+            <template if:true={renderHelptext}>
+            <div class="slds-col slds-size_1-of-12">
+                <lightning-helptext content={customMetadata.Helptext__c}></lightning-helptext>
+            </div>
+        </template>
+        </div>
+        <template if:true={renderComment}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1">
+                    <lightning-textarea name="comment" class="input" onchange={fieldChanged}  data-field="Comment__c" value={recordLocal.Comment__c}  label="Comments" variant="label-hidden" placeholder="Please Explain" required="true" message-when-value-missing="This is a required field"></lightning-textarea>
+                </div>
+            </div>
+        </template>
+
+        <template if:true={renderStaticText}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_medium">
+                <div class="note">Note: {customMetadata.Static_Text__c}</div>
+                </div>
+            </div>
+        </template>
+                </div>
+
+    <div class="slds-grid slds-wrap">
+        <template if:true={renderHelptextDocument1}>
+        <div class="slds-col slds-size_11-of-12">
+            <lightning-formatted-url
+                    value={customMetadata.Helptext_Document_URL1__c}
+                    label={customMetadata.Helptext_Document_Name1__c}
+                    target="_blank" ></lightning-formatted-url>
+            <!--<a href="\{customMetadata.Helptext_Document_URL1__c}">{customMetadata.Helptext_Document_Name1__c}</a>-->
+        </div>
+        </template>
+        <template if:true={renderHelptextDocument2}>
+            <div class="slds-col slds-size_11-of-12">
+                <lightning-formatted-url
+                        value={customMetadata.Helptext_Document_URL2__c}
+                        label={customMetadata.Helptext_Document_Name2__c}
+                        target="_blank" ></lightning-formatted-url>
+                <!--<a href="\{customMetadata.Helptext_Document_URL2__c}">{customMetadata.Helptext_Document_Name2__c}</a>-->
+            </div>
+        </template>
+    </div>
+
+
+        
+    
+</template>

@@ -1,0 +1,118 @@
+<template>
+	
+	<template if:true={showForm}>
+		
+		<section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+			<div class="slds-modal__container">
+				<header class="slds-modal__header">
+					<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+				<lightning-icon icon-name="utility:close"
+																alternative-text="close"
+																variant="inverse"
+																onclick={closeModal}
+																size="small" ></lightning-icon>
+						<span class="slds-assistive-text">Close</span>
+					</button>
+					<h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{label.HH_EN_Request_For_Information}: CWMP</h2>
+				</header>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<template if:true={showLoader}>
+						<lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+					 </template>
+					<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+									<lightning-input label={label.CWMP_Application__c} 
+																		class="input"
+																		value={applicationName} 
+																		name="input1" 
+																		type="text" 
+																		read-only="true"
+																		></lightning-input>
+									</div>
+									<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<lightning-textarea class="input"
+																	value={recordLocal.Community_Comment__c}
+																	label={label.Community_Comment__c}
+																	data-field="Community_Comment__c"
+																	name={label.Community_Comment__c}
+																	max-length="2000"
+																	disabled={readOnlyCommunityComment}
+																	onchange={fieldChanged}>
+										</lightning-textarea>
+									</div>
+									<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<lightning-textarea class="input"
+																	value={recordLocal.Description__c}
+																	label={label.Description__c}
+																	data-field="Description__c"
+																	name={label.Description__c}
+																	max-length="2000"
+																	disabled={readOnlyField}
+																	onchange={fieldChanged}>
+										</lightning-textarea>
+									</div>	
+									<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<lightning-textarea class="input"
+																	value={recordLocal.Cal_OES_Comment__c}
+																	label={label.Cal_OES_Comment__c}
+																	data-field="Cal_OES_Comment__c"
+																	name={label.Cal_OES_Comment__c}
+																	max-length="2000"
+																	disabled={readOnlyCaloesComment}
+																	onchange={fieldChanged}>
+										</lightning-textarea>
+									</div>	
+									<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<lightning-input class="input date_picker"
+																	label={label.RFI_Deadline__c}
+																	value={recordLocal.RFI_Deadline__c}
+																	min={todaysDate}
+																	data-field="RFI_Deadline__c"
+																	message-when-range-underflow={label.HH_RFIDeadLinePriorDateErrorMessage}
+																	name={label.RFI_Deadline__c}
+																	type="date"
+																	read-only={readOnlyField}
+																	onchange={fieldChanged}
+																	required>
+										</lightning-input> 
+									</div>
+									<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<lightning-textarea class="input"
+																	value={recordLocal.FEMA_Comments__c}
+																	label={label.FEMA_Comments__c}
+																	data-field="FEMA_Comments__c"
+																	name={label.FEMA_Comments__c}
+																	max-length="2000"
+																	disabled={readOnlyFEMAComment}
+																	onchange={fieldChanged}>
+										</lightning-textarea>
+									</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-textarea class="input"
+															value={recordLocal.Homeowner_Comment__c}
+															label={label.Homeowner_Comment__c}
+															data-field="Homeowner_Comment__c"
+															name={label.Homeowner_Comment__c}
+															max-length="2000"
+															disabled={readOnlyHomeownerComment}
+															onchange={fieldChanged}>
+								</lightning-textarea>
+							</div>
+					</div>	
+				</div>
+				<template if:true={isEditMode}>
+					<footer class="slds-modal__footer">
+						<div class="slds-align_absolute-center">
+							<button class="slds-button slds-button_neutral" onclick={closeModal}>{label.HH_EN_Cancel}</button>
+							<button class="slds-button slds-button_brand" onclick={handleSubmit}>{label.HH_EN_Save}</button>
+						</div>
+					</footer>
+				</template>
+				</div>
+				</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</template>
+</template>

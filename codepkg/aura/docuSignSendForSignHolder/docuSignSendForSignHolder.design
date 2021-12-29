@@ -1,0 +1,3 @@
+<design:component >
+    <design:attribute name="docuSignTemplateName" label="DocuSign Template Name" description="Provide DocuSign Template Name" />
+</design:component>

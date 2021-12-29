@@ -1,0 +1,18 @@
+.slds-brand-band {
+    background: #fff;
+}
+.invoice_box {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid #000;
+    padding: 20px;
+}
+.left {
+    width: 50%;
+    float: left;
+}
+.right {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+}

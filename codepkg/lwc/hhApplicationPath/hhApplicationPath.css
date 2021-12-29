@@ -1,0 +1,40 @@
+.slds-wizard .slds-is-active .slds-wizard__marker{
+	background: #3f6e99;
+	z-index: 1000;
+}
+.slds-wizard__progress{
+	z-index: 100;
+}
+.slds-wizard__progress-bar{
+	background: #fbad23;
+}
+.cursor{
+	 cursor: pointer;
+}
+ol{
+	display:inline-flex;
+	width:100%;
+}
+
+li {
+	width: 5%;
+	padding: 0 !important;
+}
+
+li:last-child {
+	width: auto !important;
+}
+
+.slds-wizard__marker {
+	z-index:1000;
+}
+
+/**
+ * Created by Shantanu on 16-07-2021.
+ */
+ /* root {
+        --lwc-colorBackgroundPathActive: #3f51b5 !important;
+    }
+.slds-path__nav .slds-is-active {
+    background-color: #3f51b5 !important;
+} */

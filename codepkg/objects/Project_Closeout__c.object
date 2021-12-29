@@ -1,0 +1,909 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <comment>Project Closeouts are created as part of Closeout Request, so New action of Project Closeout is redirected to create new Closeout Request</comment>
+        <content>paRequestProjectCloseoutAura</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Actual_Completion_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The actual project completion date based on OES closeout review of documentation.</inlineHelpText>
+        <label>Actual Completion Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Adjustment_s__c</fullName>
+        <externalId>false</externalId>
+        <formula>Cal_OES_Recommended_Amount__c  -  FEMA_Obligated_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Adjustment(s)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CalOES_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Closeout_Request__r.Subrecipient__r.OES__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CalOES ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CalOES_Project_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.CalOES_Project_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CalOES Project Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cal_OES_Recommended_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Cal OES Recommended Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Closeout_Request__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Closeout Request</label>
+        <referenceTo>Closeout_Request__c</referenceTo>
+        <relationshipLabel>Project Closeouts</relationshipLabel>
+        <relationshipName>Project_Closeouts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Closeout_Task__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Closeout Task</label>
+        <referenceTo>Closeout_Task__c</referenceTo>
+        <relationshipLabel>Project Closeouts</relationshipLabel>
+        <relationshipName>CloseOuts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <description>User remark or feedback on the record will be stored.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Damage_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;A: Debris Removal&quot;), &quot;Debris Removal &quot;,null)&amp;
+
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;B: Emergency Protective Measures&quot;), &quot;Emergency Protective Measures &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;C: Roads and Bridges&quot;), &quot;Roads and Bridges &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;D: Water Control Facilities&quot;), &quot;Water Control Facilities &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;E: Public Buildings and Contents&quot;), &quot;Public Buildings and Contents &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;F: Public Utilities&quot;), &quot;Public Utilities &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;G: Parks, Recreational and Other Facilities&quot;), &quot;Parks, Recreational and Other Facilities &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;H: Fire Management&quot;), &quot;Fire Management &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;Z: Management Costs&quot;), &quot;Management Costs&quot;,null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Damage Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Date_Inspected__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date when the project was closed or inspected by an OES inspector.</inlineHelpText>
+        <label>Date Inspected</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Project_Marked_100_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Project Marked 100% Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Declaration_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Declaration Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EMMIE_Batch_Unique_No__c</fullName>
+        <externalId>false</externalId>
+        <formula>SUBSTITUTE(SUBSTITUTE( Project_Name__r.Latest_Project_Version__c , &apos;PW-&apos;, &apos;&apos;), &apos;DSR-&apos;, &apos;&apos;) &amp; &apos;-&apos; &amp;  Project_Name__r.Declaration_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>EMMIE Batch Unique No</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email_Template_NSPO__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND(FIPS__c !=null,  CalOES_ID__c !=null),
+Subrecipient__c+&quot;/&quot;+ FIPS__c +&quot;/&quot;+ CalOES_ID__c ,
+
+IF( AND( FIPS__c !=null, CalOES_ID__c ==null),
+Subrecipient__c+&quot;/&quot;+ FIPS__c ,
+
+IF( AND( FIPS__c ==null, CalOES_ID__c !=null),
+Subrecipient__c+&quot;/&quot;+CalOES_ID__c ,
+
+IF( AND(FIPS__c ==null, CalOES_ID__c ==null),
+ Subrecipient__c, Subrecipient__c
+))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email Template NSPO</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Entity_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Project_Name__r.Obligating_Sub_Recipient__r.Entity_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Entity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Obligated_Amount__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The current FEMA approved and obligated amount.</inlineHelpText>
+        <label>FEMA Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FIPS__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Obligating_Sub_Recipient__r.Sub_Recipient_FIPS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FIPS#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incident_Id_For_Flow__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Project_Name__r.Incident_Name__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident Id For Flow</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incident__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Incident_Name_Formula__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsSmallProject__c</fullName>
+        <externalId>false</externalId>
+        <formula>NOT(Project_Name__r.IsLargeProject__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IsSmallProject</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Last_Project__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Is_Last_Project__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Last Project</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Latest_Project_Version__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Latest_Project_Version__c</formula>
+        <label>Latest Project Version</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Percent_Complete_To_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Percent_Complete_To_Date__c</formula>
+        <label>Percent Complete To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Project_Closeout_Number__c</fullName>
+        <displayFormat>C-{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Project Closeout Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Project_Completion_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Project_Completion_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Damage_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;A: Debris Removal&quot;), &quot;A &quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;B: Emergency Protective Measures&quot;), &quot;B&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;C: Roads and Bridges&quot;), &quot;C&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;D: Water Control Facilities&quot;), &quot;D&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;E: Public Buildings and Contents&quot;), &quot;E&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;F: Public Utilities&quot;), &quot;F&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;G: Parks, Recreational and Other Facilities&quot;), &quot;G&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c , &quot;H: Fire Management&quot;), &quot;H&quot;,null)
+&amp;
+IF( INCLUDES( Project_Name__r.Damage_Category__c  , &quot;Z: Management Costs&quot;), &quot;Z&quot;,null)</formula>
+        <label>Project Damage Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Name__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Name</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipName>CloseOuts</relationshipName>
+        <required>true</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Project_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_PW__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Project_Name__r.Latest_Project_Version__c)  == False  &amp;&amp;  ISNULL(Project_Name__r.Latest_Project_Version__c)  == false , 
+ IF( CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;) ,LEFT(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;, &apos;&apos;), (FIND(&apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;, &apos;&apos;))-1)),
+IF( CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;) ,LEFT(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;, &apos;&apos;), (FIND(&apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;, &apos;&apos;))-1)),
+IF(CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;DSR-&apos;), RIGHT(Project_Name__r.Latest_Project_Version__c,LEN(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;DSR-&apos;, &apos;&apos;)) - FIND( &apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;DSR-&apos;, &apos;&apos;))),
+IF(CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;DSR &apos;), RIGHT(Project_Name__r.Latest_Project_Version__c,LEN(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;DSR &apos;, &apos;&apos;)) - FIND( &apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;DSR &apos;, &apos;&apos;))) ,&apos;&apos;)
+))) ,
+&apos;&apos;)</formula>
+        <label>Project PW</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Size__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Project_Name__r.IsLargeProject__c  = True, &apos;L&apos;, &apos;S&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Size</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Version__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Project_Name__r.Latest_Project_Version__c) == False &amp;&amp; ISNULL(Project_Name__r.Latest_Project_Version__c) == false , 
+
+IF(CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;), RIGHT(Project_Name__r.Latest_Project_Version__c,LEN(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;, &apos;&apos;)) - FIND( &apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW-&apos;, &apos;&apos;)))
+,
+IF(CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;), RIGHT(Project_Name__r.Latest_Project_Version__c,LEN(SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;, &apos;&apos;)) - FIND( &apos;-&apos;, SUBSTITUTE(Project_Name__r.Latest_Project_Version__c, &apos;PW &apos;, &apos;&apos;))) ,&apos;&apos;)
+)
+,&apos;&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Version</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Review_by__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Completion_Date__c + 60</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Review by</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>State_Declaration_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Incident_Name__r.State_Declaration_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>State Declaration Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Request for Closeout</fullName>
+                    <default>false</default>
+                    <label>Request for Closeout</label>
+                </value>
+                <value>
+                    <fullName>Request for Information</fullName>
+                    <default>false</default>
+                    <label>Request for Information</label>
+                </value>
+                <value>
+                    <fullName>Ready for Closeout</fullName>
+                    <default>false</default>
+                    <label>Ready for Closeout</label>
+                </value>
+                <value>
+                    <fullName>Closeout In Progress</fullName>
+                    <default>false</default>
+                    <label>Closeout In Progress</label>
+                </value>
+                <value>
+                    <fullName>Closeout Complete</fullName>
+                    <default>false</default>
+                    <label>Closeout Complete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Subrecipient_Id_For_Flow__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Project_Name__r.Obligating_Sub_Recipient__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Subrecipient Id For Flow</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Subrecipient__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Obligating_Sub_Recipient__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Subrecipient</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_Claimed__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount Claimed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Award__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.Total_Project_Award__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Project Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Federal_Award__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.TotalProjectFederalAward__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Project Federal Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_State_Award__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Name__r.TotalProjectStateAward__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Project State Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Project Closeout</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Closeout_Request__c</columns>
+        <columns>Closeout_Task__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>IsSmallProject__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <sharedTo>
+            <group>Public_Assistance_All_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Marked_100_pending_a_CR_record</fullName>
+        <columns>NAME</columns>
+        <columns>Closeout_Request__c</columns>
+        <columns>Closeout_Task__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>IsSmallProject__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Closeout_Request__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Marked 100% pending a CR record</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_Analyst_Project_Closeout</fullName>
+        <columns>Closeout_Request__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance Analyst</label>
+        <queue>Public_Assistance_Analyst</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_DAPS_Project_Closeout</fullName>
+        <columns>Closeout_Request__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance DAPS</label>
+        <queue>Public_Assistance_DAPS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM1_Project_Closeout</fullName>
+        <columns>Closeout_Request__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM1</label>
+        <queue>Public_Assistance_PM1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM2_PAO_Project_Closeout</fullName>
+        <columns>Closeout_Request__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM2/PAO</label>
+        <queue>Public_Assistance_PM2_PAO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM3_Project_Closeout</fullName>
+        <columns>Closeout_Request__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM3</label>
+        <queue>Public_Assistance_PM3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Ready_For_Closeout</fullName>
+        <columns>NAME</columns>
+        <columns>Closeout_Request__c</columns>
+        <columns>Closeout_Task__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>IsSmallProject__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Ready for Closeout</value>
+        </filters>
+        <label>Ready For Closeout</label>
+        <sharedTo>
+            <group>Public_Assistance_PM1</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Request_for_Closeout</fullName>
+        <columns>NAME</columns>
+        <columns>Closeout_Request__c</columns>
+        <columns>Closeout_Task__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Project_Name__c</columns>
+        <columns>IsSmallProject__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Request for Closeout</value>
+        </filters>
+        <label>Request for Closeout</label>
+        <sharedTo>
+            <group>Public_Assistance_Analyst</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Project Closeout</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Project Closeouts</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Closeout_Task__c</fields>
+        <fields>Declaration_Number__c</fields>
+        <fields>State_Declaration_Number__c</fields>
+        <fields>Incident__c</fields>
+        <fields>Subrecipient__c</fields>
+        <fields>Entity_Type__c</fields>
+        <fields>Project_Number__c</fields>
+        <fields>Project_Name__c</fields>
+        <fields>Status__c</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Closeout_Task__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Declaration_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>State_Declaration_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Incident__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Subrecipient__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Entity_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>ProjectCloseoutShare__c</fullName>
+        <label>ProjectCloseoutShare</label>
+    </sharingReasons>
+    <visibility>Public</visibility>
+</CustomObject>

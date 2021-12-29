@@ -1,0 +1,70 @@
+<aura:component controller="MARS_F42Approval_Controller" implements="flexipage:availableForRecordHome,force:hasRecordId" access="global">
+   
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="comments" type="String" default="" />
+    <aura:attribute name="approvalStatus" type="string" />
+    <aura:attribute name="showApproval" type="Boolean" default="false"/>
+    <aura:attribute name="infoMessage" type="string" default="" />
+    <aura:attribute name="errorMessage" type="string" default="" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <div class="cHeader">F-42 Approval</div>
+        <aura:if isTrue="{!!empty(v.infoMessage)}">
+            <div class="slds-p-bottom--medium">
+                <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                    <h2>{!v.infoMessage}</h2>
+                </div>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!!empty(v.errorMessage)}">
+            <div class="slds-p-bottom--medium">
+                <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture">
+                    <h2>{!v.errorMessage}</h2>
+                </div>
+            </div>
+        </aura:if>
+    <aura:if isTrue="{!v.showApproval}" >
+        <div class="cBody">
+            <aura:if isTrue="{!v.showLoader}">
+                <div class="demo-only" style="height: 6rem;">
+                    <div
+                    role="status"
+                    class="slds-spinner slds-spinner_medium slds-spinner_brand"
+                    >
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </aura:if>
+
+            <lightning:select aura:id="select" name="Select a Status" label="Select a Status" value="{!v.approvalStatus}">
+                <option value="">CHOOSE ONE...</option>
+                <option value="AGENCY REVIEW">AGENCY REVIEW</option>
+                <option value="APPROVED">APPROVED</option>
+                <option value="DOCUMENTATION ONLY">DOCUMENTATION ONLY</option>
+            </lightning:select>
+            <lightning:textarea
+                aura:id="commentText"
+                name="Comments"
+                required="true"
+                value="{!v.comments}"
+                label="Comments" />
+        </div>
+    </aura:if>
+    <div class="cFooter">
+        <lightning:button
+        variant="brand"
+        label="Submit"
+        title="Yes"
+        onclick="{!c.proceed}"
+        disabled="{!empty(v.approvalStatus)}"
+        />
+      </div>
+    <aura:html tag="style">
+    .cuf-content { padding: 0 0rem !important; } .slds-p-around--medium {
+    padding: 0rem !important; } .slds-modal__content{ overflow-y:hidden
+    !important; height:unset !important; max-height:unset !important; }
+  </aura:html>
+</aura:component>

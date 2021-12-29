@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <name>Update_Status_to_Expired</name>
+        <label>Update Status to Expired</label>
+        <locationX>519</locationX>
+        <locationY>124</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Approval_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Expired</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Admin_Rate_Record</targetReference>
+        </connector>
+    </assignments>
+    <description>This batch will expire Admin Rate Records for which end date is in the past</description>
+    <interviewLabel>MARS - Administrative Rates Expiry Batch {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MARS - Administrative Rates Expiry Batch</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Admin_Rate_Record</name>
+        <label>Update Admin Rate Record</label>
+        <locationX>649</locationX>
+        <locationY>120</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Update_Status_to_Expired</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Reviewed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Revised</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_End_Date_less_than_Start_Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Agency_Admin_Rates__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2021-04-09</startDate>
+            <startTime>23:45:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

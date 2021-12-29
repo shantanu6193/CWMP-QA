@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>CFAA__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CFAA</label>
+        <referenceTo>CFAA__c</referenceTo>
+        <relationshipLabel>CFAA Line Items</relationshipLabel>
+        <relationshipName>CFAA_Line_Items</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Emergency_Apparatus_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Emergency Apparatus Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Type I</fullName>
+                    <default>false</default>
+                    <label>Type I</label>
+                </value>
+                <value>
+                    <fullName>Type II</fullName>
+                    <default>false</default>
+                    <label>Type II</label>
+                </value>
+                <value>
+                    <fullName>Type III</fullName>
+                    <default>false</default>
+                    <label>Type III</label>
+                </value>
+                <value>
+                    <fullName>Type IV - VII</fullName>
+                    <default>false</default>
+                    <label>Type IV - VII</label>
+                </value>
+                <value>
+                    <fullName>Water Tender Tactical I</fullName>
+                    <default>false</default>
+                    <label>Water Tender Tactical I</label>
+                </value>
+                <value>
+                    <fullName>Water Tender Tactical II</fullName>
+                    <default>false</default>
+                    <label>Water Tender Tactical II</label>
+                </value>
+                <value>
+                    <fullName>Type IV – VII</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Type IV – VII</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_Overhead__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Overhead ?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Order_No__c</fullName>
+        <externalId>false</externalId>
+        <label>Order No</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Role__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Other Role</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Over_Time_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Over Time Rate</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Personnel_Role__c</fullName>
+        <externalId>false</externalId>
+        <label>Personnel Role</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Chief</fullName>
+                    <default>false</default>
+                    <label>Chief</label>
+                </value>
+                <value>
+                    <fullName>Deputy Chief</fullName>
+                    <default>false</default>
+                    <label>Deputy Chief</label>
+                </value>
+                <value>
+                    <fullName>Division Chief</fullName>
+                    <default>false</default>
+                    <label>Division Chief</label>
+                </value>
+                <value>
+                    <fullName>Assistant Chief</fullName>
+                    <default>false</default>
+                    <label>Assistant Chief</label>
+                </value>
+                <value>
+                    <fullName>Battalion Chief</fullName>
+                    <default>false</default>
+                    <label>Battalion Chief</label>
+                </value>
+                <value>
+                    <fullName>Co. Officer/Capt./Lt.</fullName>
+                    <default>false</default>
+                    <label>Co. Officer/Capt./Lt.</label>
+                </value>
+                <value>
+                    <fullName>App. Officer/Eng</fullName>
+                    <default>false</default>
+                    <label>App. Officer/Eng</label>
+                </value>
+                <value>
+                    <fullName>Firefighter/FF-PMedic</fullName>
+                    <default>false</default>
+                    <label>Firefighter/FF-PMedic</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Straight_Time_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Straight Time Rate</label>
+        <precision>13</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Support_Equipment_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Support Equipment Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Sedan</fullName>
+                    <default>false</default>
+                    <label>Sedan</label>
+                </value>
+                <value>
+                    <fullName>Pick-Up (1/2 Ton)</fullName>
+                    <default>false</default>
+                    <label>Pick-Up (1/2 Ton)</label>
+                </value>
+                <value>
+                    <fullName>Van</fullName>
+                    <default>false</default>
+                    <label>Van</label>
+                </value>
+                <value>
+                    <fullName>SUV</fullName>
+                    <default>false</default>
+                    <label>SUV</label>
+                </value>
+                <value>
+                    <fullName>Other (3/4 Ton &amp; Above)</fullName>
+                    <default>false</default>
+                    <label>Other (3/4 Ton &amp; Above)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Personnel Base Rates</fullName>
+                    <default>false</default>
+                    <label>Personnel Base Rates</label>
+                </value>
+                <value>
+                    <fullName>Support Equipment Rates</fullName>
+                    <default>false</default>
+                    <label>Support Equipment Rates</label>
+                </value>
+                <value>
+                    <fullName>Emergency Apparatus Rates</fullName>
+                    <default>false</default>
+                    <label>Emergency Apparatus Rates</label>
+                </value>
+                <value>
+                    <fullName>Privately Owned Vehicle (POV) Rate</fullName>
+                    <default>false</default>
+                    <label>Privately Owned Vehicle (POV) Rate</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unit_of_Measure__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit of Measure</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Hourly</fullName>
+                    <default>false</default>
+                    <label>Hourly</label>
+                </value>
+                <value>
+                    <fullName>Daily</fullName>
+                    <default>false</default>
+                    <label>Daily</label>
+                </value>
+                <value>
+                    <fullName>Weekly</fullName>
+                    <default>false</default>
+                    <label>Weekly</label>
+                </value>
+                <value>
+                    <fullName>Mile</fullName>
+                    <default>false</default>
+                    <label>Mile</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>CFAA Line Item</label>
+    <nameField>
+        <label>CFAA Line Items Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>CFAA Line Items</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Emergency_Apparatus_Rate</fullName>
+        <active>true</active>
+        <description>Use for entering Emergency Apparatus Rate</description>
+        <label>Emergency Apparatus Rate</label>
+        <picklistValues>
+            <picklist>Emergency_Apparatus_Type__c</picklist>
+            <values>
+                <fullName>Type I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type II</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type III</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type IV - VII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical II</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Personnel_Role__c</picklist>
+            <values>
+                <fullName>App%2E Officer%2FEng</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battalion Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Co%2E Officer%2FCapt%2E%2FLt%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deputy Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Firefighter%2FFF-PMedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Support_Equipment_Type__c</picklist>
+            <values>
+                <fullName>Other %283%2F4 Ton %26 Above%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick-Up %281%2F2 Ton%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sedan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Van</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Emergency Apparatus Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personnel Base Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Privately Owned Vehicle %28POV%29 Rate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support Equipment Rates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit_of_Measure__c</picklist>
+            <values>
+                <fullName>Hourly</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>POV_Rate</fullName>
+        <active>true</active>
+        <description>Use for entering Privately Owned Vehicles Rate</description>
+        <label>POV Rate</label>
+        <picklistValues>
+            <picklist>Emergency_Apparatus_Type__c</picklist>
+            <values>
+                <fullName>Type I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type II</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type III</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type IV - VII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical II</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Personnel_Role__c</picklist>
+            <values>
+                <fullName>App%2E Officer%2FEng</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battalion Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Co%2E Officer%2FCapt%2E%2FLt%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deputy Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Firefighter%2FFF-PMedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Support_Equipment_Type__c</picklist>
+            <values>
+                <fullName>Other %283%2F4 Ton %26 Above%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick-Up %281%2F2 Ton%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sedan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Van</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Emergency Apparatus Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personnel Base Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Privately Owned Vehicle %28POV%29 Rate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support Equipment Rates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit_of_Measure__c</picklist>
+            <values>
+                <fullName>Mile</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Personnel_Base_Rate</fullName>
+        <active>true</active>
+        <description>Use for entering personnel base rate</description>
+        <label>Personnel Base Rate</label>
+        <picklistValues>
+            <picklist>Emergency_Apparatus_Type__c</picklist>
+            <values>
+                <fullName>Type I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type II</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type III</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type IV - VII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical II</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Personnel_Role__c</picklist>
+            <values>
+                <fullName>App%2E Officer%2FEng</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battalion Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Co%2E Officer%2FCapt%2E%2FLt%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deputy Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Firefighter%2FFF-PMedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Support_Equipment_Type__c</picklist>
+            <values>
+                <fullName>Other %283%2F4 Ton %26 Above%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick-Up %281%2F2 Ton%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sedan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Van</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Emergency Apparatus Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personnel Base Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Privately Owned Vehicle %28POV%29 Rate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support Equipment Rates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit_of_Measure__c</picklist>
+            <values>
+                <fullName>Hourly</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Support_Equipment_Rate</fullName>
+        <active>true</active>
+        <description>Use for entering Government Owned Support Equipment Rates</description>
+        <label>Support Equipment Rate</label>
+        <picklistValues>
+            <picklist>Emergency_Apparatus_Type__c</picklist>
+            <values>
+                <fullName>Type I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type II</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type III</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Type IV - VII</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical I</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Water Tender Tactical II</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Personnel_Role__c</picklist>
+            <values>
+                <fullName>App%2E Officer%2FEng</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assistant Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Battalion Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Co%2E Officer%2FCapt%2E%2FLt%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deputy Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Division Chief</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Firefighter%2FFF-PMedic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Support_Equipment_Type__c</picklist>
+            <values>
+                <fullName>Other %283%2F4 Ton %26 Above%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pick-Up %281%2F2 Ton%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SUV</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sedan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Van</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type__c</picklist>
+            <values>
+                <fullName>Emergency Apparatus Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Personnel Base Rates</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Privately Owned Vehicle %28POV%29 Rate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Support Equipment Rates</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit_of_Measure__c</picklist>
+            <values>
+                <fullName>Daily</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

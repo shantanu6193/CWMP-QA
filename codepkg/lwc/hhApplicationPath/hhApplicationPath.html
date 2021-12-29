@@ -1,0 +1,24 @@
+<template>
+	<div class="slds-grid slds-m-top_medium">
+		<div class="slds-col slds-size_12-of-12 ">
+				<div class="slds-wizard" role="navigation" style="z-index: 1;">
+						<ol>
+								<template for:each={pathValues} for:item="item" for:index="index">
+										<li data-value={item.label} key={item.order} class={item.className}>
+												<span class="slds-wizard__link cursor">
+														<span  data-id={item.order} class="slds-wizard__marker" onclick={navigate}></span>
+												</span>
+												<p class="small-text slds-p-top_x-small slds-show_large">{item.label}</p>
+												<template if:true={item.currentPath}>
+														<p class="small-text slds-p-top_x-small slds-show_large slds-text-title_bold step">{item.stepLabel}</p>
+												</template>
+										</li>
+								</template>
+						</ol>
+						<span class="slds-wizard__progress">
+								<span class="slds-wizard__progress-bar" style={progressWidth}></span>
+						</span>
+				</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <description>Component to select Incident and Agency. Then select F42. It will generrate invoices</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Mars Generate Invoice</masterLabel>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__Tab</target>
+    </targets>
+</LightningComponentBundle>

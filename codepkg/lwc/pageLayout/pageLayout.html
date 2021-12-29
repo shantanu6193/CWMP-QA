@@ -1,0 +1,90 @@
+<!--
+ - Created by harsh on 28-01-2021.
+ -->
+
+<!-- Page Layout -->
+<template>
+    <template if:true={isPageLayoutLoaded}>
+        <div class="slds-grid slds-align_absolute-center">
+            <div class="slds-col slds-size_12-of-12 slds-p-horizontal_large">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium slds-p-top_large">
+                        <h1 class="form-header slds-text-heading--large">{pageLayoutDetails.pageLayout.Layout_Header_Label__c}</h1>
+                    </div>
+                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium">
+                        <template for:each={pageSectionLocal} for:item="pageSection">
+                            <template if:false={pageSection.isSectionHidden}>
+                                <c-page-layout-section
+                                        data-custom="innerComponent"
+                                        data-section={pageSection.DeveloperName}
+                                        key={pageSection.Id}
+                                        page-section={pageSection}
+                                        page-fields={pageLayoutDetails.pageFields}
+                                        page-object-info={objectInfoValue}
+                                        object-default-record-type-id={objectDefaultRecordTypeId}
+                                        related-child-object-details={relatedObjectInfo}
+                                        record={record} 
+                                        record-id={recordId}
+                                        onfieldchanged={fieldChangedChild}
+                                        field-changed={isAnyFieldsChange}
+                                        is-all-fields-read-only={isAllFieldsReadOnly}
+                                        hide-field-custom-attribute={hideFieldCustomAttribute}
+                                        program-template-page-id={programTemplatePageId}
+                                        page-layout-id={pageLayoutId}
+                                        logged-in-user-details={loggedInUserDetails}
+                                ></c-page-layout-section>
+                            </template>
+                        </template>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                        <div class ="slds-float--left">
+                            <template if:true={renderPreviousButton}>
+                                <span class="slds-p-right_large">
+                                    <button onclick={redirectToPrevious} disabled={isActionInProgress} class="slds-button slds-button_brand">Previous</button>
+                                </span>
+                            </template>
+                            <template if:true={renderBackButton}>
+                                <span class="slds-p-right_large">
+                                    <button onclick={redirectToBackNoSave} disabled={isActionInProgress} class="slds-button slds-button_brand">Back</button>
+                                </span>
+                            </template>
+                        </div>
+                        <div class ="slds-float--right">
+                            <!-- <template if:true={isSubmitAllowed}> -->
+                            <template if:true={isSaveAllowed}>
+                            <span class="slds-p-left_large">
+                                <button onclick={quickSave} disabled={isActionInProgress} class="slds-button slds-button_brand">Save</button>
+                            </span>
+                            </template>
+                            <!-- </template> -->
+                             <template if:true={renderSaveAndContinue}>
+                            <span class="slds-p-left_large">
+                                    <button onclick={saveAndContinue} disabled={isActionInProgress} name={nextButtonLabelLocal} class="slds-button slds-button_brand">{nextButtonLabelLocal}</button>
+                            </span>
+                            </template>
+
+                            <template if:true={renderSubmitButton}>
+                                <span class="slds-p-left_large">
+                                    <template if:true={isSubmitAllowed}>
+                                        <button onclick={showSubmitConfirmation} disabled={isActionInProgress} class="slds-button slds-button_brand">Submit</button>
+                                    </template>
+                                    <template if:false= {isSubmitAllowed}>
+                                        <button onclick={showSubmitConfirmation} disabled="disabled" class="slds-button slds-button_brand">Submit</button>
+                                    </template>
+                                </span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c-confirmation-popup visible={isSubmitConfirmationShow} title="" name="" original-message="" message={submitMessage} confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleConfirmationClick}></c-confirmation-popup>
+    </template>
+
+
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+</template>

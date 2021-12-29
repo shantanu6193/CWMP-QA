@@ -1,0 +1,117 @@
+<!--
+ - Created by hp on 25-09-2019.
+ -->
+
+<aura:component description="ReportTab" controller="ReportTabCtrl" implements="forceCommunity:availableForAllPageTypes,force:lightningQuickAction,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride" access="global">
+
+    <aura:attribute name="shipToEntities" type="List" access="private" description="" default="[]"/>
+    <aura:attribute name="reportTypes" type="List" access="private" description="" default="[]"/>
+
+    <aura:attribute name="selectedReportId" type="String" description="Report Selected by user"  default=""/>
+    <aura:attribute name="naturalLanguage" type="String" description="static text to display"  default=""/>
+    <aura:attribute name="naturalLanguageToDisplay" type="String" description="static text to display"  default=""/>
+
+    <aura:attribute name="selectedShipToEntity" type="String" description="Ship to location Selected by user"  default="SELECT"/>
+    <aura:attribute name="selectedTimeFilter" type="String" description="Filter Value Selected" />
+    <aura:attribute name="selectedStartDate" type="Date" description="Filter Value Selected" />
+    <aura:attribute name="selectedEndDate" type="Date" description="Filter Value Selected" />
+    <aura:attribute name="reportDisabled" type="Boolean" description="disable report view button" default="true" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="appEvent" type="c:ReportCloseAppEvent"/>
+    <lightning:navigation aura:id="navService"/>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_x-small" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                        onclick="{!c.closeReportTabEvent}">
+                    <lightning:icon iconName="utility:close" variant="inverse" alternativeText="Close" />
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate slds-text-align_left slds-p-horizontal_small">Generate Report</h2>
+            </header>
+            <div class="slds-grid slds-modal__content slds-p-around_large">
+                <div class="slds-col">
+                    <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-large-size--1-of-1 slds-p-vertical_medium">
+                                <div class="slds-grid slds-grid_vertical-align-center">
+                                    <div class="slds-col slds-size_3-of-12">
+                                        <p class="slds-text-align--right slds-p-right_large">Report Type</p>
+                                    </div>
+                                    <div class="slds-col slds-size_9-of-12 select">
+                                        <lightning:select name="reportVal" variant="label-hidden" label="" value="{!v.selectedReportId}" onchange="{!c.onChangeReportType}">
+                                            <option value="">--Select--</option>
+                                            <aura:iteration items="{!v.reportTypes}" var="report">
+                                                <option value="{!report.Id}"> {!report.Report_Name__c}</option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                            <aura:if isTrue="{! and(!empty(v.selectedReportId),!empty(v.naturalLanguageToDisplay))}">
+                                <div class="slds-col slds-large-size--1-of-1 slds-p-bottom_medium">
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <div class="slds-col slds-size_3-of-12">
+                                            <p class="slds-text-align--right slds-p-right_large"></p>
+                                        </div>
+                                        <div class="slds-col slds-size_9-of-12 select">
+                                            {!v.naturalLanguageToDisplay}
+                                        </div>
+                                    </div>
+                                </div>
+                            </aura:if>
+
+
+                            <aura:if isTrue="{! !empty(v.selectedReportId)}">
+                                <div class="slds-col slds-large-size--1-of-1">
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <div class="slds-col slds-size_3-of-12">
+                                            <p class="slds-text-align--right slds-p-right_large">For Period</p>
+                                        </div>
+                                        <div class="slds-col slds-size_9-of-12 select">
+                                            <lightning:select name="select1" variant="label-hidden" label="" value="{!v.selectedTimeFilter}" onchange="{!c.onFilterChangeVal}">
+                                                <option value="SELECT">--Select--</option>
+                                                <option value="Custom">Custom</option>
+                                                <option value="Today">Today</option>
+                                                <option value="YESTERDAY">Yesterday</option>
+                                                <option value="THIS WEEK">This Week</option>
+                                                <option value="LAST WEEK">Last Week</option>
+                                                <option value="THIS MONTH">This Month</option>
+                                                <option value="LAST MONTH">Last Month</option>
+                                                <option value="LAST 90 DAYS">Last 90 Days</option>
+                                                <option value="LAST 365 DAYS">Last 365 Days</option>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aura:if>
+                    </div>
+                    <aura:if isTrue="{! and(!empty(v.selectedReportId), v.selectedTimeFilter != 'SELECT', v.selectedShipToEntity != 'SELECT')}">
+                        <div class="slds-grid slds-grid_align-end slds-p-top_small">
+                            <div class="slds-col slds-size_9-of-12">
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size_6-of-12">
+                                        <lightning:input type="date" dateStyle="short" aura:id="startdate" name="from" autocomplete="off" label="From" value="{!v.selectedStartDate}"  onchange="{!c.handleDateChange}"/>
+                                    </div>
+                                    <div class="slds-col slds-p-left_small slds-size_6-of-12">
+                                        <lightning:input type="date" dateStyle="short" aura:id="enddate" name="to" autocomplete="off" label="To" value="{!v.selectedEndDate}"  onchange="{!c.handleDateChange}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <div class="slds-col button slds-p-top-large">
+                    <div class="slds-grid slds-wrap slds-grid--align-end ">
+                        <div class="slds-col slds-size_3-of-12 slds-p-left--medium">
+                            <lightning:button  label="View Report" variant="brand" class="viewReportButton" title="View Report" disabled="{!v.reportDisabled}" onclick="{! c.handleViewClick }"/>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+</aura:component>

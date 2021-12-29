@@ -1,0 +1,36 @@
+<template>
+	<template if:true= {isLoading}>
+		<div class="slds-grid slds-wrap slds-align_absolute-center container ">
+				<div class="slds-col  slds-size_12-of-12">
+						<!--1.Header-->
+						<div class="slds-grid slds-wrap">
+								<div class="slds-col">
+										<h3 class="heading" style="text-transform:uppercase">{label.HH_EN_Applicant_Certification_Right_of_Entry_Page_Title}</h3>
+								</div>
+						</div>
+						<!--1.Main Form-->
+						<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-formatted-rich-text value={label.HH_EN_Applicant_Certification_Right_of_Entry_Page_Para_1_2_3}></lightning-formatted-rich-text>
+								<lightning-formatted-rich-text value={label.HH_EN_Applicant_Certification_Right_of_Entry_Page_para_4}></lightning-formatted-rich-text>
+							</div>
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-formatted-rich-text value={label.HH_EN_Applicant_s_Certification_Message}></lightning-formatted-rich-text>
+							</div>
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-formatted-rich-text value={label.HH_EN_Applicant_Certification_Right_of_Entry_Page_Disclaimer}></lightning-formatted-rich-text>
+							</div>
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+									<lightning-input type="checkbox" 
+																		class="input"
+																		label={label.HH_EN_Applicant_Certification_Right_of_Entry_Page_Warning_Checkbox_Label} 
+																		data-field="Agreement_Disclosure__c" 
+																		required
+																		checked={recordLocal.Agreement_Disclosure__c} onchange={handleChecked}/>
+									</lightning-input>
+							</div>
+						</div>
+				</div>
+		</div>
+</template>
+</template>

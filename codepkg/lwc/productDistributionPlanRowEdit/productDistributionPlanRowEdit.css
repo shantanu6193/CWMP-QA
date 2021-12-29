@@ -1,0 +1,24 @@
+/**
+ * Created by Shivraj on 27-08-2020.
+ */
+
+table, th, td {
+  border-top: 1px solid rgb(212, 212, 212);
+  border: 1px solid rgb(212, 212, 212);
+}
+:host {
+  display: contents;
+}
+td, th {
+    padding:8px !important;
+}
+.inner-table-div {
+    background: #3752833d;
+}
+tbody{
+    background:white;
+}
+/*
+th {
+    border-bottom: 2px solid #375283;
+}*/

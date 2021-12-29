@@ -1,0 +1,121 @@
+<template>
+    <!-- Custom Toast Event Start
+	<div data-id="toastModel" style="height: 4rem;" class="slds-hide">
+        <div class="slds-notify_container slds-is-relative">
+            <div class={mainDivClass} role="status">
+                <span class="slds-assistive-text">{variant}</span>
+              	<span class={messageDivClass} title={message}>
+                  <lightning-icon icon-name={iconName} size="small" variant="inverse"></lightning-icon>
+                </span>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small ">{message}</h2>
+                </div>
+                <div class="slds-notify__close">
+                    <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick={closeModel}>
+                        <lightning-icon icon-name="utility:close" size="small" variant="inverse" class="displayIcon"> </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div> 
+            </div>
+        </div>
+    </div>
+     Custom Toast Event End -->
+    <lightning-card title={title} icon-name="">
+        <div class="slds-m-around_medium">
+            <lightning-input label="First Name" name = "First Name" onchange={handleChange} class="slds-m-bottom_x-small"></lightning-input>
+            <lightning-input label="Last Name" name = "Last Name" onchange={handleChange} required class="slds-m-bottom_x-small"></lightning-input>
+            <!--<lightning-input label="Email" name = "Email" onchange={handleChange} required class="slds-m-bottom_x-small"></lightning-input>-->
+            <lightning-input label ="Email" data-field="email" required autocomplete='off' class="emailField"  type="email" name="email" value={email} onchange={handleEmailFieldChange} onblur={handleEmailBlur} ></lightning-input>
+            <lightning-input label="Phone" name = "Phone" onchange={handleChange} class="slds-m-bottom_x-small"></lightning-input>
+
+            <template if:true={entityPicklistValues.data}>
+                <lightning-combobox name="EntityType"
+                                label="Entity Type"
+                                value={entityValue}
+                                placeholder="Select Entity"
+                                options={entityPicklistValues.data.values}
+                                onchange={handleChange} required>
+                </lightning-combobox>
+                <br/>
+            </template>
+
+            <!--<template if:true={isState}>
+                <template if:true={stateOptions}>
+                    <lightning-combobox name="StateAgency"
+                                    label="State Agency"
+                                    value={stateValue}
+                                    placeholder="Select State Agency"
+                                    options={stateOptions}
+                                    onchange={handleChange} required>
+                    </lightning-combobox>
+                </template>
+                <br/>
+            </template>-->
+            <template if:true={isState}>
+                <c-lookup
+                        data-custom="lookup"
+                        label="State Agency"
+                        data-lookup="State_Agency__c"
+                        onsearch={handleStateAgencySearch}
+                        onselectionchange={handleStateAgencyChange}
+                        placeholder="Search State Agency"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadLookupDataOnLoad}
+                        local-search = {loadLookupDataOnLoad}
+                        scroll-after-n-items = "10"
+                        required>
+            </c-lookup>
+            <br/>
+            </template>
+
+            <template if:true={isCounty}>
+                <template if:true={picklistValues.data}>
+                    <lightning-combobox name="County"
+                                    label="County"
+                                    value={value}
+                                    placeholder="Select County"
+                                    options={picklistValues.data.values}
+                                    onchange={handleChange} required>
+                    </lightning-combobox>
+                </template>
+                <br/>
+            </template>
+
+            <template if:true={isNonGov}>
+                <lightning-input label="Non Governmental Entity" name = "NonGovernmentalEntity" onchange={handleChange} required class="slds-m-bottom_x-small"></lightning-input>
+                <lightning-input label="Federal Tax ID #" name = "FederalTaxID" onchange={handleChange} class="slds-m-bottom_x-small" required></lightning-input>
+                <br/>
+            </template>
+            
+            <div class="slds-align_absolute-center">
+                <lightning-button label={buttonlabel} variant="brand" disabled={disabledSignUpButton} onclick={signup}></lightning-button>
+            </div>
+            
+            <!--<template if:true={isModalOpen}>
+                <section
+                    role="dialog"
+                    tabindex="-1"
+                    aria-labelledby="modal-heading-01"
+                    aria-modal="true"
+                    aria-describedby="modal-content-id-1"
+                    class="slds-modal slds-fade-in-open"
+                >
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">User Registration</h1>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <center><h3>Your request has been recieved. You will recieve email once your request is approved</h3><br/>
+                            </center>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            
+                            <lightning-button label="OK" variant="brand" onclick={navigateSignUpPage}></lightning-button>
+                        </footer>
+                    </div>
+                </section>
+            </template> -->   
+        </div>
+    </lightning-card>
+    
+</template>

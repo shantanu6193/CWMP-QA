@@ -1,0 +1,17 @@
+.grx-backbutton_brand, .grx-backbutton_brand_brand:hover, .grx-backbutton_brand_brand:active, .grx-backbutton_brand_brand:focus {
+             background: #F2F2F4;
+             color: #FF5923;
+             border-color: #DADADF;
+ }
+
+  .slds-modal__footer {
+             border-top: none !important;
+             border-bottom-right-radius:  none !important;
+             border-bottom-left-radius:  none !important;
+
+         }
+     .slds-modal__header {
+         border-bottom : none;
+         border-top-right-radius: none;
+         border-top-left-radius: none;
+     }

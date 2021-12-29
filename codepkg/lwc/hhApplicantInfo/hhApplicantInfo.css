@@ -1,0 +1,18 @@
+h3.heading {
+    color: #fff;
+    background: #2574a9;
+    padding: 10px 15px;
+}
+
+.slds-theme_shade {
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+
+.box_card {
+    border: 1px solid #dedede;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 15px;
+}

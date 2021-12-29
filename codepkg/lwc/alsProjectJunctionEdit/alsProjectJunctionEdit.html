@@ -1,0 +1,375 @@
+<template>
+    <div class="slds-content-body slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12" onclick= {onOutSideLookupClick}>
+            <article class="slds-card">
+                <!--header-->
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title slds-align_absolute-center slds-p-vertical_medium">
+                                <template if:false={getEditRecord}>
+                                <p class="slds-card__header-link slds-truncate" title="Contact">
+                                    <span>New {headerText} Role </span>
+                                </p>
+                              </template>
+                              <template if:true={getEditRecord}>
+                                <p class="slds-card__header-link slds-truncate" title="Contact">
+                                    <span>Edit {headerText} Role </span>
+                                </p>
+                              </template>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-p-around--medium">
+                        <div class="slds-col slds-size_12-of-12">
+                            <!--Project Details Section-->
+                            <div class="slds-section slds-is-open">
+                                <h3 class="slds-section__title slds-theme_shade">
+                                    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">{headerText} Details</span>
+                                </h3>
+                                <!--<template if:false={isEdit}>-->
+                                    <div aria-hidden="false" class="slds-section__content">
+                                        <div class="slds-grid slds-wrap slds-p-around--medium">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+<!--                                                <c-lwc-lookup lookup-label="Project Name"  -->
+<!--                                                              object-api-name="Project__c" -->
+<!--                                                              object-name="Project__c" -->
+<!--                                                              icon-name="standard:contact"  -->
+<!--                                                              lookupname="lookupTwo"-->
+<!--                                                              disable-cross ="true"-->
+<!--                                                              data-field="Project_Name__c"-->
+<!--                                                              required-->
+<!--                                                              defaultid={getprojectId}-->
+<!--                                                              onrecordselection={onProjectSelection}>-->
+<!--                                                </c-lwc-lookup>-->
+                                                <template if:true={isISSobject}>
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col">
+                                                            <div class="slds-form">
+                                                                <div class="slds-form-element slds-form-element_horizontal slds-size_6-of-12">
+                                                                    <label class="slds-form-element__label">Incident Name</label>
+                                                                    <div class="slds-form-element__control">
+                                                                        <span>{issIncidentName}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-col">
+                                                            <div class="slds-form">
+                                                                <div class="slds-form-element slds-form-element_horizontal slds-size_6-of-12">
+                                                                    <label class="slds-form-element__label">Subrecipient Name</label>
+                                                                    <div class="slds-form-element__control">
+                                                                        <span>{issSubrecipientName}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </template>
+                                                <template if:false={isISSobject}>
+                                                <lightning-record-view-form record-id={getprojectId}
+                                                                                object-api-name={srcObjectApiName}>
+                                                        <!--<div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                                                        <lightning-output-field field-name="Name">
+                                                        </lightning-output-field>
+                                                        </div>-->
+                                                        <div class="slds-form">
+                                                            <div class="slds-form-element slds-form-element_horizontal slds-col slds-size_6-of-12">
+                                                                <label class="slds-form-element__label">{srcObjNameFieldLabel}</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <lightning-output-field field-name="Name" variant="label-hidden">
+                                                                    </lightning-output-field>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+                                                </lightning-record-view-form>
+                                                </template>
+                                            </div>
+                                            <template if:true={getdetailVisible}>
+                                                <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                    <c-lwc-lookup lookup-label="Search Existing Account" 
+                                                                  object-api-name="Account"  
+                                                                  object-name="Account"
+                                                                  icon-name="standard:account" 
+                                                                  data-lookup ="Account_Lookup" 
+                                                                  fields-to-return={fieldsToReturn}
+                                                                  lookupname={disalbleCross}
+                                                                  where-clause=""
+                                                                  order-by="Name"
+                                                                  defaultid={defaultAccountId}
+                                                                  required 
+                                                                  onrecordselection={onAccountSelection}>
+                                                    </c-lwc-lookup>   
+                                                </div>
+                                            </template>
+
+                                            <template if:true={getdetailVisible}>
+                                                <div class="slds-col slds-size_12-of-12 slds-p-around--small" if:true={programTypeValuesLoaded}>
+                                                    <div if:true={showPrograms}>
+                                                        <c-project-role-multi-select-picklist picklistlabel="Programs" values={programType} onselectedvalues={handleSelectedvalues} record-selected-values={projectRoleRecord.Programs__c} field-required = true></c-project-role-multi-select-picklist>
+                                                    </div>
+                                                    </div>
+                                            </template>
+
+                                        </div>
+                                        <!--Output Field Start-->
+                                        <template if:true={isEdit}>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-around--small">          
+                                                <h3 class="slds-section__title slds-theme_shade">
+                                                    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Contact Details</span>
+                                                </h3>
+                                                <div class="slds-grid slds-p-around_small">
+                                                    <div  class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                        <lightning-record-view-form record-id={defaultContactId}
+                                                                                    object-api-name="Contact">
+                                                                                    <!-- <div class="slds-box slds-theme_default "> -->
+                                                                                        <div class="slds-grid slds-wrap slds-grid_pull-padded-medium">
+                                                                                            <!-- <div class="slds-col slds-size_12-of-12 slds-p-around--small"> -->
+                                                                                                <div class="slds-col slds-box slds-box_small slds-size_6-of-12 slds-p-around_small">
+                                                                                                    <lightning-output-field field-name="FirstName">
+                                                                                                    </lightning-output-field>
+                                                                                                </div>
+                                                                                                <div class="slds-col slds-box slds-box_small slds-size_6-of-12 slds-p-around_small">
+                                                                                                    <lightning-output-field field-name="LastName">
+                                                                                                    </lightning-output-field>
+                                                                                                </div>
+                                                                                                <div class="slds-col slds-box slds-box_small slds-size_6-of-12 slds-p-around_small">
+                                                                                                    <lightning-output-field field-name="Email">
+                                                                                                    </lightning-output-field>
+                                                                                                </div>
+                                                                                                <div class="slds-col slds-box slds-box_small slds-size_6-of-12 slds-p-around_small">
+                                                                                                    <lightning-output-field field-name="Phone">
+                                                                                                    </lightning-output-field>
+                                                                                                </div>
+                                                                                                <div class="slds-col slds-box slds-box_small slds-size_6-of-12 slds-p-around_small">
+                                                                                                    <lightning-output-field field-name="Title">
+                                                                                                    </lightning-output-field>
+                                                                                                </div>
+                                                                                            <!-- </div> -->
+                                                                                        </div>
+                                                                                    <!-- </div> -->
+                                                       </lightning-record-view-form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </template>
+                                        <!--Output Field End-->
+                                    </div>
+                                <!-- </template> -->
+                            </div>
+                            
+                            <!--Account-Contact Search Section-->
+                            <template if:true={showContactSection}> 
+                                <div class="slds-section slds-is-open">
+                                    <h3 class="slds-section__title slds-theme_shade">
+                                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Contact Details</span>
+                                    </h3>
+                                    <div aria-hidden="false" class="slds-section__content">
+                                        <div class="slds-grid slds-wrap slds-p-around--medium">
+                                            <template if:false={hideExistingContact}>
+                                                <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                    <p>Select an Existing Contact on this Account</p>
+                                                </div>
+                                                   <template if:true={getdetailVisible}>
+                                                      <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                            <c-lwc-lookup   object-api-name="Contact" 
+                                                                            object-name="Contact" 
+                                                                            icon-name="standard:contact"  
+                                                                            required 
+                                                                            data-field="Contact_Name__c"
+                                                                            lookupname="ContactRealatedToAccount"
+                                                                            data-lookup ="Contact_Lookup"
+                                                                            defaultid={defaultContactId}
+                                                                            accountid ={AccountId}
+                                                                            onrecordselection={handleExistingRelationContact}>
+                                                            </c-lwc-lookup>
+                                                      </div>
+                                                   </template>
+                                            </template>
+                                            <template if:false={hideNewRelationContact}>
+                                                <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                    <p>OR Create a New Relationship</p>
+                                                </div>
+                                                <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                    <c-lwc-lookup   object-api-name="Contact"  
+                                                                    object-name="Contact"
+                                                                    icon-name="standard:contact"  
+                                                                    fields-to-return={fieldsToReturnForContact}
+                                                                    lookupname="lookupOne"
+                                                                    where-clause=""
+                                                                    data-lookup ="NewContact_Lookup"
+                                                                    order-by="LastName"
+                                                                    required 
+                                                                    onrecordselection={handleNewRelationContact}>
+                                                    </c-lwc-lookup>
+                                                </div>
+                                                <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                    <lightning-combobox
+                                                            name="Contact Role"
+                                                            label="Contact Role"
+                                                            value={contactRole.Contact_Role_Global_List__c}
+                                                            options={ContactRoleGlobalList}
+                                                            onchange={handleContactRoleListChange}
+                                                            data-field="Contact_Role_Global_List__c"
+                                                            class="input"
+                                                            required
+                                                            message-when-value-missing="Select a Value">
+                                                    </lightning-combobox>
+                                                </div>
+                                            </template>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-around--small">
+                                                <p>OR Create a New Contact</p>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                <lightning-input    type="text"
+                                                                    label="First Name"
+                                                                    value={ContactDetail.FirstName}
+                                                                    onchange={handleCreateNewContact} 
+                                                                    data-field="FirstName"
+                                                                    disabled ={isDisable}>
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                <lightning-input type="text" 
+                                                                label="Last Name" 
+                                                                value={ContactDetail.LastName}
+                                                                onchange={handleCreateNewContact} 
+                                                                data-field="LastName"
+                                                                 required
+                                                                disabled ={isDisable}>
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                <lightning-input type="email" 
+                                                                label="Email" 
+                                                                value={ContactDetail.Email}
+                                                                onchange={handleCreateNewContact} 
+                                                                data-field="Email"
+                                                                class="input email"
+                                                                 required
+                                                                disabled ={isDisable}>
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                <lightning-input    type="tel" 
+                                                                    label="Phone"
+                                                                    value={ContactDetail.Phone}
+                                                                    onchange={handleCreateNewContact} 
+                                                                    data-field="Phone"
+                                                                    pattern="[0-9]*"
+                                                                    maxlength="10"
+                                                                    message-when-pattern-mismatch="Only Numbers are allowed"
+                                                                    disabled ={isDisable}>
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                <lightning-input type="text"
+                                                                 label="Title"
+                                                                 value={ContactDetail.Title}
+                                                                 onchange={handleCreateNewContact}
+                                                                 data-field="Title"
+                                                                 disabled ={isDisable}>
+                                                </lightning-input>
+                                            </div>
+                                            <template if:false={showContactRole}>
+                                                <div class="slds-col slds-size_6-of-12 slds-p-around--small">
+                                                    <lightning-combobox
+                                                            name="Contact Role"
+                                                            label="Contact Role"
+                                                            value={contactRole.Contact_Role_Global_List__c}
+                                                            options={ContactRoleGlobalList}
+                                                            onchange={handleContactRoleListChange}
+                                                            data-field="Contact_Role_Global_List__c"
+                                                            class="input"
+                                                            required
+                                                            message-when-value-missing="Select a Value">
+                                                    </lightning-combobox>
+                                                </div>
+                                            </template> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            <!--Other Details Section-->
+                            <div class="slds-section slds-is-open">
+                                <h3 class="slds-section__title slds-theme_shade">
+                                    <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Other Details</span>
+                                </h3>
+                                <div aria-hidden="false" class="slds-section__content">
+                                    <div class="slds-grid slds-wrap slds-p-around--medium">
+                                        <template if:true={getdetailVisible}>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                                                <lightning-combobox
+                                                            name={roleLabel}
+                                                            label={roleLabel}
+                                                            value={projectRoleRecord.Project_Role_Global_List__c}
+                                                            options={ProjectRoleGlobalList}
+                                                            onchange={handleProjectRoleListChange}
+                                                            data-field="Project_Role_Global_List__c"
+                                                            class="input"
+                                                            required
+                                                            message-when-value-missing="Select a Value">
+                                                    </lightning-combobox>
+                                            </div>
+                                        </template>
+                                        <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                                            <lightning-combobox name="Has Signing Authority"
+                                                                label="Has Signing Authority"
+                                                                value={projectRoleRecord.Has_Signing_Authority__c}
+                                                                options={sAuthorityList}
+                                                                onchange={handleProjectRoleDetail}
+                                                                data-field="Has_Signing_Authority__c"
+                                                                required
+                                                                class="input"
+                                                                message-when-value-missing="Select a Value"
+                                                                disabled={formInputDisabled}>
+                                            </lightning-combobox>
+                                        </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                                                <lightning-combobox
+                                                        name="Contact Type"
+                                                        label="Contact Type"
+                                                        value={projectRoleRecord.Contact_Type__c}
+                                                        options={ContactType}
+                                                        onchange={handleProjectRoleDetail}
+                                                        data-field="Contact_Type__c"
+                                                        required
+                                                        class="input"
+                                                        message-when-value-missing="Select a Value"
+                                                        disabled={formInputDisabled}
+                                                >
+                                                </lightning-combobox>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 slds-p-around_small">
+                                                <lightning-combobox
+                                                    name="Is Mailing Contact"
+                                                    label="Is Mailing Contact"
+                                                    value={projectRoleRecord.Is_Mailing_Contact__c}
+                                                    options={IsMailingContactList}
+                                                    onchange={handleProjectRoleDetail}
+                                                    data-field="Is_Mailing_Contact__c"
+                                                    required
+                                                    class="input"
+                                                    message-when-value-missing="Select a Value"
+                                                    disabled={formInputDisabled}
+                                                        >
+                                                </lightning-combobox>
+                                            </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-card__footer slds-p-around_medium">
+                    <button class="slds-button slds-button_neutral"  onclick={clearForm} >Clear</button>
+                    <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={saveRecord} >Save</button>
+                </footer>
+            </article>
+        </div>
+    </div>    
+</template>

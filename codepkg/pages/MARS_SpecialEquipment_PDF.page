@@ -1,0 +1,214 @@
+<apex:page showHeader="false" controller="MARS_SpecialEquipment_PDF" applyHtmlTag="false" docType="html-5.0" sidebar="false" renderAs="advanced_pdf" >
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <!--renderAs="PDF"-->
+    <style>
+      body {
+        /* margin: 0.1;*/
+        font-family: Dialog;
+        /*font-size: 0.80em;*/
+        font-size: 9.5pt;
+        /*line-height: 1.1;*/
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+      }
+
+      .trgray {
+        background-color: #b4b3b3;
+      }
+
+      #col1,
+      #col2,
+      #col3{
+        width: 33%;
+        display: inline-block;
+      }
+
+      @page {
+        size: portrait;
+        /*margin-top: 30px;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-bottom: 30px;*/
+        @bottom-right {
+          content: element(footer);
+        }
+      }
+
+      div.footer {
+        display: block;
+        padding: 5px;
+        position: running(footer);
+      }
+
+      .page-break {
+        display: block;
+        page-break-before: always;
+      }
+
+      /* Clear floats after the columns */
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .divclear {
+        clear: both;
+      }
+
+      .tableclass {
+        table-layout: fixed;
+        width: 100%;
+        border: 1px solid black;
+      }
+
+      .tableboarder {
+        border-collapse: collapse;
+      }
+
+      .thtdclass {
+        /*border: 1px solid black;*/
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-top: 10px;
+      }
+
+      .thfloat {
+        text-align: right;
+      }
+
+      .textalign {
+        text-align: justify;
+      }
+
+      .textaligncenter {
+        text-align: center;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div><!--style="page-break-after:always;"-->
+      <div style="row">
+        <div style="text-align:center">
+            <div><p class="textaligncenter">California Governor’s Office of Emergency Services (Cal OES) - Fire and Rescue Division </p></div>
+            <h2>SPECIAL EQUIPMENT</h2>
+            <div><p class="textaligncenter">for</p></div>
+            <div><p class="textaligncenter">AGREEMENT FOR LOCAL GOVERNMENT FIRE AND EMERGENCY ASSISTANCE TO</p></div> 
+            <div><p class="textaligncenter">THE STATE OF CALIFORNIA AND FEDERAL FIRE AGENCIES</p></div>
+            <div><p class="textaligncenter">(California Fire Assistance Agreement)</p></div>
+            <div id="col1"><b>Start Date:</b>
+              <apex:outputText value="{0,date,MM/dd/yy}"> 
+                <apex:param value="{!specialEquipment.Start_Date__c}" /> 
+              </apex:outputText>
+            </div> 
+            <div id="col2"><b>End Date:</b>
+              <apex:outputText value="{0,date,MM/dd/yy}"> 
+                <apex:param value="{!specialEquipment.End_Date__c}" /> 
+              </apex:outputText>
+            </div>
+            <div id="col3">
+              <b>Status:</b> {!specialEquipment.Approval_Status__c}
+            </div>
+            <br/><br/>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td>
+                  <b>Agency 3-Letter MACS I.D.:</b>
+                </td>
+                <td>
+                <b> Agency / Department Name:</b>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:50%;">
+                 {!specialEquipment.Agency__r.MACS_ID__c}
+                </td>
+                <td style="width:50%;">
+                  {!specialEquipment.Agency__r.Name} 
+                </td>
+              </tr>
+            </table>
+          
+            <br/>
+            <div><p class="textalign">All information provided on this form is subject to audit by Cal OES, CAL FIRE, and the Federal Fire Agencies signatory to the California Fire Assistance Agreement. The chart below reflects the hourly Special Equipment Rate submitted for your agency. </p></div>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td style="width:40%;">
+                  <b>Special Equipment Type</b>
+                </td>
+                <td style="width:10%;">
+                  <b>FEMA Code</b>
+                </td>
+                <td style="width:10%;">
+                  <b>Equipment Rate</b>
+                </td>
+                <td style="width:40%;">
+                  <b>Description</b>
+                </td>
+              </tr>
+              <apex:repeat value="{!specialEquipment.Agency_Special_Equipment_Line_Items__r}" var="record">
+                <tr>
+                  <td>
+                     {!record.Special_Equipment_Type__c} 
+                  </td>
+                  <td>
+                     {!record.FEMA_CODE__c} 
+                  </td>
+                  <td>
+                     {!record.Current_Rate__c} 
+                  </td>
+                  <td>
+                     {!record.Description__c} 
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+            <div><p class="textalign">NOTE: These rates are not effective until the date they are received by Cal OES.</p></div>
+            <div><p class="textalign">As an authorized representative of my agency/dept., I certify to the best of my knowledge and belief, and under penalty of perjury that this information is correct. Furthermore, my signature below represents acceptance by my agency/dept., as a cooperator, to comply with the authorities, terms and conditions of the CFAA. I also agree to comply with all cooperator agency internal accounting and expense reimbursement standards.</p></div>
+            <br/>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td>
+                  <b>Name</b>
+                </td>
+                <td>
+                <b>Authorized Representative </b>
+                </td>
+                <td>
+                  <b>Date</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                 {!specialEquipment.CreatedBy.Name}
+                </td>
+                <td>
+                  <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(signature))}">
+                    <apex:image url="{!signature}" style="height: 50px;width: 200px;"/>
+                  </apex:outputPanel>
+                </td>
+                <td>
+                  <apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!specialEquipment.Start_Date__c}" /></apex:outputText>
+                </td>
+              </tr>
+            </table>
+            <div class="footer thfloat">
+              <b>Printed Date:</b>&nbsp;&nbsp;
+              <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}">
+                <apex:param value="{!NOW()}" /></apex:outputText>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>      
+</apex:page>

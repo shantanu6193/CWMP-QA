@@ -1,0 +1,18 @@
+.slds-modal__footer {
+    border-top: none !important;
+}
+.slds-modal__header {
+    border-bottom : none;
+}
+
+.slds-form-element__control {
+    clear: left;
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.slds-form-element__control {
+    clear: none !important;
+    position: relative;
+}

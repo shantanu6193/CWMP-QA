@@ -1,0 +1,78 @@
+:host {
+	display: contents;
+}
+h3.heading {
+    color: #fff;
+    background: #2574a9;
+    padding: 10px 15px;
+    width: 100%;
+}
+
+.slds-theme_shade {
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+table, th, td {
+	border-top: 1px solid rgb(212, 212, 212);
+	border: 1px solid rgb(212, 212, 212);
+	text-align: center;
+	padding: 10px;
+}
+td {
+    padding:8px;
+}
+.hr {
+    border-top: 2px solid #cccccc;
+    width: 100%;
+    /* padding: 16px; */
+    margin: 16px;
+}
+.around_border {
+    border: 1px solid #dedede;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 800px) {
+    .responsive_table table {
+       border: 0;
+     }
+   
+    .responsive_table table thead {
+       border: none;
+       clip: rect(0 0 0 0);
+       height: 1px;
+       margin: -1px;
+       overflow: hidden;
+       padding: 0;
+       position: absolute;
+       width: 1px;
+     }
+}
+/* @media screen and (min-width:320px) and (max-width:800px) {
+    .mobile-only {
+        display: block;
+    }
+    .desktop-only {
+        display: none;
+    }
+} 
+@media screen and (min-width:800px)  {
+    .mobile-only {
+        display: none;
+    }
+    .desktop-only {
+        display: block;
+    }
+} */
+.damageDescribe {
+    	--sds-c-textarea-sizing-min-height: 265px;
+}
+.listOfMeasures {
+    	--sds-c-textarea-sizing-min-height: 120px;
+}
+.table-div span.slds-truncate {
+    overflow: visible;
+    white-space: normal;
+}

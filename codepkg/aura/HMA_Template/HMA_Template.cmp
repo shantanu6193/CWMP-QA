@@ -1,0 +1,41 @@
+<!--
+ - Created by PREM on 24-06-2020.
+ -->
+
+<aura:component description="HMA_Template" implements="forceCommunity:themeLayout" access="global">
+    <aura:attribute name="navBar" type="Aura.Component[]"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]"/>
+    <aura:attribute name="showSearch" type="Boolean" default="true" />
+    <aura:attribute name="showNavBar" type="Boolean" default="true" />
+    <aura:attribute name="showProfileMenu" type="Boolean" default="true" />
+	<div>
+        <div class="slds-grid slds-wrap content slds-align_absolute-center">
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-grid_align-center slds-grid_vertical-align-center header-component">
+                    <aura:if isTrue="{!v.showNavBar}">
+                        <div class="slds-col">
+                            <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/HMA_Login_Logo_White.png'}" alt="Sacramento 311 Customer Service" />
+                        </div>
+                        <div class="slds-col slds-p-left_large">
+                            <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/CDPH_Logo.jfif'}" alt="Sacramento 311 Customer Service" />
+                        </div>
+                        <div class="slds-col slds-p-left_large">
+                            <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/EMSA_Logo.jfif'}" alt="Sacramento 311 Customer Service" />
+                        </div>
+                        <div class="slds-col slds-size_3-of-12"></div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showProfileMenu}">
+                        <div class="slds-col slds-size_2-of-12">                    
+                            {!v.profileMenu}                  
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+        <div class="slds-grid slds-wrap content slds-align_absolute-center">
+            <div class="slds-col slds-size_12-of-12">
+                {!v.body}
+            </div>
+        </div>        
+    </div>
+</aura:component>

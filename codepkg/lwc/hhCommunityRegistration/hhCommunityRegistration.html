@@ -1,0 +1,536 @@
+﻿<!--
+   - Created by Ricky on 13-08-2021.
+   -->
+<!-- HH Community Registration -->
+<template>
+    <template if:true={isIE}>
+        <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        <p class="slds-text-align--center slds-text-heading--large">{label.HH_EN_Unsupported_Browser}</p>
+                    </h1>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p class="slds-text-align--center slds-text-heading--small">{label.HH_EN_Internet_Explorer_not_supported_Error}</p>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:false={isIE}>
+    <div class="slds-content-body slds-grid slds-wrap slds-p-vertical_x-large">
+        <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+            <article class="slds-card header-card">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                        <div class="slds-grid slds-wrap sign-header slds-grid_vertical-align-center">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_7-of-12">
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 align_center">
+                                        <h3>{label.HH_EN_Sign_Up}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_5-of-12">
+                                <a href={landingPageUrl}><div class="slds-grid slds-wrap slds-grid_align-end align_center">
+                                    <div class="slds-col slds-p-right_large">
+                                        <img src={loginLogo} class="sub-logo" alt="caloes-logo">
+                                    </div>
+                                    <div class="slds-col slds-p-right_large">
+                                        <img src={hhFire} alt="hh-fireLogo" class="sub-logo">
+                                    </div>
+                                    <div class="slds-col ">
+                                        <img src={hhLogo} alt="hh-logo" class="sub-logo">
+                                    </div>
+                                </div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-p-around_medium ">
+                    <div class="slds-col slds-size_12-of-12 box" >
+                        <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                                <div class="slds-grid slds-p-top_large">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 slds-p-horizontal_none">
+                                        <template if:true={translationLanguageList.data}>
+                                            <lightning-combobox name={label.HH_EN_RegistartionLanguageMessageLabel}
+                                                                label={label.HH_EN_RegistartionLanguageMessageLabel}
+                                                                value={language}
+                                                                placeholder={label.HH_EN_SelectLanguagePlaceHolder}
+                                                                options={translationLanguageList.data.values}
+                                                                data-field="Translation_Language__c"
+                                                                onchange={languageFieldChanged}
+                                                                class="input"
+                                                                dropdown-alignment="auto">
+                                            </lightning-combobox>
+                                        </template>
+                                        <span class="">
+                                             <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 slds-p-top_medium"> {label.HH_EN_Already_have_an_Account}&nbsp;<a href={label.HH_url_LoginURL} onclick={navigateSignIn}>{label.HH_EN_Sign_In}</a></div>
+                                        </span>
+                                    </div>
+                                    <!-- <div class="slds-col slds-size_6-of-12 slds-size_1-of-1 container">
+                                       <div class="slds-grid slds-wrap slds-p-top_large slds-align_absolute-center ">
+                                           <div class="slds-col  slds-size_12-of-12 slds-size_1-of-1 slds-align_absolute-center slds-p-around_small">
+                                               <img src={loginLogo} alt="caloes-logo">
+                                           </div>
+                                           <div class="slds-col  slds-size_6-of-12 slds-size_1-of-1 slds-align_absolute-center slds-p-around_small">
+                                               <img src={hhLogo} alt="hh-logo" class="sub-logo">
+                                           </div>
+                                       </div>
+                                       </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-vertical_xx-small slds-p-horizontal_medium">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <lightning-input type="text"
+                                            label={label.HH_EN_ApplicantFirstName}
+                                            value={recordLocal.First_Name__c}
+                                            data-field="First_Name__c"
+                                            onchange={fieldChanged}
+                                            required
+                                            class="input"
+                                            max-length="40"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <lightning-input type="text"
+                                            label={label.HH_EN_ApplicantLastName}
+                                            value={recordLocal.Last_Name__c}
+                                            data-field="Last_Name__c"
+                                            onchange={fieldChanged}
+                                            required
+                                            class="input"
+                                            max-length="50"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-p-around_medium slds-section">
+                            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 slds-theme_shade slds-section__title"> {label.HH_EN_UniqueHouseholdNumberMessageLabel} </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                        <span>
+                           <lightning-input type="text"
+                                            label={label.HH_EN_UniqueHouseholdNumber}
+                                            value={recordLocal.Unique_Household_Number__c}
+                                            data-field="Unique_Household_Number__c"
+                                            onchange={fieldChanged}
+                                            max-length="6"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-p-around_medium slds-section">
+                            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 slds-theme_shade slds-section__title"> {label.HH_EN_PhysicalAddressInfoLabel} </div>
+                        </div>
+                        <div class="border_devide"></div>
+                        <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                        <span>
+                           <template if:true={IsPhysicalAddressForeignList.data}>
+                              <lightning-combobox
+                                      name={label.HH_EN_IsPhysicalAddressForeignAddress}
+                                      label={label.HH_EN_IsPhysicalAddressForeignAddress}
+                                      value={recordLocal.Is_Physical_Address_a_Foreign_Address__c}
+                                      options={IsPhysicalAddressForeignList.data.values}
+                                      data-field="Is_Physical_Address_a_Foreign_Address__c"
+                                      onchange={handleIsForeignAddressChange}
+                                      class="input"
+                                      dropdown-alignment="auto"
+                                      required
+                                      message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                              </lightning-combobox>
+                           </template>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                        <span>
+                           <lightning-input type="text"
+                                            label={label.HH_EN_PhysicalAddressStreet}
+                                            value={recordLocal.Street_Address__c}
+                                            data-field="Street_Address__c"
+                                            onchange={fieldChangedMap}
+                                            required
+                                            class="input"
+                                            max-length="100"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <lightning-input type="text"
+                                            pattern="[a-z,A-Z,\s]*"
+                                            label={label.HH_EN_PhysicalAddressCity}
+                                            value={recordLocal.City_Name__c}
+                                            data-field="City_Name__c"
+                                            onchange={fieldChangedMap}
+                                            required
+                                            class="input"
+                                            max-length="40"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-p-horizontal_medium slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                            <template if:false={isPhysicalAddressReadOnly}>
+                           <lightning-input type="text"
+                                            pattern="[a-z,A-Z,\s]*"
+                                            label={label.HH_EN_PhysicalAddressState}
+                                            value={recordLocal.State__c}
+                                            data-field="State__c"
+                                                    onchange={fieldChangedMap}
+                                            required
+                                            class="input"
+                                            max-length="50"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                            </template>
+                           <template if:true={isPhysicalAddressReadOnly}>
+                            <template if:true={uSStateCodes.data}>
+                                <lightning-combobox 
+                                                    label={label.HH_EN_PhysicalAddressState} 
+                                                    required
+                                                    class="input" 
+                                                    value={recordLocal.State__c}
+                                                    data-field="State__c"
+                                                    name="input1"
+                                                    onchange={fieldChangedMap}
+                                                    options={uSStateCodes.data.values}
+                                                    dropdown-alignment="auto"
+                                >
+                                </lightning-combobox>
+                            </template>
+                        </template>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <lightning-input type="text"
+                                            label={label.HH_EN_PhysicalAddressZip_PostalCode}
+                                            value={recordLocal.Zip_Postal_Code__c}
+                                            data-field="Zip_Postal_Code__c"
+                                            onchange={fieldChangedMap}
+                                            required
+                                            max-length="20"
+                                            class="input"
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <template if:true={physicalAddressCountryList.data}>
+                              <lightning-combobox
+                                      name={label.HH_EN_PhysicalAddressCountry}
+                                      label={label.HH_EN_PhysicalAddressCountry}
+                                      value={recordLocal.Country_Region__c}
+                                      options={physicalAddressCountryList.data.values}
+                                      data-field="Country_Region__c"
+                                      onchange={fieldChangedMap}
+                                      class="input"
+                                      dropdown-alignment="auto"
+                                      required
+                                      read-only={isPhysicalAddressReadOnly}
+                                      message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                              </lightning-combobox>
+                           </template>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                        <span>
+                           <template if:true={isMailingDifferentList.data}>
+                              <lightning-combobox
+                                      name={label.HH_EN_IsMailingAddressDifferentFromPhysical}
+                                      label={label.HH_EN_IsMailingAddressDifferentFromPhysical}
+                                      value={recordLocal.Is_Mailing_Address_Different__c}
+                                      options={isMailingDifferentList.data.values}
+                                      data-field="Is_Mailing_Address_Different__c"
+                                      onchange={mailingAddressPicklistChanged}
+                                      class="input"
+                                      dropdown-alignment="auto"
+                                      required
+                                      message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                              </lightning-combobox>
+                           </template>
+                        </span>
+                            </div>
+                        </div>
+                        <template if:true={showMailingAddress}>
+                            <div style="padding-bottom:20px;">
+                                <div class="border_devide"></div>
+                                <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                              <span>
+                                 <template if:true={isMailingAddressForeignList.data}>
+                                    <lightning-combobox
+                                            name={label.HH_EN_IsMailingAddressForeignAddress}
+                                            label={label.HH_EN_IsMailingAddressForeignAddress}
+                                            value={recordLocal.Is_Mailing_Address_a_Foreign_Address__c}
+                                            options={isMailingAddressForeignList.data.values}
+                                            data-field="Is_Mailing_Address_a_Foreign_Address__c"
+                                            onchange={handleIsMailingAddressChange}
+                                            class="input"
+                                            dropdown-alignment="auto"
+                                            required
+                                            message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                                    </lightning-combobox>
+                                 </template>
+                              </span>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                              <span>
+                                 <lightning-input type="text"
+                                                  label={label.HH_EN_MailingAddressStreet}
+                                                  value={recordLocal.Mailing_Address__c}
+                                                  data-field="Mailing_Address__c"
+                                                  onchange={fieldChangedMap}
+                                                  required
+                                                  class="input"
+                                                  max-length="100"
+                                                  disabled ={isDisable}>
+                                 </lightning-input>
+                              </span>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                              <span>
+                                 <lightning-input type="text"
+                                                  pattern="[a-z,A-Z,\s]*"
+                                                  label={label.HH_EN_MailingAddressCity}
+                                                  value={recordLocal.Mailing_City__c}
+                                                  data-field="Mailing_City__c"
+                                                  onchange={fieldChangedMap}
+                                                  required
+                                                  class="input"
+                                                  max-length="40"
+                                                  disabled ={isDisable}>
+                                 </lightning-input>
+                              </span>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                              <span>
+                                   <template if:false={isMailingAddressReadOnly}>
+                                 <lightning-input type="text"
+                                                  pattern="[a-z,A-Z,\s]*"
+                                                  label={label.HH_EN_MailingAddressState}
+                                                  value={recordLocal.Mailing_State_Province__c}
+                                                  data-field="Mailing_State_Province__c"
+                                                          onchange={fieldChangedMap}
+                                                  required
+                                                  class="input"
+                                                  max-length="50"
+                                                  disabled ={isDisable}>
+                                 </lightning-input>
+                                   </template>
+                                 <template if:true={isMailingAddressReadOnly}>
+                                    <template if:true={uSStateCodes.data}>
+                                        <lightning-combobox
+                                                label={label.HH_EN_MailingAddressState}
+                                                required
+                                                class="input"
+                                                value={recordLocal.Mailing_State_Province__c}
+                                                data-field="Mailing_State_Province__c"
+                                                name="input1"
+                                                onchange={fieldChangedMap}
+                                                options={uSStateCodes.data.values}
+                                                dropdown-alignment="auto"
+                                        >
+                                        </lightning-combobox>
+                                    </template>
+                                </template>
+                              </span>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                              <span>
+                                 <lightning-input type="text"
+                                                  label={label.HH_EN_MailingAddressMailingZip_PostalCode}
+                                                  value={recordLocal.Mailing_Zip_Postal_Code__c}
+                                                  data-field="Mailing_Zip_Postal_Code__c"
+                                                  onchange={fieldChangedMap}
+                                                  required 
+                                                  max-length="20"
+                                                  class="input"
+                                                  disabled ={isDisable}>
+                                 </lightning-input>
+                              </span>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                              <span>
+                                 <template if:true={mailingAddressCountryList.data}>
+                                    <lightning-combobox
+                                            name={label.HH_EN_MailingAddressCountry}
+                                            label={label.HH_EN_MailingAddressCountry}
+                                            value={recordLocal.Mailing_Country_Region__c}
+                                            options={mailingAddressCountryList.data.values}
+                                            data-field="Mailing_Country_Region__c"
+                                            onchange={fieldChangedMap}
+                                            class="input"
+                                            required
+                                            dropdown-alignment="auto"
+                                            read-only={isMailingAddressReadOnly}
+                                            message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                                    </lightning-combobox>
+                                 </template>
+                              </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div class="border_devide" style="margin-top: 20px;"></div>
+                        <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                        <span>
+                           <lightning-input type="email"
+                                            label={label.HH_EN_Email_Address}
+                                            value={recordLocal.Email__c}
+                                            data-field="Email__c"
+                                            onchange={fieldChanged}
+                                            class="emailField"
+                                            onblur={validateEmail}
+                                            required
+                                            message-when-type-mismatch={label.HH_Email_Validation_Message}
+                                            disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+<!--                           <lightning-input    type="tel"-->
+<!--                                               label={label.HH_EN_PrimaryPhone}-->
+<!--                                               value={recordLocal.Phone__c}-->
+<!--                                               pattern="[0-9.+-]+"-->
+<!--                                               data-field="Phone__c"-->
+<!--                                               max-length="30"-->
+<!--                                               min-length="4"-->
+<!--                                               onchange={fieldChanged}-->
+<!--                                               required-->
+<!--                                               message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}-->
+<!--                                               class="input"-->
+<!--                                               disabled ={isDisable}>-->
+<!--                           </lightning-input>-->
+                           <lightning-input    type="tel"
+                                               label={label.HH_EN_PrimaryPhone}
+                                               value={recordLocal.Phone__c}
+                                               pattern="[0-9.+-]+"
+                                               data-field="Phone__c"
+                                               max-length="30"
+                                               min-length="4"
+                                               onchange={fieldChanged}
+                                               required
+                                               message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}
+                                               class="input"
+                                               field-level-help ={label.HH_EN_Primary_Phone_HelpText}
+                                               disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <lightning-input    type="tel"
+                                               label={label.HH_EN_SecondaryPhone}
+                                               value={recordLocal.Secondary_Phone__c}
+                                               data-field="Secondary_Phone__c"
+                                               pattern="[0-9.+-]+"
+                                               max-length="30"
+                                               min-length="4"
+                                                   message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}
+                                               onchange={fieldChanged}
+                                               field-level-help={label.HH_EN_Primary_Phone_HelpText}
+                                               class="input"
+                                               disabled ={isDisable}>
+                           </lightning-input>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <template if:true={englishLanguageProficiencyList.data}>
+                              <lightning-combobox
+                                      name={label.HH_EN_EnglishLanguageProficiency}
+                                      label={label.HH_EN_EnglishLanguageProficiency}
+                                      value={recordLocal.English_Language_Proficiency__c}
+                                      options={englishLanguageProficiencyList.data.values}
+                                      data-field="English_Language_Proficiency__c"
+                                      onchange={fieldChanged}
+                                      class="input"
+                                      dropdown-alignment="auto"
+                                      required
+                                      message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                              </lightning-combobox>
+                           </template>
+                        </span>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-vertical_xx-small">
+                        <span>
+                           <template if:true={preferredLanguageList.data}>
+                              <lightning-combobox
+                                      name={label.HH_EN_PreferredLanguage}
+                                      label={label.HH_EN_PreferredLanguage}
+                                      value={recordLocal.Preferred_Language__c}
+                                      options={preferredLanguageList.data.values}
+                                      data-field="Preferred_Language__c"
+                                      onchange={fieldChanged}
+                                      class="input"
+                                      dropdown-alignment="auto"
+                                      required
+                                      message-when-value-missing={label.HH_EN_MissingFieldValueError}>
+                              </lightning-combobox>
+                           </template>
+                        </span>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-gutters slds-p-horizontal_medium slds-p-vertical_xx-small">
+                            <div class="slds-col slds-size_1-of-1 slds-p-vertical_small">
+                                <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleOnClickSingUp} disabled={buttonDisabled}>{label.HH_EN_Sign_Up}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-card__footer slds-p-around_medium">
+                    <div class="slds-col slds-size_12-of-12 footer-copyright copy_right">{label.HH_EN_Copyright_2021_State_of_California}</div>
+                </footer>
+            </article>
+        </div>
+        <!-- <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+           <article class="slds-card slds-p-around_medium">
+
+           </article>
+           </div> -->
+    </div>
+</template>
+</template>

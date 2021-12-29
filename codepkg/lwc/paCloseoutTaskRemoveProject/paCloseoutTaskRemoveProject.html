@@ -1,0 +1,106 @@
+<template>
+    
+    <div class="slds-box slds-theme_default"> 
+    <div class="slds-text-title_caps slds-text-heading_medium slds-align_absolute-center slds-p-bottom_small">
+            <h1 class="main-heading">Closeout Task Remove Project</h1>
+    </div>
+    
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-wrap slds-align_absolute-center">
+                    <div class="slds-col slds-size_10-of-12 slds-p-top_large">
+                        <article class="slds-card ">
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                                    <div class="slds-col slds-size_6-of-12 slds-p-vertical_large">
+                                        <div class="slds-grid slds-wrap slds-gutters_direct-small">
+                                            <!--   SOURCE CLOSEOUT TASK LOOKUP   -->
+                                            <div class="slds-col slds-size_12-of-12 ">
+                                                <c-lookup
+                                                        selection ={preSelectedCloseoutTask}
+                                                        data-custom="lookup"
+                                                        data-lookup="Closeout_Task__c"
+                                                        label="Select Closeout Task for Removing Projects"
+                                                        onsearch={handleCloseoutTaskSearch}
+                                                        onselectionchange={handleCloseoutTaskChange}
+                                                        placeholder="Search Closeout Task number\Incident\Subrecipient"
+                                                        is-multi-entry={isMultiEntry}
+                                                        load-data-on-init = {loadDataOnInit}
+                                                        local-search = {loadDataOnLookup}
+                                                        scroll-after-n-items = "10"
+                                                        search-term="">
+                                                </c-lookup>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_large">
+                                        <div class="slds-grid slds-wrap slds-gutters_direct-small">
+                                            <!--  PROJECT TYPE PICKLIST     -->
+                                            <div class="slds-col slds-size_6-of-12 ">
+                                                <lightning-combobox
+                                                name="ProjectType"
+                                                label="Project Type"
+                                                value={selectedProjectType}
+                                                placeholder="Select Project Type"
+                                                options={projectTypeOptions}
+                                                onchange={handleProjectTypeChange} 
+                                                dropdown-alignment="auto">
+                                                </lightning-combobox>
+                                            </div>
+
+                                            <!--   TARGET CLOSEOUT TASK LOOKUP   -->
+                                            <div class="slds-col slds-size_6-of-12 ">
+                                                <c-lookup
+                                                        selection ={preSelectedTargetCloseoutTask}
+                                                        data-custom="lookup"
+                                                        data-lookup="Closeout_Task__c2"
+                                                        label="Select Closeout Task for Moving Projects"
+                                                        onsearch={handleTargetCloseoutTaskSearch}
+                                                        onselectionchange={handleTargetCloseoutTaskChange}
+                                                        placeholder="Search Closeout Task number"
+                                                        is-multi-entry={isMultiEntry}
+                                                        load-data-on-init = {loadDataOnLookup}
+                                                        local-search = {loadDataOnLookup}
+                                                        scroll-after-n-items = "10"
+                                                        search-term="">
+                                                </c-lookup>
+                                            </div>
+
+                                            <!--  PROJECT DATA TABLE    -->
+                                            <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                                                <lightning-datatable
+                                                        key-field="Id"
+                                                        columns={columns}
+                                                        data={projectsToDisplay}
+                                                        onrowselection={setSelectedProject}
+                                                        show-row-number-column
+                                                        selected-rows={getSelectedRows}>
+                                                </lightning-datatable>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+        
+                    <div class="slds-col slds-size_10-of-12 ">
+                        <div class="slds-col slds-size_12-of-12 slds-p-top_large slds-align_absolute-center">
+                            <lightning-button class="slds-p-right_small" label="Update" variant="brand" disabled={isButtonDisabled} onclick={handleSubmit}>
+                            </lightning-button>
+                            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template if:true={showLoader}>
+        <div class="loadingIcon">
+            <lightning-spinner alternative-text="Loading" size="small" class="slds-is-fixed"></lightning-spinner>
+        </div>
+    </template>
+</template>

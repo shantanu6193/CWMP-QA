@@ -1,0 +1,12 @@
+<!--
+ - Created by hp on 2020-04-06.
+ -->
+
+<aura:component description="PHOS_Order_Submit_For_Approval" implements="force:lightningQuickAction,force:hasRecordId" controller="PHOS_Order_EditCtrl">
+    <aura:attribute name="comments" type="String" default="" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="navLink"/>
+
+    <lightning:textarea value="{!v.comments}" label="Comments" class="boxSize"/>
+    <lightning:button label="Submit" value="Submit" onclick="{!c.submitForApproval}" class="slds-float--right"/>
+</aura:component>

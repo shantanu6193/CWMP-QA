@@ -1,0 +1,89 @@
+.container{
+    background: white !important;
+}
+hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+/*.slds-form-element__label{
+    *//*font-weight: 400;
+    color: #5a5959;
+    font-size: 0.75rem;*//*
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    display: inline-block;
+    color: #050505;
+    font-size: 0.75rem;
+    padding-right: .5rem;
+    padding-top: .25rem;
+    margin-bottom: .125rem;
+}*/
+.slds-input{
+    border-radius: 4px;
+    border: 1px solid #d4d4d4
+}
+.sub-text{
+    font-size: 0.65rem;
+    font-weight: 100;
+    font-style: italic;
+    color: #5a5959;
+}
+.heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+.helptext-div{
+    display:flex;
+}
+.reqired-span{
+    padding-top: 5px;
+}
+lightning-input label,lightning-radio-group label{
+    display:flex;
+}
+
+.slds-truncate{
+    white-space:normal;
+}
+.slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.slds-table_cell-buffer tr > th:first-child{
+    padding-left:8px;
+}
+.slds-table_cell-buffer tr>td:first-child{
+    padding-left:8px;
+}
+.slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+th, td {
+    /*text-align: center;*/
+    padding:10px;
+}
+.slds-table{
+    border:1px solid rgb(212,212,212);
+}
+
+table{
+    border: 2px solid #CCCCCC;
+}
+.slds-table_resizable-cols thead th{
+    padding:10px;
+}
+.slds-form-element__label {
+    display: inline;
+    vertical-align: middle;
+    /*font-size: var(--lwc-fontSize3,0.8125rem);
+    margin-left: 5px !important;*/
+}
+.staffing label.slds-form-element__label,lightning-radio-group.label {
+    font-weight: var(--lwc-fontWeightBold,700); 
+}

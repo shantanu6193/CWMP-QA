@@ -1,0 +1,9 @@
+<!--
+ - Created by PREM on 04-05-2020.
+ -->
+
+<design:component>
+    <design:attribute name="detailColumnsJSON" label="Detail Columns JSON" />
+    <design:attribute name="phosDetailColumnsJSON" label="Detail Columns JSON used for PHOS" />
+    <design:attribute name="json" label="json"/>
+</design:component>

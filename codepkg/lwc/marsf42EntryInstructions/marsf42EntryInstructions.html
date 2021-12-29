@@ -1,0 +1,29 @@
+<template>
+    <div class="slds">
+        <div class="slds-grid slds-wrap slds-p-top_medium instructions">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-align_absolute-center slds-p-bottom_medium">
+            <h1>Emergency Activity Record (OES F-42)</h1>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-align_absolute-center slds-p-bottom_medium border_bottom">
+            <p> <lightning-formatted-url
+                value="https://www.caloes.ca.gov/FireRescueSite/Documents/MARS_F-42_Instructions.pdf"
+                tooltip="F-42 Instructions" label="Please Access F-42 Instructions Here" target="_blank">
+             </lightning-formatted-url> </p>    
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-align_absolute-center slds-p-bottom_medium">               
+                <img alt=" " class="imagef42" src={logourl} title="logo" />
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium slds-p-left_medium border_left">
+                <p class="slds-p-top_medium slds-p-bottom_small">In order to expedite reimbursement,all information in this form must be filled out completely and
+                    accurately.It is the responsibility of the strike team leader,single resource,or overhead position
+                    to ensure that the CalOES Fire and Rescue Division has received all OES F-42's associated with the
+                    specific assignment within the time frame required.</p>
+                <p class="slds-p-bottom_small">Please read the instructions linked above to complete the Emergency Activity Record (OES F-42).</p>
+                <p class="slds-p-bottom_small">This form should also be used to track mutual aid responses. </p>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-align_absolute-center slds-p-bottom_medium border_top">
+                <p>once completed, form will be electronically submitted to caloes and your agency</p>    
+                </div>
+        </div>
+    </div>
+</template>

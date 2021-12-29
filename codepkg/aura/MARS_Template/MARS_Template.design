@@ -1,0 +1,5 @@
+<design:component label="MARS Template">
+    <design:attribute name="showSearch" label="Show Search Box" />
+    <design:attribute name="showNavBar" label="Show Nav Bar" />
+    <design:attribute name="showProfileMenu" label="Show Profile Menu" />
+</design:component>

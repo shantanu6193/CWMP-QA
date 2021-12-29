@@ -1,0 +1,99 @@
+<template>
+        <div class="table_light">
+            <div class="slds-size_12-of-12">
+                <h2 class="slds-text-heading_small slds-p-top_medium">Expense Claims</h2>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-scrollable">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout" id="Table1">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_2-of-12 name_section" scope="col">
+                                    <div class="slds-truncate" title="Name">Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12 incident_name" scope="col">
+                                    <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12 incident_section" scope="col">
+                                    <div class="slds-truncate" title="Incident Order Number">Incident Order Number</div>
+                                </th>
+                                <th class="slds-size_2-of-12 status_section" scope="col">
+                                    <div class="slds-truncate" title="Strike Team">Strike Team</div>
+                                </th>
+                                <th class="slds-size_2-of-12 incident_section" scope="col">
+                                    <div class="slds-truncate" title="Incident Request Number">Incident Request Number</div>
+                                </th>
+                                <th class="slds-size_1-of-12" scope="col">
+                                    <div class="slds-truncate" title="Date">Date</div>
+                                </th>
+                                <th class="slds-size_1-of-12 status_section" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="slds-size_1-of-12" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={visibleRecords} for:item="reimbursRecord" for:index="index">
+                                <tr class="slds-hint-parent" key={reimbursRecord.Id}>
+                                    <td class="slds-truncate" data-label="Name" scope="row">
+                                        <div class="slds-truncate" title={reimbursRecord.Name}>
+                                            {reimbursRecord.Name}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Incident Name" scope="row" >
+                                        <div class="slds-truncate" title={reimbursRecord.IncidentName}>
+                                            {reimbursRecord.IncidentName}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Incident_Order_Number" scope="row">
+                                        <div class="slds-truncate" title={reimbursRecord.Incident_Order_Number}>
+                                            {reimbursRecord.Incident_Order_Number}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Strike Team" scope="row">
+                                        <div class="slds-truncate" title={reimbursRecord.Strike_Team__c}>
+                                            {reimbursRecord.Strike_Team}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Incident_Request_Number" scope="row">
+                                        <div class="slds-truncate" title={reimbursRecord.Incident_Request_Number}>
+                                            {reimbursRecord.Incident_Request_Number}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Date">
+                                        <lightning-formatted-date-time value={reimbursRecord.Submission_Date} year="numeric"
+                                            month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row" >
+                                        <div class="slds-truncate" title={reimbursRecord.Status}>
+                                            {reimbursRecord.Status}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_1-of-12" data-label="View">
+                                        <a data-index={reimbursRecord.Id} onclick={viewRecord} class="slds-p-right_small">
+                                            <lightning-icon icon-name="utility:preview"
+                                                class="slds-icon slds-icon_small vieweye" size="small" alternative-text="view">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">View</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <div class="slds-p-top_small slds-p-bottom-small slds-p-right_small" style="text-align:center;">
+                        <c-mars-pagination-lwc records={reimbursementList} onslice={paginationHandler}></c-mars-pagination-lwc>
+                    </div>
+                   <template if:true={showHideReviewDetails}>
+                    <div class="slds-p-top_small"> 
+                        <div class="slds-box slds-theme_default">
+                            <c-mars-reimbursement-review record-id={reimbursemenId} onshowrecord={handelShowRecord}></c-mars-reimbursement-review>
+                        </div>    
+                    </div>  
+                    </template>
+                </div>
+            </div>
+        </div>
+</template>

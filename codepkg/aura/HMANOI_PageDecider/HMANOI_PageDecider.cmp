@@ -1,0 +1,8 @@
+<aura:component description="HMANOI_PageDecider"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable,forceCommunity:availableForAllPageTypes,lightning:actionOverride,lightning:hasPageReference"
+                access="global">>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="nav" />
+    <lightning:pageReferenceUtils aura:id="pageRefUtils"/>
+</aura:component>

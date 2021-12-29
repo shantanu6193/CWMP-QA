@@ -1,0 +1,8 @@
+.THIS .producttext{
+    white-space: pre-wrap;
+    text-align: left;
+}
+.THIS .errorColor{
+    color:red;
+    text-align: center;
+}

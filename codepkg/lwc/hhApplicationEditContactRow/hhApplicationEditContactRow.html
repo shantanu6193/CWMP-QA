@@ -1,0 +1,103 @@
+<template>
+	<tr class="slds-hint-parent" key={index}>
+			<td data-field="required" data-label="Is Head of Household">
+					<template if:true={headHousholdPicklistValues}>
+						<lightning-combobox name="HeadOfHouseHold"
+								data-field="Head_of_Household__c"
+								value={recordLocal.Head_of_Household__c}
+								data-value={recordLocal.Head_of_Household__c}
+								variant="label-hidden"
+								onchange={fieldChanged}
+								class="input"
+								title={title}
+								placeholder ={label.HH_EN_Select_an_Option}
+								onmouseover={getHousholdPicklistTitle}
+								options={headHousholdPicklistValues.values}
+								required>
+						</lightning-combobox>
+					</template>
+			</td>
+			<td data-field="required" data-label="First Name" role="gridcell">
+				<lightning-input type="text" 
+													class="input" 
+													data-field="Contact__r.FirstName" 
+								 onblur={blankCheck}
+													required 
+													variant="label-hidden"
+													value={recordLocal.Contact__r.FirstName} 
+								 title={title}
+								 max-length="40"
+								 onmouseover={setTitle}
+													onchange={fieldChanged} ></lightning-input>
+			</td>
+			<td data-field="required" data-label="Last Name" role="gridcell">
+					<lightning-input type="text" 
+														class="input" 
+														data-field="Contact__r.LastName" 
+									 onblur={blankCheck}
+														required 
+									 max-length="40"
+														variant="label-hidden" 
+														value={recordLocal.Contact__r.LastName} 
+									 title={title}
+									 onmouseover={setTitle}
+														onchange={fieldChanged} ></lightning-input>
+			</td>
+			<td data-field="required" data-label="Relationship to Homeowner" role="gridcell">
+				<template if:true={relationToHomeOwnerPicklistValues}>
+					<lightning-combobox name="RelationshiptoHomeowner"
+							data-field="Relationship_to_Homeowner__c"
+							data-value={recordLocal.Relationship_to_Homeowner__c}
+							value={recordLocal.Relationship_to_Homeowner__c}
+							variant="label-hidden"
+							onchange={fieldChanged}
+							class="input"
+							title={title}
+							placeholder ={label.HH_EN_Select_an_Option}
+							onmouseover={getRelationValuesTitle}
+							options={relationToHomeOwnerPicklistValues.values}
+							required>
+					</lightning-combobox>
+				</template>
+			</td>
+			<td data-field="required" data-label="Date of Birth" role="gridcell">
+				<lightning-input 	class="input"
+									value={recordLocal.Date_of_Birth__c}
+									variant="label-hidden"
+									max={todaysDate}
+									min={minDate}
+									message-when-range-overflow = {label.HH_EN_Prior_Date_Validaton}  
+									data-field="Date_of_Birth__c"
+									name="Date of Birth"
+									type="date"
+									title={title}
+									onmouseover={setTitle}
+									onchange={fieldChanged}
+									required>
+				</lightning-input>
+			</td>
+			<td data-field="required" data-label="Annual Income" role="gridcell">
+				<lightning-input type="number" 
+													class="input" 
+													data-field="Annual_Income__c" 
+													required 
+													variant="label-hidden" 
+													value={recordLocal.Annual_Income__c} 
+								title={title}
+							    onmouseover={setTitle}
+													formatter="currency"
+								max-length="16"
+													onchange={fieldChanged}></lightning-input>
+			</td>
+			<td data-label="Action" role="gridcell">
+				<!-- <a data-id={index} onclick={addNewRow} class="slds-p-right_small">
+						<lightning-icon icon-name="utility:add" class="slds-icon slds-icon_small" size="small" alternative-text="add"></lightning-icon>
+						<span class="slds-assistive-text">Add Icon</span>
+				</a> -->
+				<a data-id={index} onclick={deleteRow}>
+						<lightning-icon variant="error" icon-name="utility:delete" class="slds-icon slds-icon_small" size="small" alternative-text="icon"></lightning-icon>
+						<span class="slds-assistive-text">Delete Icon</span>
+				</a>
+			</td>
+	</tr>
+</template>

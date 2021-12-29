@@ -1,0 +1,19 @@
+/**
+ * Created by Pankaj on 24-04-2020.
+ */
+
+.THIS .select label{
+    /*display:none;*/
+}
+.THIS .select .slds-form-element__label{
+    padding: 0;
+    display: block;
+}
+.THIS .select .slds-form-element__label abbr,
+ .THIS .select .slds-form-element__label span{
+    height: 0;
+    display: block;
+}
+.THIS .slds-dropdown {
+    max-height : 125px !important;
+}

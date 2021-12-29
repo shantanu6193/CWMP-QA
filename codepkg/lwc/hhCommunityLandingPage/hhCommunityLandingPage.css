@@ -1,0 +1,87 @@
+﻿/**
+ * Created by Sushant Patil on 13-08-2021.
+ */
+h1{
+    font-size: 1.1em;
+}
+h3{
+    font-size:2.3rem;
+}
+.container{
+    border-radius:10px;
+    background-color:#003466;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+}
+.slds-input{
+    border-color:red !important;
+}
+
+.slds-modal__content {
+
+    height: 150px;
+
+}
+
+
+
+/*.sidebar{
+    background:white;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+}*/
+.sub-logo {
+    height: 50px;
+}
+.sign-header {
+    background: #003466;
+    color: #fff;
+    padding: 20px 15px;
+    border-bottom: 3px solid #fbad23;
+}
+.slds-card {
+    -webkit-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.46);
+    -moz-box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.46);
+    box-shadow: 0px 0px 9px 2px rgba(0,0,0,0.46);
+    border: none;
+}
+.slds-theme_shade {
+    background: #e8e8e8;
+    padding: 10px;
+    font-size: 14px;
+}
+
+button.slds-button.slds-button_brand.slds-float_right {
+    font-size: 16px;
+    padding: 3px 30px;
+}
+
+h1.program_title {
+    font-size: 21px;
+}
+
+footer.slds-card__footer.slds-p-around_medium {
+    background: #003466;
+    border-top: solid 3px #fbad23;
+}
+.copy_right {
+    color: #fff;
+    text-align: left;
+}
+
+
+@media (min-width:300px) and (max-width:360px) {
+    .sub-logo {height: 43px;}
+}
+
+@media (max-width:767px) {
+    .sign-header {
+        flex-direction: column-reverse;
+    }
+    .align_center {
+        justify-content: center;
+        text-align: center;
+    }
+    .sub-logo {
+        margin-bottom: 15px;
+    }
+}

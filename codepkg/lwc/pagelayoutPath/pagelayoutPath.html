@@ -1,0 +1,20 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-p-around--large">
+            <div class="slds-wizard" role="navigation">
+                <ol>
+                    <template for:each={path} for:item="item">
+                        <li data-value={item.status} key={item.status} class={item.className}>
+                            <p class="slds-wizard__link cursor">
+                                <span class="slds-wizard__marker"></span>
+                            </p>
+                        </li>
+                    </template>
+                </ol>
+                <span class="slds-wizard__progress">
+                    <span class="slds-wizard__progress-bar" style={progressWidth}></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</template>

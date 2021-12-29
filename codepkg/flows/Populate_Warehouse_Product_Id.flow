@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <assignments>
+        <name>Assign_warehouse_Product_record_Id</name>
+        <label>Assign warehouse Product record Id</label>
+        <locationX>419</locationX>
+        <locationY>475</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Warehouse_Product__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Warehouse_Product.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_if_record_Found</name>
+        <label>Check if record Found</label>
+        <locationX>171</locationX>
+        <locationY>502</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_Warehouse_Product_record_found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Warehouse_Product</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_warehouse_Product_record_Id</targetReference>
+            </connector>
+            <label>Check if Warehouse Product record found</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Populate Warehouse Product Id {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Populate Warehouse Product Id</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Warehouse_Product</name>
+        <label>Get Warehouse Product</label>
+        <locationX>176</locationX>
+        <locationY>319</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_if_record_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Is_Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Warehouse_Code__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Warehouse_Code__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Warehouse_SKU_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SKU_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Warehouse_Product__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Warehouse_Product</targetReference>
+        </connector>
+        <object>Inventory__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

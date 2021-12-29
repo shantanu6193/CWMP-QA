@@ -1,0 +1,91 @@
+<!--
+ - Created by hp on 2020-04-09.
+ -->
+
+<aura:component description="PHOS_SplitOrder" controller="PHOS_SplitOrderCtrl" implements="lightning:isUrlAddressable,force:hasRecordId">
+
+    <aura:attribute name="orderId" type="String"/>
+    <aura:attribute name="orderRec" type="Order" default="{}"/>
+    <aura:attribute name="orderItems" type="List" default="[]"/>
+    <aura:attribute name="filteredOrderItems" type="List" default="[]"/>
+    <aura:attribute name="fulfilmentOptions" type="List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="fulfilment" type="String" default=""/>
+    <aura:attribute name="sendTo" type="String"/>
+    <aura:attribute name="ccAddress" type="String"/>
+    <aura:attribute name="isLoadSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="sendEmail" type="Boolean" default= "false"/>
+    <!--<aura:attribute name="sendEmailCheckBox" type="Boolean" default="false"/>-->
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:navigation aura:id="navLink"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <aura:if isTrue="{!v.isLoadSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <div class="slds-grid slds-wrap slds-align_absolute-center">
+        <div class="slds-col slds-size_8-of-12 border_div">
+            <div class="slds-p-around_large">
+                <div class="slds-grid slds-wrap slds-align_absolute-center">
+                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_medium">
+                        <p class="form-header">Medical Resource Request Form</p>
+                    </div>
+                </div>
+                <br/>
+    <div class="c-container">
+        <lightning:layout class="slds-grid_vertical-align-end">
+            <lightning:layoutItem  size="4" padding="around-small">
+                            <lightning:select required="false" aura:id="entityWarehouse" value="{!v.fulfilment}" label="Fulfillment entity/warehouse" onchange="{!c.onChangeFulfilment}" >
+                                <aura:iteration items="{!v.fulfilmentOptions}" var="opt">
+                                    <option value="{!opt}" text="{!opt}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="8" padding="around-small" class="slds-float_right">
+                        <lightning:button class="slds-float_right" label="Send to Warehouse" value="Send to Warehouse" onclick="{!c.createShipmentRec}" />
+                <!--<aura:if isTrue="{!(v.sendEmailCheckBox==false)}">
+                    <lightning:button class="slds-float_right" label="Send to Warehouse" value="Send to Warehouse" onclick="{!c.createShipmentRec}" />
+                </aura:if>
+                <aura:if isTrue="{!(v.sendEmailCheckBox==true)}">
+                    <lightning:button label="Send to Warehouse" value="Send to Warehouse" onclick="{!c.sendSplitOrderEmail}" />
+                </aura:if>-->
+                       
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+                <aura:if isTrue="{!v.sendEmail}">
+                <br/>
+                <b>To Address: </b><ui:outputText value="{!v.sendTo}"/>
+                <br/>
+                <b>CC Address: </b><ui:outputText value="{!v.ccAddress}"/>
+                    <br/><br/>
+                </aura:if>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <div class="slds-form-element__control ">
+                            <!--<c:Caloes_Order_New_Review showAdditionalProductColumns="true" orderRec="{!v.orderRec}" orderItems="{!v.filteredOrderItems}" productsMap="{!v.productsMap}" />-->
+                        	<c:PHOS_Order_EditReview showAdditionalProductColumns="true" orderRec="{!v.orderRec}" orderItems="{!v.filteredOrderItems}" productsMap="{!v.productsMap}" />
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <div class="slds-form-element__control ">
+                           <!-- commented send email button as a part of West Sac Email Implementation 
+                            <aura:if isTrue="{!(v.fulfilment=='West Sacramento')}">
+                            <lightning:button label="Send Email" value="Send Email" onclick="{!c.sendSplitOrderEmail}" />
+                            </aura:if> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</aura:component>

@@ -1,0 +1,31 @@
+<template>
+	<tr class="slds-hint-parent" key={index}>
+			<td data-field="required" data-label="First Name" role="gridcell">
+					<lightning-input type="text" 
+														class="input" 
+														data-field="Contact__r.FirstName" 
+														required 
+														variant="label-hidden" 
+														value={recordLocal.Contact__r.FirstName} 
+														max-length="40"
+														onblur={blankCheck}
+														onchange={fieldChanged} ></lightning-input>
+			</td>
+			<td data-field="required" data-label="Last Name" role="gridcell">
+					<lightning-input type="text" 
+													 class="input" 
+													 data-field="Contact__r.LastName" 
+													 required variant="label-hidden" 
+													 value={recordLocal.Contact__r.LastName} 
+													 max-length="40"
+													 onblur={blankCheck}
+													 onchange={fieldChanged} ></lightning-input>
+			</td>
+			<td data-label="Action" role="gridcell" onclick={deleteRow}>
+					<a data-id={index}>
+						<lightning-icon variant="error" icon-name="utility:delete" class="slds-icon slds-icon_small" size="small" alternative-text="icon"></lightning-icon>
+						<span class="slds-assistive-text">Delete Icon</span>
+					</a>
+			</td>
+	</tr>
+</template>

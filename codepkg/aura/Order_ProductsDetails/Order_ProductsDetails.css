@@ -1,0 +1,12 @@
+/**
+ * Created by PREM on 04-05-2020.
+ */
+
+ .THIS td,
+ .THIS th{
+     padding:10px !important;
+ }
+ .THIS .slds-truncate{
+    white-space: break-spaces;
+    word-break: break-word;
+ }

@@ -1,0 +1,939 @@
+<!--
+ - Created by StackNexus Admin on 03-09-2021.
+ -->
+
+<!-- Hh Application Preview -->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner
+            variant="brand"
+            size="large">
+        </lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_Applicant_Information_Page_Title}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_First_Name}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">{previewData.Applicant__r.FirstName}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Last_Name}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.LastName}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_UniqueHouseholdNumber}
+                        </label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Unique_Household_Number__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_IsPhysicalAddressForeignAddress}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Is_Physical_Address_a_Foreign_Address__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PhysicalAddressStreet}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Physical_Street__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PhysicalAddressCity}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Physical_City__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PhysicalAddressState}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Physical_State__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PhysicalAddressZip_PostalCode}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Physical_Zip_Postal_Code__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PhysicalAddressCountry}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Physical_Country__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_IsMailingAddressDifferentFromPhysical}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Is_Mailing_Address_Different__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_IsMailingAddressForeignAddress}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Is_Mailing_Address_a_Foreign_Address__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_MailingAddressStreet}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.MailingStreet}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_MailingAddressCity}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.MailingCity}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_MailingAddressState}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.MailingState}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_MailingAddressMailingZip_PostalCode}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.MailingPostalCode}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_MailingAddressCountry}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.MailingCountry}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_EmailAddress}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Email}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PrimaryPhone}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Phone}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_SecondaryPhone}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.HomePhone}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_EnglishLanguageProficiency}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.English_Language_Proficiency__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_PreferredLanguage}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Applicant__r.Preferred_Language__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ======================================================================================== -->
+
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_Eligibility_Information_Page_Title}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Owner}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">{previewData.Property_Owner__c}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Primary_Residence}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Primary_Residence__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Rental_Property}
+                        </label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Rental_Property__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Currently_Occupied}
+                        </label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Currently_Occupied__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Car_Ownership}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Car_Ownership__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Is_Anyone_65}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Is_Anyone_65__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Is_Anyone_Age_5_and_Under}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Is_Anyone_Age_5_and_Under__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Anyone_Not_a_Proficient_English_Speaker}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Anyone_Not_a_Proficient_English_Speaker__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Ethnicities_of_Household_Members}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Ethnicities_of_Household_Members__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Is_Anyone_has_Disabilities}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Is_Anyone_has_Disabilities__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Household_members}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Household_Members__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_12-of-12 " > 
+                                <table class="">
+                                    <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_1-of-12" scope="col">
+                                            <div class="" title="Is Head of Household">{label.HH_EN_Is_Head_of_Household}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+                                            <div class="" title="Member Name">{label.HH_EN_First_Name}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+                                            <div class="" title="Member Name">{label.HH_EN_Last_Name}</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="" title="Relationship to Owner">{label.HH_EN_Relationship_to_Homeowner}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" >
+                                            <div class="" title="Date of Birth">{label.HH_EN_Date_of_Birth}</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="" title="Annual income">{label.HH_EN_Annual_Income}</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={previewData.appContacts} for:item="contact" for:index="index">
+                                            <tr key={contact.Id}>
+                                                <td>{contact.Head_of_Household__c}</td>
+                                                <td>{contact.Contact__r.FirstName}</td>
+                                                <td>{contact.Contact__r.LastName}</td>
+                                                <td>{contact.Relationship_to_Homeowner__c}</td>
+                                                <td>{contact.Date_of_Birth__c}</td>
+                                                <td>{contact.Annual_Income__c}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </article>
+
+        <!-- ======================================================================================== -->
+
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_Residence_Information}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Structure}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">{previewData.Property_Structure__c}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Street_Address}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Property_Street_Address__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_City}
+                        </label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.City__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_State}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.State__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Zip}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Zip_Postal_Code__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Count}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.County__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Year_of_construction}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Year_of_Construction__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Authority_to_make_updates_to_the_Home}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Authority_to_make_updates_to_the_Home__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Total_Living_Area}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Total_Living_Area__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Number_of_Stories}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Number_of_Stories__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Accessible_by_a_Passenger_Vehicle}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Accessible_by_a_Passenger_Vehicle__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Is_National_Register_of_Historic_Places}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Is_National_Register_of_Historic_Places__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Any_Other_Names_on_the_Property_Deed}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Any_Other_Names_on_the_Property_Deed__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+                        <div class=" ">
+                            <table >
+                                <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title="First Name"><span class="slds-required">*</span>{label.HH_EN_First_Name}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title="Last Name"><span class="slds-required">*</span>{label.HH_EN_Last_Name}</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={previewData.deedContacts} for:item="dc" for:index="index">
+                                        <tr key={dc.Id}>
+                                            <td>{dc.Contact__r.FirstName}</td>
+                                            <td>{dc.Contact__r.LastName}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div> -->
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Foreclosed_or_in_Foreclosure}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Property_Foreclosed_or_in__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Liens}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Property_Liens__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Good_Standing_on_Property_Taxes}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Good_Standing_with_a_payment_plan_on_you__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Assessed_Value_of_the_Property}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Assessed_Value_of_the_Property__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Property_Currently_Damaged}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Property_Currently_Damaged__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Describe_the_damages}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Damage_Description__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_Measures_to_Reduce_Wildfire_Damage_Risk}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Measures_to_Reduce_risks_to_wi__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_List_of_Measures}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.List_of_Measures__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_any_assistance_from_any_program}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Did_you_receive_wildfire_assistance__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">{label.HH_EN_assistance_and_approximately_when}</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    <span class="slds-form-element__static">{previewData.Which_program_s_and_when__c}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium" >
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_12-of-12">
+                                <div class="table-div">
+                                    <table >
+                                        <thead style="background-color:#2574a9; color:white">
+                                            <tr class="slds-line-height_reset">
+                                                <th class="slds-size_3-of-12" scope="col">
+                                                    <div class="" title="First Name"><span class="slds-required">*</span>{label.HH_EN_Date_Funding_Received}</div>
+                                                </th>
+                                                <th class="slds-size_3-of-12" scope="col">
+                                                    <div class="" title="Program Name"><span class="slds-required">*</span>{label.HH_EN_Program_Name}</div>
+                                                </th>
+                                                <th class="slds-size_3-of-12" scope="col">
+                                                    <div class="" title="Other Program">{label.HH_EN_Other_Program_Name}</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={previewData.fundedPrograms} for:item="fp" for:index="index">
+                                                <tr key={fp.Id}>
+                                                    <td>{fp.Date_Funding_Received__c}</td>
+                                                    <td>{fp.Program_Name__c}</td>
+                                                    <td>{fp.Other_Program_Name__c}</td>
+                                                </tr>
+                                                </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </article>
+
+        <!-- ================================================== -->
+
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title ">{label.HH_EN_HOMEOWNER_APPLICATION_DOCUMENTATION}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+
+                    <div class="slds-col slds-size_12-of-12 slds-scrollable_x" >
+						<table class="	">
+							<thead style="background-color:#2574a9; color:white">
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_Upload_Date}>{label.HH_EN_Upload_Date}</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_Document_Type}>{label.HH_EN_Document_Type}</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_File_Name}>{label.HH_EN_File_Name}</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_Other_Comments}>{label.HH_EN_Other_Comments}</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_Version}>{label.HH_EN_Version}</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="" title={label.HH_EN_Stage}>{label.HH_EN_Stage}</div>
+                                    </th>
+                                </tr>
+							</thead>
+							<tbody>
+                                <template for:each={previewData.documents} for:item="Doc" for:index="index">
+                                    <tr key={Doc.document.Id} class="slds-hint-parent">
+                                        <td>
+                                            <template if:false={isFirefox}>
+                                                <template if:true={Doc.document.Date_Time_Uploaded__c}>
+                                                    <lightning-formatted-date-time value={Doc.document.Date_Time_Uploaded__c}
+                                                                                   year="numeric"
+                                                                                   month="2-digit"
+                                                                                   day="2-digit"
+                                                                                   hour="2-digit"
+                                                                                   minute="2-digit"
+                                                                                   time-zone="PST"
+                                                    >
+                                                    </lightning-formatted-date-time>
+                                                </template>
+                                            </template>
+                                            <template if:true={isFirefox}>
+                                            <template if:true={Doc.document.Date_Uploaded__c}>
+                                                    <lightning-formatted-date-time value={Doc.document.Date_Uploaded__c}
+                                                                                   year="numeric"
+                                                                                   month="2-digit"
+                                                                                   day="2-digit"
+                                                    >
+                                                    </lightning-formatted-date-time>
+                                                </template>
+                                            </template>
+                                        </td>
+                                        <td  >
+                                            {Doc.document.Document_Type__c}
+                                        </td>
+                                        <td >
+                                            <template if:true={Doc.latestVersionId}>
+                                                <a onclick={handlePreviewDocument}>
+                                                    <div data-documentid = {Doc.contentDocumentId} data-versionid = {Doc.latestVersionId} class="" title={label.HH_EN_Click_to_preview}>{Doc.fileName}</div>
+                                                </a>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            {Doc.document.Comments__c}
+                                        </td>
+                                        <td>
+                                            {Doc.VersionNumber}
+                                        </td>
+                                        <td  >
+                                            {Doc.document.Stage__c}
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_House_Hold_Members}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+                    <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_12-of-12 slds-scrollable_x" > 
+                                <table class="">
+                                    <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_1-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Is_Head_of_Household}>{label.HH_EN_Is_Head_of_Household}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+                                            <div class="" title={label.HH_EN_First_Name}>{label.HH_EN_First_Name}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+                                            <div class="" title={label.HH_EN_Last_Name}>{label.HH_EN_Last_Name}</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Relationship_to_Homeowner}>{label.HH_EN_Relationship_to_Homeowner}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" >
+                                            <div class="" title={label.HH_EN_Date_of_Birth}>{label.HH_EN_Date_of_Birth}</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Annual_Income}>{label.HH_EN_Annual_Income}</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={previewData.contacts} for:item="contact" for:index="index">
+                                            <tr key={contact.Id}>
+                                                <td>{contact.Head_of_Household__c}</td>
+                                                <td>{contact.Contact__r.FirstName}</td>
+                                                <td>{contact.Contact__r.LastName}</td>
+                                                <td>{contact.Relationship_to_Homeowner__c}</td>
+                                                <td>{contact.Date_of_Birth__c}</td>
+                                                <td>{contact.Annual_Income__c}</td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="slds-card slds-card_boundary" if:true={showCoOwnerTable}>
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_Co_Owners}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+                    <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 ">
+                        <div class=" ">
+                            <table >
+                                <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_First_Name}><span class="slds-required">*</span>{label.HH_EN_First_Name}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Last_Name}><span class="slds-required">*</span>{label.HH_EN_Last_Name}</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={previewData.deedContacts} for:item="dc" for:index="index">
+                                        <tr key={dc.Id}>
+                                            <td>{dc.Contact__r.FirstName}</td>
+                                            <td>{dc.Contact__r.LastName}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- <article class="slds-card slds-card_boundary" if:true={showPastFundingRecievedTable}>
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">{label.HH_EN_Past_Funding_Received}</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap ">
+                    <div class="slds-col slds-size_12-of-12">
+                        <div class="table-div">
+                            <table >
+                                <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Date_Funding_Received}><span class="slds-required">*</span>{label.HH_EN_Date_Funding_Received}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Program_Name}><span class="slds-required">*</span>{label.HH_EN_Program_Name}</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="" title={label.HH_EN_Other_Program_Name}>{label.HH_EN_Other_Program_Name}</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={previewData.fundedPrograms} for:item="fp" for:index="index">
+                                        <tr key={fp.Id}>
+                                            <td>{fp.Date_Funding_Received__c}</td>
+                                            <td>{fp.Program_Name__c}</td>
+                                            <td>{fp.Other_Program_Name__c}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article> -->
+        <div class="slds-grid slds-wrap ">
+            <div class=" slds-col slds-size_12-of-12 slds-p-around_medium " style="text-align:center" if:false={isPartOfStage}>
+                <template if:true={isEdit}>
+                    <button type="button" class="slds-button slds-button_brand" style="text-align:center" onclick={redirectEdit}>{label.HH_EN_Edit}</button>
+                </template>
+                    <button type="button" class="slds-button slds-button_brand" style="text-align:center" onclick={handleExit}>{label.HH_EN_Exit}</button>
+            </div>
+        </div>
+    </template>
+</template>

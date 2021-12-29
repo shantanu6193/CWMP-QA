@@ -1,0 +1,34 @@
+.instructions h1 {
+    font-size: 26px;
+    text-transform: uppercase;
+}
+.instructions p a {
+    color: #000;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-decoration: none;
+}
+.instructions {
+    border: 2px solid #000;
+    padding-top: 20px;
+    background: #fff;
+}
+.border_top {
+    border-top: 2px solid #000;
+}
+.border_bottom {
+    border-bottom: 2px solid #000;
+}
+.border_left {
+    border-left: 2px solid #000;
+}
+.border_top p {
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 0 34%;
+    text-align: center;
+}
+img.imagef42 {
+    width: 187px;
+    height: auto;
+}

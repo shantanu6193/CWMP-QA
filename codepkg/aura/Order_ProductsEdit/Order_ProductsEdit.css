@@ -1,0 +1,52 @@
+/**
+ * Created by hp on 2020-04-04.
+ */
+
+ .THIS .border_div{
+    /*border:1px solid black;*/
+    background:#fff;
+}
+.THIS .slds-truncate{
+    white-space:normal;
+}
+.THIS .slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.THIS .slds-table_cell-buffer tr > th:first-child{
+    padding:8px;
+}
+/*.THIS .slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}*/
+.THIS .dummyClass thead th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+.THIS table td lightning-calendar td { padding: 0 !important; border-top: none !important; }
+.THIS th,
+.THIS td {
+    text-align: center;
+}
+.THIS .slds-table{
+    border:1px solid rgb(212,212,212);
+}
+
+.THIS .slds-form-element__label{
+    display:none;
+}
+
+.THIS .custom-label{
+    font-weight: 400;
+    color: #5a5959;
+    font-size: .75rem;
+}
+
+.THIS .error{
+    color:red;
+}
+.THIS .position-inherit {
+    position: inherit;
+}

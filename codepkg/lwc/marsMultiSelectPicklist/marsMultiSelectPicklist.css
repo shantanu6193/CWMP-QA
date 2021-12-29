@@ -1,0 +1,5 @@
+.slds-listbox_horizontal, .slds-listbox--horizontal {
+    display: inline-flex;
+    flex-wrap: inherit !important;
+    align-items: center;
+}

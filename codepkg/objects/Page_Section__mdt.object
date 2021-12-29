@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Hide_Field_API_Name_2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field API Name 2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hide_Field_API_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hide_Field_Operator_2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field Operator 2</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Equal</fullName>
+                    <default>true</default>
+                    <label>Equal</label>
+                </value>
+                <value>
+                    <fullName>Not Equal</fullName>
+                    <default>false</default>
+                    <label>Not Equal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Hide_Field_Operator__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field Operator</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Equal</fullName>
+                    <default>true</default>
+                    <label>Equal</label>
+                </value>
+                <value>
+                    <fullName>Not Equal</fullName>
+                    <default>false</default>
+                    <label>Not Equal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Hide_Field_Value_2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field Value 2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hide_Field_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Hide Field Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Page_Layout__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Page Layout</label>
+        <referenceTo>Page_Layout__mdt</referenceTo>
+        <relationshipLabel>Page Sections</relationshipLabel>
+        <relationshipName>Page_Sections</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Sequence</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Page Section</label>
+    <listViews>
+        <fullName>All_Page_Section</fullName>
+        <columns>Sequence__c</columns>
+        <columns>MasterLabel</columns>
+        <columns>Page_Layout__c</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>Hide_Field_API_Name__c</columns>
+        <columns>Hide_Field_API_Name_2__c</columns>
+        <columns>Hide_Field_Value__c</columns>
+        <columns>Hide_Field_Value_2__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Page Section</label>
+    </listViews>
+    <pluralLabel>Page Sections</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

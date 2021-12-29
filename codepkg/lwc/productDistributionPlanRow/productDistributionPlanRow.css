@@ -1,0 +1,16 @@
+/**
+ * Created by Shivraj on 27-08-2020.
+ */
+:host {
+  display: contents;
+}
+.table-row {
+    background: rgba(20, 63, 116, 0.05);
+}
+table, th, td {
+  border-top: 1px solid rgb(212, 212, 212);
+  border: 1px solid rgb(212, 212, 212);
+}
+.td {
+    padding:8px;
+}

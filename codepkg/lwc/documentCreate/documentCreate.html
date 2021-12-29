@@ -1,0 +1,22 @@
+<!--
+ - Created by harsh on 24-03-2021.
+ -->
+
+<!-- Document Create -->
+<template>
+    <lightning-card title="New Document" ><!--icon-name="standard:account"-->
+        <div class="slds-p-around_x-large custom_document">
+
+            <lightning-record-form
+                    object-api-name="Document__c"
+                    layout-type="Full"
+                    columns="2"
+                    mode="create"
+                    onsubmit={handleSubmit}
+                    onsuccess={handleSuccess}
+                    oncancel={handleSuccess}/>
+                <!-- onload={handleformload}> -->
+            </lightning-record-form>
+        </div>
+    </lightning-card>
+</template>

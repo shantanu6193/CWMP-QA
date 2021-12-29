@@ -1,0 +1,26 @@
+<template>   
+    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_xx-small">
+        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+            <lightning-combobox label="Industry" 
+                                name="industry" 
+                                onchange={handleIndustryChange} 
+                                options={controllingValues} 
+                                data-id="input"
+                                required
+                                placeholder="--Select--" 
+                                value={selectedIndustry}></lightning-combobox>
+        </div>
+        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+            <lightning-combobox label="Sub Industry" 
+                                name="subindustry"
+                                onchange={handleSubIndustryChange} 
+                                options={dependentValues} 
+                                placeholder="--Select--" 
+                                value={selectedSubIndustry}
+                                disabled={isDepValueBlank}></lightning-combobox>
+        </div>
+    </div> 
+    <div if:true={error}>
+        <p>{error}</p>
+    </div>
+</template>

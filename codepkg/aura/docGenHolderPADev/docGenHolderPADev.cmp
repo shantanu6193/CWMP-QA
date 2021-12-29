@@ -1,0 +1,11 @@
+<aura:component implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId" access="global">
+    <lightning:workspaceAPI aura:id="workspace" /> 
+    <aura:attribute name="recId" type="String" default=""/>
+    <aura:attribute name="module" type="String" default=""/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+    <div class="slds-box slds-theme_default">
+        <c:docGenPADEV recordId="{!v.recId}" module="{!v.module}" ongenerateClicked="{!c.generatePDF}"></c:docGenPADEV>
+     </div>
+    
+</aura:component>

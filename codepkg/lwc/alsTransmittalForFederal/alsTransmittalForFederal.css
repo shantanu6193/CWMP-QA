@@ -1,0 +1,42 @@
+.container{
+    background:white;
+    height: 100vh;
+    padding: 50px;
+}
+.form-header{
+    background: rgb(22 50 92);
+
+}
+.form-body{
+    background: white;
+    border: 1px solid black;
+    min-height:26px;
+}
+.alignment{
+    padding-left: initial;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding:4px;
+}
+th {
+    background:  rgb(22 50 92) !important; 
+}
+.table-heading {
+    color: white;
+    padding: 3px;
+}
+.fix-height{
+    height: auto;
+}
+table { page-break-inside:auto };
+tr    { page-break-inside:avoid; page-break-after:auto };
+th,td {
+    padding:4px;
+}
+@media print{
+    @page{margin-top: -11%;}
+    body{margin:1.6cm;}
+}

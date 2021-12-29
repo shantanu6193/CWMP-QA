@@ -1,0 +1,24 @@
+table, th, td {
+  border: 1px solid rgb(221, 219, 218);
+  border-collapse: collapse;
+  text-align: center;
+  padding:12px;
+}
+th {
+    background: #375283 !important;
+}
+.table-heading {
+    color: white;
+    font-size: 15px;
+    padding: 6px;
+}
+
+.fixed-width{
+    min-width:255px;
+}
+.footer{
+    border-color:white;
+}
+.slds-card__footer{
+    border-color:white;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <description>Visualforce page providing the offline page for the MARS Lightning Community. This page is used to fill F-42s when users offline</description>
+    <label>mars_CommunityOfflinePage</label>
+</ApexPage>

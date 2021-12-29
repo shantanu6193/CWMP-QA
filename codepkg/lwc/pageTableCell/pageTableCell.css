@@ -1,0 +1,13 @@
+.slds-checkbox .slds-checkbox_faux, .slds-checkbox .slds-checkbox--faux {
+    width : 35px !important;
+    height: 35px !important;
+}
+.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}
+
+.actionItems {
+    display : flex;
+    justify-content: center;
+}

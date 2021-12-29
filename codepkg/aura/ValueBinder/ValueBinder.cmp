@@ -1,0 +1,15 @@
+<!--
+ - Created by Prem Pal on 30-03-2020.
+ -->
+
+<aura:component description="ValueBinder">
+    <aura:attribute name="record" type="Object" default="{}"/>
+    <aura:attribute name="key" type="String"/>
+    <aura:attribute name="field" type="String"/>
+    <aura:attribute name="value" type="String"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+
+    <ui:outputText value="{!v.value}"/>
+</aura:component>

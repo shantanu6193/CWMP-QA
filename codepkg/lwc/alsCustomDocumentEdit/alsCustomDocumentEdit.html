@@ -1,0 +1,267 @@
+<template>
+    <div class="slds-p-around_large slds-scrollable alsmodel" >
+        <h3 style="font-weight:bold; text-align:center; font-size: large; ">{recordLabel}</h3>
+        <div class="slds-p-around_small">
+            <div class="slds-section slds-is-open">
+                <h3 class="slds-section__title slds-p-bottom_x-small">
+                    <button aria-controls="expando-unique-id" style="background-color:rgb(194, 194, 194)" aria-expanded="true" class="slds-button slds-section__title-action">
+                            <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                            </svg>
+                            <span class="slds-truncate" title="Document Details">Document Details</span>
+                          </button>
+                </h3>
+                <div class="slds-grid slds-wrap ">
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                          <div class="slds-p-right_large">
+                            <lightning-input  field-name="Document_Name__c"
+                                              data-field ="Document_Name__c"
+                                              class="docNameField"
+                                              type="text"
+                                              required=true
+                                              label="Document Name"
+                                              value={recordLocal.Document_Name__c}
+                                              onchange={fieldChanged} >
+                            </lightning-input>
+                          </div>
+                      </div>
+                    <template if:false={isHHApplication}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                                <template if:true={StagePicklistValues.data}>
+                                    <lightning-combobox
+                                            name="New"
+                                            label="Stage"
+                                            data-field= "Stage__c"
+                                            placeholder="--Select Value--"
+                                            value={docStageValue}
+                                            options={StagePicklistValues.data.values}
+                                            onchange={fieldChanged}>
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                    </template>
+                    <template if:false={isHHApplication}>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                          <div class="slds-p-right_large">
+                            <template if:true={IsRequiredPicklistValues.data}>
+                              <lightning-combobox
+                                   name="New"
+                                   label="Is Required"
+                                   data-field="Is_Required__c"
+                                   placeholder="--Select Value--"
+                                   value={docIsRequiredValue}
+                                   options={IsRequiredPicklistValues.data.values}
+                                   onchange={fieldChanged} >
+                              </lightning-combobox>
+                            </template>
+                          </div>
+                        </div>
+                    </template>
+                    <template if:false={isHHApplication}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                                <template if:true={StatusPicklistValues.data}>
+                                    <lightning-combobox
+                                            name="New"
+                                            label="Status"
+                                            data-field="Status__c"
+                                            placeholder="--Select Value--"
+                                            value={docStatusValue}
+                                            options={StatusPicklistValues.data.values}
+                                            onchange={fieldChanged} >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                    </template>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                            <div class="slds-p-right_large">
+                                <template if:true={isHHApplication}>
+                                    <template if:true={DocumentTypePicklistValues.data}>
+                                        <lightning-combobox
+                                                name="New"
+                                                label="Document Type"
+                                                class="docTypeField"
+                                                data-field ="Document_Type__c"
+                                                placeholder="--Select Value--"
+                                                value={recordLocal.Document_Type__c}
+                                                options={docTypeValues}
+                                                onchange={fieldChanged}
+                                                dropdown-alignment="auto"
+                                                required
+                                        >
+                                        </lightning-combobox>
+                                    </template>
+                                </template>
+                                <template if:false={isHHApplication}>
+                                <template if:true={DocumentTypePicklistValues.data}>
+                                    <lightning-combobox
+                                            name="New"
+                                            label="Document Type"
+                                            data-field ="Document_Type__c"
+                                                placeholder="--Select Value--"
+                                            value={recordLocal.Document_Type__c}
+                                            options={DocumentTypePicklistValues.data.values}
+                                            onchange={fieldChanged}>
+                                    </lightning-combobox>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+                    <template if:false={isHHApplication}>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                            <template if:true={DocumentFormatPicklistValues.data}>
+                              <lightning-combobox
+                                    name="New"
+                                    label="Document Format"
+                                    data-field="Document_Format__c"
+                                    placeholder="--Select Value--"
+                                    value={recordLocal.Document_Format__c}
+                                    options={DocumentFormatPicklistValues.data.values}
+                                    onchange={fieldChanged}>
+                              </lightning-combobox>
+                            </template>
+                          </div>
+                    </template>
+                        <template if:true={recordLocal.Uploaded_By__c}>
+                          <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                                <div class="slds-p-right_large">
+                                    <lightning-input
+                                            field-name="Uploaded_By__c"
+                                            data-field="Uploaded_By__c"
+                                            type="Lookup(User)"
+                                            label="Uploaded By"
+                                            read-only=true
+                                            onchange={fieldChanged}
+                                            value={recordLocal.Uploaded_By__r.Name}>
+                                    </lightning-input>
+                                  </div>
+                                </div>
+                        </template>
+                                  <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                             <div class="slds-p-right_large">
+                                <lightning-textarea
+                                        field-name="Comments__c"
+                                        data-field="Comments__c"
+                                        type="Long Text Area"
+                                        label="Other/Comments"
+                                        onchange={fieldChanged}
+                                        value={recordLocal.Comments__c}>
+                                </lightning-textarea>
+                             </div>
+                          </div>
+                  </div>
+            </div>
+            <template if:false={isHHApplication}>
+             <div class="slds-section slds-is-open">
+                  <h3 class="slds-section__title slds-p-bottom_x-small">
+                    <button aria-controls="expando-unique-id" style="background-color:rgb(194, 194, 194)" aria-expanded="true" class="slds-button slds-section__title-action">
+                      <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                      </svg>
+                      <span class="slds-truncate" title="Document Details">Document Timestamp</span>
+                    </button>
+                  </h3>
+                  <div class="slds-grid slds-wrap ">                                                      
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                            <div class="slds-p-right_medium">
+                              <lightning-input
+                                      field-name="Date_Of_Fiscal_Year_End__c"
+                                      data-field="Date_Of_Fiscal_Year_End__c"
+                                      type="Date"
+                                      label="Date Of Fiscal Year End"
+                                      onchange={fieldChanged}
+                                      value={recordLocal.Date_Of_Fiscal_Year_End__c} >
+                              </lightning-input>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                                <lightning-input
+                                        field-name="Date_Uploaded__c"
+                                        data-field="Date_Uploaded__c"
+                                        type="Date"
+                                        label="Date Uploaded"
+                                        onchange={fieldChanged}
+                                        value={recordLocal.Date_Uploaded__c} >
+                                </lightning-input>
+                            </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                            <div class="slds-p-right_medium">
+                              <lightning-input
+                                      field-name="Approval_Date__c"
+                                      data-field="Approval_Date__c"
+                                      type="Date"
+                                      label="Approval Date"
+                                      onchange={fieldChanged}
+                                      value={recordLocal.Approval_Date__c} >
+                              </lightning-input>
+                            </div>
+                        </div>
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                          <lightning-input
+                                  field-name="Date_Of_Signature__c"
+                                  data-field="Date_Of_Signature__c"
+                                  type="Date"
+                                  label="Date Of Signature"
+                                  onchange={fieldChanged}
+                                  value={recordLocal.Date_Of_Signature__c} >
+                          </lightning-input>
+                        </div>
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                        <div class="slds-p-right_medium">
+                          <lightning-input
+                                  field-name="Date_Received__c"
+                                  data-field="Date_Received__c"
+                                  type="Date"
+                                  label="Date Received"
+                                  onchange={fieldChanged}
+                                  value={recordLocal.Date_Received__c} >
+                          </lightning-input>
+                        </div>
+                      </div>
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                          <lightning-input
+                                  field-name="ExpirationDate__c"
+                                  data-field="ExpirationDate__c"
+                                  type="Date"
+                                  label="Expiration Date"
+                                  onchange={fieldChanged}
+                                  value={recordLocal.ExpirationDate__c} >
+                          </lightning-input>
+                        </div>
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                        <div class="slds-p-right_medium">
+                          <lightning-input
+                                  field-name="Letter_Date__c"
+                                  data-field="Letter_Date__c"
+                                  type="Date"
+                                  label="Letter Date"
+                                  onchange={fieldChanged}
+                                  value={recordLocal.Letter_Date__c} >
+                          </lightning-input>
+                        </div>
+                      </div>
+                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
+                          <lightning-input
+                                  field-name="Status_Updated_Date__c"
+                                  data-field="Status_Updated_Date__c"
+                                  type="Date"
+                                  label="Status Updated Date"
+                                  onchange={fieldChanged}
+                                  value={recordLocal.Status_Updated_Date__c} >
+                          </lightning-input>
+                        </div>
+                      </div>
+                  </div>
+            </template>
+             <div class="slds-align_absolute-center" >
+                 <lightning-layout>
+                      <lightning-layout-item padding="around-small">
+                          <button class="slds-button slds-button_brand" disabled={isDisable} onclick={handleSave} >Save</button>
+                      </lightning-layout-item>
+                      <lightning-layout-item padding="around-small">
+                          <button class="slds-button slds-button_neutral" onclick={handleClose} >Cancel</button>
+                      </lightning-layout-item>
+                 </lightning-layout>
+             </div>
+         </div>
+    </div>
+</template>

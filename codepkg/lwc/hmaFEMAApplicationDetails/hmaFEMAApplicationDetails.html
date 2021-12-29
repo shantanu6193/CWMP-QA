@@ -1,0 +1,92 @@
+<!--
+ - Created by harsh on 05-08-2021.
+ -->
+
+<!-- Hma Fema Application Details -->
+<template>
+    <template if:true={isCloneApplication}>
+        <div class="slds-grid slds-wrap slds-gutters_direct slds-m-top_medium slds-m-bottom_large">
+            <div class="slds-col slds-size_1-of-2">
+                <button class="slds-button slds-button_neutral" name="Clone Application" data-label="Clone Application" onclick={handleCloneApplication} disabled={isCloneInProgress}>Clone Application</button>
+            </div>
+        </div>
+    </template>
+    
+    <template if:true={isReadOnly}>
+        <template if:true={statusOptions.data}>
+            <label class="slds-form-element__label">
+                <span class="slds-m-right_xx-small">Status
+                </span>
+            </label>
+            <lightning-combobox name="Status"
+                                data-field="Status__c"
+                                value={applicationRecord.Status__c}
+                                variant="label-hidden"
+                                placeholder="Select Option"
+                                options={statusOptions.data.values}
+                                onchange={fieldChangedEvent}
+                                class="input"
+                                required="true"
+                                disabled={isReadOnly}
+            >
+            </lightning-combobox>
+        </template>
+    </template>
+    <template if:false={isReadOnly}>
+        <label class="slds-form-element__label">
+                <span class="slds-m-right_xx-small">Status
+                    <span class="slds-required" title="required">*</span>
+                </span>
+        </label>
+        <lightning-combobox name="Status"
+                            data-field="Status__c"
+                            value={applicationRecord.Status__c}
+                            variant="label-hidden"
+                            placeholder="Select Option"
+                            options={femaUserStatusOptions}
+                            onchange={fieldChangedEvent}
+                            class="input"
+                            required="true"
+                            disabled={isReadOnly}
+        >
+        </lightning-combobox>
+    </template>
+    <template if:true={isFEMAUser}>
+        <template if:true={isStatusReasonLoaded}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">Status Reason
+                        <template if:false={isReadOnly}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                </label>
+                <lightning-combobox name="Status Reason"
+                                    data-field="Status_Reason__c"
+                                    value={applicationRecord.Status_Reason__c}
+                                    variant="label-hidden"
+                                    placeholder="Select Option"
+                                    options={statusReasonOptions}
+                                    onchange={fieldChangedEvent}
+                                    class="input"
+                                    required="true"
+                                    disabled={isReadOnly}
+                                    >
+                </lightning-combobox>
+        </template>
+    </template>
+
+    <template if:true={isFEMAUser}>
+        <template if:false={isReadOnly}>
+            <div class="slds-grid slds-wrap slds-gutters_direct slds-m-top_medium">
+                <div class="slds-col slds-size-large_1-of-2">
+                    <button class="slds-button slds-button_neutral" name="Save" data-label="Save" onclick={saveButtonClick}>Save</button>
+                </div>
+            </div>
+        </template>
+    </template>
+
+    <c-confirmation-popup visible={isSaveConfirmationShow} title="" name="" original-message="" message="Are you sure you want to save the changes?" confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleSaveConfirmationClick}></c-confirmation-popup>
+
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+
+</template>

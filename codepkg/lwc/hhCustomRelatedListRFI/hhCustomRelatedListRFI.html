@@ -1,0 +1,137 @@
+<template>
+	<article class="slds-card">
+			<!--Card Header-->
+			<div class="slds-card__header slds-grid slds-border_bottom rfi-table">
+					<header class="slds-media slds-media_center slds-has-flexi-truncate slds-p-bottom_x-small">
+							<div class="slds-media__figure">
+									<span class="slds-icon_container slds-icon-standard-contact">
+										<lightning-icon icon-name="standard:care_request_reviewer" size="small"></lightning-icon>
+										<span class="slds-assistive-text">{label.HH_EN_Request_For_Information}</span>
+									</span>
+							</div>
+							<div class="slds-media__body">
+									<h2 class="slds-card__header-title">
+											<span title = {heading}>{header} ({recordLocal.rfiListCount})</span>
+											<span class="slds-p-left_small">
+													<a onclick={initData}>
+															<lightning-icon
+																			icon-name="utility:refresh"
+																			class="slds-text-link_reset"
+																			title={label.HH_EN_Refresh}
+																			size="x-small"
+																			alternative-text="icon">
+															</lightning-icon>
+													</a>
+											</span>
+									</h2>
+							</div>
+							<template if:true={showNewButton}>
+								<div class="slds-no-flex">
+									<button class="slds-button slds-button_neutral" onclick={createRFI}>{label.HH_EN_New}</button>
+								</div>
+							</template>
+					</header>
+			</div>
+			<!--Card Body-->
+			<template if:true={showTable}>
+					<div class="slds-card__body slds-card__body_inner">
+							<div class="slds-grid slds-wrap">
+									<div class="slds-col slds-size_12-of-12 slds-scrollable--x rfi_scrollable scrollable">
+											<table class="rfi-table">
+													<thead>
+													<tr class="slds-line-height_reset ">
+															<th class="" scope="col" style="width: 10%;">
+																	<div class="" title={label.Name} style="">{label.Name}</div>
+															</th>
+															<th class="" scope="col">
+																	<div class="" title={label.Status__c} onclick={sortColumn} data-sort="desc" data-id="Status__c">
+																		{label.Status__c}
+																		<span if:true={isAsc}>
+																			<lightning-icon icon-name="utility:arrowup" size="xx-small" alternative-text="Ascending!" title="Ascending"></lightning-icon>
+																		</span>
+																		<span  if:true={isDsc}>
+																			<lightning-icon icon-name="utility:arrowdown" size="xx-small" alternative-text="Ascending!" title="Ascending"></lightning-icon>
+																		</span>
+																	</div>
+															</th>
+															<th class="" scope="col" style="width: 40%;">
+																<div class="" title={label.Description__c}>{label.Description__c}</div>
+															</th>
+															<th class="" scope="col">
+																<div class="" title={label.RFI_Deadline__c}>{label.RFI_Deadline__c}</div>
+															</th>
+															
+															<th class="" scope="col">
+																<div class="" title={label.CreateDate}>{label.CreatedDate}</div>
+															</th>
+															<th class="" scope="col" >
+																<div class="" title={label.County}>{label.County}</div>
+															</th>
+													</tr>
+													</thead>
+													<tbody>
+															<template for:each={recordLocal.rfiList} for:item="rfi" for:index="index">
+																	<tr key={rfi.Id}>
+																			<td>
+																					<a class="slds-truncate outputLookupLink" data-id={rfi.Id}  
+																								onclick={navigateToDetailPage} 
+																								title={rfi.Name}>{rfi.Name}</a>
+																			</td>
+																			<td>
+																					<dd  title={rfi.Status__l}>{rfi.Status__l}</dd>
+																			</td>
+																			<td>
+																				<dd  title={rfi.Description__c}>{rfi.Description__c}</dd>
+																			</td>
+																			<td>
+																				<dd  title={rfi.RFI_Deadline__c}>{rfi.RFI_Deadline__c}</dd>
+																			</td>
+																			<td>
+																				<template if:false={isFirefox}>
+																					<template if:true={rfi.CreatedDate}>
+																				<lightning-formatted-date-time value={rfi.CreatedDate}
+																							year="numeric"
+																							month="2-digit"
+																							day="2-digit"
+																							hour="2-digit"
+																							minute="2-digit"
+																							time-zone="PST"
+																								>
+																					</lightning-formatted-date-time>
+																					</template>
+																				</template>
+																				<template if:true={isFirefox}>
+																					<template if:true={rfi.CreatedDate}>
+																						<lightning-formatted-date-time value={rfi.CreatedDate}
+																													   year="numeric"
+																													   month="2-digit"
+																													   day="2-digit"
+																						>
+																						</lightning-formatted-date-time>
+																					</template>
+																				</template>
+																			</td>
+																			<td>
+																				<dd  title={rfi.CWMP_Application__r.County__c}>{rfi.CWMP_Application__r.County__c}</dd>
+																			</td>
+																	
+																	</tr>
+															</template>
+													</tbody>
+											</table>
+									</div>
+							</div>
+					</div>
+			</template>
+	</article>
+	<template if:true={showRFIModal}>
+			<c-hh-r-f-i-custom-record-form-modal parent-record-id={recordId} 
+																						record-id={selectRecordId} 
+																						mode={mode} 
+																						is-homeowner={recordLocal.isHomeowner}
+																						is-community-user={recordLocal.isCommunityUser} 
+																						is-caloes-user={recordLocal.isCaloesUser}
+																						is-fema-user={recordLocal.isFemaUser}
+																						onclose={closeModal}></c-hh-r-f-i-custom-record-form-modal>
+	</template>
+</template>

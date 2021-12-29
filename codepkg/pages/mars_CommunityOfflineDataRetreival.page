@@ -1,0 +1,342 @@
+<apex:page docType="html-5.0" applyHtmlTag="false" controller="MarsOfflineDataRetreivalController" lightningStylesheets="true" applyBodyTag="false" standardStylesheets="false" showHeader="false" sidebar="false">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      <title>F42 Offline</title>
+      <style>
+        * {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+          padding: 1.5rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+          margin-top: 0;
+        }
+
+        button {
+          font-size: 1rem;
+          margin-top: .5rem;
+          padding: 0.5rem 1rem;
+        }
+
+        .myClass {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+        }
+
+        table {
+          outline: 1px solid rgb(219, 219, 219);
+        }
+
+        th{
+          background-color: #c2d1e6;
+        }
+
+        tbody tr:nth-child(odd){
+          background-color: #fbfcfd;
+        }
+      </style>
+      <script>
+        retrieve = function() {
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+
+          var OfflineData = [];
+          
+          dbR.onerror = (event) => {
+              console.error('Database error from online page :' + event.target.errorCode);
+          };
+
+          dbR.onupgradeneeded=(event)=>{
+              var db=event.target.result;
+              var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          dbR.onsuccess = (event) => {
+            const db = event.target.result;
+            const txn = db.transaction('f42dataStore', "readwrite");
+            const objectStore = txn.objectStore('f42dataStore');
+            objectStore.openCursor().onsuccess = (event) => {
+              let cursor = event.target.result;
+
+              if (cursor) {
+                let f42data = cursor.value;
+
+                console.log(f42data);
+
+                let f42datasend = f42data;
+                delete  f42datasend.signatureCanvas;
+                delete  f42datasend.RA_signatureCanvas
+                
+                let offlineRecord = {
+                  key: f42datasend.key,
+                  AI_agencyName: f42datasend.AI_agencyName,
+                  Id: f42datasend.Id,
+                  RA_agencyName:f42datasend.RA_agencyName,
+                  designator: f42datasend.designator ,
+                  reportinglocation: f42datasend.DI_reportingLocation,
+                  incidentrequestsnumber: f42datasend.incidentRequestNumber,
+                  PA_printedName:f42datasend.PA_printedName
+                };
+
+                OfflineData.push(offlineRecord);
+                cursor.continue();
+              }
+            };
+            
+            // close the database connection
+            txn.oncomplete = function () {
+
+              if(OfflineData.length == 0) {
+                console.log('No Offline Data');
+                ShowOfflineData('empty');
+
+                alert('No Local Offline Data Found!');
+
+              } else {
+                console.log(OfflineData);                
+                ShowOfflineData(JSON.stringify(OfflineData)) ;
+              }
+
+              db.close();
+            };
+          };
+        };
+
+        function syncFunction(myId) {
+
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+          var OfflineData = [];
+
+          dbR.onerror = (event) => {
+            console.error('Database error from online page :' + event.target.errorCode);
+          };
+
+          dbR.onupgradeneeded=(event)=>{
+            var db=event.target.result;
+            var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          dbR.onsuccess = (event) => {
+            const db = event.target.result;
+            const txn = db.transaction('f42dataStore', "readwrite");
+            const objectStore = txn.objectStore('f42dataStore');
+            objectStore.openCursor().onsuccess = (event) => {
+              let cursor = event.target.result;
+              if (cursor) {
+                let f42data = cursor.value;
+                console.log(f42data);
+
+                let signatureCanvas = cursor.value.signatureCanvas;
+                let signatureCanvasRa = cursor.value.RA_signatureCanvas;
+
+                if (f42data.Id == myId) {
+                  delete  f42data.signatureCanvas;
+                  delete  f42data.RA_signatureCanvas
+
+                  let passObject = {
+                    'signatureString': JSON.stringify(signatureCanvas),
+                    'signatureStringRa': JSON.stringify(signatureCanvasRa),
+                    'f42': JSON.stringify(f42data),
+                    'agencyName': f42data.AI_agencyName
+                  };
+
+                    selectedSync(JSON.stringify(passObject)) ;
+                    //console.log('f42data '+JSON.stringify(passObject));                      
+                    const request = cursor.delete();
+
+                    request.onsuccess = function() {
+                      console.log('Deleted ');
+                    };
+                } else {
+                  let f42datasend = f42data;
+                  delete  f42datasend.signatureCanvas;
+                      
+                  let offlineRecord = {
+                    key: f42datasend.key,
+                    AI_agencyName: f42datasend.AI_agencyName,
+                    Id: f42datasend.Id,
+                    RA_agencyName:f42datasend.RA_agencyName,
+                    designator: f42datasend.AI_designator_3_ltr + '-' +  f42datasend.AI_designator_number + '-' + f42datasend.AI_designator_ltr ,
+                    reportinglocation: f42datasend.DI_reportingLocation,
+                    incidentrequestsnumber: f42datasend.AI_requestNumber_3ltr + '-' + f42datasend.AI_orderNumber_3ltr + '-' + f42datasend.AI_orderNumber_number,
+                    PA_printedName:f42datasend.PA_printedName
+                  };
+                  OfflineData.push(offlineRecord);
+                }
+                cursor.continue();
+              }
+            };
+            // close the database connection
+            txn.oncomplete = function () {
+              alert('Success! Record Uploaded to MARS!');
+
+              if(OfflineData.length == 0) {
+                console.log('No Offline Data');
+                ShowOfflineData('empty');
+              } else {               
+                ShowOfflineData(JSON.stringify(OfflineData)) ;
+              }
+              db.close();
+            };
+          };
+        }
+
+        function deleteFunction(myId) {
+          var OfflineData = [];             
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+          dbR.onerror = (event) => {
+              console.error('Database error from online page :' + event.target.errorCode);
+          };
+
+          dbR.onupgradeneeded=(event)=>{
+            var db=event.target.result;
+            var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          dbR.onsuccess = (event) => {
+            const db = event.target.result;
+            const txn = db.transaction('f42dataStore', "readwrite");
+            const objectStore = txn.objectStore('f42dataStore');
+            objectStore.openCursor().onsuccess = (event) => {
+              let cursor = event.target.result;
+              if (cursor) {
+                  let f42data = cursor.value;
+                  if(f42data.Id == myId) {                                
+                    const request = cursor.delete();
+                    request.onsuccess = function() {
+                      console.log('Deleted ');
+                    };
+                    console.log('test');
+                  } else {
+                    let f42datasend = f42data;
+                    delete  f42datasend.signatureCanvas;
+                                      
+                    let offlineRecord = {
+                      key: f42datasend.key,
+                      AI_agencyName: f42datasend.AI_agencyName,
+                      Id: f42datasend.Id,
+                      RA_agencyName:f42datasend.RA_agencyName,
+                      designator: f42datasend.AI_designator_3_ltr + '-' +  f42datasend.AI_designator_number + '-' + f42datasend.AI_designator_ltr ,
+                      reportinglocation: f42datasend.DI_reportingLocation,
+                      incidentrequestsnumber: f42datasend.AI_requestNumber_3ltr + '-' + f42datasend.AI_orderNumber_3ltr + '-' + f42datasend.AI_orderNumber_number,
+                      PA_printedName:f42datasend.PA_printedName
+                    };
+
+                    OfflineData.push(offlineRecord);
+                  }
+                  cursor.continue();
+                }
+              };
+              // close the database connection
+              txn.oncomplete = function () {
+
+              alert('Success! Local Record Deleted');
+
+              if(OfflineData.length == 0) { 
+                ShowOfflineData('empty');
+                console.log('No Offline Data');
+              } else {
+                ShowOfflineData(JSON.stringify(OfflineData)) ;
+              }
+
+              db.close();
+            };
+          };
+        }
+      </script>         
+    </head>
+    <body>    
+    </body>
+    <button id="btnRetrieveF42" onclick="retrieve(); return false;" >Retrieve Local F42 Data</button>
+    
+    <apex:form id="form">
+      <apex:messages id="messages"/>
+        <apex:actionFunction name="CallApexMethod" action="{!doSubmit}" rerender="form">
+          <apex:param name="strParam" value="" assignTo="{!dataPassed}"/>
+        </apex:actionFunction>
+      
+        <apex:actionFunction name="ShowOfflineData" action="{!showOfflineData}" rerender="form">
+        <apex:param name="strParam" value="" assignTo="{!offlineDataPassed}"/>
+      </apex:actionFunction>
+
+      <apex:actionFunction name="selectedSync" action="{!selectedSync}" rerender="form">
+        <apex:param name="strParam" value="" assignTo="{!syncJson}"/>
+      </apex:actionFunction>
+
+      <apex:actionFunction name="ShowOfflineData" action="{!showOfflineData}" rerender="form">
+        <apex:param name="strParam" value="" assignTo="{!offlineDataPassed}"/>
+      </apex:actionFunction>
+      <apex:pageBlock rendered="{!displayTable}" mode="edit" id="tableBlock" >
+        <h4>Local Data:</h4>
+        <table    id="table"  class="slds-table slds-table_cell-buffer slds-table_bordered">
+          <thead>
+              <tr class="slds-line-height_reset">
+                <th style="width:50px;"  class="" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="Id">Id</div>
+                </th>
+                <th  style="width:159px;" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="User Name">Designator</div>
+                </th>
+                <th style="width:190px;" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="agency">Agency</div>
+                </th>
+                <th  style="width:190px;" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="User Name">Users</div>
+                </th>
+                <th  style="width:190px;" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="Locaiton">Incident Order Number</div>
+                </th>
+                <th  style="width:190px;" scope="col">
+                  <div style="float: left;" class="slds-truncate" title="IncidentNumber">Incident Request #</div>
+                </th>
+                <th  style="width:100px; float: left;"  class="" scope="col">
+                  <div  class="slds-truncate" title="Action">Action</div>
+                </th>
+              </tr>
+          </thead>
+          <tbody> 
+            <apex:repeat value="{!OfflineDataTable}" var="recordCase" id="therepeat">
+              <tr class="slds-hint-parent">
+                <td data-label="Key">
+                  <div class="slds-truncate" title="Id">    <apex:outputText value="{!recordCase['Id']}" id="theValue0"/><br/> </div>
+                </td>
+
+                <td data-label="designator">
+                  <div class="slds-truncate" title="designator">    <apex:outputText value="{!recordCase['designator']}" id="theValue4"/><br/> </div>
+                </td>
+
+                <td data-label="AgencyName">
+                  <div class="slds-truncate" title="Agency Name">    <apex:outputText value="{!recordCase['AI_agencyName']}" id="theValue1"/><br/> </div>
+                </td>
+                <td data-label="YouName">
+                  <div class="slds-truncate" title="Youe Name">    <apex:outputText value="{!recordCase['PA_printedName']}" id="theValue3"/><br/></div>
+                </td>
+
+                <td data-label="reportinglocation">
+                  <div class="slds-truncate" title="incidentOrderNumber">    <apex:outputText value="{!recordCase['incidentOrderNumber']}" id="theValue5"/><br/> </div>
+                </td>
+
+                <td data-label="incidentrequestsnumber">
+                  <div class="slds-truncate" title="incidentrequestsnumber">    <apex:outputText value="{!recordCase['incidentrequestsnumber']}" id="theValue6"/><br/> </div>
+                </td>
+
+                <td data-label="Action">
+                  <div  class="slds-truncate" title="Action">            
+                    <apex:commandButton reRender="form" onclick="syncFunction('{!recordCase['Id']}');" value="Sync"/>
+                    <apex:commandButton reRender="form"   onclick="deleteFunction('{!recordCase['Id']}');" value="Delete"/>
+                  </div>
+                </td>            
+              </tr>
+            </apex:repeat>
+          </tbody>
+        </table>
+      </apex:pageBlock>
+    </apex:form>
+  </html>
+</apex:page>

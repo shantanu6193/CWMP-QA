@@ -1,0 +1,145 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <div class="fire_box slds-p-horizontal_medium slds-p-vertical_medium">
+   <div class="slds-grid slds-wrap slds-gutters_direct">
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">   
+    <c-lookup
+        data-custom="lookup"
+        label="Fire Agency"
+        data-lookup="Fire_Agency__c"
+        onsearch={handleFireAgencySearch}
+        onselectionchange={handleFireAgencyChange}
+        placeholder="Search Fire Agency"
+        is-multi-entry={isMultiEntry}
+        load-data-on-init = {loadLookupDataOnLoad}
+        local-search = {loadLookupDataOnLoad}
+        scroll-after-n-items = "10"
+        errors={fireagencyRequired}
+        >
+    </c-lookup>
+</div>
+<div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12"> 
+    <c-lookup 
+        data-custom="lookup" 
+        label="SEARCH INCIDENT" 
+        data-lookup="Incident__c"
+        onsearch={handleIncidentSearch} 
+        onselectionchange={handleIncidentChange}                       
+        placeholder="Select Incident" 
+        is-multi-entry={isMultiEntry}              
+        load-data-on-init={loadLookupDataOnLoad} 
+        local-search={loadLookupDataOnLoad}
+        scroll-after-n-items="10" 
+        errors={incidentRequired} >
+    </c-lookup>
+    </div>
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12"> 
+    <lightning-input type="date" name="startDate" label="Start Date"  onchange={handleStartDateChange} ></lightning-input>
+    </div>
+    <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12"> 
+    <lightning-input type="date" name="endDate" label="End Date"  onchange={handleEndDateChange} ></lightning-input>
+    </div>
+    <lightning-button variant="brand" label="Retreive" title="Retreive" onclick={handleSearch} class="slds-var-m-left_medium slds-m-top_medium"></lightning-button>
+</div>   
+</div>
+    <template if:true={showInfoMessage}>
+        <div class="slds-p-bottom--medium">
+           <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+              <h2>{infoMessage}</h2>
+           </div>
+        </div>
+     </template>
+    
+    <template if:true={showResults}>
+        <div class="table_light">
+            <div class="slds-size_12-of-12">
+                <h2 class="slds-text-heading_small slds-p-top_medium">Paying Entity Paid Invoices</h2>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-scrollable">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered fire_box slds-table_fixed-layout"
+                        id="Table2">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Name">Invoice Number</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Agency Name">Agency Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Amount">Invoice Amount</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Created Date">Date Of Payment</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Created Date">Paid Amount</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={invoicePayments} for:item="invRecord" for:index="index">
+                                <tr class="slds-hint-parent" key={invRecord.Id}>
+                                    <td class="slds-truncate" data-label="Name" scope="row">
+                                        <div class="slds-truncate" title={invRecord.Name}>
+                                            {invRecord.Invoice__r.Invoice_Number__c}
+                                        </div>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row">
+                                        {invRecord.Invoice__r.Incident__r.Name}
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row">
+                                        {invRecord.Invoice__r.Account__r.Name}
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row">
+                                        <lightning-formatted-number value={invRecord.Invoice_Amount__c}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row">
+                                        {invRecord.Status__c}
+                                    </td>
+                                    <td class="slds-truncate" data-label="Start Date">
+                                        <lightning-formatted-date-time value={invRecord.Date_Of_Payment__c} year="numeric"
+                                            month="2-digit" day="2-digit" time-zone="UTC">
+                                        </lightning-formatted-date-time>
+                                    </td>
+                                    <td class="slds-truncate" data-label="Status" scope="row">
+                                        <lightning-formatted-number value={invRecord.Paid_Amount__c}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                    </td>
+
+                                    <td class="slds-size_2-of-12" data-label="View">
+                                        <a data-index={invRecord.Invoice__c} onclick={viewPdf} class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:preview" size="xx-small"
+                                                alternative-text="Invoice Attachment" class="slds-iconl"
+                                                title="Preview">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Preview</span>
+                                        </a>
+                                        <a data-index={invRecord.Invoice__c} onclick={getInvoiceURL} class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:download" size="xx-small"
+                                                alternative-text="Invoice Attachment" class="slds-iconl"
+                                                title="Download">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Download</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

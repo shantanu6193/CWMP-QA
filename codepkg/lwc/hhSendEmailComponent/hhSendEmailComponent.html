@@ -1,0 +1,140 @@
+<template>
+        <template if:true={showComponent}>
+
+    <article class="slds-card">
+
+        <!-- <p>defaultObjId Id: {defaultObjId}</p>
+        <p>recordId Id: {recordId}</p>
+        <p>defaultFromEmail Id: {defaultFromEmail}</p>
+        <p>defaultObjName Id: {defaultObjName}</p>
+        <p>defaultObjId Id: {defaultObjId}</p> -->
+
+        
+            <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">Email</h2>
+                            </div>
+                    </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap ">
+                            <div class="slds-col slds-size_2-of-2 ">
+                                    <lightning-combobox name="progress" label="From" value={fromValue}
+                                            options={selectOptions} onchange={handleFromValueChange}>
+                                    </lightning-combobox>
+
+                            </div>
+
+                            <!-- <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                <lightning-input type="text" label="From" value={fromValue}
+                                        onchange={handleFromValueChange}
+                                        required></lightning-input>
+                        </div> -->
+
+                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                    <lightning-input type="text" label="To" value={toAddress}
+                                            onchange={handleToAddressChanges}
+                                            field-level-help="Multiple Email ToAddress should be semicolon seprated out"
+                                            required></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                    <lightning-input type="text" label="Cc" value={ccAddress}
+                                            onchange={handleCcAddressChanges}
+                                            field-level-help="Multiple Email CCAddress should be semicolon seprated out">
+                                    </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                    <lightning-input type="text" label="BCc" value={bccAddress}
+                                            onchange={handleBccAddressChanges}
+                                            field-level-help="Multiple Email CCAddress should be semicolon seprated out">
+                                    </lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                    <lightning-input type="text" label="Subject" value={subjectVal}
+                                            onchange={handleSubjectValChange} placeholder="Enter Subject..."
+                                            required></lightning-input>
+                            </div>
+                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                    <lightning-input-rich-text value={bodyVal} label="Body"
+                                            onchange={handleBodyValChange}>
+                                    </lightning-input-rich-text>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+
+                                <div class="slds-col slds-size_2-of-2">
+                                        <lightning-input type="text" label=" Applicant Preferred Language:" value={preferredLanguage}
+                                                read-only></lightning-input>
+                                </div>
+
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                    <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+                                            <div class="slds-col slds-size_8-of-12 slds-p-top_small">
+                                                    <lightning-file-upload label="Upload Doc" name="fileUploader"
+                                                            record-id={recordId} onuploadfinished={handleUploadFinished} multiple>
+                                                    </lightning-file-upload>
+                                            </div>
+                                            <div class="slds-col slds-p-top_small slds-size_4-of-12">
+                                                    <lightning-button variant="brand" label="Template" onclick={showEmailTemplates}
+                                                            class="slds-m-left_x-small"></lightning-button>
+                                            </div> 
+                                    </div> 
+                            </div>
+                            <div class="slds-col slds-p-top_small slds-size_12-of-12 slds-p-bottom_medium">
+                                    <template if:true={isAttachedFiles}>
+                                            Uploaded Files: <br />
+                                            <template for:each={allUploadedFileNames} for:item="fileIterator">
+                                                    <div key={fileIterator} style="margin-top:10px;">
+                                                            <lightning-icon icon-name="doctype:image" size="small"
+                                                                    title="Image"></lightning-icon>
+                                                            {fileIterator}
+                                                    </div>
+                                            </template>
+                                    </template>
+                            </div>
+                            <br />
+                            <!--Warning Msg Modal popup window-->
+                            <div>
+                                    <template if:true={overrideMsg}>
+                                            <c-warning-dailog-modal title='Warning'
+                                                                    message='Inserting this template will overwrite the current email.'
+                                                                    confirm-label='Proceed'
+                                                                    cancel-label='Cancel'
+                                                                    visible={overrideMsg}
+                                                                    original-message={originalMessage}
+                                                                    name="warningModal"
+                                                                    onclick={handleClick} >
+                                            </c-warning-dailog-modal>
+                                            
+                                    </template>                        
+                            </div>
+
+                            <div>
+
+                                    <template if:true={isShowEmailTemplateSelection}>
+                                            <c-hh-email-template-selection
+                                                    templaterelatedapitypeid={recordId}
+                                                    templatefolder={emailTemplateFolder}
+                                                    onselectedtemplateinfo={handleSelectedTemplateInfo}
+                                                    onclose={modalCloseHandler}></c-hh-email-template-selection>
+                                    </template>
+                            </div>
+                            <div class="slds-col slds-size_2-of-2">
+                                    <lightning-input type="text" label="Related To" value={relatedRecordName}
+                                            read-only></lightning-input>
+                            </div>
+                    </div>
+            </div>
+            <footer class="slds-card__footer">
+                    <lightning-button variant="brand" label="Send" title="Send" disabled={disableSend} onclick={sendEmail}
+                            class="slds-m-left_x-small"></lightning-button>
+                    <lightning-button variant="brand" label="Clear Content" title="Clear Content"
+                            onclick={clearContent} class="slds-m-left_x-small"></lightning-button>
+            </footer>
+    </article>
+
+
+</template>
+    
+</template>

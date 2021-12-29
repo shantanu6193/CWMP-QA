@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Review questionnaires implementation for PA Project Closeout</description>
+    <fields>
+        <fullName>Helptext_Document_Name1__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Helptext Document Name1</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Helptext_Document_Name2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Helptext Document Name2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Helptext_Document_URL1__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Helptext Document URL1</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Helptext_Document_URL2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Helptext Document URL2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Helptext__c</fullName>
+        <description>Help text for question</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Helptext</label>
+        <length>250</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question__c</fullName>
+        <description>Question</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Question</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Render_NA__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Answer as Not applicable</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render NA</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Render_No__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Answer as NO</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render No</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Render_yes__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Answer as yes</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render yes</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <description>Questions serial number</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Show_No_Comments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>No checkbox value flag</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Show No Comments</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Only_For_Yes_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Show Only For Yes Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Show_Yes_Comments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Yes checkbox value flag</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Show Yes Comments</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Shown_NA_Comments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>NA checkbox value flag</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Show NA Comments</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Static_Text__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Static Text</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CDAA</fullName>
+                    <default>true</default>
+                    <label>CDAA</label>
+                </value>
+                <value>
+                    <fullName>Federal</fullName>
+                    <default>false</default>
+                    <label>Federal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>PA Project Closeout Review Checklist</label>
+    <listViews>
+        <fullName>ALL</fullName>
+        <columns>Sequence__c</columns>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>NamespacePrefix</columns>
+        <columns>IsProtected</columns>
+        <columns>Helptext__c</columns>
+        <columns>Question__c</columns>
+        <columns>Render_NA__c</columns>
+        <columns>Render_No__c</columns>
+        <columns>Render_yes__c</columns>
+        <columns>Shown_NA_Comments__c</columns>
+        <columns>Show_No_Comments__c</columns>
+        <columns>Show_Yes_Comments__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>ALL</label>
+    </listViews>
+    <pluralLabel>PA Project Closeout Reviews</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

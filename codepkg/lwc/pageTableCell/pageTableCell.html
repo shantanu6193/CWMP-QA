@@ -1,0 +1,122 @@
+<!--
+ - Created by harsh on 05-03-2021.
+ -->
+
+<!-- Page Table Cell -->
+<template>
+    <template if:false={isEditMode}>
+        <template if:true={isCurrencyField}>
+            <p><lightning-formatted-number value={fieldValue} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+        </template>
+        <template if:true={isNumberField}>
+            <p><lightning-formatted-number value={fieldValue}></lightning-formatted-number></p>
+        </template>
+        <template if:true={isFieldValue}>
+            <template if:true={isClickable}>
+                <a onclick={columnClick}>{fieldValue}</a>
+            </template>
+            <template if:false={isClickable}>
+                {fieldValue}
+            </template>
+        </template>
+                
+    </template>
+    <div class="actionItems">
+    <template if:true={showEditICON}>
+        <lightning-icon 
+                        class="slds-text-link_reset slds-m-right_small" 
+                        icon-name="utility:edit" 
+                        variant="label-hidden" 
+                        access-key={index}  
+                        id={index}  
+                        size="x-small" 
+                        title="Edit Row" 
+                        onclick={handleEditTableRow}>
+        </lightning-icon>
+    </template>
+    <!-- This is for Signature  -->
+    <template if:true={isSignatureStatusIsDraft}>
+        <lightning-icon 
+                class="slds-text-link_reset slds-m-right_small" 
+                icon-name="utility:edit" 
+                variant="label-hidden" 
+                access-key={index}  
+                id={index}  
+                size="x-small" 
+                title="Edit Row" 
+                onclick={handleEditTableRow}>
+        </lightning-icon>
+    </template>
+    <template if:true={showDeleteICON}>
+        <lightning-icon 
+                class="slds-text-link_reset slds-m-right_small"
+                icon-name="utility:delete" 
+                variant="label-hidden"
+                title="Delete Row" 
+                access-key={index}  
+                id={index}  
+                size="x-small"
+                onclick={handleDeleteTableRow}>
+        </lightning-icon>
+    </template>
+    <template if:true={showSendForSignatureButton}>
+        <lightning-button 
+                class="slds-m-left_x-small"
+                variant="brand-outline" 
+                label="Send for Signature" 
+                title="Send for Signature" 
+                id={index}
+                onclick={handleSendForSignatureClick}
+                disabled={isSendForSignatureButtonDisabled}>
+        </lightning-button>
+    </template>
+    </div>
+    
+    
+    
+    
+    <template if:true={isEditMode}>
+        <template if:true={isTextField}>
+            <lightning-input class="input" value={fieldValue}  variant="label-hidden" data-field={column.fieldName} required={column.required} read-only={column.readOnly} name={column.fieldName} type="text" onchange={handleTableCellFieldChange} max-length={fieldMaxLength}></lightning-input>
+        </template>
+         
+        <template if:true={isEmailField}>
+            <lightning-input class="input" value={fieldValue}  variant="label-hidden" data-field={column.fieldName} required={column.required} read-only={column.readOnly} name={column.fieldName} type="email" onchange={handleTableCellFieldChange}></lightning-input>
+        </template>
+
+        <template if:true={isPicklistField}>
+            <lightning-combobox  name={column.fieldName}
+                data-field={column.fieldName}
+                value={fieldValue}
+                variant="label-hidden"
+                placeholder="Select Option"
+                options={picklistValues}
+                onchange={handleTableCellFieldChange}
+                required={column.required}
+                read-only={column.readOnly}
+                class="input" >
+                </lightning-combobox>
+        </template>
+
+        <template if:true={isNumberField}>
+            <lightning-input class="input" value={fieldValue}  variant="label-hidden" data-field={column.fieldName} required={column.required} read-only={column.readOnly} name={column.fieldName} type="number" onchange={handleTableCellFieldChange}></lightning-input>
+        </template>
+
+        <template if:true={isCurrencyField}>
+             <template if:true={column.readOnly}>
+                <lightning-formatted-number value={fieldValue} format-style="currency" variant="label-hidden"></lightning-formatted-number>
+            </template>
+            <template if:false={column.readOnly}>
+                <lightning-input max={maxFieldVal} message-when-range-overflow={maxValueMismatchErrorMsg} class="input" value={fieldValue} step=".01" variant="label-hidden" data-field={column.fieldName} required={column.required} read-only={column.readOnly} name={column.fieldName} type="Number" onchange={handleTableCellFieldChange} onblur={handleTableCellFieldBlur}></lightning-input>
+            </template>
+        </template>
+
+        <template if:true={isTextAreaField}>
+           <lightning-textarea class="input table-textarea"  value={fieldValue}  variant="label-hidden" data-field={column.fieldName} required={column.required} read-only={column.readOnly} name={column.fieldName}  onchange={handleTableCellFieldChange} max-length={fieldMaxLength}></lightning-textarea>
+          <!--- <lightning-input class="input" value={fieldValue}  variant="label-hidden" data-field={column.fieldName} name={column.fieldName} type="TextArea" onchange={handleTableCellFieldChange}></lightning-input>-->
+        </template>
+        <template if:true={isCheckboxField}>
+            <lightning-input class="input" label="Checkbox" variant="label-hidden" data-field={column.fieldName} required={column.required} name={column.fieldName} type="checkbox" onchange={handleTableCellCheckboxChange}></lightning-input>
+        </template>
+   </template>
+</template>

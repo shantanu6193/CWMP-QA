@@ -1,0 +1,121 @@
+<aura:component description="MARS_Template" implements="forceCommunity:themeLayout" access="global" controller="MARS_CommunityHomeCtrl">
+    <aura:attribute name="navBar" type="Aura.Component[]"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]"/>
+    <aura:attribute name="showSearch" type="Boolean" default="true" />
+    <aura:attribute name="showNavBar" type="Boolean" default="true" />
+    <aura:attribute name="showProfileMenu" type="Boolean" default="true" />
+    <aura:attribute name="headerContainer" type="Aura.Component[]" required="false" />
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="isDoneRendering" type="Boolean" default="false"/>
+    <!-- <aura:attribute name="showUserRegistration" type="Boolean" default="false" /> -->
+
+    <div class="slds-container" id="page-container" role="main">
+        <div id="content-wrap" class="content-wrap" aura:id="content-wrap">
+            <div class="slds-grid slds-wrap content slds-align_absolute-center">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="slds-grid slds-wrap slds-grid_align-center slds-grid_vertical-align-center header-component ">
+                        <div class="slds-col slds-size_10-of-12">
+                            <div class="slds-grid slds-wrap slds-grid_align-center slds-grid_vertical-align-center ">
+                                <aura:if isTrue="{!v.showNavBar}">
+                                    <div class="slds-col ">
+                                        <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/HMA_Login_Logo_White.png'}" alt="Sacramento 311 Customer Service" />
+                                    </div>
+                                    <div class="slds-col slds-p-left_large nav-logo">
+                                        <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/CDPH_Logo.jfif'}" alt="Sacramento 311 Customer Service" />
+                                    </div>
+                                    <div class="slds-col slds-p-left_large nav-logo">
+                                        <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/EMSA_Logo.jfif'}" alt="Sacramento 311 Customer Service" />
+                                    </div>
+                                    <div class="slds-col slds-p-left_large slds-col_bump-right nav-logo">
+                                        <img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/appLogo/MARS.jpg'}" alt="Sacramento 311 Customer Service" />
+                                    </div>
+                                </aura:if>
+                                <div class="slds-col mobile-only">
+                                    <div aura:id="dropdown" id="dropdown" class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close" >
+                                        <button class="slds-button slds-button_icon slds-p-right_small" onclick="{!c.handleDropdownClick}" aria-haspopup="true" title="Show More">
+                                            <!--<span class="slds-text-color_inverse slds-p-right_x-small">More</span>-->
+                                            <lightning:icon iconName="utility:chevrondown" id="up" class="menu-icon menu-icon-up" size="small"></lightning:icon>
+                                            <lightning:icon iconName="utility:chevronup" id="down" class="menu-icon menu-icon-down" size="small"></lightning:icon>
+                                            <span class="slds-assistive-text">Show More</span>
+                                        </button>
+                                        <div class="slds-dropdown slds-dropdown_right">
+                                            <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="/mars/s/" role="menuitem" tabindex="0">
+                                                        <span class="slds-truncate" title="Menu Item One">Home</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="#" role="menuitem" tabindex="0">
+                                                        <span class="slds-truncate" title="Menu Item Two">Request New Agency Access</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="#" role="menuitem" tabindex="0">
+                                                        <span class="slds-truncate" title="Menu Item Three">Reports</span>
+                                                    </a>
+                                                </li>
+                                                <!--<li class="slds-has-divider_top-space" role="separator"></li>-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-p-right_x-large desktop-only">
+                                    <a href="/mars/s/" class="slds-text-color_inverse header-link">Home</a>
+                                </div>
+                                <div class="slds-col slds-p-right_x-large desktop-only">
+                                    <a href="#" onclick="{!c.requestNewAgencyClick}" class="slds-text-color_inverse header-link">Request New Agency Access</a>
+                                </div>
+                                <div class="slds-col slds-p-right_x-large desktop-only">
+                                    <a href="#" class="slds-text-color_inverse header-link">Reports</a>
+                                </div>
+                                <aura:if isTrue="{!v.showProfileMenu}">
+                                    <div class="slds-col ">
+                                        <p class="slds-text-color_inverse">{!v.profileMenu}</p>
+                                    </div>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap content slds-align_absolute-center" id="content">
+                <div class="slds-col slds-size_12-of-12">
+                    {!v.body}
+                </div>
+            </div>
+            <c:marsUserAgencyAccess aura:id="marsUserAgencyAccess" isCalledFromAura="true" />
+        </div>
+        <div class="slds-col slds-size_12-of-12  slds-p-around_large footer" id="footer">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <div class="slds-col slds-large-size_9-of-12 slds-medium-size_9-of-12 slds-small-size_12-of-12 slds-size_12-of-12  slds-large-order_2 slds-medium-order_2">
+                    <ul class="slds-text-align_right">
+                        <li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Privacy-Policy" target="_blank" class="footer-links slds-p-around_small">PRIVACY POLICY</a>
+                        </li>
+                        <li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Website-Conditions-of-Use" target="_blank" class="footer-links slds-p-around_small">WEBSITE CONDITIONS OF USE</a>
+                        </li>
+                        <li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Public-Records-Request" target="_blank" class=" footer-links slds-p-around_small">PUBLIC RECORDS REQUESTS</a>
+                        </li>
+                        <!--<li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/internal-audit-office/whistleblower" target="_blank" class="footer-links slds-p-around_small">WHISTLEBLOWER</a>
+                        </li>-->
+                        <li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/Documents/website-cert.pdf" target="_blank" class=" footer-links slds-p-around_small" >WEBSITE ACCESSIBILITY COMPLIANCE</a>
+                        </li>
+                        <li class="listcontainer">
+                            <a href="https://www.caloes.ca.gov/home/webmaster" target="_blank" class="footer-links slds-p-around_small">WEBMASTER</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_4-of-12 slds-small-size_12-of-12 slds-size_12-of-12 slds-p-left_medium  alignment slds-large-order_1 slds-medium-order_1 footer-copyright">
+                    <div class="slds-float_left copyright">Copyright 2020 State of California</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

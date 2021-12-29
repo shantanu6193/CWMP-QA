@@ -1,0 +1,16 @@
+.time-box {
+  margin-top: 8px;
+}
+.left_section {
+  border: 1px solid #d4d4d4;
+  padding-bottom: 15px;
+}
+.right_section {
+  border: 1px solid #d4d4d4;
+  padding-bottom: 15px;
+  border-left: 0px;
+}
+
+@media screen and (max-width: 768px) {
+  .right_section {border-left: 1px solid #d4d4d4;}
+}

@@ -1,0 +1,413 @@
+<template>
+	<template if:true={isLoading}>
+		<div class="slds-grid slds-wrap slds-align_absolute-center container ">
+			<div class="slds-col  slds-size_12-of-12">
+				<!--1.Header-->
+				<div class="slds-grid slds-wrap">
+					<div class="slds-col">
+						<h3 class="heading"  style="text-transform: uppercase;">{label.HH_EN_Residence_Information}</h3>
+					</div>
+				</div>
+				<!--1.Main Form-->
+				<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+					<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<p class="slds-theme_shade">{label.HH_EN_Physical_Address_Information}</p>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={propertStructurePicklistValues.data}>
+							<lightning-combobox name="PropertyStructure" data-field="Property_Structure__c"
+												value={recordLocal.Property_Structure__c} label={label.HH_EN_Property_Structure}
+												onchange={fieldChanged} class="input"
+												options={propertStructurePicklistValues.data.values} required>
+							</lightning-combobox>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+
+					</div>
+					<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<lightning-input class="input" value={recordLocal.Property_Street_Address__c}
+											label={label.HH_EN_Property_Street_Address} onblur={blankCheck} data-field="Property_Street_Address__c"
+											name="PropertyStreet" max-length="100" required onchange={fieldChanged}>
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<lightning-input label={label.HH_EN_Property_City} class="input" required
+										value={recordLocal.City__c} data-field="City__c" name="input1" type="text"
+										onchange={fieldChanged} onblur={blankCheck} pattern="[a-z,A-Z,\s]*" max-length="40">
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-input name="State" data-field="State__c" value={recordLocal.State__c} max-length="50" 
+								label={label.HH_EN_Property_State} onblur={blankCheck} onchange={fieldChanged} disabled="true" class="input">
+								</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<lightning-input label={label.HH_EN_Property_Zip}
+										 class="input"
+										 required
+										 value={recordLocal.Zip_Postal_Code__c}
+										 data-field="Zip_Postal_Code__c"
+										 name="input1"
+										 type="text" onchange={fieldChanged}
+										 max-length="20">
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={countyPicklistValues}>
+							<template if:true={countyPicklistValues.data}>
+								<lightning-combobox name="county" data-field="County__c" value={recordLocal.County__c}
+													label={label.HH_EN_Property_Count} onchange={fieldChanged} class="input"
+													options={countyPicklistValues.data.values} read-only={makeCountyFieldReadOnly} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+							<hr>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 ">
+						<lightning-input label={label.HH_EN_Year_of_construction} onblur={validateYearOfConstruction} class="propertyYear" required
+										value={recordLocal.Year_of_Construction__c} data-field="Year_of_Construction__c" min={minYearAllowed} name="year"
+										placeholder="YYYY" message-when-pattern-mismatch={label.HH_EN_Four_Digit_Validation} pattern="[1-9]\d{3,3}" max-length="4"  type="text" onchange={fieldChanged}>
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium pick_list">
+							<template if:true={authorityPicklistValues}>
+								<template if:true={authorityPicklistValues.data}>
+									<lightning-combobox name="PropertyStructure"
+														data-field="Authority_to_make_updates_to_the_Home__c"
+														value={recordLocal.Authority_to_make_updates_to_the_Home__c}
+														label={label.HH_EN_Authority_to_make_updates_to_the_Home}
+														onchange={fieldChanged} class="input"
+														options={authorityPicklistValues.data.values} required>
+									</lightning-combobox>
+								</template>
+							</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<lightning-input label={label.HH_EN_Total_Living_Area} class="input" required
+										value={recordLocal.Total_Living_Area__c} data-field="Total_Living_Area__c" name="input1"
+										type="number" onchange={fieldChanged}  max-length="10">
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<lightning-input label={label.HH_EN_Number_of_Stories}
+										 class="input"
+										 required
+										 value={recordLocal.Number_of_Stories__c}
+										 data-field="Number_of_Stories__c"
+										 name="input1"
+										 type="number"
+										 onchange={fieldChanged}
+										 max-length="10">
+						</lightning-input>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={passengerVPicklistValues}>
+							<template if:true={passengerVPicklistValues.data}>
+								<lightning-combobox name="PropertyStructure"
+													data-field="Accessible_by_a_Passenger_Vehicle__c"
+													value={recordLocal.Accessible_by_a_Passenger_Vehicle__c}
+													label={label.HH_EN_Accessible_by_a_Passenger_Vehicle} onchange={fieldChanged}
+													class="input" options={passengerVPicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={regHistoryPlacesPicklistValues}>
+							<template if:true={regHistoryPlacesPicklistValues.data}>
+								<lightning-combobox name="PropertyStructure"
+													data-field="Is_National_Register_of_Historic_Places__c"
+													value={recordLocal.Is_National_Register_of_Historic_Places__c}
+													label={label.HH_EN_Is_National_Register_of_Historic_Places} onchange={fieldChanged}
+													class="input" options={regHistoryPlacesPicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={propertyDeedPicklistValues}>
+							<template if:true={propertyDeedPicklistValues.data}>
+								<lightning-combobox name="PropertDeed"
+													data-field="Any_Other_Names_on_the_Property_Deed__c"
+													value={recordLocal.Any_Other_Names_on_the_Property_Deed__c}
+													label={label.HH_EN_Any_Other_Names_on_the_Property_Deed}
+													onchange={handlePropertyDeedChanged}
+													class="input"
+													options={propertyDeedPicklistValues.data.values}
+													required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium responsive_table">
+					
+						<template if:true={otherNamesPresent}>
+							{label.HH_EN_rovide_the_first_and_last_names}
+								<table >
+									<thead style="background-color:#2574a9; color:white">
+										<tr class="slds-line-height_reset">
+											<th class="slds-size_3-of-12" scope="col">
+												<div class="" title={label.HH_EN_First_Name}><span class="slds-required">*</span>{label.HH_EN_First_Name}</div>
+											</th>
+											<th class="slds-size_3-of-12" scope="col">
+												<div class="" title={label.HH_EN_Last_Name}><span class="slds-required">*</span>{label.HH_EN_Last_Name}</div>
+											</th>
+											<th class="slds-size_1-of-12" scope="col">
+												<div class="" title={label.HH_EN_Action}>{label.HH_EN_Action}</div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<template for:each={recordLocal.deedContacts} for:item="dc" for:index="index">
+											<c-hh-application-edit-deed-contact-row key={dc.index} 
+																															record={dc}
+																															ondeleted={handleDeleteDeedContact} 
+																															index={index} 
+																					ondeedcontactfield = {handleDeedMap}
+																															data-id={dc.index} 
+																															data-custom="innerComponent">
+											</c-hh-application-edit-deed-contact-row>
+										</template>
+									</tbody>
+								</table>
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium slds-text-align_right">
+								<button class="slds-button slds-button_brand" onclick={handleAddDeedContact}>{label.HH_EN_Add_Line_Item}</button>
+							</div>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={propertyForeClosurePicklistValues}>
+							<template if:true={propertyForeClosurePicklistValues.data}>
+								<lightning-combobox name="PropertyForeclosure" data-field="Property_Foreclosed_or_in__c"
+													value={recordLocal.Property_Foreclosed_or_in__c}
+													label={label.HH_EN_Property_Foreclosed_or_in_Foreclosure} onchange={fieldChanged}
+													class="input" options={propertyForeClosurePicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={propertyLiensPicklistValues}>
+							<template if:true={propertyLiensPicklistValues.data}>
+								<lightning-combobox name="PropertyStructure" data-field="Property_Liens__c"
+													value={recordLocal.Property_Liens__c} label={label.HH_EN_Property_Liens}
+													onchange={fieldChanged} class="input"
+													options={propertyLiensPicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={paymentPlanPicklistValues}>
+							<template if:true={paymentPlanPicklistValues.data}>
+								<lightning-combobox name="PropertyStructure"
+													data-field="Good_Standing_with_a_payment_plan_on_you__c"
+													value={recordLocal.Good_Standing_with_a_payment_plan_on_you__c}
+													label={label.HH_EN_Good_Standing_on_Property_Taxes} onchange={fieldChanged}
+													class="input" options={paymentPlanPicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<!-- <lightning-input label={label.HH_EN_Assessed_Value_of_the_Property} class="input"
+										value={recordLocal.Assessed_Value_of_the_Property__c}
+										data-field="Assessed_Value_of_the_Property__c" name="input1" type="number"
+										formatter="currency" max-length="16" onchange={fieldChanged}>
+						</lightning-input> -->
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={propertyCurrentlyDamagedPicklistValues}>
+							<template if:true={propertyCurrentlyDamagedPicklistValues.data}>
+								<lightning-dual-listbox name="PropertyCurrentlyDamaged"
+																				value={dualListSelected}
+																				source-label={label.HH_EN_Available}
+																				selected-label={label.HH_EN_Selected}
+																				label={label.HH_EN_Property_Currently_Damaged}
+																				options={propertyCurrentlyDamagedPicklistValues.data.values}																				
+																				onchange={dualListChanged}
+																				class="input">
+								</lightning-dual-listbox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={describeDamage}>
+							<div class="damageDescribe">
+							<lightning-textarea class="input"
+														value={recordLocal.Damage_Description__c}
+														label={label.HH_EN_Describe_the_damages}
+														data-field="Damage_Description__c"
+														name="DamageDescription"
+														max-length="1000"
+														required
+														onchange={handleDamageDescription}>
+							</lightning-textarea>
+							<span>{count}&nbsp;{label.HH_EN_characters_remaining}</span>
+							</div>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<p class="slds-theme_shade">{label.HH_EN_property_currently_damaged_static_text}</p>
+					</div>
+					
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={reduceRiskPicklistValues}>
+							<template if:true={reduceRiskPicklistValues.data}>
+								<lightning-combobox name="ReduceRisk"
+													data-field="Measures_to_Reduce_risks_to_wi__c"
+													value={recordLocal.Measures_to_Reduce_risks_to_wi__c}
+													label={label.HH_EN_Measures_to_Reduce_Wildfire_Damage_Risk}
+													required
+													onchange={handleReduceRisksChanged} 
+													class="input"
+													options={reduceRiskPicklistValues.data.values} >
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={showMeasures}>
+							<div class="listOfMeasures">
+							<lightning-textarea class="input"
+												value={recordLocal.List_of_Measures__c}
+												label={label.HH_EN_List_of_Measures}
+												data-field="List_of_Measures__c"
+												name="PropertyStreet"
+												max-length="1000"
+												required
+												onchange={handleListOfMeasures}>
+							</lightning-textarea>
+							<span>{countMeasures}&nbsp;{label.HH_EN_characters_remaining}</span>
+							</div>
+						</template>
+					</div>
+
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+							<template if:true={wildfireAssistancePicklistValues.data}>
+								<lightning-combobox name="ReduceRisk"
+													data-field="Did_you_receive_wildfire_assistance__c"
+													value={recordLocal.Did_you_receive_wildfire_assistance__c}
+													label={label.HH_EN_any_assistance_from_any_program}
+													required
+													onchange={handleWildfireAssistanceChanged} 
+													class="input"
+													options={wildfireAssistancePicklistValues.data.values} >
+								</lightning-combobox>
+							</template>
+				</div>
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={showPrograms}>
+							<div class="listOfMeasures">
+							<lightning-textarea class="input" 
+												value={recordLocal.Which_program_s_and_when__c}
+												label={label.HH_EN_assistance_and_approximately_when} 
+												data-field="Which_program_s_and_when__c"
+												name="PropertyStreet" 
+													max-length="1000"
+												required 
+													onchange={handlePrograms}>
+							</lightning-textarea>
+								<span>{countProgram}&nbsp;{label.HH_EN_characters_remaining}</span>
+							</div>
+						</template>
+					</div>
+				</div>
+			<!--<div class="around_border">
+				<div class="slds-grid slds-wrap">
+					<div class="slds-col">
+						<h3 class="heading">{label.HH_EN_Funding_Received_Previously}</h3>
+					</div>
+				</div>
+				
+				<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+					<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+						<template if:true={asistanceReduceRiskPicklistValues}>
+							<template if:true={asistanceReduceRiskPicklistValues.data}>
+								<lightning-combobox name="PropertyStructure" data-field="Assistance_to_reduce_yo__c"
+													value={recordLocal.Assistance_to_reduce_yo__c}
+													label={label.HH_EN_Assistance_for_Home_s_risk_to_wildfire}
+													onchange={handleAssistanceReduceRiskChanged} class="input"
+													options={asistanceReduceRiskPicklistValues.data.values} required>
+								</lightning-combobox>
+							</template>
+						</template>
+					</div>
+					<template if:true={listPrograms}>
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium" >
+							<div class="slds-grid slds-wrap">
+								<div class="slds-col slds-size_12-of-12 responsive_table">
+							{label.HH_EN_HH_EN_Dates_Funding_Received_and_Program_Names}
+									<div class="table-div">
+										<table class="">
+								<thead style="background-color:#2574a9; color:white">
+									<tr class="slds-line-height_reset">
+										<th class="slds-size_3-of-12" scope="col">
+														<div class="" title={label.HH_EN_Date_Funding_Received}><span class="slds-required">*</span>{label.HH_EN_Date_Funding_Received}</div>
+										</th>
+										<th class="slds-size_3-of-12" scope="col">
+														<div class="" title={label.HH_EN_Program_Name}><span class="slds-required">*</span>{label.HH_EN_Program_Name}</div>
+										</th>
+										<th class="slds-size_3-of-12" scope="col">
+														<div class="" title={label.HH_EN_Other_Program_Name}>{label.HH_EN_Other_Program_Name}</div>
+										</th>
+										<th class="slds-size_1-of-12" scope="col">
+														<div class="" title={label.HH_EN_Action}>{label.HH_EN_Action}</div>
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<template for:each={recordLocal.fundedPrograms} for:item="fp" for:index="index">
+										<c-hh-application-edit-funded-program-row key={fp.index} record={fp}
+											ondeleted={handleDeleteFundedProgram} onadded={handleAddFundedProgram}
+											index={index} data-id={index} data-custom="innerComponent">
+										</c-hh-application-edit-funded-program-row>
+									</template>
+								</tbody>
+							</table>
+										 <div if:true={isMobile}>
+											<article class="slds-card slds-m-top_small">
+												<div class="slds-card__header slds-grid">
+													<header class="slds-media slds-media_center slds-has-flexi-truncate">
+														<div class="slds-media__body">
+															<h2 class="slds-card__header-title">
+															<a href="#" class="slds-card__header-link slds-truncate" title="Contacts (3)">
+																<span>Funded Programs</span>
+															</a>
+															</h2>
+														</div>
+													</header>
+												</div>
+												<div class="slds-card__body slds-card__body_inner slds-m-around_small">
+													<ul class="slds-grid slds-wrap slds-grid_pull-padded">
+														<template for:each={recordLocal.fundedPrograms} for:item="fp" for:index="index">
+															<c-hh-application-edit-funded-program-row key={fp.index} record={fp}
+																ondeleted={handleDeleteFundedProgram} onadded={handleAddFundedProgram}
+																index={index} data-id={index} data-custom="innerComponent">
+															</c-hh-application-edit-funded-program-row>
+														</template>
+													</ul>
+												</div>
+											</article>
+											
+										</div>
+						</div>
+								</div>
+							</div>
+						</div>
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium slds-text-align_right">
+							<button class="slds-button slds-button_brand" onclick={handleAddFundedProgram}>{label.HH_EN_Add_Line_Item}</button>
+						</div>
+					</template>
+				</div>
+			</div>-->
+			</div>
+		</div>
+	</template>
+</template>

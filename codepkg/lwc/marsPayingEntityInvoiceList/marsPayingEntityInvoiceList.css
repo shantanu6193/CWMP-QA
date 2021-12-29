@@ -1,0 +1,20 @@
+.slds-col.approved .slds-size_6-of-12 {
+    display: inline-block;
+}
+
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+
+.outputfont {
+    font-weight: bold;
+}
+
+.attachment {
+    display: flex;
+}
+
+.slds-icon-action-reject {
+    background-color: red !important;
+}

@@ -1,0 +1,27 @@
+.slds-col.approved .slds-size_6-of-12 {
+    display: inline-block;
+}
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+.outputfont{
+    font-weight: bold;
+    font-size: medium;
+}
+
+.name_section {
+    width: 170px;
+}
+
+.status_section {
+    width:135px;
+}
+
+.incident_section {
+    width: 170px;
+}
+
+.incident_name {
+    width: 225px;
+}

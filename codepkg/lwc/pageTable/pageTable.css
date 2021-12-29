@@ -1,0 +1,20 @@
+.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}
+
+table, th{
+    border: 1px solid rgb(221, 219, 218);
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.slds-card__header{
+    border-bottom: 1px solid;
+}
+
+.table-heading {
+    color: white;
+    font-size: 15px;
+    padding: 6px;
+}

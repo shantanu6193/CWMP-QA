@@ -1,0 +1,31 @@
+/**
+ * Created by Shantanu
+ */
+ .slds-card__header {
+	background:#f3f2f2;
+}
+.slds-content-body{
+	overflow: auto;
+	max-height: 35vh;
+}
+.rfi-table.slds-grid.slds-border_bottom {
+	padding: 0.5rem 0.5rem 0;
+}
+
+table, th, td {
+	border:1px solid #CCCCCC;
+	border-collapse:collapse;
+	padding:8px;
+}
+th {
+	background:#fafaf9;
+}
+
+.rfi_scrollable {
+    max-height: 30rem;
+    overflow-y: auto;
+}
+.rfi-table{
+	word-wrap: break-word;
+	table-layout: fixed;
+}

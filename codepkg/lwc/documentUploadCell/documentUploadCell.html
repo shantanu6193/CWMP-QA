@@ -1,0 +1,117 @@
+<template>
+    <div class="" style="display:flex; justify-content:center; text-align:center;">
+        <template if:true={isNotActionORVersionORNameORGlobalCell}>
+            {fieldValue}
+        </template>
+        <template if:true={recordValues.contentDocumentLink}>
+        <template if:true={isNameCell}>
+            <a  data-value= {recordValues.contentDocumentLink.ContentDocumentId} onclick={handleFilePreview}>{recordValues.documentRecord.Document_Name__c}</a>
+        </template>
+        </template>
+        <template if:false={recordValues.contentDocumentLink}>
+        <template if:true={isNameCell}>
+           {recordValues.documentRecord.Document_Name__c}
+        </template>
+        </template>
+        <template if:true={isUploadDateCell}>
+            <template if:false={isFirefox}>
+            <lightning-formatted-date-time value={recordValues.documentRecord.Date_Time_Uploaded__c}
+                                           year="numeric"
+                                           month="2-digit"
+                                           day="2-digit"
+                                           hour="2-digit"
+                                           minute="2-digit"
+                                           time-zone="PST"
+            >
+            </lightning-formatted-date-time>
+        </template>
+            <template if:true={isFirefox}>
+                <lightning-formatted-date-time value={recordValues.documentRecord.Date_Uploaded__c}
+                                               year="numeric"
+                                               month="2-digit"
+                                               day="2-digit"
+                >
+                </lightning-formatted-date-time>
+            </template>
+        </template>
+        <template if:true={isGlobalCell}>
+            <td>
+                <div title="Global">
+                    <lightning-input type="Checkbox"
+                                     value={recordValues.documentRecord.Global_Document__c}
+                                     data-id ={recordValues.documentRecord.Id}
+                                     onchange={handleGlobalBoxChange}
+                                     data-name={recordValues.documentRecord.Document_Name__c}
+                                     disabled=true
+                                     checked ={recordValues.documentRecord.Global_Document__c}
+                                     variant=standard
+                                     >
+                    </lightning-input>
+                </div>
+            </td>
+        </template>
+        <template if:true={recordValues.ContentVersionRecord}>
+            <template if:true={isFileNameCell}>
+                <a  data-value= {recordValues.ContentVersionRecord.ContentDocumentId} onclick={handleFilePreview}>{recordValues.ContentVersionRecord.PathOnClient}</a>
+            </template>
+        </template>
+        <template if:true={recordValues.ContentVersionRecord}>
+        <template if:true={isVersionCell}>
+                <a onclick={viewFileVersion}>{recordValues.ContentVersionRecord.VersionNumber}</a>
+            </template>
+        </template>
+        <template if:true={isActionCell}>
+            <template if:false={isUploadActionAccess}>
+            <lightning-file-upload
+                    name="fileUploader"
+                    accept ={recordValues.documentRecord.Document_Format__c}
+                    record-id={recordValues.documentRecord.Id}
+                    onuploadfinished={handleUploadFinished}
+                    class="file-upload">
+            </lightning-file-upload>
+            </template>
+            <template if:true={isCopyIcon}>
+                <lightning-icon class="slds-text-link_reset slds-p-top_x-small slds-p-left_small"
+                                data-value={recordValues.documentRecord.Id}
+                                icon-name="utility:copy"
+                                size="small"
+                                data-name={recordValues.documentRecord.Document_Name__c}
+                                alternative-text="Copy Universal Document"
+                                title="Copy Universal Document"
+                                onclick={navigateToUniversalDocumentClonePage}>
+                </lightning-icon>
+            </template>
+            <template if:true={isEditIcon}>
+                <lightning-icon class="slds-text-link_reset slds-p-top_x-small slds-p-left_small"
+                                icon-name="utility:edit"
+                                size="small"
+                                alternative-text="Edit Page"
+                                title={label.HH_EN_Edit}
+                                onclick={navigateToDocumentEditPage}>
+                </lightning-icon>
+            </template>
+            <template if:true={isDeleteIcon}>
+                <lightning-icon class="slds-text-link_reset slds-p-top_x-small slds-p-left_small"
+                                icon-name="utility:delete"
+                                size="small"
+                                alternative-text="Delete Document"
+                                title={label.HH_EN_Delete}
+                                onclick={handleDeleteContentDocument}>
+                </lightning-icon>
+            </template>
+            <template if:true={isDownloadIcon}>
+                <lightning-icon class="slds-text-link_reset slds-p-top_x-small slds-p-left_small"
+                                data-value={recordValues.contentDocumentLink.ContentDocumentId}
+                                icon-name="utility:download"
+                                size="small"
+                                alternative-text="Download"
+                                title={label.HH_EN_Click_to_preview}
+                                onclick={handleDownloadDocument}>
+                </lightning-icon>
+            </template>
+        </template>
+    </div>
+    <template if:true={isOpenDeleteConfirmationModal}>
+        <c-confirmation-popup visible={isOpenDeleteConfirmationModal} title="" name="" original-message="" message="Are you sure you want to delete File?" confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleDeleteConfirmationClick}></c-confirmation-popup>
+    </template>
+</template>

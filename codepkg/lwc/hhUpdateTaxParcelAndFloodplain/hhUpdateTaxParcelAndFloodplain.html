@@ -1,0 +1,162 @@
+<!--
+ - Created by ricky on 08-09-2021.
+ -->
+
+<!-- HH Update Tax Parcel And Floodplain -->
+<template>
+    <!-- <template if:true={showComponent}> -->
+        <template if:true={showLoader}>
+            <lightning-spinner  variant="brand" size="large"></lightning-spinner>
+        </template>
+        <template if:false={showLoader}>
+            <template if:true={isComponentVisible}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>{label.HH_TaxParcelUpdate_ComponentTitle}</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <template if:true={isAdditionalInfoFieldsVisible}>
+                                <div class="slds-grid slds-gutters slds-wrap slds-p-vertical_small">
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_small">
+                                        <span>
+                                            <lightning-input type="text"
+                                                             label={label.HH_TaxParcelNumber}
+                                                             value={recordLocal.Tax_Parcel_Number__c}
+                                                             data-field="Tax_Parcel_Number__c"
+                                                             onchange={fieldChanged}
+                                                             required
+                                                             class="input"
+                                                             max-length="15"
+                                                             title=""
+                                                             disabled ={isDisable}>
+                                            </lightning-input>
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                        <span>
+                                            <template if:true={PropertyFloodplainOptions.data}>
+                                                <lightning-combobox
+                                                        name={label.HH_IsPropertyInFloodplain}
+                                                        label={label.HH_IsPropertyInFloodplain}
+                                                        value={recordLocal.Is_the_property_in_the_floodplain__c}
+                                                        options={PropertyFloodplainOptions.data.values}
+                                                        data-field="Is_the_property_in_the_floodplain__c"
+                                                        onchange={fieldChanged}
+                                                        class="input"
+                                                        title=""
+                                                        required>
+                                                </lightning-combobox>
+                                            </template>
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                        	<lightning-input label={label.HH_EN_Assessed_Value_of_the_Property} 
+                                                            class="input"
+                                                            value={recordLocal.Assessed_Value_of_the_Property__c}
+                                                             data-field="Assessed_Value_of_the_Property__c"
+                                                             name="input1"
+                                                             type="number"
+                                                            formatter="currency" 
+                                                            max-length="16" 
+                                                             message-when-bad-input={label.HH_EN_Value_must_be_numeric_0_9}
+                                                            onchange={fieldChanged} required>
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                        <span>
+                                            <template if:true={HomeownerHouseholdIncomeBracketOptions.data}>
+                                                <lightning-combobox
+                                                        name={label.HH_Application_HomeownerHouseholdIncomeBracket}
+                                                        label={label.HH_Application_HomeownerHouseholdIncomeBracket}
+                                                        value={recordLocal.Income_Bracket__c}
+                                                        options={HomeownerHouseholdIncomeBracketOptions.data.values}
+                                                        data-field="Income_Bracket__c"
+                                                        onchange={fieldChanged}
+                                                        class="input"
+                                                        title=""
+                                                        required>
+                                                </lightning-combobox>
+                                            </template>
+                                        </span>
+                                    </div>
+                                </div>
+                                </template>
+                                <template if:true={isAssessorEmailFieldVisible}>
+                                    <div class="slds-grid slds-gutters_direct-small slds-p-vertical_small">
+                                        <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                                            <span>
+                                                <lightning-input type="email"
+                                                                 label={label.HH_Application_AssessorEmail}
+                                                                 value={recordLocal.Assessor_Email__c}
+                                                                 data-field="Assessor_Email__c"
+                                                                 onchange={fieldChanged}
+                                                                 required
+                                                                 message-when-type-mismatch={label.HH_Email_Validation_Message}
+                                                                 class="emailField"
+                                                                 title=""
+                                                                 max-length="80">
+                                                </lightning-input>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <footer class="slds-card__footer">
+                                <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_TexParcelUpdate_Component_SaveButton}</button>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </template>
+
+            <!--<template if:true={isVisibleEmail}>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    <div class="slds-media__body">
+                                        <h2 class="slds-card__header-title">
+                                            <span>{label.HH_TaxParcel_EmailUpdateComponentName}</span>
+                                        </h2>
+                                    </div>
+                                </header>
+                            </div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-gutters_direct-small slds-p-vertical_small">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                                        <span>
+                                            <lightning-input type="email"
+                                                             label={label.HH_Application_AssessorEmail}
+                                                             value={recordLocal.Assessor_Email__c}
+                                                             data-field="Assessor_Email__c"
+                                                             onchange={fieldChanged}
+                                                             required
+                                                             message-when-type-mismatch={label.HH_Email_Validation_Message}
+                                                             class="emailField"
+                                                             title=""
+                                                             max-length="80">
+                                            </lightning-input>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="slds-card__footer">
+                                <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_TexParcelUpdate_Component_SaveButton}</button>
+                            </footer>
+                        </article>
+                    </div>
+                </div>
+            </template> -->
+
+        </template>
+   <!-- </template> -->
+</template>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>NON-FEMA Send Email and Update Status</description>
+        <name>NON_FEMA_Send_Email_and_Update_Status</name>
+        <label>NON-FEMA Send Email and Update Status</label>
+        <locationX>733</locationX>
+        <locationY>545</locationY>
+        <actionName>HMA_RFISendEmailNotifications</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>newRFIRecord</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>oldRFIRecords</name>
+            <value>
+                <elementReference>OldRecordList</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>rfiId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendEmailsTo</name>
+            <value>
+                <stringValue>NonFEMA</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_email_and_status</name>
+        <label>Send email and status</label>
+        <locationX>750</locationX>
+        <locationY>298</locationY>
+        <actionName>HMA_RFISendEmailNotifications</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>newRFIRecord</name>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>oldRFIRecords</name>
+            <value>
+                <elementReference>OldRecordList</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>rfiId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendEmailsTo</name>
+            <value>
+                <stringValue>FEMA</stringValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>52.0</apiVersion>
+    <assignments>
+        <name>Assign_Old_Record_to_List_Variable</name>
+        <label>Assign Old Record to List Variable</label>
+        <locationX>190</locationX>
+        <locationY>621</locationY>
+        <assignmentItems>
+            <assignToReference>OldRecordList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record__Prior</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>RFI_Type_Check</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Record_Type</name>
+        <label>Check Record Type</label>
+        <locationX>179</locationX>
+        <locationY>417</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_HMA_Record</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>HMA</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Old_Record_to_List_Variable</targetReference>
+            </connector>
+            <label>Is HMA Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>RFI_Type_Check</name>
+        <label>RFI Type Check</label>
+        <locationX>524</locationX>
+        <locationY>419</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Non_FEMA_RFI_Types</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>OES BCA</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>OES Programmatic</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FEMA Programmatic</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FEMA EHP</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>NON_FEMA_Send_Email_and_Update_Status</targetReference>
+            </connector>
+            <label>Non-FEMA RFI Types</label>
+        </rules>
+        <rules>
+            <name>FEMA_RFI_Types</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FEMA OES Programmatic</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RFI_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>FEMA OES EHP</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_email_and_status</targetReference>
+            </connector>
+            <label>FEMA RFI Types</label>
+        </rules>
+    </decisions>
+    <description>HMA RFI Flow</description>
+    <interviewLabel>HMA RFI Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HMA RFI Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Check_Record_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </filters>
+        <object>Request_For_Information__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>OldRecordList</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Request_For_Information__c</objectType>
+    </variables>
+</Flow>

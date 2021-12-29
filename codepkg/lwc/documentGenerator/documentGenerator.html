@@ -1,0 +1,110 @@
+<!--
+ - Created by Pankaj on 2021-06-06.
+ -->
+
+<!-- Document Generator -->
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">Document Generation Window</h2>
+                    </div>
+            </header>
+    </div>
+    </article>
+    <div class="slds-card__body slds-card__body_inner slds-p-horizontal_none">
+        <div class="slds-grid slds-wrap ">
+            <!--<div class="slds-col slds-size_2-of-2 ">
+                <lightning-combobox name="Module" label="Module Select"
+                     placeholder="Module Select"  options={moduleForDocument} onchange={handleModuleChange}>
+                </lightning-combobox>
+            </div>-->
+            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                <lightning-combobox name="Document"  label="Select document"
+                            options={documentsToGenerate} placeholder="Select document" onchange={handleDocumentChange}>
+                </lightning-combobox>
+            </div>
+            <template if:true={showLookupField}>
+                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                    <c-lookup
+                        data-custom="lookup"
+                        data-lookup={showLookupFieldAPIName}
+                        label={showLookupLabel}
+                        onsearch={handlePrimaryRecordSearch}
+                        onselectionchange={handlePrimaryRecordSearchChange}
+                        placeholder="Search"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadDataOnLookup}
+                        local-search = {loadDataOnLookup}
+                        scroll-after-n-items = "10"
+                        search-term=""
+                        required>
+                    </c-lookup>
+                </div>
+            </template>
+            <template if:true={showLookupRelatedField1}>
+                <div class="slds-col slds-size_2-of-2 slds-p-top_small showlookup1">
+                    <c-lookup
+                        data-custom="lookup"
+                        data-lookup={showLookupRelatedFieldAPIName1}
+                        label={showLookupRelatedLabel1}
+                        onsearch={handleRelatedRecord1Search}
+                        onselectionchange={handleRelatedRecord1SearchChange}
+                        placeholder="Search"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadDataOnLookup}
+                        local-search = {loadDataOnLookup}
+                        scroll-after-n-items = "10"
+                        search-term=""
+                        required>
+                    </c-lookup>
+                </div>
+            </template>
+            <template if:true={showLookupRelatedField2}>
+                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                    <c-lookup
+                        data-custom="lookup"
+                        data-lookup={showLookupRelatedFieldAPIName2}
+                        label={showLookupRelatedLabel2}
+                        onsearch={handleRelatedRecord2Search}
+                        onselectionchange={handleRelatedRecord2SearchChange}
+                        placeholder="Search"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadDataOnLookup}
+                        local-search = {loadDataOnLookup}
+                        scroll-after-n-items = "10"
+                        search-term=""
+                        required>
+                    </c-lookup>
+                </div>
+            </template>
+            <template if:true={showLookupRelatedField3}>
+                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                    <c-lookup
+                        data-custom="lookup"
+                        data-lookup={showLookupRelatedFieldAPIName3}
+                        label={showLookupRelatedLabel3}
+                        onsearch={handleRelatedRecord3Search}
+                        onselectionchange={handleRelatedRecord3SearchChange}
+                        placeholder="Search"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadDataOnLookup}
+                        local-search = {loadDataOnLookup}
+                        scroll-after-n-items = "10"
+                        search-term=""
+                        required>
+                    </c-lookup>
+                </div>
+            </template>
+        </div>
+        <footer class="slds-card__footer">
+            <lightning-button label="Generate Document"  variant="brand" title="Generate Document" onclick={generateDocument} class="slds-m-left_x-small"></lightning-button>
+            <lightning-button label="Clear Selection" title="Clear Selection" onclick={clearSelection} class="slds-m-left_x-small"></lightning-button>
+        </footer>
+        
+        <!-- <iframe src={iframeURL} height=300 width=300>
+            
+        </iframe> -->
+    </div>
+</template>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Fields that needs to be tracked for each object that is tracked .Object tracked can be found in History Tracker Configuration metadata</description>
+    <fields>
+        <fullName>Field_API_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Field API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>History_Tracker_Configuration__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>History Tracker Configuration</label>
+        <referenceTo>History_Tracker_Configuration__mdt</referenceTo>
+        <relationshipLabel>History Tracker Fields</relationshipLabel>
+        <relationshipName>Related_Fields</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Message_Field_API_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Message Field API Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>History Tracker Field Configuration</label>
+    <pluralLabel>History Tracker Field Configurations</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

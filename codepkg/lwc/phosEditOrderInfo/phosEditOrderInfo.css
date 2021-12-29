@@ -1,0 +1,62 @@
+/**
+ * Created by PREM on 28-03-2020.
+ */
+.container{
+    background: white !important;
+}
+hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.slds-form-element__label{
+    font-weight: 400;
+    color: #5a5959;
+    font-size: 0.75rem;
+}
+.slds-input{
+    border-radius: 4px;
+    border: 1px solid #d4d4d4
+}
+.sub-text{
+    font-size: 0.65rem;
+    font-weight: 100;
+    font-style: italic;
+    color: #5a5959;
+}
+.slds-truncate{
+    white-space:normal;
+}
+.slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.slds-table_cell-buffer tr > th:first-child{
+    padding-left:8px;
+}
+.slds-table_cell-buffer tr>td:first-child{
+    padding-left:8px;
+}
+.slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+th, td {
+    /*text-align: center;*/
+    padding:10px;
+}
+.slds-table{
+    border:1px solid rgb(212,212,212);
+}
+
+table{
+    border: 2px solid #CCCCCC;
+}
+.slds-table_resizable-cols thead th{
+    padding:10px;
+}
+.heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}

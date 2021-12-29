@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <assignments>
+        <name>Populate_Product</name>
+        <label>Populate Product</label>
+        <locationX>507</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Product__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Product.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Populate_Warehouse</name>
+        <label>Populate Warehouse</label>
+        <locationX>500</locationX>
+        <locationY>362</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Warehouse__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Warehouse.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Product</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>If_Account_is_not_null</name>
+        <label>If Account is not null</label>
+        <locationX>717</locationX>
+        <locationY>149</locationY>
+        <defaultConnector>
+            <targetReference>Get_Product</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Account_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Warehouse</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Warehouse</targetReference>
+            </connector>
+            <label>Account is not null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>If_Product_is_not_null</name>
+        <label>If Product is not null</label>
+        <locationX>751</locationX>
+        <locationY>538</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Product_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Product</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Populate_Product</targetReference>
+            </connector>
+            <label>Product is not null</label>
+        </rules>
+    </decisions>
+    <interviewLabel>Auto Populate Product and Warehouse for Inventory {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Auto Populate Product and Warehouse for Inventory</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Product</name>
+        <label>Get Product</label>
+        <locationX>741</locationX>
+        <locationY>360</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>If_Product_is_not_null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>External_SKU_ID__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Warehouse_SKU_Id__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Product2</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Warehouse</name>
+        <label>Get Warehouse</label>
+        <locationX>491</locationX>
+        <locationY>78</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>If_Account_is_not_null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Entity_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Warehouse</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Entity_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Warehouse_Code__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>26</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Warehouse</targetReference>
+        </connector>
+        <object>Warehouse_Product__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <name>Update_Status_to_Expired</name>
+        <label>Update Status to Expired</label>
+        <locationX>494</locationX>
+        <locationY>136</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Approval_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Expired</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Non_Supp_Record</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>MARS - Special Equip Expiry Batch {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MARS - Special Equip Expiry Batch</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Non_Supp_Record</name>
+        <label>Update Non  Supp Record</label>
+        <locationX>623</locationX>
+        <locationY>138</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Update_Status_to_Expired</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operator>EndsWith</operator>
+            <value>
+                <stringValue>Reviewed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Revised</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_End_Date_Less_Than_Today__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Agency_Non_Suppression_Personnel__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2021-04-12</startDate>
+            <startTime>23:45:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

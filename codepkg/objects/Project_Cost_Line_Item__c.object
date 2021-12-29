@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Application_Extension_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>Project_Cost__r.Project_Budget__r.Application_Extension__c</formula>
+        <label>Application Extension Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Id__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Project_Cost__r.Project_Site__r.Application__c)  , Project_Cost__r.Project_Budget__r.Application__c , Project_Cost__r.Project_Site__r.Application__c)</formula>
+        <label>Application Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost_Estimate_Narra__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Cost Estimate Narrative</label>
+        <length>1200</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Cost_Estimate_Total__c</fullName>
+        <description>Used in Management Cost Budget Breakdown as an Amount</description>
+        <externalId>false</externalId>
+        <label>Cost Estimate Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Cost_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Public Outreach</fullName>
+                    <default>false</default>
+                    <label>Public Outreach</label>
+                </value>
+                <value>
+                    <fullName>Survey</fullName>
+                    <default>false</default>
+                    <label>Survey</label>
+                </value>
+                <value>
+                    <fullName>Permitting</fullName>
+                    <default>false</default>
+                    <label>Permitting</label>
+                </value>
+                <value>
+                    <fullName>Title Search / Title Insurance</fullName>
+                    <default>false</default>
+                    <label>Title Search / Title Insurance</label>
+                </value>
+                <value>
+                    <fullName>Appraisal</fullName>
+                    <default>false</default>
+                    <label>Appraisal</label>
+                </value>
+                <value>
+                    <fullName>Duplication of Benefits analysis</fullName>
+                    <default>false</default>
+                    <label>Duplication of Benefits analysis</label>
+                </value>
+                <value>
+                    <fullName>Acquisition of Properties/Structures (Market Value - Pre or Post Disaster Valuation)</fullName>
+                    <default>false</default>
+                    <label>Acquisition of Properties/Structures (Market Value - Pre or Post Disaster Valuation)</label>
+                </value>
+                <value>
+                    <fullName>Closing Costs</fullName>
+                    <default>false</default>
+                    <label>Closing Costs</label>
+                </value>
+                <value>
+                    <fullName>Project Management</fullName>
+                    <default>false</default>
+                    <label>Project Management</label>
+                </value>
+                <value>
+                    <fullName>Demolition/Site Restoration/Landfill Tipping Fees/Utility Removal</fullName>
+                    <default>false</default>
+                    <label>Demolition/Site Restoration/Landfill Tipping Fees/Utility Removal</label>
+                </value>
+                <value>
+                    <fullName>Asbestos Testing/Abatement</fullName>
+                    <default>false</default>
+                    <label>Asbestos Testing/Abatement</label>
+                </value>
+                <value>
+                    <fullName>Lead Based Paint Testing/Remediation</fullName>
+                    <default>false</default>
+                    <label>Lead Based Paint Testing/Remediation</label>
+                </value>
+                <value>
+                    <fullName>EHP Review / Coordination</fullName>
+                    <default>false</default>
+                    <label>EHP Review / Coordination</label>
+                </value>
+                <value>
+                    <fullName>Acquisition of Property (Land Only)</fullName>
+                    <default>false</default>
+                    <label>Acquisition of Property (Land Only)</label>
+                </value>
+                <value>
+                    <fullName>Jacking and Moving Structure</fullName>
+                    <default>false</default>
+                    <label>Jacking and Moving Structure</label>
+                </value>
+                <value>
+                    <fullName>Dissembling and Reassembling Appurtenances (Porches, Decks, Awnings, Ramps)</fullName>
+                    <default>false</default>
+                    <label>Dissembling and Reassembling Appurtenances (Porches, Decks, Awnings, Ramps)</label>
+                </value>
+                <value>
+                    <fullName>Site Preparation (foundation, water, sewer, utility hookup)</fullName>
+                    <default>false</default>
+                    <label>Site Preparation (foundation, water, sewer, utility hookup)</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Expense_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Expense Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Hourly_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Hourly Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Hours__c</fullName>
+        <externalId>false</externalId>
+        <label>Hours</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Item_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Item Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Phase__c</fullName>
+        <externalId>false</externalId>
+        <label>Phase</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Phase 1</fullName>
+                    <default>false</default>
+                    <label>Phase 1</label>
+                </value>
+                <value>
+                    <fullName>Phase 2</fullName>
+                    <default>false</default>
+                    <label>Phase 2</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Position__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Position</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Pre_Award_Cost__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Pre Award Cost?</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Project_Cost__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Project Cost</label>
+        <referenceTo>Project_Cost__c</referenceTo>
+        <relationshipLabel>Project Cost Line Items</relationshipLabel>
+        <relationshipName>Project_Cost_Line_Items</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>3</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Unit_Measure__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Measure</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Each</fullName>
+                    <default>false</default>
+                    <label>Each</label>
+                </value>
+                <value>
+                    <fullName>Mile</fullName>
+                    <default>false</default>
+                    <label>Mile</label>
+                </value>
+                <value>
+                    <fullName>Hour</fullName>
+                    <default>false</default>
+                    <label>Hour</label>
+                </value>
+                <value>
+                    <fullName>Ton</fullName>
+                    <default>false</default>
+                    <label>Ton</label>
+                </value>
+                <value>
+                    <fullName>Acre</fullName>
+                    <default>false</default>
+                    <label>Acre</label>
+                </value>
+                <value>
+                    <fullName>Cubic Foot</fullName>
+                    <default>false</default>
+                    <label>Cubic Foot</label>
+                </value>
+                <value>
+                    <fullName>Cubic Yard</fullName>
+                    <default>false</default>
+                    <label>Cubic Yard</label>
+                </value>
+                <value>
+                    <fullName>Day</fullName>
+                    <default>false</default>
+                    <label>Day</label>
+                </value>
+                <value>
+                    <fullName>Linear Foot</fullName>
+                    <default>false</default>
+                    <label>Linear Foot</label>
+                </value>
+                <value>
+                    <fullName>Lump Sum</fullName>
+                    <default>false</default>
+                    <label>Lump Sum</label>
+                </value>
+                <value>
+                    <fullName>Million Board Feet</fullName>
+                    <default>false</default>
+                    <label>Million Board Feet</label>
+                </value>
+                <value>
+                    <fullName>Number Of Seats</fullName>
+                    <default>false</default>
+                    <label>Number Of Seats</label>
+                </value>
+                <value>
+                    <fullName>Square Foot</fullName>
+                    <default>false</default>
+                    <label>Square Foot</label>
+                </value>
+                <value>
+                    <fullName>Unknown</fullName>
+                    <default>false</default>
+                    <label>Unknown</label>
+                </value>
+                <value>
+                    <fullName>Square Yard</fullName>
+                    <default>false</default>
+                    <label>Square Yard</label>
+                </value>
+                <value>
+                    <fullName>Square Yard Per Inch</fullName>
+                    <default>false</default>
+                    <label>Square Yard Per Inch</label>
+                </value>
+                <value>
+                    <fullName>Foot</fullName>
+                    <default>false</default>
+                    <label>Foot</label>
+                </value>
+                <value>
+                    <fullName>Inch</fullName>
+                    <default>false</default>
+                    <label>Inch</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Unit_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Unit Quantity</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Project Cost Line Item</label>
+    <nameField>
+        <displayFormat>PCLI-{00000}</displayFormat>
+        <label>Project Cost Line Item Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Project Cost Line Items</pluralLabel>
+    <recordTypes>
+        <fullName>Project_Site_Estimate</fullName>
+        <active>true</active>
+        <label>Project Site Estimate</label>
+        <picklistValues>
+            <picklist>Cost_Type__c</picklist>
+            <values>
+                <fullName>Acquisition of Properties%2FStructures %28Market Value - Pre or Post Disaster Valuation%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acquisition of Property %28Land Only%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Appraisal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Asbestos Testing%2FAbatement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Closing Costs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demolition%2FSite Restoration%2FLandfill Tipping Fees%2FUtility Removal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Dissembling and Reassembling Appurtenances %28Porches%2C Decks%2C Awnings%2C Ramps%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Duplication of Benefits analysis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EHP Review %2F Coordination</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Jacking and Moving Structure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead Based Paint Testing%2FRemediation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Permitting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public Outreach</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Site Preparation %28foundation%2C water%2C sewer%2C utility hookup%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Survey</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Title Search %2F Title Insurance</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Phase__c</picklist>
+            <values>
+                <fullName>Phase 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phase 2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Unit_Measure__c</picklist>
+            <values>
+                <fullName>Acre</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cubic Foot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cubic Yard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Day</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Each</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Foot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hour</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Linear Foot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lump Sum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Mile</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Million Board Feet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Number Of Seats</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square Foot</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square Yard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Square Yard Per Inch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ton</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

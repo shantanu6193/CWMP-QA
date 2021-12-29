@@ -1,0 +1,261 @@
+<template>
+   <template if:true={showLoader}>
+       <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+  </template>
+<template if:false={showLoader}>
+    <div class="slds">
+       <div class="slds-grid slds-gutters slds-wrap">
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+             <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                   <c-lookup  data-custom="lookup"
+                              data-lookup="Incident__c"
+                              label="Select Incident"
+                              onsearch={handleIncidentSearch}
+                              onselectionchange={handleIncidentChange}
+                              placeholder="Search Name/Declaration number"
+                              is-multi-entry={isMultiEntry}
+                              load-data-on-init = {loadDataOnLookup}
+                              local-search = {loadDataOnLookup}
+                              scroll-after-n-items = "10"
+                              search-term=""
+                              errors={incidentRequired}
+                              required>
+                  </c-lookup>
+                </div>
+             </div>
+          </div>
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+            <div class="slds-form-element">              
+               <lightning-input type="text" id="text-input-id-5" placeholder="Incident Order Number" label="Incident Order Number" class="input text_left_side" value={incidentOrderNumber} disabled></lightning-input>
+            </div>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+            <div class="slds-form-element">                             
+               <lightning-input type="text" id="text-input-id-3"  label="Agency Designator" value={agencyDeatils.Mars_Agency_Designator__c} placeholder="Agency Designator" class="input" disabled ></lightning-input>
+            </div>
+         </div>
+       </div>
+       <div class="slds-grid slds-gutters slds-wrap">
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+             <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                  <c-lookup  data-custom="lookup1"
+                              data-lookup="StrikeTeam__c"
+                              label="Select Strike Team"
+                              onsearch={handleStrikeTeamSearch}
+                              onselectionchange={handleStrikeTeamChange}
+                              placeholder="Search Strike Team"
+                              is-multi-entry={isMultiEntry}
+                              load-data-on-init = {loadDataOnLookup}
+                              local-search = {loadDataOnLookup}
+                              scroll-after-n-items = "10"
+                              search-term=""
+                              >
+                  </c-lookup>
+                </div>
+             </div>
+          </div>
+          <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+            <div class="slds-form-element">              
+               <!--<lightning-input type="text" id="text-input-id-6" placeholder="Incident Request Number" label="Incident Request Number" class="input" value={recordLocal.Incident_Request_Number__c}></lightning-input>-->
+               <div class="slds-form-element">              
+                    <lightning-combobox name="IncidentRequestNumber" value={recordLocal.Incident_Request_Number__c} label="Incident Request Number" placeholder="Incident Request Number" options={incidentRequestNumberOptions} data-field="Incident_Request_Number__c" class="input" onchange={handleIncidentRequestNo}>
+                    </lightning-combobox>
+            </div>
+            </div>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12 slds-p-bottom_medium">
+            <div class="slds-form-element">              
+                <lightning-combobox name="UNitNumber" value={recordLocal.Unit_Number__c} label="Unit Number" placeholder="Select Unit Number" options={unitNumberList} data-field="Unit_Number__c" class="input" onchange={fieldChanged}>
+                </lightning-combobox>
+            </div>
+         </div>
+       </div>
+    </div>
+    <div class="slds">
+       <div class="slds-grid slds-gutters slds-wrap text_center">
+          <div class="slds-col  slds-size_1-of-1 slds-p-top_medium slds-p-bottom_x-small">
+            <lightning-button slot="actions" variant="brand" label="Add Row" onclick={addRow} class="slds-p-left_small slds-float_right"></lightning-button>
+         </div>
+       </div>
+    </div>
+    <div class="slds">
+        <div class="slds-grid slds-gutters slds-wrap text_center">
+            <div class="slds-col slds-size_1-of-1 slds-p-bottom_medium">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped" aria-label="Example table of Opportunities with striped rows">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Date">Date</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="City">City</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Meals">Meals</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Lodging">Lodging</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="MISC">MISC</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Description">Description</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Amount">Total Amount</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <template for:each={rows} for:item="record" for:index="index">
+                        <c-mars-reimbursement-form-row   key={record.index}
+                                                         index={index} 
+                                                         record={record} 
+                                                         data-id={index}
+                                                         ondeleted={removeRow}
+                                                         onadded={addRow}
+                                                         oncalculatetotal={handleTotalCalculation}>
+                        </c-mars-reimbursement-form-row>
+                    </template>
+                        <tr>
+                            <td colspan="2">
+                                Sub Totals
+                            </td>
+                            <td>
+                                <lightning-formatted-number class="slds-m-left_medium outputfont"
+                                value={recordLocal.Meal_Total__c} format-style="currency"
+                                currency-code="USD"></lightning-formatted-number>
+                            </td>
+                            <td>
+                                <lightning-formatted-number class="slds-m-left_medium outputfont"
+                                value={recordLocal.Lodging_Total__c} format-style="currency"
+                                currency-code="USD"></lightning-formatted-number>
+                            </td>
+                            <td>
+                                <lightning-formatted-number class="slds-m-left_medium outputfont"
+                                value={recordLocal.MISC_Total__c} format-style="currency"
+                                currency-code="USD"></lightning-formatted-number>
+                            </td>
+                            <td>
+                                Total
+                            </td>
+                            <td colspan="2">
+                                <lightning-formatted-number class="slds-m-left_medium outputfont"
+                                value={recordLocal.Total_Reimbursement_Amount__c} format-style="currency"
+                                currency-code="USD"></lightning-formatted-number>
+                               
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="slds">
+        <div class="slds-grid slds-gutters slds-wrap text_center">
+            <div class="slds-col slds-size_1-of-1 slds-p-bottom_medium">
+
+                <div class="slds-text-body_small slds-float_right slds-p-top_small">
+                    *Per CFAA use <a href="https://www.gsa.gov/travel/plan-book/per-diem-rates/per-diem-rates-lookup/?action=perdiems_report&state=CA&fiscal_year=2021&zip=&city=" target=_blank> GSA Rates </a> to calculate rates according to City 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds">
+        <div class="slds-grid slds-gutters slds-wrap text_center">
+            <div class="slds-col slds-size_6-of-12 slds-p-bottom_medium">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <lightning-textarea name="input1" class="input textareaheight" label="Comments" value={recordLocal.Comments__c} data-field="Comments__c" maxlength="1000" onchange={fieldChanged}></lightning-textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-p-bottom_medium">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <c-signature data-id="signature"></c-signature>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_3-of-12 slds-p-bottom_medium">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <div>
+                            <lightning-input type="Date" label="Date" required value={recordLocal.Submission_Date__c} class="input futuredate" message-when-range-underflow="Please select a submission date" data-field="Submission_Date__c" onchange={fieldChanged}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning-input type="text" id="text-input-id-10" placeholder="Printed Name" label="Printed Name" class="input" value={recordLocal.Printed_Name__c} data-field="Printed_Name__c" onchange={fieldChanged} required></lightning-input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds">
+        <div class="slds-grid slds-gutters slds-wrap text_center">
+            <!--<div class="slds-col slds-size_6-of-12">
+                <c-mars-multi-select-picklist picklistlabel="Attachment Type" values={attachmentType} onselectedvalues={handleSelectedvalues}></c-mars-multi-select-picklist> disabled={attachmentTypeSelect}
+            </div>-->
+            <div class="slds-col slds-size_3-of-12">
+                <lightning-file-upload label="Attach File" name="fileUploader" record-id={agencyId} onuploadfinished={handleUploadFinished} multiple>
+                </lightning-file-upload>
+            </div>
+            <!--</div>-->
+            <div class="slds-col slds-size_9-of-12">
+                <template if:true={showFilesTable}>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="File Name">Attachment Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Attachment Type">Attachment Type</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Action">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={uploadedFiles} for:item="record" for:index="index">
+                                <tr key={record.contentVersionId} data-id={record.contentVersionId}>
+                                    <td scope="col">
+                                        {record.name}
+                                    </td>
+                                    <td scope="col">
+                                        <lightning-combobox name="AttachmentType" value={record.Type} placeholder="Select Attachment Type" options={attachmentType} required="true" data-index={record.contentVersionId} onchange={handleAttachmentChange} variant="label-hidden">
+                                        </lightning-combobox>
+                                        <!--{record.Type}-->
+                                    </td>
+                                    <td>
+                                        <a data-index={record.contentVersionId} onclick={deleteAttachedFile} class="slds-p-right_small">
+                                            <lightning-button-icon icon-name="utility:delete" variant="bare" alternative-text="Delete"   class="slds-m-left_xx-small vieweye" title="Delete"></lightning-button-icon>
+                                            <span class="slds-assistive-text">Delete</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </template>
+            </div>    
+        </div>    
+        <div class="slds-grid slds-gutters slds-wrap text_center">
+            <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium slds-p-top_small slds-align-bottom">
+                <lightning-button slot="actions" variant="brand" label="SUBMIT" onclick={saveRecord} disabled={disableSubmit} class="slds-p-left_small slds-float_right"></lightning-button>
+            </div>
+        </div>
+    </div>
+    <c-mars-reimbursement-form-history record-id={agencyId}></c-mars-reimbursement-form-history>
+    </template>
+</template>

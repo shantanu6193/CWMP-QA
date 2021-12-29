@@ -1,0 +1,10 @@
+<!--
+ - Created by StackNexus Admin on 17-09-2021.
+ -->
+
+<aura:component description="CalOES_Custom_Path" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes">
+    <lightning:path aura:id="path" recordId="{!v.recordId}"
+                    variant="linear"
+                    hideUpdateButton="true"
+                    onselect="{!c.handleSelect}"/>
+</aura:component>

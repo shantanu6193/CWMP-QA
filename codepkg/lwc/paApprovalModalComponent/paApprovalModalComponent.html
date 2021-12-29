@@ -1,0 +1,12 @@
+<template>
+    <header>
+       <span>PA Custom Approval Component</span> 
+    </header>
+    <div >
+        <input type="hidden" class="errorholder" />
+        <c-approval-component oncontdocidsvaluechange={handlecontdocids} onapprovalvaluechange={handleapprovalvaluechange}  oncommentvaluechange={handlecommentvaluechange}  show-file-upload={isFileUploadShow}></c-approval-component>
+    </div>
+    <footer>
+            <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">Submit</button>
+    </footer>
+</template>

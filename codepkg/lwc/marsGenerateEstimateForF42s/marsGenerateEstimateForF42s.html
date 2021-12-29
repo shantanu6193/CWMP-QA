@@ -1,0 +1,247 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+      <template if:true={estimateInvoiceList}>
+        <div class="slds-grid slds-wrap">
+            <div style="display: none;">
+                {recordId}
+            </div>
+            <div class="slds-col slds-size_12-of-12">
+            <div class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none test-headerRegion slds-is-relative slds-text-align_center"><b>F-42 Estimates</b></div>
+            <div class="slds-scrollable"> 
+                <table class="slds-table slds-table_bordered slds-table_header-fixed slds-table_resizable-cols slds-table_fixed-layout">
+                    <thead>
+                        <tr>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-p-vertical_x-small slds-text-align_left table-first-col-padding" title="Personnel Type">Personnel Type</div>
+                            </th>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-text-align_left" title="Hourly Rate">Hourly Rate</div>
+                            </th>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-text-align_left" title="Paid Rate">Paid Rate</div>
+                            </th>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-text-align_left" title="Number on this F-42">Number on this F-42</div>
+                            </th>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-text-align_left" title="Hours on this F42">Hours on this F42</div>
+                            </th>
+                            <th class="slds-truncate slds-cell-shrink custom" scope="col">
+                                <div class="slds-text-align_left" title="Total for this F42">Total for this F42</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={estimateInvoiceList.f42DetailsList.strikeTeamExpensesList} for:item="record" for:index="index">
+                            <tr class="slds-hint-parent" key={record}>
+                                <td scope="row">
+                                    <div class="slds-truncate">
+                                        {record.personnelType}
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate">
+                                        {record.hourlyRate}
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate">
+                                        {record.paidRate}
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate">
+                                        {record.onThisF42}
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate" >
+                                        {record.hoursOnThisF42}
+                                    </div>
+                                </td>
+                                <td scope="row">
+                                    <div class="slds-truncate">
+                                        {record.totalForThisF42}
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Total Personnel</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.totalPersonnel}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Surcharge-Personnel</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.surchargePersonnel}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row" colspan="6"  style="text-align: left;">
+                              <b>Equipment</b>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">
+                              Apparatus Hours
+                            </td>
+                            <td colspan="2" scope="row">
+                              ${estimateInvoiceList.f42DetailsList.apparatusRate}
+                            </td>
+                            <td scope="row">
+                              {estimateInvoiceList.f42DetailsList.engineHours}
+                            </td>
+                            <td scope="row">
+                              <b>Apparatus Total</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.totleEngineHours}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">
+                               {estimateInvoiceList.f42DetailsList.FEMACode}
+                            </td>
+                            <td  scope="row" colspan="2">
+                              ${estimateInvoiceList.f42DetailsList.FEMACodeRate}
+                            </td>
+                            <td scope="row">
+                              {estimateInvoiceList.f42DetailsList.FEMACodeHours}
+                            </td>
+                            <td scope="row">
+                              <b>FEMA Equip Total</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.FEMACodTotal}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">
+                               {estimateInvoiceList.f42DetailsList.specialEquipment} 
+                            </td>
+                            <td colspan="2" scope="row">
+                              ${estimateInvoiceList.f42DetailsList.specialEquipmentRate}
+                            </td>
+                            <td scope="row">
+                              {estimateInvoiceList.f42DetailsList.specialEquipmentHours}
+                            </td>
+                            <td scope="row">
+                              <b>Special Equip Total</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.specialEquipmentTotal}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td  scope="row">
+                              <b>Equipment Subtotal</b>
+                            </td>
+                            <td >
+                              ${estimateInvoiceList.f42DetailsList.specialEquipFEMASubTotal}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Surcharge-Equipment</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.surchargeEngine}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td scope="row">
+                              Support Vehicle Days
+                            </td>
+                            <td colspan="2" scope="row">
+                              ${estimateInvoiceList.f42DetailsList.supportOrOverheadVehicle}
+                            </td>
+                            <td scope="row">
+                              {estimateInvoiceList.f42DetailsList.vehicleDays}
+                            </td>
+                            <td scope="row">
+                              <b>Vehicle Total</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.vehicleCost}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Surcharge-Vehicle</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.surchargeVehicle}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Total Expense Claim</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.expenseClaim}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2" scope="row">
+                              <b class="slds-float_right">Surcharge-Expense Claim</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.surchargeExpenseClaim}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td scope="row">
+                              <b>Total for this F-42</b>
+                            </td>
+                            <td scope="row">
+                              ${estimateInvoiceList.f42DetailsList.totalForThisF42}
+                            </td>
+                          </tr> 
+                    </tbody>
+                </table>  
+            </div>     
+            </div>
+        </div>
+       </template>    
+    </template>    
+</template>

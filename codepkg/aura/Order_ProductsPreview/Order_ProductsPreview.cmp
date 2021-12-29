@@ -1,0 +1,90 @@
+<!--
+ - Created by hp on 2020-04-04.
+ -->
+
+<aura:component description="Order_ProductsPreview"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride"
+                controller="Order_ProductsViewCtrl"
+>
+    <aura:attribute name="orderId" type="String" description=""/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="orderItemsEdit" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="products" type="List" description="Available Product List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="loaded" type="Boolean" description="Is load done?" default="false"/>
+    <aura:attribute name="isLoading" type="Boolean" description="Is load done?" default="false"/>
+    <aura:attribute name="hasEditAccess" type="Boolean" description="check if user has edit access?" default="false"/>
+    <aura:attribute name="isEditProduct" type="Boolean" description="" default="false"/>
+    <aura:attribute name="IsCommunity" type="String" description=" yes if it is community" default="No"/>
+    <aura:attribute name="detailColumnsJSON" type="String" description="" default=""/>
+    <aura:attribute name="editColumnsJSON" type="String" description="" default=""/>
+    <aura:attribute name="previewColumnsJSON" type="String" description="" default="[]"/>
+    <aura:attribute name="configList" type="List" description="" default="[]"/>
+    <aura:attribute name="appName" type="String" description="" default=""/>
+    <aura:attribute name="disableEditBtn" type="Boolean" description="" default="false"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler event="force:refreshView" action="{!c.doInit}" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid slds-page-header forceRelatedListCardHeader">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+     <span class="slds-icon_container slds-icon-standard-account" title="Order Products">
+       <lightning:icon iconName="standard:product_item" alternativeText="Order Products" title="Order Products" />
+     </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Order Products">
+                            <aura:if isTrue="{!lessthanorequal(v.orderItems.length,3)}">
+                                <span><strong>Order Products ({!v.orderItems.length})</strong></span>
+                                <aura:set attribute="else">
+                                    <span><strong>Order Products (3+)</strong></span>
+                                </aura:set>
+                            </aura:if>
+                        </a>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <aura:if isTrue="{!v.hasEditAccess}">
+                        <lightning:button aura:id="editBtn" disabled="{!v.disableEditBtn}" variant="neutral" label="Add/Edit Products" title="Edit Products" onclick="{!c.openEditProductTab}"/>
+                    </aura:if>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <aura:if isTrue="{!v.loaded}">
+                <aura:iteration items="{!v.orderItems}" indexVar="index" var="orderItem">
+                    <aura:if isTrue="{!lessthan(index,3)}">
+                        <div class="outputLookupContainer forceOutputLookupWithPreview">
+                            <a class="textUnderline outputLookupLink slds-truncate forceOutputLookup slds-truncate" href="javascript:void(0);" id="{!orderItem.Id}" onclick="{!c.openProductTab}" title="Product Name">
+                                {!orderItem.Product__r.Name}
+                            </a>
+                        </div>
+                        <ul class="slds-page-header__detail-list">
+                            <li class="slds-page-header__detail-item slds-size_12-of-12 slds-list_horizontal slds-wrap">
+                                <aura:iteration items="{!v.configList}" var="config">
+                                    <div class="slds-grid slds-large-size_12-of-12">
+                                        <div class="slds-col slds-size_12-of-12">
+                                            <c:CustomFieldView fieldLabel="{!config.Label}" orderItem="{!orderItem}" apiName="{!config.APIName}"/>
+                                        </div>
+                                    </div>
+                                </aura:iteration>
+                            </li>
+                        </ul>
+                    </aura:if>
+                </aura:iteration>
+                <aura:if isTrue="{!not(empty(v.orderItems))}">
+                    <footer class="slds-card__footer slds-border--top slds-align_absolute-center">
+                        <a class="slds-card__footer-action slds-align_absolute-center" onclick="{!c.openViewProductTab}" href="javascript:void(0);">View All
+                            <!--<span class="slds-assistive-text">Accounts</span>-->
+                        </a>
+                    </footer>
+                </aura:if>
+            </aura:if>
+        </div>
+    </article>
+</aura:component>

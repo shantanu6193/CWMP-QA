@@ -1,0 +1,286 @@
+<!--
+ - Created by Chandrabhan on 25-06-2021.
+ -->
+
+<!-- Mars Reimbursement History -->
+<template>
+    <div class="table_light">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Expense Claim History</h2>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-scrollable_x">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout" id="Table1">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-size_2-of-12 name_section" scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="slds-size_2-of-12 incident_name" scope="col">
+                            <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                        </th>
+                        <th class="slds-size_2-of-12 incident_section" scope="col">
+                            <div class="slds-truncate" title="Incident Order Number">Incident Order Number</div>
+                        </th>
+                        <th class="slds-size_2-of-12 status_section" scope="col">
+                            <div class="slds-truncate" title="Strike Team">Strike Team</div>
+                        </th>
+                        <th class="slds-size_2-of-12 incident_section" scope="col">
+                            <div class="slds-truncate" title="Incident Request Number">Incident Request Number</div>
+                        </th>
+                        <th class="slds-size_1-of-12" scope="col">
+                            <div class="slds-truncate" title="Date">Date</div>
+                        </th>
+                        <th class="slds-size_1-of-12 status_section" scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th class="slds-size_1-of-12" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={reimbursementList} for:item="reimbursRecord" for:index="index">
+                        <tr class="slds-hint-parent" key={reimbursRecord.Id}>
+                            <td class="slds-truncate" data-label="Name" scope="row">
+                                <div class="slds-truncate" title={reimbursRecord.Name}>
+                                    {reimbursRecord.Name}
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="Incident Name" scope="row" >
+                                <div class="slds-truncate" title={reimbursRecord.IncidentName}>
+                                    {reimbursRecord.IncidentName}
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="Incident_Order_Number" scope="row">
+                                <div class="slds-truncate" title={reimbursRecord.Incident_Order_Number}>
+                                    {reimbursRecord.Incident_Order_Number}
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="Strike Team" scope="row">
+                                <div class="slds-truncate" title={reimbursRecord.Strike_Team__c}>
+                                    {reimbursRecord.Strike_Team}
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="Incident_Request_Number" scope="row">
+                                <div class="slds-truncate" title={reimbursRecord.Incident_Request_Number}>
+                                    {reimbursRecord.Incident_Request_Number}
+                                </div>
+                            </td>
+                            <td class="slds-truncate" data-label="Date">
+                                <lightning-formatted-date-time value={reimbursRecord.Submission_Date} year="numeric"
+                                    month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </td>
+                            <td class="slds-truncate" data-label="Status" scope="row" >
+                                <div class="slds-truncate" title={reimbursRecord.Status}>
+                                    {reimbursRecord.Status}
+                                </div>
+                            </td>
+                            <td class="" data-label="View">
+                                <a data-index={reimbursRecord.Id} onclick={viewRecord} class="slds-p-right_small">
+                                    <lightning-icon icon-name="utility:preview"
+                                        class="slds-icon slds-icon_small vieweye" size="small" alternative-text="view">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">View</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <template if:true={isViewModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-modal_large slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeSubmitModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Expense Claim Details</h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content" id="modal-content-id-1">
+                    <div class="slds-grid slds-gutters slds-wrap slds-p-left_medium slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-size_4-of-12">Incident Name 
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                value={reimbursRecord.IncidentName}></lightning-formatted-text>
+                        </div>
+                        <div class="slds-size_4-of-12">Incident Order Number
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                            value={reimbursRecord.Incident_Order_Number}></lightning-formatted-text>
+                        </div>
+                        <div class="slds-size_4-of-12">Agency Designator 
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                            value={reimbursRecord.MACIDs}></lightning-formatted-text>
+                        </div>
+                    </div>    
+                    <div class="slds-grid slds-gutters slds-wrap slds-p-left_medium slds-p-top_small slds-p-bottom-small">    
+                        <div class="slds-size_4-of-12">Strike Team 
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                            value={reimbursRecord.Strike_Team}></lightning-formatted-text>
+                        </div>
+                        <div class="slds-size_4-of-12">Incident Request Number
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                            value={reimbursRecord.Incident_Request_Number}></lightning-formatted-text>
+                        </div>
+                        <div class="slds-size_4-of-12">Unit Number 
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                            value={reimbursRecord.Unit_Number}></lightning-formatted-text>
+                        </div>
+                    </div>    
+                    <div class="slds-scrollable" style="padding-top: 1.1rem;">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                            id="Table2">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_4-of-12" scope="col">
+                                        <div class="slds-truncate" title="Date">Date</div>
+                                    </th>
+                                    <th class="slds-size_4-of-12" scope="col">
+                                        <div class="slds-truncate" title="City">City</div>
+                                    </th>
+                                    <th class="slds-size_4-of-12" scope="col">
+                                        <div class="slds-truncate" title="Meals">Meals</div>
+                                    </th>
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="Lodging">Lodging</div>
+                                    </th>
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="MISC">MISC</div>
+                                    </th>
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="Amount">Amount</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={reimbursementLineRecords} for:item="reimbursLineItem" for:index="index">
+                                    <tr class="slds-hint-parent" key={reimbursLineItem.Id}>
+                                        <td data-label="Date" scope="row">
+                                            <div class="slds-truncate">
+                                                <lightning-formatted-date-time value={reimbursLineItem.Date__c} year="numeric"
+                                                month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                                            </div>
+                                        </td>
+                                        <td data-label="City" scope="row">
+                                            <div class="slds-truncate" title={reimbursLineItem.City__c}>
+                                                {reimbursLineItem.City__c}
+                                            </div>
+                                        </td>
+                                        <td data-label="Meals" scope="row">
+                                            <div class="slds-truncate" title="">
+                                                <lightning-formatted-number value={reimbursLineItem.Meal__c}
+                                                    format-style="currency" currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </td>
+                                        <td data-label="Lodging" scope="row">
+                                            <div class="slds-truncate" title="">
+                                                <lightning-formatted-number value={reimbursLineItem.Lodging__c}
+                                                    format-style="currency" currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </td>
+                                        <td data-label="MISC" scope="row">
+                                            <div class="slds-truncate" title="">
+                                                <lightning-formatted-number value={reimbursLineItem.MISC__c}
+                                                    format-style="currency" currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </td>
+                                        <td data-label="Description" scope="row">
+                                            <div class="slds-truncate" title={reimbursLineItem.Description__c}>
+                                                {reimbursLineItem.Description__c}
+                                            </div>
+                                        </td>
+                                        <td data-label="Amount" scope="row">
+                                            <div class="slds-truncate" title="">
+                                                <lightning-formatted-number value={reimbursLineItem.Amount__c}
+                                                    format-style="currency" currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                                <tr>
+                                    <td scope="col"></td>
+                                    <td scope="col"><b>Sub Totals</b></td>
+                                    <td scope="col">
+                                        <lightning-formatted-number class="outputfont"
+                                            value={reimbursRecord.Meal_Total} format-style="currency"
+                                            currency-code="USD"></lightning-formatted-number>
+                                    </td>
+                                    <td scope="col">
+                                        <lightning-formatted-number class="outputfont"
+                                            value={reimbursRecord.Lodging_Total} format-style="currency"
+                                            currency-code="USD"></lightning-formatted-number>
+                                    </td>
+                                    <td scope="col">
+                                        <lightning-formatted-number class="outputfont"
+                                            value={reimbursRecord.MISC_Total} format-style="currency"
+                                            currency-code="USD"></lightning-formatted-number>
+                                    </td>
+                                    <td scope="col"><b>Total</b></td>
+                                    <td scope="col">
+                                        <lightning-formatted-number class="outputfont"
+                                            value={reimbursRecord.Total_Reimbursement_Amount} format-style="currency"
+                                            currency-code="USD"></lightning-formatted-number>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <template if:true={hasFiles}>
+                            <div class="approved">
+                                <c-mars-view-files record={contentVersions}></c-mars-view-files>  
+                            </div>
+                        </template>
+                        <div class="slds-grid slds-gutters slds-wrap slds-p-left_medium slds-p-top_small slds-p-bottom-small">    
+                            <div class="slds-size_3-of-12">Comments 
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                                value={reimbursRecord.Comments}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_3-of-12">Date
+                                <lightning-formatted-date-time class="slds-m-left_x-small outputfont" value={reimbursRecord.Submission_Date}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </div>
+                            <div class="slds-size_3-of-12">Printed Name 
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                                value={reimbursRecord.Printed_Name}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_3-of-12">Signature
+                                <img style="height:60px;width:100%" src={imageUrl} alt="Signature"/>
+                            </div>
+                        </div>    
+                        <div class="slds-grid slds-gutters slds-wrap slds-p-left_medium slds-p-top_small slds-p-bottom-small">    
+                            <div class="slds-size_3-of-12">Status 
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                                value={reimbursRecord.Status}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_9-of-12">Mutual Aid Staff Comments
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                                value={reimbursRecord.Mutual_Aid_Staff_Comments}></lightning-formatted-text>
+                            </div>
+                        </div>    
+                    </div>    
+                </div> 
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeSubmitModal}
+                        title="Cancel">Cancel</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+</template>

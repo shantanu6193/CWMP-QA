@@ -1,0 +1,9 @@
+<!-- We added this Aura for Rename the Tab -->
+<aura:component controller="ALS_TransmittalPreviewController" description="ALS_TransmittalParent" implements="force:hasRecordId,lightning:isUrlAddressable"
+    access="global">
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <aura:attribute name="transmittalId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Handler for valueInit event fired when the component has been initialised"/>
+    <!-- <c:alsTransmittalForFederal recordId="{!v.transmittalId}" aura:id="alsTransmittalForFederal"/> -->
+    <c:alsTransmittalForFederal recordId="{!v.transmittalId}" aura:id="alsTransmittalForFederal"/>
+</aura:component>

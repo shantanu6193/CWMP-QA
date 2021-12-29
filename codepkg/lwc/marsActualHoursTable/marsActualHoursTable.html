@@ -1,0 +1,52 @@
+<template>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+      <h2 class="slds-page-header__title slds-truncate border_zero" title="ACTUAL HOURS">
+        ACTUAL HOURS
+      </h2>
+    </div>
+  </div>
+  <div class="slds-card__body">
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+      <thead>
+        <tr class="slds-text-title_caps">
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Date">Date</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Start">Start Time</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="End">End Time</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Hours">Hours</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={rows} for:item="record" for:index="index">
+            <tr key={record.uuid}>
+                <td scope="col">
+                  <lightning-input name="Date__c" type="date" date-style="short"
+                    value={record.Date__c} variant="label-hidden" read-only>
+                  </lightning-input>
+                </td>
+                <td scope="col">
+                  <lightning-input name="Start_Time__c"
+                    value={record.Start_Time__c} variant="label-hidden" read-only></lightning-input>
+                </td>
+                <td scope="col">
+                  <lightning-input name="End_Time__c"
+                    value={record.End_Time__c} variant="label-hidden" read-only></lightning-input>
+                </td>
+                <td scope="col">
+                  <lightning-input name="Hours__c" type="text"
+                    value={record.Hours__c} variant="label-hidden" read-only></lightning-input>
+                </td>
+            </tr>
+        </template>
+    </tbody>
+    </table>
+  </div>
+</template>

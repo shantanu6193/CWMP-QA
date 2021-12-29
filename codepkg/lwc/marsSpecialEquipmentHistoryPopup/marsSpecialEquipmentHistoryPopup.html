@@ -1,0 +1,126 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-modal_large slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    title="Close" onclick={closeSubmitModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                        size="small">
+                    </lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_6-of-12">
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate slds-text-align_left">{splEquipRecord.Agency__r.Name} </h2>
+                    </div>
+                    <div class="slds-size_6-of-12">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate slds-text-align_left"> Special Equipment</h2>
+                    </div>
+                </div>
+            </header>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content" id="modal-content-id-1">
+                <div class="slds-scrollable">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                        id="Table2">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="Classification Title">Equipment Type</div>
+                                </th>
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="FEMA Code">FEMA Code</div>
+                                </th>
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="Rate">Rate</div>
+                                </th>
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={splEquipLineItemRecord} for:item="splEquipLineItem" for:index="index">
+                                <tr class="slds-hint-parent" key={splEquipLineItem.Id}>
+                                    <td data-label="Classification Title" scope="row">
+                                        <div class="slds-truncate" title={splEquipLineItem.Special_Equipment_Type__c}>
+                                            {splEquipLineItem.Special_Equipment_Type__c}
+                                        </div>
+                                    </td>
+                                    <td data-label="FEMA Code" scope="row">
+                                        <div class="slds-truncate" title={splEquipLineItem.FEMA_CODE__c}>
+                                            {splEquipLineItem.FEMA_CODE__c}
+                                        </div>
+                                    </td>
+                                    <td data-label="Rate" scope="row">
+                                        <div class="slds-truncate" title={splEquipLineItem.Revised_Rate__c}>
+                                            <lightning-formatted-number value={splEquipLineItem.Revised_Rate__c}
+                                                format-style="currency" currency-code="USD">
+                                            </lightning-formatted-number>
+                                        </div>
+                                    </td>
+                                    <td data-label="CDescription" scope="row">
+                                        <div class="slds-truncate" title={splEquipLineItem.Description__c}>
+                                            {splEquipLineItem.Description__c}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    <div class="slds-col approved" style="padding-top: 1.5rem;">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-size_8-of-12">Name
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={splEquipRecord.Name}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_4-of-12">Effective Date
+                                <lightning-formatted-date-time class="slds-m-left_x-small outputfont"
+                                    value={splEquipRecord.Start_Date__c} year="numeric" month="2-digit" day="2-digit">
+                                </lightning-formatted-date-time>
+                            </div>
+                            <div class="slds-size_8-of-12">Comments
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={splEquipRecord.Reject_Reason__c}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_4-of-12">Status
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={splEquipRecord.Approval_Status__c}></lightning-formatted-text>
+                            </div>
+                            <div class="slds-size_8-of-12" style="padding-top: 0.5rem;">
+                                <p class="outputfont">NOTE: These rates are not effective until the date they are received by Cal OES.
+                                </p>
+                                <p>As an authorized representative of my agency/dept., I certify to the best of my knowledge and belief, and under penalty of perjury that this information is correct. Furthermore, my signature represents acceptance by my agency/dept., as a cooperator, to comply with the authorities, terms and conditions of the CFAA. I also agree to comply with all cooperator agency internal accounting and expense reimbursement standards.</p>
+                            </div>
+                            <div class="slds-size_4-of-12" style="padding-top: 0.5rem;"><div class='slds-text-align_center'>Signature</div>
+                            <template if:true={signIMGURL}>
+                                <img class='imgclass' style="height:70px;width:100%" src={signIMGURL} alt="Signature"/>
+                            </template>     
+                            </div>
+                        </div>    
+                    </div>
+                    <template if:true={hasFiles}>
+                        <div class="approved">
+                            <c-mars-view-files record={contentVersions}></c-mars-view-files>  
+                        </div>
+                    </template>
+                </div>    
+            </div>
+            <!-- Modal/Popup Box LWC footer starts here -->
+            <footer class="slds-modal__footer">
+                <template if:false={isPrint}>
+                    <button class="slds-button slds-button_brand" onclick={handlePrint} title="Print">Print</button>
+                    <button class="slds-button slds-button_neutral" onclick={closeSubmitModal} title="Cancel">Cancel</button>
+                </template>
+            </footer>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>    
+</template>

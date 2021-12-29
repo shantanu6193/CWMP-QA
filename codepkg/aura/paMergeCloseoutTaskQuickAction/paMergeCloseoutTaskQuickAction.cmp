@@ -1,0 +1,19 @@
+<aura:component controller="PA_MergeCloseoutTaskController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
+        <aura:html tag="style">
+                .slds-modal__container{
+                    width: 80% !important;
+                    height: 100% !important;
+                    max-width: 80% !important;
+                    max-height: 100% !important;
+                }
+        </aura:html>
+        <aura:attribute name="closeoutTaskId" type="String" default="{!v.recordId}"/>
+        <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+        <!-- <lightning:navigation aura:id="navService"/>  -->
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/> 
+        
+        <!-- <aura:if isTrue="{!v.isLoaded}">  
+                <c:paMergeCloseoutTask recordId="{!v.recordId}" oncloseclicked="{!c.closeQA}"></c:paMergeCloseoutTask> 
+        </aura:if>         -->
+     <lightning:workspaceAPI aura:id="workspace" /> 
+</aura:component>

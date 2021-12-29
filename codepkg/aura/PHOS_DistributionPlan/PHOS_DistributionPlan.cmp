@@ -1,0 +1,10 @@
+<!--
+ - Created by PREM on 31-08-2020.
+ -->
+
+<aura:component description="PHOS_DistributionPlan" implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable,forceCommunity:availableForAllPageTypes,lightning:actionOverride,force:lightningQuickAction" controller="PHOS_DistributionCtrl" access="global">
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+</aura:component>

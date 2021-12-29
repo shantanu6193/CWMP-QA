@@ -1,0 +1,75 @@
+.hh_form {
+	margin: 0 auto;
+	box-shadow: 0 7px 14px 0 rgb(65 69 88 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+	border: 1px solid #D4D4D4;
+	border-radius: 5px;
+	background: #fff;
+}
+
+h2.form_title {
+	width: 100%;
+    background: #2574a9;
+    padding: 15px;
+    margin-bottom: 10px;
+    color: #fdfcfc;
+    text-align: center;
+    text-transform: capitalize !important;
+    font-weight: bold;
+    border-radius: .25rem;
+    font-size: 24px;
+}
+
+.box_card {
+    border: 1px solid #dedede;
+    margin-top: 10px;
+    display: inline-block;
+    padding: 15px;
+    padding-top: 12px;
+    width: 100%;
+}
+
+.mob_btn {
+    margin-bottom: 10px;
+}
+@media screen and (min-width:280px) and (max-width:658px) {
+    .btn-col, .mob_btn {
+        width: 100%;
+    }
+    .btn-div {
+        width: 50%;
+    }
+}
+@media screen and (min-width:280px) and (max-width:413px) {
+    .btn-col, .mob_btn {
+        width: 100%;
+    }
+    .btn-div {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width:414px) and (max-width:736px) {
+    .btn-col, .mob_btn {
+        width: 100%;
+        display: inline-grid;
+    }
+    .btn-div {
+        width: 100%;
+    }
+}
+@media screen and (max-width: 890px) {
+    .responsive_table table {
+       border: 0;
+     }
+   
+    .responsive_table table thead {
+       border: none;
+       clip: rect(0 0 0 0);
+       height: 1px;
+       margin: -1px;
+       overflow: hidden;
+       padding: 0;
+       position: absolute;
+       width: 1px;
+     }
+}

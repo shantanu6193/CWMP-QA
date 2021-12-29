@@ -1,0 +1,30 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-21-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   03-21-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <template if:true={showLoader}>
+      <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+   <template if:false={showLoader}>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-large-size_2-of-12 slds-size_1-of-1 slds-p-top_medium">
+                <lightning-breadcrumbs>
+                    <lightning-breadcrumb
+                        label="Back to Home"
+                        href="/mars/s/">
+                    </lightning-breadcrumb>
+                </lightning-breadcrumbs> 
+        </div>
+        <div class="slds-col slds-large-size_10-of-12 slds-size_1-of-1 slds-p-top_medium">
+          <h1 class="slds-text-heading_small textfont">{accountRecord.Name}</h1>
+        </div>
+      </div>
+    </template>
+</template>

@@ -1,0 +1,102 @@
+<template>
+        
+        <lightning-card >
+                <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Merge Closeout Task</h2>
+                </header>  
+                <div class="flex-container">
+                        <div class="flex-child card magenta">
+                                <div class ="boxContainer">
+                                <div class="slds-text-heading_medium">
+                                        <h2>Master Closeout Task</h2>
+                                </div>
+                                <div class="slds-card__body slds-card__body_inner">
+                                        <div class="slds-grid slds-wrap ">
+                                                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                        <p><b>Closeout TaskName : </b> <lightning-formatted-text value={closeoutTaskRecord.Name}  readonly></lightning-formatted-text></p>
+                                                </div>
+                                                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                        <p><b>Incident : </b> {masterIncidentName}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                        <p><b>SubRecipent : </b> {masterSubRecipentName}</p>
+                                                </div>
+                                                <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                        <p><b>Status : </b> <lightning-formatted-text value={closeoutTaskRecord.Status__c} ></lightning-formatted-text></p>
+                                                </div>
+                                                <div class="div-1 slds-col slds-size_2-of-2 slds-p-top_small">
+                                                        <b>Project</b>
+                                                </div>
+                                                <div style="height: 300px;">
+                                                        <lightning-datatable
+                                                                key-field="id"
+                                                                hide-checkbox-column=true
+                                                                data={projectData}
+                                                                columns={columns}>
+                                                        </lightning-datatable>
+                                                </div> 
+                                        </div>
+                                </div>
+                                </div>
+                       </div>
+                       <div class="flex-child card green">
+                               <div class ="boxContainer">
+                            <div class="slds-text-heading_medium"><h2>Select Closeout Task</h2></div>
+                            <div class="slds-card__body slds-card__body_inner">
+                                    <div class="slds-grid slds-wrap ">
+                                            <div class="slds-col slds-size_2-of-2">
+                                                    <c-lookup
+                                                        data-custom="lookup"
+                                                        data-lookup="Closeout_Task__c"
+                                                        label=""
+                                                        onsearch={handleCloseoutSearch}
+                                                        onselectionchange={handleCloseoutChange}
+                                                        placeholder="Search Closeout Task"
+                                                        is-multi-entry={isMultiEntry}
+                                                        load-data-on-init = {loadDataOnLookup}
+                                                        local-search = {loadDataOnLookup}
+                                                        scroll-after-n-items = "10"
+                                                        search-term=""
+                                                        required>
+                                                    </c-lookup>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                    <p><b>Incident : </b> <lightning-formatted-text value={selectedIncidentNameStr} ></lightning-formatted-text></p>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                    <p><b>SubRecipent : </b> <lightning-formatted-text value={selectedSubRecipentName} ></lightning-formatted-text></p>
+                                            </div>
+                                            <div class="slds-col slds-size_2-of-2 slds-p-top_small">
+                                                    <p><b>Status : </b> <lightning-formatted-text value={selectedCloseoutTaskRecord.Status__c} ></lightning-formatted-text></p>
+                                            </div>
+                                            <div class="div-1 slds-col slds-size_2-of-2 slds-p-top_small">
+                                                    <b>Project</b>
+                                            </div>
+                                            <div style="height: 300px;">
+                                                    <lightning-datatable
+                                                            key-field="id"
+                                                            hide-checkbox-column=true
+                                                            data={selectedProjectData}
+                                                            columns={columns}>
+                                                    </lightning-datatable>
+                                            </div>
+                                    </div>
+                            </div>
+                                       </div>
+                       </div>
+                </div>
+                <footer class="slds-modal__footer">
+                        <div class="slds-clearfix">
+                                <div class="slds-align_absolute-center">
+                                         <lightning-button  variant="neutral" onclick={handleButtonCancelClick} label="Close"></lightning-button>&nbsp;&nbsp;&nbsp; 
+                                        <lightning-button  variant="brand" onclick={mergeCloseOutTask} disabled={isMergeButtonDisabled} label="Merge"></lightning-button>   
+                                </div>
+                            </div>  
+                </footer>
+        </lightning-card>
+        <template if:true={showLoader}>
+                <div class="loadingIcon">
+                        <lightning-spinner alternative-text="Loading" size="small" class="slds-is-fixed"></lightning-spinner>
+                </div>
+        </template>
+</template>

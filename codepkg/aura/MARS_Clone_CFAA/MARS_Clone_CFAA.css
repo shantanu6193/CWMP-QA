@@ -1,0 +1,17 @@
+.THIS.cHeader {
+    border-bottom: 1px solid #ddd;
+    padding: 1%;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;
+  }
+  .THIS.cBody {
+    padding: 4%;
+    background-color: white;
+  }
+  .THIS.cFooter {
+    border-top: 1px solid #ddd;
+    padding: 1%;
+    text-align: right;
+    background-color: white;
+  }

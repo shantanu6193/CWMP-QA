@@ -1,0 +1,14 @@
+.hidden_text {
+position:relative;
+z-index: 1;
+}
+
+.datepickerright {width: 285px;}
+
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+.toppaddin-div{
+    padding-top: 60px
+}

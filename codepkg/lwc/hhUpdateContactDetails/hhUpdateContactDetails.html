@@ -1,0 +1,174 @@
+<template>
+		<template if:true={showContactDetails}>
+			<template if:true={showLoader}>
+					<!-- <lightning-spinner  variant="brand" size="large"></lightning-spinner> -->
+			</template>
+			<template if:true={loadcontact}>
+					<div class="slds-grid slds-wrap">
+							<div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+									<article class="slds-card">
+											<div class="slds-card__header slds-grid">
+													<header class="slds-media slds-media_center slds-has-flexi-truncate">
+															<div class="slds-media__body">
+																	<h2 class="slds-card__header-title">
+																			<span>{label.HH_EN_Update_Contact_Details}</span>
+																	</h2>
+															</div>
+													</header>
+											</div>
+											<div class="slds-card__body slds-card__body_inner">
+													<div class="slds-grid slds-wrap slds-gutters_direct-small slds-p-vertical_small">
+															<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-input label={label.HH_EN_PrimaryPhone} 
+																		class="input"
+																		pattern="[0-9.+-]+"
+																		message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}
+																		value={recordLocal.Phone} 
+																		data-field="Phone" 
+																		required name="input1"
+																		type="text" 
+																		max-length="30"
+																		min-length="4"
+																		onchange={fieldChanged}>
+																</lightning-input>		
+															</div>
+															<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-input label={label.HH_EN_SecondaryPhone} 
+																									class="input"
+																										pattern="[0-9.+-]+"
+																										message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}
+																									value={recordLocal.HomePhone} 
+																									data-field="HomePhone" 
+																									name="input1" 
+																									type="text"
+																									max-length="30"
+																									min-length="4"
+																									onchange={fieldChanged}></lightning-input>
+															</div>
+															<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-textarea class="input"
+																							value={recordLocal.MailingStreet}
+																							label={label.HH_EN_MailingAddressStreet}
+																							data-field="MailingStreet"
+																							name="MailingAddress"
+																							max-length="100"
+																							onchange={fieldChanged}>
+																</lightning-textarea>
+															</div>
+															<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-input label={label.HH_EN_MailingAddressCity} 
+																									class="input"
+																									value={recordLocal.MailingCity} 
+																									data-field="MailingCity" 
+																									name="input1" 
+																									type="text"
+																									 max-length="40"
+																										pattern="[a-z,A-Z,\s]*"
+																										message-when-pattern-mismatch={label.HH_EN_City_pattern_validation}
+																									onchange={fieldChanged} >
+																								</lightning-input>
+															</div>
+																<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-input label={label.HH_EN_MailingAddressState} 
+																									class="input" 
+																									value={recordLocal.MailingState} 
+																									data-field="MailingState" 
+																									name="input1" 
+																									type="text"
+																									 pattern="[a-z,A-Z,\s]*"
+																									 message-when-pattern-mismatch={label.HH_EN_State_pattern_validation}
+																									 max-length="50"
+																									onchange={fieldChanged} ></lightning-input>
+															</div>
+															<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-input label={label.HH_EN_MailingAddressMailingZip_PostalCode}
+																									class="input" 
+																									value={recordLocal.MailingPostalCode}
+																									data-field="MailingPostalCode"
+																									name="input1" 
+																									type="text"
+																									onchange={fieldChanged} 
+																									max-length="20"
+																									></lightning-input>
+															</div>	
+															<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																			<lightning-combobox name="MailingCountry"
+																													data-field="MailingCountry"
+																													value={recordLocal.MailingCountry}
+																													label={label.HH_EN_MailingAddressCountry}
+																													onchange={fieldChanged}
+																													class="input"
+																													options={mailingAddressOption.data.values}
+																													>
+																			</lightning-combobox>
+															</div>
+															<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+																<lightning-textarea class="input"
+																							value={recordLocal.Physical_Street__c}
+																							label={label.HH_EN_PhysicalAddressStreet}
+																							data-field="Physical_Street__c"
+																							name={label.HH_EN_IsPhysicalAddressForeignAddress}
+																							max-length="100"
+																							onchange={fieldChanged}>
+																</lightning-textarea>
+														</div>
+														<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+															<lightning-input label={label.HH_EN_PhysicalAddressCity}
+																							 class="input" 
+																							 value={recordLocal.Physical_City__c} 
+																							 data-field="Physical_City__c" 
+																							 name="input1" 
+																							 type="text"
+																								onblur={blankCheck}
+																							 pattern="[a-z,A-Z,\s]*"
+																							 message-when-pattern-mismatch={label.HH_EN_City_pattern_validation}
+																							 onchange={fieldChanged} 
+																							 max-length="40"></lightning-input>
+														</div>
+														<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+															<lightning-input label={label.HH_EN_PhysicalAddressState} 
+																								class="input"  
+																								value={recordLocal.Physical_State__c} 
+																								data-field="Physical_State__c" 
+																								name="input1" 
+																								type="text"
+																								 onblur={blankCheck}
+																								 pattern="[a-z,A-Z,\s]*"
+																								onchange={fieldChanged}
+																								message-when-pattern-mismatch={label.HH_EN_State_pattern_validation}
+																								max-length="50"></lightning-input>
+														</div>
+														<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+															<lightning-input label={label.HH_EN_PhysicalAddressZip_PostalCode} 
+																								class="input"  
+																								value={recordLocal.Physical_Zip_Postal_Code__c} 
+																								data-field="Physical_Zip_Postal_Code__c" 
+																								name="input1" 
+																								type="text" 
+																								 message-when-pattern-mismatch={label.HH_EN_Zip_pattern_validation}
+																								onchange={fieldChanged} 
+																								max-length="20"></lightning-input>
+														</div>	
+														<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+																	<lightning-combobox name="OtherCountry"
+																											data-field="Physical_Country__c"
+																											value={recordLocal.Physical_Country__c}
+																											label={label.HH_EN_PhysicalAddressCountry}
+																											onchange={fieldChanged}
+																											class="input"
+																											read-only={isPhysicalAddressReadOnly}
+																											options={countryRegionOption.data.values}
+																									>
+																</lightning-combobox>
+														</div>	
+													</div>
+											</div>
+											<footer class="slds-card__footer">
+													<button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_EN_Save}</button>
+											</footer>
+									</article>
+							</div>
+					</div>
+			</template>
+	</template>
+</template>

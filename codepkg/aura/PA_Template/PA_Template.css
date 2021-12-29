@@ -1,0 +1,313 @@
+.selfServiceUserProfileMenu {
+    width: 280px;
+}
+span.profileName {
+    font-size: 13px !important;
+    font-weight: normal !important;
+}
+.selfServiceUserProfileMenu .selfServiceProfileMenuTrigger {
+    text-align: right !important;
+}
+.slds-text-color_inverse, .slds-text-color--inverse {
+    font-size: 13px;
+}
+
+.THIS #footer {
+	position: absolute;
+	width: 100%;
+	height:auto;
+	bottom:0;
+}
+.THIS.slds-container{
+	position: relative;
+	min-height: 100vh;
+}
+.THIS .profileName{
+    color:black;
+}
+.THIS .header-component{
+    border-bottom:solid 3px #fbad23;
+    background-color:#003466;
+    height: 120px;
+}
+.THIS .trigger-link {
+    background: #003466;
+    padding: 12px 12px 15px 11px!important;
+    border-radius: 46px;
+}
+.THIS .profileName{
+    color:white;
+}
+.THIS .header-link:hover{
+    color:white;
+}
+
+.pa_home_icon svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    fill: white;
+    margin-top: -5px;
+}
+
+@media screen and (min-width:320px) and (max-width:500px){
+    .THIS.image{
+        max-width:60%;
+        height:auto;
+    }
+}
+.THIS .caloes-logo{
+    height: 50px;
+}
+
+.THIS .search-bar .slds-form-element__control .slds-input{
+    height: 38px;
+    font-size: 16px;
+    border-radius: 8px 0px 0px 8px;
+}
+.THIS.footer {
+	background: #003466;
+	border: 1 px solid;
+    border-top: solid 3px #fbad23;
+    height:120px;
+    width:100%;
+    height:100%;
+}
+.THIS .footer-links {
+	font-weight: bold;
+	color: white;
+	text-decoration: underline;
+}
+.THIS .menu-icon lightning-primitive-icon svg {
+    fill:white !important;
+}
+.THIS .slds-is-close .slds-button .menu-icon-down {
+    display:none !important ;
+}
+.THIS .slds-is-open .slds-button .menu-icon-up {
+    display:none !important ;
+}
+
+@media screen and (min-width:843px) {
+    .THIS .mobile-only {
+        display:none;
+    }
+    .THIS .desktop-only {
+        display:block;
+    }
+}
+@media screen and (min-width:320px) and (max-width: 1172px) {
+    .THIS .caloes-logo {
+        height:33px;
+    }
+    .THIS .header-component {
+        height:80px;
+    }
+    .THIS .mobile-only {
+        display:block;
+    }
+    .THIS .desktop-only {
+        display:none;
+    }
+}
+@media screen and (min-width:320px) and (max-width: 500px) {
+    .THIS .nav-logo {
+        padding-left:12px !important;
+    }
+}
+
+/*Footer*/
+.THIS .footer-copyright{
+  padding-top:0;
+}
+.THIS .footer {
+	background: #003466;
+	border: 1 px solid;
+    border-top: solid 3px #fbad23;
+    height:120px;
+    width:100%;
+    height:100%;
+}
+.THIS .footer-links {
+	font-weight: bold;
+	color: white;
+	text-decoration: underline;
+}
+.THIS .copyright {
+	color: white;
+	font-size: 14px;
+}
+.THIS li {
+	list-style: none;
+}
+
+.THIS li:last-child {
+	border-right: none !important;
+}
+
+.THIS .listcontainer {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 10px;
+	margin: 5px 0;
+	border-right: 1px solid white;
+}
+.THIS .footer-copyright{
+    padding-top:0;
+}
+
+@media screen and (min-width:500px) and (max-width: 800px) {
+    .THIS .footer {
+        background: #003466;
+        border: 1 px solid;
+        border-top: solid 3px #fbad23;
+        width:100%;
+        height:100%;
+    }
+    .THIS .alignment {
+       display: flex;
+       justify-content: center;
+       align-content: center;
+       align-items: center;
+       margin: auto;
+   }
+}
+@media screen and (min-width:500px) and (max-width: 768px) {
+
+    .THIS LI:nth-child(odd) {
+        border-right: solid 1px #ffffff;
+        text-align: right;
+    }
+    .THIS LI:nth-child(even) {
+        border-right: none;
+        text-align: left;
+    }
+    .THIS li {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 0 10px;
+        margin: 5px 0;
+        width: 45%;
+    }
+   .THIS .footer {
+        background: #003466;
+        border: 1 px solid;
+        border-top: solid 3px #fbad23;
+        width:100%;
+        height:100%;
+    }
+    .THIS .alignment {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width:1250px){
+    .THIS .footer {
+        background: #003466;
+        border: 1 px solid;
+        border-top: solid 3px #fbad23;
+        height:120px;
+    }
+}
+
+@media screen and (min-width:500px) and (max-width: 768px){
+    .THIS li:last-child {
+        width:100% !important;
+        text-align:center;
+    }
+    .THIS .listcontainer {
+        width:50%;
+    }
+    .THIS .footer-copyright{
+        padding-top:20px;
+    }
+}
+@media screen and (min-width:320px) and (max-width: 500px) {
+
+    .THIS LI:nth-child(odd) {
+        border-right: none;
+        text-align: center;
+    }
+    .THIS LI:nth-child(even) {
+        border-right: none;
+        text-align: center;
+    }
+    .THIS li {
+        padding: 0 10px;
+        margin: 5px 0;
+        width: 100%;
+    }
+    .THIS .footer-copyright{
+       padding-top:20px;
+   }
+   .THIS .alignment {
+     display: flex;
+     justify-content: center;
+     align-content: center;
+     align-items: center;
+     margin: auto;
+
+ }
+}
+
+.THIS .closeout-radio .slds-form-element__control{
+    display:flex; 
+}
+.THIS .slds-radio__label .slds-form-element__label {
+    font-weight:normal !important;
+}
+.THIS .closeout-form-body .slds-form-element__label {
+    font-size:13px;
+    color:#5a5a5a;
+    font-weight:bold;
+    padding-bottom: 4px;
+}
+
+.profile.uiMenuItem{
+    display: none;
+}
+
+.myAccount{
+    display: none; 
+    }
+
+.slds-form-element__control {margin-bottom: 10px;}
+.slds-form-element__control .slds-radio, .slds-form-element__control .slds-checkbox {
+        display: inline-block;
+    }
+
+    .slds-form-element__control {
+        clear: none;
+        position: relative;
+        display:block !important;
+    }
+
+    .listcontainer {
+        padding:0 8px  !important;
+    }
+
+    .custom-select {
+        float: right;
+        width: 250px;
+        color: #006599;
+    }
+
+    .custom-select select {
+        width: 100%;
+        padding: 7px;
+    }
+
+    .slds-align-bottom {
+        vertical-align: bottom;
+        align-self: baseline;
+    }
+
+    li.slds-button.slds-button--neutral {
+        border-right: 1px solid #D4D4D4 !important;
+    }
+
+    .slds-page-header {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }

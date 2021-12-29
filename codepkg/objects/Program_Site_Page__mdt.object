@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Page_Layout_Config__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Page Layout Config</label>
+        <referenceTo>Page_Layout__mdt</referenceTo>
+        <relationshipLabel>Program Site Pages</relationshipLabel>
+        <relationshipName>Program_Site_Pages</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Template_Page__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Program Template Page</label>
+        <referenceTo>Program_Template_Page__mdt</referenceTo>
+        <relationshipLabel>Program Site Pages</relationshipLabel>
+        <relationshipName>Program_Site_Pages</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Program Site Page</label>
+    <pluralLabel>Program Site Pages</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_to_Accounting_for_Financial_Closeout_FPU_Closed_Stage</name>
+        <label>Send Email to Accounting for &quot;Financial Closeout - FPU Closed&quot; Stage</label>
+        <locationX>461</locationX>
+        <locationY>351</locationY>
+        <actionName>Incident__c.ALS_Notification_to_Accounting_and_Programs_of_Financial_Closeout_FPU_Closed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_to_Accounting_for_Financial_Closeout_In_Review</name>
+        <label>Send Email to Accounting for &quot;Financial Closeout - In Review&quot;</label>
+        <locationX>476</locationX>
+        <locationY>565</locationY>
+        <actionName>Incident__c.ALS_Notify_Accounting_HMA_PA_Programs_of_Incident_Financial_Closeout_In_Review</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>50.0</apiVersion>
+    <decisions>
+        <name>To_check_if_the_Incident_Stage_is_Financial_Closeout_FPU_Closed</name>
+        <label>To check if the Incident Stage is &quot;Financial Closeout FPU - Closed&quot;</label>
+        <locationX>169</locationX>
+        <locationY>364</locationY>
+        <defaultConnector>
+            <targetReference>To_check_if_the_Incident_Stage_is_Financial_Closeout_In_Progress</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_the_Incident_Stage_is_Financial_Closeout_FPU_Closed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Financial Closeout FPU - Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_Accounting_for_Financial_Closeout_FPU_Closed_Stage</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Check if the Incident Stage is &quot;Financial Closeout FPU - Closed&quot;</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>To_check_if_the_Incident_Stage_is_Financial_Closeout_In_Progress</name>
+        <label>To check if the Incident Stage is &quot;Financial Closeout - In Progress&quot;</label>
+        <locationX>167</locationX>
+        <locationY>564</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_if_the_Incident_Stage_is_Financial_Closeout_In_Progress</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Financial Closeout - In review</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_Accounting_for_Financial_Closeout_In_Review</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Check if the Incident Stage is &quot;Financial Closeout - In Progress&quot;</label>
+        </rules>
+    </decisions>
+    <description>To send the notification to Accounting when Incident stage is moved to &quot;Financial Closeout - FPU Closed&quot; or &quot;Financial Closeout - In Review&quot;.</description>
+    <interviewLabel>ALS_Notification to Accounting and Programs of Financial Closeout {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ALS_Notification to Accounting and Programs of Financial Closeout</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>51</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>To_check_if_the_Incident_Stage_is_Financial_Closeout_FPU_Closed</targetReference>
+        </connector>
+        <object>Incident__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

@@ -1,0 +1,39 @@
+<!--
+ - Created by Pankaj on 04-04-2021.
+ -->
+
+<!-- Mars Salary Survey Line -->
+<template>
+    <tr>
+        <td role="gridcell" class="td">
+            {recordLocal.Classification_Title__c}
+        </td>
+        <td role="gridcell">
+            <lightning-formatted-number value={recordLocal.Base_Rates__c}  format-style="currency" currency-code="USD"></lightning-formatted-number>                     
+        </td>
+        <td role="gridcell">
+            <lightning-radio-group options={getYesNoOptions} data-field="WC_and_or_UI__c" value={recordLocal.WC_and_or_UI__c} type="radio"
+                                   onchange={fieldChangedPicklist} required="true" class="customRadio customRadioHorizontal slds-list_horizontal input slds-list_horizontal" variant="label-hidden"></lightning-radio-group>
+        </td>
+
+        <td role="gridcell">
+            <lightning-radio-group options={getYesNoOptions}  data-field="Are_you_adding_WC_UI__c"   value={recordLocal.Are_you_adding_WC_UI__c} type="radio"
+                                   onchange={fieldChangedPicklist} required="true" class="customRadio customRadioHorizontal input slds-list_horizontal" variant="label-hidden"
+                                   disabled={disableAddingWC}></lightning-radio-group>
+        </td>
+        <td role="gridcell">
+            <lightning-input data-name="revisedRate"  type="number" name="Revised_Rate__c" formatter="currency" required="true" class="input"
+                             step=".01" data-field="Revised_Rate__c" onchange={fieldChanged} max="999" min="0" autocomplete="off"
+                             value={getRevisedSalaryRate} variant="label-hidden" read-only={isSalaryRateReadOnly}>
+            </lightning-input>
+        </td>
+        <td role="gridcell">
+            <lightning-input   type="checkbox" name="MOU_MOA__c" checked={recordLocal.MOU_MOA__c}
+                             variant="label-hidden" disabled></lightning-input>
+        </td>
+        <td role="gridcell">
+            <lightning-input type="checkbox" name="P_T_P__c" checked={recordLocal.P_T_P__c}
+                             variant="label-hidden" disabled></lightning-input>
+        </td>
+    </tr>
+</template>

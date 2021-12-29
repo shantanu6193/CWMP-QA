@@ -1,0 +1,125 @@
+<!--
+ - Created by harsh on 23-03-2021.
+ -->
+
+<!-- Document Upload -->
+<template>
+    <template if:false={IsPortalEnabledForNewButton}>
+        <div if:false={isAllFieldsReadOnly}>
+            <lightning-button label={label.HH_EN_New} onclick={createNewDoc} class="slds-float_right slds-p-right_medium slds-p-top_medium "></lightning-button>
+        </div>
+    </template>
+    <div class="slds-grid slds-wrap slds-p-around_medium " style="width:100%" >
+        <div class="slds-col slds-size_12-of-12 slds-scrollable--x">
+            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                <thead>
+                <tr class="slds-line-height_reset ">
+                    <template for:each={tableColumns} for:item="col" for:index="index">
+                        <th class="" scope="col" onclick={sortingMethod} key={getTableColumnKey} data-id={col.label} onmouseout={hideSortArrow}>
+                            <div class="slds-truncate table-heading" style="display:flex; justify-content:center;">
+                                <template if:false={currentLanguage}>
+                                    {col.label}
+                                </template>
+                                <template if:true={currentLanguage}>
+                                    {col.spanishLabel}
+                                </template>
+                                <div if:true = {displaySortArrow}>
+                                    <template if:true={issortName}>
+                                        <div if:true={isAsc} style="color:white;"  onmouseover={showSortArrow}>
+                                            &#9650;
+                                        </div>
+                                        <div if:true={isDsc} style="color:white;">
+                                            &#9660;
+                                        </div>
+                                    </template>
+                                    <template if:true={issortType}>
+                                        <div if:true={isAsc} style="color:white;">
+                                            &#9650;
+                                        </div>
+                                        <div if:true={isDsc} style="color:white;">
+                                            &#9660;
+                                        </div>
+                                    </template>
+                                    <template if:true={issortStage}>
+                                        <div if:true={isAsc} style="color:white;">
+                                            &#9650;
+                                        </div>
+                                        <div if:true={isDsc} style="color:white;">
+                                            &#9660;
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </th>
+                    </template>
+                </tr>
+                </thead>
+                <tbody>
+                <template for:each={documentInfo} for:item="doc" for:index="index">
+                    <tr class="slds-hint-parent" key={doc.documentRecord.Id}>
+                        <template for:each={tableColumns} for:item="col" for:index="index">
+                            <td key={getTableColumnKey}>
+                                <c-document-upload-cell columns={col}
+                                                        onuniversaldocumentclone={navigateToCloneUniversalDocument}
+                                                        is-portal-enabled={IsPortalEnabledForDownload}
+                                                        onnavigatetofile={navigateToFilePreview}
+                                                        record-values={doc}
+                                                        ondeletecontentdocument={deleteContentDocument}
+                                                        oncheckboxchecked={handleCheckboxChecked}
+                                                        onfileuploadfinished={handleFileUploadFinished}
+                                                        ondocumentedit={handleDocumentEdit}>
+                                </c-document-upload-cell>
+                            </td>
+                        </template>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" >
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium"></h3>
+                </header>
+                <template if:true={isedit}>
+                    <c-als-custom-document-edit
+                            documentrecordid={childRecordId}
+                            parentfieldname={lookupFieldAPIName}
+                            documentname = {documentName}
+                            doc-detail ={recordLocal}
+                            parentfieldvalue={recordIdLocal}
+                            onclosemodal={closeModal}
+                            onrefreshdoc ={getDocumentRecordInfo}>
+                    </c-als-custom-document-edit>
+                </template>
+                <template if:true={iscreate}>
+                    <c-als-custom-document-edit
+                                       parentfieldname={lookupFieldAPIName}
+                            parentfieldvalue={recordIdLocal}
+                            onclosemodal={closeModal}
+                            onrefreshdoc ={getDocumentRecordInfo}>
+                    </c-als-custom-document-edit>
+                </template>
+                <template if:true={iscopyglobaldocument}>
+                    <c-attach-global-document clone-document-table-columns={cloneDocumentTableColumns}
+                                              onclosemodal={closeModal}
+                                              onselectedsourcedocumentrecord={onSelectSourceDocument}
+                                              source-document-list={sourceDocumentList}
+                                              is-document-found={isDocumentFound}>
+                    </c-attach-global-document>
+                </template>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

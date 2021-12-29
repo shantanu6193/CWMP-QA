@@ -1,0 +1,10 @@
+.inline-radio {
+    display : inline-block !important;
+  }
+.i {
+    color: blue
+    }
+    .slds-card__header.slds-grid {
+      margin: 0;
+      padding: 0;
+  }

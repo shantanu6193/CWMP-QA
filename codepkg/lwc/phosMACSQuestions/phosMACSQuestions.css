@@ -1,0 +1,13 @@
+.slds-card{
+    box-shadow:1px 1px 9px 1px rgba(0,0,0,0.16);
+}
+.slds-backdrop{
+    background-color:RGBA(214,214,214,0.16);
+}
+.heading{
+    font-weight: bold;
+    font-size: 16px;
+}
+.text-wrap{
+    overflow-wrap: anywhere;
+}

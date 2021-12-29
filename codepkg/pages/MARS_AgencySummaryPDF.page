@@ -1,0 +1,303 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0" sidebar="false" renderAs="advanced_pdf" controller="MARS_AgencySammaryPdfCtrl">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <!--renderAs="PDF"-->
+    <style>
+      body { 
+       /* margin: 0.1;*/
+        font-family: Dialog;
+        /*font-size: 0.80em;*/
+        font-size: 9.5pt;
+        /*line-height: 1.1;*/
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+      }
+
+      .trgray {
+        background-color: #b4b3b3;
+      }
+      #col1,#col2{width:49%;display:inline-block;}
+      @page {
+        size: portrait;
+        /*margin-top: 30px;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-bottom: 30px;*/
+        @bottom-right {
+          content: element(footer);
+        }
+      }
+      div.footer {
+        display: block;
+        padding: 5px;
+        position: running(footer);
+      }
+      .page-break {
+        display: block;
+        page-break-before: always;
+      }
+
+      /* Clear floats after the columns */
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .divclear {
+        clear: both;
+      }
+
+      .tableclass {
+        table-layout: fixed;
+        width: 100%;
+        border: 1px solid black;
+      }
+
+      .tableboarder {
+        border-collapse: collapse;
+      }
+
+      .thtdclass {
+        /*border: 1px solid black;*/
+        border-collapse: collapse;
+        margin-top: 10px;
+        margin-top: 10px;
+      }
+
+      .thfloat {
+        text-align: right;
+      }
+      .textalign {
+        text-align: justify;
+      }
+      .textaligncenter {
+        text-align:center;
+      }
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <div><!--style="page-break-after:always;"-->
+      <div style="row">
+        <div style="text-align:center">
+            <div><p class="textaligncenter">California Governor’s Office of Emergency Services (Cal OES) - Fire and Rescue Division </p></div>
+            <h2>AGENCY SUMMARY INFORMATION</h2>
+            <div><p class="textaligncenter">Summary Informaiton reflects submissions that are in effect on the selected date below.</p></div>
+
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td>
+                  <b>Agency 3-Letter MACS I.D.:</b>
+                </td>
+                <td>
+                <b> Agency / Department Name:</b>
+                </td>
+              </tr>
+              <tr>
+                <td style="width:50%;">
+                  {!accRecord.MACS_ID__c}
+                </td>
+                <td style="width:50%;">
+                  {!accRecord.Name}
+                </td>
+              </tr>
+            </table>
+            <div><p class="textaligncenter" style="font-size: 14.5pt;">Agency Contact Information</p></div>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td colspan="2">
+                  <b>Chief’s Name: </b>
+                </td>
+                <td colspan="4">
+                 {!accRecord.Chief_Name__c}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                <b>Chief’s Email Address: </b>
+                </td>
+                <td colspan="4">
+                  {!accRecord.Chief_Email__c}
+                </td>
+              </tr> 
+              <tr>   
+                <td colspan="2">
+                  <b>Department Email Address:</b>
+                </td>
+                <td colspan="4">
+                  {!accRecord.Department_Email__c}
+                </td>
+              </tr> 
+              <tr> 
+                <td colspan="2">
+                  <b>Telephone Number: </b>
+                </td>
+                <td colspan="4">
+                  {!accRecord.Phone}
+                </td>
+              </tr>  
+              <tr>
+                <td colspan="3">
+                  <b>Physical Address</b>
+                </td>
+                <td colspan="3">
+                  <b>Mailing Address</b>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  {!accRecord.BillingStreet}
+                </td>
+                <td colspan="3">
+                  {!accRecord.ShippingStreet}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                 <b>City</b>
+                </td>
+                <td>
+                 <b>State</b>
+                </td>
+                <td>
+                  <b>Zip</b>
+                </td>
+                <td>
+                  <b>City</b>
+                </td>
+                <td>
+                  <b>State</b>
+                </td>
+                <td>
+                  <b>Zip</b>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  {!accRecord.BillingCity}
+                </td>
+                <td> 
+                  {!accRecord.BillingState}
+                </td>
+                <td>
+                  {!accRecord.BillingPostalCode}
+                </td>
+                <td>
+                  {!accRecord.ShippingCity}
+                </td>
+                <td>
+                  {!accRecord.ShippingState}
+                </td>
+                <td>
+                  {!accRecord.ShippingPostalCode}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6" style="font-size: 14.5pt;">Agency Identification Information</td>
+              </tr>
+              <tr>
+                <td colspan="3"><b>Tax Payer ID or FEIN</b></td>
+                <td colspan="3"><b>FI$Cal Supplier ID</b></td>
+              </tr>
+              <tr>
+                <td colspan="3"> {!accRecord.Federal_Tax_ID__c}</td>
+                <td colspan="3"> {!accRecord.Fiscal_Supplier_ID__c}</td>
+              </tr>
+              <tr>
+                <td colspan="3"><b>DUNS Number</b></td>
+                <td colspan="3"><b>FI$Cal Address ID</b></td>
+              </tr>
+              <tr>
+                <td colspan="3"> {!accRecord.DUNS__c}</td>
+                <td colspan="3"> {!accRecord.Fiscal_Address_Id__c}</td>
+              </tr>
+            </table>
+            <div><p class="textaligncenter" style="font-size: 14.5pt;">Salary Survey and Agreement Information</p></div>
+            <div><p class="textaligncenter">
+              <b>Selected Date:</b>&nbsp;&nbsp;
+                <!-- <apex:outputText value="{0,date,MM/dd/yy}"> -->
+                  <!-- <apex:param value="{!selectedDate}"/> -->
+                <!-- </apex:outputText> -->{!selectedDate}
+            </p></div>
+            <div><p class="textaligncenter"><b>Administrative Rate:</b>&nbsp;&nbsp;{!adminRate}</p></div>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td>
+                  <b>Classification Title</b>
+                </td>
+                <td>
+                  <b> Salary Rate (ST)</b>
+                </td>
+                <td>
+                  <b>Overtime</b>
+                </td>
+                <td>
+                  <b> Portal-to-Portal</b>
+                </td>
+              </tr>
+              <apex:repeat value="{!salarySurveyLineItems}" var="record">
+              <tr>
+                <td>
+                  {!record.ClassificationTitle}
+                </td>
+                <td>
+                 ${!record.SalaryRate}
+                </td>
+                <td>
+                  {!record.Overtime}
+                 </td>
+                 <td>
+                  {!record.PortaltoPortal}
+                 </td>
+              </tr>
+            </apex:repeat>
+            </table><br/><br/>
+            <table class="tableclass"  border="1px">
+              <tr>
+                <td>
+                  <b>Special Equipment Type</b>
+                </td>
+                <td>
+                  <b>FEMA Code</b>
+                </td>
+                <td>
+                  <b>Equipment Rate</b>
+                </td>
+                <td>
+                  <b> Description</b>
+                </td>
+              </tr>
+              <apex:repeat value="{!specialEquipmentLineItem}" var="record">
+              <tr>
+                <td>
+                  {!record.Special_Equipment_Type__c}
+                </td>
+                <td>
+                  {!record.FEMA_CODE__c}
+                </td>
+                <td>
+                  {!record.Revised_Rate__c}
+                </td>
+                <td>
+                  {!record.Description__c}
+                </td>
+              </tr>
+            </apex:repeat>
+            </table>
+            <div class="footer thfloat">
+              <b>Printed Date:</b>&nbsp;&nbsp;
+              <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}">
+                <apex:param value="{!currentDateTime}" />
+              </apex:outputText>
+            </div>
+        </div>
+      </div>   
+    </div>
+  </body>       
+</apex:page>

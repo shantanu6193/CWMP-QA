@@ -1,0 +1,276 @@
+<!--
+ - Created by PREM on 28-03-2020.
+ -->
+
+<aura:component description="PHOS_Order_EditInformation" controller="PHOS_Order_EditCtrl">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="orderRec" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="accDisabled" type="Boolean" description="order account enable/disabled" default="false"/>
+    <aura:attribute name="addressLine2" type="String" description="Address line 2" access="public"/>
+    <aura:attribute name="priorityOptions" type="List" description="priority of requests" default="[]"/>
+    <aura:attribute name="stateCodeOptions" type="List" description="state code" default="[]"/>
+    <aura:attribute name="countyCodeOptions" type="List" description="county" default="[]"/>
+    <aura:attribute name="incidentOptions" type="List" description="Incident Name" default="[]"/>
+    <aura:attribute name="entityTypeOptions" type="List" description="Entity Type" default="[]"/>
+    <aura:attribute name="isHealthCareUser" type="Boolean" default="false"/>
+
+    <aura:attribute name="asAsAbove" type="Boolean" description="if true then copy same data" default="false"/>
+    <aura:attribute name="isLoading" type="Boolean"/>
+    <aura:attribute name="isRequesterAgency" type="Boolean" default="false"/>
+    <aura:attribute name="isOperationalArea" type="Boolean" default="false"/>
+    <aura:attribute name="isCommunityUser" type="Boolean" default="false"/>
+    <aura:attribute name="isRequestorAgencyDisabled" type="Boolean" default="true"/>
+    <aura:attribute name="address" type="String" />
+    <aura:attribute name="entityType" type="String" />
+
+    <aura:if isTrue="{!v.isLoading == false}">
+    <div class="slds-grid slds-wrap slds-align_absolute-center container">
+        <div class="slds-col slds-size_12-of-12">
+            <!--1.Header-->
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p class="heading">Incident Information</p>
+                    <hr/>
+                </div>
+            </div>
+         
+            <!--1.Main Form-->
+            <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                <div class="slds-col slds-size_12-of-12 ">
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:select label="Incident Name" aura:id="formFields" required="true" value="{!v.orderRec.Incident__c}" onchange="{!c.updateIncident}">
+                                <aura:iteration var="opt" items="{!v.incidentOptions}">
+                                    <option selected="{!(v.orderRec.Incident__c == opt.value)}" value="{!opt.value}" text="{!opt.label}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Other Request # (If Applicable)" required="false" value="{!v.orderRec.Other_Request_Number_If_Applicable__c}" />
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_xx-small">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:select name="select1" aura:id="formFields" label="Priority Of Request" value="{!v.orderRec.Priority_for_Requests__c}" required="true">
+                                <option  value="" text="--Select--"></option>
+                                <aura:iteration var="opt" items="{!v.priorityOptions}">
+                                    <option selected="{!v.orderRec.Priority_for_Requests__c == opt}" value="{!opt}" text="{!opt}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Mission ID (If Applicable)" required="false" disabled="{!v.isCommunityUser}" value="{!v.orderRec.Mission_Request_Number_If_Applicable__c}" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--2.Header-->
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p class="heading">Requester Information</p>
+                    <hr/>
+                </div>
+            </div>
+
+            <!--2.Main Form-->
+            <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Requester First Name" required="true" value="{!v.orderRec.Requestor_First_Name_Text__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Requester Last Name" required="true"  value="{!v.orderRec.Requestor_Last_Name_Text__c}"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input placeholder="email@email.com" name="input1" aura:id="formFields" label="Requester Email" type="email" required="true" value="{!v.orderRec.Requestor_Email_Text__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input placeholder="(123) 456 7890" name="input1" onblur="{!c.requesterPhoneValidation}" aura:id="requesterPhone" id="RequesterPhone" label="Requester Phone" type="tel" required="true" value="{!v.orderRec.Requestor_Phone_Text__c}" messageWhenValueMissing="Enter a valid phone number ex:(555) 555-5555"/>
+                        </div>
+
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Requester Title" required="false" value="{!v.orderRec.Requestor_Title_Text__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                                <aura:if isTrue="{!v.isHealthCareUser == false}">
+                                    <lightning:select label="Entity Type" aura:id="formFields" required="true" onchange="{!c.entityTypeChange}" value="{!v.entityType}">
+                                        <option  value="" text="--Select--"></option>
+                                        <aura:iteration var="opt" items="{!v.entityTypeOptions}">
+                                            <option value="{!opt}" text="{!opt}"></option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </aura:if>
+                        </div>
+                    </div>
+                
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">                   
+                            <lightning:select label="Operational Area" aura:id="formFields" disabled="{!v.isOperationalArea}" required="true" value="{!v.orderRec.County__c}">
+                                <option  value="" text="--Select--"></option>
+                                <aura:iteration var="opt" items="{!v.countyCodeOptions}">
+                                    <option selected="{!v.orderRec.County__c == opt}" value="{!opt}" text="{!opt}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+                         
+                        </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                                <!--<lightning:input name="input1" aura:id="formFields" disabled="{!v.isRequesterAgency}" label="Requester Agency" required="true" value="{!v.orderRec.Requestor_Agency_Text__c}" />-->
+                                <c:phosRequestorAgencyLookup aura:id="requestorSearch" isDisabled="{!v.isRequestorAgencyDisabled}" onagencychange="{!c.getRequestorAgency}" selectProductName="{!v.orderRec.Requestor_Agency_Text__c}" entityTypeFilter="{!v.entityType}"></c:phosRequestorAgencyLookup>
+                            </div>
+                        </div>
+                        <c:phosIndustryPickList aura:id="picklistcmp" parentIndustry = "{!v.orderRec.Industry__c}" selectedSubIndustry = "{!v.orderRec.Sub_Industry__c}" onindustrychange = "{!c.getIndustryValue}" onsubindustrychange = "{!c.getSubIndustryValue}"></c:phosIndustryPickList>
+
+                </div>
+            </div>
+
+            <!--3.Header-->
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p class="heading">Delivery Information</p>
+                    <hr/>
+                    <div class="slds-p-top_xx-small slds-p-bottom_small">
+                        <lightning:input aura:id="sameAsAbove" label="Same as above" checked="{!v.asAsAbove}" type="checkbox" onchange="{!c.updateDeliveryInfo}" />
+                    </div>
+                </div>
+            </div>
+            <!--2.Main Form-->
+            <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Delivery Recipient First Name" maxlength="55" required="true"  value="{!v.orderRec.Delivery_Recipient_First_Name_Text__c}" />
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Delivery Recipient Last Name" maxlength="55" required="true"  value="{!v.orderRec.Delivery_Recipient_Last_Name_Text__c}"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input placeholder="email@email.com" name="input1" aura:id="formFields" label="Delivery Recipient Email" required="true" type="email" value="{!v.orderRec.Delivery_Recipient_Email_Text__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input placeholder="(123) 456 7890" name="input1" aura:id="deliveryPhone" onblur="{!c.deliveryPhoneValidation}" label="Delivery Recipient Phone" required="true" type="tel" value="{!v.orderRec.Delivery_Recipient_Phone_Text__c}" messageWhenValueMissing="Enter a valid phone number ex:(555) 555-5555"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Delivery Recipient Title" required="false"  value="{!v.orderRec.Delivery_Recipient_Title_Text__c}"/>
+                        </div>
+                        
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Delivery Recipient Entity Name" required="true" type="text" maxlength="55" value="{!v.orderRec.Delivery_Recipient_Entity_Name__c}"/>
+                        </div>
+                    </div>
+
+                    <!--<div class="slds-grid slds-wrap slds-p-bottom_medium">
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Delivery Recipient Mailing Address" required="true"/>
+                        </div>
+                    </div>-->
+
+                        <!--<div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Address Line 1" required="true" maxlength="55" value="{!v.orderRec.Shipping_Street__c}"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Address Line 2" required="false" maxlength="55" value="{!v.orderRec.Shipping_Street_2__c}" />
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="City" required="true" value="{!v.orderRec.Shipping_City__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                              &lt;!&ndash;  <lightning:input name="input1" aura:id="formFields" label="State" required="true" value="{!v.orderRec.State_Code__c}" />&ndash;&gt;
+                        <lightning:select name="select1" aura:id="formFields" label="State" value="{!v.orderRec.Shipping_State__c}" required="true">
+                                    <option  value="" text="&#45;&#45;Select&#45;&#45;"></option>
+                                <aura:iteration var="opt" items="{!v.stateCodeOptions}">
+                                    <option selected="{!v.orderRec.Shipping_State__c == opt}" value="{!opt}" text="{!opt}"></option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Zip" required="true" value="{!v.orderRec.Shipping_ZipPostal_Code__c}" pattern="[0-9]{5}" messageWhenPatternMismatch="Enter a valid Zip ex: 12345"/>
+                        </div>
+
+                        </div>-->
+
+                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col">
+                            <lightning:textarea name="input1" aura:id="formFields" label="Delivery Notes" value="{!v.orderRec.Delivery_Notes__c}"/>
+                        </div>
+                    </div>
+                        <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_large">
+                            <div class="slds-col slds-large-size_9-of-12 slds-size_12-of-12">
+                                <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium slds-p-top_medium">
+                                    <div class="slds-col">
+                                        <c:esriLeaflet latitude="{!v.orderRec.Address_Geolocation__Latitude__s}" longitude="{!v.orderRec.Address_Geolocation__Longitude__s}" onselectedaddress="{!c.handleAddressSelection}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-large-size_3-of-12 slds-size_12-of-12">
+                                <div class="slds-grid slds-wrap">
+                                    <!--<div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:textarea class="addressArea" type="text" aura:id="mapAddress" label="Address" disabled="true" value="{!v.address}" required="true"></lightning:textarea>
+                                    </div>-->
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="Street" disabled="true" value="{!v.orderRec.Shipping_Street__c}"></lightning:input>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="Street2" value="{!v.orderRec.Shipping_Street_2__c}"></lightning:input>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="City" disabled="true" value="{!v.orderRec.Shipping_City__c}"></lightning:input>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="Zip Code" disabled="true" value="{!v.orderRec.Shipping_ZipPostal_Code__c}"></lightning:input>
+                                    </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="State" disabled="true" value="{!v.orderRec.Shipping_State__c}"></lightning:input>
+                                    </div>
+                                    <!--<div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input type="text" label="Country" disabled="true" value="{!v.orderRec.Shipping_Country__c}"></lightning:input>
+                                    </div>-->
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input aura:id="mapLatitude" type="text" label="Latitude" disabled="true" value="{!v.orderRec.Address_Geolocation__Latitude__s}"></lightning:input>
+                            </div>
+                                    <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                        <lightning:input aura:id="mapLongitude" type="text" label="Longitude" disabled="true" value="{!v.orderRec.Address_Geolocation__Longitude__s}"></lightning:input>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
+
+                    <!--<div class="slds-grid slds-wrap slds-gutters slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input name="input1" aura:id="formFields" label="Carrier Tracking # (i.e. UPS number)" required="false"  value="{!v.orderRec.Carrier_Tracking__c}" />
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                            <lightning:input type="date" dateStyle="short" autocomplete="off" name="input1" aura:id="formFields" label="Delivered On Date" required="false"  value="{!v.orderRec.Delivered_On_Date__c}"/>
+                        </div>
+                    </div>-->
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </aura:if>
+</aura:component>

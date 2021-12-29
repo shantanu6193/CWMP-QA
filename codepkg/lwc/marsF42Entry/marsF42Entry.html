@@ -1,0 +1,1357 @@
+<!--
+   @description       : 
+   @author            : Sravan Reddy Pinninti
+   @group             : 
+   @last modified on  : 04-17-2021
+   @last modified by  : sravanreddyp6@gmail.com
+   Modifications Log 
+   Ver   Date         Author                               Modification
+   1.0   03-21-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+   -->
+   <template>
+      <template if:true={showF42DraftEntries} >
+         <c-marsf42-entry-instructions></c-marsf42-entry-instructions>
+         <div class="slds-clearfix">
+            <div class="slds-float_right slds-p-top_small">
+               <lightning-button variant="brand" label="Add New F-42 Entry" title="Add New F-42 Entry" onclick={addNewF42Entry}
+               class="slds-m-left_x-small"></lightning-button>
+            </div>
+         </div>
+         <br/>
+         <b><h1>Draft F-42 Entries</h1></b>
+         <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+         id="Table1">
+         <thead>
+               <tr class="slds-line-height_reset">
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">MACS ID</div>
+                  </th>
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">F42 Entry Status</div>
+                  </th>
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">Incident Name</div>
+                  </th>
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">Last Modified By</div>
+                  </th>
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">Last Modified Date</div>
+                  </th>
+                  <th class="" scope="col">
+                     <div class="slds-cell-wrap" title="Classification Title">Action</div>
+                  </th>
+
+               </tr>
+         </thead>
+         <tbody>
+               <template for:each={f42DraftEntries} for:item="F42" for:index="index">
+                  <tr class="slds-hint-parent" key={F42.Id}>
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" title="Agency Name" data-name="MACS ID" data-id={F42.Id}>
+                              {F42.macsID}
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" data-name="f42Id" data-id={F42.Id}>
+                           {F42.status}
+                     </td>
+                     <td data-label="Incident Name" scope="row"  data-name="incidentName" data-id={F42.Id}>
+                           {F42.incidentName}
+                     </td>
+                     <td data-label="Last Modified By" scope="row"  data-name="lastmodifiedby" data-id={F42.Id}>
+                           {F42.lastmodifiedBy}
+                     </td>
+                     <td data-label="Last Modified Date" scope="row"  data-name="lastmodifieddate" data-id={F42.Id}>
+                           <lightning-formatted-date-time value={F42.lastmodifiedDate} year="numeric" month="numeric" day="numeric" hour="2-digit" minute="2-digit" hour12="false">
+                           </lightning-formatted-date-time>
+                     </td>
+                     <td data-label="View">
+                        <a class="slds-p-right_small">
+                           <lightning-icon data-id={F42.Id} icon-name="utility:preview" class="slds-icon slds-icon_small vieweye"
+                              size="small" alternative-text="view" onclick={handleShowF42Entry}></lightning-icon>
+                           <span class="slds-assistive-text">View</span>
+                        </a>
+                        <a class="slds-p-right_small">
+                           <lightning-icon data-id={F42.Id} icon-name="utility:delete" class="slds-icon slds-icon_small vieweye"
+                              size="small" alternative-text="view" onclick={handleDisregardF42Entry}></lightning-icon>
+                           <span class="slds-assistive-text">Del</span>
+                        </a>  
+                     </td>
+                  </tr>
+               </template>
+         </tbody>
+      </table>
+   </template>
+
+      <template if:true={showF42EntryDetails}>
+         <div class="slds-container">
+            <div class="slds-grid slds-gutters slds-gutters_direct slds-wrap">
+               <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12">
+                  <div class="table_light">
+                     <lightning-vertical-navigation selected-item={selectedItem} onselect={handleSelect} class="navigation">
+                        <lightning-vertical-navigation-section label="EMERGENCY ACTIVITY RECORD (OES F-42)">
+                           <lightning-vertical-navigation-item-icon icon-name="utility:report_issue"
+                              label="1-4. Agency/Incident" name="agency_incident"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="utility:dialing"
+                              label="5. Dispatch Information" name="dispatch_info"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="standard:call" label="6. Dispatched From"
+                              name="dispatch_from"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="standard:address" label="7. Dispatched To"
+                              name="dispatch_to"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="utility:overflow" label="8. Overhead"
+                              name="overhead"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="standard:work_order"
+                              label="9-10. Support Vehicle Information" name="support_vehicle_info">
+                           </lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="custom:custom67"
+                              label="11. Equipment Resource Information" name="equipment_resource_info">
+                           </lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="standard:groups"
+                              label="12-13. Personnel Information" name="personnel_info">
+                           </lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="utility:comments" label="14. Comments"
+                              name="comments"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="utility:variation_products"
+                              label="15-16. Supply Number" name="supply_number"></lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="standard:delegated_account"
+                              label="17. Responding Agency Information" name="responding_agency_info">
+                           </lightning-vertical-navigation-item-icon>
+                           <lightning-vertical-navigation-item-icon icon-name="utility:moneybag"
+                              label="18. Incident Information - Paying Agency" name="incident_info_paying_agency">
+                           </lightning-vertical-navigation-item-icon>
+                        </lightning-vertical-navigation-section>
+                     </lightning-vertical-navigation>
+                  </div>
+               </div>
+               <div class="slds-col slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12">
+                  <div class="slds-box slds-theme_default table_light">
+                     <template if:true={buttonsEnabled}>
+                        <div class="slds-clearfix">
+                           <div class="slds-float_right">
+                              <lightning-formatted-url
+                                 value="https://www.caloes.ca.gov/FireRescueSite/Documents/MARS_F-42_Instructions.pdf"
+                                 tooltip="F-42 Instructions" label="Please Access F-42 Instructions Here" target="_blank">
+                              </lightning-formatted-url>
+                              <template if:true={saveandNextEnabled}>
+                                 <lightning-button variant="brand" label="Save and Next" title="Save and Next"
+                                    onclick={handleSaveandNext} disabled={buttonDisabled} class="slds-m-left_x-small">
+                                 </lightning-button>
+                              </template>
+                              <lightning-button variant="brand" label="Save Draft" title="Save" onclick={handleSave}
+                                 disabled={buttonDisabled} class="slds-m-left_x-small"></lightning-button>
+                              <lightning-button variant="destructive-text" label="Close" title="Close" onclick={closeF42EntryScreen}
+                                 disabled={buttonDisabled} class="slds-m-left_x-small"></lightning-button>
+                              <template if:true={submitEnabled}>
+                                 <lightning-button variant="brand" label="Submit" title="Submit" onclick={validateData}
+                                    disabled={buttonDisabled} class="slds-m-left_x-small"></lightning-button>
+                              </template>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={showInfoMessage}>
+                        <div class="slds-p-bottom--medium">
+                           <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                              <h2>{infoMessage}</h2>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={showErrorMessage}>
+                        <div class="slds-p-bottom--medium">
+                           <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture">
+                              <ul class="slds-m-around_medium">
+                                 <template for:each={errorMessages} for:item="message">
+                                     <li key={message}>
+                                         {message}
+                                     </li>
+                                 </template>
+                             </ul>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={buttonDisabled}>
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                     </template>
+                     <template if:true={isagency_incident}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="slds-page-header__title slds-truncate border_zero" title="AGENCY/INCIDENT">
+                                 1-4.AGENCY/INCIDENT
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <!--div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="LOOKUP/SEARCH Agency" data-lookup="Account__c"
+                                    onsearch={handleFireAgencySearch} onselectionchange={handleFireAgencyChange}
+                                    placeholder="Select/Change Agency" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadagencyLookupDataOnLoad} local-search={loadagencyLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={fireAgencyRequired} required>
+                                 </c-lookup>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="SEARCH INCIDENT" data-lookup="Incident__c"
+                                    onsearch={handleIncidentSearch} onselectionchange={handleIncidentChange}
+                                    placeholder="Select/Change Incident" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={incidentRequired} required>
+                                 </c-lookup>
+                              </div>
+                           </div-->
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.agency.Mars_Agency_Designator__c} type="text"
+                                    label="1.AGENCY DESIGNATOR" disabled onchange={handleFieldUpdates} required>
+                                 </lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="LOOKUP/SEARCH AGENCY" data-lookup="Account__c"
+                                    onsearch={handleFireAgencySearch} onselectionchange={handleFireAgencyChange}
+                                    placeholder="Select/Change Agency" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadagencyLookupDataOnLoad} local-search={loadagencyLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={fireAgencyRequired} >
+                                 </c-lookup>
+                              </div>
+                              <!--div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.incident.Name} type="text" label="INCIDENT NAME" disabled
+                                    onchange={handleFieldUpdates} required></lightning-input>
+                              </div-->
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.strikeTeam} name="strikeTeam" data-name="strikeTeam"
+                                    data-id="f42EntryForm" type="text" label="2.STRIKE TEAM/TASK FORCE"
+                                    placeholder="3LETTER ID | NUMBER | Ltr." onchange={handleFieldUpdates} required>
+                                 </lightning-input>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.incident.Order_No__c} type="text"
+                                    label="3.INCIDENT ORDER NUMBER" disabled onchange={handleFieldUpdates} required>
+                                 </lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="SEARCH INCIDENT" data-lookup="Incident__c"
+                                    onsearch={handleIncidentSearch} onselectionchange={handleIncidentChange}
+                                    placeholder="Select/Change Incident" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={incidentRequired} required>
+                                 </c-lookup>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12">
+                                 <lightning-input value={f42Entry.incidentRequestNumber} name="incidentRequestNumber"
+                                    data-name="incidentRequestNumber" data-id="f42EntryForm" type="text"
+                                    label="4.INCIDENT REQUEST NUMBER" placeholder="ID | NUMBER"
+                                    onchange={handleFieldUpdates} required></lightning-input>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isdispatch_info}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="DISPATCH INFO">5.DISPATCH
+                                 INFORMATION</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.incident.Name} type="text" label="INCIDENT NAME" disabled>
+                                 </lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <div class="slds-form slds-grid slds-wrap">
+                                    <lightning-input value={f42Entry.DI_committedtoIncident} class="slds-size_9-of-12"
+                                       name="DI_committedtoIncident" data-name="DI_committedtoIncident" data-id="f42EntryForm"
+                                       type="date" label="COMMITTED TO INCIDENT" onchange={handleFieldUpdates} date-style="short" >
+                                    </lightning-input>
+                                    <lightning-input value={f42Entry.DI_committedtoIncidentTime}
+                                       class="slds-size_3-of-12 time_box slds-p-left_small" name="DI_committedtoIncidentTime"
+                                       data-name="DI_committedtoIncidentTime" data-id="f42EntryForm" type="text"
+                                       placeholder="HHMM" pattern="\d{4}" max-length="4"
+                                       onchange={handleFieldUpdates}></lightning-input>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.DI_reportingLocation} type="text" label="REPORTING LOCATION"
+                                    name="DI_reportingLocation" data-name="DI_reportingLocation" data-id="f42EntryForm"
+                                    onchange={handleFieldUpdates}></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <div class="slds-form slds-grid slds-wrap">
+                                    <lightning-input value={f42Entry.DI_returnfromIncident} class="slds-size_9-of-12"
+                                    name="DI_returnfromIncident" data-name="DI_returnfromIncident" data-id="f42EntryForm"
+                                    type="date" label="RETURN FROM INCIDENT" onchange={handleFieldUpdates} date-style="short" >
+                                 </lightning-input>
+                                 <lightning-input value={f42Entry.DI_returnfromIncidentTime}
+                                    class="slds-size_3-of-12 time_box slds-p-left_small" name="DI_returnfromIncidentTime"
+                                    data-name="DI_returnfromIncidentTime" data-id="f42EntryForm" type="text"
+                                    placeholder="HHMM" pattern="\d{4}" max-length="4"
+                                    onchange={handleFieldUpdates}></lightning-input>
+                                 </div>
+                              </div>
+                              
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-radio-group label="MOBILIZATION CENTER / PREPOSITION" name="DI_mobilizationCenter"
+                                    data-name="DI_mobilizationCenter" value={f42Entry.DI_mobilizationCenter}
+                                    data-id="f42EntryForm" options={mobilizationCenterOptions} type="radio"
+                                    onchange={handleFieldUpdates}></lightning-radio-group>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <div class="slds-form slds-grid slds-wrap">
+                                    <lightning-input value={f42Entry.DI_reDispatched} class="slds-size_9-of-12"
+                                       name="DI_reDispatched" data-name="DI_reDispatched" data-id="f42EntryForm" type="date"
+                                       label="REDISPATCHED" onchange={handleFieldUpdates} date-style="short" ></lightning-input>
+                                    <lightning-input value={f42Entry.DI_reDispatchedTime}
+                                       class="slds-size_3-of-12 time_box slds-p-left_small" name="DI_reDispatchedTime"
+                                       data-name="DI_reDispatchedTime" data-id="f42EntryForm" type="text" placeholder="HHMM"
+                                       pattern="\d{4}" max-length="4" onchange={handleFieldUpdates}>
+                                    </lightning-input>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isdispatch_from}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="6.DISPATCH FROM">6.DISPATCHED
+                                 FROM</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="SEARCH OLD INCIDENT"
+                                    data-lookup="Dispatch_From_Incident__c" onsearch={handleDispatchFromIncidentSearch}
+                                    onselectionchange={handleDispatchFromIncidentChange} placeholder="Select/Change Incident"
+                                    is-multi-entry={isMultiEntry} load-data-on-init={loadLookupDataOnLoad}
+                                    local-search={loadLookupDataOnLoad} scroll-after-n-items="10"
+                                    errors={dispatchfromincidentRequired} >
+                                 </c-lookup>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.dispatchFromIncident.Name} type="text"
+                                    label="OLD INCIDENT NAME" disabled></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <div class="slds-form slds-grid slds-wrap">
+                                    <lightning-input value={f42Entry.DF_endDate} class="slds-size_12-of-12" name="DF_endDate"
+                                       data-name="DF_endDate" data-id="f42EntryForm" type="date" label="END DATE"
+                                       onchange={handleFieldUpdates} date-style="short" ></lightning-input>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.dispatchFromIncident.Order_No__c} type="text"
+                                    label="OLD INCIDENT ORDER NUMBER" disabled></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.DF_incidentRequestNumber} name="DF_incidentRequestNumber"
+                                    data-name="DF_incidentRequestNumber" data-id="f42EntryForm" type="text"
+                                    label="OLD INCIDENT REQUEST NUMBER" placeholder="ID | NUMBER"
+                                    onchange={handleFieldUpdates}></lightning-input>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isdispatch_to}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="7.DISPATCH TO">7.REDISPATCHED INFORMATION (START A NEW F-42 IF REDISPATCHED)</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="SEARCH NEW INCIDENT"
+                                    data-lookup="Dispatch_To_Incident__c" onsearch={handleDispatchToIncidentSearch}
+                                    onselectionchange={handleDispatchToIncidentChange} placeholder="Select/Change Incident"
+                                    is-multi-entry={isMultiEntry} load-data-on-init={loadLookupDataOnLoad}
+                                    local-search={loadLookupDataOnLoad} scroll-after-n-items="10"
+                                    errors={dispatchtoincidentRequired} >
+                                 </c-lookup>
+                              </div>
+                             
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.dispatchToIncident.Name} type="text"
+                                    label="NEW INCIDENT NAME" disabled></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <div class="slds-form slds-grid slds-wrap">
+                                    <lightning-input value={f42Entry.DT_startDate} class="slds-size_12-of-12"
+                                       name="DT_startDate" data-name="DT_startDate" data-id="f42EntryForm" type="date"
+                                       label="START DATE" onchange={handleFieldUpdates} date-style="short" ></lightning-input>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.dispatchToIncident.Order_No__c} type="text"
+                                    label="NEW INCIDENT ORDER NUMBER" disabled></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.DT_incidentRequestNumber} name="DT_incidentRequestNumber"
+                                    data-name="DT_incidentRequestNumber" data-id="f42EntryForm" type="text"
+                                    label="NEW INCIDENT REQUEST NUMBER" onchange={handleFieldUpdates}
+                                    placeholder="ID | NUMBER"></lightning-input>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isoverhead}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="8.OVERHEAD">8.OVERHEAD</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                 <lightning-checkbox-group label="OVERHEAD INFORMATION" name="OH_overheadType"
+                                    data-name="OH_overheadType" value={overheadSelection} data-id="f42EntryForm"
+                                    options={overheadTypeoptions} onchange={handleOverheadTypeSelection}>
+                                 </lightning-checkbox-group>
+                                 <lightning-button label="Clear" title="Clear" onclick={clearOverheadType} class="slds-m-left_x-small"></lightning-button>
+                                 <br />
+                                 <template if:true={showICStitle}>
+                                    <c-lookup data-custom="lookup" label="ICS Position Search" data-lookup="ICS_Title__c"
+                                       onsearch={handleICSTitleSearch} onselectionchange={handleICSTitleChange}
+                                       placeholder="Select/Change ICS Title" is-multi-entry={isMultiEntry}
+                                       load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                       scroll-after-n-items="10" errors={icstitlerequired} required>
+                                    </c-lookup>
+                                    <lightning-input value={f42Entry.OH_icsTitle.Name} type="text" label="ICS TITLE CODE"
+                                       disabled></lightning-input>
+                                    <lightning-input value={f42Entry.OH_icsTitle.Description__c} type="text"
+                                       label="ICS TITLE" disabled></lightning-input>
+                                    <lightning-input value={f42Entry.OH_otherICStitle} type="text" label="OTHER TITLE"
+                                       name="OH_otherICStitle" data-name="OH_otherICStitle" data-id="f42EntryForm"
+                                       onchange={handleOHICSUpdate} required></lightning-input>
+                                 </template>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={issupport_vehicle_info}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate"
+                                    title="SUPPORT VEHICLE INFORMATION">9.SUPPORT VEHICLE INFORMATION</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                 <lightning-radio-group label="VEHICLE OWNERSHIP" name="SV_vehicleOwnership"
+                                    data-name="SV_vehicleOwnership" value={f42Entry.SV_vehicleOwnership}
+                                    data-id="f42EntryForm" options={vehicleOwnerTypeoptions} type="radio"
+                                    onchange={handleFieldUpdates}></lightning-radio-group>
+                                    <lightning-button label="Clear" title="Clear" onclick={clearVehicleOwnership}></lightning-button>
+
+                                 <template if:true={showSVLicense}>
+                                    <br />
+                                    <lightning-input name="SV_licenseplateNumber" value={f42Entry.SV_licenseplateNumber}
+                                       data-name="SV_licenseplateNumber" data-id="f42EntryForm" type="text"
+                                       label="LICENSE NUMBER" onchange={handleFieldUpdates} ></lightning-input>
+                                 </template>
+                                 <template if:true={showSVType}>
+                                    <br />
+                                    <lightning-radio-group label="TYPE" name="SV_vehicleType" data-name="SV_vehicleType"
+                                       value={f42Entry.SV_vehicleType} data-id="f42EntryForm" options={vehicleTypeTypeoptions}
+                                       type="radio" onchange={handleFieldUpdates}></lightning-radio-group>
+                                       <lightning-button label="Clear" title="Clear" onclick={clearVehicleType}></lightning-button>
+                                 </template>
+                              </div>
+                           </div>
+                        </div>
+                        <br/>
+                        <template if:true={showOdometer}>
+                           <div class="slds">
+                              <div class="slds-grid slds-wrap">
+                                 <div class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                                       <h2 class="border_zero">
+                                          <span class="slds-page-header__title slds-truncate"
+                                             title="PRIVATELY OWNED VEHICLE ONLY">10.PRIVATELY OWNED VEHICLE ONLY</span>
+                                       </h2>
+                                    </div>
+                                    <lightning-input name="PO_odometerStart" value={f42Entry.PO_odometerStart}
+                                       data-id="f42EntryForm" type="number" label="BEGINNING ODOMETER"
+                                       onchange={calculateOdometer} required></lightning-input>
+                                    <br />
+                                    <lightning-input name="PO_odometerEnd" value={f42Entry.PO_odometerEnd}
+                                       data-id="f42EntryForm" type="number" label="ENDING ODOMETER"
+                                       onchange={calculateOdometer} required></lightning-input>
+                                    <br />
+                                    <lightning-input name="PO_totalMiles" value={f42Entry.PO_totalMiles}
+                                       data-id="f42EntryForm" type="number" label="TOTAL MILES" read-only></lightning-input>
+                                    <br />
+                                 </div>
+                              </div>
+                           </div>
+                        </template>
+                     </template>
+                     <template if:true={isequipment_resource_info}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="EQUIPMENT INFO">11.EQUIPMENT
+                                 RESOURCE INFORMATION</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="ER_apparatus" data-name="ER_apparatus" value={f42Entry.ER_apparatus}
+                                    data-id="f42EntryForm" type="text" label="APPARATUS" onchange={handleFieldUpdates}>
+                                 </lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-radio-group label="TYPE" name="ER_type" data-name="ER_type"
+                                    value={f42Entry.ER_type} data-id="f42EntryForm" options={ertypeOptions} type="radio"
+                                    onchange={handleFieldUpdates}></lightning-radio-group>
+                                    <lightning-button label="Clear" title="Clear" onclick={clearErType}></lightning-button>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="ER_unitNumber" data-name="ER_unitNumber"
+                                    value={f42Entry.ER_unitNumber} data-id="f42EntryForm" type="text" label="UNIT NUMBER"
+                                    onchange={handleFieldUpdates}></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="ER_licenseNumber" data-name="ER_licenseNumber"
+                                 value={f42Entry.ER_licenseNumber} data-id="f42EntryForm" type="text"
+                                 label="LICENSE NUMBER or VIN" onchange={handleFieldUpdates}></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-bottom_medium">
+                                 <lightning-radio-group label="CDF/OES VEHICLE" name="ER_cdfoesVehicle"
+                                    data-name="ER_cdfoesVehicle" value={f42Entry.ER_cdfoesVehicle} data-id="f42EntryForm"
+                                    options={ercdfoesOptions} type="radio" onchange={handleFieldUpdates}>
+                                 </lightning-radio-group>
+                              </div>
+                              
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="Lookup/Search FEMA Codes" data-lookup="FEMA_CODE__C"
+                                    onsearch={handleFemaCodeSearch} onselectionchange={handleFemaCodeChange}
+                                    placeholder="SELECT/CHANGE FEMA Code" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={femacodeRequired}>
+                                 </c-lookup>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <c-lookup data-custom="lookup" label="Special Equipment"
+                                    data-lookup="Agency_Special_Equipment" onsearch={handleSpecialEquipmentSearch}
+                                    onselectionchange={handleSpecialEquipmentChange}
+                                    placeholder="Select/Change Special Equipment" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={specialEquipmentRequired}>
+                                 </c-lookup>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.ER_femaCode} type="text" label="FEMA CODE" disabled>
+                                 </lightning-input>
+                                 <lightning-button label="Clear" title="Clear" onclick={clearFemaCode}></lightning-button>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.ER_specialEquipment.Special_Equipment_Type__c} type="text"
+                                    label="EQUIPMENT TYPE" disabled></lightning-input>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.ER_specialEquipment.Description__c} type="text"
+                                    label="DESCRIPTION" disabled></lightning-input>
+                                 <lightning-button label="Clear" title="Clear" onclick={clearSpecialEquipment}></lightning-button>
+                           </div>
+                           </div>
+      
+                        </div>
+                     </template>
+                     <template if:true={ispersonnel_info}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="PERSONNEL INFO">12.PERSONNEL
+                                 INFORMATION</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                 <lightning-input name="PI_numberofPersonnel" data-name="PI_numberofPersonnel"
+                                    value={f42Entry.PI_numberofPersonnel} data-id="f42EntryForm"
+                                    label="NUMBER OF PERSONNEL ON APPARATUS" onchange={handleFieldUpdates} required>
+                                 </lightning-input>
+                              </div>
+                              <div class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                 <lightning-radio-group label="DOCUMENTATION ONLY" name="PI_documentationOnly"
+                                    data-name="PI_documentationOnly" value={f42Entry.PI_documentationOnly}
+                                    data-id="f42EntryForm" options={pidocumentOptions} type="radio"
+                                    onchange={handleFieldUpdates}></lightning-radio-group>
+                                 <div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                                 <lightning-button variant="brand" label="Add Personnel" title="Add Personnel"
+                                    onclick={handleAddPILine} class="slds-m-left_x-small slds-float_right"></lightning-button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds slds-scrollable_x">
+                           <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-bottom_medium">
+                              <thead>
+                                 <tr class="slds-line-height_reset">
+                                    <th >
+                                       <div class="slds-truncate" title="Name">Name (Last, First) </div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="MACS ID">MACS ID</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="Rank">Rank or Job Title</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="SSN">Last 4 SSN#</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="Start">Start Date/Time</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="End">End Date/Time</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="End">CDF</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="End">Base</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="End">P-T-P</div>
+                                    </th>
+                                    <th >
+                                       <div class="slds-truncate" title="End">Action</div>
+                                    </th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <template for:each={personnelInfoItems} for:item="record" for:index="index">
+                                    <tr key={record} data-id={index}>
+                                       <template if:true={record.editable}>
+                                          <td width="100%">
+                                             <div class="slds-grid slds-gutters">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                   <lightning-input label="Name (Last, First)" type="text" data-field="fullName" data-index={index}
+                                                      data-name="fullName" name="fullName" value={record.fullName}
+                                                      onchange={handlePersonnelInfoUpdate} required
+                                                      class="slds-form-element__control" ></lightning-input>
+                                                   <lightning-input label="MACSID" type="text" data-field="MACSID" data-index={index}
+                                                      data-name="MACSID" name="MACSID" value={record.MACSID}
+                                                      onchange={handlePersonnelInfoUpdate} class="slds-form-element__control" required></lightning-input>
+                                                   <!--div class="slds-form slds-grid slds-wrap" -->
+                                                      <lightning-input type="date" data-index={index} class="slds-form-element__control"
+                                                            data-field="startDate" label="Start Date" data-name="startDate" name="startDate"
+                                                            value={record.startDate} date-style="short" onchange={handlePersonnelInfoUpdate} required>
+                                                         </lightning-input>
+                                                      <lightning-input type="text" data-index={index}
+                                                         class="slds-size_2-of-5" data-field="startTime"
+                                                         data-name="startTime" label="Start Time" name="startTime" value={record.startTime}
+                                                         onchange={handlePersonnelInfoUpdate} placeholder="HHMM"
+                                                         pattern="\d{4}" max-length="4" required></lightning-input>
+                                                   <br/>
+                                                   <lightning-input type="checkbox" data-field="cdf" data-index={index} class="slds-form-element__control"
+                                                         data-name="cdf" name="cdf" value={record.cdf}
+                                                         onchange={handlePersonnelInfoUpdate} label="CDF" checked={record.cdf}></lightning-input>
+                                                   <br/>
+                                                   <lightning-input type="checkbox" data-field="baseRate" data-index={index} class="slds-form-element__control"
+                                                         data-name="baseRate" name="baseRate" value={record.baseRate}
+                                                         onchange={handlePersonnelInfoUpdate} label="Base" checked={record.baseRate}></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                   <lightning-input type="text" data-field="ssn" data-index={index} data-name="ssn"
+                                                      name="ssn" label="Last 4 SSN#" value={record.ssn} class="slds-form-element__control"
+                                                      onchange={handlePersonnelInfoUpdate} required>
+                                                      </lightning-input>
+                                                   <c-lookup data-custom={index} data-lookup="Rank__c" onsearch={handleRankSearch}
+                                                      onselectionchange={handleRankChange} is-multi-entry={isMultiEntry}
+                                                      load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                                      scroll-after-n-items="10"  errors={rankRequired} label="Rank or Job Title" required>
+                                                   </c-lookup>
+                                                   
+                                                   <lightning-input type="date" data-index={index} class="slds-form-element__control"
+                                                            data-field="endDate" data-name="endDate" name="endDate"
+                                                            value={record.endDate} date-style="short" label="End Date" onchange={handlePersonnelInfoUpdate} required>
+                                                         </lightning-input>
+                                                   <lightning-input type="text" data-index={index}
+                                                            class="slds-size_2-of-5" data-field="endTime"
+                                                            data-name="endTime" name="endTime" value={record.endTime}
+                                                            onchange={handlePersonnelInfoUpdate} placeholder="HHMM"
+                                                         pattern="\d{4}" max-length="4" label="End Time" required></lightning-input>
+                                                   
+                                                   <br/>
+                                                   <lightning-input type="checkbox" data-field="p2p" data-index={index} class="slds-form-element__control"
+                                                      data-name="p2p" name="p2p" value={record.p2p}
+                                                      onchange={handlePersonnelInfoUpdate} checked={record.p2p} label="Portal-to-Portal"
+                                                      disabled={record.p2pDisabled}></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-4">
+                                                   <lightning-button data-index={index} variant="destructive-text" label="Del"
+                                                      onclick={handlepersonnelDelete}></lightning-button>
+                                                </div>
+                                             </div>
+                                          </td>
+                                       </template>
+
+                                       <template if:true={record.readOnly} >
+                                          <td role="gridcell" width="120">
+                                             <lightning-formatted-text value={record.fullName}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="15">
+                                             <lightning-formatted-text value={record.MACSID}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="140">
+                                             <lightning-formatted-text value={record.jobTitle}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="20">
+                                             <lightning-formatted-text value={record.ssn}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="360">
+                                             <lightning-formatted-date-time value={record.startDate} year="numeric" month="numeric" day="numeric" time-zone="UTC"></lightning-formatted-date-time>
+                                             &nbsp;<lightning-formatted-text value={record.startTime}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="360">
+                                             <lightning-formatted-date-time value={record.endDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                                             &nbsp;<lightning-formatted-text value={record.endTime}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="10">
+                                             <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                                                data-name="cdf" name="cdf" value={record.cdf} checked={record.cdf} disabled>
+                                             </lightning-input>
+                                          </td>
+                                          <td role="gridcell" width="10">
+                                             <lightning-input type="checkbox" data-field="baseRate" data-index={index}
+                                                data-name="baseRate" name="baseRate" value={record.baseRate} checked={record.baseRate} disabled>
+                                             </lightning-input>
+                                          </td>
+                                          <td role="gridcell" width="10">
+                                             <lightning-input type="checkbox" data-field="p2p" data-index={index}
+                                                data-name="p2p" name="p2p" value={record.p2p} checked={record.p2p} disabled>
+                                             </lightning-input>
+                                          </td>
+                                          <td role="gridcell" width="15">
+                                             <lightning-button variant="base" data-index={index} label="Edit"
+                                                onclick={handlepersonnelEdit}></lightning-button>
+                                             |
+                                             <lightning-button data-index={index} variant="base" label="Del"
+                                                onclick={handlepersonnelDelete}></lightning-button>
+                                          </td>
+                                       </template>
+                                    </tr>
+                                 </template>
+                              </tbody>
+                           </table>
+                        </div>
+                        <br />
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col slds-size_1-of-1 slds-p-bottom_medium">
+                                 <lightning-button variant="brand" label="Add Other Personnel" title="Add Other Personnel"
+                                    onclick={handleAddotherPILine} class="slds-m-left_x-small slds-float_right">
+                                 </lightning-button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-bottom_medium">
+                              <thead>
+                                 <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Name">Name (Last, First) </div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="MACS ID">MACS ID</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Rank">Rank or Job Title</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="SSN">Last 4 SSN#</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Start">Start Date/Time</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="End">End Date/Time</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="End">CDF</div>
+                                    </th>
+                                    <!--th class="" scope="col">
+                                       <div class="slds-truncate" title="Base">Base</div>
+                                    </th-->
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="End">Action</div>
+                                    </th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <template for:each={otherpersonnelInfoItems} for:item="record" for:index="index">
+                                    <tr key={record} data-id={index}>
+                                       <template if:true={record.editable}>
+                                          <td width="100%">
+                                             <div class="slds-grid slds-gutters">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                   <lightning-input type="text" data-field="fullName" data-index={index}
+                                                      data-name="fullName" name="fullName" label="Name (Last, First)" value={record.fullName}
+                                                      onchange={handleotherPersonnelInfoUpdate} required
+                                                      class="slds-form-element__control"></lightning-input>
+                                                   <lightning-input type="text" data-field="MACSID" data-index={index}
+                                                      data-name="MACSID" name="MACSID" label="MACSID" value={record.MACSID}
+                                                      onchange={handleotherPersonnelInfoUpdate} required
+                                                      class="slds-form-element__control"></lightning-input>
+                                                   
+                                                   <lightning-input type="date" data-index={index} class="slds-form-element__control"
+                                                            data-field="startDate" label="Start Date" data-name="startDate" name="startDate"
+                                                            value={record.startDate} date-style="short" onchange={handleotherPersonnelInfoUpdate} required>
+                                                      </lightning-input>
+                                                   <lightning-input type="text" data-index={index}
+                                                         class="slds-size_2-of-5" data-field="startTime"
+                                                         data-name="startTime" label="Start Time" name="startTime" value={record.startTime}
+                                                         onchange={handleotherPersonnelInfoUpdate} placeholder="HHMM"
+                                                         pattern="\d{4}" max-length="4" required></lightning-input>
+                                                   <br/>
+                                                   <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                                                         data-name="cdf" name="cdf" value={record.cdf}
+                                                         onchange={handleotherPersonnelInfoUpdate} label="CDF" checked={record.cdf}></lightning-input>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                   <lightning-input type="text" data-field="ssn" data-index={index} data-name="ssn"
+                                                      name="ssn" label="Last 4 SSN#" value={record.ssn} class="slds-form-element__control"
+                                                      onchange={handleotherPersonnelInfoUpdate} required>
+                                                      </lightning-input>
+                                                   <lightning-input type="text" data-field="jobTitle" data-index={index}
+                                                      data-name="jobTitle" name="jobTitle" value={record.jobTitle}
+                                                      onchange={handleotherPersonnelInfoUpdate} 
+                                                      label="Rank or Job Title" 
+                                                      class="slds-form-element__control"
+                                                      required></lightning-input>
+
+                                                   <lightning-input type="date" data-index={index} class="slds-form-element__control"
+                                                            data-field="endDate" data-name="endDate" name="endDate"
+                                                            value={record.endDate} date-style="short" label="End Date" onchange={handleotherPersonnelInfoUpdate} required>
+                                                      </lightning-input>
+                                                   <lightning-input type="text" data-index={index}
+                                                            class="slds-size_2-of-5" data-field="endTime"
+                                                            data-name="endTime" name="endTime" value={record.endTime}
+                                                            onchange={handleotherPersonnelInfoUpdate} placeholder="HHMM"
+                                                         pattern="\d{4}" max-length="4" label="End Time" required></lightning-input>
+                                                   <!--br/>
+                                                   <lightning-input type="checkbox" data-field="baseRate" data-index={index}
+                                                         data-name="baseRate" name="baseRate" value={record.baseRate}
+                                                         onchange={handleotherPersonnelInfoUpdate} label="Base" checked={record.baseRate}></lightning-input-->
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-4">
+                                                   <div></div>
+                                                   <lightning-button data-index={index} variant="destructive-text" label="Del"
+                                                      onclick={handleotherpersonnelDelete}></lightning-button>
+                                                </div>
+                                             </div>
+                                          </td>
+                                       </template>
+                                       <template if:true={record.readOnly} >
+                                          <td role="gridcell" width="120">
+                                             <lightning-formatted-text value={record.fullName}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="15">
+                                             <lightning-formatted-text value={record.MACSID}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="140">
+                                             <lightning-formatted-text value={record.jobTitle}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="20">
+                                             <lightning-formatted-text value={record.ssn}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="360">
+                                             <lightning-formatted-date-time value={record.startDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                                             &nbsp;<lightning-formatted-text value={record.startTime}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="360">
+                                             <lightning-formatted-date-time value={record.endDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                                             &nbsp;<lightning-formatted-text value={record.endTime}></lightning-formatted-text>
+                                          </td>
+                                          <td role="gridcell" width="10">
+                                             <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                                                data-name="cdf" name="cdf" value={record.cdf} checked={record.cdf} disabled>
+                                             </lightning-input>
+                                          </td>
+                                          <!--td role="gridcell" width="10">
+                                             <lightning-input type="checkbox" data-field="baseRate" data-index={index}
+                                                data-name="baseRate" name="baseRate" value={record.baseRate} checked={record.baseRate} disabled>
+                                             </lightning-input>
+                                          </td-->
+                                          <td role="gridcell" width="15">
+                                             <lightning-button variant="base" data-index={index} label="Edit"
+                                                onclick={handleotherpersonnelEdit}></lightning-button>
+                                             |
+                                             <lightning-button data-index={index} variant="base" label="Del"
+                                                onclick={handleotherpersonnelDelete}></lightning-button>
+                                          </td>
+                                       </template>
+                                    </tr>
+                                 </template>
+                              </tbody>
+                           </table>
+                        </div>
+                        <br />
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <h2 class="border_zero">
+                              <span class="slds-page-header__title slds-truncate" title="PERSONNEL INFO">13.ACTUAL
+                              HOURS</span>
+                           </h2>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div class="slds-col slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                                 <lightning-button variant="brand" label="Add Hours" title="Add Hours"
+                                    onclick={handleAddActualHoursLine} class="slds-m-left_x-small slds-float_right">
+                                 </lightning-button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                              <thead>
+                                 <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Date">Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Start">Start</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="End">End</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Hours">Hours</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Hours">Action</div>
+                                    </th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <template for:each={actualHoursItems} for:item="record" for:index="index">
+                                    <tr key={record} data-id={index}>
+                                       <td role="gridcell" width="35">
+                                          <lightning-input type="date" data-index={index} name="dayOfHours"
+                                             value={record.dayOfHours} onchange={handleActualHoursUpdate} date-style="short" required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="15">
+                                          <lightning-input type="text" data-index={index} name="startTime"
+                                             value={record.startTime} onchange={handleActualHoursUpdate} placeholder="HHMM"
+                                             pattern="\d{4}" max-length="4" required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="15">
+                                          <lightning-input type="text" data-index={index} name="endTime"
+                                             value={record.endTime} onchange={handleActualHoursUpdate} placeholder="HHMM"
+                                             pattern="\d{4}" max-length="4" required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="15">
+                                          <lightning-input type="text" data-index={index} name="totalHours"
+                                             value={record.totalHours} onchange={handleActualHoursUpdate} disabled></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="15">
+                                          <lightning-button data-index={index} variant="base" label="Del"
+                                             onclick={handleActualHoursDelete}></lightning-button>
+                                       </td>
+                                    </tr>
+                                 </template>
+                                 <tr>
+                                    <td role="gridcell" width="35"></td>
+                                    <td role="gridcell" width="15"></td>
+                                    <td role="gridcell" width="15"><b>Total hours</b></td>
+                                    <td role="gridcell" width="15">{actualHoursTotal}</td>
+                                    <td role="gridcell" width="15"></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </template>
+                     <template if:true={iscomments}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="COMMENTS">14.Comments (Equipment
+                                 Breakdowns, Personnel Change, Loss/Damage, etc.)</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds-float_right slds-p-bottom_medium">
+                           <lightning-button variant="brand" label="Add Comment" title="Add Comment"
+                              onclick={handleAddComment} class="slds-m-left_x-small"></lightning-button>
+                        </div>
+                        <div class="slds">
+                           <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                              <thead>
+                                 <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Date">Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Time">Time</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Comment">Comment</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                       <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <template for:each={comments} for:item="record" for:index="index">
+                                    <tr key={record} data-id={index}>
+                                       <td role="gridcell" width="60">
+                                          <lightning-input type="date" data-index={index} name="dateofComment"
+                                             value={record.dateofComment} onchange={handleCommentsUpdate} date-style="short" required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="20">
+                                          <lightning-input type="text" data-index={index} name="timeofComment"
+                                             value={record.timeofComment} onchange={handleCommentsUpdate} placeholder="HHMM"
+                                             pattern="\d{4}" max-length="4" required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="240">
+                                          <lightning-input type="text" data-index={index} name="comment"
+                                             value={record.comment} onchange={handleCommentsUpdate} required></lightning-input>
+                                       </td>
+                                       <td role="gridcell" width="10">
+                                          <lightning-button data-index={index} variant="base" label="Del"
+                                             onclick={handleCommentsDelete}></lightning-button>
+                                       </td>
+                                    </tr>
+                                 </template>
+                              </tbody>
+                           </table>
+                        </div>
+                     </template>
+                     <template if:true={issupply_number}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate" title="COMMENTS">15-16. Supply
+                                 Number</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-radio-group label="15. LOSS/DAMAGE" name="LD_claim" data-name="LD_claim"
+                                    value={f42Entry.LD_claim} data-id="f42EntryForm" options={lossDamageOptions} type="radio"
+                                    onchange={handleFieldUpdates} ></lightning-radio-group>
+                                 <p>After you have completed your F-42 submission, you will need to submit an Expense
+                                    Reimbursement Form in order to process this F-42 completely.
+                                 </p>
+                              </div>
+                              <div
+                                 class="slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="SN_supplyNumber" data-name="SN_supplyNumber"
+                                    value={f42Entry.SN_supplyNumber} data-id="f42EntryForm" type="text"
+                                    label="16. SUPPLY NUMBER" onchange={handleFieldUpdates} ></lightning-input>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isresponding_agency_info}>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate"
+                                    title="17.RESPONDING AGENCY INFO">17.RESPONDING AGENCY INFORMATION</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="RA_agencyName" data-name="RA_agencyName"
+                                    value={f42Entry.RA_agencyName} data-id="f42EntryForm" type="text" label="AGENCY NAME"
+                                    onchange={handleFieldUpdates}></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="RA_yourName" data-name="RA_yourName" value={f42Entry.RA_yourName}
+                                    data-id="f42EntryForm" type="text" label="YOUR NAME" onchange={handleFieldUpdates}>
+                                 </lightning-input>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="RA_yourPhone" data-name="RA_yourPhone" value={f42Entry.RA_yourPhone}
+                                    data-id="f42EntryForm" type="tel" label="YOUR PHONE NUMBER"
+                                    onchange={handleFieldUpdates} onblur={formatRAPhone}></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="RA_yourTitle" data-name="RA_yourTitle" value={f42Entry.RA_yourTitle}
+                                    data-id="f42EntryForm" type="text" label="YOUR TITLE" onchange={handleFieldUpdates}>
+                                 </lightning-input>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <template if:true={showRASign}>
+                                 <div
+                                    class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                    <c-signature data-id="RA_signature" sign-label="Signature of Responding Agency Personnel" ></c-signature>
+                                 </div>
+                              </template>
+                              <template if:false={showRASign}>
+                                 <div class="c-container">
+                                    <div class="slds-text-body_regular">Signature of Responding Agency Personnel</div>
+                                    <img src={f42Entry.RA_signURL} /><br/>
+                                    <lightning-button label="Clear and Re-Sign" title="Clear and Re-sign" onclick={handleRAResign}></lightning-button>
+                                </div>
+                              </template>
+                           </div>
+                        </div>
+                     </template>
+                     <template if:true={isincident_info_paying_agency}>
+                        <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                           <h2 class="border_zero">
+                              <span class="slds-page-header__title slds-truncate"
+                                 title="1Summary">SUMMARY</span>
+                           </h2>
+                        </div>
+                        <c-mars-f42-entry-summary f42-entry={f42Entry} actual-hours-total={actualHoursTotal}></c-mars-f42-entry-summary>
+                        <div class="slds-grid slds-wrap slds-gutters_direct">
+                           <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                              <h2 class="border_zero">
+                                 <span class="slds-page-header__title slds-truncate"
+                                    title="18.INCIDENT INFO - PAYING AGENCY">18.INCIDENT INFORMATION - PAYING AGENCY</span>
+                              </h2>
+                           </div>
+                        </div>
+                        <div class="slds">
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-radio-group label="PAYING AGENCY" name="PA_payingAgency"
+                                    value={f42Entry.PA_payingAgency} onchange={handlePayingAgencyOther} data-id="f42EntryForm"
+                                    options={payingAgencyoptions} ></lightning-radio-group>
+                                 <template if:true={showPAOther} >
+                                    <lightning-input name="PA_payingAgencyOther" value={f42Entry.PA_payingAgencyOther}
+                                    onchange={handlePayingAgencyOther} data-id="f42EntryForm" type="text" label="OTHER"
+                                    ></lightning-input>
+                                 </template>
+                                    <lightning-button label="Clear" title="Clear" onclick={clearPayingAgency}></lightning-button>
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="PA_printedName" data-name="PA_printedName"
+                                    value={f42Entry.PA_printedName} data-id="f42EntryForm" type="text" label="PRINTED NAME"
+                                    onchange={handleFieldUpdates} required></lightning-input>
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="PA_printedNameDate" data-name="PA_printedNameDate"
+                                    value={f42Entry.PA_printedNameDate} data-id="f42EntryForm" type="date" label="DATE"
+                                    onchange={handleFieldUpdates} date-style="short" required></lightning-input>
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <template if:true={showPASign}>
+                                 <div
+                                    class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                    <c-signature data-id="PA_signature" sign-label="Signature of Authorized Incident Personnel">
+                                    </c-signature>
+                                 </div>
+                              </template>
+                              <template if:false={showPASign}>
+                                 <div class="c-container slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                    <div class="slds-text-body_regular">Signature of Authorized Incident Personnel</div>
+                                       <img src={f42Entry.PA_signURL} /><br/>
+                                    <lightning-button label="Clear and Re-Sign" title="Clear and Re-sign" onclick={handlePAResign}></lightning-button>
+                                </div>
+                              </template>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input value={f42Entry.PA_icsPosition} name="PA_icsPosition" data-name="PA_icsPosition" data-id="f42EntryForm" label="ICS POSITION / TITLE" 
+                                    onchange={handleFieldUpdates} ></lightning-input>
+                                 <!--c-lookup data-custom="lookup" label="SEARCH ICS Title" data-lookup="ICS_Title"
+                                    onsearch={handleICSTitleSearchforPA} onselectionchange={handleICSTitleChangeforPA}
+                                    placeholder="Select/Change ICS Title" is-multi-entry={isMultiEntry}
+                                    load-data-on-init={loadLookupDataOnLoad} local-search={loadLookupDataOnLoad}
+                                    scroll-after-n-items="10" errors={icstitlerequired} onchange={handleFieldUpdates}
+                                    >
+                                 </c-lookup-->
+                              </div>
+                              <div
+                                 class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <!--lightning-input name="PA_caloesRep" data-name="PA_caloesRep" value={f42Entry.PA_caloesRep}
+                                    data-id="f42EntryForm" type="text" label="Cal OES REPRESENTATIVE (if assigned)"
+                                    onchange={handleFieldUpdates} ></lightning-input-->
+                              </div>
+                           </div>
+                           <div class="slds-grid slds-wrap">
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="PA_caloesRep" data-name="PA_caloesRep" value={f42Entry.PA_caloesRep}
+                                    data-id="f42EntryForm" type="text" label="Cal OES REPRESENTATIVE (if assigned)"
+                                    onchange={handleFieldUpdates} ></lightning-input>
+                                 <!--lightning-input value={f42Entry.PA_otherIcsPosition} type="text"
+                                    label="OTHER POSITION / TITLE" name="PA_otherIcsPosition" data-name="PA_otherIcsPosition"
+                                    onchange={handlePAICSUpdate} ></lightning-input-->
+                              </div>
+                              <div
+                                 class="slds-col  slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+                                 <lightning-input name="PA_caloesRepDate" data-name="PA_caloesRepDate"
+                                    value={f42Entry.PA_caloesRepDate} data-id="f42EntryForm" type="date" date-style="short" label="DATE"
+                                    onchange={handleFieldUpdates} ></lightning-input>
+                              </div>
+                           </div>
+                        </div>
+                     </template>
+                  </div>
+               </div>
+            </div>
+         </div>
+   </template>
+      <template if:true={isSubmitModalOpen}>
+         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <!-- Modal/Popup Box LWC header here -->
+               <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                     onclick={closeSubmitModal}>
+                     <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small">
+                     </lightning-icon>
+                     <span class="slds-assistive-text">Close</span>
+                  </button>
+                  <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+               </header>
+               <!-- Modal/Popup Box LWC body starts here -->
+               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                  <p style="font-weight: bold;">NOTE: Once submitted you will not be able to make updates. If you have any
+                     corrections after submission please contact Cal OES at CFAAreimbursement@caloes.ca.gov or the Fire and
+                     Rescue Main Line at (916) 845-8711.
+                     Once you select submit, a copy of your F-42 will be electronically routed to Cal OES and your agency.
+                  </p>
+               </div>
+               <!-- Modal/Popup Box LWC footer starts here -->
+               <footer class="slds-modal__footer">
+                  <button class="slds-button slds-button_neutral" onclick={closeSubmitModal} title="Cancel">Cancel</button>
+                  <button class="slds-button slds-button_brand" onclick={submitData} title="Submit">Submit</button>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+      <template if:true={isDisregardModalOpen}>
+         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <!-- Modal/Popup Box LWC header here -->
+               <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                     onclick={closeSubmitModal}>
+                     <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse" size="small">
+                     </lightning-icon>
+                     <span class="slds-assistive-text">Close</span>
+                  </button>
+                  <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Confirmation</h2>
+               </header>
+               <!-- Modal/Popup Box LWC body starts here -->
+               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                  <p style="font-weight: bold;">NOTE: Once deleted, the F-42 Entry cannot be retrieved. Do you want to continue?
+                  </p>
+               </div>
+               <!-- Modal/Popup Box LWC footer starts here -->
+               <footer class="slds-modal__footer">
+                  <button class="slds-button slds-button_neutral" onclick={closeDeleteModal} title="Cancel">Cancel</button>
+                  <button class="slds-button slds-button_brand" onclick={DisregardF42Entry} title="Submit">Proceed</button>
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+   </template>

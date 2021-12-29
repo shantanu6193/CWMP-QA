@@ -1,0 +1,231 @@
+<template>
+	<template if:true= {isLoading}>
+		<div class="slds-grid slds-wrap slds-align_absolute-center container ">
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+				<!--1.Header-->
+				<div class="slds-grid slds-wrap">
+					<div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+						<h3 class="heading">{label.HH_EN_HOMEOWNER_APPLICATION_DOCUMENTATION}</h3>
+					</div>
+				</div>
+				<!--1.Main Form-->
+				<div class="slds-grid slds-wrap slds-p-bottom_mediudata-sortorderm">
+					<div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-p-top_medium documents_page">
+						<lightning-formatted-rich-text value={label.HH_EN_Homeowner_Application_Documentation_Page_Para_1_2}></lightning-formatted-rich-text>
+						<lightning-formatted-rich-text value={label.HH_EN_Homeowner_Application_Documentation_Page_Para_4_5}></lightning-formatted-rich-text>
+					</div>
+<!--					<template if:true={DocumentType.data}>-->
+<!--						<div class="slds-grid slds-wrap ">-->
+<!--							<div class="slds-col  slds-p-around_medium">-->
+<!--							</div>-->
+<!--							<div class="slds-col  slds-p-around_medium document_btn">-->
+<!--								<lightning-combobox name={label.HH_EN_Select_a_document_type_to_upload}-->
+<!--													label={label.HH_EN_Select_a_document_type_to_upload}-->
+<!--													placeholder={label.HH_EN_Document_Type}-->
+<!--													options={docTypeValues}-->
+<!--													onchange={documentTypeFieldChanged}-->
+<!--													title={title}-->
+<!--													onmouseover={getDocumentTypePicklistTitle}-->
+<!--													class="input"-->
+<!--													dropdown-alignment="auto"-->
+<!--								>-->
+<!--								</lightning-combobox>-->
+<!--							</div>-->
+<!--							<div class="slds-col slds-p-top_x-large add-document">-->
+<!--									<span class="">-->
+<!--									   <button onclick={handleCreateDocument} class="slds-button slds-button_brand slds-float&#45;&#45;right mob_btn align_btn">{label.HH_EN_Add_Document}</button>-->
+<!--									</span>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</template>-->
+						<!-- DOCUMENT COMPONENT -->
+					<div class="slds-col slds-size_12-of-12 slds-p-around_medium responsive_table" style="border: 1px solid #dedede;">
+						<div class="slds-scrollable_x slds-scrollable_y	">
+						<table>
+							<thead style="background-color:#2574a9; color:white">
+							<tr class="slds-line-height_reset">
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Upload_Date}>{label.HH_EN_Upload_Date}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Document_Type}>{label.HH_EN_Document_Type}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_File_Name}>{label.HH_EN_File_Name}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Other_Comments}>{label.HH_EN_Other_Comments}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Version}>{label.HH_EN_Version}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Stage}>{label.HH_EN_Stage}</div>
+								</th>
+								<th class="" scope="col">
+									<div class="" title={label.HH_EN_Action}>{label.HH_EN_Action}</div>
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+							<template for:each={record.documents} for:item="Doc" for:index="index">
+								<tr key={Doc.document.Id} class="slds-hint-parent">
+									<td data-label="Upload Date">
+										<template if:false={isFirefox}>
+										<template if:true={Doc.document.Date_Time_Uploaded__c}>
+											<lightning-formatted-date-time value={Doc.document.Date_Time_Uploaded__c}
+																		   year="numeric"
+																		   month="2-digit"
+																		   day="2-digit"
+																		   hour="2-digit"
+																		   minute="2-digit"
+																		   time-zone="PST"
+											>
+											</lightning-formatted-date-time>
+										</template>
+										</template>
+										<template if:true={isFirefox}>
+												<template if:true={Doc.document.Date_Uploaded__c}>
+													<lightning-formatted-date-time value={Doc.document.Date_Uploaded__c}
+																				   year="numeric"
+																				   month="2-digit"
+																				   day="2-digit"
+													>
+													</lightning-formatted-date-time>
+												</template>
+										</template>
+									</td>
+									<td data-label="Document Type">
+<!--										<template if:true={DocumentType.data}>-->
+<!--											<lightning-combobox name={Doc.document.Document_Type__c}-->
+<!--																variant="label-hidden"-->
+<!--																title={title}-->
+<!--																value={Doc.document.Document_Type__c}-->
+<!--																options={DocumentType.data.values}-->
+<!--																data-value = {Doc.document.Document_Type__c}-->
+<!--																onmouseover={getDocumentTypeTitle}-->
+<!--																dropdown-alignment="auto"-->
+<!--																read-only=true-->
+<!--											>-->
+<!--											</lightning-combobox>-->
+											{Doc.document.Document_Type__c}
+<!--										</template>-->
+									</td>
+									<td class="fileup_load" data-label="File Name">
+										<template if:true={Doc.latestVersionId}>
+											<a onclick={handlePreviewDocument}>
+												<div data-documentid = {Doc.contentDocumentId} data-versionid = {Doc.latestVersionId} class="" title={label.HH_EN_Click_to_preview}>{Doc.fileName}</div>
+											</a>
+										</template>
+									</td>
+									<td>
+										{Doc.document.Comments__c}
+									</td>
+									<td data-label="Version">
+										{Doc.VersionNumber}
+									</td>
+									<td data-label="Stage">
+<!--										<template if:true={DocumentStage.data}>-->
+<!--											<lightning-combobox name={Doc.document.Stage__c}-->
+<!--																variant="label-hidden"-->
+<!--																title={title}-->
+<!--																value={Doc.document.Stage__c}-->
+<!--																options={DocumentStage.data.values}-->
+<!--																class="input"-->
+<!--																data-value = {Doc.document.Stage__c}-->
+<!--																dropdown-alignment="auto"-->
+<!--																onmouseover={getStageTitle}-->
+<!--																read-only=true-->
+<!--											>-->
+<!--											</lightning-combobox>-->
+											{Doc.document.Stage__c}
+<!--										</template>-->
+<!--										{Doc.document.Stage__c}-->
+									</td>
+									<td data-label="Action">
+										<div class="action-div">
+											<div class="upload-file-div">
+												<lightning-file-upload	name="fileUploader"
+																		  onuploadfinished={handleUploadFinished}
+																		  class="file-upload action-file-upload"
+																		  record-id = {Doc.document.Id}
+																		  data-value = {Doc.document.Id}
+												>
+												</lightning-file-upload>
+											</div>
+											<div class="delete-div slds-p-left_small" title={label.HH_EN_Delete}>
+												<a onclick={handleDelete} >
+													<lightning-icon variant="error"
+																	icon-name="utility:delete"
+																	class="slds-icon slds-icon_small"
+																	data-value ={Doc.document.Id}
+																		data-documentid = {Doc.contentDocumentId}
+																	size="small"
+																	alternative-text="icon">
+													</lightning-icon>
+													<span class="slds-assistive-text">Delete Icon</span>
+												</a>
+											</div>
+										</div>
+										<!-- <div class="slds-grid slds-wrap delete_uplooad">
+													<div class=" slds-align_absolute-center slds-col slds-p-right_small" title="Delete">
+														<a onclick={handleDelete} >
+															<lightning-icon variant="error"
+																			icon-name="utility:delete"
+																			class="slds-icon slds-icon_small"
+																			data-value ={Doc.document.Id}
+																			size="small"
+																			alternative-text="icon">
+															</lightning-icon>
+															<span class="slds-assistive-text">Delete Icon</span>
+														</a>
+													</div>
+											<div class="slds-col" title={label.HH_EN_Upload_File}>
+												<lightning-file-upload	name="fileUploader"
+																		  onuploadfinished={handleUploadFinished}
+																		  class="file-upload"
+																		  record-id = {Doc.document.Id}
+																		  data-value = {Doc.document.Id}
+												>
+												</lightning-file-upload>
+											</div>
+										</div> -->
+									</td>
+								</tr>
+							</template>
+							</tbody>
+						</table>
+						</div>
+						<template if:true={docTypeValues}>
+							<div class="slds-grid slds-wrap spacing_proper">
+								<div class="slds-col  slds-p-around_medium">
+								</div>
+								<div class="slds-col  slds-p-around_medium document_btn">
+									<lightning-combobox name={label.HH_EN_Select_a_document_type_to_upload}
+														label={label.HH_EN_Select_a_document_type_to_upload}
+														placeholder={label.HH_EN_Document_Type}
+														options={docTypeValues}
+														onchange={documentTypeFieldChanged}
+														title={title}
+														onmouseover={getDocumentTypePicklistTitle}
+														class="input"
+														dropdown-alignment="auto"
+									>
+									</lightning-combobox>
+								</div>
+								<div class="slds-col slds-p-bottom_medium add-document">
+									<span class="">
+									   <button onclick={handleCreateDocumentButton} class="slds-button slds-button_brand slds-float--right mob_btn align_btn">{label.HH_EN_Add_Document}</button>
+									</span>
+								</div>
+							</div>
+						</template>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template if:true={isDuplicateDoc}>
+		<c-confirmation-popup visible={isDuplicateDoc} title="" name="" original-message="" message={messageToDisplay} confirm-label={label.HH_EN_Confirm} cancel-label={label.HH_EN_Cancel} onclickevent={handleDocCreationConfirmationClick}></c-confirmation-popup>
+	</template>
+</template>

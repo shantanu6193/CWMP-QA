@@ -1,0 +1,20 @@
+<!--
+ - Created by StackNexus Admin on 31-05-2021.
+ -->
+
+<!-- Attach Global Document Cell -->
+<template>
+    <template if:true={isNotSelectDocumentANDDocumentNameCell}>
+        {fieldValue}
+    </template>
+    <template if:true={isSelectDocumentCell}>
+        <input type="radio"
+           onclick= {handleRadioButtonChange}
+           name="Checkbox"
+           data-id={recordValues.documentRecord.Id}
+           value={recordValues.documentRecord.Id}>
+    </template>
+    <template if:true={isDocumentNameCell}>
+        {recordValues.docLabel}
+    </template>
+</template>

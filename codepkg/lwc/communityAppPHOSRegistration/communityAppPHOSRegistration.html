@@ -1,0 +1,243 @@
+<!--
+ - Created by Pankaj on 08-07-2020.
+ -->
+
+<!-- Community App Phos Registration -->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}>
+        <div class="slds-modal__content slds-p-around_small">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12 slds-p-around_medium">
+                    <template if:true={IsContactRecord}>
+                        <table class="">
+                            <tr>
+                                <th class="slds-p-right_large slds-p-bottom_small Description ">FirstName:</th>
+                                <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.FirstName}</td>
+                            </tr>
+                            <tr>
+                                <th class="slds-p-right_large slds-p-bottom_small Description ">LastName:</th>
+                                <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.LastName}</td>
+                            </tr>
+                            <tr>
+                                <th class="slds-p-right_large slds-p-bottom_small Description ">Email:</th>
+                                <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Email}</td>
+                            </tr>
+                            <tr>
+                                <th class="slds-p-right_large slds-p-bottom_small Description">Phone:</th>
+                                <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Phone}</td>
+                            </tr>
+                            <template if:false={entityChangeRequired}>
+                                <tr>
+                                    <th class="slds-p-right_large slds-p-bottom_small Description ">Entity:</th>
+                                    <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Entity_Type__c}</td>
+                                </tr>
+                                <tr>
+                                    <th class="slds-p-right_large slds-p-bottom_small Description ">Organization:</th>
+                                    <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Name}</td>
+                                </tr>
+                            </template>
+                        </table>
+                        <template if:true={entityChangeRequired}>
+                            <div class="slds-grid slds-p-vertical_medium">
+                                <div class="slds-col slds-size_12-of-12">
+                                    <p class="Description">Your previous request was denied due to the wrong Entity Type selection. Please contact your MHOAC if you have any questions prior to resubmitting your request.</p>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-p-bottom_medium">
+                                <div class="slds-col slds-size_12-of-12">
+                                    <template if:true={entityPicklistValues.data}>
+                                        <lightning-combobox name="EntityType"
+                                                            label="Entity Type"
+                                                            data-field="Entity_Type__c"
+                                                            value={recordLocal.Entity_Type__c}
+                                                            placeholder="Select Entity"
+                                                            options={entityPicklistValues.data.values}
+                                                            onchange={entityChanged}
+                                                            class="input"
+                                                            dropdown-alignment="auto"
+                                                            required>
+                                        </lightning-combobox>
+                                        <br/>
+                                    </template>
+
+                                    <template if:true={isState}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="State Agency"
+                                                data-lookup="State_Agency__c"
+                                                onsearch={handleStateAgencySearch}
+                                                onselectionchange={handleStateAgencyChange}
+                                                placeholder="Search State Agency"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadLookupDataOnLoad}
+                                                local-search = {loadLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={stateRequired}
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                    </template>
+
+                                    <template if:true={isNonGov}>
+                                        <template if:true={nonGovTypePicklistValues.data}>
+                                            <lightning-combobox name="NonGovEntityType"
+                                                                label="Non-Government Entity Type"
+                                                                placeholder="Select Type"
+                                                                data-field="Non_Government_Entity_Type__c"
+                                                                value={recordLocal.Non_Government_Entity_Type__c}
+                                                                options={nonGovTypePicklistValues.data.values}
+                                                                class="input"
+                                                                onchange={entityChanged}
+                                                                dropdown-alignment="auto" required>
+                                            </lightning-combobox>
+                                            <br/>
+                                        </template>
+                                    </template>
+                                    <template if:true={isOther}>
+                                        <lightning-input label="Non Governmental Entity" name = "NonGovernmentalEntity" value={recordLocal.Non_Governmental_Entity__c} data-field="Non_Governmental_Entity__c" onchange={fieldChanged} class="input slds-m-bottom_x-small" required></lightning-input><br/>
+                                        <lightning-input label="Federal Tax ID #" name = "FederalTaxID" data-field="Federal_Tax_ID__c" value={recordLocal.Federal_Tax_ID__c} onchange={fieldChanged} class="input slds-m-bottom_x-small" required></lightning-input>
+                                        <br/>
+                                    </template>
+                                    <template if:true={isHealthCareFacility}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="Facility Name"
+                                                data-lookup="Facility__c"
+                                                onsearch={handleFacilitySearch}
+                                                onselectionchange={handleFacilityChange}
+                                                onsearchtermchange={handleSearchChange}
+                                                placeholder="Enter / Search Provider (3 or more characters)"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadSpecialDistrictLookupDataOnLoad}
+                                                local-search = {loadSpecialDistrictLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={healthCareRequired}
+                                                search-term={recordLocal.Facility_Name__c}
+
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                        <label style="color:red">*</label>
+                                        <label class="slds-p-left_xx-small">Facility Id<a href="https://www.cdph.ca.gov/Programs/CHCQ/LCP/CalHealthFind/Pages/SearchResult.aspx" target="_blank" class="slds-text-align_right slds-float_right">Search your Provider ID here</a> </label>
+                                        <lightning-input  data-field="Facility_ID__c" value={recordLocal.Facility_ID__c} onchange={fieldChanged} disabled={selectedFacility} class="input inputelement" required></lightning-input>
+                                        <br/>
+                                    </template>
+                                    <template if:true={isNonGovEntityType}>
+                                        <lightning-input label="Street" data-field="Street_Address__c" value={recordLocal.Street_Address__c} onchange={fieldChanged} disabled={selectedFacility} class="input" required></lightning-input><br/>
+                                        <lightning-input label="City" data-field="City_Name__c" value={recordLocal.City_Name__c} onchange={fieldChanged} disabled={selectedFacility} class="input" required></lightning-input><br/>
+                                    </template>
+
+                                    <template if:true={isCounty}>
+                                        <template if:true={picklistValues.data}>
+                                            <lightning-combobox name="County"
+                                                                label="County"
+                                                                value={recordLocal.County__c}
+                                                                data-field="County__c"
+                                                                placeholder="Select County"
+                                                                options={picklistValues.data.values}
+                                                                onchange={fieldChanged}
+                                                                class="input"
+                                                                disabled={selectedFacility}
+                                                                dropdown-alignment="top-left"
+                                                                required>
+                                            </lightning-combobox>
+                                            <br/>
+                                        </template>
+                                    </template>
+
+                                    <template if:true={isNonGovEntityType}>
+                                        <lightning-input label="State" data-field="State__c" value={recordLocal.State__c} onchange={fieldChanged} disabled={selectedFacility} class="input" required></lightning-input><br/>
+                                        <lightning-input label="Zip" data-field="Zip_Postal_Code__c" value={recordLocal.Zip_Postal_Code__c} onchange={fieldChanged} disabled={selectedFacility} class="input" pattern="[0-9]{5}" message-when-pattern-mismatch="Enter a valid zip code ex: 55555" required></lightning-input><br/>
+                                    </template>
+
+                                    <template if:true={isCity}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="City"
+                                                data-lookup="City__c"
+                                                onsearch={handleCitySearch}
+                                                onselectionchange={handleCityChange}
+                                                placeholder="Search City"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadLookupDataOnLoad}
+                                                local-search = {loadLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={cityRequired}
+
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                    </template>
+                                    <template if:true={isTribal}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="Tribal"
+                                                data-lookup="Tribal__c"
+                                                onsearch={handleTribalSearch}
+                                                onselectionchange={handleTribalChange}
+                                                placeholder="Search Tribal"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadLookupDataOnLoad}
+                                                local-search = {loadLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={tribalRequired}
+
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                    </template>
+
+                                    <template if:true={isSpecialDistrict}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="Special District"
+                                                data-lookup="Special_District__c"
+                                                onsearch={handleSpecialDistrictSearch}
+                                                onselectionchange={handleSpecialDistrictChange}
+                                                placeholder="Please enter 3 or more characters"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadSpecialDistrictLookupDataOnLoad}
+                                                local-search = {loadSpecialDistrictLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={spclDistRequired}
+
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                    </template>
+
+                                    <template if:true={isCourts}>
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                label="Courts"
+                                                data-lookup="Courts__c"
+                                                onsearch={handleCourtSearch}
+                                                onselectionchange={handleCourtChange}
+                                                placeholder="Search Court"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadLookupDataOnLoad}
+                                                local-search = {loadLookupDataOnLoad}
+                                                scroll-after-n-items = "10"
+                                                errors={courtsRequired}
+                                                required>
+                                        </c-lookup>
+                                        <br/>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:false={entityChangeRequired}>
+                            <div class="slds-p-around_medium Description slds-p-horizontal_medium">Request will be sent to {contactRecord.Account.Parent.Name} users, in case of any issues please reach out to them.</div>
+                        </template>
+                    </template>
+                </div>
+            </div>
+        </div>
+        <footer class="slds-modal__footer">
+            <button class="slds-button slds-button_brand" onclick={submitDetails} title="Register" disabled={buttonDisabled}>Register</button>
+        </footer>
+    </template>
+</template>

@@ -1,0 +1,265 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <template if:true={getApplicationType}>
+            <template if:true={hideFieldsForBRICAndFMA}>
+                <div class="slds-col slds-size_12-of-12">
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <div class="slds-card__header-link" title="Request Details">
+                                            <div class="parent-div">
+                                                <div>
+                                                    <p>BENEFIT COST ANALYSIS</p>
+                                                </div>
+                                                <div class="tooltip-div">
+                                                    <lightning-helptext class="tooltip" content="The information you provide below will help Cal OES to evaluate if the project can potentially meet FEMA’s cost effectiveness requirement. FEMA will only consider applications that use a FEMA-approved methodology to demonstrate cost-effectiveness. This is typically demonstrated by the calculation of a BCR. Projects for which benefits exceed costs are generally considered cost effective. Benefits may include avoided damage, loss of function, and displacement."></lightning-helptext>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <hr>
+                        <div class="slds-grid">
+                            <div class="slds-col">
+                                <div class="slds-p-around_medium">
+                                    <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={projectDocumentedPicklistValues.data}>
+                                                <lightning-combobox class="input"
+                                                                value={recordLocal.Proposed_project_area_documented__c}
+                                                                data-field="Proposed_project_area_documented__c"
+                                                                name="ProposedProjectAreaDocumented"
+                                                                label="Does the proposed project area have a documented history of significant damages, loss of service/function, or other loss/disruption?"
+                                                                onchange={fieldChanged}
+                                                                placeholder="Select"
+                                                                options={projectDocumentedPicklistValues.data.values}
+                                                                required
+                                                                field-level-help="Significant damages are those which have caused damage physical or financial damage to a structure, facility or infrastructure. For example, may include physical damages, loss of function/service, and displacement.">
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={showProposedProjectField}>
+                                                <lightning-textarea class="input" value={recordLocal.If_yes_proposed_project__c} data-field="If_yes_proposed_project__c" label="If yes, what is available?" name="WhatIsAvailable1" onchange={fieldChanged} maxlength="2500" required></lightning-textarea>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={locationHazardPicklistValues.data}>
+                                                <lightning-combobox class="input"
+                                                                value={recordLocal.Project_location_have_the_hazard__c}
+                                                                data-field="Project_location_have_the_hazard__c"
+                                                                label="Do you have data and/or studies documenting the extent, severity, and/or current risk of the hazard?"
+                                                                name="ProjectLocationHaveTheHazard"
+                                                                type="text"
+                                                                onchange={fieldChanged}
+                                                                placeholder="Select"
+                                                                options={locationHazardPicklistValues.data.values}
+                                                                required
+                                                                field-level-help="Resources such as FEMA flood maps, tsunami maps, landslide maps or similar documents can be used to document the extent and severity of the hazard. Reports may include seismic structural evaluations, geotechnical reports, hydrologic and Hydraulic studies or similar reports that further analyze the current risk.  Additionally, prevented disaster costs and/or loss of function  may be used to quantify current risk of hazard.
+                                                                    Loss of function is the direct economic impact that occurs when physical damage is severe enough to interrupt the function or normal use of a building and/or infrastructure.">
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={showProjectlocationField}>
+                                                <lightning-textarea class="input" value= {recordLocal.If_yes_project_location__c}  data-field="If_yes_project_location__c" label="If yes, what is available?"  name="WhatIsAvailable2" onchange={fieldChanged} maxlength="2500" required></lightning-textarea>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </template>
+        </template>
+        <div class="slds-col slds-size_12-of-12 slds-p-top_large slds-p-bottom_large">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <p  class="slds-card__header-link" title="Resource Delivery Information">
+                                        <span>ACTIVITY COSTS</span>
+                                    </p>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-col slds-size_12-of-12 slds-p-top_medium">
+                        <p>Hazard Mitigation Assistance (HMA) funds my be used to pay a percentage of eligible costs (Federal Request Share). The remaining percentage of eligible costs is the financial responsibility of the subapplicant (Non-Federal Cost Share, often referred to as Subapplicant Match)</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-p-horizontal_medium slds-p-vertical_large">
+                        <template if:true = {recordTypeHMGP}>
+                            <table>
+                                <tr>
+                                    <th class="slds-p-around_small tableCol">HMA Program</th>
+                                    <th class="slds-p-around_small">Percentage of Federal Request Share</th>
+                                    <th class="slds-p-around_small">Percentage of Non-Federal Cost Share</th>
+                                </tr>
+                                <tr>
+                                    <td>Hazard Mitigation Grant Program (HMGP)</td>
+                                    <td>75</td>
+                                    <td>25</td>
+                                </tr>
+                            </table>
+                        </template>
+                        <template if:true = {recordTypeBRIC}>
+                            <table>
+                                <tr>
+                                    <th class="slds-p-around_small tableCol">HMA Program</th>
+                                    <th class="slds-p-around_small">Percentage of Federal Request Share</th>
+                                    <th class="slds-p-around_small">Percentage of Non-Federal Cost Share</th>
+                                </tr>
+                                <tr>
+                                    <td>Building Resilient Infrastructure and Communities (BRIC)</td>
+                                    <td>75</td>
+                                    <td>25</td>
+                                </tr>
+                                <tr>
+                                    <td>BRIC- if the subapplicant fits the definitation of a small impoverished community</td>
+                                    <td>90</td>
+                                    <td>10</td>
+                                </tr>
+                            </table>
+                        </template>
+                        <template if:true = {recordTypeFMA}>
+                            <table>
+                                <tr>
+                                    <th class="slds-p-around_small tableCol">HMA Program</th>
+                                    <th class="slds-p-around_small">Percentage of Federal Request Share</th>
+                                    <th class="slds-p-around_small">Percentage of Non-Federal Cost Share</th>
+                                </tr>
+                                <tr>
+                                    <td>Flood Mitigation Assistance (FMA)</td>
+                                    <td>75</td>
+                                    <td>25</td>
+                                </tr>
+                                <tr>
+                                    <td>FMA - If the project mitigates a repetitive loss (RL) property </td>
+                                    <td>90</td>
+                                    <td>10</td>
+                                </tr>
+                                <tr>
+                                    <td>FMA - If the project mitigates a severe repetitive loss (SRL) property</td>
+                                    <td>100</td>
+                                    <td>0</td>
+                                </tr>
+                            </table>
+                        </template>
+                    </div>
+                    <div class="slds-col slds-size_12-of-12">
+                        <div class="slds-p-around_medium">
+                            <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Total_Activity_Cost__c} data-field="Total_Activity_Cost__c"  label="Total Activity Cost ($)"  type="number" formatter="currency" onchange={activityFieldChanged} required step="0.01" max-length='19' field-level-help="Enter the total cost to implement the project. Inclusive of both Federal share and local match."></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-input class="input1" value={recordLocal.Applicant_Match__c} data-field="Applicant_Match__c"  label="Non-Federal Cost Share ($)"  type="number" formatter="currency" onchange={appFieldChanged} required step="0.01" max-length='19' field-level-help="Financial responsibility of the subapplicant."></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Federal_Request_Share__c} data-field="Federal_Request_Share__c" label="Federal Share Request ($)" name="Country" type="number" formatter="currency" required step="0.01" disabled onchange={fieldChanged} max-length='19' field-level-help="Financial responsibility of Federal Government."></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Percentage_of_Applicant_Match__c} data-field="Percentage_of_Applicant_Match__c" label="Percentage of Non-Federal Cost Share" name="PercentageApplicantMatch" type="number" formatter="" required step="0.1" disabled onchange={fieldChanged} max-length='19'></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Percentage_of_Federal_Request_Share__c} data-field="Percentage_of_Federal_Request_Share__c" label="Percentage of Federal Request Share" name="PercentageFederalRequestShare" type="number" formatter="" required step="0.1" disabled onchange={fieldChanged} max-length='19'></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <lightning-textarea class="input" value={recordLocal.Source_of_applicant_match__c} data-field="Source_of_applicant_match__c" label="Source of Non-Federal Cost Share" onchange={fieldChanged} max-length='2500' required field-level-help="Contributions of cash and donated resources, or any combination thereof, can be used for the subapplicant match. For example, cash and in-kind contributions of services and labor, volunteer labor, and Community Development Block Grant Discover Recovery (CDBG-DR) funds."></lightning-textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <template if:true ={getApplicantType}>
+            <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <p  class="slds-card__header-link" title="Resource Delivery Information">
+                                        <span>LOCAL HAZARD MITIGATION PLAN INFORMATION</span>
+                                    </p>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <hr>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <div class="slds-grid">
+                            <div class="slds-col">
+                                <div class="slds-p-around_medium">
+                                    <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={activeLHMPPicklistValues.data}>
+                                                <lightning-combobox class="input"
+                                                                value={recordLocal.Does_your_entity_have_an_active_LHMP__c}
+                                                                data-field="Does_your_entity_have_an_active_LHMP__c"
+                                                                label="Does your entity have an active LHMP?"
+                                                                placeholder="Select"
+                                                                options={activeLHMPPicklistValues.data.values}
+                                                                onchange={activeLHMPfieldChanged}
+                                                                field-level-help="To be eligible for funding a community must have participated in the Local Hazard Mitigation Planning (LHMP) process and formally adopted a LHMP through formal resolution. For BRIC and FMA, the LHMP must be approved and adopted at time of application and award. For HMGP the LHMP must be in approved and adopted at time of award. If you are not sure of your LHMP status please contact your County Emergency Manager or hma@caloes.ca.gov."
+                                                                required
+                                                >
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={showDateField}>
+                                                <lightning-input class="input" value={recordLocal.LHMP_Approval_Date__c} data-field="LHMP_Approval_Date__c" label="LHMP Approval Date"  type="date" onchange={fieldChanged} autocomplete="off" required disabled={activeLHMPValue} field-level-help="Private Non-Profits are not required to populate this field. "></lightning-input>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={lhmpStatusPicklistValues.data}>
+                                                <lightning-combobox class="input"
+                                                                value={recordLocal.LHMP_Development_Status__c}
+                                                                data-field="LHMP_Development_Status__c"
+                                                                label="LHMP Status"
+                                                                placeholder="Select"
+                                                                options={lhmpStatusPicklistValues.data.values}
+                                                                onchange={fieldChanged}
+                                                                required
+                                                                dropdown-alignment="auto"
+                                                                field-level-help="Provide the status of the Local Hazard Mitigation Plan.">
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={activityMitigationPicklistValues.data}>
+                                                <lightning-combobox class="input"
+                                                                value={recordLocal.Activity_in_Mitigation_Plan__c}
+                                                                data-field="Activity_in_Mitigation_Plan__c"
+                                                                label="Is this activity addressed in your Local Hazard Mitigation Plan?"
+                                                                name="Country"
+                                                                onchange={fieldChanged}
+                                                                placeholder="Select"
+                                                                options={activityMitigationPicklistValues.data.values}
+                                                                required
+                                                                field-level-help="The project does not have to be specifically referenced in your plan.">
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </template>
+    </div>
+</template>

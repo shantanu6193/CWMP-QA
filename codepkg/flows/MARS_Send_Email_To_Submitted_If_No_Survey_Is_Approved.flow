@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apexPluginCalls>
+        <name>Send_Email</name>
+        <label>Send Email</label>
+        <locationX>742</locationX>
+        <locationY>266</locationY>
+        <apexClass>FlowSendEmail</apexClass>
+        <inputParameters>
+            <name>emailTemplateId</name>
+            <value>
+                <elementReference>Email_Template.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetObjectId</name>
+            <value>
+                <elementReference>$Record.CreatedBy.ContactId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>whatId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </apexPluginCalls>
+    <apiVersion>52.0</apiVersion>
+    <decisions>
+        <name>Is_Salary_Survey_Approved</name>
+        <label>Is Salary Survey Approved</label>
+        <locationX>393</locationX>
+        <locationY>290</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Salary_Survey_Not_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Salary_Survey_Records</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_Template</targetReference>
+            </connector>
+            <label>Is Salary Survey Not Approved</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>CurrentYear</name>
+        <dataType>String</dataType>
+        <expression>TEXT(YEAR({!$Flow.CurrentDate}))</expression>
+    </formulas>
+    <interviewLabel>MARS_Send_Email_To_Submitted_If_No_Survey_Is_Approved {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MARS_Send_Email_To_Submitted_If_No_Survey_Is_Approved</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Email_Template</name>
+        <label>Email Template</label>
+        <locationX>603</locationX>
+        <locationY>275</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Email</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Email Notification on F42 submission</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>EmailTemplate</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Salary_Survey_Records</name>
+        <label>Get Salary Survey Records</label>
+        <locationX>176</locationX>
+        <locationY>356</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_Salary_Survey_Approved</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Account__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Reviewed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Start_Date_Year__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Submitted_Year__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Agency_Salary_Survey__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Salary_Survey_Records</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>CALOES REVIEW</stringValue>
+            </value>
+        </filters>
+        <object>F42__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <textTemplates>
+        <name>EmailBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Hi {!$Record.Contact__r.FirstName} {!$Record.Contact__r.LastName},
+
+Your agency has an F-42(s) in queue and cannot be generated into an invoice until a {!CurrentYear} salary survey has been submitted.
+
+Please log into MARS and submit your agency’s {!CurrentYear} salary survey with the following link: https://caloes.force.com
+
+Contact Cal OES reimbursement staff at cfaareimbursement@caloes.ca.gov or call the Fire &amp; Rescue main line at (916) 845-8711 with any questions or concerns.
+
+Thank you.
+California Governor’s Office of Emergency Services
+Fire &amp; Rescue Division</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>***ACTION NEEDED*** Your agency must submit a {!CurrentYear} Salary Survey</text>
+    </textTemplates>
+</Flow>

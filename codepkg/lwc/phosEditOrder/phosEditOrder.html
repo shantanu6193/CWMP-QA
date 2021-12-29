@@ -1,0 +1,66 @@
+<template>
+    <template if:true={showLoader}>
+         <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+            <div class="slds-grid slds-align_absolute-center slds-p-top_medium">
+                <div class="slds-col slds-size_8-of-12 border_div">
+                    <div class="slds-grid slds-wrap slds-p-around_large">
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium slds-p-top_large">
+                            <h1 class="form-header slds-text-heading--large">MEDICAL RESOURCE REQUEST FORM</h1>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <c-phos-edit-order-path list-of-status={stagesList} selected-status={currentStage}></c-phos-edit-order-path>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <template if:true={isOrderInfoStage}>
+                                <c-phos-edit-order-info data-custom="innerComponent" record={record} community-user={communityUser}></c-phos-edit-order-info>
+                            </template>
+
+                            <template if:true={isOrderRequesterInfoStage}>
+                                <c-phos-edit-order-requester-info data-custom="innerComponent" record={record}></c-phos-edit-order-requester-info>
+                            </template>
+                            
+                            <template if:true={isOrderProductsStage}>
+                                <c-phos-edit-order-products data-custom="innerComponent" record={record} ></c-phos-edit-order-products>
+                                <!--orderItems={orderItems} orderRec={orderRec} productsMap={productsMap}-->
+                            </template>
+
+                            <template if:true={isOrderDescriptionStage}>
+                                <c-phos-edit-order-description data-custom="innerComponent" record ={record}></c-phos-edit-order-description>
+                            </template>
+
+                           <template if:true={isOrderPreviewStage}>
+                                <c-phos-edit-order-preview data-custom="innerComponent" record={record}></c-phos-edit-order-preview>
+                            </template>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                    <template if:false= {isOrderInfoStage} >
+                                        <span class="">
+                                            <button onclick={redirectToPrevious} class="slds-button slds-button_brand slds-float--left">Previous</button>
+                                        </span>
+                                    </template>
+                                    <template if:false= {isOrderPreviewStage}>
+                                        <div class ="slds-float--right">
+                                            <span class="slds-p-right_large">
+                                                <button onclick={quickSave} class="slds-button slds-button_brand">Quick Save</button>
+                                            </span>
+
+                                            <span class="">
+                                                <button onclick={redirectToNext} class="slds-button slds-button_brand">Next</button>
+                                            </span>
+                                        </div>
+                                    </template>
+                                    <template if:true= {isOrderPreviewStage}>
+                                        <span class="">
+                                            <button onclick={submit} class="slds-button slds-button_brand slds-float--right">Submit</button>
+                                        </span>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </template>
+</template>

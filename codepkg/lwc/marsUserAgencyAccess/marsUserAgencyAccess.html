@@ -1,0 +1,215 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-21-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   03-19-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <template if:false={isCalledFromAura}>
+    <div class="slds-clearfix">
+        <div class="slds-float_right">
+            <lightning-button aura:id="RequestNewAgencyAccess" variant="brand" label="Request New Agency Access" title="Request New Agency Access" onclick={handleAgencyRequest} class="slds-m-left_x-small"></lightning-button>
+        </div>
+    </div>
+
+    <lightning-tabset active-tab-value="approved">
+        <lightning-tab label="Access Approved Agencies" value="approved">
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows="true" class="darken">
+                    <template for:each={approvedAgencies} for:item='agency'>
+                        <lightning-layout-item key={agency.agencyId} size="4" padding="around-small">
+                            <lightning-card title={agency.agencyName} variant="Narrow" icon-name="standard:account">
+                                <table class="slds-align_absolute-center">
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">Agency Name</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">
+                                            <a href="#" title={agency.agencyName} data-id={agency.agencyId} data-status={agency.approvalStatus} key={agency.agencyId} onclick={handleAgencyOnClick} >
+                                                <span>{agency.agencyName}</span>
+                                              </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">MACS ID</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.agencyMACSId}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">Chief Name</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.chiefName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">User Access Level</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.userAccessLevel}</td>
+                                    </tr>
+                                    <!--<tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">City</th>
+                                        <td  class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.city}</td>
+                                    </tr>-->
+                                </table>
+                                <!-- <lightning-badge label={agency.userAccessLevel}></lightning-badge>
+                                <lightning-button variant="brand" label="Update Access Level" title="Update Access Level" onclick={handleUpdateAgencyRequest}  data-myvalue={agency.agencyId}  data-agenvalue={agency.userAccessLevel} class="slds-m-left_x-small"></lightning-button> -->
+                                <div slot="footer">
+                                    <a href="#" class="slds-float_left" label="Update Access Level" title="Update Access Level" onclick={handleUpdateAgencyRequest}  data-myvalue={agency.agencyId}  data-agenvalue={agency.userAccessLevel}>
+                                        <span>Update Level Access</span>
+                                    </a>
+                                    <lightning-button variant="brand" label="Access Agency" title="Access Agency" data-id={agency.agencyId} data-status={agency.approvalStatus} key={agency.agencyId} onclick={handleAgencyOnClick} class="slds-m-left_x-small"></lightning-button>
+                                </div>
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>        
+        </lightning-tab>
+        <lightning-tab label="Pending Approval" value="pending">
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <lightning-layout multiple-rows="true" class="darken">
+                    <template for:each={pendingAgencies} for:item='agency'>
+                        <lightning-layout-item key={agency.agencyId} size="4" padding="around-small">
+                            <lightning-card title={agency.agencyName} variant="Narrow" icon-name="standard:account">
+                                <table class="slds-align_absolute-center">
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">Agency Name</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">
+                                            <a href="#" title={agency.agencyName} data-id={agency.agencyId} data-status={agency.approvalStatus} key={agency.agencyId} onclick={handleAgencyOnClick} >
+                                                <span>{agency.agencyName}</span>
+                                              </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">MACS ID</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.agencyMACSId}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">Chief Name</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.chiefName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="slds-p-right_large slds-p-bottom_small Description">User Access Level</th>
+                                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{agency.userAccessLevel}</td>
+                                    </tr>
+                                </table>
+                                <div slot="footer">
+                                    <lightning-badge label={agency.approvalStatus}></lightning-badge>
+                                </div>
+                            </lightning-card>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </div>
+        </lightning-tab>
+    </lightning-tabset>
+</template>
+  
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium">Request Access for New Agency</h3>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c-lookup
+                        data-custom="lookup"
+                        label="Fire Agency"
+                        data-lookup="Fire_Agency__c"
+                        onsearch={handleFireAgencySearch}
+                        onselectionchange={handleFireAgencyChange}
+                        placeholder="Search Fire Agency"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadLookupDataOnLoad}
+                        local-search = {loadLookupDataOnLoad}
+                        scroll-after-n-items = "10"
+                        errors={fireagencyRequired}
+                        required>
+                    </c-lookup>   
+                    <table>
+                        <tr>
+                            <td>
+                                <lightning-card  variant="Narrow"  title="Primary Access">
+                                    <p class="slds-p-horizontal_small">Primary Access is for personnel responsible for the agency's reimbursement including submittal of rates.</p>
+                                </lightning-card>
+                            </td>
+                            <td>
+                                <lightning-card  variant="Narrow"  title="Secondary Access">
+                                    <p class="slds-p-horizontal_small">Secondary Access is for responding personnel that submit F-42s and travel only.</p>
+                                </lightning-card>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+              
+                <footer class="slds-modal__footer"> 
+                    <button class="slds-button slds-button_brand" name="Primary" onclick={submitDetails} title="Submit for Primary Access Access" disabled={buttonDisabled}>Request Primary Access</button>
+                    <button class="slds-button slds-button_brand" name="Secondary" onclick={submitDetails} title="Submit for Secondary Access Access" disabled={buttonDisabled}>Request Secondary Access</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isUpdateAccessToLevel1ModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeUpdateAccessToLevel1Modal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-03" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+                </header>
+                <div class="slds-modal__content slds-p-around_small">
+                    <lightning-card  variant="Narrow"  title="Primary Access">
+                        <p class="slds-p-horizontal_small">Primary Access is for personnel responsible for the agency's reimbursement including submittal of rates.</p>
+                        <p class="slds-p-horizontal_small">Do you wish to Proceed? </p>
+                    </lightning-card>
+                </div>
+              
+                <footer class="slds-modal__footer"> 
+                    <button class="slds-button slds-button_brand" name="Primary" onclick={submitChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <template if:true={isUpdateAccessToLevel2ModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeUpdateAccessToLevel2Modal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-04" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+                </header>
+                <div class="slds-modal__content slds-p-around_small">
+                    <lightning-card  variant="Narrow"  title="Secondary Access">
+                        <p class="slds-p-horizontal_small">Secondary Access is for responding personnel that submit F-42s and travel only.</p>
+                        <p class="slds-p-horizontal_small">Do you wish to Proceed?</p>
+                    </lightning-card>
+                </div>
+                <footer class="slds-modal__footer"> 
+                    <button class="slds-button slds-button_brand" name="Secondary" onclick={submitChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>

@@ -1,0 +1,5 @@
+<design:component > 
+    <design:attribute name="module" label="Module Name" description="Provide module name for which you want to use Template" />
+    <design:attribute name="filter" label="filter Criteria" description="Provide filter Criteria for which you want to use Template" />
+    <design:attribute name="filter2" label="filter Criteria 2" description="Provide second filter Criteria for which you want to use Template" />
+</design:component>

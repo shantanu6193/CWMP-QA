@@ -1,0 +1,76 @@
+/* .th {
+    background: #375283!important;
+} */
+/*.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}*/
+.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}
+
+/*
+.container{
+    height: 100vh;
+    padding: 50px;
+}
+.form-header{
+    background: rgb(162, 193, 242);
+    width: 100%;
+}
+.form-body{
+    background: white;
+    width: 100%;
+}
+.slds-card{
+    width: 100%;
+    border: 1px solid;
+}
+.slds-card__header{
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    background:rgb(162, 193, 242);
+}
+
+.slds-card__body{
+    background: white;
+}*/
+table, th, td {
+  border: 1px solid rgb(221, 219, 218);
+  border-collapse: collapse;
+  text-align: center;
+}
+th {
+    /*background:rgb(162, 193, 242) !important;*/
+    /*background-image: linear-gradient(#DAE8FC,#7EA6E0) !important;*/
+    background: #375283 !important;
+}
+.slds-card__header{
+    border-bottom: 1px solid;
+}
+.table-heading {
+    color: white;
+    font-size: 15px;
+    padding: 6px;
+}
+/*tr:nth-child(odd) {
+    /*background-color: #f2f2f2;*/
+    /*background-image: linear-gradient(#ffffff,#cacaca)!important;
+
+}
+tr:nth-child(even) {
+   background-color: white;
+}*/
+
+.fixed-width{
+    min-width:255px;
+}
+/*.slds-form-element__control .slds-radio {
+    display: inline-block;
+    background-color:red;
+}*/
+/*.slds-modal__container {
+    max-width: 10rem !important;
+    width: auto !important;
+}*/

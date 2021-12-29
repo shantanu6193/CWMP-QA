@@ -1,0 +1,14 @@
+.slds-modal__content {
+    overflow:initial;
+}
+
+.slds-modal__container {
+    max-width: 80rem !important;
+    width: 80% !important;
+    
+}
+
+.email_modal {
+    height: 450px;
+    overflow-y: scroll !important;
+}

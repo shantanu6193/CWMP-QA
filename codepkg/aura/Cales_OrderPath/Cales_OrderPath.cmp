@@ -1,0 +1,10 @@
+<!--
+ - Created by Pankaj on 01-04-2020.
+ -->
+
+<aura:component description="Cales_OrderPath" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes">
+    <lightning:path aura:id="path" recordId="{!v.recordId}"
+                    variant="linear"
+                    hideUpdateButton="true"
+                    onselect="{!c.handleSelect}"/>
+</aura:component>

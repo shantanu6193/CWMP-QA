@@ -1,0 +1,346 @@
+<template>
+<!--    <div class="main-content">
+        <div class="slds-grid container slds-wrap slds-grid_align-center">
+            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-around_medium">
+                <div class="slds-grid slds-grid_align-center container slds-wrap slds-gutters_direct-xx-small">
+                    <template for:each={applicationList} for:item="application" for:index="index">
+                        <div key={application} class="slds-col slds-align_absolute-center" >
+                            <div class="app-selector-div">
+                                <div class="img-div slds-align_absolute-center" data-index={index} onmouseout={onBlur} onmouseover={onFocus}>
+                                    <img if:true={application.showLogo} src={application.Logo_Name__c} />
+                                    <span  class="slds-text-title_bold slds-text-heading_small slds-p-around--large slds-text-align--center" if:false= {application.showLogo}>{application.Description__c}</span>
+                                    <span>{application.Description__c}</span>
+                                </div>
+                                <div class="img-text-div slds-text-align--center">
+                                    <div>
+                                        <h2>{application.Display_Name__c}</h2>
+                                    </div>
+                                    <div>
+                                        <div if:true={application.login}>
+                                            <a class="slds-text-link_reset" data-index={index} onclick={gotoApp}>Go To App</a>
+                                        </div>
+                                        <div if:false= {application.login}>
+                                            <a class="slds-text-link_reset" data-index={index} onclick={registerForApp}>Register for App</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>--> 
+
+     <template if:true={isModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium">Request for {selectedApp} App</h3>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <!-- <div class="slds-modal__content slds-p-around_small"> -->
+                    <!-- <table class="slds-align_absolute-center">
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description ">FirstName</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.FirstName}</td>
+                        </tr>
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description ">LastName</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.LastName}</td>
+                        </tr>
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description ">Email</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Email}</td>
+                        </tr>
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description">Phone</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Phone}</td>
+                        </tr>
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description ">Entity</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Entity_Type__c}</td>
+                        </tr>
+                        <tr>
+                            <th class="slds-p-right_large slds-p-bottom_small Description ">Organization</th>
+                            <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Name}</td>
+                        </tr>
+                    </table>
+                    <div class="slds-p-around_medium Description slds-p-horizontal_medium">Request will be sent to {contactRecord.Account.Name} county users, in case of any issues please reach out to them.</div>                       	
+                </div>--> 
+                <template if:true={isPHOSApp}>
+                    <c-community-app-p-h-o-s-registration app-id={selectedAppId} ></c-community-app-p-h-o-s-registration>
+                </template>
+                <template if:true={isHMAApp}>
+                    <c-community-app-h-m-a-registration ></c-community-app-h-m-a-registration>
+                </template>
+                <template if:true={isMARSApp}>
+                    <c-community-app-m-a-r-s-registration ></c-community-app-m-a-r-s-registration>
+                </template>
+                <template if:true={isHHApp}>
+                    <c-community-app-h-h-registration ></c-community-app-h-h-registration>
+                </template>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+    <div class="slds-grid slds-wrap slds-p-around--large">
+        <div class="slds col slds-size_12-of-12">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-align_absolute-center">
+                    <h1 class="header slds-text-align_center">Welcome to the Cal OES Community Portal!</h1>
+                </div>
+                <div class="slds-col slds-p-top_large slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-align_absolute-center">
+                    <p class="sub-header slds-text-align--center">
+                        Please select the application from options below. If you do not have access, you will be prompted to provide additional information and you will receive an email once your registration request has been reviewed and adjudicated.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_12-of-12 slds-p-top_large ">
+            <div class="slds-grid slds-wrap slds-align-center">
+                <template for:each={applicationList} for:item="application" for:index="index">
+                    <div key={application} class="slds-col slds-size_12-of-12 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-top_large split-screen">
+                        <div class="container appbox slds-p-around_large">
+                            <div class="main-content slds-p-top_large">
+                                <img src={application.Logo_Name__c} alt="appLogo" class="appLogo slds-align_absolute-center">
+                                <h3 class="slds-text-align_center slds-p-top_large appName">{application.Display_Name__c}</h3>
+                                <p class="slds-text-align_center slds-p-top_large Description">
+                                    <lightning-formatted-rich-text value={application.Description__c}></lightning-formatted-rich-text>
+                                </p>
+                            </div>
+                            <div class="hover-content slds-size_10-of-12">
+                                <h3 class="slds-text-align_center slds-p-top_large appName">{application.Display_Name__c}</h3>
+                                <p class="slds-text-align_center slds-p-top_large Description">
+                                    <lightning-formatted-rich-text value={application.Description__c}></lightning-formatted-rich-text>
+                                </p>
+                                <div class="slds-p-top_large">
+                                    <div if:true={application.login}>
+                                        <button class="slds-button slds-button_brand Appbutton" data-index={index} onclick={gotoApp}>Go To App</button>
+                                    </div>
+                                    <div if:false= {application.login}>
+                                        <template if:false= {application.sentForApproval}>
+                                            <button class="slds-button slds-button_brand Appbutton" data-index={index} onclick={registerForApp}>Register for App</button>
+                                        </template>
+                                        <template if:true= {application.sentForApproval}>
+                                            <lightning-button variant="brand" label="Pending for Approval" disabled></lightning-button>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mobile-content slds-align_absolute-center slds-p-around_large slds-text-align--center">
+                                <div if:true={application.login}>
+                                    <button class="slds-button slds-button_brand" data-index={index} onclick={gotoApp}>Go To App</button>
+                                </div>
+                                <div if:false= {application.login}>
+                                    <template if:false= {application.sentForApproval}>
+                                        <button class="slds-button slds-button_brand" data-index={index} onclick={registerForApp}>Register for App</button>
+                                    </template>
+                                    <template if:true= {application.sentForApproval}>
+                                            <lightning-button variant="brand" label="Pending for Approval" disabled></lightning-button>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+    <!--<div class="slds-col slds-size_12-of-12 slds-p-top_large">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-p-bottom_large">
+                <h3 class="announcement-header">ANNOUNCEMENTS</h3>
+            </div>
+            <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-p-around_large announcement-box">
+                <div class="slds-grid slds-wrap slds-align_absolute-center">
+                    <div class="slds-col slds-large-size_8-of-12 slds-size_10-of-12">
+                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+                            <template for:each={announcementList} for:item="announcement">
+                                <div key={announcement}>
+                                    <div class="slds-col slds-size_12-of-12">                                                    
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_2_of-12 logo-section slds-p-top_medium slds-p-bottom_small">
+                                                <img src={announcement.Image__c} class="announcement-logo">
+                                            </div>
+                                            <div class="slds-col slds-size_10-of-12 slds-p-left_large slds-p-top_medium announcement-content">
+                                                <p class="announcement-para-header">{announcement.Title__c}</p>
+                                                <p class="announcement-para-subheader">{announcement.Description__c}</p>
+                                            </div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+        &lt;!&ndash;        <div class="slds-col slds-large-size_8-of-12 slds-size_10-of-12 slds-p-top_medium slds-border_top slds-border_bottom">
+                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+                            <div class="slds-col slds-size_2_of-12 logo-section">
+                                <img src={cdphLogo} class="announcement-logo center">
+                            </div>
+                            <div class="slds-col slds-size_10-of-12  slds-p-left_large slds-p-top_large announcement-content">
+                                <p class="announcement-para-header">State Officials Announce Latest COVID-19 Facts</p>
+                                <p class="announcement-para-subheader">SACRAMENTO ? The California Department of Public Health today announced the most recent statistic...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_8-of-12 slds-size_10-of-12 slds-p-top_medium">
+                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+                            <div class="slds-col slds-size_2_of-12 logo-section">
+                                <img src={sealLogo} class="announcement-logo">
+                            </div>
+                            <div class="slds-col slds-size_10-of-12  slds-p-left_large slds-p-top_large announcement-content">
+                                <p class="announcement-para-header">State Officials Announce Latest COVID-19 Facts</p>
+                                <p class="announcement-para-subheader">SACRAMENTO ? The California Department of Public Health today announced the most recent statistic...</p>
+                            </div>
+                        </div>
+                    </div>&ndash;&gt;
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+        <div class="slds-grid slds-wrap popularContents">
+            <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-text-align_center slds-p-top_large slds-p-horizontal_large announcement-heading">
+                <h3 class="announcement-header">Quick Links to Popular Content</h3>
+            </div>
+            <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-small-size_12-of-12 slds-p-around_large slds-align_absolute-center announcement-body">
+                <div class="slds-grid slds-wrap slds-text-align--center">
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12  slds-p-top_large">
+                        <img src={grantsManagementLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Grants-Management" target="_blank" class="announcement-textsize">Grants Management</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={homelandSecurityLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/ICESite/Pages/Homeland-Security.aspx" target="_blank" class="announcement-textsize">Homeland Security</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={newsMedia} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/Cal-OES-Divisions/News-Media" target="_blank" class="announcement-textsize">News & Media</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={spanishiconLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/ICESite/Pages/Espanol.aspx" target="_blank" class="announcement-textsize"><lightning-formatted-text value="Recursos en espanol"></lightning-formatted-text></a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={PSCLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Public-Safety-Communications" target="_blank" class="announcement-textsize">Public Safety Communications</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={internshipLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/cal-oes-divisions/administrative-services/internships" target="_blank" class="announcement-textsize">Internship Programs</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={STACLogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/Cal-OES-Divisions/State-Threat-Assessment-Center" target="_blank" class="announcement-textsize">State Threat Assessment Center</a></p>
+                    </div>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                        <img src={CSTILogo} class="slds-p-bottom_medium announcment-image">
+                        <p class="slds-p-top_x-small link"><a href="https://www.caloes.ca.gov/Cal-OES-Divisions/California-Specialized-Training-Institute" target="_blank" class="announcement-textsize">California Specialized Training Institute</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-col  slds-align_absolute-center slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-p-horizontal_large slds-p-vertical_xx-large">
+        <div class="slds-grid slds-wrap slds-size_12-of-12">
+            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12">
+                <a href="https://www.gov.ca.gov/" target="_blank" class="slds-text-link_reset">   
+                    <div class="slds-text-align_center">
+                        <img src={governorLogo}  class="picture">
+                    </div>
+                    <div class="slds-p-top_medium">
+                        <h1 class="name slds-text-align--center">Gavin Newsom</h1>
+                        <p class="text-heading slds-text-align--center">Governor of California</p>
+                    </div>
+                </a>
+            </div>
+            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 space">
+                <a href="https://www.caloes.ca.gov/Pages/Executive-Team-Detail.aspx?itemID=4" target="_blank" class="slds-text-link_reset">
+                    <div class="slds-text-align_center">
+                        <img src={directorLogo} class="picture">
+                    </div>
+                    <div class="slds-p-top_medium">
+                        <h1 class="name slds-text-align--center">Mark S. Ghilarducci</h1>
+                        <p class="text-heading slds-text-align--center">Director, California Governor's Office of<br/>Emergency Services</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12  slds-p-around_large footer">
+        <div class="slds-grid slds-wrap slds-align_absolute-center">    
+            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-small-size_12-of-12 slds-size_12-of-12  slds-large-order_2 slds-medium-order_2">
+                <ul class="slds-text-align_right">
+                    <li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Privacy-Policy" target="_blank" class="footer-links slds-p-around_small">PRIVACY POLICY</a>
+                    </li>
+                    <li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Website-Conditions-of-Use" target="_blank" class="footer-links slds-p-around_small">WEBSITE CONDITIONS OF USE</a>
+                    </li>
+                    <li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/Legal-Affairs/Public-Records-Request" target="_blank" class=" footer-links slds-p-around_small">PUBLIC RECORDS REQUESTS</a>
+                    </li>
+                    <!--<li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/Cal-OES-Divisions/internal-audit-office/whistleblower" target="_blank" class="footer-links slds-p-around_small">WHISTLEBLOWER</a>
+                    </li>-->
+                    <li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/Documents/website-cert.pdf" target="_blank" class=" footer-links slds-p-around_small" >WEBSITE ACCESSIBILITY COMPLIANCE</a>
+                    </li>
+                    <li class="listcontainer">
+                        <a href="https://www.caloes.ca.gov/home/webmaster" target="_blank" class="footer-links slds-p-around_small">WEBMASTER</a>
+                    </li>
+                </ul>          
+            </div>
+            <div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-small-size_12-of-12 slds-size_12-of-12 slds-p-left_medium  alignment slds-large-order_1 slds-medium-order_1 footer-copyright">
+                <div class="slds-float_left copyright">Copyright 2020 State of California</div>
+            </div>
+        </div>
+    </div>
+    <template if:true={isNotifyModalOpen}>
+        <!-- Modal/Popup Box LWC starts here -->
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeNotifyModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-02" class="modal-header slds-hyphenate slds-p-horizontal_medium">ATTENTION</h3>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content slds-p-around_small" id="modal-content-id-2"> 
+                    <!--<p>ATTENTION</p>-->
+                    <p class="slds-p-bottom_x-small">You are accessing a State of California Government information system, which includes (1) this computer or device used to enable access to the government network, (2) this government network, (3) all computers or devices, virtual or otherwise, connected to this government network, and (4) all devices and storage media attached to this government network or to a computer or device on this government network. This information system is provided for State of California Government-authorized use only. Unauthorized or improper use or access of this system may result in disciplinary action, as well as civil and criminal penalties.</p>
+                    <p class="slds-p-bottom_x-small"> By using this information system, you understand and consent to the following:</p> 
+                    <ul class="slds-m-around_medium" style="list-style:disc">
+                            <li>You have no reasonable expectation of privacy when you use this information system. This includes any communications or data transiting, stored on, originated from, or directed to this information system.</li>
+                            <li>At any time, and for any lawful government purpose, the State of California may monitor, intercept, search and seize any communication or data transiting, stored on, originated from, or directed to or from this information system.</li>
+                            <li>The State of California may disclose or use any communications or data transiting, stored on, originated from, or directed to or from this information system for any lawful government purpose.</li>
+                            <li>You are NOT authorized to process classified or Law Enforcement Sensitive (LES) information on this information system.</li>
+                    </ul>
+                </div>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_destructive" onclick={rejectHandle}>Reject</button>
+                    <button class="slds-button slds-button_brand" onclick={acceptHandle}>Accept</button>
+                </footer>
+            </div>
+        </section>
+       <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,125 @@
+<!--
+ - Created by Ricky on 01-09-2021.
+ -->
+
+<!-- HH Application Stage And Status Update -->
+<template>
+    <template if:true={showComponent}>
+        <template if:true={showLoader}>
+            <lightning-spinner  variant="brand" size="large"></lightning-spinner>
+        </template>
+        <template if:false={showLoader}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12">
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>{label.HH_StageAndStatusUpdate_ComponentTitle}</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner slds-size_12-of-12">
+                            <div class="slds-grid slds-wrap slds-gutters_direct-small slds-p-vertical_small">
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                    <span>
+                                        <template if:true={allowedStagesList}>
+                                            <lightning-combobox
+                                                    name={label.HH_StageAndStatusUpdate_Stage}
+                                                    label={label.HH_StageAndStatusUpdate_Stage}
+                                                    title={title}
+                                                    value={recordLocal.Stage__c}
+                                                    options={allowedStagesList}
+                                                    data-field="Stage__c"
+                                                    class="input"
+                                                    onchange={stageChanged}
+                                                    onmouseover={getStageTitle}
+                                                    required>
+                                            </lightning-combobox>
+                                        </template>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                    <span>
+                                        <template if:true={statusFieldVisibility}>
+                                            <lightning-combobox
+                                                    name={label.HH_StageAndStatusUpdate_StageReason}
+                                                    label={label.HH_StageAndStatusUpdate_StageReason}
+                                                    title={title}
+                                                    value={recordLocal.Status__c}
+                                                    options={statusOptions}
+                                                    data-field="Status__c"
+                                                    onchange={statusChanged}
+                                                    onmouseover={getStageReasonTitle}
+                                                    class="input"
+                                                    required>
+                                            </lightning-combobox>
+                                        </template>
+                                    </span>
+                                    <span>
+                                        <template if:true={showRejectionReasonPicklistField}>
+                                            <template if:true={rejectionReasonList.data}>
+                                                <lightning-combobox
+                                                        name={label.HH_Application_ReasonForRejectedClosed}
+                                                        label={label.HH_Application_ReasonForRejectedClosed}
+                                                        title={title}
+                                                        value={recordLocal.Reasons_for_Rejected_Closed__c}
+                                                        options={rejectionReasonList.data.values}
+                                                        data-field="Reasons_for_Rejected_Closed__c"
+                                                        onchange={fieldChanged}
+                                                        onmouseover={getReasonForRejectionTitle}
+                                                        class="input"
+                                                        required>
+                                                </lightning-combobox>
+                                            </template>
+                                        </template>
+                                    </span>
+                                </div>
+                            </div>
+                            <template if:true={showRejectionReasonTextField}>
+                                <div class="slds-grid slds-gutters_direct-small slds-p-vertical_small">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 reasonFieldTextAreaHeight">
+                                        <lightning-textarea type="text"
+                                                            label={label.HH_Application_RejectionReason}
+                                                            value={rejectionReason}
+                                                            onchange={rejectionReasonValueChanged}
+                                                            required
+                                                            class="input"
+                                                            max-length="1000">
+                                        </lightning-textarea>
+                                        <!-- <span>{count}&nbsp;{label.HH_EN_characters_remaining}</span> -->
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={showWithdrawalReasonField}>
+                                <div class="slds-grid slds-gutters_direct-small slds-p-vertical_small">
+                                    <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 reasonFieldTextAreaHeight">
+                                        <lightning-textarea type="text"
+                                                            label={label.HH_Application_ReasonToWithdraw}
+                                                            value={recordLocal.Reason_To_Withdraw__c}
+                                                            onchange={reasonToWithdrawFieldChanged}
+                                                            required
+                                                            data-field="Reason_To_Withdraw__c"
+                                                            class="input"
+                                                            max-length="1000">
+                                        </lightning-textarea>
+                                        <!-- <span>{count}&nbsp;{label.HH_EN_characters_remaining}</span> -->
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                        <footer class="slds-card__footer">
+                            <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_StageAndStatusUpdate_Component_SaveButton}</button>
+                           
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </template>
+        <div class="slds-p-top_medium" if:true={showAdditionalInformation}>
+            <c-hh-update-tax-parcel-and-floodplain data-custom="innerComponent" record-id={recordId}></c-hh-update-tax-parcel-and-floodplain>
+        </div>
+    </template>
+</template>

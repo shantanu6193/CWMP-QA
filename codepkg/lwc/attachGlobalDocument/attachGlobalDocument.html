@@ -1,0 +1,48 @@
+<!--
+ - Created by StackNexus Admin on 28-05-2021.
+ -->
+
+<!-- Attach Global Document -->
+<template>
+    <div class="slds-p-around_medium" style="background-color:white ">
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-scrollable">
+                <div class="slds-col slds-size_12-of-12 ">
+                    <h1 style="text-align:center;font-size:1cm" class="slds-p-bottom_large"> Clone Document </h1>
+<!--                    <template if:true={isDocumentFound}>-->
+                    <table class="slds-table slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                        <thead>
+                        <tr class="slds-line-height_reset ">
+                            <template for:each={cloneDocumentTableColumns} for:item="col" for:index="index">
+                                <th class="" scope="col" key={getTableColumnKey} data-id={col.label}>
+                                    <div class="slds-truncate table-heading" title="Document" style="display:flex; justify-content:center;">{col.label}
+                                    </div>
+                                </th>
+                            </template>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template for:each={sourceDocumentList} for:item="doc" for:index="index">
+                            <tr class="slds-hint-parent slds-p-around_medium" key={doc.documentRecord.Id}>
+                                <template for:each={cloneDocumentTableColumns} for:item="col" for:index="index">
+                                    <td key={getTableColumnKey} class="">
+                                        <c-attach-global-document-cell onselectedsourcedocumentrecord={handleRadioButtonChange} columns={col} record-values={doc}></c-attach-global-document-cell>
+                                    </td>
+                                </template>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+<!--                    </template>-->
+                    <br/>
+                    <footer class="slds-card__footer slds-p-around_medium">
+                        <template if:true={isDocumentFound}>
+                            <button class="slds-button slds-button_brand" onclick={onSelectSecondaryDocument} >Done</button>
+                        </template>
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

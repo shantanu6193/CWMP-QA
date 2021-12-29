@@ -1,0 +1,861 @@
+<template>
+
+   <div class="slds-box">
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>1-4.AGENCY/INCIDENT</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table1">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              1.AGENCY DESIGNATOR
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.agency.Mars_Agency_Designator__c}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              2.STRIKE TEAM/TASK FORCE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.strikeTeam}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              3.INCIDENT ORDER NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.incident.Order_No__c}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              4.INCIDENT REQUEST NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.incidentRequestNumber}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>5.DISPATCH INFORMATION</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+               id="Table2">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              INCIDENT NAME
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.incident.Name}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              REPORTING LOCATION
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.DI_reportingLocation}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              MOBILIZATION CENTER / PREPOSITION
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.DI_mobilizationCenter}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              COMMITTED TO INCIDENT
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        <lightning-formatted-date-time value={f42Entry.DI_committedtoIncident} year="numeric" month="numeric" time-zone="UTC" day="numeric" ></lightning-formatted-date-time>
+                        &nbsp;{f42Entry.DI_committedtoIncidentTime}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              RETURN FROM INCIDENT
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        <lightning-formatted-date-time value={f42Entry.DI_returnfromIncident} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                        &nbsp; {f42Entry.DI_returnfromIncidentTime}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              REDISPATCHED
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        <lightning-formatted-date-time value={f42Entry.DI_reDispatched} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                        &nbsp; {f42Entry.DI_reDispatchedTime}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+   <br/>
+   <div class="slds-box">
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>6. DISPATCHED FROM</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table3">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              OLD INCIDENT NAME
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.dispatchFromIncident.Name}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              OLD INCIDENT ORDER NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.dispatchFromIncident.Order_No__c}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              OLD INCIDENT REQUEST NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.DF_incidentRequestNumber}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              END DATE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        <lightning-formatted-date-time value={f42Entry.DF_endDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>7. REDISPATCHED INFORMATION (START A NEW F-42 IF REDISPATCHED)</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+               id="Table4">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              NEW INCIDENT NAME
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.dispatchToIncident.Name}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              NEW INCIDENT ORDER NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.dispatchToIncident.Order_No__c}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              NEW INCIDENT REQUEST NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.DT_incidentRequestNumber}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              START DATE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        <lightning-formatted-date-time value={f42Entry.DT_startDate} year="numeric" month="numeric" day="numeric" time-zone="UTC"></lightning-formatted-date-time>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+   <div class="slds-box">
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>8.OVERHEAD</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table23">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              OVERHEAD INFORMATION
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.OH_overheadType}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                             ICS TITLE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.OH_icsTitle.Name} {f42Entry.OH_otherICStitle}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>9.SUPPORT VEHICLE INFORMATION</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table24">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label=" VEHICLE OWNERSHIP" scope="row">
+                           <div class="slds-truncate" >
+                             VEHICLE OWNERSHIP
+                           </div>
+                     </td>
+                     <td data-label="ownership" scope="row" >
+                        {f42Entry.SV_vehicleOwnership}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="License" scope="row">
+                           <div class="slds-truncate" >
+                             LICENSE NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.SV_licenseplateNumber}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                             TYPE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.SV_vehicleType}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+   <div class="slds-box">
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>10.PRIVATELY OWNED VEHICLE ONLY</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table33">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="odoStart" scope="row">
+                           <div class="slds-truncate" >
+                              BEGINNING ODOMETER
+                           </div>
+                     </td>
+                     <td data-label="odostart" scope="row" >
+                        {f42Entry.PO_odometerStart}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              ENDING ODOMETER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.PO_odometerEnd}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              TOTAL MILES
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.PO_totalMiles}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>11.EQUIPMENT RESOURCE INFORMATION</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table34">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="APPARATUS" scope="row">
+                           <div class="slds-truncate" >
+                              APPARATUS
+                           </div>
+                     </td>
+                     <td data-label="ownership" scope="row" >
+                        {f42Entry.ER_apparatus}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="License" scope="row">
+                           <div class="slds-truncate" >
+                             TYPE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_type}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                              UNIT NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_unitNumber}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                              LICENSE NUMBER or VIN
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_licenseNumber}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                              CDF/OES VEHICLE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_cdfoesVehicle}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                              FEMA CODE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_femaCode}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="type" scope="row">
+                           <div class="slds-truncate" >
+                              SPECIAL EQUIPMENT
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.ER_specialEquipment.Special_Equipment_Type__c}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+   <h1><b>12. PERSONNEL INFORMATION</b></h1>
+   <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table399">
+            <tbody>
+               <tr class="slds-hint-parent" >
+                  <td data-label="Number of Personnel on APPARATUS" scope="row">
+                        <div class="slds-truncate" >
+                           NUMBER OF PERSONNEL ON APPARATUS
+                        </div>
+                  </td>
+                  <td data-label="personnel on apparatus" scope="row" >
+                     {f42Entry.PI_numberofPersonnel}
+                  </td>
+               </tr>
+               <tr class="slds-hint-parent" >
+                  <td data-label="DOCUMENTATION ONLY" scope="row">
+                        <div class="slds-truncate" >
+                          DOCUMENTATION ONLY
+                        </div>
+                  </td>
+                  <td data-label="Documentation only" scope="row" >
+                     {f42Entry.PI_documentationOnly}
+                  </td>
+               </tr>
+            </tbody>
+   </table>
+   <div class="slds-scrollable_x slds-box" >
+      <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-bottom_medium">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Name">Name (Last, First) </div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="MACS ID">MACS ID</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Rank">Rank or Job Title</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="SSN">Last 4 SSN#</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Start">Start</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">End</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">CDF</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Base">Base</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">P-T-P</div>
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <template for:each={f42Entry.personnelInfoList} for:item="record" for:index="index">
+               <tr key={record} data-id={index}>
+                  <td role="gridcell" width="120">
+                     <lightning-formatted-text value={record.fullName}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="15">
+                     <lightning-formatted-text value={record.MACSID}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="140">
+                     <lightning-formatted-text value={record.jobTitle}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="20">
+                     <lightning-formatted-text value={record.ssn}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="360">
+                     <lightning-formatted-date-time value={record.startDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                     &nbsp;<lightning-formatted-text value={record.startTime}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="360">
+                     <lightning-formatted-date-time value={record.endDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                     &nbsp;<lightning-formatted-text value={record.endTime}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="10">
+                     <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                        data-name="cdf" name="cdf" value={record.cdf} checked={record.cdf} disabled>
+                     </lightning-input>
+                  </td>
+                  <td role="gridcell" width="10">
+                     <lightning-input type="checkbox" data-field="baseRate" data-index={index}
+                        data-name="baseRate" name="baseRate" value={record.baseRate} checked={record.baseRate} disabled>
+                     </lightning-input>
+                  </td>
+                  <td role="gridcell" width="10">
+                     <lightning-input type="checkbox" data-field="p2p" data-index={index}
+                        data-name="p2p" name="p2p" value={record.p2p} checked={record.p2p} disabled>
+                     </lightning-input>
+                  </td>
+               </tr>
+            </template>
+         </tbody>
+      </table>
+   </div>
+   <br/>
+   <h1><b>12. OTHER PERSONNEL INFO</b></h1>
+   <div class="slds-scrollable_x slds-box">
+      <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-bottom_medium">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Name">Name (Last, First) </div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="MACS ID">MACS ID</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Rank">Rank or Job Title</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="SSN">Last 4 SSN#</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Start">Start</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">End</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">CDF</div>
+               </th>
+               <!--th class="" scope="col">
+                  <div class="slds-truncate" title="Base">Base</div>
+               </th-->
+            </tr>
+         </thead>
+         <tbody>
+            <template for:each={f42Entry.otherpersonnelInfoList} for:item="record" for:index="index">
+               <tr key={record} data-id={index}>
+                  <td role="gridcell" width="120">
+                     <lightning-formatted-text value={record.fullName}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="15">
+                     <lightning-formatted-text value={record.MACSID}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="140">
+                     <lightning-formatted-text value={record.jobTitle}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="20">
+                     <lightning-formatted-text value={record.ssn}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="360">
+                     <lightning-formatted-date-time value={record.startDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                     &nbsp;<lightning-formatted-text value={record.startTime}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="360">
+                     <lightning-formatted-date-time value={record.endDate} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                     &nbsp;<lightning-formatted-text value={record.endTime}></lightning-formatted-text>
+                  </td>
+                  <td role="gridcell" width="10">
+                     <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                        data-name="cdf" name="cdf" value={record.cdf} checked={record.cdf} disabled>
+                     </lightning-input>
+                  </td>
+                  <!--td role="gridcell" width="10">
+                     <lightning-input type="checkbox" data-field="cdf" data-index={index}
+                        data-name="baseRate" name="baseRate" value={record.baseRate} checked={record.baseRate} disabled>
+                     </lightning-input>
+                  </td-->
+               </tr>
+            </template>
+         </tbody>
+      </table>
+   </div>
+   <br/>
+   <h1><b>13. ACTUAL HOURS</b></h1>
+   <div class="slds-scrollable slds-box">
+      <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Date">Date</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Start">Start</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="End">End</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Hours">Hours</div>
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <template for:each={f42Entry.actualHoursList} for:item="record" for:index="index">
+               <tr key={record} data-id={index}>
+                  <td role="gridcell" width="35">
+                     <lightning-formatted-date-time value={record.dayOfHours} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                  </td>
+                  <td role="gridcell" width="15">
+                     {record.startTime}
+                  </td>
+                  <td role="gridcell" width="15">
+                     {record.endTime}
+                  </td>
+                  <td role="gridcell" width="15">
+                     {record.totalHours}
+                  </td>
+               </tr>
+            </template>
+            <tr>
+               <td role="gridcell" width="35"></td>
+               <td role="gridcell" width="15"></td>
+               <td role="gridcell" width="15"><b>Total hours</b></td>
+               <td role="gridcell" width="15">{actualHoursTotal}</td>
+               <td role="gridcell" width="15"></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   <br/>
+   <h1><b>14.Comments (Equipment Breakdowns, Personnel Change, Loss/Damage, etc.)</b></h1>
+   <div class="slds-scrollable slds-box">
+      <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Date">Date</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Time">Time</div>
+               </th>
+               <th class="" scope="col">
+                  <div class="slds-truncate" title="Comment">Comment</div>
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <template for:each={f42Entry.comments} for:item="record" for:index="index">
+               <tr key={record} data-id={index}>
+                  <td role="gridcell" width="60">
+                     <lightning-formatted-date-time value={record.dateofComment} year="numeric" month="numeric" day="numeric" time-zone="UTC" ></lightning-formatted-date-time>
+                  </td>
+                  <td role="gridcell" width="20">
+                     {record.timeofComment}
+                  </td>
+                  <td role="gridcell" width="240">
+                     {record.comment}
+                  </td>
+               </tr>
+            </template>
+         </tbody>
+      </table>
+   </div>
+   <br/>
+   <div class="slds-box">
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>15-16. SUPPLY NUMBER</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+            id="Table13">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              15. LOSS/DAMAGE CLAIM
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.LD_claim}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              16. SUPPLY NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.SN_supplyNumber}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+         <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 slds-p-bottom_medium">
+            <b><h1>17. RESPONDING AGENCY INFORMATION</h1></b>
+            <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+               id="Table14">
+            <thead>
+                  <tr class="slds-line-height_reset">
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Field</div>
+                     </th>
+                     <th class="" scope="col">
+                        <div class="slds-cell-wrap" title="Classification Title">Value</div>
+                     </th>
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                             AGENCY NAME
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.RA_agencyName}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              YOUR NAME
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.RA_yourName}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent">
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              YOUR PHONE NUMBER
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.RA_yourPhone}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              YOUR TITLE
+                           </div>
+                     </td>
+                     <td data-label="Status" scope="row" >
+                        {f42Entry.RA_yourTitle}
+                     </td>
+                  </tr>
+                  <tr class="slds-hint-parent" >
+                     <td data-label="Agency Name" scope="row">
+                           <div class="slds-truncate" >
+                              Signature of Responding Agency Personnel
+                           </div>
+                     </td>
+                     <td data-label="Signature" scope="row" >
+                        <img src={f42Entry.RA_signURL} />
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</template>

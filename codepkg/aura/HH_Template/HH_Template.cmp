@@ -1,0 +1,150 @@
+<!--
+ - Created by Pankaj on 11-03-2021.
+ -->
+
+
+ <aura:component description="HH_Template" implements="forceCommunity:themeLayout" controller="HH_TemplateCtrl" access="global">
+    <aura:attribute name="navBar" type="Aura.Component[]"/>
+    <aura:attribute name="profileMenu" type="Aura.Component[]"/>
+    <aura:attribute name="showSearch" type="Boolean" default="true" />
+    <aura:attribute name="showNavBar" type="Boolean" default="true" />
+    <aura:attribute name="showProfileMenu" type="Boolean" default="true" />
+    <aura:attribute name="headerContainer" type="Aura.Component[]" required="false" />
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="isDoneRendering" type="Boolean" default="false"/>
+    <aura:attribute name="showUserRegistration" type="Boolean" default="false" /> 
+
+    <aura:attribute name="hhCommunityRelativeUrl" type="String" default="" /> 
+    <aura:attribute name="userName" type="String" default="" /> 
+    <aura:attribute name="isNotHomeOwner" type="String" default="false" /> 
+    <aura:attribute name="submitApplicationUrl" type="String" default="" /> 
+    <aura:attribute name="applicationsUrl" type="String" default="" /> 
+    <aura:attribute name="homeUrl" type="String" default="" /> 
+    <aura:attribute name="viewReportsUrl" type="String" default="" /> 
+    <aura:attribute name="viewDashboardsUrl" type="String" default="" /> 
+
+    <div class="slds-container" id="page-container" role="main">
+        <div id="content-wrap" class="content-wrap" aura:id="content-wrap">
+            <div class="slds-grid slds-wrap content slds-align_absolute-center">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="slds-grid slds-wrap slds-grid_align-center slds-grid_vertical-align-center header-component ">
+                        <div class="slds-col slds-size_10-of-12">
+                            <div class="slds-grid slds-wrap slds-grid_vertical-align-center ">
+                                <aura:if isTrue="{!v.showNavBar}">
+                                    <div class="slds-col ">
+                                        <a href="{!v.homeUrl}" aria-label="Cal OES Logo"><img class="caloes-logo image" src="{!$Resource.Common_Community_Resource+'/headerLogo/HMA_Login_Logo_White.png'}" alt="" /></a>
+                                    </div>
+                                    <div class="slds-col slds-p-left_medium">
+                                        <img class="caloes-logo image" src="{!$Resource.HHFireDept}" alt="" />
+                                    </div>
+                                    <div class="slds-col slds-p-left_medium">
+                                        <img class="caloes-logo image" src="{!$Resource.HHLoginLogo}" alt="" />
+                                    </div>
+                                </aura:if>
+                                <div class="slds-col mobile-only slds-col_bump-left">
+                                    <div aura:id="dropdown" id="dropdown" class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close" >
+                                        <button class="slds-button slds-button_icon slds-p-right_small" onblur="{!c.handleDropdownBlur}" onclick="{!c.handleDropdownClick}" aria-haspopup="true" title="{!$Label.c.HH_EN_Show_more}">
+                                            <lightning:icon iconName="utility:chevrondown" id="up" class="menu-icon menu-icon-up" size="small"></lightning:icon>
+                                            <lightning:icon iconName="utility:chevronup" id="down" class="menu-icon menu-icon-down" size="small"></lightning:icon>
+                                            <span class="slds-assistive-text">{!$Label.c.HH_EN_Show_more}</span>
+                                        </button>
+                                        <div class="slds-dropdown slds-dropdown_right">
+                                            <ul class="slds-dropdown__list" role="menu" aria-label="{!$Label.c.HH_EN_Show_more}">
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="{!v.homeUrl}" role="menuitem" tabindex="0">
+                                                        <span class="slds-truncate" title="{!$Label.c.HH_EN_Home}">{!$Label.c.HH_EN_Home}</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="{!v.applicationsUrl}" role="menuitem" tabindex="-1">
+                                                        <span class="slds-truncate" title="{!$Label.c.HH_EN_Applications}">{!$Label.c.HH_EN_Applications}</span>
+                                                    </a>
+                                                </li>
+                                                <li class="slds-dropdown__item" role="presentation">
+                                                    <a href="{!v.submitApplicationUrl}" role="menuitem" tabindex="-1">
+                                                        <span class="slds-truncate" title="{!$Label.c.HH_EN_Submit_Applications}">{!$Label.c.HH_EN_Submit_Applications}</span>
+                                                    </a> 
+                                                </li>
+                                                <aura:if isTrue="{!v.isNotHomeOwner}">
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="{!v.viewReportsUrl}" role="menuitem" tabindex="-1">
+                                                            <span class="slds-truncate" title="{!$Label.c.HH_EN_View_Reports}">{!$Label.c.HH_EN_View_Reports}</span>
+                                                        </a> 
+                                                    </li>
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="{!v.viewDashboardsUrl}" role="menuitem" tabindex="-1">
+                                                            <span class="slds-truncate" title="{!$Label.c.HH_EN_View_Dashboards}">{!$Label.c.HH_EN_View_Dashboards}</span>
+                                                        </a> 
+                                                    </li>
+                                                </aura:if>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slds-col slds-p-right_medium desktop-only slds-col_bump-left">
+                                    <a href="{!v.homeUrl}" class="slds-text-color_inverse header-link">{!$Label.c.HH_EN_Home}</a>
+                                </div>
+                                <div class="slds-col slds-p-right_medium desktop-only">
+                                    <a href="{!v.applicationsUrl}" class="slds-text-color_inverse header-link">{!$Label.c.HH_EN_Applications}</a>
+                                </div>
+                                <div class="slds-col slds-p-right_medium desktop-only">
+                                  <a href="{!v.submitApplicationUrl}" class="slds-text-color_inverse header-link">{!$Label.c.HH_EN_Submit_Applications}</a>
+                                </div>
+                                <aura:if isTrue="{!v.isNotHomeOwner}">
+                                    <div class="slds-col desktop-only">
+                                        <div aura:id="dropdown1" id="dropdown1" class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-close" >
+                                            <button class="slds-button slds-button_icon slds-p-right_small" onblur="{!c.handleDropdownBlur1}" onclick="{!c.handleDropdownClick1}" aria-haspopup="true" title="{!$Label.c.HH_EN_Show_more}">
+                                                <lightning:icon iconName="utility:chevrondown" id="up1" class="menu-icon menu-icon-up" size="small"></lightning:icon>
+                                                <lightning:icon iconName="utility:chevronup" id="down1" class="menu-icon menu-icon-down" size="small"></lightning:icon>
+                                                <span class="slds-assistive-text">{!$Label.c.HH_EN_Show_more}</span>
+                                            </button>
+                                            <div class="slds-dropdown slds-dropdown_right">
+                                                <ul class="slds-dropdown__list" role="menu" aria-label="{!$Label.c.HH_EN_Show_more}">
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="{!v.viewReportsUrl}" role="menuitem" tabindex="0">
+                                                            <span class="slds-truncate" title="{!$Label.c.HH_EN_View_Reports}">{!$Label.c.HH_EN_View_Reports}</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="{!v.viewDashboardsUrl}" role="menuitem" tabindex="-1">
+                                                            <span class="slds-truncate" title="{!$Label.c.HH_EN_View_Dashboards}">{!$Label.c.HH_EN_View_Dashboards}</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aura:if>
+
+
+                                <aura:if isTrue="{!v.showProfileMenu}">
+                                    <div class="slds-col ">
+                                        <p class="slds-text-color_inverse" title="{!v.userName}">{!v.profileMenu}</p>
+                                    </div>
+                                </aura:if>
+                                <div class="slds-col language-box">
+                                    <c:hHCommunityLanguageSelector ></c:hHCommunityLanguageSelector>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap content slds-align_absolute-center" id="content">
+                <div class="slds-col slds-size_12-of-12">
+                    {!v.body}
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12  slds-p-around_large footer" id="footer">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <div class="slds-col slds-size_12-of-12 footer-copyright">
+                    <div class="slds-float_left copyright">{!$Label.c.HH_EN_Copyright_2021_State_of_California}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

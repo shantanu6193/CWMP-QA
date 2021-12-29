@@ -1,0 +1,160 @@
+<!--
+ - Created by Pankaj on 06-04-2020.
+ -->
+
+<aura:component description="Order_ProductsEditRow" >
+    <aura:attribute name="fieldDetailList" type="List" default="[]"/>
+
+    <aura:attribute name="orderItem" type="Order_Product__c" default="{}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="products" type="List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="itemTypeProducts" type="List" description="Item type available of Product List" default="[]"/>
+    <aura:attribute name="productFamily" type="List" description="Product Family for Product List" default="[]"/>
+    <aura:attribute name="isQuantityEditable" type="Boolean" description="Edit quantity editable? " default="false"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="fulfilmentOptions" type="List" description="fulfilment entity/warehouse" default="[]"/>
+    <aura:attribute name="productObj" type="Object"/>
+    <aura:attribute name="isReadOnly" type="Boolean" default="false"/>
+    <aura:attribute name="rowDisabled" type="Boolean" default="false"/>
+    <aura:attribute name="IsCommunity" type="String" description=" yes if it is community" default="No"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <tr class="slds-hint-parent">
+        <aura:if isTrue="{!v.isReadOnly}">
+           <!-- <td data-label="Product Family" scope="row" class="producttext">
+                <ui:outputText value="{!v.productObj.Family}"/>
+            </td>
+            <td data-label="Product Family" scope="row" class="producttext">
+                <ui:outputText value="{!v.productObj.Name}"/>
+            </td>
+             <td data-label="Product Family" scope="row" class="producttext">
+                <ui:outputText value="{!v.productObj.ProductCode}"/>
+            </td> -->
+            <td data-label="Product Family" style="padding:8px" scope="row">
+                <c:phosProductSearch aura:id="productSearchCmp" onproductchange="{!c.getProductValue}" selectProductId="{!v.orderItem.Product__c}" selectProductName="{!v.orderItem.Product_Name__c}"></c:phosProductSearch>
+            </td>
+           
+            <aura:set attribute="else">
+                <td data-label="Product Family" style="padding:8px" scope="row">
+                    <c:phosProductSearch aura:id="productSearchCmp" onproductchange="{!c.getProductValue}" selectProductId="{!v.orderItem.Product__c}" selectProductName="{!v.orderItem.Product_Name__c}"></c:phosProductSearch>
+                </td>
+              <!--<td data-label="Product Family" scope="row">
+                    <div class="slds-truncate" title="">
+                        <lightning:select required="true" aura:id="family" variant="label-hidden"  title="{!v.productObj.Family}" onchange="{!c.onChangeFamily}" disabled="{!!empty(v.orderItem.Id)}">
+                            <option  value="" text="-Select-"></option>
+                            <aura:iteration items="{!v.productFamily}" var="pFamily">
+                                <option selected="{! and(v.orderItem.Product__c == v.productObj.Id, v.productObj.Family == pFamily)}" value="{!pFamily}" text="{!pFamily}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </td>
+                <td data-label="Item Type" scope="row">
+                    <div class="slds-truncate" title="">
+                        <lightning:select  required="true" aura:id="formFields" variant="label-hidden" title="{!v.productObj.Name}" disabled="{!!empty(v.orderItem.Id)}" value="{!v.orderItem.Product__c}">
+                            <option  value="" text="-Select-"></option>
+                            <aura:iteration items="{!v.itemTypeProducts}" var="product">
+                                <option selected="{!v.orderItem.Product__c == product.Id}" value="{!product.Id}" text="{!product.Name}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                </td>
+                <td data-label="Product Code" scope="row">
+                    <div class="slds-truncate" title="">
+                        <aura:iteration items="{!v.itemTypeProducts}" var="product">
+                            <aura:if isTrue="{!v.orderItem.Product__c == product.Id}">
+                                <lightning:formattedText aura:id="formFields" value="{!product.ProductCode}"/>
+                            </aura:if>
+                        </aura:iteration>
+                    </div>
+                </td>-->
+            </aura:set>
+        </aura:if>
+
+        <aura:iteration items="{!v.fieldDetailList}" var="fieldDetail">
+
+            <aura:if isTrue="{!or(or(or(fieldDetail.APIName == 'Warehouse_Info__c',fieldDetail.APIName == 'Fulfilment_Entity_Warehouse__c'),fieldDetail.APIName == 'Quantity_Filled__c'),fieldDetail.Label == 'Available Quantity')}">
+                <aura:if isTrue="{!fieldDetail.APIName == 'Warehouse_Info__c'}">
+                    <td data-label="Warehouse SKU" style="padding:8px" scope="row">
+                        <c:phosWarehouseSKUSearch aura:id="warehouseSearchCmp" onwarehouseChange="{!c.getWarehouseValue}"  selectedWarehouse="{!v.orderItem.Fulfilment_Entity_Warehouse__c}" selectedProductId ="{!v.orderItem.Product__c}" selectedWarehouseSKU="{!v.orderItem.Warehouse_Info__c}"></c:phosWarehouseSKUSearch>
+                    </td>  
+                </aura:if>
+                <aura:if isTrue="{!fieldDetail.APIName == 'Fulfilment_Entity_Warehouse__c'}">
+                    <td>
+                    <aura:if isTrue="{!v.IsCommunity == 'Yes'}">
+                        <lightning:select aura:id="warehouseId" required="{!fieldDetail.isRequired}" disabled="{!and(v.orderItem.enablePostSent==true,fieldDetail.enablePostSent==true) ? false : or(fieldDetail.isDisabled, v.rowDisabled)}" variant="label-hidden" value="{!v.orderItem.Fulfilment_Entity_Warehouse__c}" onchange="{!c.onChangeWarehouse}">
+                            <option  value="" text="--Select--"></option>
+                                <option value="Filled Locally/Regionally" text="Filled Locally/Regionally"></option>
+                        </lightning:select>
+                    <aura:set attribute="else">
+                        <lightning:select aura:id="warehouseId" required="{!fieldDetail.isRequired}" disabled="{!and(v.orderItem.enablePostSent==true,fieldDetail.enablePostSent==true) ? false : or(fieldDetail.isDisabled, v.rowDisabled)}" variant="label-hidden" value="{!v.orderItem.Fulfilment_Entity_Warehouse__c}" onchange="{!c.onChangeWarehouse}">
+                            <option  value="" text="--Select--"></option>
+                            <aura:iteration items="{!fieldDetail.picklistValues}" var="pickVal">
+                                <option value="{!pickVal}" text="{!pickVal}"></option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </aura:set>
+                    </aura:if>
+                    </td>
+                </aura:if>
+                <aura:if isTrue="{!fieldDetail.APIName=='Quantity_Filled__c'}">
+                    <td>
+                        <div class="slds-grid slds-grid--vertical-align-center">
+                            <div class="slds-col">
+                                <lightning:input aura:id="fieldId1" type="number" required="{!fieldDetail.isRequired}" disabled="{!and(v.orderItem.enablePostSent==true,fieldDetail.enablePostSent==true) ? false : or(fieldDetail.isDisabled, v.rowDisabled)}" variant="label-hidden" value="{!v.orderItem.Quantity_Filled__c}"/>
+                            </div>
+                            <!--<div class="slds-col">
+                                <aura:if isTrue="{!not(empty(v.orderItem.RemainingQuantity))}">
+                                    <span>&nbsp;<b>\{!v.orderItem.RemainingQuantity}</b></span>
+                                </aura:if>
+                            </div>-->
+                        </div>
+                    </td>
+                </aura:if>
+                <aura:if isTrue="{!fieldDetail.Label == 'Available Quantity'}">
+                    <td>
+                        <div class="slds-grid slds-grid--vertical-align-center">
+                            <div class="slds-col">
+                                <aura:if isTrue="{!not(empty(v.orderItem.RemainingQuantity))}">
+                                    <span>&nbsp;<b>{!v.orderItem.RemainingQuantity}</b></span>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </td>
+                </aura:if>
+            <aura:set attribute="else">
+                <c:CustomFieldEdit record="{!v.orderItem}"
+                                            APIName="{!fieldDetail.APIName}"
+                                            onChangeFormula="{!fieldDetail.OnChangeFormula}"
+                                            picklistValues="{!fieldDetail.picklistValues}"
+                                            fieldType="{!fieldDetail.fieldType}"
+                                            Label="{!fieldDetail.Label}"
+                                            aura:id="fieldVal"
+                                            isRequired="{!fieldDetail.isRequired}"
+                                            isDisabled="{!and(v.orderItem.enablePostSent==true,fieldDetail.enablePostSent==true) ? false : or(fieldDetail.isDisabled, v.rowDisabled)}"/>
+            </aura:set>
+            </aura:if>
+        </aura:iteration>
+
+        <td data-label="Action">
+            <a onclick="{!c.addNewRow}" class="slds-p-right_small">
+                <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                <span class="slds-assistive-text">Add Icon</span>
+            </a>
+            <aura:if isTrue="{!v.orderItem.Status__c != 'Sent'}">
+                <a id="{!v.index}" onclick="{!c.deleteRow}">
+                    <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                    <span class="slds-assistive-text">Delete Icon</span>
+                </a>
+            </aura:if>
+        </td>
+    </tr>
+    <aura:if isTrue="{!v.orderItem.error != ''}">
+        <tr>
+            <td class="errorColor" colspan="12">
+                {!v.orderItem.error}
+            </td>
+        </tr>
+    </aura:if>
+</aura:component>

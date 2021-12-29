@@ -1,0 +1,65 @@
+<!--
+ - Created by Pankaj on 24-04-2020.
+ -->
+
+<aura:component description="PHOS_Order_Product_EditRow">
+    <aura:attribute name="orderItem" type="Order_Product__c" default="{}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="products" type="List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="itemTypeProducts" type="List" description="Item type available of Product List" default="[]"/>
+    <aura:attribute name="productFamily" type="List" description="Product Family for Product List" default="[]"/>
+    <aura:attribute name="isQuantityEditable" type="Boolean" description="Edit quantity editable? " default="false"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="fulfilmentOptions" type="List" description="fulfilment entity/warehouse" default="[]"/>
+    <aura:attribute name="productObj" type="Object" default="{}"/>
+    <aura:method name="orderRowValidation" action="{!c.orderRowValidation}" >
+        <aura:attribute name="isValid" type="boolean" default="false" />
+    </aura:method>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <tr class="slds-hint-parent">
+       <!--<td data-label="Product Family" scope="row">
+            <div class="slds-truncate" title="">
+                <lightning:select  label="{!v.productObj.Family}" class="select" required="true" aura:id="family" variant="label-hidden" title="{!v.productObj.Family}" onchange="{!c.onChangeFamily}" disabled="{!!empty(v.orderItem.Id)}">
+                    <option value="" text="-Select-"></option>
+                    <aura:iteration items="{!v.productFamily}" var="pFamily"> 
+                        <option selected="{! and(v.orderItem.Product__c == v.productObj.Id, v.productObj.Family == pFamily)}" value="{!pFamily}" text="{!pFamily}"></option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>
+        <td data-label="Item Type" scope="row">
+            <div class="slds-truncate" title="">
+                <lightning:select required="true" class="select" aura:id="formFields" variant="label-hidden" title="{!v.productObj.Name}" disabled="{!!empty(v.orderItem.Id)}" value="{!v.orderItem.Product__c}">
+                    <option  value="" text="-Select-"></option>
+                    <aura:iteration items="{!v.itemTypeProducts}" var="product">
+                        <option selected="{!v.orderItem.Product__c == product.Id}" value="{!product.Id}" text="{!product.Name}"></option>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>-->
+        <td data-label="Product Family" scope="row">
+            <c:phosProductSearch aura:id="productSearchCmp" onproductchange="{!c.getProductValue}" selectProductId="{!v.orderItem.Product__c}" selectProductName="{!v.orderItem.Product_Name__c}"></c:phosProductSearch>
+        </td>
+        <td data-label="Quantity Requested">
+            <lightning:input type="number" required="true" aura:id="formFields" variant="label-hidden" value="{!v.orderItem.Quantity__c}" onchange="{!c.setQuantityBackOrder}" />
+        </td>
+        <td data-label="Item Description">
+            <lightning:input type="text" variant="label-hidden"  maxlength="255"  value="{!v.orderItem.Description__c}"/>
+        </td>
+        <td data-label="Substitutes OK?">
+            <lightning:input type="checkbox" variant="label-hidden" checked="{!v.orderItem.Equivalent_Substitutes_Acceptable__c}" />
+        </td>
+        <td data-label="Action">
+            <a onclick="{!c.addNewRow}" class="slds-p-right_small">
+                <lightning:icon iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                <span class="slds-assistive-text">Add Icon</span>
+            </a>
+            <a data-id="{!v.index}" onclick="{!c.deleteRow}">
+                <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                <span class="slds-assistive-text">Delete Icon</span>
+            </a>
+        </td>
+    </tr>
+</aura:component>

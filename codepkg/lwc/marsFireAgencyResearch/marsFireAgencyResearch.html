@@ -1,0 +1,460 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <div class="fire_box slds-p-horizontal_medium slds-p-vertical_medium">
+   <div class="slds-grid slds-wrap slds-gutters_direct">
+   <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+    <c-lookup
+        data-custom="lookup"
+        label="Fire Agency"
+        data-lookup="Fire_Agency__c"
+        onsearch={handleFireAgencySearch}
+        onselectionchange={handleFireAgencyChange}
+        placeholder="Search Fire Agency"
+        is-multi-entry={isMultiEntry}
+        load-data-on-init = {loadLookupDataOnLoad}
+        local-search = {loadLookupDataOnLoad}
+        scroll-after-n-items = "10"
+        errors={fireagencyRequired}
+        required>
+    </c-lookup>
+</div>
+<div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">
+    <lightning-input type="date" name="dateInput" label="Select a Date"  onchange={handleDateChange} required></lightning-input>
+</div>
+<div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12">   
+    <lightning-combobox
+            name="selectOption"
+            label="Select an Option"
+            value={selectedOption}
+            placeholder="Select an Option"
+            options={options}
+            onchange={handleOptionChange} required>
+    </lightning-combobox>
+</div>
+<lightning-button variant="brand" label="Retreive" title="Retreive" onclick={handleSearch} class="slds-var-m-left_medium slds-m-top_medium"></lightning-button>
+</div>
+</div>
+
+
+    <template if:true={showInfoMessage}>
+        <div class="slds-p-bottom--medium">
+           <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+              <h2>{infoMessage}</h2>
+           </div>
+        </div>
+     </template>
+
+    <template if:true={showSalarySurvey}>
+        <div class="slds-grid slds-wrap slds-gutters_direct slds-p-horizontal_small">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Salary Survey</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout fire_box" id="Table2">
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="slds-size_3-of-12" scope="col">
+                    <div class="slds-truncate" title="Classification Title">Classification Title</div>
+                </th>
+                <th class="slds-size_2-of-12" scope="col">
+                    <div class="slds-truncate" title="Base Rates">Base Rates</div>
+                </th>
+                <th class="slds-size_2-of-12" scope="col">
+                    <div class="slds-truncate" title="WC and or UI">WC and or UI</div>
+                </th>
+                <th class="slds-size_2-of-12" scope="col">
+                    <div class="slds-truncate" title="Are you adding WC UI">Are you adding WC UI</div>
+                </th>
+                <th class="slds-size_2-of-12" scope="col">
+                    <div class="slds-truncate" title="Salary Rate (ST)">Salary Rate (ST)</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+                <template  for:each={salarysurveylineItems} for:item="salarySurveyLineItem" for:index="index">
+                    <tr class="slds-hint-parent" key={salarySurveyLineItem.Id}>
+                        <td data-label="Classification Title" scope="row">
+                            <div class="slds-truncate" title={salarySurveyLineItem.Classification_Title__c}>
+                                {salarySurveyLineItem.Classification_Title__c}
+                            </div>
+                        </td>
+                        <td data-label="Base Rates" scope="row">
+                            <div class="slds-truncate" title={salarySurveyLineItem.Base_Rates__c}>
+                                <lightning-formatted-number value={salarySurveyLineItem.Base_Rates__c}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                            </div>
+                        </td>
+                        <td data-label="WC and or UI" scope="row">
+                            <div class="slds-truncate" title="">
+                                {salarySurveyLineItem.WC_and_or_UI__c}
+                            </div>
+                        </td>
+                        <td data-label="Are you adding WC UI" scope="row">
+                            <div class="slds-truncate" title="">
+                                {salarySurveyLineItem.Are_you_adding_WC_UI__c}
+                            </div>
+                        </td>
+                        <td data-label="Salary Rate (ST)" scope="row">
+                            <div class="slds-truncate" title={salarySurveyLineItem.Revised_Rate__c}>
+                                <lightning-formatted-number value={salarySurveyLineItem.Revised_Rate__c}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-col approved" style="padding-top: 1.5rem;">
+            <div class="slds-size_6-of-12">Effective Date
+                <lightning-formatted-date-time class="slds-m-left_x-small outputfont" value={salarySurveyRecord.Start_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+            </div>
+            <div class="slds-size_6-of-12">Status
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={salarySurveyRecord.Status__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Comments
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={salarySurveyRecord.Reject_Reason__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Submitted By
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={salarySurveyRecord.Name}></lightning-formatted-text>
+            </div>
+            <img src={signatureURL} /><br/>
+        </div>
+        </div>
+    </template>
+
+    <!--   Non-Suppression Personnel    -->
+    <template if:true={showNonSuppression}>
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Attachment A. Non-Suppression Personnel</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout" >
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="Classification Title">Classification Title</div>
+                    </th>
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="Salary Rate (ST)">Salary Rate (ST)</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={nonSuppLineItemRecords} for:item="nonSuppLineItem" for:index="index">
+                    <tr class="slds-hint-parent" key={nonSuppLineItem.Id}>
+                        <td data-label="Classification Title" scope="row">
+                            <div class="slds-truncate" title={nonSuppLineItem.Classification_Title__c}>
+                                {nonSuppLineItem.Classification_Title__c}
+                            </div>
+                        </td>
+                        <td data-label="Salary Rate (ST)" scope="row">
+                            <div class="slds-truncate" title={nonSuppLineItem.Current_Rate__c}>   
+                                <lightning-formatted-number value={nonSuppLineItem.Current_Rate__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>    
+                        </td>
+                        <!-- <td data-label="Salary Rate (ST)" scope="row">
+                            <div class="slds-truncate" title={nonSuppLineItem.Revised_Rate__c}>   
+                                <lightning-formatted-number value={nonSuppLineItem.Revised_Rate__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>    
+                        </td> -->
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-col approved" style="padding-top: 1.5rem;">
+            <div class="slds-size_6-of-12">Effective Date
+                <lightning-formatted-date-time class="slds-m-left_x-small outputfont" value={nonSuppPersonnelRecord.Start_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+            </div>
+            <div class="slds-size_6-of-12">Status
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={nonSuppPersonnelRecord.Approval_Status__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Comments
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={nonSuppPersonnelRecord.Reject_Reason__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Submitted By
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={nonSuppPersonnelRecord.Name}></lightning-formatted-text>
+            </div>
+            <img src={signatureURL} /><br/>
+        </div>
+    </template>
+
+    <!--Special Equipment-->
+    <template if:true={showSpecialEquipment}>
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Special Equipment</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="Classification Title">Equipment Type</div>
+                    </th>
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="FEMA Code">FEMA Code</div>
+                    </th>
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="Rate">Rate</div>
+                    </th>
+                    <th class="slds-size_1-of-4" scope="col">
+                        <div class="slds-truncate" title="Description">Description</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={splEquipLineItemRecords} for:item="splEquipLineItem" for:index="index">
+                    <tr class="slds-hint-parent" key={splEquipLineItem.Id}>
+                        <td data-label="Classification Title" scope="row">
+                            <div class="slds-truncate" title={splEquipLineItem.Special_Equipment_Type__c}>
+                                {splEquipLineItem.Special_Equipment_Type__c}
+                            </div>
+                        </td>
+                        <td data-label="FEMA Code" scope="row">
+                            <div class="slds-truncate" title={splEquipLineItem.FEMA_CODE__c}>
+                                {splEquipLineItem.FEMA_CODE__c}
+                            </div>
+                        </td>
+                        <td data-label="Rate" scope="row">
+                            <div class="slds-truncate" title={splEquipLineItem.Revised_Rate__c}>
+                                <lightning-formatted-number value={splEquipLineItem.Revised_Rate__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>
+                        </td>
+                        <td data-label="CDescription" scope="row">
+                            <div class="slds-truncate" title={splEquipLineItem.Description__c}>
+                                {splEquipLineItem.Description__c}
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-col approved" style="padding-top: 1.5rem;">
+            <div class="slds-size_6-of-12">Effective Date
+                <lightning-formatted-date-time class="slds-m-left_x-small outputfont" value={specialEquipmentRecord.Start_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+            </div>
+            <div class="slds-size_6-of-12">Status
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={specialEquipmentRecord.Approval_Status__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Comments
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={specialEquipmentRecord.Reject_Reason__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Submitted By
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={specialEquipmentRecord.Name}></lightning-formatted-text>
+            </div>
+            <img src={signatureURL} /><br/>
+        </div>
+    </template>
+
+       <!--Agreements-->
+    <template if:true={showAgreements}>
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Agreements (MOU/MOA/GBR)</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Classification Title">Classification Title</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Overtime">Overtime</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Portal-To-Portal">Portal-To-Portal</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Start Date">Start Date</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="End Date">End Date</div>
+                    </th>
+                    <th class="slds-size_4-of-12" scope="col">
+                        <div class="slds-truncate" title="Comments">Deputy Chief of Administration Comments </div>
+                    </th>
+                    <th class="slds-size_4-of-12" scope="col">
+                        <div class="slds-truncate" title="Comments">Reimbursement Staff Comments </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={agreements} for:item="agreementLineItem" for:index="index">
+                    <tr class="slds-hint-parent" key={agreementLineItem.Id}>
+                        <td data-label="Name" scope="row">
+                            <div class="slds-truncate" title={agreementLineItem.Name}>
+                                {agreementLineItem.Name}
+                            </div>
+                        </td>
+                        <td data-label="Overtime" scope="row">
+                            <div class="slds-truncate" title="">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <div class="">
+                                            <input type="checkbox" name="Overtime" disabled
+                                                value={agreementLineItem.OT__c}
+                                                checked={agreementLineItem.OT__c} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Portal-To-Portal" scope="row">
+                            <div class="slds-truncate" title="">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <div class="">
+                                            <input type="checkbox" name="Portal-To-Portal" disabled
+                                                value={agreementLineItem.PTP__c}
+                                                checked={agreementLineItem.PTP__c} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-label="Start Date">
+                            <lightning-formatted-date-time value={agreementLineItem.Agency_Rate_Agreement__r.Start_Date__c}
+                                year="numeric" month="2-digit" day="2-digit" time-zone="UTC">
+                            </lightning-formatted-date-time>
+                        </td>
+                        <td data-label="End Date">
+                            <lightning-formatted-date-time value={agreementLineItem.Agency_Rate_Agreement__r.End_Date__c}
+                                year="numeric" month="2-digit" day="2-digit" time-zone="UTC">
+                            </lightning-formatted-date-time>
+                        </td>
+                        <td data-label="Comments">
+                            <div class="slds-cell-wrap">  
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={agreementLineItem.Agency_Rate_Agreement__r.Reject_Reason__c}></lightning-formatted-text>
+                            </div>
+                        </td>
+                        <td data-label="Comments">
+                            <div class="slds-cell-wrap">                                 
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={agreementLineItem.Agency_Rate_Agreement__r.Level_2_Comments__c}></lightning-formatted-text>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <c-mars-view-files record={contentversions}  attachment-type="Agreement Type"></c-mars-view-files>
+    </template>
+    <br />
+      <!--Admin Rates-->
+    <template if:true={showAdminRates}>
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Administrative Rate</h2>
+        </div>
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_4-of-12" scope="col">
+                        <div class="slds-truncate" title="Program">Program</div>
+                    </th>
+                   <!-- <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>-->
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Indirect">Indirect</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Direct">Direct</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Total">Total</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={adminRates} for:item="adminRateLineItem" for:index="index">
+                    <tr class="slds-hint-parent" key={adminRateLineItem.Id}>
+                        <td data-label="Program" scope="row">
+                            <div class="slds-truncate" title={adminRateLineItem.Name}>
+                                {adminRateLineItem.Name}
+                            </div>
+                        </td>
+                        <!--td data-label="Status" scope="row">
+                            <div class="slds-truncate" title={adminRateLineItem.Status__c}>
+                                {adminRateLineItem.Status__c}
+                            </div>
+                        </td-->
+                        <td data-label="Indirect" scope="row">
+                            <div class="slds-truncate" title="">
+                                <lightning-formatted-number value={adminRateLineItem.Indirect__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>
+                        </td>
+                        <td data-label="Direct" scope="row">
+                            <div class="slds-truncate" title="">
+                                <lightning-formatted-number value={adminRateLineItem.Direct__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>
+                        </td>
+                        <td data-label="Total" scope="row">
+                            <div class="slds-truncate" title="">
+                                <lightning-formatted-number value={adminRateLineItem.Total__c}
+                                    format-style="currency" currency-code="USD">
+                                </lightning-formatted-number>
+                            </div>
+                        </td>
+                    </tr>
+                </template>
+                <tr>
+                    <td></td>
+                    <td scope="col">
+                         Indirect Total:
+                        <lightning-formatted-number class="slds-m-left_x-small outputfont"
+                            value={adminRateRecord.Total_Indirect_Amount__c} format-style="currency"
+                            currency-code="USD"></lightning-formatted-number>
+                    </td>
+                    <td scope="col">
+                         Direct Total:
+                        <lightning-formatted-number class="slds-m-left_x-small outputfont"
+                            value={adminRateRecord.Total_Direct_Amount__c} format-style="currency"
+                            currency-code="USD"></lightning-formatted-number>
+                    </td>
+                    <td scope="col">
+                        Grand Total:
+                        <lightning-formatted-number class="slds-m-left_x-small outputfont"
+                            value={adminRateRecord.Administrative_Total_Indirect_Direct__c}
+                            format-style="currency" currency-code="USD"></lightning-formatted-number>
+                    </td>
+                </tr>
+                <tr> 
+                    <td scope="col" colspan=4>
+                        ADMINISTRATIVE RATE (INDIRECT COST/DIRECT COST): 
+                        <lightning-formatted-number class="slds-m-left_x-small outputfont"
+                                 value={adminRateRecord.Administrative_Rate_Indirect_Cost_Direct__c}
+                                 minimum-fraction-digits="5"></lightning-formatted-number>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="slds-col approved" style="padding-top: 1.5rem;">
+            <div class="slds-size_6-of-12">Effective Date
+                <lightning-formatted-date-time class="slds-m-left_x-small outputfont" value={adminRateRecord.Start_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+            </div>
+            <div class="slds-size_6-of-12">Status
+                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                    value={adminRateRecord.Approval_Status__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Comments
+                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                    value={adminRateRecord.Reject_Reason__c}></lightning-formatted-text>
+            </div>
+            <div class="slds-size_12-of-12">Submitted By
+                <lightning-formatted-text class="slds-m-left_x-small outputfont" value={adminRateRecord.Name}></lightning-formatted-text>
+            </div>
+            <img src={signatureURL} /><br/>
+        </div>
+    </template>
+    <template if:true={showPrint}>
+        <div class="slds-col approved" style="padding-bottom: 1.5rem;">
+            <lightning-button variant="brand" label="Print" title="Print" onclick={handlePrint} class="slds-float_right"></lightning-button>
+        </div>    
+    </template>
+</template>

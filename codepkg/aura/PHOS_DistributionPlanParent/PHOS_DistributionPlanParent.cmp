@@ -1,0 +1,12 @@
+<!--
+ - Created by PREM on 02-09-2020.
+ -->
+
+<aura:component description="PHOS_DistributionPlanParent" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride,lightning:isUrlAddressable"
+                access="global">
+
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+    <c:productDistributionPlan oncloseclicked="{!c.handleFilterChange}"/>
+
+</aura:component>

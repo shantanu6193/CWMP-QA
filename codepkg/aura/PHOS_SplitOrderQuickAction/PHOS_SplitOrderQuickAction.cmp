@@ -1,0 +1,8 @@
+<!--
+ - Created by hp on 2020-04-09.
+ -->
+
+<aura:component description="PHOS_SplitOrderQuickAction" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:workspaceAPI aura:id="workspace"/> 
+</aura:component>

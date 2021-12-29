@@ -1,0 +1,73 @@
+<!--
+ - Created by Pankaj on 08-04-2021.
+ -->
+
+<!-- Mars Salary Survey History -->
+<template>
+    <div class="table_light">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">Special Equipment History
+            </h2>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-scrollable">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout" id="Table1">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-size_5-of-12" scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Start Date">Start Date</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="End Date">End Date</div>
+                        </th>
+                        <th class="slds-size_1-of-12" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={splEquipRecords} for:item="splEquipRecord" for:index="index">
+                        <tr class="slds-hint-parent" key={splEquipRecord.Id}>
+                            <td data-label="Name" scope="row">
+                                <div class="slds-truncate" title={splEquipRecord.Name}>
+                                    {splEquipRecord.Name}
+                                </div>
+                            </td>
+                            <td data-label="Status" scope="row">
+                                {splEquipRecord.Approval_Status__c}
+                            </td>
+                            <td data-label="Start Date">
+                                <lightning-formatted-date-time value={splEquipRecord.Start_Date__c} year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </td>
+                            <td data-label="End Date">
+                                <lightning-formatted-date-time value={splEquipRecord.End_Date__c} year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </td>
+                            <td data-label="View">
+                                <a data-index={splEquipRecord.Id} onclick={viewRecord} class="slds-p-right_small">
+                                    <lightning-icon icon-name="utility:preview"
+                                        class="slds-icon slds-icon_small vieweye" size="small" alternative-text="view">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">View</span>
+                                </a>
+                                <a data-index={splEquipRecord.Id} onclick={printRecord} class="slds-p-right_small">
+                                    <lightning-icon icon-name="utility:print" class="slds-icon slds-icon_small print" size="small" alternative-text="print"></lightning-icon>
+                                    <span class="slds-assistive-text">Print</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <template if:true={isViewModalOpen}>
+        <c-mars-special-equipment-history-popup record-id={historyRecordId} onclosepopup={closeSubmitModal}></c-mars-special-equipment-history-popup>
+    </template>
+</template>

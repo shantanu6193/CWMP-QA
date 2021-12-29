@@ -1,0 +1,10 @@
+<!--
+ - Created by Pankaj on 06-04-2020.
+ -->
+
+<design:component>
+    <design:attribute name="IsCommunity" default="No" label="Is Community?" datasource="Yes,No"  description="Please indicate which environment this component is hosted on."/>
+    <design:attribute name="editColumnsJSON" label="Edit Columns JSON(Obs)" />
+    <design:attribute name="detailColumnsJSON" label="Detail Columns JSON" />
+    <design:attribute name="previewColumnsJSON"  label="Preview Columns JSON" />
+</design:component>

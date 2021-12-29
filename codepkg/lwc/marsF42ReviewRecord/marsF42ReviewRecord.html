@@ -1,0 +1,415 @@
+<template>
+    <div class="table_light">
+    <div class="slds-box slds-theme_default">
+        <div class="slds-grid slds-gutters slds-wrap slds-p-bottom_medium ">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 left_section">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                        <h2 class="slds-page-header__title slds-truncate border_zero" title="AGENCY/INCIDENT">
+                            AGENCY/INCIDENT
+                        </h2>
+                    </div>
+                </div>
+                <lightning-layout>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="MACS ID" value={accountRecord.MACS_ID__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="AGENCY DESIGNATOR" value={accountRecord.Mars_Agency_Designator__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="INCIDENT ORDER NUMBER" value={record.Incident_Order__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="INCIDENT REQUEST NUMBER" value={record.Incident_Request_Number__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="STRIKE TEAM/TASK FORCE" value={record.Strike_Team__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                        <h2 class="border_zero">
+                            <span class="slds-page-header__title slds-truncate" title="DISPATCH INFO">DISPATCH
+                                INFORMATION</span>
+                        </h2>
+                    </div>
+                </div>
+                <lightning-layout>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="INCIDENT NAME" value={record.Incident_Name__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item size="6">
+                        <lightning-input label="REPORTING LOCATION" value={record.DI_REPORTING_LOCATION__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="4" class="slds-p-right_medium">
+                        <lightning-input type="date" label="COMMITTED TO INCIDENT" date-style="short"
+                            value={record.DI_Committed_to_Incident_Date__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <lightning-input class="time-box" value={record.DI_Committed_to_Incident_Time__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="4" class="slds-p-right_medium">
+                        <lightning-input label="RETURN FROM INCIDENT" type="date" date-style="short"
+                            value={record.DI_Return_from_Incident_Date__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <lightning-input class="time-box" value={record.DI_Return_from_Incident_Time__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input type="checkbox" label="MOBILIZATION CENTER / PREPOSITION"
+                            checked={record.DI_Mobilization_Center_Preposition__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="4" class="slds-p-right_medium">
+                        <lightning-input type="date" date-style="short" label="REDISPATCHED" value={record.DI_Redispatched_Date__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="2">
+                        <lightning-input type="text" class="time-box" value={record.DI_Redispatched_Time__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="DISPATCH FROM">DISPATCH
+                          FROM</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout>
+                    <lightning-layout-item size="8" class="slds-p-right_x-small">
+                        <lightning-input label="OLD INCIDENT NAME" value={oldIncident.Name} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-input type="Date" date-style="short" label="END DATE" value={record.DF_Dispatch_From_End_Date__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="OLD INCIDENT ORDER NUMBER" value={oldIncident.Order_No__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="OLD INCIDENT REQUEST NUMBER" value={record.DF_OLD_INCIDENT_REQUEST__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="DISPATCH TO">DISPATCH
+                          TO</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout>
+                    <lightning-layout-item size="8" class="slds-p-right_x-small">
+                        <lightning-input label="NEW INCIDENT NAME" value={newIncident.Name} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-input type="Date" date-style="short" label="START DATE" value={record.DT_Dispatch_To_Start_Date__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="NEW INCIDENT ORDER NUMBER" value={newIncident.Order_No__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="NEW INCIDENT REQUEST NUMBER" value={record.DT_NEW_INCIDENT_REQUEST__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="OVERHEAD">OVERHEAD</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <lightning-checkbox-group label="TYPE" options={overheadTypeoptions}
+                            value={overheadSelection} disabled></lightning-checkbox-group>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <template if:true={showICStitle}>
+                    <lightning-layout class="slds-p-top_medium">
+                        <lightning-input class="slds-p-right_x-small" value={record.OH_ICS_Title__c} type="text"
+                            label="ICS TITLE CODE" disabled>
+                        </lightning-input>
+                       <!-- <lightning-input class="slds-p-right_x-small" value={record.ICS_Title_Description__c} type="text"
+                            label="ICS TITLE" disabled>
+                        </lightning-input>-->
+                        <lightning-input value={record.OH_OTHER_ICS_TITLE__c} type="text" label="OTHER TITLE"
+                            name="OH_otherICStitle" disabled></lightning-input>
+                    </lightning-layout>
+                </template>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="DISPATCH FROM">PRIVATELY OWNED VEHICLE ONLY</span>
+                       </h2>
+                    </div>
+                 </div>
+                 <lightning-layout>
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input label="BEGINNING ODOMETER" value={record.SV_BEGINNING_ODODMETER__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input label="ENDING ODOMETER" value={record.SV_ENDING_ODOMETER__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input label="TOTAL MILES" value={record.SV_TOTAL_MILES__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate"
+                             title="SUPPORT VEHICLE INFORMATION">SUPPORT VEHICLE INFORMATION</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <lightning-radio-group label="VEHICLE OWNERSHIP" options={vehicleOwnerTypeoptions}
+                            value={record.SV_VEHICLE_OWNERSHIP__c} disabled></lightning-radio-group>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6">
+                        <lightning-input label="LICENSE NUMBER" value={record.SV_LICENSE__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <lightning-radio-group options={vehicleTypeOptions} value={record.SV_TYPE__c} disabled>
+                        </lightning-radio-group>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="EQUIPMENT INFO">EQUIPMENT
+                          RESOURCE INFORMATION</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="APPARATUS" value={record.ER_APPARATUS__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4">
+                        <lightning-input label="TYPE" value={record.ER_TYPE__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input label="UNIT NUMBER" value={record.ER_UNIT__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input label="LICENSE NUMBER" value={record.ER_LICENSE_NUMBER__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="slds-p-right_x-small">
+                        <lightning-input type="checkbox" label="CDF/OES VEHICLE" checked={record.ER_CDF_OES_VEHICLE__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="FEMA CODE" value={record.ER_FEMA_CODES__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="AGENCY SPECIAL EQUIPMENT" value={record.ER_SPECIAL_EQUIPMENT__c}
+                            disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+            <!-- </lightning-record-edit-form> -->
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_6-of-12 right_section">
+
+                <!-- Add fields in this section-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                      <h2 class="slds-page-header__title slds-truncate border_zero" title="PERSONNEL INFORMATION">
+                        PERSONNEL INFORMATION
+                      </h2>
+                    </div>
+                  </div>
+                <lightning-layout class="slds-p-top_x-small">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="NUMBER OF PERSONNEL ON APPARATUS"
+                            value={record.PI_NUMBER_OF_PERSONNEL_ON_APPARATUS__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input type="checkbox" label="DOCUMENTATION ONLY"
+                            checked={record.PI_DOCUMENTATION_ONLY__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <c-mars-personnel-information-table rows={personnelRecords}>
+                </c-mars-personnel-information-table>
+                
+                <c-mars-actual-hours-table rows={actualHoursRecords}></c-mars-actual-hours-table>
+                <c-mars-comments-table rows={commentRecords}></c-mars-comments-table>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="SUPPLY NUMBER">SUPPLY NUMBER</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input type="checkbox" label="LOSS/DAMAGE"
+                            checked={record.SN_LOSS_DAMAGE_CLAIM__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="SUPPLY NUMBER" value={record.SN_SUPPLY_NUMBER__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="RESPONDING AGENCY INFORMATION">RESPONDING AGENCY INFORMATION</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="AGENCY NAME" value={accountRecord.Name} disabled></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="NAME" value={record.RA_YOUR_NAME__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="TITLE" value={record.RA_YOUR_TITLE__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="YOUR PHONE#" value={record.RA_YOUR_PHONE__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <div class="slds-p-top_medium">
+                    <div class="c-container">
+                        <div class="slds-text-body_regular">SIGNATURE</div>
+                        <img src={imageUrl} />
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+                       <h2 class="border_zero">
+                          <span class="slds-page-header__title slds-truncate" title="SUPPLY NUMBER">INCIDENT
+                            INFORMATION-PAYING AGENCY</span>
+                       </h2>
+                    </div>
+                 </div>
+                <lightning-layout>
+                    <lightning-layout-item size="12">
+                        <lightning-radio-group label="PAYING AGENCY" options={payingAgencyoptions}
+                            value={record.PA_PAYING_AGENCY__c} disabled></lightning-radio-group>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="OTHER" value={record.PA_OTHER__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="PRINTED NAME" value={record.PA_PRINTED_NAME__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="DATE" type="date" date-style="short" value={record.PA_DATE__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                    </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6">
+                <div class="c-container">
+                    <div class="slds-text-body_regular">SIGNATURE</div>
+                    <img src={f42Signature} />
+                </div>
+            </lightning-layout-item>
+                <lightning-layout-item size="6">
+                    <lightning-input label="ICS POSITION/TITLE" value={record.PA_ICS_POSITION_TITLE__c} disabled>
+                    </lightning-input>
+                </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="6" class="slds-p-right_x-small">
+                        <lightning-input label="Cal OES REPRESENTATIVE (if assigned)"
+                            value={record.PA_Cal_OES_REPRESENTATIVE__c} disabled></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input label="DATE" type="date" date-style="short" value={record.PA_CALOESREP_DATE__c} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="12" class="slds-p-right_x-small">
+                        <lightning-input label="COMMENTS FROM MUTUAL AID STAFF" value={mutualStaffComment} disabled>
+                        </lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout>
+                <template if:true={isCommentsVisible}>
+                <lightning-layout class="slds-p-top_medium">
+                    <lightning-layout-item size="12" class="slds-p-right_x-small">
+                        <lightning-textarea label="LOCAL AGENCY PRIMARY USER COMMENTS" onchange={commentOnChange}
+                            required>
+                        </lightning-textarea>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            </div>
+        </div>
+        <lightning-button variant="brand" label="Submit" title="Submit" disabled={isButtonDisabled} onclick={handleSubmit}
+            class="slds-m-left_x-small"></lightning-button>
+    </div>
+    </div>
+</template>

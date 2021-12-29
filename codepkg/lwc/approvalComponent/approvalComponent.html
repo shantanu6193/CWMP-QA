@@ -1,0 +1,39 @@
+<template>
+    <lightning:card title="Approval Component">
+        <form>
+            <div class="slds-box slds-theme_shade">
+                <lightning-radio-group name="radioGroup"
+                    label="Select Approval Option"
+                    options={options}
+                    onchange={handleChange}
+                    value={selectedValue}
+                    type="radio"></lightning-radio-group>
+
+                    <lightning-textarea name="commentsVal" class="inputCmp" onchange={handleCommentChange}  value={commentsVal}  label="Comments" ></lightning-textarea>
+
+                    <template if:true={showFileUpload}>
+                        <lightning-file-upload
+                                label="Upload Doc"
+                                name="fileUploader"
+                                accept={acceptedFormats}
+                                record-id={recordId}
+                                onuploadfinished={handleUploadFinished}
+                                multiple>
+                        </lightning-file-upload> 
+                        <!-- To Show Uploaded Files -->
+                        <br/>
+                        <div class="slds-p-left_medium">
+                            <!--Uploaded Files: <br/>--> 
+                            <template for:each={allUploadedFileNames} for:item="fileIterator">
+                                <div key={fileIterator} style="margin-top:10px;">
+                                    <lightning-icon icon-name="doctype:image" size="small" title="Image"></lightning-icon>
+                                    {fileIterator}
+                                </div>
+                            </template>
+                        </div>
+                        <br/> 
+                    </template>
+            </div>
+        </form>  
+    </lightning:card>
+</template>

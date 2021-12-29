@@ -1,0 +1,31 @@
+<template>
+    <tr key={recordLocal.progarm}>
+        <td role="gridcell" class="td">
+            <div>{recordLocal.program}</div>
+        </td>
+        <td role="gridcell">
+            <div>
+                <template if:true={recordLocal.indirecteditable}>
+                    <lightning-input data-name="indirect" data-field="Indirect__c" read-only={recordLocal.isReadOnly} data-id={index} step=".01" min="0"
+                        type="number" formatter="currency" name="indirect" value={recordLocal.Indirect__c} variant="label-hidden" autocomplete="off"
+                         class="input" onchange={onInputFilled} required="true"></lightning-input>
+                </template>
+            </div>
+        </td>
+        <td role="gridcell">
+            <div>
+                <template if:true={recordLocal.directeditable}>
+                    <lightning-input data-name="direct" data-field="Direct__c" read-only={recordLocal.isReadOnly} data-id={index} step=".01" min="0"
+                        type="number" formatter="currency" name="direct" value={recordLocal.Direct__c} variant="label-hidden" autocomplete="off" 
+                         class="input" onchange={onInputFilled} required="true"></lightning-input>
+                </template>
+            </div>
+        </td>
+        <td role="gridcell">
+            <div>                   
+                <lightning-input data-name="total" data-id={index} type="number" data-field="Total__c" class="input" variant="label-hidden"
+                    formatter="currency" name="total" value={recordLocal.Total__c} read-only></lightning-input>
+            </div>
+        </td>
+    </tr>
+</template>

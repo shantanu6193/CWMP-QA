@@ -1,0 +1,14 @@
+<template>
+    <div class="c-container">
+        <div style="text-align: left; "> 
+            <label class="slds-form-element__label"><abbr title="required" class="slds-required">*</abbr>{signLabel}</label>
+            <p class="slds-m-bottom_small"> 
+               <canvas name="canvasItem" style="border:1px solid rgb(136, 135, 135);
+                background: transparent;" class="signCanvas"></canvas>
+                <canvas name="hiddenCanvasItem" style="border:1px solid rgb(136, 135, 135);
+                background: transparent;" class="slds-hide blankCanvas"></canvas>
+            </p>
+            <lightning-button label="Reset" onclick={handleRestSign} class="slds-m-right_x-small"></lightning-button>
+        </div>       
+    </div>
+</template>

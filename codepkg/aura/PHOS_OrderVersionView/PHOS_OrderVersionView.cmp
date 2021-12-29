@@ -1,0 +1,41 @@
+<!--
+ - Created by hp on 2020-04-03.
+ -->
+
+<aura:component description="PHOS_OrderVersionView" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride"
+                access="global" controller="PHOS_OrderVersionCtrl">
+
+    <aura:attribute name="orderRec" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="address" type="String" description="Address line 2" />
+    <aura:attribute name="createdByName" type="String" description="Created By Name" />
+    <aura:attribute name="createdDate" type="String" description="Created Date" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="orderVersion" type="Aura.Component" />
+
+    <div class="slds-grid slds-wrap slds-align_absolute-center">
+        <div class="slds-col slds-size_8-of-12 border_div">
+            <div class="slds-p-around_large">
+                <div class="slds-grid slds-wrap slds-align_absolute-center slds-p-vertical_large">
+                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_medium">
+                        <p class="form-header">Medical Resource Request Form</p>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <div class="slds-form-element__control ">
+                                <!--<c:Caloes_Order_New_Review orderRec="{!v.orderRec}" orderItems="{!v.orderItems}" productsMap="{!v.productsMap}"/>-->
+                            {!v.orderVersion}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</aura:component>

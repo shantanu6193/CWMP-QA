@@ -1,0 +1,127 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}>
+        <div class="table_light">
+            <div class="slds-p-bottom_large">
+                <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">{headerTitle}</h2>
+                <div class="slds-grid slds-wrap">
+                    <div
+                        class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 slds-p-bottom_x-small slds-p-top_medium">
+                        Please note that Cal OES must complete the review of Attachment A prior to agreement submission for non-suppression classifications. 
+                        Once Attachment A has been reviewed, your classification titles will appear in the dropdown below.
+                    </div>
+                </div>
+                <div class="slds-p-bottom_x-large slds-p-top_medium">
+                    <lightning-button slot="actions" variant="brand" label="Add Row" onclick={handleAddItem} class="slds- slds-float_right slds-p-right_small"></lightning-button>
+                </div>    
+                <div class="slds-card__body">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+                        <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Classification Title">Classification Title</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Overtime">Overtime</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Portal-to-Portal">Portal-to-Portal</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-cell-wrap small_text" title="Action">Action</div>
+                                </th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={agreementList} for:item="record" for:index="index">
+                                <c-mars-resource-agreement-row  key={record.index}
+                                                                record={record}
+                                                                ondeleted={handleDeleteItem}
+                                                                onadded={handleAddItem}
+                                                                index={index}
+                                                                data-id={index}
+                                                                fulfilment-options={fulfilmentOptions}
+                                                                is-quantity-editable={isEditable}
+                                                                ata-custom="innerComponent"
+                                >
+                                    </c-mars-resource-agreement-row>
+                                <!--<c-mars-resource-agreement-row data-id={index} key={record.Id} record={record}></c-mars-resource-agreement-row>-->
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="slds">
+                    <div class="slds-grid slds-wrap">                        
+                        <div class="slds-col slds-size_4-of-12">
+                            <lightning-input type="date" label="Start Date" value={startDate} data-field="Start_Date__c" min={todaysDate} required="true" class="input startdate"
+                                            message-when-range-underflow="Please select a start date"
+                                            onchange={handelStartDate}>
+                            </lightning-input>
+                        </div> 
+                        <div class="slds-col slds-size_4-of-12">
+                            <lightning-input type="date" label="End Date" data-field="End_Date__c" value={endDate} min={todaysDate} class="input enddate"
+                                            message-when-range-underflow="Please select a end date"
+                                            onchange={handelEndDate}>
+                            </lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_4-of-12">
+                            <!--<lightning-combobox name="AttachmentType" label="Attachment Type" value={value} placeholder="Select Type" options={attachmentType} onchange={handleAttachmentChange} required="true">
+                            </lightning-combobox>-->
+                            <c-mars-multi-select-picklist picklistlabel="Agreement Type" values={attachmentType} onselectedvalues={handleSelectedvalues} ></c-mars-multi-select-picklist>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap">  
+                        <div class="slds-col slds-size_6-of-12">
+                            <lightning-file-upload label="Attach File" name="fileUploader"  disabled={agreementTypeSelect}
+                                                record-id={recordId} onuploadfinished={handleUploadFinished} multiple=false required>
+                            </lightning-file-upload>
+                        </div>
+                    </div> 
+                    <template if:true={showFilesTable}>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+                                <thead>
+                                        <tr class="slds-text-title_caps">
+                                            <th class="" scope="col">
+                                            <div class="slds-cell-wrap small_text" title="File Name">File Name</div>
+                                            </th>
+                                            <th class="" scope="col">
+                                            <div class="slds-cell-wrap small_text" title="Agreement Type">Agreement Type</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="slds-cell-wrap small_text" title="Action">Action</div>
+                                        </th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={uploadedFiles} for:item="record" for:index="index">
+                                        <tr key={record.contentVersionId}>
+                                            <td scope="col">
+                                                {record.name}
+                                            </td>
+                                            <td scope="col">
+                                                {record.Type}
+                                            </td>
+                                            <td>
+                                                <a data-index={record.contentVersionId} onclick={deleteAttachedFile} class="slds-p-right_small">
+                                                    <lightning-button-icon icon-name="utility:delete"    variant="bare" alternative-text="Delete"   class="slds-m-left_xx-small vieweye" title="Delete"></lightning-button-icon>
+                                                    <span class="slds-assistive-text">Delete</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div> 
+                    </template>
+                </div>
+                <div class="slds-col slds-size_12-of-12 slds-align-bottom slds-text-align_right datepickerright slds-p-bottom_medium"> 
+                    <lightning-button  variant="brand" label="Submit" onclick={saveRecord} disabled={disableSubmit}></lightning-button>
+                </div>       
+            </div>
+        </div>
+    </template>   
+    <c-mars-resource-agreement-history record-id={recordId}></c-mars-resource-agreement-history>    
+  </template>

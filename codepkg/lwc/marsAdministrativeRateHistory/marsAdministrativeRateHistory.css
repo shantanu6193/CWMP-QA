@@ -1,0 +1,15 @@
+/**
+ * Created by Chandrabhan on 16-04-2021.
+ */
+
+ .slds-col.approved .slds-size_6-of-12 {
+    display: inline-block;
+}
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+.outputfont{
+    font-weight: bold;
+    font-size: medium;
+}

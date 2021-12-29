@@ -1,0 +1,315 @@
+<!--
+  @description       : 
+  @author            : premjpal
+  @group             : 
+  @last modified on  : 04-28-2021
+  @last modified by  : premjpal
+  Modifications Log 
+  Ver   Date         Author     Modification
+  1.0   04-28-2021   premjpal   Initial Version
+-->
+<template>
+	<div class="table_light">
+		<template if:false={isEditable}>
+			<div class="slds-grid slds-wrap">
+				<div class="slds-col slds-size_1-of-1 slds-p-bottom_medium slds-p-top_medium">
+
+					<span class="slds-float_left slds-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12">
+						<lightning-input label="Agency Invitation Link" id="copyMe" name="url" value={urlInvite}
+							disabled="true"></lightning-input>
+
+					</span>
+					<span class="slds-float_right slds-p-top_large">
+						<lightning-button label="Copy" title="copyButton" onclick={handleCopy}
+							class="slds-m-left_x-small">
+						</lightning-button>
+						&nbsp;
+						<lightning-button label="Invite Users" title="inviteUsers" onclick={handleInviteUsers}
+							class="slds-m-left_x-small"></lightning-button>
+					</span>
+
+				</div>
+			</div>
+		</template>
+		<div class="slds-grid slds-wrap slds-gutters_direct">
+			<div class="slds-col slds-size_1-of-1 slds-p-bottom_medium">
+				<div>
+					<h2 class="slds-text-heading_small slds-p-bottom_medium border_zero">Agency Information</h2>
+				</div>
+				<div>
+					<lightning-record-edit-form object-api-name="Account" record-id={existingAccountRecord.id}
+						density="comfy">
+						<div class="slds-grid slds-wrap">
+							<div
+								class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-top_medium">
+								<lightning-input-field field-name="Name" data-id="accountForm"
+									value={existingAccountRecord.Name} read-only></lightning-input-field>
+								<lightning-input-field field-name="Chief_Name__c" data-id="accountForm"
+									value={existingAccountRecord.Chief_Name__c} read-only={isEditable} name="chiefsName">
+								</lightning-input-field>
+							</div>
+							<div
+								class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-top_medium">
+								<lightning-input-field field-name="MACS_ID__c" data-id="accountForm"
+									value={existingAccountRecord.MACS_ID__c} read-only></lightning-input-field>
+								<lightning-input-field field-name="Chief_Email__c" data-id="accountForm" read-only={isEditable}
+									value={existingAccountRecord.Chief_Email__c} name="chiefsEmailAddress">
+								</lightning-input-field>
+							</div>
+							<div
+								class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-top_medium">
+								<lightning-input-field field-name="Department_City__c" data-id="accountForm"
+									value={existingAccountRecord.Department_City__c} name="deptCity" read-only>
+								</lightning-input-field>
+								<lightning-input-field field-name="Department_Email__c" data-id="accountForm"
+									value={existingAccountRecord.Department_Email__c} name="departmentEmailAddress"
+									read-only={isEditable}></lightning-input-field>
+							</div>
+							<div
+								class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-top_medium">
+								<lightning-input-field field-name="Department_State__c" data-id="accountForm"
+									value={existingAccountRecord.Department_State__c} name="deptState" read-only>
+								</lightning-input-field>
+								<template if:true={renderInputs}>
+								<lightning-input-field field-name="Phone" data-id="accountForm" onchange={formatPhone}
+									value={existingAccountRecord.Phone} name="telephoneNumber" read-only={isEditable}
+									placeholder="(123) 456-7890"></lightning-input-field>
+								</template>	
+							</div>
+						</div>
+						<div class="slds-grid slds-wrap">
+							<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4">
+								<lightning-input-field field-name="MARS_Region__c" disabled={isEditable}
+									value={existingAccountRecord.MARS_Region__c} name="region" data-id="accountForm"
+									required></lightning-input-field>
+							</div>
+							<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4">
+								<lightning-input-field field-name="MARS_Operational_Area__c" disabled={isEditable}
+									value={existingAccountRecord.MARS_Operational_Area__c} name="operationalarea"
+									data-id="accountForm" required></lightning-input-field>
+							</div>
+						</div>
+
+					</lightning-record-edit-form>
+				</div>
+			</div>
+		</div>
+		<div class="slds-grid slds-wrap">
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-bottom_medium">
+				<lightning-input type="text" data-id="accountForm" value={existingAccountRecord.BillingStreet}
+					name="physicalAddress" label="Physical Address" read-only={isEditable}></lightning-input>
+				<div class="slds-grid slds-gutters slds-wrap">
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-input type="text" data-id="accountForm" value={existingAccountRecord.BillingCity}
+							name="physicalAddressCity" label="City" read-only={isEditable}></lightning-input>
+					</div>
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-combobox data-id="accountForm" name="physicalAddressState" label="State"
+							value={existingAccountRecord.BillingState} options={states} placeholder="Select State"
+							onchange={handleState} read-only={isEditable}></lightning-combobox>
+
+
+
+					</div>
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-input data-id="accountForm" type="text" name="physicalAddressZipCode"
+							value={existingAccountRecord.BillingPostalCode} label="Zip Code" read-only={isEditable}>
+						</lightning-input>
+					</div>
+				</div>
+			</div>
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-bottom_medium">
+				<lightning-input data-id="accountForm" type="text" name="mailingAddress"
+					value={existingAccountRecord.ShippingStreet} label="Mailing Address" read-only={isEditable}>
+				</lightning-input>
+				<div class="slds-grid slds-gutters slds-wrap">
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-input data-id="accountForm" type="text" name="mailingCity"
+							value={existingAccountRecord.ShippingCity} label="City" read-only={isEditable}>
+						</lightning-input>
+					</div>
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-combobox data-id="accountForm" name="mailingState" label="State"
+							value={existingAccountRecord.ShippingState} options={states} placeholder="Select State"
+							onchange={handleState} read-only={isEditable}></lightning-combobox>
+
+					</div>
+					<div
+						class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-3 slds-p-top_medium">
+						<lightning-input data-id="accountForm" type="text" name="mailingZipCode"
+							value={existingAccountRecord.ShippingPostalCode} label="Zip Code" read-only={isEditable}>
+						</lightning-input>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="slds-p-top_medium">
+			<h2 class="slds-text-heading_small slds-p-bottom_medium border_zero">Please select all appropriate categories that apply
+				to your agency</h2>
+			<div class="slds-grid slds-wrap">
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-radio-group data-id="accountForm" name="federallyRecognizedTribe"
+						label="Federally Recognized Tribe" options={federallyRecognizedTribeOptions}
+						value={existingAccountRecord.Federally_Recognized_Tribe__c} type="radio" disabled={isEditable}>
+					</lightning-radio-group>
+
+				</div>
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-radio-group data-id="accountForm" name="federalFireDepartment"
+						label="Federal Fire Department" options={federalFireDepartmentOptions}
+						value={existingAccountRecord.Federal_Fire_Department__c} type="radio" disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-radio-group data-id="accountForm" name="departmentOfDefence"
+						label="Department of Defense" options={departmentOfDefenceOptions}
+						value={existingAccountRecord.Department_of_Defence__c} type="radio" disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-radio-group data-id="accountForm" name="volunteerComboFireDepartment" label="Volunteer"
+						options={volunteerComboFireDepartmentOptions} value={existingAccountRecord.Volunteer__c}
+						type="radio" disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+			</div>
+			<div class="slds-grid slds-wrap">
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium">
+					<lightning-radio-group name="agencyPaid" label="Paid" data-id="accountForm"
+						value={existingAccountRecord.MARS_Paid__c} options={responderOptions} type="radio"
+						disabled={isEditable}></lightning-radio-group>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium">
+					<lightning-radio-group data-id="accountForm" name="combination" label="Combination"
+						options={responderOptions} value={existingAccountRecord.MARS_Combination__c} type="radio"
+						disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+				<div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4">
+					<lightning-radio-group data-id="accountForm" name="other" label="Other" options={responderOptions}
+						value={existingAccountRecord.MARS_Agency_Type_Other__c} type="radio" disabled={isEditable}
+						onchange={handleOtherChange}>
+					</lightning-radio-group>
+				</div>
+			</div>
+		</div>
+		<div class="slds-p-top_medium">
+			<h2 class="slds-text-heading_small slds-p-bottom_medium border_zero">Please select the appropriate responses for your
+				agency</h2>
+			<div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-p-bottom_medium slds-p-top_medium">
+				<div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4">
+					<lightning-radio-group data-id="accountForm" name="activeAgency" label="Active Agency"
+						options={activeAgencyOptions} value={existingAccountRecord.MARS_Is_Active__c} type="radio"
+						disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+				<div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-4 slds-large-size_1-of-4">
+					<lightning-radio-group data-id="accountForm" name="responder" label="Responder"
+						options={responderOptions} value={existingAccountRecord.MARS_IsResponder__c} type="radio"
+						disabled={isEditable}>
+					</lightning-radio-group>
+				</div>
+			</div>
+		</div>
+		<!--
+        </div>-->
+
+		<!--<template if:true={isOtherVisible}>
+        <div class="slds-col slds-size_1-of-4">
+          <lightning-input data-id="accountForm" type="text" name="otherType"
+            value={existingAccountRecord.MARS_Other_Type__c} label="Other Type" read-only={isEditable}></lightning-input>
+        </div>
+      </template>-->
+
+		<div class="slds-grid slds-wrap slds-p-top_medium">
+			<h2 class="slds-text-heading_small slds-p-bottom_medium border_zero">Agency Identification Numbers</h2>
+			<div class="slds-grid slds-wrap">
+				<div
+					class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-input data-id="accountForm" type="text" name="taxPayerIdFEIN"
+						value={existingAccountRecord.Federal_Tax_ID__c} label="Tax Payer ID or FEIN"
+						read-only={isEditable}></lightning-input>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-input data-id="accountForm" type="text" name="dunsNumber"
+						value={existingAccountRecord.DUNS__c} label="DUNS Number" read-only={isEditable}>
+					</lightning-input>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-input data-id="accountForm" type="text" name="fiscalSupplierId"
+						value={existingAccountRecord.Fiscal_Supplier_ID__c} label="FI$Cal Supplier ID"
+						read-only={isEditable}></lightning-input>
+				</div>
+				<div
+					class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-bottom_medium slds-p-top_medium">
+					<lightning-input data-id="accountForm" type="text" name="fiscalAddreddId"
+						value={existingAccountRecord.Fiscal_Address_Id__c} label="FI$Cal Address ID"
+						read-only={isEditable}></lightning-input>
+				</div>
+			</div>
+
+		</div>
+		<template if:false={isEditable}>
+			<!--<lightning-button label="Cancel" title="Non-primary action" onclick={handleCancel}
+				class="slds-m-left_x-small">
+			</lightning-button>-->
+			<lightning-button variant="brand" label="Save" title="Successful action" onclick={handleSave}
+				class="slds-m-left_x-small brand"></lightning-button>
+		</template>
+
+
+		<template if:true={isInviteUsersModalOpen}>
+			<section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+				aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+				<div class="slds-modal__container">
+					<header class="slds-modal__header">
+						<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+							title="Close" onclick={closeInviteUsersModal}>
+							<lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+								size="small"></lightning-icon>
+							<span class="slds-assistive-text">Close</span>
+						</button>
+						<h3 id="modal-heading-03" class="">Invite Users to Agency</h3>
+					</header>
+					<div class="slds-modal__content slds-p-around_small">
+						    <h2 class="header_title">Invite Users</h2>
+							<p>Add emails of users you want to invite to the agency.</p>
+							<p>Users will be sent a link to the registration page forthe agency.</p>
+							<p>Enter each email separated by a comma. </p>
+							<p>Example: email1@agency.com, email2@agency.com </p>
+
+
+							<lightning-textarea data-id="emailsfield" name="emails" value={listEmails} onchange={handleChange}
+								label="Emails"></lightning-textarea>
+
+							<p>Invitation Link:</p>
+							<p>
+								{urlInvite}</p>
+							</p>
+
+					</div>
+
+					<footer class="slds-modal__footer">
+						<button class="slds-button slds-button_brand" name="Primary" onclick={submitEmailDetails}
+							title="Invite" disabled={buttonDisabled}>Invite</button>
+					</footer>
+				</div>
+			</section>
+			<div class="slds-backdrop slds-backdrop_open"></div>
+		</template>
+
+	</div>
+</template>

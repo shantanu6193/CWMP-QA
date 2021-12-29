@@ -1,0 +1,49 @@
+<!--
+ - Created by Shivraj on 27-08-2020.
+ -->
+
+<!-- Product Distribution Plan Row -->
+<template>
+    <!-- taken straight from SLDS -->
+    <tr class="table-rows">
+        <td role="gridcell" class="td">
+            <div class="slds-truncate">{recordLocal.Product_Family__c}</div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate">{recordLocal.Product_Name__c}</div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate">{recordLocal.ProductCode__c}</div>
+        </td>
+        <td role="gridcell" style="max-width:180px;">
+            <div class="td-has-error">
+                <div class="slds-truncate">{recordLocal.Quantity__c}</div>
+                <template if:true={hasQuantityError}>
+                    <div class="slds-text-color--error">Proposed Quantity Distribution should not exceed this Quantity.</div>
+                </template>
+            </div>
+        </td>
+        <td role="gridcell" style="max-width:180px;">
+            <div class="td-has-error">
+                <div class="slds-truncate">{recordLocal.Quantity_Filled__c}</div>
+                <template if:true={hasQuantityFilledError}>
+                    <div class="slds-text-color--error">Actual Quantity Distribution should not exceed this Quantity.</div>
+                </template>
+            </div>
+        </td>
+        <td role="gridcell" style="max-width:180px;white-space:normal;word-break:break-all;">
+            <div class="slds-truncate">{recordLocal.Description__c}</div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate">{recordLocal.Fulfilment_Entity_Warehouse__c}</div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate">{recordLocal.Status__c}</div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="100" style="padding:0">
+            <c-product-distribution-plan-row-edit record={recordLocal} data-custom="innerComponent"></c-product-distribution-plan-row-edit>
+        </td>
+    </tr>
+</template>

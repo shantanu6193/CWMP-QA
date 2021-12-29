@@ -1,0 +1,45 @@
+<aura:component controller="MARS_Process_CFAA_Ctrl" 
+                implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" 
+                access="global">
+
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="infoMessage" type="string" />
+    <aura:attribute name="errorMessage" type="string" />
+    <aura:attribute name="showProceed" type="Boolean" default="false" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+
+
+    <aura:if isTrue="{!!empty(v.infoMessage)}">
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                <h2>{!v.infoMessage}</h2>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!!empty(v.errorMessage)}">
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture">
+                <h2>{!v.errorMessage}</h2>
+            </div>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.showProceed}" >
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                <h2>Attention: Clicking Proceed here will start a batch job in the backend that will expire existing approved salary surveys, and create new copies of salary survyes where base rates are selected.<br/>
+                Please make sure you have all the data correctly on CFAA line items, and CFAA record before executing the batch</h2>
+            </div>
+        </div>
+
+        <br/>
+        <lightning:button variant="brand" label="Run the Batch" title="Proceed" onclick="{! c.proceed }" />
+    </aura:if>
+
+
+
+
+
+
+</aura:component>

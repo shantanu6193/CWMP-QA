@@ -1,0 +1,471 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p  class="slds-card__header-link" title="Request Details">
+                                    <span>PROJECT / PLAN INFORMATION</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner">
+					<div class="slds-grid">
+						<div class="slds-col">
+							<div class="slds-p-around_medium">
+								<div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+									 <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <span class= "slds-float_right slds_custom">{remainingCharsActivity}/100</span>
+										<lightning-textarea class="input" required value={recordLocal.Activity_TitleName__c} label="Project / Plan Title" data-field="Activity_TitleName__c" name="ActivityName" type="text" onchange={textAreaFieldChanged} field-level-help="The project/plan title must include the subapplicant name and subapplication type or project type. Do not use abbreviations in the title. For example, Marin County Marin Center Exhibit Hall - Seismic Retrofit Project, City of Los Angeles Stormwater Analysis - Project Scoping, City of Lomita General Plan Safety Element - Plan Update, City of Dunsmuir Hazard Mitigation Plan – New Plan." maxlength="100"></lightning-textarea>
+									</div>
+									<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <span class= "slds-float_right slds_custom">{remainingCharsSummary}/2500</span>
+                                        <lightning-textarea class="input" required value={recordLocal.Brief_Summary__c} label="Brief Summary" data-field="Brief_Summary__c" name="BriefSummary" type="text"  onchange={textAreaFieldChanged} maxlength="2500" field-level-help="Complete the response in the format provided: Example: This flood mitigation project will reduce or prevent localized flooding of 25 houses in a North Sacramento subdivision resulting from rain events characterized by an average of 2 inches of rain per day for three or more days by increasing the size of the culvert under Del Paso Road from the current 2-foot diameter to a 6 food diameter. For Planning or Planning-related subaplications, provide a brief summary of the activities you plan to do."></lightning-textarea>
+									</div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <!--<lightning-input-location class="input" required value={recordLocal.Activity_Location__c} label="Activity Location" data-field="Activity_Location__c" name="ActivityLocation" type="text" onchange={fieldChanged} field-level-help="Provide lat/long (32.30642, -122.61458 format) for the specific activity location, if the activity covers a wide area or multiple project sites provide polygon of the area."></lightning-input-location>-->
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_12-of-12">
+                                                <!--<label class="slds-form-element__label">Activity Location (lat/long)</label>
+                                                <lightning-helptext content="Provide lat/long (32.30642, -122.61458 format) for the specific activity location, if the activity covers a wide area or multiple project sites provide polygon of the area."></lightning-helptext>-->
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 padding-left_none">
+                                                <lightning-input label="Activity Location Latitude" required class="input" value={recordLocal.Activity_Location__Latitude__s} data-field="Activity_Location__Latitude__s" name="ActivityLocationLatitude" type="text" onfocus={removeZeros} onchange={fieldChanged}  onblur={latitudeBlur} field-level-help="Provide latitude (32.306421) for at least one point at the activity location" placeholder = "+XX.XXXXXX"></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_6-of-12 padding-right_none">
+                                                    <lightning-input label="Activity Location Longitude" required class="input" value={recordLocal.Activity_Location__Longitude__s} data-field="Activity_Location__Longitude__s" name="ActivityLocationLongitude" type="text" onfocus={removeZeros} onchange={fieldChanged}  onblur={longitudeBlur} field-level-help="Provide longitude (-122.614581 format) for at least one point at the activity location." placeholder = "-XXX.XXXXXX"></lightning-input>
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 ">
+                                        <!--<span class= "slds-float_right slds_custom">{remainingChars} characters remaining</span>
+                                        <lightning-textarea class="input" required value={recordLocal.Describe_the_problem_to_be_mitigated__c} label="Describe the problem to be mitigated" data-field="Describe_the_problem_to_be_mitigated__c" name="DescribeProblem" type="text" onchange={textAreaFieldChanged} maxlength="2500"></lightning-textarea>-->
+									</div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <lightning-input class="input" required value={recordLocal.Project_Duration_in_Months__c} label="Project / Plan Duration (in Months)" data-field="Project_Duration_in_Months__c" name="ProjectDurationInMonths" type="text" max-length="2" onchange={fieldChanged} field-level-help="Indicate the number of months it will take for this mitigation action to be implemented. Cannot exceed 36 months (33 months implementation plus 3 months for closeout). Community flood mitigation projects under Flood Mitigation Assistance (FMA) may be implemented in 48 months for (45 months implementation plus 3 months for closeout)."></lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12">
+
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <!--<lightning-input class="input" required value={recordLocal.Subapplication_for_project_submitted__c} label="Has a full subapplication for this project been submitted to OES previously?" data-field="Subapplication_for_project_submitted__c" name="SubapplicationForProjectSubmitted" type="text" onchange={fieldChanged} field-level-help="For example, has the project been submitted to Cal OES previously? "></lightning-input>-->
+                                        <template if:true={subapplicationForProjectPicklistValues.data}>
+                                            <lightning-combobox name="SubapplicationForProjectSubmitted"
+                                                                data-field="Subapplication_for_project_submitted__c"
+                                                                value={recordLocal.Subapplication_for_project_submitted__c}
+                                                                label="Has a full subapplication for this project/ plan been submitted to OES previously?"
+                                                                placeholder="Select"
+                                                                options={subapplicationForProjectPicklistValues.data.values}
+                                                                onchange={fieldChanged}
+                                                                class="input" required
+                                                                field-level-help="Indicate if a full subapplication for the project/plan has been submitted to OES under another disaster for Hazard Mitigation Grant Program (HMGP), HMGP Post Fire, Building Resilient Infrastructure and Communities (BRIC), Pre-Disaster Mitigation (PDM), or Flood Mitigation Assistance (FMA)."
+                                            >
+                                            </lightning-combobox>
+                                        </template>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+
+                                    </div>
+                                    <template if:true={showProgramField}>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <c-lookup
+                                                    label="Program"
+                                                    selection={programSelection}
+                                                    data-lookup="Program__c"
+                                                    errors={programRequired}
+                                                    onsearch={handleProgramSearch}
+                                                    onselectionchange={handleProgramSelectionChange}
+                                                    placeholder="Select Program"
+                                                    is-multi-entry={isMultiEntry}
+                                                    load-data-on-init = {loadLookupDataOnLoad}
+                                                    local-search = {loadLookupDataOnLoad}
+                                                    class="programLookup"
+                                                    required
+                                            >
+                                            </c-lookup>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                            <template if:true={showProjectNumber}>
+                                                <lightning-input class="input" value={recordLocal.Project_Number__c} label="Project Number" data-field="Project_Number__c" name="ProjectNumber" type="text" onchange={fieldChanged} max-length="100" field-level-help="For example, Project 101 submitted under disaster 4407 for HMGP would be DR4407-PJ0101."></lightning-input>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <template if:true={showAllCards}>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                          <!--<lightning-input class="input" required value={recordLocal.Federal_entity_have_funding_authority__c} label="Does another Federal entity have primary funding authority for this project?" data-field="Federal_entity_have_funding_authority__c" name="FederalEntityHaveFundingAuthority" type="text" onchange={fieldChanged} field-level-help="Is this activity eligible for funding from another federal program such as the NRCS Emergency Watershed Protection Act, FEMA Public Assistance Program, and the US Department of Agriculture/Department of the Interior Healthy Forest Restoration Act of 2002? For additional information on the Waiver of Duplication of Programs for projects with USACE visit: https://www.fema.gov/media-library-data/1583865090466-4c4879e33d2cbcc6e0d8b6d0e6548924/Section-1210b-Fact-Sheet_2020.pdf"></lightning-input>-->
+                                          <template if:true={fundingAuthorityPicklistValues.data}>
+                                              <lightning-combobox name="FederalEntityHaveFundingAuthority"
+                                                                  data-field="Federal_entity_have_funding_authority__c"
+                                                                  value={recordLocal.Federal_entity_have_funding_authority__c}
+                                                                  label="Does another Federal entity have primary funding authority for this project?"
+                                                                  placeholder="Select"
+                                                                  options={fundingAuthorityPicklistValues.data.values}
+                                                                  onchange={fieldChanged}
+                                                                  class="input" required
+                                                                  field-level-help="FEMA will not provide assistance for activities for which it determines the more specific authority lies with another Federal agency or program. Other programs and authorities should be examined before applying for Hazard Mitigation Assistance funding. For example, is this activity eligible for funding from another federal program such as the NRCS Emergency Watershed Protection Act, FEMA Public Assistance Program, and the US Department of Agriculture/Department of the Interior Healthy Forest Restoration Act of 2002."
+                                              >
+                                              </lightning-combobox>
+                                          </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                          <template if:true={showIdentifyTheProgramField}>
+                                              <lightning-input class="input" required value={recordLocal.If_yes_identify_the_program__c} label="If yes, identify the program" data-field="If_yes_identify_the_program__c" name="IfYesIdentifyTheProgram" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                                          </template>
+                                        </div>
+                                        <template if:true={showPhysicalWorkField}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                              <!--<lightning-input class="input" required value={recordLocal.Physical_project_work_already_started__c} label="Has physical project work already started?" data-field="Physical_project_work_already_started__c" name="PhysicalProjectWorkAlreadyStarted" type="text" onchange={fieldChanged} field-level-help="Physical work includes ground-breaking, demolition, construction, and/or        geotechnical work that involves ground disturbance including soil boring?"></lightning-input>-->
+                                                <template if:true={physicalProjectWorkPicklistValues.data}>
+                                                    <lightning-combobox name="PhysicalProjectWorkAlreadyStarted"
+                                                                        data-field="Physical_project_work_already_started__c"
+                                                                        value={recordLocal.Physical_project_work_already_started__c}
+                                                                        label="Has physical project work already started?"
+                                                                        placeholder="Select"
+                                                                        options={physicalProjectWorkPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="For example, ground-breaking, demolition, construction, and/or geotechnical work that involves ground disturbance including soil boring"
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showWorkStartedField}>
+                                                    <span class= "slds-float_right slds_custom">{remainingCharsWorkStarted}/2500</span>
+                                                    <lightning-textarea class="input" required value={recordLocal.Work_started_completed_in_detail__c} data-field="Work_started_completed_in_detail__c" label="Please explain in detail what work has been started/completed?" name="WorkStarted" type="text" onchange={textAreaFieldChanged} maxlength="2500"></lightning-textarea>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template if:true={showForBRICandFMA}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Subapplicant_for_infrastructure__c} label="Is the subapplicant responsible for the operations and maintenance of this infrastructure?" data-field="Subapplicant_for_infrastructure__c" name="SubapplicantForInfrastructure" type="text" onchange={fieldChanged} field-level-help="For example, does the subapplicant have full authority and ownership of the infrastructure to perform the proposed project."></lightning-input>-->
+                                                <template if:true={subapplicantForInfrastructurePicklistValues.data}>
+                                                    <lightning-combobox name="SubapplicantForInfrastructure"
+                                                                        data-field="Subapplicant_for_infrastructure__c"
+                                                                        value={recordLocal.Subapplicant_for_infrastructure__c}
+                                                                        label="Is the subapplicant responsible for the operations and maintenance of this infrastructure?"
+                                                                        placeholder="Select"
+                                                                        options={subapplicantForInfrastructurePicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="For example, does the subapplicant have full authority and ownership of the infrastructure to perform the proposed project."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showEntityResponsibleField}>
+                                                    <lightning-input class="input" required value={recordLocal.Entity_Responsible_For_Operation__c} label="Name the entity responsible for operation and maintenance of this infrastructure" data-field="Entity_Responsible_For_Operation__c" name="EntityResponsible" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Independent_mitigation_activity__c} label="Is this an independent mitigation activity?" data-field="Independent_mitigation_activity__c" name="IndependentMitigationActivity" type="text" onchange={fieldChanged} field-level-help="Projects that are dependent on a contingent action to be effective and/or feasible (i.e., not a stand-alone mitigation project that solves a problem independently or constitutes a functional portion of a solution) are not eligible for funding."></lightning-input>-->
+                                                <template if:true={independentMitigationActivityPicklistValues.data}>
+                                                    <lightning-combobox name="IndependentMitigationActivity"
+                                                                        data-field="Independent_mitigation_activity__c"
+                                                                        value={recordLocal.Independent_mitigation_activity__c}
+                                                                        label="Is this an independent mitigation activity?"
+                                                                        placeholder="Select"
+                                                                        options={independentMitigationActivityPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="Is this project dependent on another project or funding source (other than match) to be effectively implemented?"
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showMitigationDependentField}>
+                                                    <lightning-input class="input" required value={recordLocal.Mitigation_Dependent_On__c} label="What activity is this mitigation dependent on?" data-field="Mitigation_Dependent_On__c" name="MitigationDependent" type="text" onchange={fieldChanged} max-length="100"></lightning-input>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={planningStudiesOrFeasibilityReportsPicklistValues.data}>
+                                                            <lightning-combobox name="PlanningStudiesOrFeasibilityReports"
+                                                                        data-field="Planning_studies_or_feasibility_reports__c"
+                                                                        value={recordLocal.Planning_studies_or_feasibility_reports__c}
+                                                                        placeholder="Select"
+                                                                        options={planningStudiesOrFeasibilityReportsPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        label="Do you have planning studies or feasibility reports?"
+                                                            >
+                                                            </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showWhatIsAvailableField}>
+                                                    <lightning-input label="If yes, what is available?" class="input" required value={recordLocal.If_yes_planning_studies__c} data-field="If_yes_planning_studies__c" name="WhatIsAvailable" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Design_documents_for_this_project__c} label="Do you have design documents for this project?" data-field="Design_documents_for_this_project__c" name="DesignDocumentsForThisProject" type="text" onchange={fieldChanged}></lightning-input>-->
+                                                <template if:true={designDocumentsForThisProjectPicklistValues.data}>
+                                                    <lightning-combobox name="DesignDocumentsForThisProject"
+                                                                        data-field="Design_documents_for_this_project__c"
+                                                                        value={recordLocal.Design_documents_for_this_project__c}
+                                                                        label="Do you have design documents for this project?"
+                                                                        placeholder="Select"
+                                                                        options={designDocumentsForThisProjectPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showPercentageCompleteAreTheDesignsField}>
+                                                    <lightning-input class="input" required value={recordLocal.Percentage_complete_are_the_designs__c} label="If yes, what is available?" data-field="Percentage_complete_are_the_designs__c" name="PercentageCompleteAreTheDesigns" type="text" max-length="255" onchange={fieldChanged} field-level-help="For example, Issued for Construction 30% Design, Issued for Construction 60% Design, Schematic Design, Concept Design, Design Development 50% Design."></lightning-input>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Project_related_to_asset__c} label="Is the project related to repair, replacement, rehabilitation, or maintenance of an asset?" data-field="Project_related_to_asset__c" name="ProjectRelatedToAsset" type="text" onchange={fieldChanged} field-level-help="HMGP funds are not to be used for the sole purpose of repair, replacement, or maintenance of an asset. The HMGP funds must increase the level of protection. "></lightning-input>-->
+                                                <template if:true={projectRelatedToAssetPicklistValues.data}>
+                                                    <lightning-combobox name="ProjectRelatedToAsset"
+                                                                        data-field="Project_related_to_asset__c"
+                                                                        value={recordLocal.Project_related_to_asset__c}
+                                                                        label="Is the project related to repair, replacement, rehabilitation, or maintenance of an asset?"
+                                                                        placeholder="Select"
+                                                                        options={projectRelatedToAssetPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="Hazard Mitigation Assistance funds are not to be used for the sole purpose of repair, replacement, or maintenance of an asset. The funds must increase the level of protection."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Protection_for_that_asset__c} label="If yes, does this project increase the level of protection for that asset?" data-field="Protection_for_that_asset__c" name="ProtectionForThatAsset" type="text" onchange={fieldChanged}></lightning-input>-->
+                                                <template if:true={showProtectionForThatAssetField}>
+                                                    <template if:true={protectionForThatAssetPicklistValues.data}>
+                                                        <lightning-combobox name="ProtectionForThatAsset"
+                                                                            data-field="Protection_for_that_asset__c"
+                                                                            value={recordLocal.Protection_for_that_asset__c}
+                                                                            label="If yes, does this project increase the level of protection for that asset?"
+                                                                            placeholder="Select"
+                                                                            options={protectionForThatAssetPicklistValues.data.values}
+                                                                            onchange={fieldChanged}
+                                                                            class="input" required
+                                                        >
+                                                        </lightning-combobox>
+                                                    </template>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template if:true={showConformanceFields}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Project_related_to_asset__c} label="Is the project related to repair, replacement, rehabilitation, or maintenance of an asset?" data-field="Project_related_to_asset__c" name="ProjectRelatedToAsset" type="text" onchange={fieldChanged} field-level-help="HMGP funds are not to be used for the sole purpose of repair, replacement, or maintenance of an asset. The HMGP funds must increase the level of protection. "></lightning-input>-->
+                                                <template if:true={projectInConformancePicklistValues.data}>
+                                                    <lightning-combobox name="projectInConformance"
+                                                                        data-field="Project_in_conformance_with_latest_codes__c"
+                                                                        value={recordLocal.Project_in_conformance_with_latest_codes__c}
+                                                                        label="Is the project in conformance with the latest published building codes?"
+                                                                        placeholder="Select"
+                                                                        options={projectInConformancePicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="Mitigation projects must, at a minimum, be in conformance with the latest published editions (meaning either of the two most recently published editions) of relevant consensus-based codes, specifications, and standards that incorporate the latest hazard-resistant designs. This refers to mandatory building code adoption requirement (2015 and 2018 versions of International Building Code and International Residential Code)."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={showProjectNotInConformance}>
+                                                    <lightning-textarea class="input" data-field="Explain_why_project_not_in_conformance__c" required value={recordLocal.Explain_why_project_not_in_conformance__c} label="Please explain why the project will not be in conformance with the latest building codes." type="text" onchange={fieldChanged} maxlength="2500"></lightning-textarea>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template if:true={hideSpecialFloodHazardArea}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <!--<lightning-input class="input" required value={recordLocal.Project_related_to_asset__c} label="Is the project related to repair, replacement, rehabilitation, or maintenance of an asset?" data-field="Project_related_to_asset__c" name="ProjectRelatedToAsset" type="text" onchange={fieldChanged} field-level-help="HMGP funds are not to be used for the sole purpose of repair, replacement, or maintenance of an asset. The HMGP funds must increase the level of protection. "></lightning-input>-->
+                                                <template if:true={specialFloodHazardPicklistValues.data}>
+                                                    <lightning-combobox name="specialFloodHazard"
+                                                                        data-field="Project_in_a_Special_Flood_Hazard_Area__c"
+                                                                        value={recordLocal.Project_in_a_Special_Flood_Hazard_Area__c}
+                                                                        label="Is the project located in a Special Flood Hazard Area?"
+                                                                        placeholder="Select"
+                                                                        options={specialFloodHazardPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="A Special Flood Hazard Area (SFHA) is an area having special flood, mudflow or flood-related erosion hazards and shown on a Flood Hazard Boundary Map (FHBM) or a Flood Insurance Rate Map (FIRM)."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template if:true={showFloodInsuranceProgram}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={floodInsuranceProgramPicklistValues.data}>
+                                                    <lightning-combobox name="floodInsuranceProgram"
+                                                                        data-field="Project_located_in_NFIP__c"
+                                                                        value={recordLocal.Project_located_in_NFIP__c}
+                                                                        label="Is the project located in a jurisdiction that is in good standing with the National Flood Insurance Program (NFIP)?"
+                                                                        placeholder="Select"
+                                                                        options={floodInsuranceProgramPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="Subapplicants must be participating in the NFIP, and not be withdrawn, on probation, or suspended."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <lightning-input class="input" required value={recordLocal.National_Flood_Insurance_Program_NFIP__c} label="Provide the National Flood Insurance Program (NFIP) community number" data-field="National_Flood_Insurance_Program_NFIP__c" name="PercentageCompleteAreTheDesigns" type="text" max-length="255" onchange={fieldChanged} field-level-help="The community number is a 6-digit designation identifying each NFIP community. The first 2 numbers are the state code. The next 4 are the FEMA-assigned community number. An alphabetical suffix is added to a community number to identify revisions in the Flood Insurance Rate Map (FIRM) for that community."></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={structuresIncludedPicklistValues.data}>
+                                                    <lightning-combobox name="structuresIncluded"
+                                                                        data-field="Structures_included_in_subapplication__c"
+                                                                        value={recordLocal.Structures_included_in_subapplication__c}
+                                                                        label="Are all the structures to be included in the subapplication insured under the National Flood Insurance Program (NFIP)?"
+                                                                        placeholder="Select"
+                                                                        options={structuresIncludedPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="For BRIC projects, if the project is located in a SFHA, the property owner must obtain and maintain flood insurance for the life of the structure, regardless of transfer of ownership, in an amount at least equal to the project cost or to the maximum limit of coverage made available, whichever is less. For FMA projects, subapplicants must be participating in the NFIP, and not be withdrawn, on probation, or suspended"
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template if:true={showProjectMitigateField}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={projectMitigatePicklistValues.data}>
+                                                    <lightning-combobox name="projectMitigate"
+                                                                        data-field="Project_mitigate_Severe_Repetitive_Loss__c"
+                                                                        value={recordLocal.Project_mitigate_Severe_Repetitive_Loss__c}
+                                                                        label="Does the project mitigate Severe Repetitive Loss or Repetitive Loss properties?"
+                                                                        placeholder="Select"
+                                                                        options={projectMitigatePicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="Severed Repetitive Loss (SRL): At least two separate NFIP claim payments have been made with the cumulative amount of such claims exceeding the market value of the insured structure OR four or more separate NFIP claims payments have been made with the amount of each claim exceeding $5,000, and with the cumulative amount of claims payments exceeding $20,000. Repetitive Loss (RL): The properties have incurred flood-related damage on two occasions, in which the cost of the repair, on the average, equaled or exceeded 25 percent of the market value of the structure at the time of each flood event."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div> 
+                                        </template>
+                                    </template>
+                                </div>
+						    </div>
+                        </div>
+					</div>
+				</div>
+			</article>
+        </div>
+        <template if:true={showCardsForPlanningRelated}>
+            <template if:true={hideForProblemMitigation}>
+                <div class="slds-col slds-size_12-of-12">
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <p  class="slds-card__header-link" title="Request Details">
+                                            <span>PROBLEM STATEMENT</span>
+                                        </p>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <hr>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-grid">
+                                <div class="slds-col">
+                                    <div class="slds-p-around_medium">
+                                        <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <span class= "slds-float_right slds_custom">{remainingChars}/2500</span>
+                                                <lightning-textarea class="input" required value={recordLocal.Describe_the_problem_to_be_mitigated__c} label="Describe the problem to be mitigated" data-field="Describe_the_problem_to_be_mitigated__c" name="DescribeProblem" type="text" onchange={textAreaFieldChanged} maxlength="2500" field-level-help="Provide a detailed description of the problem or the risk to be addressed. Include the cause of the problem, how long the problem has existed, the types of damages that occur (including dates and approx. costs), and any studies that have been performed."></lightning-textarea>
+
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <lightning-textarea class="input" required value={recordLocal.Future_Hazard_Event_Trigger__c} label="What is the future hazard event trigger to initiate analysis to determine if losses have been avoided due to success of this mitigation measure?" data-field="Future_Hazard_Event_Trigger__c" name="FutureHazard" type="text" onchange={fieldChanged} maxlength="2500" field-level-help="Identify and describe the specific, future hazard circumstance(s) that will result reduced loss of life and/or reduced property damage as a result of this mitigation measure being implemented. Describe in measurable terms the natural hazard circumstance(s) that will test the mitigation measure. Example for a seismic project: Earthquake of magnitude X. Earthquakes above magnitude of X would cause damage to the structure in the current pre-mitigation condition. Earthquakes ranging from magnitude of X to Y will result in the elimination or reduction of damage. Example for Drainage Home Elevation Flood Mitigation Project: Structural damage eliminated for flood events ranging from 10-year events (base flood elevation of ___ feet ___ ) to 100-year events (base flood elevation ___ feet ___ ). Example of Flood Prevention Culvert Upsizing: Rain events of 5” or more in a period of three days or less have resulted in homes in the ABC neighborhood inundated with 1 food of water at the first floor elevation or rain events resulting in stream gauge data of ___ CFM at the XYZ Bridge of ABC Creek. Example for Wild Fire Hazardous Fuels Reduction/Defensible Space: Wildfire approaching from the north."></lightning-textarea>
+                                            </div>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="slds-col slds-size_12-of-12">
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <p  class="slds-card__header-link" title="Request Details">
+                                            <span>SOLUTION DESCRIPTION</span>
+                                        </p>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <hr>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-grid">
+                                <div class="slds-col">
+                                    <div class="slds-p-around_medium">
+                                        <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <span class= "slds-float_right slds_custom">{remainingCharsMitigationAction}/2000</span>
+                                                <lightning-textarea class="input" required value={recordLocal.What_is_the_mitigation_action__c} label="What is the mitigation action?" data-field="What_is_the_mitigation_action__c" name="MitigationAction" type="text" onchange={textAreaFieldChanged} maxlength="2000" field-level-help="Describe in detail the proposed mitigation action and how it will mitigate the problem. The description should include the proposed approach and expected mitigation outcome(s)."></lightning-textarea>
+                                            </div>
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <span class= "slds-float_right slds_custom">{remainingCharsProtection}/2000</span>
+                                                <lightning-textarea class="input" required value={recordLocal.Protection_From_Future_Natural_Hazards__c} label="How will this action provide protection from future natural hazards?" data-field="Protection_From_Future_Natural_Hazards__c" name="NaturalHazardProtection" type="text" onchange={textAreaFieldChanged} maxlength="2000" field-level-help="Describe how the proposed action will reduce or eliminate damage or risk to life and property, include information on the level of protection the project will provide if designed to a specific standard (For example, 6.0 earthquake, 100-year flood, etc.)"></lightning-textarea>
+                                            </div>
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <span class= "slds-float_right slds_custom">{remainingCharsImplimentation}/2000</span>
+                                                <lightning-textarea class="input" required value={recordLocal.Implementation_Plan_For_Mitigation__c} label="What is the implementation plan for this mitigation effort?" data-field="Implementation_Plan_For_Mitigation__c" name="ImplimentationPlan" type="text" onchange={textAreaFieldChanged} maxlength="2000" field-level-help="Indicate the person (by title) managing the project and identify title of in-house personnel whom will be supporting the project and tasks they will be assigned. If applicable, specify any tasks which will be completed by 3rd party contractors."></lightning-textarea>
+                                             </div>
+                                             <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={isProjectSiteIdentifiedPicklistValues.data}>
+                                                    <lightning-combobox name="floodInsuranceProgram"
+                                                                        data-field="Is_Project_Site_Identified__c"
+                                                                        value={recordLocal.Is_Project_Site_Identified__c}
+                                                                        label="Have all specific sites where project work will be conducted been identified?"
+                                                                        placeholder="Select"
+                                                                        options={isProjectSiteIdentifiedPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help=""
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <lightning-input class="input" required value={recordLocal.Percentage_Level_Of_Design__c} label="What is the percentage level of design?" data-field="Percentage_Level_Of_Design__c" name="PercentageLevelOfDesign" min="0" max="100" message-when-range-overflow="You can not enter more than 100" message-when-range-underflow="You can not enter less than 0" type="number" max-length="3" onchange={fieldChanged} field-level-help=""></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                                <template if:true={IsThisProjectPhasedPicklistValues.data}>
+                                                    <lightning-combobox name="floodInsuranceProgram"
+                                                                        data-field="Is_this_project_phased__c"
+                                                                        value={recordLocal.Is_this_project_phased__c}
+                                                                        label="Is this project phased?"
+                                                                        placeholder="Select"
+                                                                        options={IsThisProjectPhasedPicklistValues.data.values}
+                                                                        onchange={fieldChanged}
+                                                                        class="input" required
+                                                                        field-level-help="If you do not know the location of all project sites, or if your design level is below 60%, this project will need to be phased."
+                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

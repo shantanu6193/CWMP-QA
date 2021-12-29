@@ -1,0 +1,31 @@
+<template>
+    <tr>
+        <td scope="col">
+            <c-lookup
+                data-custom="lookup"
+                data-lookup="Personnel_Role__c"
+                onsearch={handleItemSearch}
+                onselectionchange={handleItemChange}
+                placeholder="Enter / Search Title (3 or more characters)"
+                is-multi-entry={isMultiEntry}
+                load-data-on-init = {loadDataOnLookup}
+                local-search = {loadDataOnLookup}
+                scroll-after-n-items = "10"
+                errors={classificationTitleRequired}
+                selection={classificationTitleSelection}
+                required>
+            </c-lookup>
+        </td>
+        <td scope="col">
+            <lightning-input type="checkbox" label="OT" data-field="OT__c" variant="label-hidden" checked={recordLocal.OT__c} value={recordLocal.OT__c} onchange={handleClicked} disabled={disableOTCheck}>
+            </lightning-input>
+        </td>
+        <td scope="col">
+            <lightning-input type="checkbox" label="PTP" data-field="PTP__c" variant="label-hidden" checked={recordLocal.PTP__c} value={recordLocal.PTP__c} onchange={fieldChecked}><!--required={isP2PRequired}-->
+            </lightning-input>
+        </td>
+        <td>
+            <lightning-button-icon icon-name="utility:delete" value={index} variant="bare" onclick={deleteRow}></lightning-button-icon>
+        </td>
+    </tr>
+</template>

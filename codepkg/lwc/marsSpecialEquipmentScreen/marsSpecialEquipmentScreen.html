@@ -1,0 +1,80 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+          <div class="slds-p-bottom_large table_light">
+            <h2 class="slds-text-heading_small slds-p-top_medium">{headerTitle}</h2>
+            <div class="slds">
+                <div class="slds-grid slds-wrap">
+                   <div class="slds-col  slds-size_1-of-1 slds-p-top_medium">
+                      <lightning-button slot="actions" variant="brand" label="Add Row" onclick={addRow} class="slds-p-left_small slds-float_right"></lightning-button>
+                   </div>
+                </div>
+             </div>
+            
+            <div class="slds-card__body">
+            <div class="slds-scrollable">
+              <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+                    <thead>
+                        <tr class="slds-text-title_caps">
+                              <th class="" scope="col">
+                                  <div class="slds-cell-wrap" title="Special Equipment Type">Special Equipment Type</div>
+                              </th>
+                              <th class="" scope="col">
+                                  <div class="slds-cell-wrap" title="FEMA Code">FEMA Code</div>
+                              </th>
+                              <th class="" scope="col">
+                                  <div class="slds-cell-wrap" title="Equipment Rate">Equipment Rate</div>
+                              </th>
+                              <th class="" scope="col">
+                                  <div class="slds-cell-wrap" title="Description">Description</div>
+                              </th>
+                              <th class="" scope="col">
+                                  <div class="slds-cell-wrap" title="Action">Action</div>
+                              </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={rows} for:item="record" for:index="index">
+                          <c-mars-special-equip-line  key={record.index}
+                                                      index={index} 
+                                                      record={record} 
+                                                      data-id={index}
+                                                      ondeleted={removeRow}
+                                                      onadded={addRow}>
+                        </c-mars-special-equip-line>
+                        </template>
+                    </tbody>
+              </table>
+            </div>
+          </div> 
+          <div class="slds">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col  slds-size_1-of-1 slds-medium-size_5-of-12 slds-large-size_5-of-12 slds-p-bottom_medium">
+                        <c-signature data-id="signature"></c-signature>
+                    </div>
+                    <div class="slds-col  slds-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12 slds-p-bottom_medium">
+                        <div class="slds-text-align_right datepickerright">
+                            <lightning-input type="Date" label="Effective Date for the Rates Being Submitted"
+                                value={futureDate} min={minDate} required="true" class="input futuredate"
+                                message-when-range-underflow="Please select a future date"
+                                onchange={handleFutureDateChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="toppaddin-div">     
+                            <p class="outputfont">NOTE: These rates are not effective until the date they are received by Cal OES.
+                            </p>
+                             <p>As an authorized representative of my agency/dept., I certify to the best of my knowledge and belief, and under penalty of perjury that this information is correct. Furthermore, my signature represents acceptance by my agency/dept., as a cooperator, to comply with the authorities, terms and conditions of the CFAA. I also agree to comply with all cooperator agency internal accounting and expense reimbursement standards.</p>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div class="slds-col slds-size_12-of-12 slds-align-bottom slds-text-align_right datepickerright">
+                <lightning-button variant="brand" label="Submit" onclick={saveData} disabled={disableSubmit}>
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+    <c-mars-special-equipment-history record-id={recordId}></c-mars-special-equipment-history>
+</template>

@@ -1,0 +1,338 @@
+<!--
+ - Created by harsh on 28-01-2021.
+ -->
+
+<!-- Page Field -->
+<template>
+
+
+        <template if:true={isPageFieldLoaded}>
+            <template if:true={isTextField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>                                        
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input   class="input" 
+                                    value={getFieldApiValue}  
+                                    variant="label-hidden" 
+                                    data-field={pageFieldLocal.Field_API_Name__c} 
+                                    name={pageFieldLocal.DeveloperName} 
+                                    placeholder={fieldPlaceholder}
+                                    type="text"
+                                    pattern={fieldValidationPattern}
+                                    message-when-pattern-mismatch={fieldPatternErrorMessage}
+                                    max-length={fieldMaxLength}
+                                    onchange={fieldChangedEvent}  
+                                                                       
+                                    required={pageFieldLocal.Required__c} 
+                                    disabled={isReadOnly}>
+                </lightning-input>
+            </template>
+
+            <template if:true={isLatitudeField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input   class="input"
+                                    value={getFieldApiValue}
+                                    variant="label-hidden"
+                                    data-field={pageFieldLocal.Field_API_Name__c}
+                                    name={pageFieldLocal.DeveloperName}
+                                    placeholder={fieldPlaceholder}
+                                    type="text"
+                                    onblur={latitudeBlur}
+                                    required={pageFieldLocal.Required__c}
+                                    disabled={isReadOnly}>
+                </lightning-input>
+            </template>
+
+            <template if:true={isLongitudeField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input   class="input"
+                                    value={getFieldApiValue}
+                                    variant="label-hidden"
+                                    data-field={pageFieldLocal.Field_API_Name__c}
+                                    name={pageFieldLocal.DeveloperName}
+                                    placeholder={fieldPlaceholder}
+                                    type="text"
+                                    onblur={longitudeBlur}
+                                    required={pageFieldLocal.Required__c}
+                                    disabled={isReadOnly}>
+                </lightning-input>
+            </template>
+
+
+
+            <template if:true={isCheckboxField}>
+                <lightning-input class="input" checked={getFieldApiValue}  label={pageFieldLocal.Display_Label__c} data-field={pageFieldLocal.Field_API_Name__c} name={pageFieldLocal.DeveloperName} type="checkbox"  onchange={fieldChangedEvent}  required={pageFieldLocal.Required__c} disabled={isReadOnly}></lightning-input>
+            </template>
+
+            <template if:true={isDateField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input class="input" value={getFieldApiValue} variant="label-hidden" data-field={pageFieldLocal.Field_API_Name__c} name={pageFieldLocal.DeveloperName} type="date"  onchange={fieldChangedEvent}  required={pageFieldLocal.Required__c} disabled={isReadOnly}></lightning-input>
+            </template>
+
+            <template if:true={isNumberField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input class="input" 
+                                    min={minFieldValue}
+                                    max={maxFieldValue}
+                                    message-when-range-underflow={minValueMismatchErrorMsg}
+                                    message-when-range-overflow={maxValueMismatchErrorMsg}
+                                    value={getFieldApiValue} 
+                                    variant="label-hidden" 
+                                    data-field={pageFieldLocal.Field_API_Name__c} 
+                                    name={pageFieldLocal.DeveloperName} 
+                                    type="number"
+                                    onchange={fieldChangedEvent}  
+                                    required={pageFieldLocal.Required__c} 
+                                    disabled={isReadOnly}
+                                    max-length={fieldMaxLength}>
+                </lightning-input>
+            </template>
+
+            <template if:true={isCurrencyField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input class="input"
+                                 value={getFieldApiValue}
+                                 min={minFieldValue}
+                                 max={maxFieldValue}
+                                 message-when-range-underflow={minValueMismatchErrorMsg}
+                                 message-when-range-overflow={maxValueMismatchErrorMsg}
+                                 variant="label-hidden"
+                                 data-field={pageFieldLocal.Field_API_Name__c}
+                                 name={pageFieldLocal.DeveloperName}
+                                 type="number"
+                                 onchange={fieldChangedEvent}
+                                 required={pageFieldLocal.Required__c}
+                                 formatter="currency"
+                                 step="0.01"
+                                 disabled={isReadOnly}
+                                 ></lightning-input>
+            </template>
+
+            <template if:true={isPercentField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <lightning-input class="input" value={getFieldApiValue}  variant="label-hidden" data-field={pageFieldLocal.Field_API_Name__c} name={pageFieldLocal.DeveloperName} type="number" onchange={fieldChangedEvent}  required={pageFieldLocal.Required__c} formatter="percent" step="0.01" disabled={isReadOnly}></lightning-input>
+            </template>
+
+            <template if:true={isPicklistField}>
+                <template if:true={picklistValues.values}>
+                    <label class="slds-form-element__label">
+                        <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                            <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                        </span>
+                        <template if:true={fieldHelpText}>
+                            <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                        </template>
+                    </label>
+                    <lightning-combobox name={pageFieldLocal.DeveloperName}
+                                        data-field={pageFieldLocal.Field_API_Name__c}
+                                        value={getFieldApiValue}
+                                        variant="label-hidden"
+                                        placeholder="Select Option"
+                                        options={picklistOptions}
+                                        onchange={fieldChangedEvent}
+                                        class="input"
+                                        required={pageFieldLocal.Required__c}
+                                        disabled={isReadOnly}>
+                    </lightning-combobox>
+                </template>
+            </template>
+
+            <template if:true={isUserDefinedPicklistField}>
+                <template if:true={isUserDefinedPicklistOptionsLoaded}>
+                    <label class="slds-form-element__label">
+                        <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                            <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                        </span>
+                        <template if:true={fieldHelpText}>
+                            <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                        </template>
+                    </label>
+                    <lightning-combobox name={pageFieldLocal.DeveloperName}
+                                        data-field={pageFieldLocal.Field_API_Name__c}
+                                        value={getFieldApiValue}
+                                        variant="label-hidden"
+                                        placeholder="Select Option"
+                                        options={userDefinedPicklistOptions}
+                                        onchange={fieldChangedEvent}
+                                        class="input"
+                                        required={pageFieldLocal.Required__c}
+                                        disabled={isReadOnly}>
+                    </lightning-combobox>
+                </template>
+            </template>
+
+
+
+            <template if:true={isTextAreaField}>
+                <label class="slds-form-element__label">
+                    <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                        <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                    </span>
+                    <template if:true={fieldHelpText}>
+                        <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                    </template>
+                </label>
+                <span class="slds-float--right slds-m-vertical_x-small slds-text-title">{calculatedFieldLength}/{fieldMaxLength}</span>
+            
+                <lightning-textarea class="input" 
+                                    value={getFieldApiValue} 
+                                    variant="label-hidden" 
+                                    data-field={pageFieldLocal.Field_API_Name__c} 
+                                    name={pageFieldLocal.DeveloperName} 
+                                    required={pageFieldLocal.Required__c} 
+                                    onchange={fieldChangedEvent} 
+                                    disabled={isReadOnly}
+                                    max-length={fieldMaxLength}>
+                </lightning-textarea>
+            </template>
+
+
+            <template if:true={isMultiselectField}>
+                <template if:true={picklistValues.values}>
+                    <label class="slds-form-element__label">
+                        <span class="slds-m-right_xx-small">{pageFieldLocal.Display_Label__c}
+                            <template if:true={pageFieldLocal.Required__c}><span class="slds-required" title="required">*</span></template>
+                        </span>
+                        <template if:true={fieldHelpText}>
+                            <c-page-Field-Help-Text help-text={pageFieldLocal.Help_Text__c}></c-page-Field-Help-Text>
+                        </template>
+                    </label>
+                    <lightning-dual-listbox class="input"
+                                            name={pageFieldLocal.DeveloperName}
+                                            variant="label-hidden"
+                                            source-label="Available"
+                                            selected-label="Selected"
+                                            data-field={pageFieldLocal.Field_API_Name__c}
+                                            options={picklistValues.values}  
+                                            value={dualListSelectedValues}                                          
+                                            onchange={fieldChangedEvent}
+                                            required={pageFieldLocal.Required__c}
+                                            disabled={isReadOnly}>
+                    </lightning-dual-listbox>
+                </template>
+            </template>
+
+            <template if:true={isLookupField}>
+                <c-lookup
+                        label={pageFieldLocal.Display_Label__c}
+                        selection={lookupSelection}
+                        data-lookup={pageFieldLocal.Field_API_Name__c}
+                        errors={lookupErrors}
+                        onsearch={handleLookupSearch}
+                        onselectionchange={handleLookupSelectionChange}
+                        placeholder="Search"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadLookupDataOnLoad}
+                        local-search = {loadLookupDataOnLoad}
+                        is-disabled={isAllFieldsReadOnly}
+                        class="lookupClass"
+                        required
+                >
+                </c-lookup>
+            </template>
+
+            <template if:true={isStaticField}>
+                <lightning-formatted-rich-text value={pageFieldLocal.Static_Content__c}></lightning-formatted-rich-text>
+            </template>
+
+            <template if:true={isBlankField}></template>
+
+            <template if:true={isTableField}>
+                <c-page-table   record={record} 
+                                record-id={recordId}
+                                page-field-local={pageFieldLocal} 
+                                table-object-name={pageFieldLocal.Table_Object__c} 
+                                table-columns={pageFieldLocal.Table_Columns__c} 
+                                table-more-config={pageFieldLocal.Table_Additional_Config__c} 
+                                table-record-limit={pageFieldLocal.Table_Record_Limit__c} 
+                                table-where-clause={pageFieldLocal.Table_Where_Clause__c} 
+                                table-parent-relationship-field-api={pageFieldLocal.Table_Parent_Relationship_Field_API__c} 
+                                table-name={pageFieldLocal.Table_Name__c} 
+                                field-changed={fieldChanged} 
+                                is-all-fields-read-only={isAllFieldsReadOnly}
+                                program-template-page-id={programTemplatePageId}
+                                page-layout-id={pageLayoutId}
+                                logged-in-user-details={loggedInUserDetails}>
+                </c-page-table>
+            </template>
+            <template if:true={isMultiTableField}>
+                <template for:each={multiTableList} for:item="multiTable">
+                    <c-page-table data-custom="innerComponent" 
+                                    key={multiTable.Id} 
+                                    record={record} 
+                                    record-id={recordId}
+                                    grand-parent-record={multiTable} 
+                                    table-object-name={pageFieldLocal.Table_Object__c} 
+                                    table-columns={pageFieldLocal.Table_Columns__c} 
+                                    table-more-config={pageFieldLocal.Table_Additional_Config__c} 
+                                    table-record-limit={pageFieldLocal.Table_Record_Limit__c} 
+                                    table-where-clause={pageFieldLocal.Table_Where_Clause__c} 
+                                    table-parent-relationship-field-api={pageFieldLocal.Table_Parent_Relationship_Field_API__c} 
+                                    table-name={pageFieldLocal.Table_Name__c} 
+                                    field-changed={fieldChanged} 
+                                    is-all-fields-read-only={isAllFieldsReadOnly}
+                                    program-template-page-id={programTemplatePageId}
+                                    page-layout-id={pageLayoutId}
+                                    logged-in-user-details={loggedInUserDetails}
+                    >
+                    </c-page-table>
+                </template>
+            </template>
+            
+            <template if:true={isDocumentUploadField}>
+                <c-document-upload record={record} 
+                                    column-list={parseDocumentColumns} 
+                                    document-names-to-render={pageFieldLocal.Filter_Document_Types__c} 
+                                    exclude-document-types={documentTypesExcluded} 
+                                    is-all-fields-read-only={isAllFieldsReadOnly}>
+                </c-document-upload>
+            </template>            
+        </template>
+</template>

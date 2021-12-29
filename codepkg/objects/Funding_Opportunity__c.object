@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Disaster_Grant_FO_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Disaster_Grant_FO_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Funding_Opportunity</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Funding_Opportunity</fullName>
+        <fields>Name</fields>
+        <fields>Incident_Name__c</fields>
+        <fields>Program_Name__c</fields>
+        <label>Funding Opportunity</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Actual_End_Date__c</fullName>
+        <description>Actual End Date, if extended or amended, from the Planned End Date.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Actual End Date of the Funding Opportunity.</inlineHelpText>
+        <label>Actual End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Actual_Start_Date__c</fullName>
+        <description>Actual Start Date, if different, from the Planned Start Date.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Actual Start Date of Funding Opportunity.</inlineHelpText>
+        <label>Actual Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Amended_Announcement__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Displays the most recent previously created amendment record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Displays the most recent previously created amendment record name.</inlineHelpText>
+        <label>Amended Announcement</label>
+        <referenceTo>Funding_Opportunity__c</referenceTo>
+        <relationshipName>Funding_Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Announcement_Version__c</fullName>
+        <description>The version of the announcement.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Version of the Announcement.</inlineHelpText>
+        <label>Announcement Version</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Initial</fullName>
+                    <default>false</default>
+                    <label>Initial</label>
+                </value>
+                <value>
+                    <fullName>Amendment</fullName>
+                    <default>false</default>
+                    <label>Amendment</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Declaration_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  Program_Name__r.Name   = &quot;PA - Federal&quot;  || Program_Name__r.Name  = &quot;PA - FMAG&quot;, Incident_Name__r.Declaration_Number__c, 
+IF(Program_Name__r.Name = &quot;CDAA (State Funding)&quot;, Incident_Name__r.State_Declaration_Number__c, &quot;&quot;)
+)</formula>
+        <label>Declaration Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description of the details of the funding opportunity.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Description of the details of the funding opportunity.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Federal_Application_Deadline__c</fullName>
+        <description>FEMA Application Deadline.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>FEMA Application Deadline Date.</inlineHelpText>
+        <label>Federal Application Deadline</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Federal_CFDA_Number__c</fullName>
+        <description>Federal CFDA Number -Used for Docusign</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal CFDA Number</inlineHelpText>
+        <label>Federal CFDA Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Funding_Opportunity_Title__c</fullName>
+        <description>What is the Title or Name of this Funding Opportunity.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The Title or Name of the Funding Opportunity on the Notice of Funding Opportunity or 12 Month Lock In Letter from FEMA.</inlineHelpText>
+        <label>Funding Opportunity Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incident_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Incident / Disaster Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Incident Name related to this Funding Opportunity</inlineHelpText>
+        <label>Incident Name</label>
+        <referenceTo>Incident__c</referenceTo>
+        <relationshipName>Funding_Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Owner__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The record owner. Should be a Programs Profile or Role</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Staff Member who owns the record</inlineHelpText>
+        <label>Owner</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Funding_Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Period_of_Performance__c</fullName>
+        <description>Period of performance timeframe for the funding opportunity i.e. 36 months.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Valid Duration for the Funding Opportunity  ( Stipulated in the NOFO or 12 mon lock in letter).</inlineHelpText>
+        <label>Period of Performance</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Planned_End_Date__c</fullName>
+        <description>Expected End Date of the Funding Opportunity</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Planned End Date of the Funding Opportunity. For DR, this date is eight (8) years from the date of declaration. For FMAG, it is two (2) years from the date of declaration.</inlineHelpText>
+        <label>Planned End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Planned_Start_Date__c</fullName>
+        <description>Expected beginning of the Funding Opportunity</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Planned Start Date of Funding Opportunity.</inlineHelpText>
+        <label>Planned Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Program_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Program that issued with this Funding Opportunity</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Program Name for the funding Opportunity ( Ex: PA-Federal, HMGP etc.).</inlineHelpText>
+        <label>Program Name</label>
+        <referenceTo>Program__c</referenceTo>
+        <relationshipName>Funding_Opportunities</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <description>What is the Stage of this Funding Opportunity.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of Funding Opportunity ( Ex: Draft, Pending, Approved etc.).</inlineHelpText>
+        <label>Stage</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>true</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>In Review</fullName>
+                    <default>false</default>
+                    <label>In Review</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Published</fullName>
+                    <default>false</default>
+                    <label>Published</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Archived</fullName>
+                    <default>false</default>
+                    <label>Archived</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Disaster Grant / Funding Opportunity</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Program_Name__c</columns>
+        <columns>Incident_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Actual_Start_Date__c</columns>
+        <columns>Actual_End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Funding Opportunity Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Disaster Grants / Funding Opps</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Program_Name__c</fields>
+        <fields>Incident_Name__c</fields>
+        <fields>Planned_Start_Date__c</fields>
+        <fields>Planned_End_Date__c</fields>
+        <fields>Amended_Announcement__c</fields>
+        <fields>Announcement_Version__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Program_Name__c</fields>
+        <fields>Incident_Name__c</fields>
+        <fields>Planned_Start_Date__c</fields>
+        <fields>Planned_End_Date__c</fields>
+        <fields>Amended_Announcement__c</fields>
+        <fields>Announcement_Version__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>CalOES Internal User</profileName>
+    </profileSearchLayouts>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Actual_End_Date_Start_Date_Validation</fullName>
+        <active>true</active>
+        <description>Actual End Date should be greater than Actual Start Date</description>
+        <errorConditionFormula>AND( ISBLANK(External_Id__c ),Actual_End_Date__c &lt; Actual_Start_Date__c)</errorConditionFormula>
+        <errorDisplayField>Actual_End_Date__c</errorDisplayField>
+        <errorMessage>&quot;Actual End Date&quot; should be greater than &quot;Actual Start Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Planned_Start_Date_End_Date_validation</fullName>
+        <active>true</active>
+        <description>Planned End Date should be greater than Planned Start Date</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ) ,Planned_End_Date__c &lt; Planned_Start_Date__c)</errorConditionFormula>
+        <errorDisplayField>Planned_End_Date__c</errorDisplayField>
+        <errorMessage>&quot;Planned End Date&quot; should be greater than &quot;Planned Start Date&quot;.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

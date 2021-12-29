@@ -1,0 +1,67 @@
+<!--
+ - Created by SP on 2020-04-23.
+ -->
+<aura:component >
+    <!-- Attribute definitions start here -->
+    <aura:attribute name="fieldValue" type="Object"/>
+    <aura:attribute name="record" type="sObject" description="record which is being displayed"/>
+
+    <aura:attribute name="APIName" type="Object"/>
+    <aura:attribute name="Label" type="String"/>
+    <aura:attribute name="picklistValues" type="list"/>
+    <aura:attribute name="fieldType" type="String"/>
+    <aura:attribute name="onChangeFormula" type="String" default=""/>
+    <aura:attribute name="isRequired" type="boolean"/>
+    <aura:attribute name="isDisabled" type="boolean"/>
+
+    <aura:handler name="change" value="{!v.fieldValue}" action="{!c.fieldValueChange}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <td data-label="{!v.Label}">
+        <!-- Display text field -->
+        <aura:if isTrue="{!or(v.fieldType == 'TEXT',v.fieldType == 'STRING')}">
+            <lightning:input aura:id="fieldId" type="text" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden" value="{!v.fieldValue}" maxlength="255" />
+        </aura:if> 
+
+        <!-- Display number field -->
+        <aura:if isTrue="{!v.fieldType == 'DOUBLE'}">
+            {!v.body}
+            <!--<lightning:input aura:id="fieldId" type="number" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden" value="{!v.record[APIName]}" />-->
+        </aura:if>
+
+        <!-- Display currency field -->
+        <aura:if isTrue="{!v.fieldType == 'CURRENCY'}">
+            <lightning:input aura:id="fieldId" type="number" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden" value="{!v.fieldValue}" formatter="currency" step="0.0001"/>
+        </aura:if>
+
+        <!-- Display textarea field -->
+        <aura:if isTrue="{!v.fieldType == 'DATE'}">
+            <lightning:input aura:id="fieldId" type="date" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden"  value="{!v.fieldValue}" />
+        </aura:if>
+
+        <!-- Display textarea field -->
+        <aura:if isTrue="{!v.fieldType == 'DATETIME'}">
+            <lightning:input aura:id="fieldId" type="datetime" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden"  value="{!v.fieldValue}" />
+        </aura:if>
+
+        <!-- Display textarea field -->
+        <aura:if isTrue="{!v.fieldType == 'TEXTAREA'}">
+            <lightning:textarea aura:id="fieldId" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden"  value="{!v.fieldValue}" />
+        </aura:if>
+
+        <aura:if isTrue="{!v.fieldType == 'BOOLEAN'}">
+            <lightning:input type="checkbox" label="" checked="{!v.fieldValue}" disabled="{!v.isDisabled}"/>
+        </aura:if>
+
+
+        <!-- Display picklist -->
+        <aura:if isTrue="{!v.fieldType == 'PICKLIST'}">
+            <lightning:select aura:id="fieldId" required="{!v.isRequired}" disabled="{!v.isDisabled}" variant="label-hidden" value="{!v.fieldValue}">
+                <option  value="" text="--Select--"></option>
+                <aura:iteration items="{!v.picklistValues}" var="pickVal">
+                    <option value="{!pickVal}" text="{!pickVal}"></option>
+                </aura:iteration>
+            </lightning:select>
+        </aura:if>
+    </td>
+</aura:component>

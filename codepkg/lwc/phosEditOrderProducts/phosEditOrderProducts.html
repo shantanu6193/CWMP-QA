@@ -1,0 +1,109 @@
+<template>
+    <template if:true={isLoading}>
+        <div class="slds-grid slds-wrap slds-align_absolute-center container ">
+            <div class="slds-col slds-size_12-of-12">
+                <!--1.Header-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-top_large">
+                        <p class="heading">Order Sheet</p>
+                    </div>
+                </div>
+                <hr/>
+                <!--1.Main Form-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12">
+                        <table class="">
+                            <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_3-of-12" scope="col">
+                                    <div class="" title="Product Name">Product Name</div>
+                                </th>
+                                <th class="slds-size_3-of-12" scope="col" style="width: 12%;">
+                                    <div class="" title="Quantity Requested (ea)">Quantity Requested (ea)</div>
+                                </th>
+                                <th class="slds-size_3-of-12" scope="col">
+                                    <div class="" title="Item Description">Item Description</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col" style="width: 8%;">
+                                    <div class="" title="Substitutes OK?">Substitutes OK?</div>
+                                </th>
+                                <th class="slds-size_1-of-12" scope="col">
+                                    <div class="" title="Action">Action</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <template if:true={hasData} for:each={recordLocal.Order_Products__r} for:item="orderItem" for:index="index">
+                                <c-phos-edit-order-product-row   key={orderItem.index}
+                                                                 record={orderItem}
+                                                                 ondeleted={handleDeleteProduct}
+                                                                 onadded={handleAddProduct}
+                                                                 index={index}
+                                                                 data-id={index}
+                                                                 fulfilment-options={fulfilmentOptions}
+                                                                 is-quantity-editable={isQuantityEditable}
+                                                                 data-custom="innerComponent"
+                                >
+                                </c-phos-edit-order-product-row>
+                            </template>
+                            <!--<template if:false= {hasData}>
+                                <tr>
+                                    <td colspan="5">
+                                        <p class="slds-p-around_x-small">No record found. <a onclick={addFirstProduct}>Click here</a> to add new product.</p>
+                                    </td>
+                                </tr>
+                            </template>-->
+                            </tbody>
+                        </table>
+                        <div class="slds-p-vertical_small">
+                            <p class="error">Note: Item Description cannot exceed 255 characters</p>
+                        </div>
+                    </div>
+                </div>
+                 <!--2.Header-->
+                 <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-top_large">
+                        <p class="heading">Order Description</p>
+                    </div>
+                </div>
+                <hr/>
+                <!--2.Main Form-->
+                <div class="slds-grid slds-wrap slds-p-bottom_small">
+                    <div class="slds-col slds-size_12-of-12">
+                        <div class="slds-grid slds-wrap  slds-p-bottom_medium">
+                            <div class="slds-col">
+                                <lightning-textarea  name="input1" class="input" label="Describe Mission/Tasks:" value={recordLocal.Description__c} data-field="Description__c" maxlength="32768" onchange={fieldChanged}  required></lightning-textarea>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap  slds-p-bottom_medium">
+                            <div class="slds-col">
+                                <lightning-textarea  name="input2" class="input" label="Actions Taken On This Request So Far" value={recordLocal.Actions_Taken_On_This_Request__c} data-field="Actions_Taken_On_This_Request__c" maxlength="20000" onchange={fieldChanged} required></lightning-textarea>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col">
+                                <p class="error slds-p-top_small slds-form-element__label">Note: Non-Governmental Organizations should use the Describe Mission/Tasks field to provide a justification for the
+                                requested amount of PPE, including the estimated amount of employees that will be using this PPE, and the estimated amount of shifts or working days that the PPE will be used.</p>
+                            </div>
+                        </div>     
+                    </div>
+                </div>  
+                <!--3.Header-->
+                <div class="slds-grid slds-wrap slds-p-top-small">
+                    <div class="slds-col">
+                        <p class="heading"></p>
+                    </div>
+                </div>
+                <hr/>
+                <!--3.Main Form-->
+                <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                     <div class="slds-col">
+                        <p class="custom-label slds-p-bottom_x-small slds-form-element__label">OA/MHOAC must confirm that the verification question in the PH&amp;M EOM have been reviewed and answered.</p>
+                        <lightning-input type="checkbox" label="This request meets the submission criteria as stated in the PH&amp;M EOM" name="input1" data-field="PHM_EOM_Confirmed__c" checked={recordLocal.PHM_EOM_Confirmed__c} onchange={fieldChecked}></lightning-input>
+                        <lightning-input type="checkbox" label="The creation of this request was in consultation with the RDMHC Program" name="input1" data-field="RDMHS_Program_Confirmed__c" checked={recordLocal.RDMHS_Program_Confirmed__c} onchange={fieldChecked}></lightning-input>
+                    </div>     
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

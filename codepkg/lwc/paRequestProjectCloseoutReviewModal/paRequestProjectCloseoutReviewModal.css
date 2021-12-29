@@ -1,0 +1,30 @@
+.slds-modal__footer {
+    border-top: none !important;
+}
+.slds-modal__header {
+    border-bottom : none;
+}
+
+.slds-form-element__control {
+    clear: none;
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.slds-form-element__control {
+    clear: none !important;
+    position: relative;
+}
+
+.slds-form-element__legend {
+    font-weight: var(--lwc-fontWeightBold,700);
+    float: left;
+    color: #424141;
+}
+
+.note {
+      color: #5a5a5a;
+    font-weight: var(--lwc-fontWeightBold,700);
+    font-size: 13px;
+}

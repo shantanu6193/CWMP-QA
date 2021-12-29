@@ -1,0 +1,53 @@
+<template>
+    <!--<template if:true={isModalOpen}>-->
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                            <header class="slds-modal__header">
+                                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                                        <lightning-icon icon-name="utility:close"
+                                            alternative-text="close"
+                                            variant="inverse"
+                                            size="small" ></lightning-icon>
+                                        <span class="slds-assistive-text">Close</span>
+                                    </button>
+                                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Email Template</h2> 
+                            </header>
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            
+                                    <!-- <div class="slds-grid">
+                                        <div class="slds-col slds-size_6-of-12">
+                                            <div class="slds-card__body slds-card__body_inner">
+                                                <div class="slds-form-element slds-form-element_stacked">
+                                                    <label class="slds-form-element__label slds-form-element__label" for="programDetail">Folder Name</label>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning-combobox name="FolderName" variant="label-hidden"
+                                                            options={emailTemplateFolder} onchange={fieldChangeHandler}
+                                                            placeholder="Select option">
+                                                        </lightning-combobox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  -->
+                                    <p></p>
+                                    <div class="slds-grid">
+                                        <template if:true= {selectedValusDropdown}>
+                                            <lightning-datatable 
+                                                key-field="Id"
+                                                wrap-text-max-lines="3"
+                                                data={emailTemplateList} 
+                                                columns={columnList} 
+                                                onrowselection={selectedTemplateInfo}>
+                                            </lightning-datatable>
+                                        </template>
+                                    </div> 
+                        </div>
+                      <!-- Modal/Popup Box LWC footer starts here -->
+                      <footer class="slds-modal__footer">
+                               
+                      </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+   <!--</template> --> 
+</template>

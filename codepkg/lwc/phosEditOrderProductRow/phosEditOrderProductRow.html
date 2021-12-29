@@ -1,0 +1,48 @@
+<template>
+    <tr class="slds-hint-parent" key={index}>
+         <td data-label="Product Family">
+             <!--<c-phos-product-search
+                     onproductchange={getProductValue}
+                     select-product-id={recordLocal.Product__c}
+                     select-product-name={recordLocal.Product_Name__c}
+
+                    >
+             </c-phos-product-search>-->
+             <c-lookup
+                    data-custom="lookup"
+                    data-lookup="Product__c"
+                    onsearch={handleProductSearch}
+                    onselectionchange={handleProductChange}
+                    placeholder="Enter / Search Product (3 or more characters)"
+                    is-multi-entry={isMultiEntry}
+                    load-data-on-init = {loadDataOnLookup}
+                    local-search = {loadDataOnLookup}
+                    scroll-after-n-items = "10"
+                    errors={productRequired}
+                    selection={productSelection}
+                    default-local-search-result = "other"
+
+                    required>
+            </c-lookup>
+         </td>
+         <td data-label="Quantity Requested" role="gridcell">
+             <lightning-input type="number" class="input" data-field="Quantity__c" required variant="label-hidden" value={recordLocal.Quantity__c} onchange={fieldChanged}></lightning-input>
+         </td>
+         <td data-label="Item Description" role="gridcell">
+             <lightning-input type="text" variant="label-hidden" data-field="Description__c" class="input" maxlength="255"  value={recordLocal.Description__c} onchange={fieldChanged}></lightning-input>
+         </td>
+         <td data-label="Substitutes OK?" role="gridcell">
+             <lightning-input type="checkbox" variant="label-hidden" data-field="Equivalent_Substitutes_Acceptable__c" class="input slds-text-align_center" checked={recordLocal.Equivalent_Substitutes_Acceptable__c} onchange={fieldChecked}></lightning-input>
+         </td>
+         <td data-label="Action" role="gridcell">
+             <a data-id={index} onclick={addNewRow} class="slds-p-right_small">
+                 <lightning-icon icon-name="utility:add" class="slds-icon slds-icon_small" size="small" alternative-text="add"></lightning-icon>
+                 <span class="slds-assistive-text">Add Icon</span>
+             </a>
+             <a data-id={index} onclick={deleteRow}>
+                 <lightning-icon variant="error" icon-name="utility:delete" class="slds-icon slds-icon_small" size="small" alternative-text="icon"></lightning-icon>
+                 <span class="slds-assistive-text">Delete Icon</span>
+             </a>
+         </td>
+     </tr>
+</template>

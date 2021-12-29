@@ -1,0 +1,7 @@
+<!--
+ - Created by Pankaj on 06-04-2020.
+ -->
+
+<aura:component description="PHOS_CommunityEditOrderPopup" implements="force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

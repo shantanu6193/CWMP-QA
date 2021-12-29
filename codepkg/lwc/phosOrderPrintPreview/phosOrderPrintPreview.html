@@ -1,0 +1,539 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}>
+       <template if:true={showModal}>
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-card">
+                    <div class="slds-grid slds-wrap slds-align_absolute-center printPage slds-p-around_large">
+                        <div class="slds-col slds-size_12-of-12">
+                            <p class="slds-p-bottom_xxx-small slds-float_left">
+                                Order Number : {recordLocal.Name}
+                            </p>
+                            <p class="slds-p-bottom_xxx-small slds-float_right">
+                                <lightning-formatted-date-time  value={recordLocal.CurrentDate}
+                                                                year="numeric"
+                                                                month="numeric"
+                                                                day="numeric"
+                                                                hour="2-digit"
+                                                                minute="2-digit"
+                                                                time-zone="PST">
+                                </lightning-formatted-date-time>
+                            </p>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-p-vertical_x-large">
+                            <h1 class="form-header">Medical Resource Request Form</h1>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col">
+                                    <p class="heading">Incident Information</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 ">
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Incident Name</p>
+                                        <p>{recordLocal.Incident_Name__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Other Request # (If Applicable)</p>
+                                        <p>{recordLocal.Other_Request_Number_If_Applicable__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Priority Of Request</p>
+                                        <p>{priorityLabelValue}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Mission ID (If Applicable)</p>
+                                        <p>{recordLocal.Mission_Request_Number_If_Applicable__c}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-top_small">
+                                <div class="slds-col">
+                                    <p class="heading">Type Of Request/Order</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 ">
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Type</p>
+                                        <p>{recordLocal.TypeOfOrder}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-top_small">
+                                <div class="slds-col">
+                                    <p class="heading">Requester Information</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester First Name</p>
+                                        <p>{recordLocal.Requestor_First_Name_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester Last Name</p>
+                                        <p>{recordLocal.Requestor_Last_Name_Text__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester Title</p>
+                                        <p>{recordLocal.Requestor_Title_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester Agency</p>
+                                        <p>{recordLocal.Requestor_Agency_Text__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester Email</p>
+                                        <p>{recordLocal.Requestor_Email_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Requester Phone</p>
+                                        <p>{recordLocal.Requestor_Phone_Text__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Operational Area</p>
+                                        <p>{recordLocal.County__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Industry</p>
+                                        <p>{recordLocal.Industry__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Sub Industry</p>
+                                        <p>{recordLocal.Sub_Industry__c}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-top_small">
+                                <div class="slds-col">
+                                    <p class="heading">Delivery Information</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12">
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient First Name</p>
+                                        <p>{recordLocal.Delivery_Recipient_First_Name_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient Last Name</p>
+                                        <p>{recordLocal.Delivery_Recipient_Last_Name_Text__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient Title</p>
+                                        <p>{recordLocal.Delivery_Recipient_Title_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient Entity Name</p>
+                                    <p>{recordLocal.Delivery_Recipient_Entity_Name__c}</p>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient Email</p>
+                                        <p>{recordLocal.Delivery_Recipient_Email_Text__c}</p>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                        <p class="slds-form-element__label">Delivery Recipient Phone</p>
+                                        <p>{recordLocal.Delivery_Recipient_Phone_Text__c}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                                    <p class="slds-form-element__label">Address Line 1</p>
+                                    <p>{recordLocal.Shipping_Street__c}</p>
+                                </div>
+                            </div><div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                                    <p class="slds-form-element__label">Address Line 2</p>
+                                    <p>{recordLocal.Shipping_Street_2__c}</p>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                    <p class="slds-form-element__label">City</p>
+                                    <p>{recordLocal.Shipping_City__c}</p>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                    <p class="slds-form-element__label">State</p>
+                                    <p>{recordLocal.Shipping_State__c}</p>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                    <p class="slds-form-element__label">Zip</p>
+                                    <p>{recordLocal.Shipping_ZipPostal_Code__c}</p>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12" style="padding:0">
+                                            <p class="slds-form-element__label">Latitude</p>
+                                            <p>{recordLocal.Address_Geolocation__Latitude__s}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12" style="padding:0">
+                                            <p class="slds-form-element__label">Longitude</p>
+                                            <p>{recordLocal.Address_Geolocation__Longitude__s}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                    <p class="slds-form-element__label">Delivery Notes</p>
+                                    <p>{recordLocal.Delivery_Notes__c}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--1.Header-->
+                    <div class="pageBreak slds-p-around_large">
+                        <div class="slds-grid slds-wrap slds-p-top_x-large">
+                            <div class="slds-col">
+                                <p class="heading">Order Sheet</p>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-table_structure">
+                                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+                                    <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="slds-truncate" title="Product Family">Product Family</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="slds-truncate" title="Product Name">Product Name</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col">
+                                            <div class="slds-truncate" title="Quantity Requested (ea)">Quantity Requested (ea)</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="slds-truncate" title="Item Description">Item Description</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 12%">
+                                            <div class="slds-truncate" title="Substitutes OK?">Substitutes OK?</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template  for:each={recordLocal.Order_Products__r} for:item="orderItem" for:index="index">
+                                            <tr class="slds-hint-parent" key={orderItem.index}>
+                                                <td data-label="Product Family" scope="row">
+                                                    <div class="slds-truncate" title="">
+                                                        {orderItem.Product_Family__c}
+                                                    </div>
+                                                </td>
+                                                <td data-label="Item Type" scope="row">
+                                                    <div class="slds-truncate" title="">
+                                                        {orderItem.Product_Name__c}
+                                                    </div>
+                                                </td>
+                                                <td data-label="Quantity Requested">
+                                                    {orderItem.Quantity__c}
+                                                </td>
+                                                <td data-label="Item Description">
+                                                    <div class="slds-truncate" title="">
+                                                        {orderItem.Description__c}
+                                                    </div>
+                                                </td>
+                                                <td data-label="Substitutes OK?">
+                                                    <div class="slds-truncate" title="">
+                                                        <div class="slds-form-element">
+                                                            <div class="slds-form-element__control">
+                                                                <div class="">
+                                                                    <input type="checkbox" name="options" disabled value={orderItem.Equivalent_Substitutes_Acceptable__c} checked={orderItem.Equivalent_Substitutes_Acceptable__c} />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pageBreak slds-p-around_large">
+                        <div class="slds-grid slds-wrap slds-p-top_x-large">
+                            <div class="slds-col">
+                                <p class="heading">Order Description</p>
+                                <hr/>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+                            <div class="slds-col">
+                                <p class="slds-form-element__label">Describe Mission/Tasks:</p>
+                                <p>{recordLocal.Description__c}</p>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+                            <div class="slds-col">
+                                <p class="slds-form-element__label">Actions Taken On This Request So Far:</p>
+                                <p>{recordLocal.Actions_Taken_On_This_Request__c}</p>
+                            </div>
+                        </div>
+                        <template if:true={istypeOfPesonnel}>
+                            <div class="slds-grid slds-wrap slds-p-top_x-samll">
+                                <div class="slds-col">
+                                    <p class="heading">Type of Personnel</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-p-bottom_xx-small">
+                                <div class="slds-col">
+                                    <p class="slds-form-element__label">Which type of Personnel are you requesting?</p>
+                                    <p>{recordLocal.Type_of_Personnel__c}</p>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:true={isPersonnel}>
+                            <div class="slds-grid slds-wrap slds-p-top_large">
+                                <div class="slds-col">
+                                    <p class="heading">Medical Staffing Information</p>
+                                    <hr/>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12">
+                                    <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                        <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                                            <p class="slds-form-element__label">Is this a Medical Staffing Request?</p>
+                                            <p>{recordLocal.Is_this_a_Medical_Staffing_Request__c}</p>
+                                        </div>-->
+                                        <!--<template if:true={isMedicalStaffingRequest}>-->
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Is this for a General Acute Care Hospital (GACH)?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Is_this_for_a_GACH__c}</p>
+                                            </div>
+                                        <!--</template>-->
+                                        <template if:true={isGACHNo}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Have_you_attempted_to_transfer_patients__c}</p>
+                                            </div>
+                                    </template>
+                                        <template if:true={isMedicalStaffingRequestAndGACHYes}>
+                                            <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">How many additional beds will be provided with the staff requested?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Bed_to_staff_ratio_bed_staff__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">How many total staff are you requesting?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.How_many_total_staff_are_you_requesting__c}</p>
+                                            </div>-->
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">What is your current total patient census?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.What_is_current_total_patient_census__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">What is your current census of COVID + patients?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.What_is_current_census_of_COVID_patients__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Current total patient census divide by current census of covid + patients</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Total_patient_divide_COVID_patient_censu__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Does the requested staff allow additional ICU or M/S/T beds (above licensed capacity) to be opened?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Allows_additional_ICU_or_M_S_T_beds__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Would requested personnel allow for additional ICU level beds to be opened for patients?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Does_site_need_personnel_to_keep_ICU__c}</p>
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Total ICU beds occupied (%)?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Total_ICU_beds_occupied__c}</p>
+                                            </div>-->
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Have_you_attempted_to_transfer_patients__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Have you cancelled all non-urgent elective surgeries?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Have_you_cancelled_all_surgeries__c}</p>
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">What is the average time of "triage-to- treatment" for ESI Category 3 patients in the ED over the last 72 hours?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Average_time_of_T_to_T_for_ESI_Cat_3__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Do you have, or have you requested, an active Staffing Waiver for the service line you in which you are requesting staff?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Do_you_have_an_active_staffing_waiver__c}</p>
+                                            </div>-->
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Are you using team nursing and are you out of ratio?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Using_team_nursing_and_out_of_ratio__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">Would you be able to accept inter-facility patient transfers if you receive this staff?</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Would_you_be_able_to_accept_transfers__c}</p>
+                                            </div>
+                                    </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:true={isVaccine}>
+                            <div class="slds-grid slds-wrap slds-p-top_large">
+                                <div class="slds-col">
+                                    <p class="heading">Vaccination Staffing Information</p>
+                                    <hr/>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12">
+                                    <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Please check which one applies to your event</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.We_provide_staff_for_vaccination_events__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">We now provide staff for public or private K-12 school located COVID-19 vaccination events. Please confirm whether you meet the following requirements, and our vaccinator staff will be able to assist in administrating</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.School_Requirements_Confirmation__c}</p>
+                                        </div> 
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many total Vaccinators are needed from the state?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Total_Vaccinator_Staff_needed__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Vaccinators may be paramedics, EMTs, LVNs or RNs. If you require staff with specific licensing, please indicate how many of each licensing type.</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Specific_Vaccinator_Licenses_req_d__c}</p>
+                                        </div>
+
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many Logistics staff are needed from the state?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Total_Logistics_Staff_needed__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label"> If Logistics staff are needed, what tasks will they be assigned?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Logistics_Task_Assignments__c}</p>
+                                        </div>
+
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many Administrative Support/Data Entry staff are needed from the state?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Total_Admin_Data_Staff_needed__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">If Administrative Support/Data Entry staff are needed, what tasks will they be assigned and what systems will they use?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Admin_Data_Staff_Assignments__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many Security staff are needed from the state?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Total_Security_Staff_needed__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Do you prefer staff that speak a specific language?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Specific_language_preferred__c}</p>
+                                        </div>
+                                        <template if:true={staffSpeakSpecificLanguage}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">If Yes then please specify which language</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Language_specified__c}</p>
+                                            </div> 
+                                        </template> 
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What date and time do staff need to be on site?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Date_Time_staff_are_needed__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What address do the staff need to report to?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Address_for_staff__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What are the dates and daily schedule(s) needed for this site?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Schedule_for_staff__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Where is the vaccination administration site being held?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Vaccination_site_type__c}</p>
+                                        </div>
+                                        <template if:true={vaccinationSdministrationSiteOther}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                                <p class="slds-form-element__label">If other</p>
+                                                <p class="slds-p-bottom_xxx-small">{recordLocal.Other_Vaccination_Site__c}</p>
+                                            </div> 
+                                        </template> 
+                                         <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What is the site name?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.What_is_the_site_name__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What is the maximum number of clients the site can facilitate per day?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Clients_Anticipated_at_Site__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many doses do you anticipate giving for each day of the event?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Doses_Anticipated_per_Day__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">How many doses has this event or similar events in the past given in a day?</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Doses_per_Day_Previous_Events__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">What status is the event currently in</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.What_status_is_the_event_currently_in__c}</p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Please confirm this site is in compliance with the following</p>
+                                            <p class="slds-p-bottom_xxx-small">
+                                                <lightning-formatted-text value={confirmCompliance} ></lightning-formatted-text>
+                                            </p>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-p-bottom_medium">
+                                            <p class="slds-form-element__label">Please provide a brief narrative to further expand on one or more of the statements in the previous question</p>
+                                            <p class="slds-p-bottom_xxx-small">{recordLocal.Compliance_Narrative__c}</p>
+                                        </div>
+                                    </div>
+                                </div>    
+                            </div>
+                        </template>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-p-top_small">
+                        <div class="slds-col">
+                            <p class="heading"></p>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-p-bottom_medium slds-p-around_large">
+                        <div class="slds-col">
+                            <p class="custom-label slds-p-bottom_x-small">OA/MHOAC must confirm that the verification question in the PH&amp;M EOM have been reviewed and answered.</p>
+                            <lightning-input type="checkbox" label="This request meets the submission criteria as stated in the PH&amp;M EOM" name="input1" disabled checked={recordLocal.PHM_EOM_Confirmed__c}></lightning-input>
+                            <lightning-input type="checkbox" label="The creation of this request was in consultation with the RDMHC Program" name="input1" disabled checked={recordLocal.RDMHS_Program_Confirmed__c}></lightning-input>
+                        </div>
+                    </div>
+                    <!--<div class="slds-grid slds-wrap slds-p-bottom_medium slds-p-horizontal_large">
+                        <div class="slds-col">
+                            <div class="slds-float_right">
+                                <span>
+                                    <lightning-button label="Print" onclick={handlePrint} class="slds-button slds-no-print"></lightning-button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </template>    
+    </template>   
+</template>

@@ -1,0 +1,289 @@
+<template>
+   <div class="slds-box slds-theme_default">
+      <div class="slds-text-title_caps slds-text-heading_medium slds-align_absolute-center">
+         <h1 class="main-heading slds-p-bottom_small">Request Closeout</h1>
+      </div>
+      <div class="slds-grid slds-wrap">
+         <div class="slds-col slds-size_12-of-12">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+               <div class="slds-col slds-size_11-of-12">
+                  <article class="slds-card card_project slds-p-bottom-large">
+                     <div class="slds-card__body slds-card__body_inner">
+                        <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                           <div class="slds-col slds-size_6-of-12 slds-p-top_small">
+
+                                <!--************** if portal user then Incident is auto populated ********-->
+                                <template if:true={isIncident}>
+                                 <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                       <label class="slds-form-element__label">Select Incident</label>
+                                       <div class="slds-form-element__control">
+                                          <input type="text"  value={incidentName} readonly
+                                             placeholder="Incident Name" class="slds-input"/>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </template>
+                              <!--************** Select Incident ********-->
+
+                              <template if:false={isIncident}>
+                              <c-lookup
+                                 data-custom="lookup"
+                                 data-lookup="Incident__c"
+                                 label="Select Incident"
+                                 onsearch={handleIncidentSearch}
+                                 onselectionchange={handleIncidentChange}
+                                 placeholder="Search Name/Declaration number"
+                                 is-multi-entry={isMultiEntry}
+                                 load-data-on-init = {loadDataOnLookup}
+                                 local-search = {loadDataOnLookup}
+                                 scroll-after-n-items = "10"
+                                 search-term=""
+                                 required>
+                              </c-lookup>
+                              </template>
+                              <!--************** if portal user then subrecipent auto populated ********-->
+                              <template if:true={isSubrecipient}>
+                                <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                   <div class="slds-form-element slds-form-element_stacked">
+                                      <label class="slds-form-element__label">Select Subrecipient</label>
+                                      <div class="slds-form-element__control">
+                                         <input type="text"  value={subRecipientName} readonly
+                                            placeholder="Subrecipient Name" class="slds-input"/>
+                                      </div>
+                                   </div>
+                                </div>
+                             </template>
+
+                             <!--************** if internal user  ********-->
+                             <template if:false={isSubrecipient}>
+                                <div class="slds-col slds-size_12-of-12 slds-p-top_small select_subrecipnt">
+
+                                   <!--************** Select Subrecipent /Account ********-->
+                                   <c-lookup
+                                      data-custom="lookup"
+                                      data-lookup="Account"
+                                      label="Select Subrecipient"
+                                      onsearch={handleAccountSearch}
+                                      onselectionchange={handleSRChange}
+                                      placeholder="Search Name"
+                                      is-multi-entry={isMultiEntry}
+                                      load-data-on-init = {loadDataOnLookup}
+                                      local-search = {loadDataOnLookup}
+                                      scroll-after-n-items = "10"
+                                      search-term=""
+                                      required>
+                                   </c-lookup>
+                                </div>
+                             </template>
+                             <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                 <lightning-input type="text" label="Authorized Agent" placeholder="" class="authorizedAgent" value={authorizedAgent} required ={isPortalUser} onchange ={handleAuthorizedAgentChange}></lightning-input>
+                             </div>
+                              <template if:true={isPortalUser}>
+                                 <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                    <div class="slds-col slds-size_11-of-12">
+                                       <lightning-formatted-url
+                                               value="https://caloes.force.com/resource/Standard_Operating_Procedure_for_completing_the_P4"
+                                               label="Standard Operating Procedure for completing the P.4"
+                                               target="_blank" ></lightning-formatted-url>
+                                    </div>
+                                 </div>
+                              </template>
+                           </div>
+                          
+                          <!--************** file upload ********-->
+                           <div class="slds-col slds-size_6-of-12 slds-p-top_small" if:true ={showDocumentSection} >
+                              <lightning-radio-group class="closeout-radio" label={fileRadioButtonLabel} name="projectTypeGroup"  options={yesNoOptions} value={SignedP4}
+                                 required={isPortalUser} type="radio" data-name={radioButton} onchange={handleP4DocumentChange}
+                                 message-when-value-missing="Please make sure to upload the P.4 before requesting for Closeout?">
+                              </lightning-radio-group>
+                              <div class="slds-col slds-size_12-of-12 slds-p-top_small file_upload" if:true ={showDocumentSection}>
+                                <div class="slds-grid slds-wrap">
+                                   <div class="slds-col slds-size_12-of-12">
+                                      <lightning-file-upload label={fileAttacLabel} name="fileUploader" accept={acceptedFormats}
+                                         record-id={uploadRecordId} onuploadfinished={handleUploadFinished} multiple>
+                                      </lightning-file-upload>
+                                   </div>
+                                   <div class="slds-col slds-size_12-of-12">
+                                      <div class="slds-p-top_small">
+                                         <template if:true={showUploadedFiles}>
+                                            <p>Uploaded Files: </p>
+                                            <div class="slds-grid slds-wrap slds-p-top--medium">
+                                               <div class="slds-col slds-size_12-of-12">
+                                                  <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                                     <thead>
+                                                        <tr class="slds-line-height_reset slds-text-title_caps">
+                                                           <th scope="col" class="slds-width_175px">
+                                                              <div class="slds-truncate" title="Phase">File Name</div>
+                                                           </th>
+                                                           <th scope="col" class="slds-width_175px">
+                                                              <div class="slds-truncate" title="Start Month">Action</div>
+                                                           </th>
+                                                        </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                        <template for:each={uploadedFiles} for:item="fileUpload" for:index="index">
+                                                           <tr key={fileUpload.documentId}>
+                                                              <td>
+                                                                 <span data-id={index} class="slds-p-vertical_large">
+                                                                    <lightning-icon icon-name="doctype:image" size="small" title="Image"></lightning-icon>
+                                                                    <span title={fileUpload.name} class="slds-p-left--small slds-truncate">{fileUpload.name}</span>
+                                                                 </span>
+                                                              </td>
+                                                              <td>
+                                                                 <lightning-icon data-delete-id={index}  class ="slds-p-left--small" icon-name="utility:delete" 
+                                                                    variant='label-hidden' size="x-small" onclick={removeUploadedFile}>
+                                                                 </lightning-icon>
+                                                              </td>
+                                                           </tr>
+                                                        </template>
+                                                     </tbody>
+                                                  </table>
+                                               </div>
+                                            </div>
+                                         </template>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                           </div>
+                           
+                          <!---********************* Button Clear and search button *********************************-->
+                           <div class="slds-col slds-size_12-of-12 slds-text-align_right slds-p-top_large">
+                              <!-- <lightning-button-group> -->
+                              <lightning-button class="slds-p-right_small" label="Search" variant="brand" onclick={handleSearch} if:false={isPortalUser}></lightning-button>
+                              <lightning-button label="Clear" onclick={handleClear} if:false={isPortalUser}></lightning-button>
+                              <!-- </lightning-button-group> -->
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+               </div>
+
+               <!---********************* select project type on basis of size *********************************-->
+               <template if:true = {showProjectTable}>
+                  <div class="slds-col slds-size_11-of-12 slds-p-top_large">
+                     <article class="slds-card card_project">
+                        <div class="slds-card__body slds-card__body_inner">
+                           <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                              <div class="slds-col slds-size_12-of-12 slds-p-vertical_large">
+                                 <div class="closeout">
+                                    <template if:true={isPaFederalSelected}>
+                                       <div class="slds-col slds-size_6-of-12 ">
+                                          <lightning-combobox
+                                             name="ProjectType"
+                                             label="Project Type"
+                                             value={selectedProjectType}
+                                             placeholder="Select Project Type"
+                                             options={projectTypeOptions}
+                                             onchange={handleProjectTypeChange} 
+                                             dropdown-alignment="auto">
+                                          </lightning-combobox>
+                                       </div>
+                                    </template>
+                                    </br>
+                                    </br>
+                                    <div class="slds-scrollable">
+                                       <div class="slds-card__body">
+                                          <table class=" slds-table slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                                             <thead>
+                                                <tr class="slds-text-title_caps">
+                                                   <th class="" scope="col" if:false={isPortalUser}>
+                                                      <div class="slds-truncate CheckAll" >
+                                                         <lightning-input onchange={allSelected} type="checkbox" 
+                                                            selected-rows={getSelectedRows}></lightning-input>
+                                                      </div>
+                                                   </th>
+                                                   <template for:each={columns} for:item="column">
+                                                      <th key={getDynamicKey}>
+                                                         <div class="">
+                                                            {column.label}
+                                                         </div>
+                                                      </th>
+                                                   </template>
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                                <template for:each={projectsToDisplay} for:item="row" for:index="index">
+                                                   <tr class="inputRows" key={row.Id}>
+                                                      <td scope="col"  if:false={isPortalUser}>
+                                                         <div>
+                                                            <lightning-input class ="checkboxSelect" type="checkbox" checked= {row.isChecked} data-id={row.Id} onchange={selectProjects}></lightning-input>
+                                                         </div>
+                                                      </td>
+                                                      <td>
+                                                         <lightning-input class="input" name="ProjectNumber" access-key={index} id={index}
+                                                            value={row.Project_Number__c} variant='label-hidden' type='text' read-only={readOnly}
+                                                            ></lightning-input>
+                                                      </td>
+                                                      <td>
+                                                         <lightning-input class="input" name="DeclarationNumber" access-key={index} id={index}
+                                                            value={row.Declaration_Number__c} variant='label-hidden' type='text' read-only={readOnly}
+                                                            ></lightning-input>
+                                                      </td>
+                                                      <template if:true={isPaFederalSelected}>
+                                                         <td>
+                                                            <lightning-input class="input" name="largeProject" access-key={index} id={index}
+                                                               variant='label-hidden' type='checkbox' checked= {row.IsLargeProject__c}  disabled ={readOnly}
+                                                               ></lightning-input>
+                                                         </td>
+                                                      </template>
+                                                      
+                                                      <td>
+                                                         <lightning-input class="input" value={row.Total_Project_Award__c}  variant="label-hidden" 
+                                                            name="TotalProjectAward" type="number" formatter="currency"  read-only={readOnly}>
+                                                         </lightning-input>
+                                                      </td>
+                                                      <td>
+                                                         <lightning-input class="input" value={row.Total_Amount_Claimed__c} step=".01" variant="label-hidden"  type="number" formatter="currency"
+                                                            onchange={handleColumEdite} access-key={index} id={index} data-key={row.Id}></lightning-input >
+                                                      </td>
+                                                      <template if:false ={isPaFmagSelected}>
+                                                         <td>
+                                                            <lightning-input class="input " name="PercentCompleteToDate" access-key={index} id={index}
+                                                               value={row.Percent_Complete_To_Date__c}  variant='label-hidden' type='number' formatter='percent'
+                                                               step="0.01"
+                                                               read-only={readOnly} >
+                                                            </lightning-input>
+                                                         </td>
+                                                         <td>
+                                                            <lightning-button label="Review"  onclick={handleRowAction} variant="brand"                                                                        
+                                                               icon-position="right" 
+                                                               name="Review" access-key={index} id={index} data-index={index} data-key={row.Id}></lightning-button>
+                                                         </td>
+                                                     </template>
+                                                   </tr>
+                                                </template>
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </article>
+                  </div>
+                  <div class="slds-col slds-size_10-of-12 ">
+                     <div class="slds-col slds-size_12-of-12 slds-p-top_large slds-align_absolute-center">
+                        <lightning-button class="slds-p-right_small" label="Submit" variant="brand" disabled={isButtonDisabled} onclick={handleSubmit}>
+                        </lightning-button>
+
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                     </div>
+                  </div>
+               </template>
+               <c-confirmation-popup visible={isSaveConfirmationShow} title="" name="" original-message="" message={saveConfirmationLabe} confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleSaveConfirmationClick}></c-confirmation-popup>
+               <template if:true={isReviewSeleted}>
+                  <c-pa-request-project-closeout-review-mediator-modal cost-share-eligibility-type={costShareEligibilityType} custom-metadata-list={reviewMetaDataList} selected-checklist-array={selectedChecklistArray} onmodalclose ={modalclose} record-id={projectId} onsubmitmodalaction={handleModalAction} ></c-pa-request-project-closeout-review-mediator-modal>
+               </template>
+            </div>
+         </div>
+      </div>
+   </div>
+   <template if:true={showLoader}>
+      <div class="loadingIcon">
+         <lightning-spinner alternative-text="Loading" size="small" class="slds-is-fixed"></lightning-spinner>
+      </div>
+   </template>
+</template>

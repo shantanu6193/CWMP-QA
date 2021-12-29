@@ -1,0 +1,21 @@
+/**
+ * Created by hp on 2020-04-06.
+ */
+
+.THIS .boxSize{
+  height: 140px !important;
+}
+.THIS .slds-textarea {
+      background-color: rgb(255, 255, 255);
+      width: 100%;
+      -webkit-appearance: none;
+      resize: vertical;
+      border-width: 1px;
+      border-style: solid;
+      border-color: rgb(212, 212, 212);
+      border-image: initial;
+      border-radius: 0.25rem;
+      transition: border 0.1s linear 0s, background-color 0.1s linear 0s;
+      padding: 0.5rem 0.75rem;
+      height: 140px !important;
+  }

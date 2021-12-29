@@ -1,0 +1,75 @@
+<template>
+    <table class="slds-table_striped slds-table slds-table_cell-buffer slds-table_bordered slds-m-bottom_x-small"
+        id="Table1">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Incident Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Incident Order Number</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Strike Team/Task Force</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Incident Request Number</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Unit Number</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">ICS Title</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-cell-wrap" title="Classification Title">Status</div>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={visibleRecords} for:item="F42" for:index="index">
+                <tr class="slds-hint-parent" key={F42.Id}>
+                    <td data-label="Name" scope="row">
+                        <div class="slds-truncate" title={F42.Name} data-name="incidentName" data-id={F42.Id}>
+                            {F42.Incident_Name__c}
+                        </div>
+                    </td>
+                    <td data-name="incidentOrder" data-id={F42.Id}>
+                        {F42.Incident_Order__c}
+                    </td>
+                    <td data-name="strikeTeam" data-id={F42.Id}>
+                        {F42.Strike_Team__c}
+                    </td>
+                    <td data-label="incidentRequestNumber" data-id={F42.Id}>
+                        {F42.Incident_Request_Number__c}
+                    </td>
+                    <td data-label="unit" data-id={F42.Id}>
+                        {F42.ER_UNIT__c}
+                    </td>
+                    <td data-label="icsTitle" data-id={F42.Id}>
+                        {F42.OH_ICS_Title__c}
+                    </td>
+                    <td data-label="status" data-id={F42.Id}>
+                        {F42.Status__c}
+                    </td>
+                    <td data-label="View">
+                        <a  onclick={viewRecord} class="slds-p-right_small">
+                            <lightning-icon data-id={F42.Id} icon-name="utility:preview" class="slds-icon slds-icon_small vieweye"
+                                size="small" alternative-text="view" onclick={handleShowReviewDetails}></lightning-icon>
+                            <span class="slds-assistive-text">View</span>
+                        </a>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+
+    </table>
+    <div style="text-align:center;">
+        <c-mars-pagination-lwc records={f42List} onslice={paginationHandler}></c-mars-pagination-lwc>
+    </div>
+    <template if:true={showHideReviewDetails}>
+        <c-mars-f42-review-record record-id={targetId}></c-mars-f42-review-record>
+    </template>
+
+</template>

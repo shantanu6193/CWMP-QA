@@ -1,0 +1,111 @@
+<template>
+    <template if:true={showLoader}>
+       <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+  <template if:false={showLoader}>
+    <div class="slds-grid slds-align_absolute-center slds-p-top_medium ">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_10-of-12 slds-large-size_8-of-12 border_div hh_form">
+            <div class="slds-grid slds-wrap slds-p-around_large">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-p-bottom_medium">
+                    <h2 class="form-header slds-text-heading--large form_title" style="text-transform: uppercase;">{label.HH_EN_California_Wildfire_Home_Hardening_Application_Page_Tittle}</h2>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                    <template if:true={showPath}>
+                         <c-hh-application-path current-path-order={currentPathOrder} paths={customPaths} list-of-status={stagesList} selected-status={currentStage} is-external-user={isExternalUser} record-id={recordId} onvalidatepage={validatePage}></c-hh-application-path>
+                    </template>
+                </div>
+                
+                <div class="box_card">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12">
+                      <template if:true={isApplicantInfoStage}>
+                        <c-hh-applicant-info data-custom="innerComponent" is-homeowner={isHomeowner} house-hold-number={houseHoldNumber} record={record.Applicant__r}></c-hh-applicant-info>
+                      </template>
+                  
+                    <template if:true={isEligibilityInfoStage}>
+                        <c-hh-eligibility-info data-custom="innerComponent" record={record}></c-hh-eligibility-info>
+                    </template>
+                   
+                    <template if:true={isPropertyInfoStage}>
+                        <c-hh-property-info data-custom="innerComponent"  is-homeowner={isHomeowner} record={record} ></c-hh-property-info>
+                    </template>
+ 
+                     <template if:true={isApplicationDocumentationStage}>
+                        <c-hh-application-documentation ondoccreate ={handleCreatedDocumentRecord} ondelete={handleDeleteDoument} onfileuploadfinished={handleFileUploadFinished} data-custom="innerComponent" record ={record}></c-hh-application-documentation>
+                    </template>
+                    <template if:true={isApplicantCertificationStage}>
+                        <c-hh-applicant-certification data-custom="innerComponent" record={record}></c-hh-applicant-certification>
+                    </template>
+                    <template if:true={isApplicationPreviewStage}>
+                        <c-hh-application-preview data-custom="innerComponent" is-part-of-stage=true record={record}></c-hh-application-preview>
+                    </template>
+                    <div class="slds-grid slds-wrap ">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-p-top_small">
+                            <div class="slds-grid slds-wrap slds-grid_align-spread slds-gutters_direct-x-small">
+                                <div class="slds-col btn-div">
+                                    <div class="slds-grid slds-wrap slds-gutters_direct-x-small ">
+                                        <div class="slds-col btn-col">
+                                            <lightning-button 
+                                                variant="brand"
+                                                label={label.HH_EN_Save_Exit}
+                                                title={label.HH_EN_Save_Exit}
+                                                onclick={saveAndExit}
+                                                class="mob_btn"
+                                                disabled={disableSave}
+                                            ></lightning-button>
+                                        </div>
+                                        <template if:false= {isApplicantInfoStage} >
+                                            <div class="slds-col btn-col">
+                                                <button onclick={redirectToPrevious} title={label.HH_EN_Previous} class="slds-button slds-button_brand mob_btn">{label.HH_EN_Previous}</button>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                                <div class="slds-col btn-div">
+                                    <template if:false= {isApplicationPreviewStage}>
+                                        <div class="slds-grid slds-wrap slds-gutters_direct-x-small ">
+                                            <div class="slds-col btn-col">
+                                                <button onclick={exit} title={label.HH_EN_Exit} class="slds-button slds-button_brand mob_btn">{label.HH_EN_Exit}</button>
+                                            </div>                     
+                                            <div class="slds-col btn-col">
+                                                <lightning-button 
+                                                    variant="brand"
+                                                    label={label.HH_EN_Save}
+                                                    title={label.HH_EN_Save}
+                                                    onclick={quickSave}
+                                                    class="mob_btn"
+                                                    disabled={disableSave}
+                                                ></lightning-button>
+                                            </div>
+                                            <div class="slds-col btn-col">
+                                                <lightning-button 
+                                                    variant="brand"
+                                                    label={label.HH_EN_Save_Continue}
+                                                    title={label.HH_EN_Save_Continue}
+                                                    onclick={redirectToNext}
+                                                    class="mob_btn"
+                                                    disabled={disableSave}
+                                                ></lightning-button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template if:true= {isApplicationPreviewStage}>
+                                        <div class="slds-grid slds-wrap slds-gutters_direct-x-small "> 
+                                            <div class="slds-col btn-col">
+                                                <button onclick={exit} title={label.HH_EN_Exit} class="slds-button slds-button_brand mob_btn">{label.HH_EN_Exit}</button>
+                                            </div>
+                                            <div class="slds-col btn-col">
+                                                <button onclick={submit} title={label.HH_EN_Save_Submit} class="slds-button slds-button_success mob_btn" style="color:white;">{label.HH_EN_Save_Submit}</button>
+                                            </div> 
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </template>
+ </template>

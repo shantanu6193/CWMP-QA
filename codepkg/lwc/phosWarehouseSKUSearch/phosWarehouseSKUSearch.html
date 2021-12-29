@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-grid slds-wrap"> 
+        <div class="slds-col">
+         <c-lookup
+             data-custom="lookup"
+             data-lookup="Warehouse__c"
+             onsearch={handleWarehouseSearch}
+             onselectionchange={handleWarehouseChange}
+             placeholder="Enter / Search warehouse SKU (3 or more characters)"
+             is-multi-entry={isMultiEntry}
+             load-data-on-init = {loadDataOnLookup}
+             local-search = {loadDataOnLookup}
+             scroll-after-n-items = "10"
+             errors={warehouseRequired}
+             selection={warehouseSelection}
+             search-term={recordLocal.Warehouse__c}
+             required>
+          </c-lookup>
+         </div>
+     </div>  
+</template>

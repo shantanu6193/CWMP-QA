@@ -1,0 +1,45 @@
+<!--
+ - Created by Pankaj on 08-07-2020.
+ -->
+
+<!-- Community App Hma Registration -->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}>
+        <div class="slds-modal__content slds-p-around_small">
+            <template if:true ={IsContactRecord}>
+                <table class="slds-align_absolute-center">
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description">FirstName</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.FirstName}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">LastName</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.LastName}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Email</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Email}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description">Phone</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Phone}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Entity</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Entity_Type__c}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Organization</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Name}</td>
+                    </tr>
+                </table>
+            </template>
+        </div>                     	 
+        <footer class="slds-modal__footer"> 
+            <button class="slds-button slds-button_brand" onclick={submitDetails} title="Register" disabled={buttonDisabled}>Register</button>
+        </footer>
+    </template>
+</template>

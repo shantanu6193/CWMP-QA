@@ -1,0 +1,33 @@
+<template>
+
+    <lightning-card title="Download Files">
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-button label="Download Selected" onclick={selectedDownloadHandler} disabled={disabled} class="slds-m-left_x-small"></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item>
+                <lightning-button label="Download All" onclick={downloadAllHandler} class="slds-m-left_x-small"></lightning-button>
+
+            </lightning-layout-item>
+        </lightning-layout>
+        <template for:each={mapFiles} for:item="mapKey">
+            <div key={mapKey.key}>
+                <p class="slds-m-left_x-small"><strong>{mapKey.key}</strong></p>
+            </div>
+            <template for:each={mapKey.value} for:item="mapEntity">
+                <tr key={mapEntity.Id}>
+                    <td>
+                        <lightning-input data-index={mapEntity.Id} data-name={mapKey.key} type="checkbox" label= {mapEntity.Title} name="fileName" onchange={checkboxHandler} class="slds-p-right_small slds-p-left_small"></lightning-input>
+                    </td>
+                    <td><a data-index={mapEntity.Id}  onclick={getInvoiceURL} class="slds-p-right_small">
+                        <lightning-icon icon-name="action:download" size="xx-small"
+                            alternative-text="Invoice Attachment" class="slds-iconl"
+                            title="Download">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Download</span>
+                    </a></td>
+                </tr>
+            </template>
+        </template>
+    </lightning-card>
+</template>

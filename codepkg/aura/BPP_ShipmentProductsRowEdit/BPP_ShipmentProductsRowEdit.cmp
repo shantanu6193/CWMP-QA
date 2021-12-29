@@ -1,0 +1,39 @@
+<!--
+ - Created by Pankaj on 21-04-2020.
+ -->
+
+<aura:component description="BPP_ShipmentProductsRowEdit">
+    <aura:attribute type="List" access="public" name="orderItemList" description="list of order products"/>
+    <aura:attribute type="List" access="public" name="selectedShipmentItems" description="list of Shipment line products"/>
+    <aura:attribute type="Shipment_Order_Line_Item__c" access="public" name="shipmentItem" description="list of order products"/>
+    <aura:attribute type="List" access="private" name="orderItemListToShow" default="[]" description="list of order products"/>
+    <aura:handler name="change" value="{!v.shipmentItem.Order_Product_Shipped__c}" action="{!c.refreshOrderProducts}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.updateAvailableProductList}"/>
+    <aura:registerEvent name="refreshOrderProductEvt" type="c:BPP_RefreshOrderProducts"/>
+    <aura:method name="callChild" action="{!c.updateAvailableProductList}" />
+
+    <aura:attribute name="descriptionValue" type="String" default=""/>
+    
+    <td data-label="Product Shipped" scope="row">
+        <div class="slds-truncate" title="">
+            <lightning:select required="true" variant="label-hidden" value="{!v.shipmentItem.Order_Product_Shipped__c}" title="Product Shipped" onchange="{!c.updateDescription}">
+                <option  value="" text="--Select--"></option>
+                <aura:iteration items="{!v.orderItemListToShow}" var="orderProd">
+                    <option selected="{!(v.shipmentItem.Order_Product_Shipped__c == orderProd.Id)}" value="{!orderProd.Id}" text="{!orderProd.Product_Name__c}"></option>
+                </aura:iteration>
+            </lightning:select>
+        </div>
+    </td>
+    <td data-label="Description" class="slds-truncate truncate-word">
+        <lightning:formattedText value="{!v.shipmentItem.Product_Description__c}"/>
+    </td>
+    <td data-label="Quantity Requested" class="slds-truncate">
+        <lightning:formattedNumber value="{!v.shipmentItem.Quantity_Requested__c}"/>
+    </td>
+    <td data-label="Quantity">
+        <lightning:input type="number" required="true" variant="label-hidden" value="{!v.shipmentItem.Quantity__c}" />
+    </td>
+    <td data-label="TotalQuantity">
+        <lightning:input type="number" required="true" variant="label-hidden" value="{!v.shipmentItem.Product_Received_BOL_Total_Quantity__c}" />
+    </td>
+</aura:component>

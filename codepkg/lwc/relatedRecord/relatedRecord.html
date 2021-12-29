@@ -1,0 +1,15 @@
+<template>
+    <lightning-card variant="Narrow" title={title} icon-name={iconName}>
+        <template if:true={checkAssociatedRecord}>
+            <h1 class="heading-text">No Associated User Registrations</h1>
+        </template>
+        <template if:false={checkAssociatedRecord}>
+            <lightning-datatable
+                key-field="Id"
+                data={data}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>        
+    </lightning-card> 
+</template>

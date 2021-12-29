@@ -1,0 +1,47 @@
+h3{
+    font-size:1.3rem;
+}
+.slds-button{
+    border-radius:20px;
+    width:100%;
+}
+.full-height{
+    height:100%;
+}
+.container{
+    border-radius:10px;
+    background-color:#003466;
+    -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+    -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+}
+.slds-input{
+    border-color:red !important;
+}
+.slds-border_right{
+    border-right:1px solid;
+    border-color:#fbad23;
+}
+.sidebar{
+    background:white;
+    border-top-left-radius:10px;
+    border-bottom-left-radius:10px;
+}
+.sub-logo{
+    width:120px;
+}
+@media screen and (min-width:320px) and (max-width:500px){
+    .sidebar{
+      background:white;
+      border-radius:10px;
+    }
+    .container{
+      border-radius:10px;
+      background: #003466;
+      -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+      -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+      box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.63);
+      margin-top:20px;
+      margin-bottom:20px;
+    }
+}

@@ -1,0 +1,39 @@
+/**
+ * Created by Shivraj on 27-08-2020.
+ */
+ :host {
+   display: contents;
+ }
+ .slds-card__body{
+     /*border-top: 1px dotted #CCCCCC;*/
+ }
+ .card-header{
+     padding: 10px;
+     border: 1px solid rgb(212, 212, 212);
+     border-radius: 4px;
+     background: white;
+ }
+ .slds-card{
+     background:transparent;
+     border:none;
+ }
+ .slds-card__body_inner{
+     padding:0px;
+ }
+ .slds-card__header-title {
+     font-size: 1.5rem;
+     line-height: 1.25;
+     text-transform: uppercase;
+     font-weight: 600;
+ }
+ .slds-button_brand{
+     background:#3f51b5;
+ }
+ .slds-button_brand:hover{
+     background-color:#143f74
+ }
+ th {
+     padding: 8px !important;
+     background: #375283 !important;
+     color: white !important;
+ }

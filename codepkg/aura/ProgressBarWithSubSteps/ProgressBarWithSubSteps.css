@@ -1,0 +1,45 @@
+/**
+ * Created by Prem Pal on 21-04-2020.
+ */
+
+.THIS .sub_stage_popover{
+    background: white;
+    margin: 3px;
+    color:#222c43;
+    padding: 7px 0px 12px 0px;
+}
+.THIS .slds-progress {
+	position: relative;
+	max-width: 85%;
+	width: 100%;
+	flex: 1 1 auto;
+	margin: auto;
+}
+.THIS .slds-popover_tooltip, .THIS .slds-popover--tooltip {
+	/*width: auto;
+	max-width: var(--lwc-sizeMedium,20rem);*/
+        width: 100%;
+        max-width: 100%;
+	background: white;
+	border: 0;
+}
+.THIS .tooltip:after {
+    box-shadow: -2px -2px 0 0 #aaaaaa;
+    top: -.2rem;
+}
+.THIS .tooltip:before {
+    display:none;
+}
+.THIS .sub-popover {
+    box-shadow:none !important;
+}
+.THIS .slds-popover {
+    z-index:10;
+}
+.THIS .slds-button_brand_size{
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+}

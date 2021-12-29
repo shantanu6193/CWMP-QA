@@ -1,0 +1,51 @@
+<template>
+        <lightning-button slot="actions" variant="brand" label="Add Row" onclick={addRow}></lightning-button>
+        <div class="slds-card__body slds-card__body_inner">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <template for:each={columnList} for:item="column">
+                            <th key={column.apiName}><div class="slds-truncate">{column.label}</div></th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={rows} for:item="record" for:index="index">
+                        <tr key={record.uuid}>
+                                    <th scope="col">
+                                        <lightning-input data-index={index} name="Classification_Title__c"
+                                          value={record.Classification_Title__c} variant="label-hidden" ></lightning-input>
+                                      </th>
+                                      <th scope="col">
+                                        <lightning-input data-name="currentRate" data-index={index} type="currency" name="Current_Rate__c"
+                                          value={record.Current_Rate__c} variant="label-hidden" ></lightning-input>
+                                      </th>
+                                      <th scope="col">
+                                        <lightning-input data-name="revisedRate" data-index={index} type="currency" name="Revised_Rate__c"
+                                          value={record.Revised_Rate__c} variant="label-hidden" >
+                                        </lightning-input>
+                                      </th>
+                                      <th scope="col">
+                                        <lightning-input data-index={index} type="checkbox" name="MOU_MOA_GBR__c"
+                                          checked={record.MOU_MOA_GBR__c} variant="label-hidden" ></lightning-input>
+                                      </th>
+
+                            <td>
+                                <lightning-button-icon icon-name="utility:delete" value={index} variant="bare" onclick={removeRow}></lightning-button-icon>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div style="display: flex;">
+        <c-signature data-id="signature"></c-signature>
+        <div class="slds-col slds-size_1-of-4 slds-text-align_right datepickerright">
+            <lightning-input type="Date" label="Effective Date for the Rates Being Submitted" value={futureDate} min={minDate} required="true" class="input"
+                             message-when-range-underflow="Please select a future date"
+                             onchange={handleFutureDateChange}>
+            </lightning-input>
+        </div>
+    </div>
+
+</template>

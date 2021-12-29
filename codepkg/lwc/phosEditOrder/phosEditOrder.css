@@ -1,0 +1,138 @@
+.form-header{
+    font-size: 2.5rem;
+    text-align: center;
+    text-transform: uppercase;
+    color:#3F519A;
+    font-weight:normal;
+}
+.slds-button_brand{
+    background:#3f51b5;
+}
+.slds-button_brand:hover{
+    background-color:#143f74
+}
+/* from PHOS_Order_Edit*/
+.content{
+    background: white;
+    border-radius: 0.5rem;
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(163,145,163,1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(163,145,163,1);
+    box-shadow: 0px 0px 5px 2px rgb(181, 178, 181);
+}
+.page-header{
+    background: #656565;
+    color: white;
+    border-radius: 4px 4px 0px 0px;
+}
+.slds-wizard__progress-bar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background: #3f6e99;
+	transition: width var(--lwc-durationPromptly,0.2s) ease;
+}
+.slds-page-header__title{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:white;
+}
+
+.slds-wizard__item:last-child{
+    text-align:right;
+}
+.titleStyle{
+    margin: auto;
+    color: #fff;
+    font-style: oblique;
+    text-align: center;
+}
+.slds-table_structure{
+    overflow:auto;
+}
+.slds-button_brand{
+     width: 8rem !important;
+}
+.neutral-button{
+    width: 8rem !important;
+    border: 2px solid #444240;
+}
+.widthFirstClass {
+    width : 0%;
+}
+.widthSecondClass {
+    width : 50%;
+    background-color:#3f6e99;
+}
+.widthThirdClass {
+    width : 100%;
+}
+
+.slds-wizard .slds-is-active .slds-wizard__marker {
+    background: #3f6e99!important
+}
+.slds-wizard__marker{
+    background: #D9DBDD;
+}
+.a:hover {
+    background: RGB(68, 66, 64) !important;
+}
+.slds-section-title--divider{
+    font-size:1rem;
+    font-weight:bold;
+    background: #848280;
+    color: #ffffff;
+}
+.slds-wizard{
+    z-index: 10;
+}
+.field-title{
+    margin-left: -1.1rem;
+    font-size: 1rem;
+    font-weight:bold;
+    line-height: 1.25;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem;
+    padding: 0.5rem 1rem;
+    background: rgb(255, 255, 255);
+}
+.slds-border_bottom{
+    border-bottom:1px solid #848280;
+}
+
+.note{
+    font-weight:bold;
+}
+
+/*form*/
+.border_div{
+    /*border:1px solid black;*/
+    background:#fff;
+}
+.header{
+    height:5rem;
+    border-bottom:1px solid black;
+    background:#D9DBDD;
+}
+
+.heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+.form-header{
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3f6e99;
+}
+.loading-modal{
+    width: 20rem !important;
+}
+.loading-modal-div{
+    border-radius:0.25rem;
+    background-color: transparent;
+}
+.slds-spinner_container{
+    background-color: transparent !important;
+}

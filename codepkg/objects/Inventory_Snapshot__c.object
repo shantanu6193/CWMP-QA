@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Custom Object for the manual data input of inventory snapshot from the inventory tracking database</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Available_Inventory_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Available Inventory Quantity</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Average_Price_Per_Unit__c</fullName>
+        <externalId>false</externalId>
+        <label>Average Price Per Unit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Cumulative_Total__c</fullName>
+        <externalId>false</externalId>
+        <label>Cumulative Total</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Procurement_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Procurement Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Outstanding</fullName>
+                    <default>false</default>
+                    <label>Outstanding</label>
+                </value>
+                <value>
+                    <fullName>Complete</fullName>
+                    <default>false</default>
+                    <label>Complete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Product_Family__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Family</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ADA Masks</fullName>
+                    <default>false</default>
+                    <label>ADA Masks</label>
+                </value>
+                <value>
+                    <fullName>Adult Cloth Masks</fullName>
+                    <default>false</default>
+                    <label>Adult Cloth Masks</label>
+                </value>
+                <value>
+                    <fullName>AED</fullName>
+                    <default>false</default>
+                    <label>AED</label>
+                </value>
+                <value>
+                    <fullName>Automated Blood Pressure cuffs</fullName>
+                    <default>false</default>
+                    <label>Automated Blood Pressure cuffs</label>
+                </value>
+                <value>
+                    <fullName>Bedding Accessories</fullName>
+                    <default>false</default>
+                    <label>Bedding Accessories</label>
+                </value>
+                <value>
+                    <fullName>Bedding/Beds</fullName>
+                    <default>false</default>
+                    <label>Beds/Cots</label>
+                </value>
+                <value>
+                    <fullName>Bedside Commodes</fullName>
+                    <default>false</default>
+                    <label>Bedside Commodes</label>
+                </value>
+                <value>
+                    <fullName>Bipap Machine</fullName>
+                    <default>false</default>
+                    <label>Bipap Machine</label>
+                </value>
+                <value>
+                    <fullName>Blanket</fullName>
+                    <default>false</default>
+                    <label>Blanket</label>
+                </value>
+                <value>
+                    <fullName>Body Bags</fullName>
+                    <default>false</default>
+                    <label>Body Bags</label>
+                </value>
+                <value>
+                    <fullName>Bouffant Caps</fullName>
+                    <default>false</default>
+                    <label>Bouffant Caps</label>
+                </value>
+                <value>
+                    <fullName>Children&apos;s Surgical/3-ply Masks</fullName>
+                    <default>false</default>
+                    <label>Children&apos;s Surgical/3-ply Masks</label>
+                </value>
+                <value>
+                    <fullName>Children Cloth Masks</fullName>
+                    <default>false</default>
+                    <label>Children Cloth Masks</label>
+                </value>
+                <value>
+                    <fullName>Children’s Cloth Masks</fullName>
+                    <default>false</default>
+                    <label>Children’s Cloth Masks</label>
+                </value>
+                <value>
+                    <fullName>Children’s Surgical Masks</fullName>
+                    <default>false</default>
+                    <label>Children’s Surgical Masks</label>
+                </value>
+                <value>
+                    <fullName>Cleaning Supplies</fullName>
+                    <default>false</default>
+                    <label>Cleaning Supplies</label>
+                </value>
+                <value>
+                    <fullName>Cloth Masks</fullName>
+                    <default>false</default>
+                    <label>Cloth Masks</label>
+                </value>
+                <value>
+                    <fullName>Collection Kits (medium, swab, vial)</fullName>
+                    <default>false</default>
+                    <label>Collection Kits (medium, swab, vial)</label>
+                </value>
+                <value>
+                    <fullName>Coveralls</fullName>
+                    <default>false</default>
+                    <label>Coveralls</label>
+                </value>
+                <value>
+                    <fullName>Coveralls (Hospitals or EMS)</fullName>
+                    <default>false</default>
+                    <label>Coveralls (Hospitals or EMS)</label>
+                </value>
+                <value>
+                    <fullName>CPAP Machines</fullName>
+                    <default>false</default>
+                    <label>CPAP Machines</label>
+                </value>
+                <value>
+                    <fullName>CPAP Masks</fullName>
+                    <default>false</default>
+                    <label>CPAP Masks</label>
+                </value>
+                <value>
+                    <fullName>Crash Cart Med Kits</fullName>
+                    <default>false</default>
+                    <label>Crash Cart Med Kits</label>
+                </value>
+                <value>
+                    <fullName>Examination Gloves</fullName>
+                    <default>false</default>
+                    <label>Examination Gloves</label>
+                </value>
+                <value>
+                    <fullName>Face Shields</fullName>
+                    <default>false</default>
+                    <label>Face Shields</label>
+                </value>
+                <value>
+                    <fullName>Face Shields (Disposable)</fullName>
+                    <default>false</default>
+                    <label>Face Shields (Disposable)</label>
+                </value>
+                <value>
+                    <fullName>Glucometers</fullName>
+                    <default>false</default>
+                    <label>Glucometers</label>
+                </value>
+                <value>
+                    <fullName>Goggles</fullName>
+                    <default>false</default>
+                    <label>Goggles</label>
+                </value>
+                <value>
+                    <fullName>Hand Sanitizer (8oz)</fullName>
+                    <default>false</default>
+                    <label>Hand Sanitizer (8oz)</label>
+                </value>
+                <value>
+                    <fullName>Hand Sanitizers</fullName>
+                    <default>false</default>
+                    <label>Hand Sanitizers</label>
+                </value>
+                <value>
+                    <fullName>Hospital Cot with IV Poles</fullName>
+                    <default>false</default>
+                    <label>Hospital Cot with IV Poles</label>
+                </value>
+                <value>
+                    <fullName>IV Pumps</fullName>
+                    <default>false</default>
+                    <label>IV Pumps</label>
+                </value>
+                <value>
+                    <fullName>KN95</fullName>
+                    <default>false</default>
+                    <label>KN95</label>
+                </value>
+                <value>
+                    <fullName>KN95 Respirators</fullName>
+                    <default>false</default>
+                    <label>KN95 Respirators</label>
+                </value>
+                <value>
+                    <fullName>Lab Kit</fullName>
+                    <default>false</default>
+                    <label>Lab Kit</label>
+                </value>
+                <value>
+                    <fullName>Lab Platform</fullName>
+                    <default>false</default>
+                    <label>Lab Platform</label>
+                </value>
+                <value>
+                    <fullName>Lab Supplies</fullName>
+                    <default>false</default>
+                    <label>Lab Supplies</label>
+                </value>
+                <value>
+                    <fullName>Medical Equipment</fullName>
+                    <default>false</default>
+                    <label>Medical Equipment</label>
+                </value>
+                <value>
+                    <fullName>N-95 Respirators</fullName>
+                    <default>false</default>
+                    <label>N-95 Respirators</label>
+                </value>
+                <value>
+                    <fullName>N95 Respirators (Disposable)</fullName>
+                    <default>false</default>
+                    <label>N95 Respirators (Disposable)</label>
+                </value>
+                <value>
+                    <fullName>Nasal Cannulas</fullName>
+                    <default>false</default>
+                    <label>Nasal Cannulas</label>
+                </value>
+                <value>
+                    <fullName>Nebulizer Machines*</fullName>
+                    <default>false</default>
+                    <label>Nebulizer Machines*</label>
+                </value>
+                <value>
+                    <fullName>Nebulizer Tubing*</fullName>
+                    <default>false</default>
+                    <label>Nebulizer Tubing*</label>
+                </value>
+                <value>
+                    <fullName>Nitrile Gloves</fullName>
+                    <default>false</default>
+                    <label>Nitrile Gloves</label>
+                </value>
+                <value>
+                    <fullName>Nitrile Gloves (single)</fullName>
+                    <default>false</default>
+                    <label>Nitrile Gloves (single)</label>
+                </value>
+                <value>
+                    <fullName>Other / None of the above</fullName>
+                    <default>false</default>
+                    <label>Other / None of the above</label>
+                </value>
+                <value>
+                    <fullName>Oxygen Tanks*</fullName>
+                    <default>false</default>
+                    <label>Oxygen Tanks*</label>
+                </value>
+                <value>
+                    <fullName>Personal Protective Equipement (PPE)</fullName>
+                    <default>false</default>
+                    <label>Personal Protective Equipement (PPE)</label>
+                </value>
+                <value>
+                    <fullName>Personnel</fullName>
+                    <default>false</default>
+                    <label>Personnel</label>
+                </value>
+                <value>
+                    <fullName>Pharmaceuticals</fullName>
+                    <default>false</default>
+                    <label>Pharmaceuticals</label>
+                </value>
+                <value>
+                    <fullName>Portable Pulse Oximetry Machine</fullName>
+                    <default>false</default>
+                    <label>Portable Pulse Oximetry Machine</label>
+                </value>
+                <value>
+                    <fullName>Sample Collecting Kits</fullName>
+                    <default>false</default>
+                    <label>Sample Collecting Kits</label>
+                </value>
+                <value>
+                    <fullName>Shoe Covers</fullName>
+                    <default>false</default>
+                    <label>Shoe Covers</label>
+                </value>
+                <value>
+                    <fullName>Solution</fullName>
+                    <default>false</default>
+                    <label>Solution</label>
+                </value>
+                <value>
+                    <fullName>Surgical/3-ply Masks</fullName>
+                    <default>false</default>
+                    <label>Surgical/3-ply Masks</label>
+                </value>
+                <value>
+                    <fullName>Surgical Masks</fullName>
+                    <default>false</default>
+                    <label>Surgical Masks</label>
+                </value>
+                <value>
+                    <fullName>Surgical or Examination Gowns</fullName>
+                    <default>false</default>
+                    <label>Surgical or Examination Gowns</label>
+                </value>
+                <value>
+                    <fullName>Swabs</fullName>
+                    <default>false</default>
+                    <label>Swabs</label>
+                </value>
+                <value>
+                    <fullName>Syringes/Needles</fullName>
+                    <default>false</default>
+                    <label>Syringes/Needles</label>
+                </value>
+                <value>
+                    <fullName>Test Kits</fullName>
+                    <default>false</default>
+                    <label>Test Kits</label>
+                </value>
+                <value>
+                    <fullName>Thermometers</fullName>
+                    <default>false</default>
+                    <label>Thermometers</label>
+                </value>
+                <value>
+                    <fullName>Ventilators</fullName>
+                    <default>false</default>
+                    <label>Ventilators</label>
+                </value>
+                <value>
+                    <fullName>Vials</fullName>
+                    <default>false</default>
+                    <label>Vials</label>
+                </value>
+                <value>
+                    <fullName>Vinyl Gloves</fullName>
+                    <default>false</default>
+                    <label>Vinyl Gloves</label>
+                </value>
+                <value>
+                    <fullName>Viral Testing Media</fullName>
+                    <default>false</default>
+                    <label>Viral Testing Media</label>
+                </value>
+                <value>
+                    <fullName>Wheelchairs</fullName>
+                    <default>false</default>
+                    <label>Wheelchairs</label>
+                </value>
+                <value>
+                    <fullName>Wipes</fullName>
+                    <default>false</default>
+                    <label>Wipes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Remaining_Cost_to_Meet_Objective__c</fullName>
+        <externalId>false</externalId>
+        <formula>Remaining_Total__c *  Average_Price_Per_Unit__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Remaining Cost to Meet Objective</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Remaining_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Revised_Target__c -  Cumulative_Total__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Remaining Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revised_Target__c</fullName>
+        <externalId>false</externalId>
+        <label>Revised Target</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Cumulative_Total__c *  Average_Price_Per_Unit__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Inventory Snapshot</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Product_Family__c</columns>
+        <columns>Available_Inventory_Quantity__c</columns>
+        <columns>Revised_Target__c</columns>
+        <columns>Cumulative_Total__c</columns>
+        <columns>Remaining_Total__c</columns>
+        <columns>Average_Price_Per_Unit__c</columns>
+        <columns>Remaining_Cost_to_Meet_Objective__c</columns>
+        <columns>Total_Cost__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>IS-{0000}</displayFormat>
+        <label>Inventory Snapshot Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Inventory Snapshots</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

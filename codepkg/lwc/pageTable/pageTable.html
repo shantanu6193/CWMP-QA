@@ -1,0 +1,124 @@
+<template>
+    <template if:true={isTableReadyToLoad}>
+        <div class="slds-grid slds-wrap" >
+            <div class="slds-col slds-size_12-of-12 slds-m-bottom_medium" >
+                <div  class="slds-grid slds-wrap slds-p-bottom_small slds-p-horizontal_medium">
+                    <template if:true={isTableNameAvailable}>
+                        <div class="slds-col slds-size_4-of-12 slds-text-align--left slds-p-top_small">
+                            {tableName}
+            </div>
+                    </template>
+                    <template if:true={isNewActionPresentTop}>
+            <div class="slds-col  slds-text-align--right">    
+                            <lightning-button label={getNewActionLabel} variant="brand" onclick={addTableRow} disabled={isNewActionButtonDisabled}></lightning-button>
+            </div>
+                    </template>            
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+                    <table class=" slds-table slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                <thead>
+                <tr class="slds-text-title_caps">
+                                <th>
+                                    <div class="">
+                                        #
+                                    </div>
+                                </th>
+                    <template for:each={tableColumnNames} for:item="column">
+                                    <th key={getDynamicKey}>
+                                        <div class="">
+                                            {column.label}
+                                        </div>
+                                    </th>
+                    </template>
+                </tr>
+                            
+                </thead>
+                <tbody>
+                <template for:each={tableRecordDetails} for:item="row" for:index="index">
+                                <tr class="inputRows" key={getDynamicKey}>
+                                    <td>
+                                        {row.tableIndexNumber}
+                                    </td>
+                        <template for:each={tableColumnNames} for:item="column">
+                                        <td key={getDynamicKey}>
+                                            <c-page-table-cell record={record} 
+                                                                table-row={row} 
+                                                                column={column} 
+                                                                fields-meta={tableObjectFields} 
+                                                                table-object-name={tableObjectName} 
+                                                                field-meta-additional-config={tableAdditionalConfig} 
+                                                                index={index} 
+                                                                onsendforsignatureclick={handleSendForSignatureClick} 
+                                                                ontablefieldchanged={handleTableFieldChanged} 
+                                                                onedittablerow={editTableRow} 
+                                                                ondeletetablerow={deleteTableRow} 
+                                                                user-hide-show-actions-access={userHideORShowActionsAccess}
+                                                                ontablecellevent={handleTableCellActions} 
+                                                                logged-in-user-details={loggedInUserDetails}>
+                                            </c-page-table-cell>
+                                            <!-- <c-page-table-cell table-row={row} api-name={column.fieldName} required={column.required} read-only={column.readOnly} formula={column.formula} fields-meta={tableObjectFields} table-object-name={tableObjectName} index={index} onactionedit={actionOnEventEdit} is-edit={row.isedit}></c-page-table-cell> -->
+                            </td>
+                        </template>
+                    </tr>       
+                </template>
+                </tbody>
+            </table>
+                </div>
+                <div class="slds-grid slds-wrap slds-p-bottom_small slds-p-horizontal_medium">
+                    <div class="slds-col slds-text-align--right">    
+                        <template if:true={isIndividualSaveButtonPresent} >
+                    <lightning-button label="Save" variant="brand" onclick={tableSavetest}></lightning-button>
+                        </template>
+                        <template if:true={isNewActionPresentBottom}>
+                                <lightning-button class="slds-p-left_medium" label={getNewActionLabel} variant="brand" onclick={addTableRow} disabled={isNewActionButtonDisabled}></lightning-button>
+                        </template>            
+                </div>
+        </div>
+            </div>
+        </div>
+   </template>
+   <template if:true={isParentFieldLabel}>
+        <lightning-input class="input" 
+                        value={calculationFormulaMaxValue}  
+                        label={getParentFieldLabel}
+                        read-only="true" 
+                        name={getParentFieldLabel} 
+                        type="text" 
+                        onchange={parentFieldChangedEvent}>
+        </lightning-input>
+   </template>
+   
+   <c-confirmation-popup visible={isDeleteConfirmationShow} title="" name="" original-message="" message="Are you sure you want to delete record?" confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleDeleteConfirmationClick}></c-confirmation-popup>
+   <c-confirmation-popup visible={saveEditConfirmationShow} title="" name="" original-message="" message="Your changes will be lost, please save the record and then add/edit the record." confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleSaveEditConfirmationClick}></c-confirmation-popup>
+   <template if:true={isContactInformationModal}>
+        <c-hma-contact-information-modal show-modal={isContactInformationModal} 
+                                            con-role={getContactRoleValue} 
+                                            edit-contact-role-record={getTableRecordForEdit} 
+                                            application-id={recordId} 
+                                            oncontactinformation={handleContactRoleInformation} 
+                                            onclosemodal={handleCloseContactInformationModal} 
+                                            table-config={tableAdditionalConfig}>
+        </c-hma-contact-information-modal>
+   </template>
+    <template if:true={requestForInformationModal}>
+        <c-hma-r-f-i-modal show-modal={requestForInformationModal} 
+                            application-id={recordId} 
+                            table-config={tableAdditionConfig} 
+                            edit-r-f-i-record-id={getTableRecordIdForEdit} 
+                            onupdaterfirecord={handleUpdateTableRecord} 
+                            onclosemodal={handleCloseModal}>
+        </c-hma-r-f-i-modal>
+    </template>
+    <template if:true={FEMARequestForInformationModal}>
+        <c-hma-f-e-m-a-r-f-i-modal show-modal={FEMARequestForInformationModal} 
+                                    application-id={recordId} 
+                                    table-additional-config={tableAdditionConfig} 
+                                    edit-f-e-m-a-r-f-i-record-id={getTableRecordIdForEdit} 
+                                    onupdatefemarfirecord={handleUpdateTableRecord} 
+                                    onclosemodal={handleCloseModal}>
+        </c-hma-f-e-m-a-r-f-i-modal>
+    </template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+</template>

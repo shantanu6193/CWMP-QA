@@ -1,0 +1,1402 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0" sidebar="false" renderAs="advanced_pdf" controller="MARS_GenerateInvoiceCtrl">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <!--renderAs="PDF"-->
+    <style>
+      body { 
+        margin: 0.1;
+        font-family: Dialog;
+        /*font-size: 0.80em;*/
+        font-size: 9.5pt;
+        line-height: 1.1;
+        color: #212529;
+        text-align: left;
+        background-color: #fff;
+      }
+
+      .trgray {
+        background-color: #b4b3b3;
+      }
+
+      @page {
+        size: portrait;
+        margin-top: 30px;
+        margin-left: 1px;
+        margin-right: 1px;
+        margin-bottom: 30px;
+      }
+
+      /*@page{ margin-top: 50px; margin-left: 5px; margin-right: 5px; margin-bottom: 30px; }*/
+
+      .page-break {
+        display: block;
+        page-break-before: always;
+      }
+
+      /* Clear floats after the columns */
+
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      .divclear {
+        clear: both;
+      }
+
+      .tableclass {
+        table-layout: fixed;
+        width: 100%;
+        border: 1px solid black;
+      }
+
+      .tableboarder {
+        border-collapse: collapse;
+      }
+
+      .thtdclass {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      .thfloat {
+        text-align: right;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="page-break-after:always;">
+      <div style="row">
+        <div style="text-align:center">
+            <h3>California Fire Assistance Agreement<br/>
+            Reimbursement Invoice<br/>
+            Cal OES-CAL FIRE-USFS-BLM-NPS-FWS-BIA<br/>
+            Cal OES F-142</h3>
+        </div>
+        <table class="tableclass">
+          <tr>
+            <td style="width:63%;text-align:left" valign="top">
+              <b>Federal Tax ID Number</b>: {!currentRecord.federalTaxId}<br/>
+              <b>Federal DUNS Number</b>: {!currentRecord.federalDUNSNo}<br/>
+              <b>FI$Cal Supplier ID</b>: {!currentRecord.supplierNo}<br/>
+              <b>FI$Cal Address ID</b>: {!currentRecord.addressNo}<br/>
+            </td>
+            <td style="width:37%;text-align:left">
+            <b><i> Invoice Number: {!invoice.Name}</i></b><!--{!invoice.Name}{!invoice.Invoice_Number_For_Json__c}{!invoice.Invoice_Number__c}--><br/>
+              <b>Invoice Date</b>: {!currentRecord.invoiceDate}<br/>
+              <b>Incident Order Number</b>: {!currentRecord.incidentOrderNo} <br/>
+              <b>Incident Name</b>: {!currentRecord.incidentName} <br/>
+              <b>MACS Designator</b>: {!currentRecord.MACSDesignator}
+            </td>
+          </tr>
+          
+        </table>
+      </div>
+      <br/>
+      <div class="divclear">
+        <div style="float: left;width: 37%;">
+          <div style="padding: 2px;">
+            <b>Remit Payment to</b>:
+            <div style="border: 1px solid black;">
+              {!currentRecord.remitToName}<br/>
+              {!currentRecord.remitToStreet}, <br/>
+              {!currentRecord.remitToCity}, 
+              {!currentRecord.remitToState}, 
+              {!currentRecord.remitToZip} 
+            </div>
+          </div>
+        </div>
+        <div style="float: left;width: 25%;">
+          <div style="padding: 10px;">
+          </div> 
+        </div>   
+        <div style="float: left;width: 37%;">
+          <div style="padding: 2px;">
+            <b>Local Agency, Return Invoice to</b>:
+            <div style="border: 1px solid black;">
+              Governor’s Office of Emergency Services<br/>
+              Fire and Rescue Division<br/>
+              Reimbursement Processing
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="clear: both;">
+        <div style="text-align: center;">
+          <b><u>SUMMARY INFORMATION</u></b><br/><br/>
+        </div>
+        <table class="tableclass tableboarder" style="text-align: center;">
+          <tr>
+            <th class="thtdclass" style="width:8%">Resource</th>
+            <th class="thtdclass" style="width:7%">Req. No.</th>
+            <th class="thtdclass" style="width:11%">Strike Team</th>
+            <th class="thtdclass" style="width:10%">Depart Date/Time</th>
+            <th class="thtdclass" style="width:10%">Return Date/Time</th>
+            <th class="thtdclass" style="width:8%">Total Hours</th>
+            <th class="thtdclass" style="width:10%">Personnel Total</th>
+            <th class="thtdclass" style="width:10%">Equipment Hours</th>
+            <th class="thtdclass" style="width:10%">Equipment Total</th>
+            <th class="thtdclass" style="width:10%">Support Vehicle</th>
+            <th class="thtdclass" style="width:10%">Expense Total</th>
+            <th class="thtdclass" style="width:10%">Admin Surchg</th>
+          </tr>
+          <apex:repeat value="{!currentRecord.summaryInformationList}" var="record">
+            <tr>
+              <td class="thtdclass">{!record.unit}</td>
+              <td class="thtdclass">{!record.reqNo}</td>
+              <td class="thtdclass">{!record.strikeTeam}</td>
+              <td class="thtdclass">{!record.departDateTime}</td>
+              <td class="thtdclass">{!record.returnDateTime}</td>
+              <td class="thtdclass">{!record.totalHours}</td>
+              <td class="thtdclass">${!record.personnelTotal}</td>
+              <td class="thtdclass">{!record.engineHours}</td>
+              <td class="thtdclass">${!record.engineReimb}</td>
+              <td class="thtdclass">${!record.supportVehicle}</td>
+              <td class="thtdclass">${!record.expenseReiumb}</td>
+              <td class="thtdclass">${!record.adminSurcharge}</td>
+            </tr>
+          </apex:repeat>
+
+          <tr>
+            <td class="thtdclass" colspan="5"></td>
+            <td class="thtdclass"><b>{!currentRecord.summaryHoursTotal}</b></td>
+            <td class="thtdclass"><b>${!currentRecord.personnelTotal}</b></td>
+            <td class="thtdclass"><b>{!currentRecord.equipmentHoursTotal}</b></td>
+            <td class="thtdclass"><b>${!currentRecord.engReimbTotal}</b></td>
+            <td class="thtdclass"><b>${!currentRecord.supportVehicleTotal}</b></td>
+            <td class="thtdclass"><b>${!currentRecord.expenseReiumbTotal}</b></td>
+            <td class="thtdclass"><b>${!currentRecord.adminSurchargeTotal}</b></td>
+          </tr>
+        </table>
+        <br/>
+        <div style="text-align: right;"><b>CLAIM TOTAL: ${!currentRecord.claimTotal}</b></div>
+        <apex:repeat value="{!currentRecord.fundingRules}" var="founding">
+          <div style="text-align: right;"><b>{!founding}</b></div>
+        </apex:repeat>
+      </div>
+      <hr/>
+      <div style="clear: both;">
+        <table class="tableclass tableboarder">
+          <tr>
+            <td valign="top">Mileage for Privately Owned Vehicle(POV) only and is figured at a of {!currentRecord.mileRate} per actual mile.</td>
+            <td valign="top" style="padding-right: 4px;">Engine Hours are based on a 16 hour portal to portal day for each 24 hour period.<br/></td>
+            <td valign="top" style="padding-left: 8px;">Agency Salary Survey on file: {!currentRecord.agencySalarySurveyonFile}<br/><br/></td>
+          </tr>
+          <tr><td colspan="3"></td></tr>
+          <tr>
+            <td><b>Support Vehicle Rates are</b>:</td>
+            <td><b> Apparatus Rates are</b>:</td>
+            <td><b>Personnel Rates are</b>:</td>
+          </tr>
+          <tr>
+            <td valign="top">
+              <apex:repeat value="{!currentRecord.vechicleRateList}" var="record">
+                {!record.vechicleType} = ${!record.rate} per day<br/> 
+              </apex:repeat>
+            </td>
+            <td valign="top"> 
+              <apex:repeat value="{!currentRecord.apparatusRateList}" var="record">
+                {!record.apparatusType} = ${!record.rate} per hour<br/> 
+              </apex:repeat>
+            </td>
+            <td valign="top">
+              <apex:repeat value="{!currentRecord.SalarySurveyRateList}" var="record">
+                {!record.personnelRole} = ${!record.rate}<br/> 
+              </apex:repeat>
+              Administrative Rate: {!currentRecord.administrativeRate}
+            </td>
+          </tr>
+        </table>  
+      </div>
+      <div style="clear: both;"></div>
+      <hr/>
+      <div style="font-size: 8pt">
+        The Invoice amounts are computed on the California Fire Assistance Agreement currently in place between Cal OES, CAL FIRE, USFS, BLM, NPS, FWS and BIA. Local agencies that have wages that exceed the minimum base rate shall be reimbursed using the Salary Rate otherwise the established base rate shall be used for reimbursement. <br/>
+          <b>Formulas</b>: Salary Rate: [[(S x H x 1.5) + M +E] x A]   or   Established Base Rate: [[(B x H x 1.5) + M + E] x A] <br/>
+          Where S = Salary Rate; H = Total hours on Incident; A = Administrative Rate (%); B = Established Hourly Base Rate; E = Engine Reimbursement, where applicable; M= Claimed Miles <br/>
+            <b>Reminder</b>: As per the California Fire Assistance Agreement, there will be a delay in payment for invoices not returned to Cal OES by the local agency within 30 days of receipt.
+        
+      </div>
+      <hr/>
+      <div style="clear: both;">
+        <div style="text-align: center;">
+          <b>I Certify that to the best of my knowledge and belief, and under penalty of perjury that the data above it correct.</b>
+        </div>
+        <br/>
+        <br/>
+        <div style="float: left;width: 33.33%;">
+          <div>
+            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(signature))}">
+              <apex:image url="{!signature}" style="height: 50px;width: 200px;" /> _______________________________
+              <br/> Signature
+            </apex:outputPanel>
+            <apex:outputPanel layout="none" rendered="{!ISBLANK(signature)}">
+              <div style="height: 50px;width: 200px;"></div>
+              _______________________________
+              <br/> Signature
+
+            </apex:outputPanel>
+          </div>
+        </div>
+        <div style="float: left;width: 33.33%;">
+          <div>
+            <div style="height: 40px;width: 200px;"> </div>
+            {!invoice.Printed_Title__c}
+            <br/> _______________________________
+            <br/> Title
+          </div>
+        </div>
+        <div style="float: left;width: 33.33%;">
+          <div>
+            <div style="height: 40px;width: 200px;"></div>
+            <apex:outputText value="{0,date,MM/dd/yyyy}">
+              <apex:param value="{!invoice.Approved_Date__c}" />
+            </apex:outputText>
+            <br/>_______________________________
+            <br/> Date
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--2nd Page-->
+    <apex:repeat value="{!currentRecord.f24RecordsList}" var="f42Record">
+      <div class="page-break">
+        <div style="width: 100%;height: 100px;border: 1px solid black;">
+          <div style="float: left;width:66.66%;">
+            <div style="padding: 1px;text-align: left;">
+              <h2>Emergency Activity Calculation Record<br/>
+              Fire and Rescue</h2>
+            </div>
+          </div>
+          <div style="float: left;width: 33.34%">
+            <div style="padding: 10px;">
+              <b>Incident Order Number</b>: {!f42Record.f42Details.orderNo}<br/>
+              <b>Incident Name</b>: {!f42Record.f42Details.incidentName}<br/>
+              <b>MACS Designator</b>: {!f42Record.f42Details.MACSDesignator}<br/>
+              <b>Strike Team</b>: {!f42Record.f42Details.strikeTeam}<br/>
+              <b>Request Number</b>: {!f42Record.f42Details.requestNo}
+            </div>
+          </div>
+        </div>
+        <br/>
+        <div class="divclear">
+          <div style="text-align: left;">
+            <b>Dispatch Information</b>:
+          </div>
+          <table class="tableclass tableboarder">
+            <tr>
+              <td class="thtdclass">
+                <b>Incident Type</b>: {!f42Record.f42Details.to}
+              </td>
+             <!-- <td class="thtdclass">
+                <b>Incident Name</b>: {!f42Record.f42Details.name}
+              </td>
+              <td class="thtdclass">
+                Location: {!f42Record.f42Details.location}
+              </td>-->
+              <td class="thtdclass">
+                <b>Unit Number</b>: {!f42Record.f42Details.appUnitNo}
+              </td>
+              <td class="thtdclass">
+                <b>ICS/Other Title</b>: {!f42Record.f42Details.ICSTitle}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br/>
+        <div class="divclear">
+          <table style="table-layout: fixed;width: 100%">
+            <tr>
+              <td>
+                <b>Departed</b>: <b>Date</b>: {!f42Record.f42Details.departedDate}
+              </td>
+              <td>
+                <b>Time</b>: {!f42Record.f42Details.departedTime}
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <b>Returned</b>: <b>Date</b>: {!f42Record.f42Details.returnDate}
+              </td>
+              <td>
+                <b>Time</b>: {!f42Record.f42Details.returnTime}
+              </td>
+              <td>
+                <b>Total Hours</b>: {!f42Record.f42Details.totalHours}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br/>
+        <div class="divclear">
+          <table class="tableclass tableboarder">
+            <tr>
+              <td class="thtdclass">
+                <b>Apparatus Type</b>: {!f42Record.f42Details.apparatusType}
+              </td>
+              <td class="thtdclass">
+                <b>License Number</b>: {!f42Record.f42Details.LicenseNumber}
+              </td>
+              <td class="thtdclass">
+                <b>OES Vehicle</b>? {!f42Record.f42Details.OESVehicle}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br/>
+        <div class="divclear">
+          <div style="text-align: left;">
+            <b>Strike Team/Task Force Leader, Assistant Strike Team Leader, or a Overhead Personnel</b>:
+          </div>
+          <table class="tableclass tableboarder">
+            <tr>
+              <td class="thtdclass">
+                <b>Vehicle Ownership </b>: {!f42Record.f42Details.vehicleOwnership}
+              </td>
+              <td class="thtdclass">
+                <b>Beginning Odometer</b>: {!f42Record.f42Details.beginningOdoMeter}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                <b>Vehicle Type </b>: {!f42Record.f42Details.vehicleMakeandModel}
+              </td>
+              <td class="thtdclass">
+                <b>Ending Odometer </b>: {!f42Record.f42Details.endingOdoMeter}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                <b>License Number </b>: {!f42Record.f42Details.licenseNo}
+              </td>
+              <td class="thtdclass">
+                <b>Total Miles</b>: {!f42Record.f42Details.totalMiles}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br/>
+        <div class="divclear">
+          <div style="text-align: left;">
+            <b>Strike Team Expenses</b>
+          </div>
+          <table class="tableclass tableboarder" style="text-align: center;">
+            <tr>
+              <th class="thtdclass">
+                Personnel Type
+              </th>
+              <th class="thtdclass">
+                Hourly Rate
+              </th>
+              <th class="thtdclass">
+                Paid Rate
+              </th>
+              <th class="thtdclass">
+                Number on this F-42
+              </th>
+              <th class="thtdclass">
+                Hours on this F42
+              </th>
+              <th class="thtdclass">
+                Total for this F42
+              </th>
+            </tr>
+            <apex:repeat value="{!f42Record.f42Details.strikeTeamExpensesList}" var="strikeRecord">
+              <tr>
+                <td class="thtdclass">
+                  {!strikeRecord.personnelType}
+                </td>
+                <td class="thtdclass">
+                  ${!strikeRecord.hourlyRate}
+                </td>
+                <td class="thtdclass">
+                  ${!strikeRecord.paidRate}
+                </td>
+                <td class="thtdclass">
+                  {!strikeRecord.onThisF42}
+                </td>
+                <td class="thtdclass">
+                  {!strikeRecord.hoursOnThisF42}
+                </td>
+                <td class="thtdclass">
+                  ${!strikeRecord.totalForThisF42}
+                </td>
+              </tr>
+            </apex:repeat>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Total Personnel</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.totalPersonnel}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Surcharge-Personnel</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.surchargePersonnel}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass" colspan="6" style="height:17px">
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass" colspan="6"  style="text-align: left;">
+                <b>Equipment</b>
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                Apparatus Hours
+              </td>
+              <td colspan="2" class="thtdclass">
+                ${!f42Record.f42Details.apparatusRate}
+              </td>
+              <td class="thtdclass">
+                {!f42Record.f42Details.engineHours}
+              </td>
+              <td class="thtdclass">
+                <b>Apparatus Total</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.totleEngineHours}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                {!f42Record.f42Details.FEMACode}
+              </td>
+              <td colspan="2" class="thtdclass">
+                ${!f42Record.f42Details.FEMACodeRate}
+              </td>
+              <td class="thtdclass">
+                {!f42Record.f42Details.FEMACodeHours}
+              </td>
+              <td class="thtdclass">
+                <b>FEMA Equip Total</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.FEMACodTotal}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                {!f42Record.f42Details.specialEquipment} 
+              </td>
+              <td colspan="2" class="thtdclass">
+                ${!f42Record.f42Details.specialEquipmentRate}
+              </td>
+              <td class="thtdclass">
+                {!f42Record.f42Details.specialEquipmentHours}
+              </td>
+              <td class="thtdclass">
+                <b>Special Equip Total</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.specialEquipmentTotal}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Equipment Subtotal</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.specialEquipFEMASubTotal}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Surcharge-Equipment</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.surchargeEngine}
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass" colspan="6" style="height:17px">
+              </td>
+            </tr>
+            <tr>
+              <td class="thtdclass">
+                Support Vehicle Days
+              </td>
+              <td colspan="2" class="thtdclass">
+                ${!f42Record.f42Details.supportOrOverheadVehicle}
+              </td>
+              <td class="thtdclass">
+                {!f42Record.f42Details.vehicleDays}
+              </td>
+              <td class="thtdclass">
+                <b>Vehicle Total</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.vehicleCost}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Surcharge-Vehicle</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.surchargeVehicle}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Total Expense Claim</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.expenseClaim}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Surcharge-Expense Claim</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.surchargeExpenseClaim}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="thtdclass thfloat">
+                <b>Total for this F-42</b>
+              </td>
+              <td class="thtdclass">
+                ${!f42Record.f42Details.totalForThisF42}
+              </td>
+            </tr>
+          </table>
+          (OES F-42)
+        </div>
+      </div>
+      <br/> <br/>
+      <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.expenseClaim))}">
+        <div class="page-break">
+          <div>
+            <table class="tableclass tableboarder">
+              <tr>
+                <td class="thtdclass" colspan="3" style="display:flex;">
+                  <b>EMERGENCY ACTIVITY RECORD (OES Expense Claim)</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <div><b>Incident Name</b>:</div> {!f42Record.expenseClaim.incidentName}
+                </td>
+                <td class="thtdclass">
+                  <div><b>Incident Order Number</b>:</div> {!f42Record.expenseClaim.incidentOrderNumber}
+                </td>
+                <td class="thtdclass">
+                  <div><b>Agency Designator</b>:</div> {!f42Record.expenseClaim.MACIDs}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <div><b>Strike Team</b>:</div> {!f42Record.expenseClaim.strikeTeam}
+                </td>
+                <td class="thtdclass">
+                  <div><b>Incident Request Number</b>:</div> {!f42Record.expenseClaim.incidentRequestNumber}
+                </td>
+                <td class="thtdclass">
+                  <div><b>Unit Number</b>:</div> {!f42Record.expenseClaim.unitNumber}
+                </td>
+              </tr>
+            </table>
+            <br/>
+            <table class="tableclass tableboarder" style="text-align: center;">
+              <tr>
+                <th class="thtdclass">
+                  <div>Date</div>
+                </th>
+                <th class="thtdclass">
+                  <div>City</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Meals</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Lodging</div>
+                </th>
+                <th class="thtdclass">
+                  <div>MISC</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Description</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Amount</div>
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.expenseClaim.expenseClaimLineItems}" var="item">
+                <tr>
+                  <td class="thtdclass">
+                    {!item.lineItemDate}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.city}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.meal}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.lodging}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.MISC}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.description}
+                  </td>
+                  <td class="thtdclass">
+                    {!item.amount}
+                  </td>
+                </tr>
+              </apex:repeat>
+              <tr>
+                <td class="thtdclass" colspan="2">
+                  Sub Total
+                </td>
+                <td class="thtdclass">
+                  {!f42Record.expenseClaim.mealTotal}
+                </td>
+                <td class="thtdclass">
+                  {!f42Record.expenseClaim.lodgingTotal}
+                </td>
+                <td class="thtdclass">
+                  {!f42Record.expenseClaim.MISCTotal}
+                </td>
+                <td class="thtdclass">
+                  Total
+                </td>
+                <td class="thtdclass">
+                  {!f42Record.expenseClaim.totalReimbursementAmount}
+                </td>
+              </tr>
+
+            </table>
+            <br/>
+            <table class="tableclass tableboarder">
+              <tr>
+                <td class="thtdclass">
+                  <div><b>Printed Name</b>:</div> {!f42Record.expenseClaim.printedName}
+                </td>
+                <td class="thtdclass">
+                  <div><b>Date</b>:</div> {!f42Record.expenseClaim.submittedDate}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass" valign="top">
+                  <div><b>Comments</b>:</div> {!f42Record.expenseClaim.comments}
+                </td>
+                <td class="thtdclass">
+                  <apex:image url="{!f42Record.expenseClaim.respondingAgencySignature}" style="height: 50px;width: 100px;" />
+                  <br/> <b>Signature</b>:
+                </td>
+              </tr>
+              <!--<tr>
+                <td class="thtdclass" valign="top">
+                  <div><b>Local Agency Comments</b>:</div> {!f42Record.expenseClaim.localAgencyComments}
+                </td>
+                <td class="thtdclass" valign="top">
+                  <div><b>MutualAidStaffComments</b>:</div> {!f42Record.expenseClaim.mutualAidStaffComments}
+                </td>
+              </tr>-->  
+            </table>
+            <br/>
+            <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.expenseClaim.attachedFiles))}">
+            <table class="tableclass tableboarder" style="text-align: center;">
+              <tr>
+                <td class="thtdclass" colspan="2">
+                  <div>Attached Files For {!f42Record.expenseClaim.name} </div>
+                </td>
+              </tr>
+              <tr>
+                <th class="thtdclass">
+                  <div>File Name</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Attachment Type</div>
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.expenseClaim.attachedFiles}" var="file">
+                <tr>
+                  <td class="thtdclass">
+                    {!file.name}
+                  </td>
+                  <td class="thtdclass">
+                    {!file.type}
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+            </apex:outputPanel>
+          </div>
+        </div>
+      </apex:outputPanel>       
+      <br/> <br/>        
+      <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.f42DetailsUI))}">
+        <div class="page-break">
+          <div style="font-size: 0.80em;">
+            <table class="tableclass tableboarder">
+              <tr>
+                <td class="thtdclass" colspan="2" style="display:flex;">
+                  <b>EMERGENCY ACTIVITY RECORD (OES F-42)</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <div class="trgray"><b>1. AGENCY DESIGNATOR</b></div> {!f42Record.f42DetailsUI.agencyDesignator}
+                </td>
+                <td class="thtdclass">
+                  <div class="trgray"><b>2. STRIKE TEAM/TASK FORCE</b></div> {!f42Record.f42DetailsUI.strikeTeamAndTaskForce}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <div class="trgray"><b>3. INCIDENT ORDER NUMBER</b> </div> {!f42Record.f42DetailsUI.incidentOrderNumber}
+                </td>
+                <td class="thtdclass">
+                  <div class="trgray"><b>4. INCIDENT REQUEST NUMBER</b> </div> {!f42Record.f42DetailsUI.incidentRequestNumber}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                  <b>5. DISPATCH INFORMATION</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <b>Incident Name</b>: {!f42Record.f42DetailsUI.incidentName}
+                </td>
+                <td class="thtdclass">
+                  <b>Reporting Location</b>: {!f42Record.f42DetailsUI.reportingLocation}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <b> Committed To Incident</b>:<b> Date</b>: {!f42Record.f42DetailsUI.committedToIncidentDate}
+                </td>
+                <td class="thtdclass">
+                  <b>Time</b>: {!f42Record.f42DetailsUI.committedToIncidentTime}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Return From Incident</b>: <b>Date</b>: {!f42Record.f42DetailsUI.returnToIncidentDate}
+                </td>
+                <td class="thtdclass">
+                  <b>Time</b>: {!f42Record.f42DetailsUI.returnToIncidentTime}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <b>Redispatched</b>:<b> Date</b>: {!f42Record.f42DetailsUI.redispatchedToIncidentDate}
+                </td>
+                <td class="thtdclass">
+                  <b>Time</b>: {!f42Record.f42DetailsUI.redispatchedToIncidentTime}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>6. DISPATCH FROM</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Incident Name</b>: {!f42Record.f42DetailsUI.oldIncidentName}
+                </td>
+                <td class="thtdclass">
+                <b>End Date</b>: {!f42Record.f42DetailsUI.oldIncidentEndDate}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Old Incident Order Number</b>: {!f42Record.f42DetailsUI.oldIncidentOrderNumber}
+                </td>
+                <td class="thtdclass">
+                <b>Old Incident Request Number</b>: {!f42Record.f42DetailsUI.oldIncidentRequestNumber}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>7. REDISPATCHED INFORMATION -(START NEW F-42 IF REDISPATCHED)</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Incident Name</b>: {!f42Record.f42DetailsUI.newIncidentName}
+                </td>
+                <td class="thtdclass">
+                <b>End Date</b>: {!f42Record.f42DetailsUI.newIncidentStartDate}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b> New Incident Order Number </b>: {!f42Record.f42DetailsUI.newIncidentOrderNumber}
+                </td>
+                <td class="thtdclass">
+                <b>New Incident Request Number</b>: {!f42Record.f42DetailsUI.newIncidentRequestNumber}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                  <b>8. OVERHEAD INFORMATION - ST(TF) LEADER / ST(TF) LEADER(TRINEE)/OVERHEAD</b>
+                </td>
+              </tr>
+              <tr>
+                <!--<td class="thtdclass">
+                <b>Overhead Information</b>: {!f42Record.f42DetailsUI.overheadInformation}
+                </td>-->
+                <td class="thtdclass">
+                <b>(ICS Title)</b>: {!f42Record.f42DetailsUI.ICSTitle}
+                </td>
+                <td class="thtdclass">
+                  <b>(Other ICS Title)</b>: {!f42Record.f42DetailsUI.otherTitle}
+                  </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>9. SUPPORT VEHICLE INFORMATION - ST(TF) LEADER / OVERHEAD / SUPPORT VEHICLE</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Vehicle Ownership</b>: {!f42Record.f42DetailsUI.vehicleOwnership}
+                </td>
+                <td class="thtdclass">
+                <b>License Number </b>: {!f42Record.f42DetailsUI.licenseNumber}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Vehicle Type</b>: {!f42Record.f42DetailsUI.vehicleType}
+                </td>
+                <!--<td class="thtdclass">
+                <b>Other</b>: {!f42Record.f42DetailsUI.vehicleOther}
+                </td>-->
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>10. PRIVATELY OWNED VEHICLE ONLY</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Beginning Odometer</b>: {!f42Record.f42DetailsUI.beginningOdometer}
+                </td>
+                <td class="thtdclass">
+                <b>Ending Odometer</b>: {!f42Record.f42DetailsUI.endingOdometer}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass" colspan="2">
+                <b> Total Miles</b>: {!f42Record.f42DetailsUI.totalMiles}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b> 11. EQUIPMENT RESOURCE INFORMATION</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Apparatus</b>: {!f42Record.f42DetailsUI.apparatus}
+                </td>
+                <td class="thtdclass">
+                <b>Type</b>: {!f42Record.f42DetailsUI.apparatusType}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Unit</b>: {!f42Record.f42DetailsUI.apparatusUnit}
+                </td>
+                <td class="thtdclass">
+                <b>License Number</b>: {!f42Record.f42DetailsUI.apparatusLicense}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>CDF/OES Vehicle</b>: {!f42Record.f42DetailsUI.OESVehicle}
+                </td>
+                <td class="thtdclass">
+                <b>FEMA</b>: {!f42Record.f42DetailsUI.FEMACode}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Special Equipment</b>: {!f42Record.f42DetailsUI.specialEquipment}
+                </td>
+                <td class="thtdclass"></td>
+              </tr>
+            </table>
+            <table class="tableclass tableboarder" style="text-align: center;">
+              <tr class="trgray">
+                <td class="thtdclass" colspan="8">
+                  <b>12. PERSONNEL INFORMATION</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass" colspan="8"  style="text-align: left;">
+                  <b>Number Of Personnel On Apparatus</b>: {!f42Record.f42DetailsUI.numberOfPersonnelonApp}
+                </td>
+              </tr>
+              <tr>
+                <th class="thtdclass">
+                  <div>Name (Last, First)</div>
+                </th>
+                <th class="thtdclass">
+                  <div>MACS ID</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Rank/Job Title</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Last 4 SSN Number</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Start</div>
+                </th>
+                <th class="thtdclass">
+                  <div>End</div>
+                </th>
+                <th class="thtdclass">
+                  <div>CDF</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Base Rate</div>
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.f42DetailsUI.f42personnelInfoList}" var="personnelInfo">
+                <tr>
+                  <td class="thtdclass">
+                    {!personnelInfo.name}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.MACSID}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.jobTitle}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.last4SSN}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.startDate}: {!personnelInfo.startTime}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.endDate}: {!personnelInfo.endTime}
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.CDF}
+                    <!--<input type="checkbox" disabled="disabled" value="{!personnelInfo.CDF}" checked="{!personnelInfo.CDF}"/>-->
+                  </td>
+                  <td class="thtdclass">
+                    {!personnelInfo.baseRate}
+                    <!--<input type="checkbox" disabled="disabled" value="{!personnelInfo.portalToPortal}" checked="{!personnelInfo.portalToPortal}"/>-->
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+            <table class="tableclass tableboarder" style="text-align: center;">
+              <tr class="trgray">
+                <td class="thtdclass" colspan="4">
+                  <b>13. PERSONNEL INFORMATION - ACTUAL HOURS(SUPPLEMENTAL PERS)</b>
+                </td>
+              </tr>
+              <tr>
+                <th class="thtdclass">
+                  Date
+                </th>
+                <th class="thtdclass">
+                  Start
+                </th>
+                <th class="thtdclass">
+                  End
+                </th>
+                <th class="thtdclass">
+                  Hours
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.f42DetailsUI.f42ActualHoursList}" var="actualHrs">
+                <tr>
+                  <td class="thtdclass">
+                    {!actualHrs.actualHoursDate}
+                  </td>
+                  <td class="thtdclass">
+                    {!actualHrs.actualHoursStartTime}
+                  </td>
+                  <td class="thtdclass">
+                    {!actualHrs.actualHoursEndTime}
+                  </td>
+                  <td class="thtdclass">
+                    {!actualHrs.actualHours}
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+            <table class="tableclass tableboarder" style="text-align: center;">
+              <tr class="trgray">
+                <td class="thtdclass" colspan="3">
+                  <b>14. Comments (Equipment Breakdowns, Personnel Change, Loss/Damage, etc.)</b>
+                </td>
+              </tr>
+              <tr>
+                <th class="thtdclass">
+                  Date
+                </th>
+                <th class="thtdclass">
+                  Time
+                </th>
+                <th class="thtdclass">
+                  Comment
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.f42DetailsUI.f42CommentsList}" var="comment">
+                <tr>
+                  <td class="thtdclass">
+                    {!comment.CommentsDate}
+                  </td>
+                  <td class="thtdclass">
+                    {!comment.CommentsTime}
+                  </td>
+                  <td class="thtdclass">
+                    {!comment.comments}
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+            <table class="tableclass tableboarder">
+              <tr class="trgray">
+                <td class="thtdclass">
+                <b>15. COMPENSATION CLAIMS</b>
+                </td>
+                <td class="thtdclass">
+                <b>16. SUPPLY NUMBER</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Comp. Claims</b>: {!f42Record.f42DetailsUI.lossOrDamageClaim}
+                </td>
+                <td class="thtdclass">
+                <b>S#</b>: {!f42Record.f42DetailsUI.supplyNumber}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>17. RESPONDING AGENCY INFORMATION</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Agency/Department Name</b>: {!f42Record.f42DetailsUI.agencyOrDeptName}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <apex:image url="{!f42Record.f42DetailsUI.respondingAgencySignature}" style="height: 50px;width: 100px;" />
+                  <br/> <b>Signature</b>:
+                </td>
+                <td class="thtdclass">
+                  <b>Title</b>: {!f42Record.f42DetailsUI.yourTitle}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Print Name</b>: {!f42Record.f42DetailsUI.yourName}
+                </td>
+                <td class="thtdclass">
+                <b>Your Phone Number</b>: {!f42Record.f42DetailsUI.yourPhoneNumber}
+                </td>
+              </tr>
+              <tr class="trgray">
+                <td class="thtdclass" colspan="2">
+                <b>18. INCIDENT INFORMATION</b>
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass" colspan="2">
+                <b>Paying Agency</b>: <!--{!f42Record.f42DetailsUI.payingAgency}  {!f42Record.f42DetailsUI.payingAgencyOther} -->
+                <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.f42DetailsUI.payingAgency))}">
+                  {!f42Record.f42DetailsUI.payingAgency}
+                </apex:outputPanel>
+                <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.f42DetailsUI.payingAgencyOther))}">
+                    {!f42Record.f42DetailsUI.payingAgencyOther} 
+                </apex:outputPanel>   
+                </td>
+                <!--<td class="thtdclass">
+                <b>Other</b>:
+                </td>-->
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <apex:image url="{!f42Record.f42DetailsUI.payingAgencySignature}" style="height: 50px;width: 100px;" />
+                  <br/> <b>Signature of Authorized Incident Personnel</b>:
+                </td>
+                <td class="thtdclass">
+                <b>ICS Position/Title</b>: {!f42Record.f42DetailsUI.printedTitle}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                  <!--<apex:image url="{!f42Record.f42DetailsUI.payingAgencySignature}" style="height: 100px;width: 100px;"/>-->
+                <b>Printed Name</b>: {!f42Record.f42DetailsUI.printedName}
+                </td>
+                <td class="thtdclass">
+                <b>Date</b>: {!f42Record.f42DetailsUI.printedDate}
+                </td>
+              </tr>
+              <tr>
+                <td class="thtdclass">
+                <b>Cal OES Representative (if assigned)</b>: {!f42Record.f42DetailsUI.calOESrepresentative}
+                </td>
+                <td class="thtdclass">
+                <b>Date</b>: {!f42Record.f42DetailsUI.calOESrepresentativeDate}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </apex:outputPanel>  
+      <!--Field History-->
+      <br/> <br/>
+      <div class="page-break">
+        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.fieldHistF_42s))}">
+          <table class="tableclass tableboarder" style="text-align: center;">
+            <tr>
+              <td class="thtdclass" colspan="5">
+                <div><b>F42s Audit Logs</b></div>
+              </td>
+            </tr>
+            <tr>
+              <th class="thtdclass">
+                <div>Date</div>
+              </th>
+              <th class="thtdclass">
+                <div>Field</div>
+              </th>
+              <th class="thtdclass">
+                <div>User</div>
+              </th>
+              <th class="thtdclass">
+                <div>Original Value</div>
+              </th>
+              <th class="thtdclass">
+                <div>New Value</div>
+              </th>
+            </tr>
+            <apex:repeat value="{!f42Record.fieldHistF_42s}" var="record">
+              <tr>
+                <td class="thtdclass">
+                  {!record.changeDate}
+                </td>
+                <td class="thtdclass">
+                  {!record.fieldName}
+                </td>
+                <td class="thtdclass">
+                  {!record.user}
+                </td>
+                <td class="thtdclass">
+                  {!record.originalValue}
+                </td>
+                <td class="thtdclass">
+                  {!record.newValue}
+                </td>
+              </tr>
+            </apex:repeat>
+          </table>
+        </apex:outputPanel>  
+        <br/>
+        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.fieldHistPersonnel))}">
+          <table class="tableclass tableboarder" style="text-align: center;">
+              <tr>
+                <td class="thtdclass" colspan="5">
+                  <div><b>Personnel Audit Logs</b></div>
+                </td>
+              </tr>
+              <tr>
+                <th class="thtdclass">
+                  <div>Date</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Field</div>
+                </th>
+                <th class="thtdclass">
+                  <div>User</div>
+                </th>
+                <th class="thtdclass">
+                  <div>Original Value</div>
+                </th>
+                <th class="thtdclass">
+                  <div>New Value</div>
+                </th>
+              </tr>
+              <apex:repeat value="{!f42Record.fieldHistPersonnel}" var="record">
+                <tr>
+                  <td class="thtdclass">
+                    {!record.changeDate}
+                  </td>
+                  <td class="thtdclass">
+                    {!record.fieldName}
+                  </td>
+                  <td class="thtdclass">
+                    {!record.user}
+                  </td>
+                  <td class="thtdclass">
+                    {!record.originalValue}
+                  </td>
+                  <td class="thtdclass">
+                    {!record.newValue}
+                  </td>
+                </tr>
+              </apex:repeat>
+            </table>
+          </apex:outputPanel>  
+          <br/>
+          <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.fieldHistActualHours))}">
+              <table class="tableclass tableboarder" style="text-align: center;">
+                <tr>
+                  <td class="thtdclass" colspan="5">
+                    <div><b>Actual Hours Audit Logs</b></div>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="thtdclass">
+                    <div>Date</div>
+                  </th>
+                  <th class="thtdclass">
+                    <div>Field</div>
+                  </th>
+                  <th class="thtdclass">
+                    <div>User</div>
+                  </th>
+                  <th class="thtdclass">
+                    <div>Original Value</div>
+                  </th>
+                  <th class="thtdclass">
+                    <div>New Value</div>
+                  </th>
+                </tr>
+                <apex:repeat value="{!f42Record.fieldHistActualHours}" var="record">
+                  <tr>
+                    <td class="thtdclass">
+                      {!record.changeDate}
+                    </td>
+                    <td class="thtdclass">
+                      {!record.fieldName}
+                    </td>
+                    <td class="thtdclass">
+                      {!record.user}
+                    </td>
+                    <td class="thtdclass">
+                      {!record.originalValue}
+                    </td>
+                    <td class="thtdclass">
+                      {!record.newValue}
+                    </td>
+                  </tr>
+                </apex:repeat>
+            </table>
+          </apex:outputPanel>  
+          <br/>
+          <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.fieldHistExpClaim))}">
+                <table class="tableclass tableboarder" style="text-align: center;">
+                  <tr>
+                    <td class="thtdclass" colspan="5">
+                      <div><b>Expense Claim Audit Logs</b></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th class="thtdclass">
+                      <div>Date</div>
+                    </th>
+                    <th class="thtdclass">
+                      <div>Field</div>
+                    </th>
+                    <th class="thtdclass">
+                      <div>User</div>
+                    </th>
+                    <th class="thtdclass">
+                      <div>Original Value</div>
+                    </th>
+                    <th class="thtdclass">
+                      <div>New Value</div>
+                    </th>
+                  </tr>
+                  <apex:repeat value="{!f42Record.fieldHistExpClaim}" var="record">
+                    <tr>
+                      <td class="thtdclass">
+                        {!record.changeDate}
+                      </td>
+                      <td class="thtdclass">
+                        {!record.fieldName}
+                      </td>
+                      <td class="thtdclass">
+                        {!record.user}
+                      </td>
+                      <td class="thtdclass">
+                        {!record.originalValue}
+                      </td>
+                      <td class="thtdclass">
+                        {!record.newValue}
+                      </td>
+                    </tr>
+                  </apex:repeat>
+                </table>
+              </apex:outputPanel>  
+              <br/>
+              <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(f42Record.fieldHistExpClaimLineItem))}">
+                  <table class="tableclass tableboarder" style="text-align: center;">
+                    <tr>
+                      <td class="thtdclass" colspan="5">
+                        <div><b>Expense Claim Line Item Audit Logs</b></div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <th class="thtdclass">
+                        <div>Date</div>
+                      </th>
+                      <th class="thtdclass">
+                        <div>Field</div>
+                      </th>
+                      <th class="thtdclass">
+                        <div>User</div>
+                      </th>
+                      <th class="thtdclass">
+                        <div>Original Value</div>
+                      </th>
+                      <th class="thtdclass">
+                        <div>New Value</div>
+                      </th>
+                    </tr>
+                    <apex:repeat value="{!f42Record.fieldHistExpClaimLineItem}" var="record">
+                      <tr>
+                        <td class="thtdclass">
+                          {!record.changeDate}
+                        </td>
+                        <td class="thtdclass">
+                          {!record.fieldName}
+                        </td>
+                        <td class="thtdclass">
+                          {!record.user}
+                        </td>
+                        <td class="thtdclass">
+                          {!record.originalValue}
+                        </td>
+                        <td class="thtdclass">
+                          {!record.newValue}
+                        </td>
+                      </tr>
+                    </apex:repeat>
+                  </table>
+              </apex:outputPanel>  
+            </div>          
+    </apex:repeat>
+  </body>
+</apex:page>

@@ -1,0 +1,47 @@
+<template>
+  <div class="slds-grid slds-wrap">
+    <div class="slds-size_1-of-1 slds-p-top_medium slds-p-bottom_medium">
+      <h2 class="slds-page-header__title slds-truncate border_zero" title="COMMENTS">
+        COMMENTS
+      </h2>
+    </div>
+  </div>
+  <div class="slds-card__body slds-card__body_inner">
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+      <thead>
+        <tr class="slds-text-title_caps">
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Comment">Comment</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Date">Date</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Time">Time</div>
+          </th>
+          <!--<template for:each={columnList} for:item="column">
+                    <th key={column.apiName}><div class="slds-truncate">{column.label}</div></th>
+                </template>-->
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={rows} for:item="record" for:index="index">
+            <tr key={record.uuid}>
+                <td scope="col">
+                  <lightning-input name="Comment__c"
+                    value={record.Comment__c} variant="label-hidden" read-only></lightning-input>
+                </td>
+                <td scope="col">
+                  <lightning-input name="Date__c" type="date"
+                    value={record.Date__c} date-style="short" variant="label-hidden" read-only></lightning-input>
+                </td>
+                <td scope="col">
+                  <lightning-input name="Time__c"
+                    value={record.Time__c} variant="label-hidden" read-only></lightning-input>
+                </td>
+            </tr>
+        </template>
+    </tbody>
+    </table>
+  </div>
+</template>

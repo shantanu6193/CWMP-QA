@@ -1,0 +1,88 @@
+<!--
+ - Created by Sushant p on 10-08-2021.
+ -->
+
+<!-- Community Login -->
+<template>
+    <template if:true={isIE}>
+        <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        <p class="slds-text-align--center slds-text-heading--large">{label.HH_EN_Unsupported_Browser}</p>
+                    </h1>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p class="slds-text-align--center slds-text-heading--small">{label.HH_EN_Internet_Explorer_not_supported_Error}</p>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:false={isIE}>
+        <div class="main-content">
+            <div class="slds-grid container slds-wrap">
+                <div class=" slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-small-size_6-of-12 slds-p-around--large slds-order--2 slds-small-order--1 slds-border_right sidebar">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium sign-in">
+                            <a href={navigateSignIn}> <h3>{label.HH_EN_Sign_In}</h3></a>
+                        </div>
+                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium">
+                                <template if:true={TranslationLanguage.data}>
+                                    <lightning-combobox name={label.HH_EN_Select_Language}
+                                                        label={label.HH_EN_Select_Language}
+                                                        placeholder="Select Language"
+                                                        value={language}
+                                                        options={TranslationLanguage.data.values}
+                                                        onchange={languageFieldChanged}
+                                                        class="input"
+                                                        dropdown-alignment="auto"
+                                                        >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium">
+                            <lightning-input required onkeypress={handleEnterKey} label={label.HH_EN_Email_Address} type="text" name={label.HH_EN_Email_Address} value={username} onchange={handleFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_large">
+                            <lightning-input required onkeypress={handleEnterKey} data-field="password" label={label.HH_EN_Password} type="password" name={label.HH_EN_Password}
+                                             value={password}  onchange={handleFieldChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium">
+                            <button class="slds-button slds-button_stretch slds-button_brand" onclick={handleLogin}>{label.HH_EN_Log_In}</button>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-text-align--center slds-p-bottom_medium">
+                            <a href={label.HH_url_forgot_password_page} onclick={navigateToForgotPassword}>{label.HH_EN_Forgot_Password}</a>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-text-align--center">
+                            <span>{label.HH_EN_Do_not_have_an_Account}&nbsp;<a href={label.HH_url_sign_up} onclick={navigateSignUp}>{label.HH_EN_Register}</a></span>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 slds-text-align--center">
+                            <lightning-formatted-rich-text class="" value={label.HH_EN_contact_local_jurisdiction}></lightning-formatted-rich-text>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-col slds-large-size_6-of-12 slds-large-size_6-of-12 slds-size_12-of-12 slds-small-size_6-of-12 slds-order--1 slds-small-order--2">
+                    <div class="slds-grid slds-wrap slds-p-around_large slds-align_absolute-center ">
+                        <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-p-around_medium slds-p-bottom_large">
+                            <img src={loginLogo} alt="caloes-logo">
+                        </div>
+                        <div class="slds-col slds-size_6-of-12 slds-align_absolute-center slds-p-around_small">
+                            <img src={hhFire} alt="hh-fireLogo" style="width: 150px;height: 200px;">
+                        </div>
+                        <div class=" slds-col slds-size_6-of-12 slds-align_absolute-center">
+                            <img  src={hhLogo} alt="hh-logo" style="width: 200px;height: 200px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

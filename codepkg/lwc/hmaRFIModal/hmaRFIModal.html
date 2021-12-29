@@ -1,0 +1,159 @@
+<template>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"></lightning-icon>
+                    </button>
+                </header>
+                <div class="slds-modal__content" id="modal-content-id-1">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12">
+                            <article class="slds-card contact-modal">
+                                <div class="slds-card__header slds-grid">
+                                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                        <div class="slds-media__body">
+                                            <h2 class="slds-card__header-title">
+                                                <p href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="ADDITIONAL INFORMATION">
+                                                    <span>REQUEST FOR INFORMATION DETAILS</span>
+                                                </p>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                </div>
+                                </br>
+                                <div class="slds-card__body slds-card__body_inner">
+                                    <div class="slds-grid slds-wrap slds-gutters">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                            <lightning-textarea class="input" 
+                                                                name="Analyst Comment" 
+                                                                label="Analyst Comment" 
+                                                                data-field="Analyst_Comment__c" 
+                                                                value={recordLocal.Analyst_Comment__c} 
+                                                                onchange={fieldChanged} 
+                                                                disabled="true">
+                                            </lightning-textarea>
+                                        </div>
+                                        <!-- <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                            <lightning-input name="RFI Deadline" class="input" label="RFI Deadline" data-field="RFI_Deadline__c" value={recordLocal.RFI_Deadline__c} onchange={fieldChanged} type="Date" disabled></lightning-input>
+                                        </div> -->
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                            <lightning-textarea class="input"
+                                                                name="Subapplicant Comment"
+                                                                label="Subapplicant Comment" 
+                                                                data-field="Subapplicant_Comment__c" 
+                                                                value={recordLocal.Subapplicant_Comment__c} 
+                                                                onchange={fieldChanged} 
+                                                                required="true"
+                                                                type="text"
+                                                                disabled={isSubApplicantCommentDisabled}>
+                                            </lightning-textarea>
+                                        </div>
+                                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                            <lightning-input class="input"
+                                                                name="Description"
+                                                                label="Description" 
+                                                                data-field="Description__c" 
+                                                                value={recordLocal.Description__c} 
+                                                                onchange={fieldChanged} 
+                                                                disabled="true"
+                                                                type="text">
+                                            </lightning-input>
+                                        </div>
+                                        <template if:true={isFileUploadPresent}>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                                <lightning-file-upload
+                                                        name="fileUploader"
+                                                        record-id={editRFIRecordId}
+                                                        onuploadfinished={handleUploadFinished}
+                                                        class="file-upload"
+                                                        data-value={editRFIRecordId}>
+                                                </lightning-file-upload>
+                                            </div>
+                                        </template>
+                                        
+                                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                            <table class=" ">
+                                                <thead>
+                                                    <tr class="slds-border_top slds-border_bottom slds-line-height_reset">
+                                                        <th class="slds-border_right slds-border_left" scope="col" >
+                                                            <p class="slds-p-vertical_x-small slds-text-align_center">Document Name</p>
+                                                            
+                                                        </th>
+                                                        <th class="slds-border_right slds-border_left" scope="col" >
+                                                            <p class="slds-p-vertical_x-small slds-text-align_center">Document Type</p>
+                                                        </th>
+                                                        <th class="slds-border_right slds-border_left" scope="col" >
+                                                            <p class="slds-p-vertical_x-small slds-text-align_center">Action</p>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <template for:each={relatedDocuments} for:item="doc">
+                                                        <tr class="slds-border_top slds-border_bottom slds-hint-parent" key={doc.Id}>
+                                                            <td class="slds-border_right slds-border_left">
+                                                                <p class="slds-p-vertical_x-small slds-text-align_center">{doc.Title}</p>
+                                                            </td>
+                                                            <td class="slds-border_right slds-border_left">
+                                                                <p class="slds-p-vertical_x-small slds-text-align_center">{doc.FileType}</p>
+                                                            </td>
+                                                            <td class="slds-border_right slds-border_left">
+                                                                <p class="slds-p-vertical_x-small slds-text-align_center">
+                                                                    <template if:true={isFileDeletePresent}>
+                                                                        <template if:true={doc.isDeleteAllow}>
+                                                                            <lightning-icon class="slds-text-link_reset slds-p-left_small"
+                                                                                            data-value={doc.ContentDocumentId}
+                                                                                            icon-name="utility:delete"
+                                                                                            size="small"
+                                                                                            alternative-text="Edit Page"
+                                                                                            title="Edit Page"
+                                                                                            onclick={handleDeleteContentDocument}>
+                                                                            </lightning-icon>
+                                                                        </template>
+                                                                    </template>                                                                    
+                                                                    <lightning-icon class="slds-text-link_reset slds-p-left_small"
+                                                                                    data-value={doc.Id}
+                                                                                    icon-name="utility:download"
+                                                                                    size="small"
+                                                                                    alternative-text="Edit Page"
+                                                                                    title="Edit Page"
+                                                                                    onclick={handleDownloadDocument}>
+                                                                    </lightning-icon>
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </template>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-p-vertical_medium">
+                                            <span class="slds-p-right_medium">
+                                                <button class="slds-button slds-button_brand" onclick={handleSaveClick} disabled={isSaveDisabled}>Save</button>
+                                            </span>
+                                            <span class="slds-p-right_medium">
+                                                <button class="slds-button slds-button_brand" onclick={handleSubmitClick} disabled={isSubmitDisabled}>Submit</button>
+                                            </span>
+                                            <span class="slds-p-right_medium">
+                                                <button class="slds-button slds-button_brand" onclick={handleRequestForExtensionClick} disabled={isRequestForExtensionDisabled}>Request For Extension</button>
+                                            </span>
+                                            <span class="slds-p-right_medium">
+                                                <button class="slds-button slds-button_brand"  onclick={handleCloseClick}>Close</button>
+                                            </span>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+</template>

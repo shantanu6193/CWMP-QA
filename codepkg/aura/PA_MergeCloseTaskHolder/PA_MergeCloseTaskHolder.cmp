@@ -1,0 +1,16 @@
+<aura:component controller="PA_MergeCloseoutTaskController" implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId" access="global">
+        
+        
+        <lightning:workspaceAPI aura:id="workspace" />        
+        <lightning:navigation aura:id="navigation"/>
+        <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+        <aura:attribute name="recId" type="String" default=""/>
+        <aura:attribute name="sbaseUrl" type="String" default=""/>
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        <!-- <aura:handler event="lightning:tabClosed" action="{! c.onTabClosed }"/> -->
+        <aura:if isTrue="{!v.isLoaded}">
+                <c:paMergeCloseoutTask recordId="{!v.recId}"  oncloseclicked="{!c.onTabClosed}" ></c:paMergeCloseoutTask> 
+        </aura:if>      
+     
+
+</aura:component>

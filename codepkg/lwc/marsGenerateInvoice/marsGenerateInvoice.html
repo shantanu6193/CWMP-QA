@@ -1,0 +1,258 @@
+<!--
+ - Created by Pankaj on 2021-05-27.
+ -->
+
+<!-- Mars Generate Invoice -->
+<template>
+    <template if:true={showLoader}>
+        <div class="slds-is-fixed full-loader">
+            <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+        </div>
+   </template>
+    <div class="slds-box slds-theme_default">
+        <div class="slds-text-title_caps slds-text-heading_medium slds-align_absolute-center">
+            <h1 class="main-heading">Generate Invoice</h1>
+        </div>
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-wrap slds-align_absolute-center">
+                    <div class="slds-col slds-size_10-of-12">
+                        <article class="slds-card">
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                                    <div class="slds-col slds-size_6-of-12 slds-p-top_small">
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                data-lookup="Incident__c"
+                                                label="Select Incident"
+                                                onsearch={handleIncidentSearch}
+                                                onselectionchange={handleIncidentChange}
+                                                placeholder="Search Name/Declaration number"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadDataOnLookup}
+                                                local-search = {loadDataOnLookup}
+                                                scroll-after-n-items = "10"
+                                                search-term=""
+                                                required>
+                                        </c-lookup>
+
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 slds-p-top_small">
+                                        <!-- todo - remove this component and make use of lookup component and search should be across all incidents this
+                                                recipient has access for project. It should search on Name and declaration number.
+                                                Declaration number has to be subtitle-->
+                                        <c-lookup
+                                                data-custom="lookup"
+                                                data-lookup="Account"
+                                                label="Select Agency"
+                                                onsearch={handleAccountSearch}
+                                                onselectionchange={handleSRChange}
+                                                placeholder="Search Name"
+                                                is-multi-entry={isMultiEntry}
+                                                load-data-on-init = {loadDataOnLookup}
+                                                local-search = {loadDataOnLookup}
+                                                scroll-after-n-items = "10"
+                                                search-term=""
+                                                >
+                                        </c-lookup>
+                                    </div>
+
+                                    <div class="slds-col slds-size_12-of-12 slds-text-align_right slds-p-top_large">
+                                        <!-- <lightning-button-group> -->
+                                        <lightning-button class="slds-p-right_small" label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+                                        <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+                                        <!-- </lightning-button-group> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="slds-col slds-size_10-of-12 slds-p-top_large">
+                        <article class="slds-card ">
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_large">
+                                        <div class="slds-size_12-of-12">
+                                            <h2 class="slds-text-heading_small slds-p-top_medium">Select F-42s</h2>
+                                        </div>
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                                                <lightning-datatable key-field="Id" columns={columns} data={f42Data} onrowselection={getSelectedF42s}
+                                                                     selected-rows={preSelectedRows}>
+                                                </lightning-datatable>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="slds-col slds-size_10-of-12 slds-p-top_large">
+                        <article class="slds-card ">
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_large">
+                                        <div class="slds-size_12-of-12">
+                                            <h2 class="slds-text-heading_small slds-p-top_medium">Select Expense Claim</h2>
+                                        </div>
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                                                <lightning-datatable key-field="Id" columns={ExpenseClaimcolumns} data={expenseClaimData} onrowselection={getSelectedExpenseClaim}
+                                                                     selected-rows={preSelectedRows}>
+                                                </lightning-datatable>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="slds-col slds-size_10-of-12 slds-p-top_large">
+                        <article class="slds-card ">
+                            <div class="slds-card__body slds-card__body_inner">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-small closeout-form-body">
+                                    <div class="slds-col slds-size_12-of-12 slds-p-vertical_large">
+                                        <div class="slds-size_12-of-12">
+                                            <h2 class="slds-text-heading_small slds-p-top_medium">Select Funding Rules</h2>
+                                        </div>
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                                            <div class="slds-scrollable"> 
+                                                <table class="slds-table slds-table_bordered slds-table_header-fixed slds-table_resizable-cols slds-table_fixed-layout">
+                                                    <thead>
+                                                        <tr class="">
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div class="slds-p-vertical_x-small" title="Name">Name</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Rule Type">Rule Type</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 1">Funding Source 1</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 1 %">Funding Source 1 %</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 2">Funding Source 2</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 2 %">Funding Source 2 %</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 3">Funding Source 3</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 3 %">Funding Source 3 %</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 4">Funding Source 4</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 4 %">Funding Source 4 %</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 5">Funding Source 5</div>
+                                                            </th>
+                                                            <th class="slds-cell-shrink custom" scope="col">
+                                                                <div title="Funding Source 5 %">Funding Source 5 %</div>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <template for:each={fundingData} for:item="fundingDataRec" for:index="index">
+                                                            <tr class="slds-hint-parent" key={fundingDataRec.Id}>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        <lightning-input    class="input slds-p-left_x-small"
+                                                                                            type="radio" 
+                                                                                            value={fundingDataRec.Id} 
+                                                                                            name="fundingRules" 
+                                                                                            onchange={handleFundingRule}
+                                                                                            label={fundingDataRec.Name}
+                                                                        ></lightning-input>
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Rule_Type}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_1}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_1_Percent}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate" >
+                                                                        {fundingDataRec.Funding_Source_2}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_2_Percent}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_3}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_3_Percent}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_4}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_4_Percent}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_5}
+                                                                    </div>
+                                                                </td>
+                                                                <td data-label="Name" scope="row">
+                                                                    <div class="slds-truncate">
+                                                                        {fundingDataRec.Funding_Source_5_Percent}
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </template>        
+                                                    </tbody>
+                                                </table>  
+                                             </div>     
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="slds-col slds-size_10-of-12">
+                        <div class="slds-col slds-size_12-of-12 slds-p-top_large slds-align_absolute-center">
+                            <lightning-button class="slds-p-right_small" label="Submit" variant="brand" disabled={isButtonDisabled} onclick={handleSubmit}>
+                            </lightning-button>
+                            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

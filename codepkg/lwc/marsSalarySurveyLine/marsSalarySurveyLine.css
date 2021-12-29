@@ -1,0 +1,26 @@
+/**
+ * Created by Pankaj on 04-04-2021.
+ */
+:host {
+  display: contents;
+}
+.table-row {
+    background: rgba(20, 63, 116, 0.05);
+}
+.td {
+    padding:8px !important;
+}
+.slds-table td {
+    padding:0 !important;
+}
+.table-row td {
+    border-top: 2px solid #375283;
+}
+.td-has-error {
+    /*max-width: 250px;*/
+    white-space: normal;
+}
+.customRadio .slds-form-element__control .slds-radio {
+    display : inline-block !important;
+}
+.customRadio .slds-form-element__control .slds-radio, .slds-form-element__control .slds-checkbox {display : inline-block !important;}

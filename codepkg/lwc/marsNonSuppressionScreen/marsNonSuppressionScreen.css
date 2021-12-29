@@ -1,0 +1,10 @@
+.slds-modal__container {
+  max-width: unset !important
+}
+.toppaddin-div {
+  padding-top: 60px
+}
+.boldtext {
+  font-weight: bold;
+  font-size: medium;
+}

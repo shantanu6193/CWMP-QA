@@ -1,0 +1,116 @@
+<!--
+ - Created by Shivraj on 27-08-2020.
+ -->
+
+<!-- Product Distribution Plan Row -->
+<template>
+    <tr class="slds-hint-parent">
+        <td role="gridcell" class="td">
+            <div class="slds-truncate" style="display: contents;">
+                <c-lookup
+                        data-custom="lookup"
+                        data-lookup="Facility__c"
+                        selection={facilityInitialSelection}
+                        onsearch={handleFacilitySearch}
+                        onselectionchange={handleFacilityChange}
+                        placeholder="Enter / Search Facility (3 or more characters)"
+                        is-multi-entry={isMultiEntry}
+                        load-data-on-init = {loadFacilityLookupData}
+                        local-search = {loadFacilityLookupData}
+                        scroll-after-n-items = "10"
+                        errors={healthCareRequired}
+                        search-term={recordLocal.Facility_Name__c}
+                        required>
+                </c-lookup>
+            </div>
+        </td>
+        <td role="gridcell">
+            <template if:true={showField}>
+                <template if:true={facilityCategoryPicklistValues.data}>
+                    <lightning-combobox
+                            variant="label-hidden"
+                            data-field="Facility_Category__c"
+                            value={recordLocal.Facility_Category__c}
+                            placeholder="Select Facility Category"
+                            options={facilityCategoryPicklistValues.data.values}
+                            disabled={selectedFacility}
+                            onchange={fieldChanged}
+                            class="input"
+                            required
+                    ></lightning-combobox>
+                </template>
+            </template>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate">
+                <template if:true={showField}>
+                    <lightning-input type="text" label="Facility Code" data-field="Facility_Code__c" disabled={selectedFacility}
+                                     value={recordLocal.Facility_Code__c} onchange={fieldChanged} class="input"
+                                     variant="label-hidden" required></lightning-input>
+                </template>
+            </div>
+        </td>
+        <!--<td role="gridcell">
+            <template if:true={showField}>
+                <template if:true={facilityTypePicklistValues.data}>
+                    <lightning-combobox
+                            variant="label-hidden"
+                            data-field="Facility_Type__c"
+                            value={recordLocal.Facility_Type__c}
+                            placeholder="Select Facility Type"
+                            options={facilityTypePicklistValues.data.values}
+                            disabled={selectedFacility}
+                            onchange={fieldChanged}
+                            class="input"
+                            required
+                    ></lightning-combobox>
+                </template>
+            </template>
+        </td>-->
+        <td role="gridcell">
+            <template if:true={showField}>
+                <lightning-combobox
+                        variant="label-hidden"
+                        data-field="County__c"
+                        value={recordLocal.County__c}
+                        placeholder="Select County"
+                        options={countyOptions}
+                        disabled={selectedFacility}
+                        onchange={fieldChanged}
+                        class="input"
+                        required
+                ></lightning-combobox>
+            </template>
+        </td>
+        <td role="gridcell">
+            <lightning-input type="number" label="Proposed Quantity Distribution" data-field="Proposed_Quantity_Distribution__c"
+                             data-name="proposedQuantity" value={recordLocal.Proposed_Quantity_Distribution__c} onblur={updateProposedQuantity}
+                             onchange={fieldChanged} class="input" variant="label-hidden"></lightning-input>
+        </td>
+        <td role="gridcell">
+            <lightning-input type="number" label="Actual Quantity Distribution" data-field="Actual_Quantity_Distribution__c"
+                             value={recordLocal.Actual_Quantity_Distribution__c} onchange={fieldChanged} onblur={updateActualQuantity}
+                             class="input" variant="label-hidden"></lightning-input>
+        </td>
+        <td role="gridcell">
+            <lightning-input type="text" label="Distribution Notes" data-field="Distribution_Notes__c"
+                             value={recordLocal.Distribution_Notes__c} onchange={fieldChanged} class="input"
+                             variant="label-hidden"></lightning-input>
+        </td>
+        <td role="gridcell">
+            <div class="action">
+                <span data-edit-id={index} onclick={addPlan}>
+                    <a>
+                        <lightning-icon icon-name="utility:new" size="small" class="slds-p-right_small"></lightning-icon>
+                    </a>
+                </span>
+                <span data-delete-id={index} onclick={deletePlan}>
+                    <a>
+                        <lightning-icon variant="error" icon-name="utility:delete" size="small" class="slds-p-right_small"></lightning-icon>
+                    </a>
+                </span>
+            </div>
+        </td>
+
+    </tr>
+</template>

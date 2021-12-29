@@ -1,0 +1,2641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>paInitCloseoutTaskAura</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>LightningComponent</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Acutal_Funding_TotalAmount__c</fullName>
+        <externalId>false</externalId>
+        <formula>Federal_Cost_Share__c  +  Total_CDAA_Obligated_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Acutal Funding Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Application_Closeout__c</fullName>
+        <externalId>false</externalId>
+        <label>Application Closeout</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approval_Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Approval Comment</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Stage</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approval_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Lead/Peer Review</fullName>
+                    <default>false</default>
+                    <label>Lead/Peer Review</label>
+                </value>
+                <value>
+                    <fullName>PM1 Review</fullName>
+                    <default>false</default>
+                    <label>PM1 Review</label>
+                </value>
+                <value>
+                    <fullName>PM2/PAO Review</fullName>
+                    <default>false</default>
+                    <label>PM2/PAO Review</label>
+                </value>
+                <value>
+                    <fullName>PM3 Review</fullName>
+                    <default>false</default>
+                    <label>PM3 Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-AD Analyst Review</fullName>
+                    <default>false</default>
+                    <label>GAR-AD Analyst Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-AD OT Review</fullName>
+                    <default>false</default>
+                    <label>GAR-AD OT Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-AD Review</fullName>
+                    <default>false</default>
+                    <label>GAR-AD Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-DD Analyst Review</fullName>
+                    <default>false</default>
+                    <label>GAR-DD Analyst Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-DD OT Review</fullName>
+                    <default>false</default>
+                    <label>GAR-DD OT Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-DD Review</fullName>
+                    <default>false</default>
+                    <label>GAR-DD Review</label>
+                </value>
+                <value>
+                    <fullName>GAR-Other</fullName>
+                    <default>false</default>
+                    <label>GAR-Other</label>
+                </value>
+                <value>
+                    <fullName>GAR-Analyst Other</fullName>
+                    <default>false</default>
+                    <label>GAR-Analyst Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Approver_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Approver__r.FirstName +&apos; &apos;+ Approver__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approver Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Approvers</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent_Name__c</fullName>
+        <description>The field value is copied from field Authorized_Agent__c  of Closeout_Request__c</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Authorized Agent</label>
+        <length>150</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <inlineHelpText>The verified AA at closeout who signed the P.4.</inlineHelpText>
+        <label>Authorized Agent</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Closeout_Tasks2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CALOES_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Subrecipient_Name__r.OES__c</formula>
+        <label>CALOES ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CDAA_Obligated_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND( Non_Federal_Share__c  * 0.75,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CDAA Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Cost_Share_Eligibility__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Incident__r.Cost_Share_Eligibility__c)</formula>
+        <label>Cost Share Eligibility</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Current_Peer_Review_User__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(    $User.Id  =  Peer_Review__r.Id  , TRUE, FALSE)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current Peer Review User</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Date_Assigned__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Assigned</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_Determination_Received_by_CalOES__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Determination Received by CalOES</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_OES_Received_SR_Appeal__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date OES Received SR’s Appeal</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Declaration_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Declaration Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Determination_Sent_to_Applicant_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Determination Sent to Applicant Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Docusign_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Docusign Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PENDING</fullName>
+                    <default>false</default>
+                    <label>PENDING</label>
+                </value>
+                <value>
+                    <fullName>COMPLETE</fullName>
+                    <default>false</default>
+                    <label>COMPLETE</label>
+                </value>
+                <value>
+                    <fullName>NA</fullName>
+                    <default>true</default>
+                    <label>NA</label>
+                </value>
+                <value>
+                    <fullName>GAR COMPLETE</fullName>
+                    <default>false</default>
+                    <label>GAR COMPLETE</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Entity_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Subrecipient_Name__r.Entity_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Entity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Approval__c</fullName>
+        <externalId>false</externalId>
+        <label>FEMA Approval</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>Partial</fullName>
+                    <default>false</default>
+                    <label>Partial</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FIPS__c</fullName>
+        <externalId>false</externalId>
+        <formula>Subrecipient_Name__r.Sub_Recipient_FIPS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FIPS#</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Federal_Cost_Share__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND(Total_Small_Project_Award__c  * 0.75,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Federal Cost Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Funding_Ajdustment__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_CDAA_Obligated_Amount__c -  CDAA_Obligated_Amount__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Funding Ajdustment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Incident_End_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Incident__r.Incident_End_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Start_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Incident__r.Incident_Start_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Subrecipient_Summary__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Links to summary of all Projects for this Subrecipient that are within this Incident.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Links to summary of all Projects for this Subrecipient that are within this Incident.</inlineHelpText>
+        <label>Incident Subrecipient Summary</label>
+        <referenceTo>Incident_Subrecipient_Stage__c</referenceTo>
+        <relationshipLabel>Closeout Tasks</relationshipLabel>
+        <relationshipName>Closeout_Tasks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Incident__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Associated with which incident specified</description>
+        <externalId>false</externalId>
+        <label>Incident</label>
+        <referenceTo>Incident__c</referenceTo>
+        <relationshipName>Project_CloseOut_Tasks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IsNSPU__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Total_Small_Project_Amount_Claimed__c &lt;  Total_Small_Project_Award__c , &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <label>IsNSPU</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Current_Logged_User_Reviewer__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Reviewer__r.Id == $User.Id , True, False)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Current Logged User Reviewer</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Current_User_Approver__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Approver__r.Id ==  $User.Id , True, False)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Current User Approver</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Current_logged_User_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Owner:User.Id ==  $User.Id , True, False)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Is Current logged User Owner</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>LP_Adjustment_s__c</fullName>
+        <externalId>false</externalId>
+        <label>LP Adjustment(s)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>LP_Claimed_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>LP Claimed Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>LP_FEMA_Approved_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>LP FEMA Approved Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>LP_FIR_Eligible_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>LP FIR Eligible Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Local_Cost_Share__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND(  Non_Federal_Share__c  * 0.25 ,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Local Cost Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NSPO_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>NSPO Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>NSPO__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(  NSPO_Amount__c  &gt; 0, 
+IMAGE(&quot;/img/samples/flag_red.gif&quot;, &quot;red&quot;, 20, 20) , &apos;&apos;
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NSPO</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NSPU_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>NSPU Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Share__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND(Total_Small_Project_Award__c  -  Federal_Cost_Share__c,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Non-Federal Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Override_Appeal_Period_Reason__c</fullName>
+        <description>Justification for 60 Days Appeal override</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Override Appeal Period Reason</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Override_Appeal_Period_Validation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field enable user to bypass 60 days appeal validation on Cost Share staus validation.</description>
+        <externalId>false</externalId>
+        <label>Override Appeal Period Validation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Owner_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.FirstName +&apos; &apos; + Owner:User.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Owner:User.LastName != null &amp;&amp; Owner:User.LastName != &apos;&apos; ,Owner:User.FirstName +&apos; &apos; + Owner:User.LastName,  Owner:Queue.QueueName )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Peer_Review__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Peer Review</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Closeout_Tasks1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reviewer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>That field would capture the user who created the closeout task</description>
+        <externalId>false</externalId>
+        <label>Reviewer</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Closeout_Tasks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SP_Adjustment_s__c</fullName>
+        <externalId>false</externalId>
+        <label>SP Adjustment(s)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>SP_Claimed_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>SP Claimed Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>SP_FEMA_Approved_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>SP  FEMA Approved Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>SP_FIR_Eligible_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>SP FIR Eligible Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Declaration_Number__c</fullName>
+        <externalId>false</externalId>
+        <formula>Incident__r.State_Declaration_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>State Declaration Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pending Assignment</fullName>
+                    <default>false</default>
+                    <label>Pending Assignment</label>
+                </value>
+                <value>
+                    <fullName>Assigned</fullName>
+                    <default>false</default>
+                    <label>Assigned</label>
+                </value>
+                <value>
+                    <fullName>FIR in Progress</fullName>
+                    <default>false</default>
+                    <label>FIR in Progress</label>
+                </value>
+                <value>
+                    <fullName>OES Review</fullName>
+                    <default>false</default>
+                    <label>OES Review</label>
+                </value>
+                <value>
+                    <fullName>FEMA Workflow</fullName>
+                    <default>false</default>
+                    <label>FEMA Workflow</label>
+                </value>
+                <value>
+                    <fullName>PA Correspondence</fullName>
+                    <default>false</default>
+                    <label>PA Correspondence</label>
+                </value>
+                <value>
+                    <fullName>Cost Share</fullName>
+                    <default>false</default>
+                    <label>Cost Share</label>
+                </value>
+                <value>
+                    <fullName>Transmittals</fullName>
+                    <default>false</default>
+                    <label>Transmittals</label>
+                </value>
+                <value>
+                    <fullName>FPU Workflow</fullName>
+                    <default>false</default>
+                    <label>FPU Workflow</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Status_Workflow__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub-Status Workflow</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Sub_Status__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Assigned RFI</fullName>
+                    <default>false</default>
+                    <label>Assigned RFI</label>
+                </value>
+                <value>
+                    <fullName>Pending SR&apos;s RFI Response</fullName>
+                    <default>false</default>
+                    <label>Pending SR&apos;s RFI Response</label>
+                </value>
+                <value>
+                    <fullName>Pending RFI review</fullName>
+                    <default>false</default>
+                    <label>Pending RFI review</label>
+                </value>
+                <value>
+                    <fullName>Completed RFI</fullName>
+                    <default>false</default>
+                    <label>Completed RFI</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>FEMA RFI</controllingFieldValue>
+                <valueName>Assigned RFI</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA RFI</controllingFieldValue>
+                <valueName>Pending SR&apos;s RFI Response</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA RFI</controllingFieldValue>
+                <valueName>Pending RFI review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA RFI</controllingFieldValue>
+                <valueName>Completed RFI</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Sub-Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Status__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Discovery phase</fullName>
+                    <default>false</default>
+                    <label>Discovery phase</label>
+                </value>
+                <value>
+                    <fullName>Documentation review</fullName>
+                    <default>false</default>
+                    <label>Documentation review</label>
+                </value>
+                <value>
+                    <fullName>Pending SR response</fullName>
+                    <default>false</default>
+                    <label>Pending SR response</label>
+                </value>
+                <value>
+                    <fullName>Narrative finalization</fullName>
+                    <default>false</default>
+                    <label>Narrative finalization</label>
+                </value>
+                <value>
+                    <fullName>Pending FIR completion</fullName>
+                    <default>false</default>
+                    <label>Pending FIR completion</label>
+                </value>
+                <value>
+                    <fullName>PA Correspondence</fullName>
+                    <default>false</default>
+                    <label>PA Correspondence</label>
+                </value>
+                <value>
+                    <fullName>Pending FEMA Response</fullName>
+                    <default>false</default>
+                    <label>Pending FEMA Response</label>
+                </value>
+                <value>
+                    <fullName>FEMA RFI</fullName>
+                    <default>false</default>
+                    <label>FEMA RFI</label>
+                </value>
+                <value>
+                    <fullName>FEMA FIR Response</fullName>
+                    <default>false</default>
+                    <label>FEMA FIR Response</label>
+                </value>
+                <value>
+                    <fullName>FIR Letter Preparation</fullName>
+                    <default>false</default>
+                    <label>FIR Letter Preparation</label>
+                </value>
+                <value>
+                    <fullName>OES FIR Letter</fullName>
+                    <default>false</default>
+                    <label>OES FIR Letter</label>
+                </value>
+                <value>
+                    <fullName>1st Appeal</fullName>
+                    <default>false</default>
+                    <label>1st Appeal</label>
+                </value>
+                <value>
+                    <fullName>Arbitration</fullName>
+                    <default>false</default>
+                    <label>Arbitration</label>
+                </value>
+                <value>
+                    <fullName>2nd Appeal</fullName>
+                    <default>false</default>
+                    <label>2nd Appeal</label>
+                </value>
+                <value>
+                    <fullName>Pending Application Closeout</fullName>
+                    <default>false</default>
+                    <label>Pending Application Closeout</label>
+                </value>
+                <value>
+                    <fullName>Pending Assignment</fullName>
+                    <default>false</default>
+                    <label>Pending Assignment</label>
+                </value>
+                <value>
+                    <fullName>Cost Share in Progress</fullName>
+                    <default>false</default>
+                    <label>Cost Share in Progress</label>
+                </value>
+                <value>
+                    <fullName>Pending OES Review</fullName>
+                    <default>false</default>
+                    <label>Pending OES Review</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>Discovery phase</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>Documentation review</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>Pending SR response</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>Narrative finalization</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>Pending FIR completion</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FIR in Progress</controllingFieldValue>
+                <valueName>PA Correspondence</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA Workflow</controllingFieldValue>
+                <valueName>Pending FEMA Response</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA Workflow</controllingFieldValue>
+                <valueName>FEMA RFI</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA Workflow</controllingFieldValue>
+                <valueName>FEMA FIR Response</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA Workflow</controllingFieldValue>
+                <controllingFieldValue>PA Correspondence</controllingFieldValue>
+                <valueName>Arbitration</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>PA Correspondence</controllingFieldValue>
+                <valueName>FIR Letter Preparation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>PA Correspondence</controllingFieldValue>
+                <valueName>OES FIR Letter</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>PA Correspondence</controllingFieldValue>
+                <valueName>1st Appeal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>PA Correspondence</controllingFieldValue>
+                <valueName>2nd Appeal</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cost Share</controllingFieldValue>
+                <valueName>Pending Application Closeout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cost Share</controllingFieldValue>
+                <valueName>Pending Assignment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cost Share</controllingFieldValue>
+                <valueName>Cost Share in Progress</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Cost Share</controllingFieldValue>
+                <valueName>Pending OES Review</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Subrecipient_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Subrecipient Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Closeout Tasks</relationshipLabel>
+        <relationshipName>Closeout_Tasks</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Task_Number__c</fullName>
+        <displayFormat>CT-{0000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Task Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Task_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Task Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>IFIR: Small</fullName>
+                    <default>false</default>
+                    <label>IFIR: Small</label>
+                </value>
+                <value>
+                    <fullName>IFIR: Small &amp; Large</fullName>
+                    <default>false</default>
+                    <label>IFIR: Small &amp; Large</label>
+                </value>
+                <value>
+                    <fullName>IFIR: Small with NSPU</fullName>
+                    <default>false</default>
+                    <label>IFIR: Small with NSPU</label>
+                </value>
+                <value>
+                    <fullName>IFIR: Small with NSPU &amp; Large</fullName>
+                    <default>false</default>
+                    <label>IFIR: Small with NSPU &amp; Large</label>
+                </value>
+                <value>
+                    <fullName>IFIR: Small with NSPO appeal</fullName>
+                    <default>false</default>
+                    <label>IFIR: Small with NSPO appeal</label>
+                </value>
+                <value>
+                    <fullName>IFIR: Large</fullName>
+                    <default>false</default>
+                    <label>IFIR: Large</label>
+                </value>
+                <value>
+                    <fullName>Federal FIR: Application Closeout</fullName>
+                    <default>false</default>
+                    <label>Federal FIR: Application Closeout</label>
+                </value>
+                <value>
+                    <fullName>Federal FIR: Application Closeout with NSPO</fullName>
+                    <default>false</default>
+                    <label>Federal FIR: Application Closeout with NSPO</label>
+                </value>
+                <value>
+                    <fullName>CDAA Cost Share FIR: Application Closeout</fullName>
+                    <default>false</default>
+                    <label>CDAA Cost Share FIR: Application Closeout</label>
+                </value>
+                <value>
+                    <fullName>FMAG FIR: Incident Closeout</fullName>
+                    <default>false</default>
+                    <label>FMAG FIR: Incident Closeout</label>
+                </value>
+                <value>
+                    <fullName>DR Incident Closeout</fullName>
+                    <default>false</default>
+                    <label>DR Incident Closeout</label>
+                </value>
+                <value>
+                    <fullName>EM Incident Closeout</fullName>
+                    <default>false</default>
+                    <label>EM Incident Closeout</label>
+                </value>
+                <value>
+                    <fullName>CDAA FIR: Application Closeout</fullName>
+                    <default>false</default>
+                    <label>CDAA FIR: Application Closeout</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_Actual_Funding__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND(Federal_Cost_Share__c + CDAA_Obligated_Amount__c ,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Actual Funding</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_CDAA_Obligated_Amount__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Federal_Cost_Share__c &gt;  Total_Small_Project_Amount_Claimed__c , 0, (Total_Small_Project_Amount_Claimed__c - Federal_Cost_Share__c)*0.75 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total CDAA Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Cal_OES_Recommended_Amount__c</fullName>
+        <description>This will be total sum of all relevant  Project Closeouts Total Cal OES Recommended Amount.</description>
+        <externalId>false</externalId>
+        <label>Total Cal OES Recommended Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Claimed_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Claimed Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_FEMA_Approved_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Total FEMA Approved Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_FIR_Eligible_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total FIR Eligible Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Local_Cost_Share__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Total_Small_Project_Amount_Claimed__c -  Federal_Cost_Share__c ) * 0.25</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Local Cost Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Non_Federal_Share__c</fullName>
+        <externalId>false</externalId>
+        <formula>ROUND(Total_Small_Project_Amount_Claimed__c  -  Federal_Cost_Share__c,2)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Total Non Federal Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Number_Of_Projects__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Number Of Projects</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Adjustment_s__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Project Adjustment(s)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Small_Project_Amount_Claimed__c</fullName>
+        <description>Applicant Small Project Claimed Amount for NSPU Calculator</description>
+        <externalId>false</externalId>
+        <label>Total Small Project Amount Claimed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Small_Project_Award__c</fullName>
+        <description>FEMA Final Approved Small Projects Amount for NSPU Calculator</description>
+        <externalId>false</externalId>
+        <label>Total Small Project Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>X60_days_Appeal__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISBLANK(Determination_Sent_to_Applicant_Date__c),TODAY() - Determination_Sent_to_Applicant_Date__c , IF(TODAY()&gt;Determination_Sent_to_Applicant_Date__c, TODAY() - Determination_Sent_to_Applicant_Date__c, 0))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>60 days Appeal</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Closeout Task</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Approver__c</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Assigned_Peer_Review</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Current_Peer_Review_User__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Assigned Peer Review</label>
+    </listViews>
+    <listViews>
+        <fullName>Assigned_to_Me</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>Assigned to Me</label>
+    </listViews>
+    <listViews>
+        <fullName>Assigned_to_My_Team</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_Current_Logged_User_Reviewer__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>Assigned to My Team</label>
+    </listViews>
+    <listViews>
+        <fullName>Pending_Approval_Request</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Is_Current_User_Approver__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Approval_Stage__c</field>
+            <operation>equals</operation>
+            <value>Assigned</value>
+        </filters>
+        <label>Pending Review &amp; Approval</label>
+    </listViews>
+    <listViews>
+        <fullName>Pending_Assignment</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Owner__c</field>
+            <operation>equals</operation>
+            <value>Public Assistance PM1</value>
+        </filters>
+        <label>Pending Assignment</label>
+        <sharedTo>
+            <group>Public_Assistance_All_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_DAPS_Closeout_Task</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance DAPS</label>
+        <queue>Public_Assistance_DAPS</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM1_Closeout_Task</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM1</label>
+        <queue>Public_Assistance_PM1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM2_PAO_Closeout_Task</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM2/PAO</label>
+        <queue>Public_Assistance_PM2_PAO</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Public_Assistance_PM3_Closeout_Task</fullName>
+        <filterScope>Queue</filterScope>
+        <label>Public Assistance PM3</label>
+        <queue>Public_Assistance_PM3</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Ready_for_DocuSign</fullName>
+        <columns>NAME</columns>
+        <columns>NSPO__c</columns>
+        <columns>Declaration_Number__c</columns>
+        <columns>State_Declaration_Number__c</columns>
+        <columns>Incident__c</columns>
+        <columns>Subrecipient_Name__c</columns>
+        <columns>Entity_Type__c</columns>
+        <columns>Cost_Share_Eligibility__c</columns>
+        <columns>Task_Type__c</columns>
+        <columns>Status__c</columns>
+        <columns>Sub_Status__c</columns>
+        <columns>Sub_Status_Workflow__c</columns>
+        <columns>Owner_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Stage__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Docusign_Status__c</field>
+            <operation>equals</operation>
+            <value>NA</value>
+        </filters>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>PM3 Review</value>
+        </filters>
+        <label>Ready for DocuSign</label>
+        <sharedTo>
+            <group>Public_Assistance_All_Users</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Closeout Task</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Closeout Tasks</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CDAA</fullName>
+        <active>true</active>
+        <description>it CDAA Type closeout Task</description>
+        <label>CDAA</label>
+        <picklistValues>
+            <picklist>Application_Closeout__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Stage__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>Lead%2FPeer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM1 Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM2%2FPAO Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Docusign_Status__c</picklist>
+            <values>
+                <fullName>COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PENDING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FEMA_Approval__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPU Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmittals</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status_Workflow__c</picklist>
+            <values>
+                <fullName>Assigned RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending RFI review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR%27s RFI Response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>1st Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2nd Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Share in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery phase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Documentation review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA FIR Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR Letter Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narrative finalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES FIR Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FEMA Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FIR completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Task_Type__c</picklist>
+            <values>
+                <fullName>CDAA Cost Share FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CDAA FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DR Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EM Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FMAG FIR%3A Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout with NSPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small %26 Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPO appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU %26 Large</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PA_FMAG</fullName>
+        <active>true</active>
+        <label>PA - FMAG</label>
+        <picklistValues>
+            <picklist>Application_Closeout__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Stage__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>GAR-AD Analyst Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-AD OT Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-AD Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-Analyst Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD Analyst Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD OT Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead%2FPeer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM1 Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM2%2FPAO Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM3 Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Docusign_Status__c</picklist>
+            <values>
+                <fullName>COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PENDING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FEMA_Approval__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPU Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmittals</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status_Workflow__c</picklist>
+            <values>
+                <fullName>Assigned RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending RFI review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR%27s RFI Response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>1st Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2nd Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Share in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery phase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Documentation review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA FIR Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR Letter Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narrative finalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES FIR Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FEMA Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FIR completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Task_Type__c</picklist>
+            <values>
+                <fullName>CDAA Cost Share FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CDAA FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DR Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EM Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FMAG FIR%3A Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout with NSPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small %26 Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPO appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU %26 Large</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PA_Federal</fullName>
+        <active>true</active>
+        <label>PA - Federal</label>
+        <picklistValues>
+            <picklist>Application_Closeout__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Stage__c</picklist>
+            <values>
+                <fullName>Approved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Approval_Status__c</picklist>
+            <values>
+                <fullName>GAR-AD Analyst Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-AD OT Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-AD Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-Analyst Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD Analyst Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD OT Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-DD Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR-Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead%2FPeer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM1 Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM2%2FPAO Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PM3 Review</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Docusign_Status__c</picklist>
+            <values>
+                <fullName>COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GAR COMPLETE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PENDING</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FEMA_Approval__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Share</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPU Workflow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transmittals</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status_Workflow__c</picklist>
+            <values>
+                <fullName>Assigned RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending RFI review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR%27s RFI Response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Sub_Status__c</picklist>
+            <values>
+                <fullName>1st Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2nd Appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Arbitration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cost Share in Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Discovery phase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Documentation review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA FIR Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FIR Letter Preparation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Narrative finalization</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES FIR Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA Correspondence</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Assignment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FEMA Response</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending FIR completion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending OES Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending SR response</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Task_Type__c</picklist>
+            <values>
+                <fullName>CDAA Cost Share FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CDAA FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DR Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EM Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FMAG FIR%3A Incident Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Federal FIR%3A Application Closeout with NSPO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small %26 Large</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPO appeal</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IFIR%3A Small with NSPU %26 Large</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <searchResultsAdditionalFields>NSPO__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Declaration_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>State_Declaration_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Incident__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Subrecipient_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Entity_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Cost_Share_Eligibility__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Task_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>Closeout_Task_Owner_Change_Ability</fullName>
+        <active>true</active>
+        <description>This rule validates that only the specified user could change Closeout Task owner.
+As of now, user having a permission set which have access to PA_PM Custom Permission will be allowedYou do not have permissions to change owner.</description>
+        <errorConditionFormula>ISCHANGED(OwnerId)  &amp;&amp; NOT($Permission.PA_PM)</errorConditionFormula>
+        <errorMessage>You do not have permissions to change owner</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Override_Appeal_Period_Reason_Validation</fullName>
+        <active>true</active>
+        <description>Insist user to update Override Appeal Period Reason if Override Appeal Period Validation is checked</description>
+        <errorConditionFormula>ISCHANGED( Override_Appeal_Period_Validation__c ) &amp;&amp; Override_Appeal_Period_Validation__c == true &amp;&amp;     ISBLANK(Override_Appeal_Period_Reason__c)</errorConditionFormula>
+        <errorMessage>Please make sure to provide the Override Appeal Period Reason.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Status_Upadte_60_days_Appeal</fullName>
+        <active>true</active>
+        <description>For Federal records, if Override Appeal Period Validation is not checked &amp; 60 days Appeal
+ is &lt;= 60 then prohibit user to update status to &quot;Cost Share&quot;.</description>
+        <errorConditionFormula>ISCHANGED( Status__c ) &amp;&amp;
+ ISPICKVAL( Status__c , &quot;Cost Share&quot;) &amp;&amp;
+ RecordType.DeveloperName  ==  &quot;PA_Federal&quot; &amp;&amp; Override_Appeal_Period_Validation__c == false &amp;&amp;
+X60_days_Appeal__c  &lt;= 60</errorConditionFormula>
+        <errorMessage>You cannot initiate a CDAA Cost Share until 60 days after the FIR transmittal letter is issued by CalOES and is received by the subrecipient which encloses FEMA&amp;apos;s determination of an application closeout FIR</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Deca19t0000004AYJCAA4</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>FIR Sign Doc</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>{!URLFOR(IF($Site.prefix == &apos;/s&apos;,&apos;/apex/dfsle__sending&apos;, $Site.Prefix +&apos;/apex/dfsle__sending&apos;), null, [sId = Closeout_Task__c.Id, quickSend = false, isEmbedded = false, templateId = &apos;a19t0000004AYJCAA4&apos;, recordId = Closeout_Task__c.Id, title = &apos;FIR Sign Doc&apos;])}</url>
+    </webLinks>
+</CustomObject>

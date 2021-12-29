@@ -1,0 +1,74 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 03-21-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   03-21-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}>
+        <div class="slds-modal__content slds-p-around_small">
+            <template if:true ={IsContactRecord}>
+                <table class="slds-align_absolute-center">
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description">FirstName</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.FirstName}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">LastName</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.LastName}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Email</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Email}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description">Phone</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Phone}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Entity</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Entity_Type__c}</td>
+                    </tr>
+                    <tr>
+                        <th class="slds-p-right_large slds-p-bottom_small Description ">Organization</th>
+                        <td class="slds-p-left_large slds-p-bottom_small Description slds-text-align_left">{contactRecord.Account.Name}</td>
+                    </tr>
+                </table>
+                <template if:true={isFireAgency} >
+                    <table>
+                        <tr>
+                            <td>
+                                <lightning-card  variant="Narrow"  title="Primary Access">
+                                    <p class="slds-p-horizontal_small">Primary Access is for personnel responsible for the agency's reimbursement including submittal of rates.</p>
+                                </lightning-card>
+                            </td>
+                            <td>
+                                <lightning-card  variant="Narrow"  title="Secondary Access">
+                                    <p class="slds-p-horizontal_small">Secondary Access is for responding personnel that submit F-42s and travel only.</p>
+                                </lightning-card>
+                            </td>
+                        </tr>
+                    </table>
+                </template>
+            </template>
+        </div>
+        <template if:true={isFireAgency} >                    	 
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Primary" onclick={submitDetails} title="Submit for Primary Access" disabled={buttonDisabled}>Request Primary Access</button>
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitDetails} title="Submit for Secondary Access" disabled={buttonDisabled}>Request Secondary Access</button>
+            </footer>
+        </template>
+        <template if:true={isPayingEntity} >                    	 
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="RequestAccess" onclick={submitDetailsforPayingEntity} title="Request Access" disabled={buttonDisabled}>Request Access</button>
+            </footer>
+        </template> 
+    </template>
+</template>

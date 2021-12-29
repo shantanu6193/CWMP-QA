@@ -1,0 +1,131 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <template if:false={showLoader}> 
+        <div class="table_light">
+            <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">Administrative Rate</h2>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 slds-p-bottom_medium slds-p-top_medium">
+                All information provided on this form is subject to audit by Cal OES, CAL FIRE, and the Federal Fire Agencies signatory to the California Fire Assistance Agreement. 
+                <p> <a target="blank"
+                        href="https://www.caloes.ca.gov/FireRescueSite/Documents/Instructions_for_Completing_Administrative_Rate_Calculations.pdf">Instructions
+                        for Completing Administrative Rate Calculations
+                    </a>
+                </p>
+                <p class="slds-p-top_small slds-p-right_small"> 
+                    **If your agency has an administrative rate on file, you are required to update and complete an administrative rate
+                    calculation sheet by July 1, 2021. After that date, the rate will default to the de minimis of 10%.
+            </p>
+                </div>
+            </div>
+            <div class="slds-p-top_medium">
+                <div class="slds-scrollable">
+                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col">
+                                FY 
+                            </th>
+                            <th scope="col">
+                                <lightning-input type="text" data-field="firstFY" class="input" name="firstFY" label-hidden onchange={handleLowFYChange} required="true" variant="label-hidden"
+                                value={fyLow} maxlength=4 pattern="^(20)\d{2}$"  message-when-pattern-mismatch="Please enter valid year"></lightning-input>
+                            </th>
+                            <th>/</th>
+                            <th scope="col">
+                                <lightning-input type="text" data-field="secondFY" class="input" name="secondFY" label-hidden  required="true" variant="label-hidden"
+                                value={fyHigh} maxlength=4 pattern="^(20)\d{2}$"  message-when-pattern-mismatch="Please enter valid year" read-only></lightning-input>
+                            </th>
+                            <th scope="col">Data for use in </th>
+                            <th scope="col">
+                                <lightning-input type="text" data-field="dataforusein" class="input dataforuseincmp hidden_text" name="dataforusein" label-hidden onchange={handleInUseChange} required="true"
+                                variant="label-hidden" value={inUseDate}  maxlength=4 pattern="^(20)\d{2}$"  message-when-pattern-mismatch="Please enter valid year"></lightning-input>
+                            </th>
+                            <th scope="col">Fire Agreements</th>
+                        </tr>
+                    </thead>
+                </table>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="" scope="col" style="width:340px">
+                                <div class="slds-truncate" title="Name">Program</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="First Name">Indirect</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Last Name">Direct</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Phone">Total</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={data} for:item="record" for:index="index">
+                            <c-mars-administrative-rate-info-screen-row data-id={index} key={record.Id} record={record} ontotaldata={handleTotalCalculation}></c-mars-administrative-rate-info-screen-row>
+                        </template>
+                        <tr>
+                            <td></td> 
+                            <td class="slds-text-title_bold" scope="col">
+                                 Indirect Total: 
+                                <lightning-formatted-number class="slds-m-left_x-small outputfont" value={totalIndirectAmount}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                
+                            </td>
+                            <td class="slds-text-title_bold" scope="col">
+                                 Direct Total:
+                                <lightning-formatted-number class="slds-m-left_x-small outputfont" value={totalDirectAmount}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                
+                            </td>
+                            <td class="slds-text-title_bold" scope="col">
+                                Grand Total:
+                                <lightning-formatted-number class="slds-m-left_x-small outputfont" value={totalAmount}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td class="slds-text-title_bold" colspan="4" scope="col">
+                                ADMINISTRATIVE RATE (INDIRECT COST/DIRECT COST): {totalDividend}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            <div class="slds">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col  slds-size_1-of-1 slds-medium-size_5-of-12 slds-large-size_5-of-12 slds-p-bottom_medium">
+                        
+                        <c-signature data-id="signature"></c-signature>
+                    </div>
+                    
+                    <div class="slds-col  slds-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12 slds-p-bottom_medium">
+                        <div class="slds-text-align_right datepickerright">
+                            <lightning-input type="Date" label="Effective Date for the Rates Being Submitted" 
+                                            value={futureDate} min={minDate} required="true" 
+                                            class="input futuredate" message-when-range-underflow="Please select a future date"
+                                            onchange={handleFutureDateChange}>
+                            </lightning-input>
+                        </div>
+                        <div class="toppaddin-div">     
+                            <p> As an authorized representative of my agency/dept., 
+                                I certify to the best of my knowledge and belief, 
+                                and under penalty of perjury that the administrative rate is correct and is established
+                                in accordance with the negotiated California Fire Assistance Agreement using the 
+                                <a href="https://www.caloes.ca.gov/FireRescueSite/Documents/Instructions_for_Completing_Administrative_Rate_Calculations.pdf" target=_blank> Instructions for Completing Administrative Rate Calculations </a> and 
+                                <a href="https://www.caloes.ca.gov/FireRescueSite/Documents/Indirect_Cost_Rate_Plan_(ICRP)_Definitions.pdf" target=_blank> ICRP Definitions. </a>
+                                Furthermore, my signature represents acceptance by my agency/dept., 
+                                as a cooperator, to comply with the authorities, terms and conditions of the CFAA. 
+                            </p>
+                        </div>  
+                    </div>
+                </div>  
+            </div>
+            <div class="slds-col slds-size_12-of-12 slds-align-bottom slds-text-align_right datepickerright"> 
+                <lightning-button  variant="brand" label="Submit" onclick={createRecords} disabled={checkSubmitDisable}></lightning-button>
+            </div>
+        </div>
+        <c-mars-administrative-rate-history record-id={recordId}></c-mars-administrative-rate-history>
+    </template>    
+</template>

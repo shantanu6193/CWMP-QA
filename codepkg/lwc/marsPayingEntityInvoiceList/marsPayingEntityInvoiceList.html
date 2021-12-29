@@ -1,0 +1,324 @@
+<!--- Created by Chandrabhan on 06-01-2021.-->
+<!-- Mars Invoice List -->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <div class="table_light">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Filter In-Progress Invoices For Approval</h2>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-scrollable">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                    id="Table3">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Invoice Number">Invoice Number</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Agency Name">MACS ID</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate"></div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="slds-line-height_reset">
+                            <td>
+                                <lightning-input onchange={handleIncidentNameChange}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input onchange={handleInvoiceNumberChange}>
+                                </lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input onchange={handleMacsIdChange}></lightning-input>
+                            </td>
+                            <td>
+                                <div class="lgc-bg">
+                                    <lightning-button-icon icon-name="utility:search" onclick={handleSearch}
+                                        alternative-text="Search" title="Search" disabled={searchDisable}></lightning-button-icon>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <template if:false={showLoader}>
+        <div class="table_light">
+            <div class="slds-size_12-of-12">
+                <h2 class="slds-text-heading_small slds-p-top_medium">Paying Entity Approval In-Progress Invoices</h2>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-scrollable">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                        id="Table1">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Name">Invoice Number</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Agency Name">Agency Name</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Amount">Invoice Amount</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Created Date">Created Date</div>
+                                </th>
+                                <th class="slds-size_2-of-12" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={pendingVisibleRecords} for:item="invRecord">
+                                <tr class="slds-hint-parent" key={invRecord.Id}>
+                                    <td class="slds-size_2-of-12" data-label="Name" scope="row">
+                                        <div class="slds-truncate" title={invRecord.Name}>
+                                            {invRecord.Invoice__r.Invoice_Number__c}
+                                        </div>
+                                    </td>
+                                    <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                        {invRecord.Invoice__r.Incident__r.Name}
+                                    </td>
+                                    <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                        {invRecord.Invoice__r.Account__r.Name}
+                                    </td>
+                                    <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                        <lightning-formatted-number value={invRecord.Invoice_Amount__c}
+                                            format-style="currency"></lightning-formatted-number>
+                                    </td>
+                                    <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                        {invRecord.Status__c}
+                                    </td>
+                                    <td class="slds-size_2-of-12" data-label="Start Date">
+                                        <lightning-formatted-date-time value={invRecord.CreatedDate} year="numeric"
+                                            month="2-digit" day="2-digit" time-zone="UTC">
+                                        </lightning-formatted-date-time>
+                                    </td>
+
+                                    <td class="slds-size_2-of-12" data-label="View">
+                                        <a data-index={invRecord.Invoice__c} onclick={viewPdf}
+                                            class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:preview" size="xx-small"
+                                                alternative-text="Invoice Attachment" class="slds-iconl"
+                                                title="Invoice Preview">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Invoice Preview</span>
+                                        </a>
+                                        <a data-index={invRecord.Invoice__c} onclick={getInvoiceURL}
+                                            class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:download" size="xx-small"
+                                                alternative-text="Invoice Attachment" class="slds-iconl"
+                                                title="Invoice Download">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Invoice Download</span>
+                                        </a>
+                                        <a data-index={invRecord.Id} onclick={openApproveModal}
+                                            class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:approval" title="Payment"
+                                                class="slds-icon" size="xx-small" alternative-text="Payment">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Payment</span>
+                                        </a>
+                                        <a data-index={invRecord.Id} onclick={openRejectModal}
+                                            class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:reject" title="Reject" class="slds-icon"
+                                                size="xx-small" alternative-text="Reject">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Reject</span>
+                                        </a>
+                                       <!--<a data-index={invRecord.Id} onclick={getInvoiceSupportDcoURL} class="slds-p-right_small">
+                                            <lightning-icon icon-name="action:download" size="xx-small"
+                                                alternative-text="Supported Document" class="slds-iconl" title="Supported Document Download">
+                                            </lightning-icon>
+                                            <span class="slds-assistive-text">Supported Document Download</span>
+                                        </a>--> 
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;" class="slds-m-bottom_medium">
+            <c-mars-pagination-lwc records={payingEntityInvoiceList} onslice={pendingPaginationHandler}>
+            </c-mars-pagination-lwc>
+        </div>
+    </template>
+    <div class="table_light">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium">Paying Entity Paid Invoices</h2>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-scrollable">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                    id="Table2">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Name">Invoice Number</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Incident Name">Incident Name</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Agency Name">Agency Name</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Amount">Invoice Amount</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Status">Status</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Created Date">Date Of Payment</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Created Date">Paid Amount</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={paidVisibleRecords} for:item="invRecord" for:index="index">
+                            <tr class="slds-hint-parent" key={invRecord.Id}>
+                                <td class="slds-size_2-of-12" data-label="Name" scope="row">
+                                    <div class="slds-truncate" title={invRecord.Name}>
+                                        {invRecord.Invoice__r.Invoice_Number__c}
+                                    </div>
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                    {invRecord.Invoice__r.Incident__r.Name}
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                    {invRecord.Invoice__r.Account__r.Name}
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                    <lightning-formatted-number value={invRecord.Invoice_Amount__c}
+                                        format-style="currency"></lightning-formatted-number>
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                    {invRecord.Status__c}
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Start Date">
+                                    <lightning-formatted-date-time value={invRecord.Date_Of_Payment__c} year="numeric"
+                                        month="2-digit" day="2-digit" time-zone="UTC">
+                                    </lightning-formatted-date-time>
+                                </td>
+                                <td class="slds-size_2-of-12" data-label="Status" scope="row">
+                                    <lightning-formatted-number value={invRecord.Paid_Amount__c}
+                                        format-style="currency"></lightning-formatted-number>
+                                </td>
+
+                                <td class="slds-size_2-of-12" data-label="View">
+                                    <a data-index={invRecord.Invoice__c} onclick={viewPdf} class="slds-p-right_small">
+                                        <lightning-icon icon-name="action:preview" size="xx-small"
+                                            alternative-text="Invoice Attachment" class="slds-iconl" title="Invoice Preview">
+                                        </lightning-icon>
+                                        <span class="slds-assistive-text">Invoice Preview</span>
+                                    </a>
+                                    <a data-index={invRecord.Invoice__c} onclick={getInvoiceURL}
+                                        class="slds-p-right_small">
+                                        <lightning-icon icon-name="action:download" size="xx-small"
+                                            alternative-text="Invoice Attachment" class="slds-iconl" title="Invoice Download">
+                                        </lightning-icon>
+                                        <span class="slds-assistive-text">Invoice Download</span>
+                                    </a>
+                                    <!--<a data-index={invRecord.Id} onclick={getInvoiceSupportDcoURL} class="slds-p-right_small">
+                                        <lightning-icon icon-name="action:download" size="xx-small"
+                                            alternative-text="Supported Document" class="slds-iconl" title="Supported Document Download">
+                                        </lightning-icon>
+                                        <span class="slds-assistive-text">Supported Document Download</span>
+                                    </a>-->
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="text-align:center;" class="slds-m-top_medium slds-m-bottom_medium">
+            <c-mars-pagination-lwc records={paidInvoiceList} onslice={paidPaginationHandler}>
+            </c-mars-pagination-lwc>
+        </div>
+    </div>
+    <template if:true={isApproveModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeApproveModal}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Record Payment</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-input type="number" name="invoiceAmount" formatter="currency" step="0.01" label="Invoice Amount" value={invoiceAmount}
+                        read-only></lightning-input>
+                    <lightning-input type="number" name="payingAmount" label="Amount Paid"
+                        onchange={handlePaymentAmountChange} formatter="currency" step="0.01"></lightning-input>
+                    <lightning-input type="date" name="dataOfPayment" label="Date Of Payment"
+                        onchange={handlePaymentDateChange}></lightning-input>
+                    <lightning-input type="text" label="Comments" onchange={handleCommentsChange}
+                        required={isCommentsMandatory}></lightning-input>
+                </div>
+                <footer class="slds-modal__footer slds-modal__footer_directional">
+                    <button class="slds-button slds-button_neutral" onclick={closeApproveModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={approveRecord}>Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={isRejectModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true"
+            aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeRejectModal}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Record Payment</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                    <lightning-input type="text" label="Rejection Reason" onchange={handleCommentsChange}>
+                    </lightning-input>
+                </div>
+                <footer class="slds-modal__footer slds-modal__footer_directional">
+                    <button class="slds-button slds-button_neutral" onclick={closeRejectModal}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={rejectPaymentRecord}>Submit</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

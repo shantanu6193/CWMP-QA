@@ -1,0 +1,3386 @@
+<apex:page docType="html-5.0" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false" showHeader="false" sidebar="false">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      <title>F42 Offline</title>
+      <style>
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;      
+
+        * {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+          padding: 1.5rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+          margin-top: 0;
+        }
+
+        button {
+          font-size: 1rem;
+          margin-top: 2rem;
+          padding: 0.5rem 1rem;
+        }
+
+        ul{
+          list-style-type: none;
+          margin:0;
+          padding:0;
+          overflow: hidden;
+          background-color:white;
+          padding-right: 5px;
+        }
+
+        li{
+          float:right;          
+        }
+
+        li a{
+          display:block;
+          color:teal;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+
+        li a:hover{
+          background-color: #111;
+          color:white;
+        }
+
+        #logo{
+          float: left;
+          padding: 10px 5px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            /* border:1px solid darkgray; */
+            width: 100%;
+          }
+        th {
+          border: 2px solid #353131;
+          background-color: darkgray;
+          text-align: left;
+          padding: 2px;
+        }
+        td {
+          /* border: 1px solid #dddddd; */
+          text-align: left;
+          padding: 3px;
+        }
+
+        tr:nth-child(odd) {
+          background-color: #dddddd;
+        }
+
+        /* input:not(:placeholder-shown):invalid {
+    background-color: salmon;
+}
+form:invalid button {
+    background-color: salmon;
+    pointer-events: none;
+} */
+        /* input:focus:required:invalid {background-color: pink; color: white;}
+        input:required:valid {background-color: white; color: black; } */
+
+        input:invalid {
+            border-color: red;
+        }
+
+        input,
+        input:valid {
+            border-color: #ccc;
+        }
+
+        /* Collapsible*/      
+        .collapsible {
+          background-color: #777;
+          color: white;
+          cursor: pointer;
+          padding: 18px;
+          width: 100%;
+          border: none;
+          text-align: left;
+          outline: none;
+          font-size: 15px;
+        }
+
+        .active, .collapsible:hover {
+          background-color: #555;
+        }
+
+        .collapsible:after {
+          content: '\002B';
+          color: white;
+          font-weight: bold;
+          float: right;
+          margin-left: 5px;
+        }
+
+        .active:after {
+          content: "\2212";
+        }
+
+        .content {
+          padding: 0 18px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.2s ease-out;
+          background-color: #f1f1f1;
+        }
+
+        /* Required asterisk */
+        
+        .required:before {
+          content:"* ";
+          color: red;
+        }
+
+        .tooltip {
+          position: relative;
+          display: inline-block;
+          border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 320px;
+          background-color: black;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          top: -5px;
+          left: 110%;
+        }
+
+        .tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: 100%;
+          margin-top: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent black transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+        }
+
+        .container{
+          /* text-align: center; */
+          padding-top: 10px;
+          font-size: 1rem;
+          color: rgb(31,63,105);
+          font-family: Arial, Helvetica, sans-serif;
+          background-size: 100% 100%;
+          width: 100%;
+          height: 90vh;
+        }
+
+        /* Letter Bubble*/
+        [data-letters]:before {
+          content:attr(data-letters);
+          display:inline-block;
+          font-size:.3em;
+          width:2em;
+          height:2.5em;
+          line-height:2.5em;
+          text-align:center;
+          border-radius:30%;
+          background:darkblue;
+          vertical-align:middle;
+          margin-right:1em;
+          color:white;
+          font-weight: bold;
+          font-style: italic;
+        }
+
+        .nav-button {
+          background-color: deepskyblue;
+          border-radius:25px;
+        }
+      </style>
+      <script>
+        var confirmSave=false;        
+        
+      </script>      
+    </head>
+    <body>
+      <form>        
+        <div class="container">
+          <input id="savef42Status" type="text" name="savef42Status" value="draft" hidden='true' />          
+          <div class="row">
+            <h1>Welcome to MARS OFFLINE F-42 Entry Screen</h1>
+            <p>
+              If you have working internet please click <button type="button" onclick="window.location.reload()" style="height:30px; background-color:gray;color:white;" class="nav-button">Try again</button> to accessing all features of the application.
+            </p>
+          </div>
+          <div class="row" style="padding-top:10px;">
+            <button type="button" class="nav-button">Sections: </button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s1').scrollIntoView();" title="1-4 Agency/Incident">1-4</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s5').scrollIntoView();" title="5. Dispatch Information">5</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s6').scrollIntoView();" title="6. Dispatch From">6</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s7').scrollIntoView();" title="7. Dispatch To">7</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s8').scrollIntoView();" title="8. Overhead">8</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s9').scrollIntoView();" title="9. Support Vehicle Information">9</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s9').scrollIntoView();" title="10. Privately Owned Vehicle">10</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s11').scrollIntoView();" title="11. Equipment Resource Information">11</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s12').scrollIntoView();" title="12 - 13. Personnel Information">12-13</button>            
+            <button type="button" class="nav-button" onclick="document.getElementById('s14').scrollIntoView();" title="14. Comments">14</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s16').scrollIntoView();" title="15-16. Supply Number Loss / Damage">15-16</button>            
+            <button type="button" class="nav-button" onclick="document.getElementById('s17').scrollIntoView();" title="17. Responding Agency Information">17</button>
+            <button type="button" class="nav-button" onclick="document.getElementById('s18').scrollIntoView();" title="18. Incident Information - Paying Agency">18</button>
+          </div>
+          <div class="row">
+            <button type="button" class="collapsible">EMERGENCY ACTIVITY RECORD (OES F-42)</button>
+            <div class="content">
+              <p>
+                In order to expedite reimbursement, all
+                information in this form must be filled out
+                completely and accurately. It is the responsibility of
+                the strike team leader, single resource, or
+                overhead position to ensure that the Cal OES Fire
+                and Rescue Division has received all OES F-42's
+                associated with the specific assignment within the
+                time frame required.
+                Please read the instructions linked above to
+                complete the Emergency Activity Record (OES
+                F-42).
+                This form should also be used to track mutual aid
+                responses.
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <button type="button" class="collapsible">INSTRUCTIONS FOR THE EMERGENCY ACTIVITY RECORD - FORM-42</button>
+            <div class="content">
+              <p>
+                INSTRUCTIONS FOR THE EMERGENCY ACTIVITY RECORD - FORM-42<br /><br />
+                <a href="#s1" style="text-decoration: none;" title="Click to go to 1. AGENCY DESIGNATOR">1. AGENCY DESIGNATOR: The 2-letter State designator must be completed for the first two blocks as follows (CA, NV, AZ, NM, CO, ID, OR). The next three blocks are for your
+  department's 3-letter identifier as listed in the Field Operations Guide (FOG) ICS 420-1, Appendix B. Do not use the Operational Area code (XLA, XOR) or another agency’s 3-Letter
+  identifier that has accompanied your agency.</a><br /><br />
+  <a href="#s1" style="text-decoration: none;" title="Click to go to 2. STRIKE TEAM/TASK FORCE NUMBER">2. STRIKE TEAM/TASK FORCE NUMBER: MACS 410-2 unique identifier for each Strike Team/Task Force assigned at time of dispatch. (Example: OES-1801-A, XAL-2004-A).</a><br /><br />
+  <a href="#s1" style="text-decoration: none;" title="Click to go to 3. INCIDENT ORDER NUMBER">3. INCIDENT ORDER NUMBER: A unique identifier assigned to each incident. Assigned at time of incident occurrence, this includes the 2-letter State designator; the 3-letter identifier of
+  the ordering agency, forest, or unit; and a sequential incident number. (Example: CA-ANF-14321, NV-HTF-1128).</a><br /><br />
+  <a href="#s1" style="text-decoration: none;" title="Click to go to 4. INCIDENT REQUEST NUMBER">4. INCIDENT REQUEST NUMBER: A unique identifier for the resource (A, C, E, O, or S) requested for the incident. The 3-letter identifier preceding the Request Number indicates the
+  agency financially responsible for the resource. (Example: LAC E-26, OKL O-276).</a><br /><br />
+  <a href="#s5" style="text-decoration: none;" title="Click to go to 5. DISPATCH INFORMATION">5. DISPATCH INFORMATION: This section is for use by agencies who have an MOU/MOA/GBR or equivalent that indicate personnel are to be compensated for Portal-to-Portal
+  reimbursement as well as those agencies that are to be compensated for actual hours worked. This section is noted to capture the totality of commitment. Indicate “Incident” Name
+  and Reporting Location. “Mobilization Center” is an off-incident location where personnel and equipment are temporarily located pending assignment, release or reassignment.
+  -Committed to Incident: Enter the date and time the resource responded to the incident, complex or mobilization center. Use 24-hour clock (military time).
+  -Return from Incident: Enter date and time the resource arrived at its final destination. Use 24-hour clock (military time).
+  -Redispatched: If resource was re-dispatched to another incident/mobilization center before returning to home station, indicate date/time re-dispatched, new incident name,
+  end date, order and request number(s), and start a new OES F-42. Use 24-hour clock (military time).</a><br /><br />
+  <a href="#s6" style="text-decoration: none;" title="Click to go to 6. DISPATCHED FROM">6. DISPATCHED FROM: Use only incident information related to the incident you were dispatched from.</a><br /><br />
+  <a href="#s7" style="text-decoration: none;" title="Click to go to 7. REDISPATCHED INFORMATION">7. REDISPATCHED INFORMATION: Enter the incident name, start date, new order and request number(s) and start a new OES F-42 form with the new order information and request
+  number(s). Indicate the name of the incident you were dispatched from.</a><br /><br />
+  <a href="#s8" style="text-decoration: none;" title="Click to go to 8. OVERHEAD INFORMATION">8. OVERHEAD INFORMATION: (Required for Overhead/ST/TFL positions). If the “Overhead Position” box is checked, enter the ICS position title. (Example: Food Unit Leader, Division
+  Group Supervisor). All overhead/trainee positions except STEN(T) require a separate OES F-42 and request (“O”) number.</a><br /><br />
+  <a href="#s9" style="text-decoration: none;" title="Click to go to 9. SUPPORT VEHICLE">9. SUPPORT VEHICLE: To be completed by Leader/Overhead/Support personnel that require the use of a support vehicle at the incident. Reimbursement payment is based on the
+  vehicle type and who owns the vehicle. Ensure that the appropriate box for your vehicle type is checked and record the License number. (If the license # is not available, use the VIN
+  or Serial #). Rental vehicles and associated fuel will be reimbursed for actual cost. Receipts must be submitted to OES with a completed and signed “Travel Expense Claim
+  Reimbursement Log” (F-142A), and Resource Order Form of approved rental. If you were assigned from one incident to another, each respective ordering incident will need to
+  validate and approve the rental vehicle costs noted above, with each cost broken out by incident. Do not submit all associated cost to one incident if multiple assignments are
+  involved.</a><br /><br />
+  <a href="#s9" style="text-decoration: none;" title="Click to go to 10. PRIVATELY-OWNED VEHICLE INFORMATION (POV)">10. PRIVATELY-OWNED VEHICLE INFORMATION (POV): Enter the beginning odometer reading at the time of commitment, and the ending odometer reading at the time of return or
+  redispatch from the incident. Enter the total miles traveled for each respective incident assigned. Enter POV license number in Section 9. Payment is based on mileage. Do not submit
+  receipts for fuel as the POV mileage rate includes a fuel component.</a><br /><br />
+  <a href="#s11" style="text-decoration: none;" title="Click to go to 7. REDISPATCHED INFORMATION">11. EQUIPMENT RESOURCE INFORMATION: Complete all the information requested. Use the Field Operations Guide (FOG) ICS 420-1, Chapter 11, for reference as to the typing of
+  Engines/Rescue/Equipment. Not all equipment will have a license plate number, therefore a VIN, or if no VIN, a serial number will be required on equipment without a plate number.</a><br /><br />
+  <a href="#s12" style="text-decoration: none;" title="Click to go to 12. PERSONNEL INFORMATION">12. PERSONNEL INFORMATION: Enter the number of personnel claimed. List the name and rank of all personnel, including the last 4 digits of their social security number (SSN). Identify
+  CDF personnel or Paid Call Fire Fighter (PCF) by checking the appropriate box in the associated column.
+  -Personnel Replacement/Rotation: When either an individual or entire company is rotated/replaced, indicate name, rank, and the last 4 digits SSN. Be sure to indicate the date/time of
+  rotation in Box 14. “Approved” personnel rotation MUST follow the procedures outlined in Exhibit “C” of the California Fire Assistance Agreement (CFAA) if reimbursement is requested for
+  the vehicle used during the rotation.</a><br /><br />
+  <a href="#s12" style="text-decoration: none;" title="Click to go to 13. PERSONNEL INFORMATION – ACTUAL HOURS">13. PERSONNEL INFORMATION – ACTUAL HOURS: To be completed by overhead and/or apparatus personnel who DO NOT have an MOU/MOA/GBR or equivalent for Portal-to-Portal
+  reimbursement, and will be compensated at actual hours worked. Actual hour personnel must complete and document each date worked indicating the start and end time for
+  each day.</a><br /><br />
+  <a href="#s14" style="text-decoration: none;" title="Click to go to 14. COMMENTS">14. COMMENTS: Use this section to provide pertinent information about your assignment and/or resources such as equipment breakdowns, personnel change/rotation, damage/loss,division assignments, etc. If additional comment space is required, indicate on “Unit/Activity Log” (ICS-214) and attach.</a><br /><br />
+  <a href="#s15" style="text-decoration: none;" title="Click to go to 15. LOSS/DAMAGE">15. LOSS/DAMAGE: If you field any loss or damage paperwork with the incident, check “Yes” and attach all relative paperwork that may be needed for
+  documentation/reimbursement, and a completed and signed “Travel Expense Claim Reimbursement Log” (F-142-A) if it applies and follows Exhibit H requirements, otherwise, check
+  “No”.</a><br /><br />
+  <a href="#s16" style="text-decoration: none;" title="Click to go to 16. SUPPLY NUMBER">16. SUPPLY NUMBER: If you obtained a Supply (“S”) Number(s), indicate the number(s) and attach all required documentation, such as “General Message” form (ICS 213) signed by
+  either the Incident Commander, Finance Section Chief or Incident Business Advisor before demobilization. The “General Message” form (ICS 213), all receipts, and any other relative
+  information must be submitted to OES with a completed and signed “Travel Expense Claim Reimbursement Log” (F-142A) if it applies, following Exhibit H requirements.</a><br /><br />
+  <a href="#s17" style="text-decoration: none;" title="Click to go to 17. RESPONDING AGENCY INFORMATION">17. RESPONDING AGENCY INFORMATION: To be completed by the department/agency resource responding. Check the appropriate box if you are a Department of Defense (DoD).
+  Include YOUR contact phone number in case you need to be contacted for further information and/or questions. DO NOT PROVIDE YOUR ADMINISTRATIVE OFFICE PHONE NUMBER.</a><br /><br />
+  <a href="#s18" style="text-decoration: none;" title="Click to go to 18. INCIDENT INFORMATION">18. INCIDENT INFORMATION: To be completed by the designated incident personnel. Check appropriate box for jurisdiction of fire.
+  ALL F-42’s MUST BE SIGNED BY THE DESIGNATED INCIDENT PERSONNEL AND BY THE ON-SCENE CAL OES AGENCY REPRESENTATIVE (IF ASSIGNED)</a><br /><br />
+              </p>
+            </div>
+          </div>
+          <div class="row" style="padding-top:10px;">
+            <button type="button" class="collapsible" onclick="retrieveF42s(event)">Offline F42 List</button>
+            <br />
+            <p id="f42offlinelist"></p>          
+          </div>
+        <div class="row" id="f42offline">
+          <fieldset class='fieldset' id="s1">
+            <legend class="tooltip">
+              <h2>1-4 Agency/Incident  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                1. AGENCY DESIGNATOR: The 2-letter State designator must be completed for the first two blocks as follows (CA, NV, AZ, NM, CO, ID, OR). The next three blocks are for your
+department's 3-letter identifier as listed in the Field Operations Guide (FOG) ICS 420-1, Appendix B. Do not use the Operational Area code (XLA, XOR) or another agency’s 3-Letter
+identifier that has accompanied your agency.<br />
+2. STRIKE TEAM/TASK FORCE NUMBER: MACS 410-2 unique identifier for each Strike Team/Task Force assigned at time of dispatch. (Example: OES-1801-A, XAL-2004-A).<br />
+3. INCIDENT ORDER NUMBER: A unique identifier assigned to each incident. Assigned at time of incident occurrence, this includes the 2-letter State designator; the 3-letter identifier of
+the ordering agency, forest, or unit; and a sequential incident number. (Example: CA-ANF-14321, NV-HTF-1128).<br />
+4. INCIDENT REQUEST NUMBER: A unique identifier for the resource (A, C, E, O, or S) requested for the incident. The 3-letter identifier preceding the Request Number indicates the
+agency financially responsible for the resource. (Example: LAC E-26, OKL O-276).
+              </span>              
+            </legend>
+            <table  style="width:40%">
+              <tr>
+                <td colspan="2">
+                  <label class="required">MACS ID</label>
+                </td>
+                <td>
+                  <label class="required">AGENCY NAME</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="AI_macsId" type="search" name="AI_macsId" size="50" onblur="setSelectedmacsID()"/>
+                </td>
+                <td>
+                  <input id="AI_agencyName" type="search" size="55" name="AI_agencyName"/>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label class="required">1. AGENCY DESIGNATOR</label>
+                </td>
+  
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="AI_designator_3_ltr" type="text" size="10" placeholder="3-Letter Id" name="AI_designator_3_ltr" pattern="[A-Za-z]{3}" title="Three letter code"/>
+                  <input id="AI_designator_number" type="text" size="10" placeholder="Number" name="AI_designator_number" />
+                  <input id="AI_designator_ltr" type="text" size="10" placeholder="Ltr." name="AI_designator_ltr" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label class="required">2. STRIKE TEAM/TASK FORCE</label>
+                </td>              
+              </tr>
+              <tr>
+                <td>
+                  <input id="AI_strikeTask_3_ltr" type="text" size="3" placeholder="3-Letter Id" name="AI_strikeTask_3_ltr" pattern="[A-Za-z]{3}" title="Three letter code"/>
+                  <input id="AI_strikeTask_number" type="text" size="4" placeholder="Number" name="AI_strikeTask_number" />
+                  <input id="AI_strikeTask_ltr" type="text" size="1" placeholder="Ltr." name="AI_strikeTask_ltr" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label class="required">3. INCIDENT ORDER NUMBER</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="AI_orderNumber_state" type="text" placeholder="state" size="3"  name="AI_orderNumber_state" pattern="[A-Za-z]{2}" title="Two letter state abbreviation"/>
+                  <input id="AI_orderNumber_3ltr" type="text" placeholder="3-Letter Id" size="3" name="AI_orderNumber_3ltr" pattern="[A-Za-z]{3}" title="Three letter code"/>
+                  <input id="AI_orderNumber_number" type="text" placeholder="Number" size="4" name="AI_orderNumber_number" />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label class="required">4. INCIDENT REQUEST NUMBER</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="AI_requestNumber_3ltr" type="text" placeholder="3-Letter Id" name="AI_requestNumber_3ltr" size="3" pattern="[A-Za-z]{3}" title="Three letter state abbreviation"/>
+                  <input id="AI_requestNumber_id" type="text" size="1" placeholder="Id" name="AI_requestNumber_id" />
+                  <input id="AI_requestNumber_number" type="text" size="4" placeholder="Number" name="AI_requestNumber_number" /> 
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+          <fieldset class="fieldset" id="s5">            
+            <legend class="tooltip">
+              <h2>5. Dispatch Information <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                5. DISPATCH INFORMATION: This section is for use by agencies who have an MOU/MOA/GBR or equivalent that indicate personnel are to be compensated for Portal-to-Portal
+reimbursement as well as those agencies that are to be compensated for actual hours worked. This section is noted to capture the totality of commitment. Indicate “Incident” Name
+and Reporting Location. “Mobilization Center” is an off-incident location where personnel and equipment are temporarily located pending assignment, release or reassignment.
+-Committed to Incident: Enter the date and time the resource responded to the incident, complex or mobilization center. Use 24-hour clock (military time).
+-Return from Incident: Enter date and time the resource arrived at its final destination. Use 24-hour clock (military time).
+-Redispatched: If resource was re-dispatched to another incident/mobilization center before returning to home station, indicate date/time re-dispatched, new incident name,
+end date, order and request number(s), and start a new OES F-42. Use 24-hour clock (military time).
+              </span>              
+            </legend>
+            <table  style="width:40%">
+              <tr>
+                <td>
+                  INCIDENT NAME
+                </td>
+                <td>
+                  REPORTING LOCATION
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="DI_incidentName" type="text" name="DI_incidentName" size="50"/>
+                </td>
+                <td>
+                  <input id="DI_reportingLocation" type="text" name="DI_reportingLocation" size="50"/>
+                </td>
+              </tr>
+            </table>
+            <table style="width:40%">
+              <tr>
+                <td colspan="2">
+                  COMMITTED TO INCIDENT
+                </td>              
+              </tr>
+              <tr style="background-color:lightgray;">
+                <td size="10">Date</td>
+                <td>Time</td>
+  
+              </tr>
+              <tr style="background-color:white;">
+                <td>
+                  <input id="DI_committedtoIncidentDate" type="date" name="DI_committedtoIncidentDate" size="10" onblur="saveCommittedToDate()"/>
+                </td>
+                <td>
+                  <input  id="DI_committedtoIncidentTime" type="text" name="DI_committedtoIncidentTime" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4" title="Please use HHMM 24-hour format." onblur="saveCommittedToTime()"/>
+                </td>
+              </tr>
+              <tr style="background-color: lightgray;">
+                <td colspan="2">
+                  RETURN FROM INCIDENT
+                </td>              
+              </tr>
+              <tr>
+                <td>
+                  Date
+                </td>
+                <td>
+                  Time
+                </td>
+              </tr>
+              <tr style="background-color:white;">
+                <td>
+                  <input id="DI_returnfromIncidentDate" type="date" name="DI_returnfromIncidentDate" onblur="saveRetOrDispDate('DI_returnfromIncidentDate')"/>
+                </td>
+                <td>
+                  <input id="DI_returnfromIncidentTime" type="text" name="DI_returnfromIncidentTime" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4" onblur="saveRetOrDispTime('DI_returnfromIncidentTime')"/>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  REDISPATCHED
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="DI_reDispatchedDate" type="date" name="DI_reDispatchedDate" onblur="saveRetOrDispDate('DI_reDispatchedDate')"/>
+                </td>
+                <td>
+                  <input id="DI_reDispatchedTime" type="text" name="DI_reDispatchedTime" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4" onblur="saveRetOrDispTime('DI_reDispatchedTime')"/>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">Mobilization Center Preposition</td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <input id="DI_mobilizationCenterNone" type="radio" name="DI_mobilizationCenter" value="" checked="true" style="display:none;"/>
+                  <label>
+                    <input id="DI_mobilizationCenterYes" type="radio" name="DI_mobilizationCenter" value="yes" /> Yes
+                  </label>                 
+                </td>
+              </tr>
+              <tr style="background-color:white;">
+                <td colspan="3">
+                  <label>
+                    <input id="DI_mobilizationCenterNo" type="radio" name="DI_mobilizationCenter" value="no"/> No
+                  </label>
+                  <label hidden="true"><input id="DI_mobilizationCenterNone" type="radio" name="DI_mobilizationCenter" value="none" /> None</label>                 
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <input type="button" onclick="clearOption(event,'DI_mobilizationCenterNone')" value="Clear" class="nav-button" style="background-color:red;height:20px;" />
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+
+          <fieldset class="fieldset" id="s6">            
+            <legend class="tooltip">
+              <h2>6. Dispatch From  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                6. DISPATCHED FROM: Use only incident information related to the incident you were dispatched from.<br />
+              </span>              
+            </legend>
+            <table style="width:40%">
+              <tr>
+                <td colspan="2" style="width:15%">
+                  OLD INCIDENT NAME
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="DF_incidentName" type="text" name="DF_incidentName" size="50"/>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  END DATE
+                </td>
+              </tr>
+              <tr style="background-color:white;">
+                <td>
+                  <input id="DF_endDate" type="date" name="DF_endDate"/>                
+                </td>
+                
+              </tr>
+              <tr>
+                <td style="background-color: lightgray;">
+                  <label>OLD INCIDENT ORDER NUMBER</label>
+                </td>
+              </tr>
+              <tr style="background-color: white;">
+                <td>
+                  <input id="DF_incOrderNumber_state" type="text" size="3" placeholder="State" name="DF_incOrderNumber_state"/>
+                  <input id="DF_incOrderNumber_3ltr" type="text" size="1" placeholder="ID" name="DF_incOrderNumber_3ltr"/>
+                  <input id="DF_incOrderNumber_number" type="text" size="4" placeholder="NUMBER" name="DF_incOrderNumber_number"/>
+                </td>
+              </tr>
+              <tr style="background-color: lightgray;">
+                <td>
+                  <label>OLD INCIDENT REQUEST NUMBER</label>
+                </td>
+              </tr>
+              <tr style="background-color: white;">
+                <td>
+                  <input id="DF_incReqNumber_3ltr" type="text" size="3" placeholder="3-LETTER ID" name="DF_incReqNumber_3ltr"/>
+                  <input id="DF_incReqNumber_id" type="text" size="1" placeholder="ID" name="DF_incReqNumber_id"/>
+                  <input id="DF_incReqNumber_number" type="text" size="4" placeholder="NUMBER" name="DF_incReqNumber_number"/>
+                </td>
+              </tr>
+            </table>
+          </fieldset>
+
+          <fieldset class="fieldset" id="s7">            
+            <legend class="tooltip">
+              <h2>7. Dispatch To  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                7. REDISPATCHED INFORMATION: Enter the incident name, start date, new order and request number(s) and start a new OES F-42 form with the new order information and request
+number(s). Indicate the name of the incident you were dispatched from.<br />
+              </span>              
+            </legend>
+
+            <table style="width:40%">
+              <tr>
+                <td colspan="2" style="width:15%">
+                  <label>NEW INCIDENT NAME</label>
+                </td>
+  
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <input id="DT_incidentName" type="text" name="DT_incidentName" size="50"/>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <label>START DATE</label>
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: white;">
+                  <input id="DT_startDate" type="date" name="DT_startDate"/>
+                </td>
+              </tr>
+              <tr>
+                <td><label>NEW INCIDENT ORDER NUMBER</label></td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="DT_incidentOrderNumber_state" type="text" size="3" placeholder="State" name="DT_incidentOrderNumber_state"/>
+                  <input id="DT_incidentOrderNumber_3ltr" type="text" size="1" placeholder="ID" name="DT_incidentOrderNumber_3ltr"/>
+                  <input id="DT_incidentOrderNumber_number" type="text" size="4" placeholder="NUMBER" name="DT_incidentOrderNumber_number"/>              
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label>NEW INCIDENT REQUEST NUMBER</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="DT_incidentRequestNumber_3ltr" type="text" size="2" placeholder="3-LETTER ID" name="DT_incidentRequestNumber_3ltr"/>
+                  <input id="DT_incidentRequestNumber_id" type="text" size="1" placeholder="ID" name="DT_incidentRequestNumber_id"/>
+                  <input id="DT_incidentRequestNumber_number" type="text" size="4" placeholder="NUMBER" name="DT_incidentRequestNumber_number"/>            
+                </td>
+              </tr>
+            </table>            
+          </fieldset>
+
+          <fieldset class="fieldset" id="s8">            
+            <legend class="tooltip">
+              <h2>8. Overhead <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                8. OVERHEAD INFORMATION: (Required for Overhead/ST/TFL positions). If the “Overhead Position” box is checked, enter the ICS position title. (Example: Food Unit Leader, Division
+Group Supervisor). All overhead/trainee positions except STEN(T) require a separate OES F-42 and request (“O”) number.<br />
+              </span>              
+            </legend>
+            <table style="width:50%">
+              <tr>
+                <td>
+                  <label>TYPE</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="OH_overheadType_stenTFLD" type="radio" name="OverheadType" value="STEN/TFLD" /> STEN/TFLD &nbsp;&nbsp;&nbsp;
+                  <input id="OH_overheadType_stenTTFLDT" type="radio" name="OverheadType" value="STEN(T)/TFLD(T)"/> STEN(T)/TFLD(T)&nbsp;&nbsp;&nbsp;
+                  <input id="OH_overheadType_overheadPos" type="radio" name="OverheadType" value="Overhead Position"/> Overhead Position &nbsp;&nbsp;&nbsp;
+                  <input id="OH_overheadType_overheadNone" type="radio" name="OverheadType" value="" checked="true" style="display:none;"/>
+                </td>
+              </tr>
+              <tr style="background-color:white;">
+                <td>
+                  <input type="button" id="oh_selectClear" value="Clear" class="nav-button" style="background-color:red;"/>
+                </td>
+              </tr>
+            </table>
+            
+            <div id="oh_typeICSTitleVisibility">
+              <table style="width:40%">
+                <tr>
+                  <td>
+                    <label class="required">ICS TITLE</label>
+                  </td>
+                </tr>             
+                <tr>
+                  <td>
+                    <input id="OH_icsTitle" type="search" size="45" name="OH_icsTitle"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>ICS TITLE CODE</label>
+                  </td>              
+                </tr>
+                <tr>
+                  <td>
+                    <input id="OH_icsTitleCode" type="search" size="45" name="OH_icsTitleCode"/>
+                  </td>              
+                </tr>
+                <tr>
+                  <td>
+                    <label>ICS TITLE DESCRIPTION</label>
+                  </td>              
+                </tr>
+                <tr>
+                  <td>
+                    <input id="OH_icsTitleDesc" type="search" size="45" name="OH_icsTitleDesc"/>
+                  </td>              
+                </tr>
+                <tr>
+                  <td>
+                    <label>OTHER TITLE</label>
+                  </td>              
+                </tr>
+                <tr>
+                  <td>
+                    <input id="OH_otherICStitle" type="search" size="45" name="OH_otherICStitle"/>
+                  </td>              
+                </tr>
+              </table>
+            </div>            
+          </fieldset>
+
+          <fieldset class="fieldset" id="s9">
+            <legend class="tooltip">
+              <h2>9. Support Vehicle Information   <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                9. SUPPORT VEHICLE: To be completed by Leader/Overhead/Support personnel that require the use of a support vehicle at the incident. Reimbursement payment is based on the
+                vehicle type and who owns the vehicle. Ensure that the appropriate box for your vehicle type is checked and record the License number. (If the license # is not available, use the VIN
+                or Serial #). Rental vehicles and associated fuel will be reimbursed for actual cost. Receipts must be submitted to OES with a completed and signed “Travel Expense Claim
+                Reimbursement Log” (F-142A), and Resource Order Form of approved rental. If you were assigned from one incident to another, each respective ordering incident will need to
+                validate and approve the rental vehicle costs noted above, with each cost broken out by incident. Do not submit all associated cost to one incident if multiple assignments are
+                involved.<br />
+              </span>              
+            </legend>            
+            <table style="width:60%">
+              <tr>
+                <td>
+                  <label>VEHICLE OWNERSHIP</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="SV_vehicleOwnership_agency" type="radio" name="VehicleOwnerShip" value="agency" /> Agency &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleOwnership_pov" type="radio" name="VehicleOwnerShip" value="pov"/> POV &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleOwnership_rental" type="radio" name="VehicleOwnerShip" value="rental"/> Rental &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleOwnership_cdfoes" type="radio" name="VehicleOwnerShip" value="cdf/oes"/> CDF/OES   
+                  <input id="SV_vehicleOwnership_none" type="radio" name="VehicleOwnerShip" value="" checked="true" style="display:none;"/>
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color: white;">
+                  <input type="button" onclick="clearOption(event,'SV_vehicleOwnership_none')" value="Clear" class="nav-button" style="background-color:red;height:20px;" />
+                </td>
+              </tr>
+              <tr></tr>
+              <tr id='vt_licenselabel'>
+                <td><label>LICENSE NUMBER</label><br/></td>
+              </tr>
+              <tr  id='vt_licensenumber'>
+                <td>
+                  <input id="SV_licenseplateNumber" type="text" name="SV_licenseplateNumber"/>
+                </td>
+              </tr>              
+              <tr class="vt_visibility" id='vt_visibility1'>
+                <td>
+                  VEHICLE TYPE
+                </td>            
+              </tr>
+              <tr class="vt_visibility" id='vt_visibility2'>
+                <td>
+                  <input id="SV_vehicleType_sedan" type="radio" name="VehicleType" value="sedan" /> Sedan &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleType_suv" type="radio" name="VehicleType" value="suv"/> SUV &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleType_van" type="radio" name="VehicleType" value="van"/> Van &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleType_pickuphalf" type="radio" name="VehicleType" value="Pick-Up (1/2 Ton)"/> Pick-Up (1/2 Ton) &nbsp;&nbsp;&nbsp;
+                  <input id="SV_vehicleType_pickup3q" type="radio" name="VehicleType" value="Pick-Up (3/4 Ton &amp; Above)"/> Pick-Up (3/4 Ton &amp; Above) 
+                  <input id="SV_vehicleType_none" type="radio" name="VehicleType" value="" checked="true" style="display:none;"/>
+                </td> 
+              </tr>
+              <tr class="vt_visibility"  id='vt_visibility3'>
+                <td style="background-color: white;">
+                  <input type="button" onclick="clearOption(event,'SV_vehicleType_none')" value="Clear" class="nav-button" style="background-color:red;height:20px;" />
+                </td>
+              </tr>                            
+            </table>            
+          </fieldset>
+
+          <div id="POV_Visibility">       
+            <fieldset class="fieldset" id="s10">
+              <legend class="tooltip">
+                <h2>10. Privately Owned Vehicle  <label data-letters="i"></label></h2>
+                <span class="tooltiptext">
+                  10. PRIVATELY-OWNED VEHICLE INFORMATION (POV): Enter the beginning odometer reading at the time of commitment, and the ending odometer reading at the time of return or
+                  redispatch from the incident. Enter the total miles traveled for each respective incident assigned. Enter POV license number in Section 9. Payment is based on mileage. Do not submit
+                  receipts for fuel as the POV mileage rate includes a fuel component.<br />
+                </span>              
+              </legend>
+              <div id="pov_table" >
+                <table style="width:40%; display:block;">
+                  <tr>
+                    <td>
+                      <label>BEGINNING ODOMETER</label>              
+                    </td>
+                    <td>
+                      <label>ENDING ODOMETER</label>              
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input id="PO_odometerStart" type="text" name="PO_odometerStart" onblur="calculateMiles()" value=''/>
+                    </td>
+                    <td>
+                      <input id="PO_odometerEnd" type="text"  name="PO_odometerEnd" onblur="calculateMiles()" value=''/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label>TOTAL MILES</label>              
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input id="PO_totalMiles" type="text"  name="PO_totalMiles"/>
+                    </td>
+                  </tr>
+                </table>
+              </div>                
+            </fieldset>
+          </div>
+
+          <fieldset class="fieldset" id="s11">
+            <legend class="tooltip">
+              <h2>11. Equipment Resource Information  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                11. EQUIPMENT RESOURCE INFORMATION: Complete all the information requested. Use the Field Operations Guide (FOG) ICS 420-1, Chapter 11, for reference as to the typing of
+                Engines/Rescue/Equipment. Not all equipment will have a license plate number, therefore a VIN, or if no VIN, a serial number will be required on equipment without a plate number.<br />
+              </span>              
+            </legend>             
+            <table style="width:45%">
+                <tr>
+                    <td style="text-align: left;">APPARATUS</td>
+                    <td style="text-align: left;"><label>TYPE</label> </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="ER_apparatus" type="search" name="ER_apparatus"/>
+                  </td>
+                  <td colspan="6">
+                    <label><input id="ER_type_1" type="radio" name="ER_type" value="1" /> 1</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_2" type="radio" name="ER_type" value="2"/> 2</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_3" type="radio" name="ER_type" value="3"/> 3</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_4" type="radio" name="ER_type" value="4"/> 4</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_5" type="radio" name="ER_type" value="5"/> 5</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_6" type="radio" name="ER_type" value="6"/> 6</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_7" type="radio" name="ER_type" value="7"/> 7</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_wt1" type="radio" name="ER_type" value="WT-1"/> WT-1</label>&nbsp;&nbsp;
+                    <label><input id="ER_type_wt2" type="radio" name="ER_type" value="WT-2"/> WT-2</label>
+                    <input id="ER_type_none" type="radio" name="ER_type" value="" checked="true" style="display:none;"/>                    
+                  </td>
+                  <td><input type="button" onclick="clearOption(event,'ER_type_none')" value="Clear" class="nav-button" style="background-color:red;height:20px;" /></td>       
+                </tr>
+                <tr>
+                  <td>
+                    <label>UNIT NUMBER</label>                      
+                  </td>
+                  <td colspan="4">
+                    <label>LICENSE NUMBER</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label>CDF/OES VEHICLES</label>
+                  </td>
+                  <td>                      
+                    
+                  </td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="ER_unitNumber" type="text" />                      
+                  </td>
+                  <td colspan="6">
+                    <input id="ER_licenseNumber" type="text" name="licenseNumber" size="20"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label><input id="ER_cdfOesVehicleYes" type="radio" name="ER_cdfOesVehicle" value="yes" /> Yes</label> 
+                    <label><input id="ER_cdfOesVehicleNo" type="radio" name="ER_cdfOesVehicle" value="no"/> No</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="ER_cdfOesVehicleNone" type="radio" name="ER_cdfOesVehicle" value="" checked="true" style="display:none;"/>
+                    <input type="button" onclick="clearOption(event,'ER_cdfOesVehicleNone')" value="Clear" class="nav-button" style="background-color:red;height:20px;" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>FEMA CODE</td>
+                  <td>SPECIAL EQUIPMENT</td> 
+                  <td>EQUIPMENT TYPE</td>
+                  <td>DESCRIPTION</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td><input id="ER_femaCode" type="search" name="ER_femaCode"/></td>
+                  <td>
+                    <input id="ER_agencySpecialEquipment" type="search" name="ER_agencySpecialEquipment" />                    
+                  </td>
+                  <td>
+                    <input id="ER_equipmentType" type="search" name="ER_equipmentType" />
+                  </td>         
+                  <td colspan="4"><input id="ER_equipmentDesc" type="search" name="ER_equipmentDesc"/></td>
+                </tr>
+            </table>
+          </fieldset>
+
+          <fieldset class="fieldset" id="s12">
+            <legend class="tooltip">
+              <h2>12 - 13. Personnel Information  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                12. PERSONNEL INFORMATION: Enter the number of personnel claimed. List the name and rank of all personnel, including the last 4 digits of their social security number (SSN). Identify
+                CDF personnel or Paid Call Fire Fighter (PCF) by checking the appropriate box in the associated column.
+                -Personnel Replacement/Rotation: When either an individual or entire company is rotated/replaced, indicate name, rank, and the last 4 digits SSN. Be sure to indicate the date/time of
+                rotation in Box 14. “Approved” personnel rotation MUST follow the procedures outlined in Exhibit “C” of the California Fire Assistance Agreement (CFAA) if reimbursement is requested for
+                the vehicle used during the rotation.<br />
+                13. PERSONNEL INFORMATION – ACTUAL HOURS: To be completed by overhead and/or apparatus personnel who DO NOT have an MOU/MOA/GBR or equivalent for Portal-to-Portal
+                reimbursement, and will be compensated at actual hours worked. Actual hour personnel must complete and document each date worked indicating the start and end time for
+                each day.<br />
+              </span>              
+            </legend>              
+            <table style="width:55%">
+              <tr>
+                  <td>
+                    <label class="required">
+                      NUMBER OF PERSONNEL ON APPARATUS
+                    </label>                    
+                  </td>
+                  <td>DOCUMENTATION ONLY</td>
+              </tr>
+              <tr>
+                  <td>
+                    <input id="PI_numberOfPersonnelOnApparatus" type="text" name="PI_numberOfPersonnelOnApparatus"/>
+                  </td>
+                  <td>
+                    <label>
+                      <input id="PI_documentationOnlyYes" type="radio" name="PI_documentationOnly" value="yes"/> Yes
+                    </label>
+                    <label>
+                      <input id="PI_documentationOnlyNo" type="radio" name="PI_documentationOnly" value="no" /> No
+                    </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input id="PI_documentationOnlyNone" type="radio" name="PI_documentationOnly" value="" checked="true" style="display:none;"/>
+                    <input type="button" onclick="clearOption(event,'PI_documentationOnlyNone')" value="Clear" class="nav-button" style="background-color:red;height:20px;"/>
+                  </td>
+              </tr>
+              <tr>
+                <td></td>
+              </tr>
+              <tr>
+                  <td colspan="2">PERSONNEL INFORMATION</td>                  
+              </tr>
+              <tr>
+                <table id="personnelTable" style="width:55%">
+                  <tr>
+                      <th style="text-align:left">Name (Last, First)</th>
+                      <th style="text-align:left">MACS ID</th>
+                      <th style="text-align:left">Rank or Job Title</th>
+                      <th style="text-align:left">Last 4 SSN #</th>
+                      <th style="text-align:left" colspan="2">Start</th>
+                      <th style="text-align:left" colspan="2">End</th>
+                      <th style="text-align:left">CDF</th>
+                      <th style="text-align:left">PTP</th>
+                  </tr>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input id="PI_name" name="pi_name[]" type="text" value=""/> 
+                    </td>
+                    <td>
+                      <input id="PI_macsId" name="PI_macsId[]" type="text" value="" size="4"/> 
+                    </td>
+                    <td>
+                      <input id="PI_rankTitle" name="pi_rankTitle[]" type="text" value=""/>
+                    </td>
+                    <td>
+                      <input id="PI_last4ssn" name="pi_last4ssn[]" type="text" value="" size="4"/>
+                    </td>
+                    <td>
+                      <input id="PI_startDate" name="pi_startDate" type="date" value="" size="8"/>
+                    </td>
+                    <td>
+                      <input id="PI_startTime" name="pi_startTime" type="text" value="" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/>
+                    </td>
+                    <td>
+                      <input id="PI_endDate" name="pi_endDate" type="date" size="8"/>
+                    </td>
+                    <td>
+                      <input id="PI_endTime" name="pi_endTime" type="text" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/>
+                    </td>
+                    <td>
+                      <input id="PI_cdf" name="pi_cdf" type="checkbox" size="2"/>
+                    </td>
+                    <td>
+                      <input id="PI_base" name="pi_base" type="checkbox" size="2"/>
+                    </td>
+                    <td>
+                      <input type="button" value="Delete" onclick="delete_PI_Row(this)" class="nav-button" style="background-color:red;"/>
+                    </td>   
+                  </tr>
+                </table>
+                <input type="button" id="more_fields" onclick="addPersonnel();" value="Add" class="nav-button"/>
+              </tr>
+              <br />
+              <br />
+              <tr>
+                  <th>
+                      ACTUAL HOURS
+                  </th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+              </tr>
+              <tr>
+                <table id="PI_actualHoursTable" style="width:40%">
+                  <tr>
+                    <th style="text-align:left">
+                      Date
+                  </th>
+                  <th style="text-align:left">
+                    Start
+                  </th>
+                  <th style="text-align:left">
+                    End
+                  </th>
+                  <th style="text-align:left">Hours</th>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <input id="PI_actualHours_startdate" name="pi_actualhours[]" type="date" value=""/>                       
+                    </td>
+                    <td>
+                      <input id="PI_actualHours_starttime" name="pi_actualhours[]" type="text" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" value="" placeholder="HHMM" maxlength="4" size="4"/>                      
+                    </td>
+                    <td>
+                      <input id="PI_actualHours_endtime" name="pi_actualhours[]" type="text" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" value="" onBlur="calculateHours(this)" placeholder="HHMM" maxlength="4" size="4"/>                      
+                    </td>
+                    <td>
+                      <input id="PI_actualHours_hours" name="pi_actualhours[]" type="text" value="0.00"/>                      
+                    </td>
+                    <td>
+                      <input type="button" value="Delete" onclick="delete_AH_Row(this)" class="nav-button" style="background-color:red;"/>
+                    </td> 
+                  </tr>
+                  <tr>
+                    <td>TOTAL</td>
+                    <td></td>
+                    <td></td>
+                    <td id="totalHours"></td>
+                  </tr>
+                </table>
+                <input type="button" id="more_hours" onclick="addActualHours();" value="Add" class="nav-button" />
+              </tr>
+            </table>    
+          </fieldset>
+
+          <fieldset class="fieldset"  id="s14">
+            <legend class="tooltip">
+              <h2>14. Comments  <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                14. COMMENTS: Use this section to provide pertinent information about your assignment and/or resources such as equipment breakdowns, personnel change/rotation, damage/loss,
+                division assignments, etc. If additional comment space is required, indicate on “Unit/Activity Log” (ICS-214) and attach.<br />
+              </span>              
+            </legend> 
+            <table id="commentTable" style="width:40%">
+              <tbody>
+                <tr>
+                  <th style="text-align:left" colspan="2">Date/Time</th>
+                  <th style="text-align:left">Comment</th>
+                </tr>
+                <tr>
+                  <th style="text-align:left">Date</th>
+                  <th style="text-align:left">Time</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="C_commentDate" name="C_comment[]" type="date" value=""/>                    
+                  </td>
+                  <td>
+                    <input id="C_commentTime" name="C_comment[]" type="text" value="" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/>
+                  </td>
+                  <td>
+                    <input id="C_comment" name="C_comment[]" type="text" value="" size="50"/>                    
+                  </td>
+                  <td>
+                    <input type="button" value="Delete" onclick="delete_Comment_Row(this)" class="nav-button" style="background-color:red;"/>
+                  </td> 
+                </tr>
+              </tbody>            
+            </table>
+            <input type="button" id="more_hours" onclick="addComment();" value="Add" class="nav-button" />
+          </fieldset>
+
+          <fieldset class="fieldset" id="s16">
+            <legend class="tooltip">
+              <h2>15-16. Supply Number Loss / Damage   <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                15. LOSS/DAMAGE: If you field any loss or damage paperwork with the incident, check “Yes” and attach all relative paperwork that may be needed for
+                documentation/reimbursement, and a completed and signed “Travel Expense Claim Reimbursement Log” (F-142-A) if it applies and follows Exhibit H requirements, otherwise, check
+                “No”.<br />
+                16. SUPPLY NUMBER: If you obtained a Supply (“S”) Number(s), indicate the number(s) and attach all required documentation, such as “General Message” form (ICS 213) signed by
+                either the Incident Commander, Finance Section Chief or Incident Business Advisor before demobilization. The “General Message” form (ICS 213), all receipts, and any other relative
+                information must be submitted to OES with a completed and signed “Travel Expense Claim Reimbursement Log” (F-142A) if it applies, following Exhibit H requirements.<br />
+              </span>
+            </legend> 
+            <table style="width:40%">
+              <tbody>
+                <tr>
+                  <td>Loss/Damage Claim</td>                  
+                </tr>
+                <tr>
+                  <td> 
+                    <label><input id="LD_claim_yes" type="radio" name="LD_claim" value="yes"/> YES</label>
+                    <label><input id="LD_claim_no" type="radio" name="LD_claim" value="no" /> NO</label> &nbsp;&nbsp;&nbsp;
+                    <input type="button" onclick="clearOption(event,'LD_claim_none')" value="Clear"  class="nav-button" style="background-color:red;height:20px;"/>
+                    <input id="LD_claim_none" type="radio" name="LD_claim" value="" checked="true" style="display:none;"/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Supply Number</td>
+                </tr>
+                <tr>
+                  <td><input id="SN_supplyNumber" type="text"  name="SN_supplyNumber"/></td>
+                </tr>
+              </tbody>
+            </table>    
+          </fieldset>
+
+          <fieldset class="fieldset" id="s17">
+            <legend class="tooltip">
+              <h2>17. Responding Agency Information   <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                17. RESPONDING AGENCY INFORMATION: To be completed by the department/agency resource responding. Check the appropriate box if you are a Department of Defense (DoD).
+                Include YOUR contact phone number in case you need to be contacted for further information and/or questions. DO NOT PROVIDE YOUR ADMINISTRATIVE OFFICE PHONE NUMBER.<br />
+              </span>
+            </legend>             
+            <table style="width:40%">
+              <tbody>
+                <tr>
+                  <td>
+                    <label class="required">
+                      Agency Name
+                    </label>                   
+                  </td>
+                </tr>
+              <tr>
+                <td>
+                  <input id="RA_agencyName" type="text" name="RA_agencyName" size="50"/>
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                    <label class="required">
+                      Your Name
+                    </label>                    
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="RA_yourName" type="text" name="RA_yourName" size="50"/>
+                </td>
+              </tr>
+              <tr>
+                  <td>
+                    <label class="required">Your Title</label>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="RA_yourTitle" type="text" name="RA_yourTitle"  size="50"/>
+                </td>
+              </tr>
+              <tr>
+                  <td><label class="required">Phone Number</label></td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="RA_yourPhone" type="tel" name="RA_yourPhone" pattern="\(\d{3}\)[ ]?\d{3}[ ][-][ ]?\d{4}" placeholder="(123) 345-7890" onblur="formatPhoneNumber(this)"/>
+                </td>
+              </tr>
+              <tr>
+                <td>Signature of Responding Agency Personnel &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="clearSignature" onclick="clearCanvasRA(event);" class="nav-button" style="background-color:white;">Reset</button></td>              
+              </tr>
+              <tr>
+                <td>
+                  <canvas id="RA_signatureCanvas" width="900" height="150" name="RA_signatureCanvas" style="touch-action:none;border:black solid 2px;">
+                  </canvas>
+                </td>
+              </tr>
+            </tbody></table>    
+          </fieldset>
+
+          <fieldset class="fieldset" id="s18">
+            <legend class="tooltip">
+              <h2>18. Incident Information - Paying Agency   <label data-letters="i"></label></h2>
+              <span class="tooltiptext">
+                18. INCIDENT INFORMATION: To be completed by the designated incident personnel. Check appropriate box for jurisdiction of fire.
+                ALL F-42’s MUST BE SIGNED BY THE DESIGNATED INCIDENT PERSONNEL AND BY THE ON-SCENE CAL OES AGENCY REPRESENTATIVE (IF ASSIGNED)<br />
+              </span>
+            </legend>             
+            <table style="width:40%">
+              <tr>
+                <th>
+                  <label class="required">
+                    Paying Agency
+                  </label>                  
+                </th>                
+              </tr>
+              <tr>
+                <td>
+                  <label><input id="PA_oes" type="radio" name="payingEntity" value="oes" /> OES</label> &nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_cdf" type="radio" name="payingEntity" value="cdf"/> CDF</label> &nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_usfs" type="radio" name="payingEntity" value="usfs"/> USFS</label>&nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_blm" type="radio" name="payingEntity" value="blm"/> BLM</label>&nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_nps" type="radio" name="payingEntity" value="nps"/> NPS</label>&nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_bia" type="radio" name="payingEntity" value="bia"/ > BIA</label>&nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_fws" type="radio" name="payingEntity" value="fws"/> FWS</label>&nbsp; &nbsp; &nbsp;
+                  <label><input id="PA_lramma" type="radio" name="payingEntity" value="lra/mma"/> LRA/MMA</label>&nbsp; &nbsp; &nbsp;             
+                  <input id="PA_none" type="radio" name="payingEntity" value="none" checked="true" style="display:none;"/>
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color:white;">
+                  <label for="other"><input id="PA_Other" type="radio" name="payingEntity" value="other"/> Other </label><input id="PA_payingAgencyOther" name="other" type="text" size="50" />
+                  <!-- <input id="PA_none" type="radio" name="payingEntity" value="none" hidden="true" /> -->
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="button" onclick="clearOption(event,'PA_none')" value="Clear" class="nav-button" style="background-color:red;height:20px;"/>
+                </td>
+              </tr>
+              <tr>
+                <td style="background-color:lightgray;">
+                  <label class="required">
+                    Signature of Authorized Paying Entity Personnel 
+                  </label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button id="clearSignature" onclick="clearCanvas(event);" class="nav-button" style="background-color:white;">
+                    Reset
+                  </button></td>              
+                
+              </tr>
+              <tr style="background-color:white">
+                <td>
+                  <canvas id="signatureCanvas" width="900" height="150" name="signatureCanvas" style="touch-action:none;border:black solid 2px;">
+  
+                  </canvas>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label class="required">
+                    Printed Name
+                  </label>                  
+                </td>                
+              </tr>
+              <tr>
+                <td style="background-color:white;">
+                  <input id="PA_printedName" type="text" size="50"  name="PA_printedName"/>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>
+                  <label class="required">
+                    ICS Position / Title
+                  </label>                  
+                </td>                
+              </tr>
+              <tr>
+                <td style="background-color:white;">
+                  <input id="PA_icsPosition" type="text" size="50" name="PA_icsPosition"/>
+                </td>
+              </tr>
+  
+              <tr>
+                <td>
+                  Cal OES Representative <em>(if assigned)</em>
+                </td>                
+              </tr>
+              <tr>
+                <td style="background-color:white;">
+                  <input id="PA_caloesRep" type="text" size="50" name="PA_caloesRep" />
+                </td>
+              </tr>
+              <tr>
+                <td>Date</td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="PA_dateSigned" type="date" size="50" name="PA_dateSigned" />
+                </td>                
+              </tr>
+            </table>
+          </fieldset>
+
+          <table class="fieldset">
+            <tr>
+              <td>
+                <label>
+                  <input id="confirmSave" type="checkbox" value="false" onclick="checkToConfirmSave()"/>             
+                  NOTE: F42 will be submitted offline and saved on local device or laptop.  Once connection is available, you must login from this device, retrieve this F42(s) manually on home screen, and sync each to submit online.  Once submitted you will not be able to make updates. If you have any corrections after submission please contact Cal OES at CFAAreimbursement@caloes.ca.gov or the Fire and Rescue Main Line at (916) 845-8711.  When you select submit online, a copy of your F-42 will be electronically routed to Cal OES and your agency.
+                </label>
+                
+              </td>            
+            </tr>
+          </table>          
+          <br />
+          <input type="button" value="Save As Draft" id="btnSaveF42" onclick="saveData(event)" class="nav-button"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="submit" value="Submit Offline" id="btnSubmit" onclick="submitOfflineData(event)" disabled="true" class="nav-button" style="background-color:lime;"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="button" value="New Offline F42" id="btnCreateNewF42" onclick="createNewF42(event)" class="nav-button" style="background-color:white;"/>          
+        </div>
+        <div class="row" id="validationerrors">
+          <button type="button" class="collapsible" onclick="validateF42(event)">Show Validation Errors</button>
+          <div class="content">
+            <p id="validationErrorWarningInfo" style="color:red;">
+              No error found
+            </p>
+          </div>
+        </div>
+      </div>
+      </form>
+      <script>
+        // indexedDB information
+        var idbName='MARSF42DATAENTRY';
+        var idbVersion=1;
+        var store='f42dataStore';      
+        var formHasError=true;
+        var Id=[];        
+        if (!window.indexedDB) {
+          alert('IndexedDB is not supported in this browser, please try another such as Chrome.');
+        }
+
+        function disableByF42Status(f42Status='draft'){
+          var disable=true;
+          if (f42Status=='draft') {
+            disable=false;
+          }
+          var fieldSets=document.getElementsByClassName('fieldset');
+          for(var i=0;i<fieldSets.length;i++){
+            fieldSets[i].disabled=disable;
+          }
+          alert('F42 loaded successfully.');
+        }
+
+        function setSelectedmacsID() {
+          var macsId =document.getElementById("AI_macsId").value;
+          var piTable=document.getElementById("personnelTable");
+
+          for (i=2;i<piTable.rows.length;i++) {  
+            piTable.rows[i].cells[1].children[0].value=macsId;                               
+          }  
+        }
+
+        function saveCommittedToDate(){
+          var committedToDate=document.getElementById('DI_committedtoIncidentDate').value;
+          setPersonnelInfoDateTime(4,committedToDate);
+        }
+
+        function saveCommittedToTime(){
+          var committedToTime=document.getElementById('DI_committedtoIncidentTime').value;
+          setPersonnelInfoDateTime(5,committedToTime);
+        }
+
+        function saveRetOrDispDate(rdControl){
+          var saveValue=document.getElementById(rdControl).value;
+          if (saveRetOrDispDate!=''){
+            setPersonnelInfoDateTime(6,saveValue);
+          }                                      
+        }
+
+        function saveRetOrDispTime(rdControl){
+          var saveValue=document.getElementById(rdControl).value; 
+          if (saveValue!='') {
+            setPersonnelInfoDateTime(7,saveValue);
+          }                   
+        }
+
+        function setPersonnelInfoDateTime(ndx,dtParam){          
+          var macsId =document.getElementById("AI_macsId").value;
+          var piTable=document.getElementById("personnelTable");
+          
+          for (i=2;i<piTable.rows.length;i++) {  
+            piTable.rows[i].cells[1].children[0].value=macsId;
+            piTable.rows[i].cells[ndx].children[0].value=dtParam;
+                   
+          }        
+        }
+
+        //collapsible instructions
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight){
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+          });
+        }
+
+        var f42objList=[];
+
+        // Signature flags
+        var formSigned=false;       
+        var raSigned=false;
+        var iipaSigned=false;
+        
+        window.onload=function() {
+          var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+          oh_title_vis.style.visibility="hidden";
+          
+          var pov_vis=document.getElementById("POV_Visibility");
+          pov_vis.style.visibility="hidden";          
+          
+        }
+
+        function formatPhoneNumber(obj){
+          var numbers = obj.value.replace(/\D/g, ''), char = {0:'(',3:') ',6:' - '};
+          obj.value = '';
+          for (var i = 0; i < numbers.length; i++) {
+              obj.value += (char[i]||'') + numbers[i];
+          }
+        }
+
+        function deleteF42(r){
+          if(!confirm("Choose OK to delete this Offline F42.")) {            
+            return;
+          }
+
+          var i = r.parentNode.parentNode.rowIndex;
+
+          var f42Key=document.getElementById("f42oldata").rows[i].cells[0].innerText ;
+          f42Key=parseInt(f42Key);
+
+          document.getElementById("f42oldata").deleteRow(i);
+        
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+          dbR.onerror = (event) => {
+              console.error('Database error from online page :' + event.target.errorCode);
+          };
+        
+          dbR.onsuccess = (event) => {
+            const db = event.target.result;
+            const txn = db.transaction('f42dataStore', "readwrite");
+            const objectStore = txn.objectStore('f42dataStore');
+
+            var delReq=objectStore.delete(f42Key);
+
+            delReq.onerror=(e)=>{
+              alert('delete error: '+e.target.errorCode);
+            }
+
+            delReq.onsuccess=(e)=>{
+              alert('successfully deleted.  Key is '+f42Key+'.');
+            }
+
+            txn.oncomplete = function () {
+              db.close();
+            }
+          }
+        }
+
+        function showOfflineData(f42list){
+          document.getElementById('f42offlinelist')        
+          .innerHTML=`<table id="f42oldata" style="width:100%">
+              <th>Id/Key</th>
+              <th>Incident Request Number</th>
+              <th>MACS</th>
+              <th>Agency Name</th>
+              <th>Designator</th>
+              <th>Strike/Force</th>
+              <th>Responding Agency Signed By</th>
+              <th>Status</th>
+              <th></th>
+          </table>`;
+          
+          for(var i=0;i<f42list.length;i++){
+            if (f42list[i].F42_Status=='submitted offline'){
+              document.getElementById("f42oldata")
+              .insertRow(-1)
+              .innerHTML='<tr><td onclick="loadAOfflineF42FromIDB(event,this)" title="Click to load."><a href="">'+f42list[i].Id+'</a></td><td>'+f42list[i].incidentrequestsnumber+'</td><td>'+f42list[i].AI_macsId+'</td><td>'+f42list[i].AI_agencyName+'</td><td>'+f42list[i].designator+'</td><td>'+f42list[i].strikeTeam+'</td><td>'+f42list[i].PA_printedName+'</td><td>'+f42list[i].F42_Status+'</td><td></td></tr>';
+            }else {
+              document.getElementById("f42oldata")
+              .insertRow(-1)
+              .innerHTML='<tr><td onclick="loadAOfflineF42FromIDB(event,this)" title="Click to load."><a href="">'+f42list[i].Id+'</a></td><td>'+f42list[i].incidentrequestsnumber+'</td><td>'+f42list[i].AI_macsId+'</td><td>'+f42list[i].AI_agencyName+'</td><td>'+f42list[i].designator+'</td><td>'+f42list[i].strikeTeam+'</td><td>'+f42list[i].PA_printedName+'</td><td>'+f42list[i].F42_Status+'</td><td><input type="button" onclick="deleteF42(this)" value="Delete" class="nav-button" style="background-color:red;"/></td></tr>';
+            }
+          }
+        }
+        
+        function retrieveF42s(event) {
+          event.preventDefault();
+          var olTable=document.getElementById('f42oldata');
+          var parentElementHasTable=document.getElementById('f42offlinelist').contains(olTable);
+          if (parentElementHasTable==true) {
+            document.getElementById('f42offlinelist').innerHTML='';
+            return;
+          }
+          
+          //alert('Retrieve offline 42s');
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+
+          var OfflineData = [];
+
+          dbR.onupgradeneeded=(event)=>{
+            var db=event.target.result;
+            var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          dbR.onerror = (event) => {
+              console.error('Database error from online page :' + event.target.errorCode);
+          };
+
+          dbR.onsuccess = (event) => {
+            const db = event.target.result;
+            const txn = db.transaction('f42dataStore', "readwrite");
+            const objectStore = txn.objectStore('f42dataStore');
+            objectStore.openCursor().onsuccess = (event) => {
+              let cursor = event.target.result;
+
+                if (cursor) {
+                  let f42data = cursor.value;
+                  console.log(f42data);
+                  let f42datasend = f42data;
+
+                  let offlineRecord = {
+                    key: f42datasend.key,
+                    AI_macsId:f42datasend.AI_macsId,
+                    AI_agencyName: f42datasend.AI_agencyName,
+                    Id: f42datasend.Id,
+                    RA_agencyName:f42datasend.RA_agencyName,
+                    designator: f42datasend.designator ,
+                    strikeTeam:f42datasend.strikeTeam,
+                    reportinglocation: f42datasend.DI_reportingLocation,
+                    incidentrequestsnumber: f42datasend.incidentRequestNumber,
+                    PA_printedName:f42datasend.PA_printedName,
+                    F42_Status:f42datasend.F42_Status
+                  };
+                    
+                  OfflineData.push(offlineRecord);
+                  cursor.continue();
+                }
+              };
+              // close the database connection
+              txn.oncomplete = function () {                                
+                if(OfflineData.length == 0)
+                {
+                  console.log('No Offline Data');
+                  showOfflineData('');
+                  alert('No Local Offline Data Found!');
+                }
+                else
+                {
+                  showOfflineData(OfflineData) ;
+                }
+                db.close();
+              };
+          };
+        }
+        
+        function clearOption(event, controlName){
+          event.preventDefault();
+          document.getElementById(controlName).checked=true;
+
+          if (controlName=='SV_vehicleOwnership_none') {            
+            var pov_vis=document.getElementById("POV_Visibility");
+            pov_vis.style.visibility="hidden";
+
+
+            document.getElementById('vt_visibility1').style.display='';
+            document.getElementById('vt_visibility2').style.display='';
+            document.getElementById('vt_visibility3').style.display='';
+
+            document.getElementById('vt_licensenumber').style.display='';
+            document.getElementById('vt_licenselabel').style.display='';
+          }
+
+          if (controlName=='PA_none') {
+            document.getElementById("PA_payingAgencyOther").value='';            
+          }
+        }
+
+        function calculateMiles(){
+
+            PO_odometerStart=document.getElementById("PO_odometerStart").value;
+            PO_odometerEnd=document.getElementById("PO_odometerEnd").value;
+            if (PO_odometerStart=='' || PO_odometerEnd=='') {
+              return;
+            }
+            document.getElementById("PO_totalMiles").value=parseInt(PO_odometerEnd)-parseInt(PO_odometerStart);
+        }
+
+        // Overhead hide and show
+        document.getElementById("OH_overheadType_overheadPos").addEventListener("click",function(){
+          var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+          oh_title_vis.style.visibility="visible";
+        });
+
+        document.getElementById("OH_overheadType_stenTTFLDT").addEventListener("click",function(){
+          var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+          oh_title_vis.style.visibility="hidden";
+        });
+
+        document.getElementById("OH_overheadType_stenTFLD").addEventListener("click",function(){
+          var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+          oh_title_vis.style.visibility="hidden";
+        });
+     
+        document.getElementById("SV_vehicleOwnership_pov").addEventListener("click",function(){
+          var pov_vis=document.getElementById("POV_Visibility");
+          pov_vis.style.visibility="visible";
+
+          //document.getElementsByClassName("vt_visibility").style.display='none';
+          document.getElementById('vt_visibility1').style.display='none';
+          document.getElementById('vt_visibility2').style.display='none';
+          document.getElementById('vt_visibility3').style.display='none';
+          
+          document.getElementById('vt_licensenumber').style.display='';
+          document.getElementById('vt_licenselabel').style.display='';
+        });
+
+        document.getElementById("SV_vehicleOwnership_agency").addEventListener("click",function(){          
+          var pov_vis=document.getElementById("POV_Visibility");
+          pov_vis.style.visibility="hidden";          
+
+          //var vt_visi=document.getElementsByClassName("vt_visibility").style.display='';
+          document.getElementById('vt_visibility1').style.display='';
+          document.getElementById('vt_visibility2').style.display='';
+          document.getElementById('vt_visibility3').style.display='';
+
+          document.getElementById('vt_licensenumber').style.display='';
+          document.getElementById('vt_licenselabel').style.display='';
+        });
+
+        document.getElementById("SV_vehicleOwnership_rental").addEventListener("click",function(){          
+          var pov_vis=document.getElementById("POV_Visibility");
+          pov_vis.style.visibility="hidden";          
+
+          //var vt_visi=document.getElementsByClassName("vt_visibility").style.display='';
+          document.getElementById('vt_visibility1').style.display='none';
+          document.getElementById('vt_visibility2').style.display='none';
+          document.getElementById('vt_visibility3').style.display='none';
+
+          document.getElementById('vt_licensenumber').style.display='none';
+          document.getElementById('vt_licenselabel').style.display='none';
+        });
+
+        document.getElementById("SV_vehicleOwnership_cdfoes").addEventListener("click",function(){          
+          var pov_vis=document.getElementById("POV_Visibility");
+          pov_vis.style.visibility="hidden";
+
+          //var vt_visi=document.getElementsByClassName("vt_visibility").style.display='';
+          document.getElementById('vt_visibility1').style.display='';
+          document.getElementById('vt_visibility2').style.display='';
+          document.getElementById('vt_visibility3').style.display='';
+
+          document.getElementById('vt_licensenumber').style.display='';
+          document.getElementById('vt_licenselabel').style.display='';
+        });
+
+        
+        document.getElementById("oh_selectClear").addEventListener("click",function(){
+          var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+          oh_title_vis.style.visibility="hidden";
+
+          var oh_selectNone=document.getElementById("OH_overheadType_overheadNone");
+          oh_selectNone.checked=true;
+
+          //var vt_visi=document.getElementsByClassName("vt_visibility").style.display='';
+          // document.getElementById('vt_visibility1').style.display='';
+          // document.getElementById('vt_visibility2').style.display='';
+          // document.getElementById('vt_visibility3').style.display='';
+        });
+        
+        function getf42data(){
+          // 1-4. Agency Info/Incident
+          var f42Status='draft';
+
+          if (formHasError==false) {            
+            f42Status='submitted offline';            
+          }
+          
+          document.getElementById('savef42Status').value=f42Status;
+
+          var keyDate = new Date().getTime();
+          if (Id.length!=0) {
+            keyDate=Id[0];
+          }
+          try{
+
+            AI_macsId =document.getElementById("AI_macsId").value;
+            AI_agencyName = document.getElementById("AI_agencyName").value;
+
+            // 1. Agency Designator            
+            AI_designator_3_ltr = document.getElementById("AI_designator_3_ltr").value;
+            AI_designator_number = document.getElementById("AI_designator_number").value;
+            AI_designator_ltr = document.getElementById("AI_designator_ltr").value;
+            designator=AI_designator_3_ltr+AI_designator_number+AI_designator_ltr;
+
+            // 2. Strike Team/Task Force
+            AI_strikeTask_3_ltr = document.getElementById("AI_strikeTask_3_ltr").value;
+            AI_strikeTask_number = document.getElementById("AI_strikeTask_number").value;
+            AI_strikeTask_ltr = document.getElementById("AI_strikeTask_ltr").value;
+            strikeTeam = AI_strikeTask_3_ltr+AI_strikeTask_number+AI_strikeTask_ltr;
+            
+            // 3. Order Number            
+            AI_orderNumber_state= document.getElementById("AI_orderNumber_state").value;
+            AI_orderNumber_3ltr=document.getElementById("AI_orderNumber_3ltr").value;
+            AI_orderNumber_number=document.getElementById("AI_orderNumber_number").value; //state, 3-letter, Number
+            incidentOrderNumber=AI_orderNumber_state+AI_orderNumber_3ltr+AI_orderNumber_number;
+            
+            // 4. Request Number
+            AI_requestNumber_3ltr= document.getElementById("AI_requestNumber_3ltr").value;
+            AI_requestNumber_id=document.getElementById("AI_requestNumber_id").value;
+            AI_requestNumber_number=document.getElementById("AI_requestNumber_number").value;
+            incidentRequestNumber=AI_requestNumber_3ltr+AI_requestNumber_id+AI_requestNumber_number;
+
+            // 5. Dispatch Info
+            DI_incidentName=document.getElementById("DI_incidentName").value;
+            DI_reportingLocation=document.getElementById("DI_reportingLocation").value;
+
+            DI_committedtoIncidentDate=document.getElementById("DI_committedtoIncidentDate").value;
+            DI_committedtoIncidentTime=document.getElementById("DI_committedtoIncidentTime").value;
+
+            DI_returnfromIncidentDate=document.getElementById("DI_returnfromIncidentDate").value;
+            DI_returnfromIncidentTime=document.getElementById("DI_returnfromIncidentTime").value;
+
+            DI_reDispatchedDate=document.getElementById("DI_reDispatchedDate").value;
+            DI_reDispatchedTime=document.getElementById("DI_reDispatchedTime").value;
+
+            DI_mobilizationCenter=document.querySelector('input[name="DI_mobilizationCenter"]:checked').value;
+            
+            // 6. Dispatch From
+            DF_incidentName=document.getElementById("DF_incidentName").value;
+
+            DF_endDate=document.getElementById("DF_endDate").value;
+
+            DF_incOrderNumber_state=document.getElementById("DF_incOrderNumber_state").value;
+            DF_incOrderNumber_3ltr=document.getElementById("DF_incOrderNumber_3ltr").value;
+            DF_incOrderNumber_number=document.getElementById("DF_incOrderNumber_number").value;
+            DF_incOrderNumbernumber=DF_incOrderNumber_state+DF_incOrderNumber_3ltr+DF_incOrderNumber_number;
+
+            DF_incReqNumber_3ltr=document.getElementById("DF_incReqNumber_3ltr").value;
+            DF_incReqNumber_id=document.getElementById("DF_incReqNumber_id").value;
+            DF_incReqNumber_number=document.getElementById("DF_incReqNumber_number").value;
+            DF_incidentRequestNumber=DF_incReqNumber_3ltr+DF_incReqNumber_id+DF_incReqNumber_number;
+
+            // 7. Dispatch To
+            DT_incidentName=document.getElementById("DT_incidentName").value;
+            DT_startDate=document.getElementById("DT_startDate").value;
+
+            DT_incidentOrderNumber_state=document.getElementById("DT_incidentOrderNumber_state").value;
+            DT_incidentOrderNumber_3ltr=document.getElementById("DT_incidentOrderNumber_3ltr").value;
+            DT_incidentOrderNumber_number=document.getElementById("DT_incidentOrderNumber_number").value;
+            DT_incidentOrderNumber=DT_incidentOrderNumber_state+DT_incidentOrderNumber_3ltr+DT_incidentOrderNumber_number;
+
+            DT_incidentRequestNumber_3ltr=document.getElementById("DT_incidentRequestNumber_3ltr").value;
+            DT_incidentRequestNumber_id=document.getElementById("DT_incidentRequestNumber_id").value;
+            DT_incidentRequestNumber_number=document.getElementById("DT_incidentRequestNumber_number").value;
+            DT_incidentRequestNumber=DT_incidentRequestNumber_3ltr+DT_incidentRequestNumber_id+DT_incidentRequestNumber_number;
+
+            // 8. Overhead
+            OH_overheadType=document.querySelector('input[name="OverheadType"]:checked').value;
+            
+            OH_icsTitle=document.getElementById("OH_icsTitle").value;
+            OH_icsTitleCode=document.getElementById("OH_icsTitleCode").value;
+            OH_icsTitleDesc=document.getElementById("OH_icsTitleDesc").value;
+            OH_otherICStitle=document.getElementById("OH_otherICStitle").value;
+            
+            // 9. Support Vehicle Info
+            SV_vehicleOwnership=document.querySelector('input[name="VehicleOwnerShip"]:checked').value;
+            SV_licenseplateNumber=document.getElementById("SV_licenseplateNumber").value;
+            SV_vehicleType=document.querySelector('input[name="VehicleType"]:checked').value;
+
+            // 10. Privately Owned Vehicle
+            PO_odometerStart=document.getElementById("PO_odometerStart").value;
+            PO_odometerEnd=document.getElementById("PO_odometerEnd").value;
+            PO_totalMiles=document.getElementById("PO_totalMiles").value;
+
+            // 11. Equipment Resource Info
+            ER_apparatus=document.getElementById("ER_apparatus").value;
+            ER_unitNumber=document.getElementById("ER_unitNumber").value;
+            ER_licenseNumber=document.getElementById("ER_licenseNumber").value;        
+            ER_cdfOesVehicle=document.querySelector('input[name="ER_cdfOesVehicle"]:checked').value;  
+            ER_type=document.querySelector('input[name="ER_type"]:checked').value;
+            
+            ER_femaCode=document.getElementById("ER_femaCode").value;
+            ER_agencySpecialEquipment=document.getElementById("ER_agencySpecialEquipment").value;
+
+            ER_equipmentType=document.getElementById("ER_equipmentType").value;
+            ER_equipmentDesc=document.getElementById("ER_equipmentDesc").value;
+
+            // 12 - 13. Personnel Info
+            PI_numberOfPersonnelOnApparatus=document.getElementById("PI_numberOfPersonnelOnApparatus").value;        
+            PI_documentationOnly=document.querySelector('input[name="PI_documentationOnly"]:checked').value;
+
+            var piTable=document.getElementById("personnelTable");
+            var PI_personnelList=[];
+            var pi_RowData;
+            var piName,piMACSID,piRank,piLast4SSN,piStart,piEnd,piCDF,piBase;
+            
+            for (i=2;i<piTable.rows.length;i++) {          
+              piName = piTable.rows[i].cells[0].children[0].value;
+              piMACSID = piTable.rows[i].cells[1].children[0].value;
+              piRank = piTable.rows[i].cells[2].children[0].value;
+              piLast4SSN = piTable.rows[i].cells[3].children[0].value;
+              piStartDate = piTable.rows[i].cells[4].children[0].value;
+              piStartTime = piTable.rows[i].cells[5].children[0].value;
+              piEndDate = piTable.rows[i].cells[6].children[0].value;
+              piEndTime = piTable.rows[i].cells[7].children[0].value;
+              piCDF = piTable.rows[i].cells[8].children[0].value;
+              piBase = piTable.rows[i].cells[9].children[0].value;                    
+
+              pi_RowData={
+                fullName:piName,
+                macsId:piMACSID,
+                jobTitle:piRank,
+                ssn:piLast4SSN,
+                startDate:piStartDate,
+                startTime:piStartTime,
+                endDate:piEndDate,
+                endTime:piEndTime,
+                cdf:piCDF,
+                base:piBase,
+                readOnly:false
+              }          
+              PI_personnelList.push(pi_RowData);
+            }
+        
+              // Actual Hours -PI_actualHoursTable
+            var piahTable=document.getElementById("PI_actualHoursTable");
+            var PI_actualHourList=[];
+            var pi_actualHourRowData;
+            var piActualHourDate,piActualHourStart,piActualHourEnd,piActualHourHours;
+            
+            for (i=1;i<piahTable.rows.length-1;i++) {     
+              piActualHourStartDate = piahTable.rows[i].cells[0].children[0].value; //actual hour start date
+              piActualHourStartTime = piahTable.rows[i].cells[1].children[0].value; //actual hour start time
+              piActualHourEndTime = piahTable.rows[i].cells[2].children[0].value;   //actual hour end time
+              //piActualHourEndTime = piahTable.rows[i].cells[3].children[0].value;
+              piActualHourHours = piahTable.rows[i].cells[3].children[0].value;     //total actual hour for the day
+                      
+              pi_actualHourRowData={
+                dayOfHours:piActualHourStartDate,
+                startTime:piActualHourStartTime,
+                endTime:piActualHourEndTime,
+                totalHours:piActualHourHours
+              }          
+              PI_actualHourList.push(pi_actualHourRowData);
+            }
+
+            // 14. Comments - commentTable
+            var commentTable=document.getElementById("commentTable");
+            var comments=[];
+            var commentRowData;
+            var C_commentDate,C_comment;
+            
+            for (i=2;i<commentTable.rows.length;i++) {
+              C_commentDate = commentTable.rows[i].cells[0].children[0].value;
+              C_commentTime = commentTable.rows[i].cells[1].children[0].value;
+              C_comment = commentTable.rows[i].cells[2].children[0].value;
+
+              commentRowData={
+                dateofComment:C_commentDate,
+                timeofComment:C_commentTime,
+                comment:C_comment
+              }          
+              comments.push(commentRowData);
+            }
+
+            // 15-16. Supply Number Loss / Damage
+            LD_claim=document.querySelector('input[name="LD_claim"]:checked').value;
+            SN_supplyNumber=document.getElementById("SN_supplyNumber").value;
+
+
+            // 17. Responding Agency Info
+            RA_agencyName=document.getElementById("RA_agencyName").value;
+            RA_yourName=document.getElementById("RA_yourName").value;
+            RA_yourTitle=document.getElementById("RA_yourTitle").value;
+            RA_yourPhone=document.getElementById("RA_yourPhone").value;
+            RA_signatureCanvas=document.getElementById("RA_signatureCanvas").toDataURL();
+            RA_signed=raSigned;
+
+            // 18. Incident Info - Paying Agency
+            
+            PA_payingAgency=document.querySelector('input[name="payingEntity"]:checked').value;
+            PA_payingAgencyOther=document.getElementById("PA_payingAgencyOther").value;
+            signatureCanvas=document.getElementById("signatureCanvas").toDataURL();
+            PA_signed=iipaSigned;
+            PA_printedName=document.getElementById("PA_printedName").value;
+            PA_icsPosition=document.getElementById("PA_icsPosition").value;
+            PA_caloesRep=document.getElementById("PA_caloesRep").value;
+            
+            PA_dateSigned=document.getElementById("PA_dateSigned").value;
+          }
+          catch(err){
+          
+            alert('Error: unable to save data, '+err.name+'.');
+            //console.log(err.name);
+          }
+
+          var F42object={
+              Id:keyDate,
+              key:keyDate,
+
+              // 1-4. Agency Info/Incident
+              AI_macsId:AI_macsId,
+              AI_agencyName:AI_agencyName,
+              
+              // Designator
+              AI_designator_3_ltr:AI_designator_3_ltr,
+              AI_designator_number:AI_designator_number,
+              AI_designator_ltr:AI_designator_ltr,
+
+              designator:designator,
+
+              // Strike Team
+              AI_strikeTask_3_ltr:AI_strikeTask_3_ltr,
+              AI_strikeTask_number:AI_strikeTask_number,
+              AI_strikeTask_ltr:AI_strikeTask_ltr,
+
+              strikeTeam:strikeTeam,
+
+              // Incident Order Number
+              AI_orderNumber_state:AI_orderNumber_state,
+              AI_orderNumber_3ltr:AI_orderNumber_3ltr,
+              AI_orderNumber_number:AI_orderNumber_number,
+
+              incidentOrderNumber:incidentOrderNumber,
+
+              // Incident Request Number 
+              AI_requestNumber_3ltr:AI_requestNumber_3ltr,
+              AI_requestNumber_id:AI_requestNumber_id,
+              AI_requestNumber_number:AI_requestNumber_number,              
+              incidentRequestNumber:incidentRequestNumber,              
+
+              // 5. Dispatch Info
+              DI_incidentName:DI_incidentName,
+              DI_reportingLocation:DI_reportingLocation,
+
+              DI_committedtoIncidentDate:DI_committedtoIncidentDate,
+              DI_committedtoIncidentTime:DI_committedtoIncidentTime,
+
+              DI_returnfromIncidentDate:DI_returnfromIncidentDate,
+              DI_returnfromIncidentTime:DI_returnfromIncidentTime,
+                        
+              DI_reDispatchedDate:DI_reDispatchedDate,          
+              DI_reDispatchedTime:DI_reDispatchedTime,
+
+              DI_mobilizationCenter:DI_mobilizationCenter,
+
+              // 6. Dispatch From
+              DF_incidentName:DF_incidentName,
+              DF_endDate:DF_endDate,
+              DF_incOrderNumbernumber:DF_incOrderNumbernumber,
+              DF_incidentRequestNumber:DF_incidentRequestNumber,
+
+              DF_incOrderNumber_state:DF_incOrderNumber_state,
+              DF_incOrderNumber_3ltr:DF_incOrderNumber_3ltr,
+              DF_incOrderNumber_number:DF_incOrderNumber_number,
+
+              DF_incReqNumber_3ltr:DF_incReqNumber_3ltr,
+              DF_incReqNumber_id:DF_incReqNumber_id,
+              DF_incReqNumber_number:DF_incReqNumber_number,
+
+              // 7. Dispatch To
+              DT_incidentName:DT_incidentName,
+              DT_startDate:DT_startDate,
+
+              DT_incidentOrderNumber:DT_incidentOrderNumber,
+              DT_incidentRequestNumber:DT_incidentRequestNumber,
+
+              DT_incidentOrderNumber_state:DT_incidentOrderNumber_state,
+              DT_incidentOrderNumber_3ltr:DT_incidentOrderNumber_3ltr,
+              DT_incidentOrderNumber_number:DT_incidentOrderNumber_number,
+
+              DT_incidentRequestNumber_3ltr:DT_incidentRequestNumber_3ltr,
+              DT_incidentRequestNumber_id:DT_incidentRequestNumber_id,
+              DT_incidentRequestNumber_number:DT_incidentRequestNumber_number,
+
+              // 8. Overhead
+              OH_overheadType:OH_overheadType,
+              OH_icsTitle:OH_icsTitle,
+              OH_icsTitleCode:OH_icsTitleCode,
+              OH_icsTitleDesc:OH_icsTitleDesc,
+              OH_otherICStitle:OH_otherICStitle ,
+              
+              // 9. Support Vehicle Info
+              SV_vehicleOwnership:SV_vehicleOwnership,
+              
+              SV_licenseplateNumber:SV_licenseplateNumber,
+
+              SV_vehicleType:SV_vehicleType,
+
+            
+              // 10. Privately Owned Vehicle
+              PO_odometerStart:PO_odometerStart,
+              PO_odometerEnd:PO_odometerEnd,
+              PO_totalMiles:PO_totalMiles,
+
+              // 11. Equipment Resource Info
+              ER_apparatus:ER_apparatus,
+              ER_unitNumber:ER_unitNumber,
+              ER_licenseNumber:ER_licenseNumber,
+              ER_cdfOesVehicle:ER_cdfOesVehicle,
+
+              ER_type:ER_type,
+
+              ER_femaCode:ER_femaCode,
+              ER_agencySpecialEquipment:ER_agencySpecialEquipment,
+              ER_equipmentType:ER_equipmentType,
+              ER_equipmentDesc:ER_equipmentDesc,
+
+              //12 -13 Personnel Info
+              PI_numberOfPersonnelOnApparatus:PI_numberOfPersonnelOnApparatus,
+              PI_documentationOnly:PI_documentationOnly,
+              PI_personnelList:PI_personnelList,
+              actualHoursList:PI_actualHourList,
+
+              // 14. Comments
+              comments:comments,
+
+              // 15-16. Supply Number Loss / Damage
+              LD_claim:LD_claim,
+              // LD_claim_yes:LD_claim_yes,
+              // LD_claim_no:LD_claim_no,
+
+              SN_supplyNumber:SN_supplyNumber,
+
+              // 17. Responding Agency Info
+              RA_agencyName:RA_agencyName,
+              RA_yourName:RA_yourName,
+              RA_yourTitle:RA_yourTitle,
+              RA_yourPhone:RA_yourPhone,
+              RA_signatureCanvas:RA_signatureCanvas,
+              RA_signed:RA_signed, // true=signed, false=not signed
+
+              // 18. Incident Info - Paying Agency
+              PA_payingAgency:PA_payingAgency,
+              PA_payingAgencyOther:PA_payingAgencyOther,
+
+              signatureCanvas:signatureCanvas,
+              PA_signed:PA_signed, // true=signed, false=not signed
+              PA_printedName:PA_printedName,
+              PA_icsPosition:PA_icsPosition,
+              PA_caloesRep:PA_caloesRep,
+              PA_dateSigned:PA_dateSigned,
+
+              F42_Status:f42Status,
+              F42_Signed:formSigned
+          };  
+          return F42object;
+        }
+
+        function delete_PI_Row(r) {
+          var i = r.parentNode.parentNode.rowIndex;
+          document.getElementById("personnelTable").deleteRow(i);
+        }
+
+        function delete_AH_Row(r) {
+          var i = r.parentNode.parentNode.rowIndex;
+          document.getElementById("PI_actualHoursTable").deleteRow(i);
+        }
+
+        function delete_Comment_Row(r) {
+          var i = r.parentNode.parentNode.rowIndex;
+          document.getElementById("commentTable").deleteRow(i);
+        }
+
+        function addPersonnel(){
+          var macsId =document.getElementById("AI_macsId").value;
+          
+          var startDate=document.getElementById("DI_committedtoIncidentDate").value;
+          var startTime=document.getElementById("DI_committedtoIncidentTime").value;        
+
+          var DI_returnfromIncidentDate=document.getElementById("DI_returnfromIncidentDate").value;
+          var DI_returnfromIncidentTime=document.getElementById("DI_returnfromIncidentTime").value;
+
+          var DI_reDispatchedDate=document.getElementById("DI_reDispatchedDate").value;
+          var DI_reDispatchedTime=document.getElementById("DI_reDispatchedTime").value;
+
+          var endingDate=(DI_returnfromIncidentDate!='')?DI_returnfromIncidentDate:DI_reDispatchedDate;
+          var endingTime=(DI_returnfromIncidentTime!='')?DI_returnfromIncidentTime:DI_reDispatchedTime;
+
+          document.getElementById("personnelTable")
+          .insertRow(-1)
+          .innerHTML='<tr> <td><input id="PI_name" name="pi_name[]" type="text" value=""/></td><td><input id="PI_macsId" name="PI_macsId[]" type="text" value="'+macsId+'" size="4"/></td><td><input id="PI_rankTitle" name="pi_rankTitle[]" type="text" value=""/></td><td><input id="PI_last4ssn" name="pi_last4ssn[]" type="text" value="" size="4"/></td><td><input id="PI_startDate" name="pi_startDate" type="date" value="'+startDate+'" size="8"/></td><td><input id="PI_startTime" name="pi_startTime" type="text" value="'+startTime+'" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/></td><td><input id="PI_endDate" name="pi_endDate" type="date" size="8" value="'+endingDate+'"/></td><td><input id="PI_endTime" name="pi_endTime" type="text" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4" value="'+endingTime+'"/></td><td><input id="PI_cdf" name="pi_cdf" type="checkbox" size="2"/></td><td><input id="PI_base" name="pi_base" type="checkbox" size="2"/></td><td><input type="button" value="Delete" onclick="delete_PI_Row(this)"  class="nav-button" style="background-color:red;"/></td></tr>';
+        }
+
+        function addComment(){
+          document.getElementById("commentTable")
+          .insertRow(-1)
+          .innerHTML='<tr><td><input id="C_commentDate" name="C_comment[]" type="date" value=""/></td><td><input id="C_commentTime" name="C_comment[]" type="text" value="" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/></td><td><input id="C_comment" name="C_comment[]" type="text" value="" size="50"/></td><td><input type="button" value="Delete" onclick="delete_Comment_Row(this)" class="nav-button" style="background-color:red;"/></td></tr>';
+        }
+
+        function addActualHours(){
+          var piAHTable=document.getElementById("PI_actualHoursTable");
+          var n=2;
+          if (piAHTable.rows.length<3) {
+            n=1;
+          }
+          piAHTable
+          .insertRow(n)
+          .innerHTML='<tr><td><input id="PI_actualHours_startdate" name="pi_actualhours[]" type="date" value=""/></td><td><input id="PI_actualHours_starttime" name="pi_actualhours[]" type="text" value="" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/></td><td><input id="PI_actualHours_endtime" name="pi_actualhours[]" type="text" value="" onBlur="calculateHours(this)" pattern="^([0-1]?[0-9]|2[0-3])[0-5][0-9]$" placeholder="HHMM" maxlength="4" size="4"/></td><td><input id="PI_actualHours_hours" name="pi_actualhours[]" type="text" value="0.00"/></td><td><input type="button" value="Delete" onclick="delete_AH_Row(this)" class="nav-button" style="background-color:red;"/></td></tr>';
+        }
+
+        function calculateHours(ahRow){
+          var i = ahRow.parentNode.parentNode.rowIndex;
+          var totalHours=0;
+          var rowHours;
+
+          var startDate=document.getElementById("PI_actualHoursTable").rows[i].cells[0].getElementsByTagName('input')[0].value;
+          var startTime=document.getElementById("PI_actualHoursTable").rows[i].cells[1].getElementsByTagName('input')[0].value;
+
+          var startHours = startTime.substring(0,2);
+          var startMinutes =  startTime.substring(6,3);
+
+          startDate=new Date(startDate);
+          startDate.setHours(startHours,startMinutes,0,0);
+          
+          var endTime=document.getElementById("PI_actualHoursTable").rows[i].cells[2].getElementsByTagName('input')[0].value;
+          endDate=new Date(startDate);
+
+          var endHours = endTime.substring(0,2);
+          var endMinutes =  endTime.substring(6,3);
+
+          endDate.setHours(endHours,endMinutes,0,0);
+  
+          var diff=(endDate.getTime()-startDate.getTime())/1000;
+          
+          diff /=(60*60);
+          
+          rowHours=Math.abs(diff).toFixed(2);
+
+          document.getElementById("PI_actualHoursTable").rows[i].cells[3].getElementsByTagName('input')[0].value=rowHours;
+          
+          var piahTable=document.getElementById("PI_actualHoursTable");        
+          
+          rowHours=0;
+          totalHours=0;
+
+          for (i=1;i<piahTable.rows.length-1;i++) {     
+            rowHours = piahTable.rows[i].cells[3].children[0].value;
+            totalHours+=parseFloat(rowHours);         
+          }
+        
+          document.getElementById("totalHours").innerHTML=Math.abs(totalHours).toFixed(2);;
+        }
+
+        function checkToConfirmSave() {
+          confirmSave=document.getElementById("confirmSave").checked;        
+          var btnSave = document.getElementById("btnSubmit");
+          btnSave.disabled=!confirmSave;
+        }
+
+        function saveData(event) {
+          var f42status=document.getElementById('savef42Status').value;
+          if (f42status=='submitted offline') {
+            alert('F42 with "submitted offline" status cannot be saved again.');
+            return;
+          }
+
+          if(!confirm("Choose OK will save data locally and data will only be shown when connection to server is available ")) {            
+            return;
+          }
+          //var keyDate = new Date().getTime();
+          //var f42obj={key:keyDate,macsId:'aaa',agancyName:'aaa fire station'};
+
+          var idbReq=indexedDB.open('MARSF42DATAENTRY',1);
+          
+          idbReq.onerror=(e)=>{
+            console.log('idbreq error');            
+          }
+
+          idbReq.onupgradeneeded=(e)=>{
+            var db=idbReq.result;
+            var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          idbReq.onsuccess=(e)=>{
+
+            var f42obj=getf42data();
+
+            setTimeout(
+              function(){
+                var db=idbReq.result;           
+                var tx=db.transaction('f42dataStore','readwrite');
+                var store=tx.objectStore('f42dataStore');
+
+                store.put(f42obj);                 
+                alert('F42 - Save successfully.');
+                Id[0]=f42obj.Id;
+            }, 1000);                       
+          }
+        }
+
+        function submitOfflineData(event){
+          event.preventDefault();
+          //alert('NOTE: F42 will be submitted offline and saved on local device or laptop.  Once connection is available, you must login from this device, retrieve F42(s) manually on home screen, and sync each to submit online.\r\n \r\nOnce submitted you will not be able to make updates. If you have any corrections after submission please contact Cal OES at CFAAreimbursement@caloes.ca.gov or the Fire and Rescue Main Line at (916) 845-8711. \r\n \r\nOnce you select submit online, a copy of your F-42 will be electronically routed to Cal OES and your agency.');
+          var f42status=document.getElementById('savef42Status').value;
+          if (f42status=='submitted offline') {
+            alert('F42 with "submitted offline" status cannot be saved again.');
+            return;
+          }
+
+          document.getElementById("confirmSave").checked=!document.getElementById("confirmSave").checked;
+          var btnSubmit = document.getElementById("btnSubmit");
+          btnSubmit.disabled=confirmSave;
+          
+          formHasError=validateF42(event);
+
+          if (formHasError==true){
+            alert('Missing required field(s) - Please click on Show Validation Errors for details fixes.  F42 saved as draft but not submitted.');            
+          }
+          saveData(event);
+
+        }
+        
+        function createNewF42(){
+          if(!confirm("Create new F42?")) {            
+            return;
+          }
+          Id=[];
+          document.getElementById('savef42Status').value="draft";
+          location.reload();
+          window.scrollTo(0, 0);
+        }
+        var drawing=false;
+        // Signature box for 18. Incident Info - Paying Agency
+        var signatureBox, ctx;
+        signatureBox = document.getElementById('signatureCanvas');        
+        ctx=signatureBox.getContext('2d');
+          // last known position
+        var pos = { x: 0, y: 0 };
+
+        signatureBox.addEventListener('mousemove', draw);
+        signatureBox.addEventListener('mousedown', setPosition);
+        signatureBox.addEventListener('mouseenter', setPosition);
+
+        // new position from mouse event
+        function setPosition(e) {
+          var rect = signatureBox.getBoundingClientRect();
+          x=e.clientX -rect.left;
+          y=e.clientY -rect.top;
+          
+          pos.x =x;
+          pos.y =y;
+        }
+
+        function draw(e) {
+          if (e.buttons !== 1){ if (drawing!=true) {return;}}
+
+          ctx.beginPath();
+
+          ctx.lineWidth = 3;
+          ctx.lineCap = 'round';
+          ctx.strokeStyle = '#0';
+          
+          ctx.moveTo(pos.x, pos.y); // draw from
+          setPosition(e);
+          ctx.lineTo(pos.x, pos.y); // draw to          
+          ctx.stroke(); // draw it!
+          iipaSigned=true;
+        }
+
+        signatureBox.addEventListener('touchstart', function(e){
+          var touch = e.touches[0];
+          var mouseEvent = new MouseEvent("mousedown", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+          });
+          
+          signatureBox.dispatchEvent(mouseEvent);
+          
+        },false);
+
+        signatureBox.addEventListener('touchend', function(e){
+          drawing=false;
+          var mouseEvent = new MouseEvent("mouseup", {});
+          signatureBox.dispatchEvent(mouseEvent);
+        },false);
+
+        signatureBox.addEventListener('touchmove', function(e){ 
+          drawing=true;       
+          var touch = e.touches[0];
+          var rect = signatureBox.getBoundingClientRect();
+          var mouseEvent = new MouseEvent("mousemove", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+          });
+          signatureBox.dispatchEvent(mouseEvent);
+          },
+          false
+        );
+
+        function clearCanvas(ev) {
+          ev.preventDefault();
+          formSigned=false;
+          iipaSigned=false;
+          formHasError=true;
+          signatureBox.width=signatureBox.width;
+        }     
+        //=============== End of signature for 18 ===========================
+
+        // Begin of Signature for 17. Responding Agency (RA)
+        RA_signatureBox = document.getElementById('RA_signatureCanvas');
+
+        ctxRA=RA_signatureBox.getContext('2d');
+        
+          // last known position
+        //var pos = { x: 0, y: 0 };
+        RA_signatureBox.addEventListener('mousemove', drawRA);
+        RA_signatureBox.addEventListener('mousedown', setPositionRA);
+        RA_signatureBox.addEventListener('mouseenter', setPositionRA);
+
+        // new position from mouse event
+        function setPositionRA(e) {
+          var rect = RA_signatureBox.getBoundingClientRect();
+          x=e.clientX -rect.left;
+          y=e.clientY -rect.top;
+          
+          pos.x =x;
+          pos.y =y;
+        }
+
+        function drawRA(e) {
+          if (e.buttons !== 1){ if (drawing!=true) {return;}}
+
+          ctxRA.beginPath();
+
+          ctxRA.lineWidth = 3;
+          ctxRA.lineCap = 'round';
+          ctxRA.strokeStyle = '#0';
+
+          ctxRA.moveTo(pos.x, pos.y); // draw from
+          setPositionRA(e);
+          ctxRA.lineTo(pos.x, pos.y); // draw to                 
+          ctxRA.stroke(); // draw it!
+          raSigned=true;
+        }
+
+        RA_signatureBox.addEventListener('touchstart', function(e){
+          var touch = e.touches[0];
+          var mouseEvent = new MouseEvent("mousedown", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+          });
+          
+          RA_signatureBox.dispatchEvent(mouseEvent);
+          
+        },false);
+
+        RA_signatureBox.addEventListener('touchend', function(e){
+          drawing=false;
+          var mouseEvent = new MouseEvent("mouseup", {});
+          RA_signatureBox.dispatchEvent(mouseEvent);
+        },false);
+
+        RA_signatureBox.addEventListener('touchmove', function(e){ 
+          drawing=true;       
+          var touch = e.touches[0];
+          var rect = RA_signatureBox.getBoundingClientRect();
+          var mouseEvent = new MouseEvent("mousemove", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+          });
+          RA_signatureBox.dispatchEvent(mouseEvent);
+        },false);
+
+        function clearCanvasRA(ev) {
+          ev.preventDefault();
+          formSigned=false;
+          raSigned=false;
+          formHasError=true;
+          RA_signatureBox.width=RA_signatureBox.width;
+        }
+        // End of signature 17 Responding Agency (RA)
+
+        document.body.addEventListener("touchstart", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+        document.body.addEventListener("touchend", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+        document.body.addEventListener("touchmove", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+
+        function validateF42(event){
+          event.preventDefault();
+
+          var f42status=document.getElementById('savef42Status').value;
+          
+          if (f42status=='submitted offline') {
+            alert('F42 with "submitted offline" status cannot be validated again.');
+            return;
+          }
+
+          formHasError=false;
+          var areaToDisplay=document.getElementById('validationErrorWarningInfo');
+          var displayText='F42 Validation Error(s):<br /><br /><br />';
+          // 1-4 Agency/Incident
+          displayText+='Section 1 - 4 Agency/Incident: <br />';
+          var detailMSG='';
+          AI_macsId =document.getElementById("AI_macsId").value;
+          
+          if (AI_macsId==''||AI_macsId=='undefined') {
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; MACS ID is missing.';
+            document.getElementById("AI_macsId").required=true;
+          }
+
+          AI_agencyName = document.getElementById("AI_agencyName").value;
+          if (AI_agencyName==''||AI_agencyName=='undefined') {
+            document.getElementById("AI_agencyName").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp;  Agency Name is missing.';
+          }
+
+          AI_designator_3_ltr = document.getElementById("AI_designator_3_ltr").value;
+          if (AI_designator_3_ltr==''||AI_designator_3_ltr=='undefined'){
+            document.getElementById("AI_designator_3_ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Designator 3 Letter is missing.';
+          }
+
+          AI_designator_number = document.getElementById("AI_designator_number").value;
+          if (AI_designator_number==''||AI_designator_number=='undefined'){
+            document.getElementById("AI_designator_number").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Designator Number is missing.';
+          }
+
+          AI_designator_ltr = document.getElementById("AI_designator_ltr").value;
+          if (AI_designator_ltr==''||AI_designator_ltr=='undefined'){
+            document.getElementById("AI_designator_ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br /> &nbsp; &nbsp; &nbsp; Designator Letter is missing.';
+          }
+
+          // 2. Strike Team
+          AI_strikeTask_3_ltr = document.getElementById("AI_strikeTask_3_ltr").value;
+          if (AI_strikeTask_3_ltr==''||AI_strikeTask_3_ltr=='undefined') {
+            document.getElementById("AI_strikeTask_3_ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Strike Team/Task Force 3 letter is missing.';
+          }
+
+          AI_strikeTask_number = document.getElementById("AI_strikeTask_number").value;
+          if (AI_strikeTask_number==''||AI_strikeTask_number=='undefined') {
+            document.getElementById("AI_strikeTask_number").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Strike Team/Task Force number is missing.';
+          }
+          
+          AI_strikeTask_ltr = document.getElementById("AI_strikeTask_ltr").value;
+          if (AI_strikeTask_ltr==''||AI_strikeTask_ltr=='undefined') {
+            document.getElementById("AI_strikeTask_ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Strike Team/Task Force letter is missing.';
+          }
+
+          // 3. Incident order number
+          AI_orderNumber_state= document.getElementById("AI_orderNumber_state").value;
+          if (AI_orderNumber_state==''||AI_orderNumber_state=='undefined') {
+            document.getElementById("AI_orderNumber_state").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Order Number state is missing.';
+          }
+
+          AI_orderNumber_3ltr=document.getElementById("AI_orderNumber_3ltr").value;
+          if (AI_orderNumber_3ltr==''||AI_orderNumber_3ltr=='undefined') {
+            document.getElementById("AI_orderNumber_3ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Order Number 3-letter is missing.';
+          }
+
+          AI_orderNumber_number=document.getElementById("AI_orderNumber_number").value; //state, 3-letter, Number
+          if (AI_orderNumber_number==''||AI_orderNumber_number=='undefined') {
+            document.getElementById("AI_orderNumber_number").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Order Number is missing.';
+          }
+          
+          // 4. Incident request number
+          AI_requestNumber_3ltr= document.getElementById("AI_requestNumber_3ltr").value;
+          if (AI_requestNumber_3ltr==''||AI_requestNumber_3ltr=='undefined') {
+            document.getElementById("AI_requestNumber_3ltr").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Request Number 3-Letter is missing.';
+          }
+
+          AI_requestNumber_id=document.getElementById("AI_requestNumber_id").value;
+          if (AI_requestNumber_id==''||AI_requestNumber_id=='undefined') {
+            document.getElementById("AI_requestNumber_id").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Request Number Id is missing.';
+          }
+
+          AI_requestNumber_number=document.getElementById("AI_requestNumber_number").value;
+          if (AI_requestNumber_number==''||AI_requestNumber_number=='undefined') {
+            document.getElementById("AI_requestNumber_number").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Incident Request Number is missing.';
+          }
+
+          if (detailMSG=='') {
+            detailMSG='<br />&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+
+          displayText+=detailMSG;
+          // End of Section 1 - 4 validation
+
+          // 5. Dispatch Information
+          displayText+='<br /><br />Section 5 Dispatch Information: <br />';
+          detailMSG='';
+
+          DI_incidentName=document.getElementById("DI_incidentName").value;
+          if (DI_incidentName==''||DI_incidentName=='undefined') {
+            document.getElementById("DI_incidentName").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Incident Name is missing.';
+          }
+
+          DI_reportingLocation=document.getElementById("DI_reportingLocation").value;
+          if (DI_reportingLocation==''||DI_reportingLocation=='undefined') {
+            document.getElementById("DI_reportingLocation").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Reporting Location is missing.';
+          }
+
+          DI_committedtoIncidentDate=document.getElementById("DI_committedtoIncidentDate").value;          
+          if (DI_committedtoIncidentDate==''||DI_committedtoIncidentDate=='undefined') {
+            document.getElementById("DI_committedtoIncidentDate").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Committed to Incident Date is missing.';
+          }
+
+          DI_committedtoIncidentTime=document.getElementById("DI_committedtoIncidentTime").value;
+          if (DI_committedtoIncidentTime==''||DI_committedtoIncidentTime=='undefined') {
+            document.getElementById("DI_committedtoIncidentTime").required=true;
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Committed to Incident Time is missing.';
+          }
+
+          DI_returnfromIncidentDate=document.getElementById("DI_returnfromIncidentDate").value;
+          DI_returnfromIncidentTime=document.getElementById("DI_returnfromIncidentTime").value;
+
+          DI_reDispatchedDate=document.getElementById("DI_reDispatchedDate").value;
+          DI_reDispatchedTime=document.getElementById("DI_reDispatchedTime").value;
+          if ((DI_returnfromIncidentDate=='' || DI_returnfromIncidentDate=='undefined') && (DI_reDispatchedDate==''||DI_reDispatchedDate=='undefined')) {
+            formHasError=true;
+            detailMSG+='<br />&nbsp; &nbsp; &nbsp; Either Return From Incident or Redispatched information is required.';
+          } else {
+            if (DI_returnfromIncidentDate!='') {
+              if (DI_returnfromIncidentTime==''||DI_returnfromIncidentTime=='undefined') {
+                formHasError=true;
+                detailMSG+='<br />&nbsp; &nbsp; &nbsp; Return From Incident Time is missing.';
+              }
+            }
+            if (DI_reDispatchedDate!='') {
+              if (DI_reDispatchedTime=='' || DI_reDispatchedTime=='undefined') {
+                formHasError=true;
+                detailMSG+='<br />&nbsp; &nbsp; &nbsp; Redispatched Time is missing.';
+              }
+            }
+          }
+          //DI_mobilizationCenter=document.querySelector('input[name="DI_mobilizationCenter"]:checked').value;
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;
+
+          // 6. Dispatch From
+          displayText+='<br /><br />Section 6 Dispatch From: <br />';
+          detailMSG='';
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No validation.<br />';
+          }
+          displayText+=detailMSG;
+
+          // 7. Dispatch To
+          displayText+='<br />Section 7 Dispatch To: <br />';
+          detailMSG='';
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No validation.<br />';
+          }
+          displayText+=detailMSG;
+
+          // 8. Overhead
+          displayText+='<br />Section 8 Overhead: <br />';
+          detailMSG='';
+
+          OH_icsTitle=document.getElementById("OH_icsTitle").value;
+          OH_otherICStitle=document.getElementById("OH_otherICStitle").value;
+
+          OH_overheadType=document.querySelector('input[name="OverheadType"]:checked').value;
+          // STEN/TFLD, STEN(T)/TFLD(T), Overhead Position
+          if (OH_overheadType=='Overhead Position') {
+            if ((OH_icsTitle==''||OH_icsTitle=='undefined')&&(OH_otherICStitle==''||OH_otherICStitle=='undefined')){
+              formHasError=true;
+              detailMSG+='&nbsp; &nbsp; &nbsp; Either ICS Position/Title or Other Title is missing. <br />';
+            }
+          }
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br />';
+          }
+          displayText+=detailMSG;
+          
+
+          // 9. Support Vehicle Information
+          displayText+='<br />Section 9 Support Vehicle Information: <br />';
+          detailMSG='';
+
+          SV_vehicleOwnership=document.querySelector('input[name="VehicleOwnerShip"]:checked').value;
+          //on (none selected), agency, pov, rental, cdf/oes          
+          SV_licenseplateNumber=document.getElementById("SV_licenseplateNumber").value;
+          SV_vehicleType=document.querySelector('input[name="VehicleType"]:checked').value;
+          
+          //sedan,suv,van,Pick-Up (1/2 Ton), Pick-Up (3/4 Ton &amp; Above)
+          if (SV_vehicleOwnership=='agency'||SV_vehicleOwnership=='cdf/oes') {
+            if (SV_licenseplateNumber=='') {
+              document.getElementById("SV_licenseplateNumber").required=true;
+              formHasError=true;
+              detailMSG+='&nbsp; &nbsp; &nbsp; License Number is missing. <br />';
+            }
+            if (SV_vehicleType=='on') {
+              formHasError=true;
+              detailMSG+='&nbsp; &nbsp; &nbsp; Vehicle Type is missing. <br />';
+            }
+          }
+
+          PO_odometerStart=document.getElementById("PO_odometerStart").value;
+          PO_odometerEnd=document.getElementById("PO_odometerEnd").value;
+          var sec10_valid=true;
+          if (SV_vehicleOwnership=='pov') {
+            if (SV_licenseplateNumber==''||SV_licenseplateNumber=='undefined') {
+              document.getElementById("SV_licenseplateNumber").required=true;
+              formHasError=true;
+              detailMSG+='&nbsp; &nbsp; &nbsp; License Number is missing. <br />';
+            }
+            if (PO_odometerStart==''||PO_odometerStart=='undefined') {
+              document.getElementById("PO_odometerStart").required=true;
+              formHasError=true;
+              sec10_valid=false;
+              detailMSG+='&nbsp; &nbsp; &nbsp; Section 10 - Beginning Odometer is missing. <br />';
+            }
+            if (PO_odometerEnd==''||PO_odometerEnd=='undefined') {
+              document.getElementById("PO_odometerEnd").required=true;
+              formHasError=true;
+              sec10_valid=false;
+              detailMSG+='&nbsp; &nbsp; &nbsp; Section 10 - Ending Odometer is missing. <br />';
+            }
+          }
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;
+          
+          
+          // 10. Privately Owned Vehicle
+          displayText+='<br />Section 10 Privately Owned Vehicle: <br />';
+          detailMSG='';
+          if (sec10_valid==true) {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          } else {
+            formHasError=true;
+            detailMSG='&nbsp; &nbsp; &nbsp; See Section 9 if POV selected.<br /><br />';
+          }
+
+          displayText+=detailMSG;        
+
+          // 11. Equipment Resource Information
+          displayText+='<br />Section 11 Equipment Resource Information: <br />';
+          detailMSG='';
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No validation.<br /><br />';
+          }
+          displayText+=detailMSG;
+
+          // 12 - 13. Personnel Information
+          displayText+='<br />Section 12-13 Personnel Information: <br />';
+          detailMSG='';
+          
+          PI_numberOfPersonnelOnApparatus=document.getElementById("PI_numberOfPersonnelOnApparatus").value;        
+          if (PI_numberOfPersonnelOnApparatus==''||PI_numberOfPersonnelOnApparatus=='undefined') {
+            document.getElementById("PI_numberOfPersonnelOnApparatus").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Number of Personnel on Apparatus is missing. <br />';
+          }
+          
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No validation.<br /><br />';
+          }
+          displayText+=detailMSG;          
+          
+          
+
+          // 14. Comments
+          displayText+='<br />Section 14 Comments: <br />';
+          detailMSG='';
+
+          var commentTable=document.getElementById("commentTable");
+          var comments=[];
+          var commentRowData;
+          var C_commentDate,C_comment;
+            
+          for (i=2;i<commentTable.rows.length;i++) {
+            C_commentDate = commentTable.rows[i].cells[0].children[0].value;
+            C_commentTime = commentTable.rows[i].cells[1].children[0].value;
+            C_comment = commentTable.rows[i].cells[2].children[0].value;
+            if (C_comment!='') {
+              if (C_commentDate=='') {
+                formHasError=true;
+                detailMSG+='&nbsp; &nbsp; &nbsp; Comment line #'+String(i-1)+' Date is missing. <br />';
+              }
+              if (C_commentTime=='') {
+                formHasError=true;
+                detailMSG+='&nbsp; &nbsp; &nbsp; Comment line #'+String(i-1)+' Time is missing. <br />';
+              }             
+            }            
+          }
+
+          if (detailMSG=='') {            
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;        
+
+          // 15-16. Supply Number Loss / Damage
+          displayText+='<br />Section 15 - 16 LOSS/DAMAGE CLAIM/SUPPLY NUMBER: <br />';
+          detailMSG='';
+
+          LD_claim=document.querySelector('input[name="LD_claim"]:checked').value;
+          SN_supplyNumber=document.getElementById("SN_supplyNumber").value;
+
+          if (LD_claim=='yes' && SN_supplyNumber=='') {
+            document.getElementById("SN_supplyNumber").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Supply Number is missing. <br />';
+          }
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;
+          
+          // 17. Responding Agency Information
+          displayText+='<br />Section 17 Responding Agency Information: <br />';
+          detailMSG='';
+
+          RA_agencyName=document.getElementById("RA_agencyName").value;
+          RA_yourName=document.getElementById("RA_yourName").value;
+          RA_yourTitle=document.getElementById("RA_yourTitle").value;
+          RA_yourPhone=document.getElementById("RA_yourPhone").value;
+          RA_signatureCanvas=document.getElementById("RA_signatureCanvas").toDataURL();
+
+          if (RA_agencyName==''){
+            document.getElementById("RA_agencyName").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Agency Name is missing. <br />';
+          }
+
+          if (RA_yourName==''){
+            document.getElementById("RA_yourName").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Your Name is missing. <br />';
+          }
+
+          if (RA_yourTitle==''){
+            document.getElementById("RA_yourTitle").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Your Title is missing. <br />';
+          }
+
+          if (RA_yourPhone==''){
+            document.getElementById("RA_yourPhone").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Your Phone Number is missing. <br />';
+          }
+
+          if (raSigned==false){ //no signature
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Signature of Responding Agency Personnel is missing. <br />';
+          }
+
+          if (detailMSG=='') {
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;
+        
+          // 18. Incident Information - Paying Agency
+          displayText+='<br />Section 18 Incident Information - Paying Agency: <br />';
+          detailMSG='';
+
+          PA_payingAgency=document.querySelector('input[name="payingEntity"]:checked').value;
+          if (PA_payingAgency=='none'){
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Paying Agency is not selected. <br />';
+          }
+         
+          PA_payingAgencyOther=document.getElementById("PA_payingAgencyOther").value;
+          if (PA_payingAgency=='other' && PA_payingAgencyOther==''){
+            document.getElementById("PA_payingAgencyOther").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Other Paying Agency is missing. <br />';
+          }          
+
+          PA_printedName=document.getElementById("PA_printedName").value;
+          if (PA_printedName==''){
+            document.getElementById("PA_printedName").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Printed Name is missing. <br />';
+          }   
+
+          PA_icsPosition=document.getElementById("PA_icsPosition").value;
+          if (PA_icsPosition==''){
+            document.getElementById("PA_icsPosition").required=true;
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; ICS Position is missing. <br />';
+          }   
+
+          if (iipaSigned==false){
+            formHasError=true;
+            detailMSG+='&nbsp; &nbsp; &nbsp; Signature of of Authorized Paying Entity Personnel is missing. <br />';
+          }
+          
+          if (detailMSG=='') {            
+            detailMSG='&nbsp; &nbsp; &nbsp; No error found.<br /><br />';
+          }
+          displayText+=detailMSG;
+
+          areaToDisplay.innerHTML= displayText;
+          
+          return formHasError;       
+        }
+        function populateForm(paramF42Data){
+         
+          const f42dataObject=paramF42Data;
+          
+          document.getElementById("savef42Status").value=f42dataObject.F42_Status;  
+
+          document.getElementById("AI_macsId").value= f42dataObject.AI_macsId;
+          document.getElementById("AI_agencyName").value=f42dataObject.AI_agencyName;
+          // 1. Agency Designator
+          //AI_agencyDesignator = document.getElementById("AI_designator_3_ltr").value+document.getElementById("AI_designator_number").value+document.getElementById("AI_designator_ltr").value;  //3-letter, Number, Ltr
+          document.getElementById("AI_designator_3_ltr").value=f42dataObject.AI_designator_3_ltr;
+          document.getElementById("AI_designator_number").value=f42dataObject.AI_designator_number;
+          document.getElementById("AI_designator_ltr").value=f42dataObject.AI_designator_ltr;
+          //paramF42Data.designator=AI_designator_3_ltr+AI_designator_number+AI_designator_ltr;
+
+            // 2. Strike Team/Task Force
+          document.getElementById("AI_strikeTask_3_ltr").value=f42dataObject.AI_strikeTask_3_ltr;
+          document.getElementById("AI_strikeTask_number").value=f42dataObject.AI_strikeTask_number;
+          document.getElementById("AI_strikeTask_ltr").value=f42dataObject.AI_strikeTask_ltr;
+          //paramF42Data.strikeTeam = AI_strikeTask_3_ltr+AI_strikeTask_number+AI_strikeTask_ltr;
+
+            //AI_incidentOrderNumber= document.getElementById("AI_orderNumber_state").value+document.getElementById("AI_requestNumber_id").value+document.getElementById("AI_orderNumber_number").value; //state, 3-letter, Number
+          document.getElementById("AI_orderNumber_state").value=f42dataObject.AI_orderNumber_state;
+          document.getElementById("AI_orderNumber_3ltr").value=f42dataObject.AI_orderNumber_3ltr;
+          document.getElementById("AI_orderNumber_number").value=f42dataObject.AI_orderNumber_number; //state, 3-letter, Number
+          //paramF42Data.incidentOrderNumber=AI_orderNumber_state+AI_orderNumber_3ltr+AI_orderNumber_number;
+
+            //AI_incidentRequestNumber= document.getElementById("AI_requestNumber_3ltr").value+document.getElementById("AI_designator_number").value+document.getElementById("AI_requestNumber_number").value; //3-letter, Id, number
+          document.getElementById("AI_requestNumber_3ltr").value=f42dataObject.AI_requestNumber_3ltr;
+          document.getElementById("AI_requestNumber_id").value=f42dataObject.AI_requestNumber_id;
+          document.getElementById("AI_requestNumber_number").value=f42dataObject.AI_requestNumber_number;
+          //paramF42Data.incidentRequestNumber=AI_requestNumber_3ltr+AI_requestNumber_id+AI_requestNumber_number;
+
+            // 5. Dispatch Info
+          document.getElementById("DI_incidentName").value=f42dataObject.DI_incidentName;
+          document.getElementById("DI_reportingLocation").value=f42dataObject.DI_reportingLocation;
+
+          document.getElementById("DI_committedtoIncidentDate").value=f42dataObject.DI_committedtoIncidentDate;
+          document.getElementById("DI_committedtoIncidentTime").value=f42dataObject.DI_committedtoIncidentTime;
+
+          document.getElementById("DI_returnfromIncidentDate").value=f42dataObject.DI_returnfromIncidentDate;
+          document.getElementById("DI_returnfromIncidentTime").value=f42dataObject.DI_returnfromIncidentTime;
+
+          document.getElementById("DI_reDispatchedDate").value=f42dataObject.DI_reDispatchedDate;
+          document.getElementById("DI_reDispatchedTime").value=f42dataObject.DI_reDispatchedTime;
+
+          var dt_mob=paramF42Data.DI_mobilizationCenter;
+          if (dt_mob=='yes') {
+            document.getElementById("DI_mobilizationCenterYes").checked='true';
+          } else if (dt_mob=='no'){
+            document.getElementById("DI_mobilizationCenterNo").checked='true';
+          } else {
+            document.getElementById("DI_mobilizationCenterNone").checked='true';
+          }
+                             
+            // 6. Dispatch From
+          document.getElementById("DF_incidentName").value=f42dataObject.DF_incidentName;
+
+          document.getElementById("DF_endDate").value=f42dataObject.DF_endDate;
+          //alert(f42dataObject.DF_incOrderNumber_state);
+          document.getElementById("DF_incOrderNumber_state").value=f42dataObject.DF_incOrderNumber_state;
+          document.getElementById("DF_incOrderNumber_3ltr").value=f42dataObject.DF_incOrderNumber_3ltr;
+          document.getElementById("DF_incOrderNumber_number").value=f42dataObject.DF_incOrderNumber_number;
+          //paramF42Data.DF_incOrderNumbernumber=DF_incOrderNumber_state+DF_incOrderNumber_3ltr+DF_incOrderNumber_number;
+
+          document.getElementById("DF_incReqNumber_3ltr").value=f42dataObject.DF_incReqNumber_3ltr;
+          document.getElementById("DF_incReqNumber_id").value=f42dataObject.DF_incReqNumber_id;
+          document.getElementById("DF_incReqNumber_number").value=f42dataObject.DF_incReqNumber_number;
+          //paramF42Data.DF_incidentRequestNumber=DF_incReqNumber_3ltr+DF_incReqNumber_id+DF_incReqNumber_number;
+
+          // 7. Dispatch To
+          document.getElementById("DT_incidentName").value=f42dataObject.DT_incidentName;
+          document.getElementById("DT_startDate").value=f42dataObject.DT_startDate;
+
+          document.getElementById("DT_incidentOrderNumber_state").value=f42dataObject.DT_incidentOrderNumber_state;
+          document.getElementById("DT_incidentOrderNumber_3ltr").value=f42dataObject.DT_incidentOrderNumber_3ltr;
+          document.getElementById("DT_incidentOrderNumber_number").value=f42dataObject.DT_incidentOrderNumber_number;
+          //DT_incidentOrderNumber_state+DT_incidentOrderNumber_3ltr+DT_incidentOrderNumber_number=paramF42Data.DT_incidentOrderNumber;
+
+          document.getElementById("DT_incidentRequestNumber_3ltr").value=f42dataObject.DT_incidentRequestNumber_3ltr;
+          document.getElementById("DT_incidentRequestNumber_id").value=f42dataObject.DT_incidentRequestNumber_id;
+          document.getElementById("DT_incidentRequestNumber_number").value=f42dataObject.DT_incidentRequestNumber_number;
+          //paramF42Data.DT_incidentRequestNumber=DT_incidentRequestNumber_3ltr+DT_incidentRequestNumber_id+DT_incidentRequestNumber_number;
+
+            // 8. Overhead
+          var ohType=f42dataObject.OH_overheadType;
+
+          
+          if (ohType=='STEN/TFLD') {
+            document.getElementById("OH_overheadType_stenTFLD").checked='true';
+          } else if (ohType=='STEN(T)/TFLD(T)'){
+            document.getElementById("OH_overheadType_stenTTFLDT").checked='true';
+          } else if (ohType=='Overhead Position') {
+            document.getElementById("OH_overheadType_overheadPos").checked='true';
+            var oh_title_vis=document.getElementById("oh_typeICSTitleVisibility");
+            oh_title_vis.style.visibility="visible";
+          } else {
+            document.getElementById("OH_overheadType_overheadNone").checked='true';
+          }
+
+         //document.querySelector('input[name="OverheadType"]:checked').value=f42dataObject.OH_overheadType;
+
+          document.getElementById("OH_icsTitle").value=f42dataObject.OH_icsTitle;
+          document.getElementById("OH_icsTitleCode").value=f42dataObject.OH_icsTitleCode;
+          document.getElementById("OH_icsTitleDesc").value=f42dataObject.OH_icsTitleDesc;
+
+          document.getElementById("OH_otherICStitle").value=f42dataObject.OH_otherICStitle;
+            
+            // 9. Support Vehicle Info
+          var svi_ownership=f42dataObject.SV_vehicleOwnership;
+
+          if (svi_ownership=='agency'){
+            document.getElementById("SV_vehicleOwnership_agency").checked='true';
+          } else if (svi_ownership=='pov'){
+            document.getElementById("SV_vehicleOwnership_pov").checked='true';
+
+            document.getElementById("POV_Visibility").style.visibility='visible';
+            
+            document.getElementById('vt_visibility1').style.display='none';
+            document.getElementById('vt_visibility2').style.display='none';
+            document.getElementById('vt_visibility3').style.display='none';
+            
+            document.getElementById('vt_licensenumber').style.display='';
+            document.getElementById('vt_licenselabel').style.display='';
+          } else if (svi_ownership=='rental'){
+            document.getElementById("SV_vehicleOwnership_rental").checked='true';
+                        
+            document.getElementById("POV_Visibility").style.visibility='none';
+
+            document.getElementById('vt_visibility1').style.display='none';
+            document.getElementById('vt_visibility2').style.display='none';
+            document.getElementById('vt_visibility3').style.display='none';
+
+            document.getElementById('vt_licensenumber').style.display='none';
+            document.getElementById('vt_licenselabel').style.display='none';
+          }  else if (svi_ownership=='cdf/oes'){
+            document.getElementById("SV_vehicleOwnership_cdfoes").checked='true';
+            
+            document.getElementById("POV_Visibility").style.visibility="hidden";                      
+
+            //var vt_visi=document.getElementsByClassName("vt_visibility").style.display='';
+            document.getElementById('vt_visibility1').style.display='';
+            document.getElementById('vt_visibility2').style.display='';
+            document.getElementById('vt_visibility3').style.display='';
+
+            document.getElementById('vt_licensenumber').style.display='';
+            document.getElementById('vt_licenselabel').style.display='';
+          } else {
+            document.getElementById("SV_vehicleOwnership_none").checked='true';
+          }
+
+          //document.querySelector('input[name="VehicleOwnerShip"]:checked').value=f42dataObject.SV_vehicleOwnership;
+          document.getElementById("SV_licenseplateNumber").value=f42dataObject.SV_licenseplateNumber;
+          
+          var svi_vehType=f42dataObject.SV_vehicleType;
+          if (svi_vehType=='sedan') {
+            document.getElementById("SV_vehicleType_sedan").checked='true';
+          } else if (svi_vehType=='suv'){
+            document.getElementById("SV_vehicleType_suv").checked='true';
+          }else if (svi_vehType=='van'){
+            document.getElementById("SV_vehicleType_van").checked='true';
+          }else if (svi_vehType=='Pick-Up (1/2 Ton)'){
+            document.getElementById("SV_vehicleType_pickuphalf").checked='true';
+          }else if (svi_vehType=='Pick-Up (3/4 Ton &amp; Above)'){
+            document.getElementById("SV_vehicleType_pickup3q").checked='true';
+          }else{
+            document.getElementById("SV_vehicleType_none").checked='true';
+          }
+          //document.querySelector('input[name="VehicleType"]:checked').value=f42dataObject.SV_vehicleType;
+
+            // 10. Privately Owned Vehicle
+          document.getElementById("PO_odometerStart").value=f42dataObject.PO_odometerStart;
+          document.getElementById("PO_odometerEnd").value=f42dataObject.PO_odometerEnd;
+          document.getElementById("PO_totalMiles").value=f42dataObject.PO_totalMiles;
+
+            // 11. Equipment Resource Info
+          document.getElementById("ER_apparatus").value=f42dataObject.ER_apparatus;
+          document.getElementById("ER_unitNumber").value=f42dataObject.ER_unitNumber;
+          document.getElementById("ER_licenseNumber").value=f42dataObject.ER_licenseNumber;
+          var eri_type=f42dataObject.ER_type;
+          if (eri_type=='1') {
+            document.getElementById("ER_type_1").checked='true';
+          } else if (eri_type=='2') {
+            document.getElementById("ER_type_2").checked='true';
+          } else if (eri_type=='3') {
+            document.getElementById("ER_type_3").checked='true';
+          } else if (eri_type=='4') {
+            document.getElementById("ER_type_4").checked='true';
+          } else if (eri_type=='5') {
+            document.getElementById("ER_type_5").checked='true';
+          } else if (eri_type=='6') {
+            document.getElementById("ER_type_6").checked='true';
+          } else if (eri_type=='7') {
+            document.getElementById("ER_type_7").checked='true';
+          } else if (eri_type=='WT-1') {
+            document.getElementById("ER_type_wt1").checked='true';
+          } else if (eri_type=='WT-2') {
+            document.getElementById("ER_type_wt2").checked='true';
+          } else{
+            document.getElementById("ER_type_none").checked='true';
+          }
+
+          var eri_cdfOesVeh=f42dataObject.ER_cdfOesVehicle;
+
+          if (eri_cdfOesVeh=='yes'){
+            document.getElementById("ER_cdfOesVehicleYes").checked='true';
+          } else if (eri_cdfOesVeh=='no'){
+            document.getElementById("ER_cdfOesVehicleNo").checked='true';
+          } else {
+            document.getElementById("ER_cdfOesVehicleNone").checked='true';
+          }
+          //document.querySelector('input[name="OverheadType"]:checked').value=f42dataObject.ER_cdfOesVehicle;
+          //document.querySelector('input[name="ER_type"]:checked').value=f42dataObject.ER_type;
+            
+          document.getElementById("ER_femaCode").value=f42dataObject.ER_femaCode;
+          document.getElementById("ER_agencySpecialEquipment").value=f42dataObject.ER_agencySpecialEquipment;
+
+          document.getElementById("ER_equipmentType").value=f42dataObject.ER_equipmentType;
+          document.getElementById("ER_equipmentDesc").value=f42dataObject.ER_equipmentDesc;
+
+          // 12 - 13. Personnel Info
+          document.getElementById("PI_numberOfPersonnelOnApparatus").value=f42dataObject.PI_numberOfPersonnelOnApparatus;
+          var pi_DocOnly=f42dataObject.PI_documentationOnly;
+          if (pi_DocOnly=='yes') {
+            document.getElementById("PI_documentationOnlyYes").checked='true';
+          } else if (pi_DocOnly=='no') {
+            document.getElementById("PI_documentationOnlyNo").checked='true';
+          } else {
+            document.getElementById("PI_documentationOnlyNone").checked='true';
+          }
+
+          //document.querySelector('input[name="PI_documentationOnly"]:checked').value=f42dataObject.PI_documentationOnly;
+
+          var piTable=document.getElementById("personnelTable");
+          if (f42dataObject.PI_personnelList.length>0) {
+            for (var i=2;i<piTable.rows.length;i++) {              
+              piTable.rows[i].cells[0].children[0].value=f42dataObject.PI_personnelList[i-2].fullName;
+              piTable.rows[i].cells[1].children[0].value=f42dataObject.PI_personnelList[i-2].macsId;
+              piTable.rows[i].cells[2].children[0].value=f42dataObject.PI_personnelList[i-2].jobTitle;
+              piTable.rows[i].cells[3].children[0].value=f42dataObject.PI_personnelList[i-2].ssn;
+              piTable.rows[i].cells[4].children[0].value=f42dataObject.PI_personnelList[i-2].startDate;
+              piTable.rows[i].cells[5].children[0].value=f42dataObject.PI_personnelList[i-2].startTime;
+              piTable.rows[i].cells[6].children[0].value=f42dataObject.PI_personnelList[i-2].endDate;
+              piTable.rows[i].cells[7].children[0].value=f42dataObject.PI_personnelList[i-2].endTime;
+              piTable.rows[i].cells[8].children[0].value=f42dataObject.PI_personnelList[i-2].cdf;
+              piTable.rows[i].cells[9].children[0].value=f42dataObject.PI_personnelList[i-2].base;
+            }
+          }
+
+        
+           //   Actual Hours -PI_actualHoursTable
+          var piahTable=document.getElementById("PI_actualHoursTable");
+          
+          if (f42dataObject.actualHoursList.length>0){ 
+            for (var i=1;i<piahTable.rows.length-1;i++) {
+              piahTable.rows[i].cells[0].children[0].value=f42dataObject.actualHoursList[i-1].dayOfHours;
+              piahTable.rows[i].cells[1].children[0].value=f42dataObject.actualHoursList[i-1].startTime;
+              piahTable.rows[i].cells[2].children[0].value=f42dataObject.actualHoursList[i-1].endTime;
+              piahTable.rows[i].cells[3].children[0].value=f42dataObject.actualHoursList[i-1].totalHours;
+            }
+          }
+
+          // 14. Comments - commentTable
+          var commentTable=document.getElementById("commentTable");
+          if (f42dataObject.comments.length>0) {
+            for (i=2;i<commentTable.rows.length;i++) {
+              commentTable.rows[i].cells[0].children[0].value=f42dataObject.comments[i-2].dateofComment;
+              commentTable.rows[i].cells[1].children[0].value=f42dataObject.comments[i-2].timeofComment;
+              commentTable.rows[i].cells[2].children[0].value=f42dataObject.comments[i-2].comment;
+            }
+          }
+
+          // 15-16. Supply Number Loss / Damage
+          var SN_LDClaim=f42dataObject.LD_claim;
+          if (SN_LDClaim=='yes') {
+            document.getElementById("LD_claim_yes").checked='true';
+          } else if (SN_LDClaim=='no'){
+            document.getElementById("LD_claim_no").checked='true';
+          } else {
+            document.getElementById("LD_claim_none").checked='true';
+          }
+
+          //document.querySelector('input[name="LD_claim"]:checked').value=paramF42Data.LD_claim;
+          document.getElementById("SN_supplyNumber").value=f42dataObject.SN_supplyNumber;
+
+          // 17. Responding Agency Info
+          document.getElementById("RA_agencyName").value=f42dataObject.RA_agencyName;
+          document.getElementById("RA_yourName").value=f42dataObject.RA_yourName;
+          document.getElementById("RA_yourTitle").value=f42dataObject.RA_yourTitle;
+          document.getElementById("RA_yourPhone").value=f42dataObject.RA_yourPhone;
+          raSigned=f42dataObject.RA_signed;
+
+            // get signature
+          var sigBoxRA=document.getElementById("RA_signatureCanvas");
+          sigBoxRA.width=sigBoxRA.width;
+          ctxy=sigBoxRA.getContext('2d');
+          var sigImageRA=new Image();
+          sigImageRA.src=f42dataObject.RA_signatureCanvas;
+          sigImageRA.onload=()=>{
+            ctxy.drawImage(sigImageRA,0,0);
+          }
+
+          // 18. Incident Info - Paying Agency
+          var PA_agency=f42dataObject.PA_payingAgency;
+          if (PA_agency='oes') {
+            document.getElementById('PA_oes').checked='true';
+          } else if (PA_agency='cdf'){
+            document.getElementById('PA_cdf').checked='true';
+          } else if (PA_agency='usfs'){
+            document.getElementById('PA_usfs').checked='true';
+          } else if (PA_agency='blm'){
+            document.getElementById('PA_blm').checked='true';
+          } else if (PA_agency='nps'){
+            document.getElementById('PA_nps').checked='true';
+          } else if (PA_agency='bia'){
+            document.getElementById('PA_bia').checked='true';
+          } else if (PA_agency='fws'){
+            document.getElementById('PA_fws').checked='true';
+          } else if (PA_agency='lra/mma'){
+            document.getElementById('PA_lramma').checked='true';
+          } else {
+            document.getElementById('PA_none').checked='true';
+          }
+          
+          iipaSigned=f42dataObject.PA_signed;
+          document.getElementById("PA_payingAgencyOther").value=f42dataObject.PA_payingAgencyOther;
+            // get signature
+          var sigBox=document.getElementById("signatureCanvas");
+          sigBox.width=sigBox.width;
+          sigbox=ctxx=sigBox.getContext('2d');
+          var sigImage=new Image();
+          sigImage.src=f42dataObject.signatureCanvas;
+          sigImage.onload=()=>{
+            ctxx.drawImage(sigImage,0,0);
+          }
+
+          document.getElementById("PA_printedName").value=f42dataObject.PA_printedName;
+          document.getElementById("PA_icsPosition").value=f42dataObject.PA_icsPosition;
+          document.getElementById("PA_caloesRep").value=f42dataObject.PA_caloesRep;
+          document.getElementById("PA_dateSigned").value=f42dataObject.PA_dateSigned;          
+        }
+
+        function loadAOfflineF42FromIDB(ev,x){
+          ev.preventDefault();
+
+          var f42Id=x.innerText;
+          const dbR = indexedDB.open('MARSF42DATAENTRY', 1);
+          var OfflineData=[];
+          
+          dbR.onerror = (event) => {
+              console.error('Database error from online page :' + event.target.errorCode);
+          };
+          
+          dbR.onupgradeneeded=(event)=>{
+            var db=event.target.result;
+            var store=db.createObjectStore('f42dataStore',{keyPath:'Id'});
+          }
+
+          dbR.onsuccess = (event) => {
+              const db = event.target.result;
+              const txn = db.transaction('f42dataStore', "readwrite");
+              const objectStore = txn.objectStore('f42dataStore');
+              objectStore.openCursor().onsuccess = (event) => {
+                  let cursor = event.target.result;
+
+                  if (cursor) {
+                    let f42data = cursor.value;
+
+                    if (f42Id==f42data.Id){
+                      var offlineRecord={
+                        Id:f42data.Id,
+                        key:f42data.key,
+
+                        // 1-4. Agency Info/Incident
+                        AI_macsId:f42data.AI_macsId,
+                        AI_agencyName:f42data.AI_agencyName,
+                        
+                        // Designator
+                        AI_designator_3_ltr:f42data.AI_designator_3_ltr,
+                        AI_designator_number:f42data.AI_designator_number,
+                        AI_designator_ltr:f42data.AI_designator_ltr,
+
+                        designator:f42data.designator,
+
+                        // Strike Team
+                        AI_strikeTask_3_ltr:f42data.AI_strikeTask_3_ltr,
+                        AI_strikeTask_number:f42data.AI_strikeTask_number,
+                        AI_strikeTask_ltr:f42data.AI_strikeTask_ltr,
+
+                        strikeTeam:f42data.strikeTeam,
+
+                        // Incident Order Number
+                        AI_orderNumber_state:f42data.AI_orderNumber_state,
+                        AI_orderNumber_3ltr:f42data.AI_orderNumber_3ltr,
+                        AI_orderNumber_number:f42data.AI_orderNumber_number,
+
+                        incidentOrderNumber:f42data.incidentOrderNumber,
+
+                        // Incident Request Number 
+                        AI_requestNumber_3ltr:f42data.AI_requestNumber_3ltr,
+                        AI_requestNumber_id:f42data.AI_requestNumber_id,
+                        AI_requestNumber_number:f42data.AI_requestNumber_number,
+                        
+                        incidentRequestNumber:f42data.incidentRequestNumber,                          
+
+                        // 5. Dispatch Info
+                        DI_incidentName:f42data.DI_incidentName,
+                        DI_reportingLocation:f42data.DI_reportingLocation,
+
+                        DI_committedtoIncidentDate:f42data.DI_committedtoIncidentDate,
+                        DI_committedtoIncidentTime:f42data.DI_committedtoIncidentTime,
+
+                        DI_returnfromIncidentDate:f42data.DI_returnfromIncidentDate,
+                        DI_returnfromIncidentTime:f42data.DI_returnfromIncidentTime,
+                                  
+                        DI_reDispatchedDate:f42data.DI_reDispatchedDate,          
+                        DI_reDispatchedTime:f42data.DI_reDispatchedTime,
+
+                        DI_mobilizationCenter:f42data.DI_mobilizationCenter,
+
+                        // 6. Dispatch From
+                        DF_incidentName:f42data.DF_incidentName,
+                        DF_endDate:f42data.DF_endDate,
+                        DF_incOrderNumbernumber:f42data.DF_incOrderNumbernumber,
+                        DF_incidentRequestNumber:f42data.DF_incidentRequestNumber,
+                        
+                        DF_incOrderNumber_3ltr:f42data.DF_incOrderNumber_3ltr,
+                        DF_incOrderNumber_number:f42data.DF_incOrderNumber_number,
+                        DF_incOrderNumber_state:f42data.DF_incOrderNumber_state,
+
+                        DF_incReqNumber_3ltr:f42data.DF_incReqNumber_3ltr,
+                        DF_incReqNumber_id:f42data.DF_incReqNumber_id,
+                        DF_incReqNumber_number:f42data.DF_incReqNumber_number,
+
+                        // 7. Dispatch To
+                        DT_incidentName:f42data.DT_incidentName,
+                        DT_startDate:f42data.DT_startDate,
+
+                        DT_incidentOrderNumber:f42data.DT_incidentOrderNumber,
+                        DT_incidentRequestNumber:f42data.DT_incidentRequestNumber,
+
+                        DT_incidentOrderNumber_3ltr:f42data.DT_incidentOrderNumber_3ltr,
+                        DT_incidentOrderNumber_number:f42data.DT_incidentOrderNumber_number,
+                        DT_incidentOrderNumber_state:f42data.DT_incidentOrderNumber_state,
+
+                        DT_incidentRequestNumber_number:f42data.DT_incidentRequestNumber_number,
+                        DT_incidentRequestNumber_3ltr:f42data.DT_incidentRequestNumber_3ltr,
+                        DT_incidentRequestNumber_id:f42data.DT_incidentRequestNumber_id,
+
+                        // 8. Overhead
+                        OH_overheadType:f42data.OH_overheadType,
+                        OH_icsTitle:f42data.OH_icsTitle,
+                        OH_icsTitleCode:f42data.OH_icsTitleCode,
+                        OH_icsTitleDesc:f42data.OH_icsTitleDesc,
+                        OH_otherICStitle:f42data.OH_otherICStitle ,
+                        
+                        // 9. Support Vehicle Info
+                        SV_vehicleOwnership:f42data.SV_vehicleOwnership,
+                        
+                        SV_licenseplateNumber:f42data.SV_licenseplateNumber,
+
+                        SV_vehicleType:f42data.SV_vehicleType,
+                      
+                        // 10. Privately Owned Vehicle
+                        PO_odometerStart:f42data.PO_odometerStart,
+                        PO_odometerEnd:f42data.PO_odometerEnd,
+                        PO_totalMiles:f42data.PO_totalMiles,
+
+                        // 11. Equipment Resource Info
+                        ER_apparatus:f42data.ER_apparatus,
+                        ER_unitNumber:f42data.ER_unitNumber,
+                        ER_licenseNumber:f42data.ER_licenseNumber,
+                        ER_cdfOesVehicle:f42data.ER_cdfOesVehicle,
+
+                        ER_type:f42data.ER_type,
+
+                        ER_femaCode:f42data.ER_femaCode,
+                        ER_agencySpecialEquipment:f42data.ER_agencySpecialEquipment,
+                        ER_equipmentType:f42data.ER_equipmentType,
+                        ER_equipmentDesc:f42data.ER_equipmentDesc,
+
+                        //12 -13 Personnel Info
+                        PI_numberOfPersonnelOnApparatus:f42data.PI_numberOfPersonnelOnApparatus,
+                        PI_documentationOnly:f42data.PI_documentationOnly,
+                        PI_personnelList:f42data.PI_personnelList,
+                        actualHoursList:f42data.actualHoursList,
+
+                        // 14. Comments
+                        comments:f42data.comments,
+
+                        // 15-16. Supply Number Loss / Damage
+                        LD_claim:f42data.LD_claim,
+                        SN_supplyNumber:f42data.SN_supplyNumber,
+
+                        // 17. Responding Agency Info
+                        RA_agencyName:f42data.RA_agencyName,
+                        RA_yourName:f42data.RA_yourName,
+                        RA_yourTitle:f42data.RA_yourTitle,
+                        RA_yourPhone:f42data.RA_yourPhone,
+                        RA_signatureCanvas:f42data.RA_signatureCanvas,
+
+                        // 18. Incident Info - Paying Agency
+                        PA_payingAgency:f42data.PA_payingAgency,
+                        PA_payingAgencyOther:f42data.PA_payingAgencyOther,
+
+                        signatureCanvas:f42data.signatureCanvas,
+                        PA_printedName:f42data.PA_printedName,
+                        PA_icsPosition:f42data.PA_icsPosition,
+                        PA_caloesRep:f42data.PA_caloesRep,
+                        PA_dateSigned:f42data.PA_dateSigned,
+
+                        F42_Status:f42data.F42_Status,
+                        F42_Signed:f42data.formSigned
+                      }; 
+                      OfflineData.push(offlineRecord);
+                      Id=[];                        
+                      Id.push(offlineRecord.Id);      
+                    } 
+                  cursor.continue();
+                }
+              };
+              // close the database connection
+              txn.oncomplete = function () {
+                if (OfflineData.length !=0) {
+                  populateForm(OfflineData[0]);
+                  disableByF42Status(OfflineData[0].F42_Status);
+                } else {
+                  alert('No data to populate.');
+                }
+                
+                db.close();
+              };
+          };
+        }
+      </script>
+    </body>
+  </html>
+</apex:page>

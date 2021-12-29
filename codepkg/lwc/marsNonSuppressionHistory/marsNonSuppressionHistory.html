@@ -1,0 +1,165 @@
+<!--
+ - Created by Pankaj on 08-04-2021.
+ -->
+
+<!-- Mars Salary Survey History -->
+<template>
+    <div class="table_light">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">Attachment A. Non-Suppression Personnel History
+            </h2>
+        </div>
+        <div class="slds-grid slds-wrap">
+            <div class="slds-scrollable">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout" id="Table1">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-size_5-of-12" scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Start Date">Start Date</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="End Date">End Date</div>
+                        </th>
+                        <th class="slds-size_1-of-12" scope="col">
+                            <div class="slds-truncate" title="Action">Action</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={nonSuppRecords} for:item="nonSuppRecord" for:index="index">
+                        <tr class="slds-hint-parent" key={nonSuppRecord.Id}>
+                            <td data-label="Name" scope="row">
+                                <div class="slds-truncate" title={nonSuppRecord.Name}>
+                                    {nonSuppRecord.Name}
+                                </div>
+                            </td>
+                            <td data-label="Status" scope="row">
+                                {nonSuppRecord.Approval_Status__c}
+                            </td>
+                            <td data-label="Start Date">
+                                <lightning-formatted-date-time value={nonSuppRecord.Start_Date__c} year="numeric"
+                                    month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </td>
+                            <td data-label="End Date">
+                                <lightning-formatted-date-time value={nonSuppRecord.End_Date__c} year="numeric"
+                                    month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+                            </td>
+                            <td data-label="View">
+                                <a data-index={nonSuppRecord.Id} onclick={viewRecord} class="slds-p-right_small">
+                                    <lightning-icon icon-name="utility:preview"
+                                        class="slds-icon slds-icon_small vieweye" size="small" alternative-text="view">
+                                    </lightning-icon>
+                                    <span class="slds-assistive-text">View</span>
+                                </a>
+                                <a data-index={nonSuppRecord.Id} onclick={printRecord} class="slds-p-right_small">
+                                    <lightning-icon icon-name="utility:print" class="slds-icon slds-icon_small print" size="small" alternative-text="print"></lightning-icon>
+                                    <span class="slds-assistive-text">Print</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <template if:true={isViewModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-modal_large slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal/Popup Box LWC header here -->
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeSubmitModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Attachment A. Non-Suppression Personnel
+                    </h2>
+                </header>
+                <!-- Modal/Popup Box LWC body starts here -->
+                <div class="slds-modal__content" id="modal-content-id-1">
+                    <div class="slds-scrollable">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout"
+                        id="Table2">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="Classification Title">Classification Title</div>
+                                </th>
+                                <th class="slds-size_1-of-4" scope="col">
+                                    <div class="slds-truncate" title="Salary Rate (ST)">Salary Rate (ST)</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={nonSuppLineItemRecord} for:item="nonSuppLineItem" for:index="index">
+                                <tr class="slds-hint-parent" key={nonSuppLineItem.Id}>
+                                    <td data-label="Classification Title" scope="row">
+                                        <div class="slds-truncate" title={nonSuppLineItem.Classification_Title__c}>
+                                            {nonSuppLineItem.Classification_Title__c}
+                                        </div>
+                                    </td>
+                                    <td data-label="Salary Rate (ST)" scope="row">
+                                        <template if:false={showRejectedAndPendingForApproval}> 
+                                            <div class="slds-truncate" title={nonSuppLineItem.Current_Rate__c}>   
+                                                <lightning-formatted-number value={nonSuppLineItem.Current_Rate__c}
+                                                    format-style="currency" currency-code="USD">
+                                                </lightning-formatted-number>
+                                            </div>    
+                                        </template>
+                                        <template if:true={showRejectedAndPendingForApproval}>
+                                            <div class="slds-truncate" title={nonSuppLineItem.Revised_Rate__c}> 
+                                                <lightning-formatted-number value={nonSuppLineItem.Revised_Rate__c}
+                                                    format-style="currency" currency-code="USD">  
+                                                </lightning-formatted-number>
+                                            </div>      
+                                        </template>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="slds-col approved" style="padding-top: 1.5rem;">
+                        <div class="slds-size_6-of-12">Effective Date
+                            <lightning-formatted-date-time class="slds-m-left_x-small outputfont"
+                                value={nonSuppRecord.Start_Date__c} year="numeric" month="2-digit" day="2-digit"
+                                time-zone="UTC"></lightning-formatted-date-time>
+                        </div> 
+                        <div class="slds-size_6-of-12">Status
+                            <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                value={nonSuppRecord.Approval_Status__c}></lightning-formatted-text>
+                        </div>
+                        <template if:true={showRejectReason}>
+                            <div class="slds-size_12-of-12">Rejected Reason
+                                <lightning-formatted-text class="slds-m-left_x-small outputfont"
+                                    value={nonSuppRecord.Reject_Reason__c}></lightning-formatted-text>
+                            </div>
+                       </template>
+                    </div>
+                </div>
+                <template if:true={hasFiles}>
+                    <div class="approved">
+                        <c-mars-view-files record={contentVersions}  ></c-mars-view-files>  
+                    </div>
+                </template>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={closeSubmitModal}
+                        title="Cancel">Cancel</button>
+                    <!--<button class="slds-button slds-button_brand" onclick={saveData} title="Save">Save</button>-->
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

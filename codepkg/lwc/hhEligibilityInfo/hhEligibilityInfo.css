@@ -1,0 +1,69 @@
+:host {
+	display: contents;
+}
+.table-row {
+		background: rgba(20, 63, 116, 0.05);
+}
+table, th, td {
+	border-top: 1px solid rgb(212, 212, 212);
+	border: 1px solid rgb(212, 212, 212);
+	text-align: center;
+	padding: 10px;
+}
+td {
+		padding:8px;
+}
+h3.heading {
+    color: #fff;
+    background: #2574a9;
+    padding: 10px 15px;
+}
+.slds-theme_shade {
+    background: #e8e8e8;
+    padding: 10px;
+    border-radius: 0.25rem;
+}
+.slds-box {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+.around_border {
+    border: 1px solid #dedede;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.around_border .slds-theme_shade {
+    margin-top: 15px;
+}
+
+
+
+@media screen and (max-width: 890px) {
+ .responsive_table table {
+    border: 0;
+  }
+
+ .responsive_table table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+}
+
+@media screen and (max-width: 390px) {
+.slds-dueling-list {
+    flex-wrap: wrap;
+}
+.slds-dueling-list__column_responsive {
+    max-width: calc(100% - 40px);
+}
+.slds-dueling-list__column_responsive .slds-dueling-list__options {
+    width: 100%; 
+}
+}

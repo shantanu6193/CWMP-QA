@@ -1,0 +1,409 @@
+<template>
+    <div class="slds-grid slds-wrap ">
+        <div class="slds-col slds-size_12-of-12 ">
+            <div class="slds-float_right">
+                <lightning-button label="Print" onclick={handlePrintClick} class="slds-no-print"></lightning-button>
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-p-top_medium">
+        <div class="slds-col slds-size_12-of-12">
+            <div class="container fix-height">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12">
+                        <!--Form Header-->
+                        <div class="slds-grid slds-wrap ">
+                            <div class="slds-col slds-size_12-of-12 form-header">
+                                <p class=" slds-text-color_inverse slds-p-around--small">STATE OF CALIFORNIA MEMORANDUM</p>
+                            </div>
+                        </div>
+                        <!--Form Header End-->
+                        <!--Form Body-->
+                        <div class="slds-grid slds-wrap  slds-p-around--large form-body">
+                            <!--Image Section-->
+                            <div class="slds-col slds-size_12-of-12">
+                                <div class="slds-grid slds-wrap slds-gutters_direct-medium">
+                                    <div class="slds-col slds-size_6-of-12 alignment">
+                                        <img src={caloesimage}>
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12 alignment"></div>
+                                    <!--From Section-->
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_5-of-12 slds-size_12-of-12 slds-p-top--large slds-large-order_1 slds-medium-order_1 slds-order_1">
+                                        <!--From Section Header-->
+                                        <div class="slds-grid slds-wrap ">
+                                            <div class="slds-col slds-size_12-of-12 form-header">
+                                                <p class=" slds-text-color_inverse slds-p-vertical--xx-small slds-p-left_large">FROM</p>
+                                            </div>
+                                        </div>
+                                        <!--From Section Body-->
+                                        <div class="slds-grid slds-wrap  slds-p-around--large form-body">
+                                            <div class="slds-col slds-size_12-of-12 alignment">
+                                                <p><b>Payment User's Manager:</b> {transmittalDetails.PaymentUsersManager__c}</p>
+                                                <p><b>Title:</b> {transmittalDetails.ManagersTitle__c}</p>
+                                                <p><b>Manager's Department:</b> {transmittalDetails.ManagersDepartment__c}</p>
+                                                <p style="word-break:break-word;"><b>Email:</b> {transmittalDetails.FromEmail__c}</p>
+                                                <p><b>Address: </b>
+                                                    <template if:true={transmittalDetails.ManagerMailingStreet__c}>
+                                                        {transmittalDetails.ManagerMailingStreet__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ManagerMailingCity__c}>
+                                                        , {transmittalDetails.ManagerMailingCity__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ManagerMailingState__c}>
+                                                        , {transmittalDetails.ManagerMailingState__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ManagerMailingPostalCode__c}>
+                                                        , {transmittalDetails.ManagerMailingPostalCode__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ManagerMailingCountry__c}>
+                                                        , {transmittalDetails.ManagerMailingCountry__c}.
+                                                    </template>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--From Section End-->
+                                    <!--Transmittal details section 1-->
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_7-of-12 slds-size_12-of-12 slds-p-top_large slds-large-order_2 slds-medium-order_2 slds-order_3">
+                                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <p></p>
+                                            </div>
+                                            <template if:true={isMutualAid}>
+                                                <template if:true={isStateTransmittal}>
+                                                <div class="slds-col slds-size_3-of-6 slds-text-align--center form-header">
+                                                    <p class=" slds-text-color_inverse slds-p-around--xx-small"> {transmittalDetails.TransmittalType__c} Transmittal - CDAA (Mutual Aid)</p>
+                                                </div>
+                                                </template>
+                                                <template if:false={isStateTransmittal}>
+                                                <div class="slds-col slds-size_3-of-6 slds-text-align--center form-header">
+                                                    <p class=" slds-text-color_inverse slds-p-around--xx-small"> {transmittalDetails.TransmittalType__c} Transmittal (Mutual Aid)</p>
+                                                </div>
+                                                </template>
+                                            </template>
+                                            <template if:false={isMutualAid}>
+                                                <template if:true={isStateTransmittal}>
+                                                <div class="slds-col slds-size_3-of-6 slds-text-align--center form-header">
+                                                    <p class=" slds-text-color_inverse slds-p-around--xx-small"> {transmittalDetails.TransmittalType__c} Transmittal - CDAA</p>
+                                                </div>
+                                                </template>
+                                                <template if:false={isStateTransmittal}>
+                                                    <div class="slds-col slds-size_3-of-6 slds-text-align--center form-header">
+                                                        <p class=" slds-text-color_inverse slds-p-around--xx-small"> {transmittalDetails.TransmittalType__c} Transmittal</p>
+                                                    </div>
+                                                </template>
+                                            </template>
+
+
+                                            <div class="slds-col slds-size_3-of-6"><!--slds-p-top_small-->
+                                                <b>DATE</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p><lightning-formatted-date-time value={transmittalDetails.Date__c}
+                                                                                  year="numeric"
+                                                                                  month="2-digit"
+                                                                                  day="2-digit"
+                                                                                  time-zone="UTC"
+                                                >
+
+                                                </lightning-formatted-date-time>
+                                                <!-- <p>{transmittalDetails.Date__c}</p>-->
+                                                </p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>TRANSMITTAL NO</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.Name}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>PAYMENT DELIVERY</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.PaymentDelivery__c}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Transmittal details section End-->
+                                    <!--To section-->
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_5-of-12 slds-size_12-of-12 slds-p-top--medium slds-large-order_3 slds-medium-order_3 slds-order_2">
+                                        <!--To Section Header-->
+                                        <div class="slds-grid slds-wrap ">
+                                            <div class="slds-col slds-size_12-of-12 form-header">
+                                                <p class=" slds-text-color_inverse slds-p-vertical--xx-small slds-p-left_large">TO</p>
+                                            </div>
+                                        </div>
+                                        <!--To Section Body-->
+                                        <div class="slds-grid slds-wrap  slds-p-around--large form-body">
+                                            <div class="slds-col slds-size_12-of-12 alignment">
+                                                <p><b>Primary Authorized Agent Name:</b> {transmittalDetails.PrimaryAuthorizedAgentName__c}</p>
+                                                <p><b>Account Name:</b> {transmittalDetails.AccountName__c}</p>
+                                                <p><b>Primary Sub Recipient Address: </b>
+                                                    <template if:true={transmittalDetails.ContactMailingStreet__c}>
+                                                        {transmittalDetails.ContactMailingStreet__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ContactMailingCity__c}>
+                                                        , {transmittalDetails.ContactMailingCity__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ContactMailingState__c}>
+                                                        , {transmittalDetails.ContactMailingState__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ContactMailingPostalCode__c}>
+                                                        , {transmittalDetails.ContactMailingPostalCode__c}
+                                                    </template>
+                                                    <template if:true={transmittalDetails.ContactMailingCountry__c}>
+                                                        , {transmittalDetails.ContactMailingCountry__c}.
+                                                    </template>
+                                                </p>
+                                                <p style="word-break:break-word;"><b>Email Address:</b> {transmittalDetails.ToEmail__c}</p>
+                                                <p><b>Phone:</b> {transmittalDetails.Phone__c}</p>
+                                            </div>
+
+                                        </div>
+                                        <template if:true={transmittalDetails.Comments__c}>
+                                        <div class="slds-grid slds-wrap slds-p-top_large ">
+                                        <div class="slds-col slds-size_12-of-12 alignment form-body slds-p-around--large">
+                                            <p style="word-break:break-word;" class="slds-p-around--large" ><b>Description:</b> {transmittalDetails.Comments__c}</p>
+                                        </div>
+                                        </div>
+                                        </template>
+                                    </div>
+                                    <!--To section End-->
+                                    <!--Transmittal details section 2-->
+                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_7-of-12 slds-size_12-of-12 slds-p-top--medium slds-order_4">
+                                        <div class="slds-grid slds-wrap slds-grid_vertical-align-center">
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>APPLICANT NO</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.ApplicantNumber__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>APPLICANT NAME</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <template if:true={transmittalDetails.ApplicantName__r}>
+                                                    <p>{transmittalDetails.ApplicantName__r.Name}</p>
+                                                </template>
+                                            </div>
+                                            <template if:true={isMutualAid}>
+                                                <div class="slds-col slds-size_3-of-6">
+                                                    <b>OBLIGATED AGENCY NAME</b>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                    <template if:true={transmittalDetails.ObligatedAgency__c}>
+                                                        <p>{transmittalDetails.ObligatedAgency__r.Name}</p>
+                                                    </template>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-6">
+                                                    <b>SUPPLIER ID</b>
+                                                </div>
+                                                <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                    <p>{transmittalDetails.SupplierID__c}</p>
+                                                </div>
+                                            </template>
+
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>INCIDENT PROJECT NO</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.IncidentProjectNumber__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>PROGRAM NAME</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <template if:true={transmittalDetails.ProgramName__c}>
+                                                    <template if:true={isPAFederal}>
+                                                    <p>Public Assistance</p>
+                                                    </template>
+                                                    <template if:false={isPAFederal}>
+                                                    <p>{transmittalDetails.ProgramName__r.Name}</p>
+                                                </template>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>TRANSMITTAL TYPE</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <template if:true={transmittalDetails.TransmittalType__c}>
+                                                   <template if:true={isStateTransmittal}>
+                                                    <p>CDAA</p>
+                                                   </template>
+                                                    <template if:false={isStateTransmittal}>
+                                                        <p>{transmittalDetails.TransmittalType__c}</p>
+                                                    </template>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>FUNDING TYPE</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.FundingType__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>PAYMENT TYPE</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.PaymentType__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>PROJECT/ PW NO</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.ProjectPONumber__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>SERVICE LOCATION</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.ServiceLocationCode__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>ENACTMENT FISCAL YEAR</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p>{transmittalDetails.EnactmentFiscalYear__c}</p>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>REIMBURSEMENT PERIOD</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p><lightning-formatted-date-time value={transmittalDetails.ReimbursementStartDate__c}
+                                                                                  year="numeric"
+                                                                                  month="2-digit"
+                                                                                  day="2-digit"
+                                                                                  time-zone="UTC"
+                                                >
+                                                </lightning-formatted-date-time> -
+                                                 <lightning-formatted-date-time value={transmittalDetails.ReimbursementEndDate__c}
+                                                                                year="numeric"
+                                                                                month="2-digit"
+                                                                                day="2-digit"
+                                                                                time-zone="UTC"
+                                                 >
+                                                 </lightning-formatted-date-time></p>
+
+                                                <!--                                        <p>{transmittalDetails.ReimbursementStartDate__c} - {transmittalDetails.ReimbursementEndDate__c}</p>-->
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6">
+                                                <b>PERIOD OF PERFORMANCE</b>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-6 slds-p-around--xx-small form-body">
+                                                <p><lightning-formatted-date-time value={transmittalDetails.StartDate__c}
+                                                                                  year="numeric"
+                                                                                  month="2-digit"
+                                                                                  day="2-digit"
+                                                                                  time-zone="UTC"
+                                                >
+
+                                                </lightning-formatted-date-time> -
+                                                <lightning-formatted-date-time value={transmittalDetails.EndDate__c}
+                                                                               year="numeric"
+                                                                               month="2-digit"
+                                                                               day="2-digit"
+                                                                               time-zone="UTC"
+                                                >
+                                                </lightning-formatted-date-time></p>
+
+                                                <!--                                        <p>{transmittalDetails.StartDate__c} - {transmittalDetails.EndDate__c}</p>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Transmittal details section 2 End-->
+                            <!--Tabular Section-->
+                            <div class="slds-col slds-size_12-of-12 slds-p-top--large alignment ">
+                                <h3>The following claims are submitted to you for processing.</h3>
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-p-top--medium alignment">
+                                <table >
+                                    <thead>
+                                    <tr >
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="AccrualNo">Accrual/ Encumbrance No</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="TotalObligatedAmount">Total Obligated Amount</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="FederalAmountAvailable">{transmittalDetails.TransmittalType__c} Amount Available</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="CostShareAmount">Cost Share Amount</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="AdminShareAmount">Admin Share Amount</div>
+                                        </th>
+                                        <th class="" scope="col">
+                                            <div class="table-heading" title="PaymentAmount:">Approved {transmittalDetails.TransmittalType__c} Payment Amount</div>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="slds-hint-parent">
+                                        <td>
+                                            <div class="" title="AccrualNo">{transmittalDetails.AccrualEncumbranceNo__c}</div>
+                                        </td>
+                                        <td>
+                                            <template if:true={transmittalDetails.Total_amount_Obligated__c}>
+                                                <div class="" title="TotalObligatedAmount">$ <lightning-formatted-number value={transmittalDetails.Total_amount_Obligated__c} maximum-fraction-digits="2"></lightning-formatted-number></div>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:true={transmittalDetails.Amount_Available__c}>
+                                                <div class="" title="FederalAmountAvailable">$ <lightning-formatted-number value={transmittalDetails.Amount_Available__c} maximum-fraction-digits="2"></lightning-formatted-number></div>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:true={transmittalDetails.Amount_Obligated__c}>
+                                                <div class="" title="CostShareAmount">$ <lightning-formatted-number value={transmittalDetails.Amount_Obligated__c} maximum-fraction-digits="2"></lightning-formatted-number></div>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:true={transmittalDetails.Admin_Share_Amount__c}>
+                                                <div class="" title="AdminShareAmount">$ <lightning-formatted-number value={transmittalDetails.Admin_Share_Amount__c} maximum-fraction-digits="2"></lightning-formatted-number></div>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <template if:true={transmittalDetails.ApprovedAmount__c}>
+                                                <div class="" title="PaymentAmount">$ <lightning-formatted-number value={transmittalDetails.ApprovedAmount__c} maximum-fraction-digits="2"></lightning-formatted-number> </div>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--Tabular Section End-->
+                            <!--Signature Section-->
+
+
+                            <div class="slds-col slds-size_12-of-12 slds-p-top--xx-large alignment">
+                                <h3><b>Manager's Signature
+                                    <template if:true={isRejected}>
+                                    : {transmittalDetails.PaymentUsersManager__c}
+                                    </template>
+                                </b></h3><!--{transmittalDetails.FPU_Manager__c}-->
+                            </div>
+                            <div class="slds-col slds-size_12-of-12 slds-p-top--large alignment">
+                                <b>Date Signed: </b>
+                                <template if:true={isRejected}>
+                                <lightning-formatted-date-time value={transmittalDetails.Approved_Date__c}
+                                                               year="numeric"
+                                                               month="2-digit"
+                                                               day="2-digit"
+                                                               time-zone="UTC"
+                                >
+                                </lightning-formatted-date-time>
+                                </template>
+                            </div>
+                            <!--Signature Section End-->
+                        </div>
+                        <!--Form Body End-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

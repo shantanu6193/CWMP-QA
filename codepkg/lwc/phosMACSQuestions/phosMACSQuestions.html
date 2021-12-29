@@ -1,0 +1,569 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+        <template if:false={communityUser}>
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid slds-page-header">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-account" title="note">
+                              <lightning-icon icon-name="standard:note"></lightning-icon>
+                              <span class="slds-assistive-text">note</span>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <a class="slds-card__header-link slds-truncate slds-text-link_reset" title="Supplemental Questions">
+                                    <span>Supplemental Questions</span>
+                                </a>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <template if:true={showSupplementalQuestions}>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col">
+                            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_large slds-p-bottom_large slds-p-horizontal_x-large">
+                                            <template if:true={question1PicklistValues.data}>
+                                                <lightning-combobox name="What is the county's 7-day case rate (cases/100,000)?"
+                                                                    label="What is the county's 7-day case rate (cases/100,000)?"
+                                                                    value={recordLocal.What_is_the_county_s_7_day_case_rate__c}
+                                                                    class="input"
+                                                                    data-field="What_is_the_county_s_7_day_case_rate__c"
+                                                                    options={question1PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    message-when-value-missing="Enter Entity Type"
+                                                                    required
+                                                                    >
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                            <template if:true={question2PicklistValues.data}>
+                                                <lightning-combobox name="What percent of ICU beds available in the County?"
+                                                                    label="What percent of ICU beds available in the County?"
+                                                                    value={recordLocal.ICU_beds_available_in_the_County__c}
+                                                                    class="input"
+                                                                    data-field="ICU_beds_available_in_the_County__c"
+                                                                    options={question2PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                </lightning-combobox>
+                                            </template>
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                                <template if:true={question3PicklistValues.data}>
+                                                    <lightning-combobox name="What is the county's population density?"
+                                                                    label="What is the county's population density?"
+                                                                    value={recordLocal.What_is_the_county_s_population_density__c}
+                                                                    data-field="What_is_the_county_s_population_density__c"
+                                                                    class="input"
+                                                                    options={question3PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                                <template if:true={question4PicklistValues.data}>
+                                                    <lightning-combobox name="What is the percentage of population >65 years old in the county?"
+                                                                    label="What is the percentage of population >65 years old in the county?"
+                                                                    value={recordLocal.Population_65_years_old_in_county__c}
+                                                                    data-field="Population_65_years_old_in_county__c"
+                                                                    class="input"
+                                                                    options={question4PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                                <template if:true={question5PicklistValues.data}>
+                                                    <lightning-combobox name='Is the facility a "specialty center"?'
+                                                                    label='Is the facility a "specialty center"?'
+                                                                    value={recordLocal.Is_the_facility_a_specialty_center__c}
+                                                                    data-field="Is_the_facility_a_specialty_center__c"
+                                                                    class="input"
+                                                                    options={question5PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>-->
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                                <template if:true={question6PicklistValues.data}>
+                                                    <lightning-combobox name='What is the percentage of County population vaccinated?'
+                                                                    label='What is the percentage of County population vaccinated?'
+                                                                    value={recordLocal.What_of_County_population_vaccinated__c}
+                                                                    data-field="What_of_County_population_vaccinated__c"
+                                                                    class="input"
+                                                                    options={question6PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-bottom_large slds-p-horizontal_x-large">
+                                                <template if:true={question7PicklistValues.data}>
+                                                    <lightning-combobox name='Hospital Burden Score'
+                                                                    label='Hospital Burden Score'
+                                                                    value={recordLocal.Hospital_Burden_Score__c}
+                                                                    data-field="Hospital_Burden_Score__c"
+                                                                    class="input"
+                                                                    options={question7PicklistValues.data.values}
+                                                                    onchange={fieldChanged}
+                                                                    required
+                                                                    >
+                                                    </lightning-combobox>
+                                                </template>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12">
+                                                <div class="slds-grid slds-gutters_small">
+                                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-bottom_large slds-text-align_right">
+                                                        <lightning-button variant="brand" label="Submit" title="Submit" onclick={submit}></lightning-button>
+                                                    </div>
+                                                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-bottom_large slds-text-align_left">
+                                                        <lightning-button variant="brand" label="Cancel" title="Cancel" onclick={handleReset}></lightning-button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </article>
+        </template>
+        <template if:true={showMedicalQuestions}>
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid slds-page-header">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-account" title="note">
+                              <lightning-icon icon-name="standard:note"></lightning-icon>
+                              <span class="slds-assistive-text">note</span>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <a class="slds-card__header-link slds-truncate slds-text-link_reset" title="Medical Staffing Information">
+                                    <span>Medical Staffing Information</span>
+                                </a>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Is this for a General Acute Care Hospital (GACH)?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Is_this_for_a_GACH__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={isGACH}>
+                        <!--<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many additional beds will be provided with the staff requested?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Bed_to_staff_ratio_bed_staff__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many total staff are you requesting?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.How_many_total_staff_are_you_requesting__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What is your current total patient census?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.What_is_current_total_patient_census__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What is your current census of COVID + patients?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.What_is_current_census_of_COVID_patients__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Current total patient census divide by current census of covid + patients</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.Total_patient_divide_COVID_patient_censu__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Does the requested staff allow additional ICU or M/S/T beds (above licensed capacity) to be opened?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Allows_additional_ICU_or_M_S_T_beds__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Would requested personnel allow for additional ICU level beds to be opened for patients?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Does_site_need_personnel_to_keep_ICU__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Total ICU beds occupied (%)?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.Total_ICU_beds_occupied__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Have_you_attempted_to_transfer_patients__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Have you cancelled all non-urgent elective surgeries?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Have_you_cancelled_all_surgeries__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What is the average time of "triage-to- treatment" for ESI Category 3 patients in the ED over the last 72 hours?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Average_time_of_T_to_T_for_ESI_Cat_3__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Do you have, or have you requested, an active Staffing Waiver for the service line you in which you are requesting staff?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Do_you_have_an_active_staffing_waiver__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Are you using team nursing and are you out of ratio?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Using_team_nursing_and_out_of_ratio__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Would you be able to accept inter-facility patient transfers if you receive this staff?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Would_you_be_able_to_accept_transfers__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+                        <template if:false={isGACH}>
+                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</label>
+                                    <div class="slds-form-element__control">
+                                    <span class="">
+                                        {recordLocal.Have_you_attempted_to_transfer_patients__c}
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+            </article>
+        </template>
+        <template if:true={showVaccineQuestions}>
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid slds-page-header">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-account" title="note">
+                              <lightning-icon icon-name="standard:note"></lightning-icon>
+                              <span class="slds-assistive-text">note</span>
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <a class="slds-card__header-link slds-truncate slds-text-link_reset" title="Vaccination Staffing Information">
+                                    <span>Vaccination Staffing Information</span>
+                                </a>
+                            </h2>
+                        </div>
+                    </header> 
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Please check which one applies to your event</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.We_provide_staff_for_vaccination_events__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">We now provide staff for public or private K-12 school located COVID-19 vaccination events. Please confirm whether you meet the following requirements, and our vaccinator staff will be able to assist in administrating</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.School_Requirements_Confirmation__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many total Vaccinators are needed from the state?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.Total_Vaccinator_Staff_needed__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Vaccinators may be paramedics, EMTs, LVNs or RNs. If you require staff with specific licensing, please indicate how many of each licensing type</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                    {recordLocal.Specific_Vaccinator_Licenses_req_d__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many Logistics staff are needed from the state?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.Total_Logistics_Staff_needed__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label"> If Logistics staff are needed, what tasks will they be assigned?</label>
+                                <div class="slds-form-element__control">
+                                <span class="">
+                                   {recordLocal.Logistics_Task_Assignments__c}
+                                </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many Administrative Support/Data Entry staff are needed from the state?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Total_Admin_Data_Staff_needed__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">If Administrative Support/Data Entry staff are needed, what tasks will they be assigned and what systems will they use?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Admin_Data_Staff_Assignments__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many Security staff are needed from the state?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                               {recordLocal.Total_Security_Staff_needed__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Do you prefer staff that speak a specific language?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Specific_language_preferred__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={languagePreferred}>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">If Yes then please specify which language</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Language_specified__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What date and time do staff need to be on site?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Date_Time_staff_are_needed__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What address do the staff need to report to?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Address_for_staff__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What are the dates and daily schedule(s) needed for this site?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Schedule_for_staff__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Where is the vaccination administration site being held?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Vaccination_site_type__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={otherVaccinationSite}>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">If other, indicate here</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Other_Vaccination_Site__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        </template>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What is the site name?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.What_is_the_site_name__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What is the maximum number of clients the site can facilitate per day?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Clients_Anticipated_at_Site__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many doses do you anticipate giving for each day of the event?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Doses_Anticipated_per_Day__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">How many doses has this event or similar events in the past given in a day?</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Doses_per_Day_Previous_Events__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">What status is the event currently in</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.What_status_is_the_event_currently_in__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Please confirm this site is in compliance with the following</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                <lightning-formatted-text value={confirmCompliance} ></lightning-formatted-text>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-form-element__label">Please provide a brief narrative to further expand on one or more of the statements in the previous question</label>
+                                <div class="slds-form-element__control">
+                            <span class="">
+                                {recordLocal.Compliance_Narrative__c}
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,150 @@
+<template>
+    <template if:true= {isLoading}>
+        <div class="slds-grid slds-wrap slds-align_absolute-center container">
+            <div class="slds-col slds-size_12-of-12">
+                <!--1.Header-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-top_large">
+                        <p class="heading">Requester Information</p>
+                    </div>
+                </div>
+                <hr/>
+                <!--1.Main Form-->
+                <div class="slds-grid slds-wrap ">
+                    <div class="slds-col slds-size_12-of-12 ">
+                        <div class="slds-grid slds-wrap slds-gutters_direct-small">
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input label="Requester First Name" class="input" required  value={recordLocal.Requestor_First_Name_Text__c} data-field="Requestor_First_Name_Text__c" name="input15" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input label="Requester Last Name" class="input" required value={recordLocal.Requestor_Last_Name_Text__c} data-field="Requestor_Last_Name_Text__c" name="input16" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input placeholder="email@email.com" label="Requester Email" class="input" required  value={recordLocal.Requestor_Email_Text__c} data-field="Requestor_Email_Text__c" name="input29" type="email" onchange={fieldChanged} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input placeholder="(123) 456 7890" label="Requester Phone" class="requesterPhone" required value={recordLocal.Requestor_Phone_Text__c} data-field="Requestor_Phone_Text__c" name="input30" type="tel" onchange={fieldChanged} onblur={formatPhone}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input  label="Requester Title" class="input"  value={recordLocal.Requestor_Title_Text__c} data-field="Requestor_Title_Text__c" name="input17" type="text" onchange={fieldChanged} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <template if:true={isHealthCareUser}>
+                                    <template if:true={entityTypePicklistValues.data}>
+                                        <lightning-combobox name="EntityType"
+                                                            data-field="entityType"
+                                                            value={recordLocal.entityType}
+                                                            label="Entity Type"
+                                                            placeholder="Entity Type"
+                                                            onchange={entityTypeChange}
+                                                            class="input"
+                                                            options={entityTypePicklistValues.data.values}
+                                                            required
+                                        >
+                                        </lightning-combobox> 
+                                    </template>
+                                </template>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <template if:true={countyPicklistValues.data}>
+                                    <lightning-combobox name="OperationalArea"
+                                                        data-field="County__c"
+                                                        value={recordLocal.County__c}
+                                                        label="Operational Area"
+                                                        placeholder="Operational Area"
+                                                        onchange={fieldChanged}
+                                                        class="input"
+                                                        options={countyPicklistValues.data.values}
+                                                        required
+                                                        disabled={isOperationalArea}
+                                    >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <template if:true={showRequesterAgencyLookup}>
+                                    <c-phos-requestor-agency-lookup is-disabled={isRequestorAgencyDisabled} onagencychange={getRequestorAgency} select-product-name={recordLocal.Requestor_Agency_Text__c} entity-type-filter={entityType}></c-phos-requestor-agency-lookup>
+                                </template>
+                            </div>
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <c-phos-industry-pick-list parent-industry ={recordLocal.Industry__c} selected-sub-industry ={recordLocal.Sub_Industry__c} onindustrychange ={getIndustryValue} onsubindustrychange ={getSubIndustryValue}></c-phos-industry-pick-list>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--2.Header-->
+                <div class="slds-grid slds-wrap slds-p-top_large">
+                    <div class="slds-col">
+                        <p class="heading">Delivery Information</p>
+                    </div>
+                </div>
+                <hr/>
+
+                <!--2.Main Form-->
+                <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                    <div class="slds-col slds-size_12-of-12 ">
+                        <div class="slds-grid slds-wrap slds-p-top_medium slds-gutters_direct-small">
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                                <lightning-input  label="Same as above"  type="checkbox" onchange={updateDeliveryInfo} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input label="Delivery Recipient First Name" class="input" required  value={recordLocal.Delivery_Recipient_First_Name_Text__c} data-field="Delivery_Recipient_First_Name_Text__c" name="input18" type="text" onchange={fieldChanged}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input label="Delivery Recipient Last Name" class="input" required value={recordLocal.Delivery_Recipient_Last_Name_Text__c} data-field="Delivery_Recipient_Last_Name_Text__c" name="input19" type="text" onchange={fieldChanged}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input placeholder="email@email.com" label="Delivery Recipient Email" class="input" required  value={recordLocal.Delivery_Recipient_Email_Text__c} data-field="Delivery_Recipient_Email_Text__c" name="input20" type="email" onchange={fieldChanged} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input placeholder="(123) 456 7890" label="Delivery Recipient Phone" class="deliveryPhone" required value={recordLocal.Delivery_Recipient_Phone_Text__c} data-field="Delivery_Recipient_Phone_Text__c" name="input21" type="tel" onchange={fieldChanged} onblur={deliveryPhoneValidation}></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input  label="Delivery Recipient Title" class="input" value={recordLocal.Delivery_Recipient_Title_Text__c} data-field="Delivery_Recipient_Title_Text__c" name="input22" type="text" onchange={fieldChanged} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-input  label="Delivery Recipient Entity Name" required class="input deliveryPhone" value={recordLocal.Delivery_Recipient_Entity_Name__c} data-field="Delivery_Recipient_Entity_Name__c" name="input23" type="text" maxlength="55" onchange={fieldChanged} ></lightning-input>
+                            </div>
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+                                <lightning-textarea name="input" label="Delivery Notes" data-field="Delivery_Notes__c" value={recordLocal.Delivery_Notes__c} onchange={fieldChanged}></lightning-textarea>
+                            </div>
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_12-of-12 slds-p-top_medium">
+                                <div class="slds-grid slds-wrap slds-p-top_medium slds-gutters_direct-small">
+                                    <div class="slds-col slds-large-size_9-of-12 slds-size_12-of-12">
+                                        <c-esri-leaflet latitude={recordLocal.Address_Geolocation__Latitude__s} longitude={recordLocal.Address_Geolocation__Longitude__s} onselectedaddress={handleAddressSelection} ></c-esri-leaflet>
+                                    </div>
+                                    <div class="slds-col slds-large-size_3-of-12 slds-size_12-of-12">
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="Street" class="input" disabled value={recordLocal.Shipping_Street__c}  name="input25" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="Street2" class="input" value={recordLocal.Shipping_Street_2__c}  data-field="Shipping_Street_2__c" name="input41" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="City" class="input" disabled value={recordLocal.Shipping_City__c}  name="input3" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="Zip Code" class="input" disabled value={recordLocal.Shipping_ZipPostal_Code__c}  name="input4" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="State" class="input" disabled value={recordLocal.Shipping_State__c}  name="input5" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="Latitude" class="input" disabled value={recordLocal.Address_Geolocation__Latitude__s} data-field="Address_Geolocation__Latitude__s" name="input26" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning-input  label="Longitude" class="input" disabled value={recordLocal.Address_Geolocation__Longitude__s} data-field="Address_Geolocation__Longitude__s" name="input27" type="text" onchange={fieldChanged} ></lightning-input>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

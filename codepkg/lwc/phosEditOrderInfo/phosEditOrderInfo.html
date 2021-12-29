@@ -1,0 +1,114 @@
+<template>
+    <template if:true= {isLoading}>
+        <div class="slds-grid slds-wrap slds-align_absolute-center container ">
+            <div class="slds-col  slds-size_12-of-12">
+                <!--1.Header-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-p-top_large">
+                        <p class="heading">Incident Information</p>
+                    </div>
+                </div>
+                <hr/>
+                <!--1.Main Form-->
+                <div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                            <lightning-combobox name="Incident"
+                                                data-field="Incident__c"
+                                                value={recordLocal.Incident__c}
+                                                label="Incident Name"
+                                                placeholder="Select Incident Name"
+                                                onchange={updateIncident}
+                                                class="input"
+                                                options={incidentOptions}
+                                                required
+                            >
+                            </lightning-combobox>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                        <lightning-input label="Other Request # (If Applicable)" class="input"  value={recordLocal.Other_Request_Number_If_Applicable__c} data-field="Other_Request_Number_If_Applicable__c" name="input1" type="text" onchange={fieldChanged} max-length="255"></lightning-input>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                        <template if:true={priorityRequestPicklistValues.data}>
+                            <lightning-combobox name="PriorityForRequests"
+                                                data-field="Priority_for_Requests__c"
+                                                value={recordLocal.Priority_for_Requests__c}
+                                                label="Priority Of Request"
+                                                placeholder="Select Priority Of Request"
+                                                onchange={fieldChanged}
+                                                class="input"
+                                                options={priorityRequestPicklistValues.data.values}
+                                                required
+                            >
+                        </lightning-combobox>
+                    </template>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+                        <lightning-input label="Mission ID (If Applicable)" class="input"  value={recordLocal.Mission_Request_Number_If_Applicable__c} data-field="Mission_Request_Number_If_Applicable__c" name="input1" type="text" onchange={fieldChanged} max-length="255" disabled={communityUser}></lightning-input>
+                    </div>
+                </div>
+                <!--2.Header-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <p class="heading">Type Of Request/Order</p>
+                    </div>
+                </div>
+                <hr/>
+                <!--2.Main Form-->
+                <div class="slds-grid slds-wrap slds-p-bottom_medium slds-p-top_medium">
+                    <div class="slds-col slds-size_12-of-12 ">
+                        <div class="slds-grid slds-wrap  ">
+                            <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 ">
+                                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+                                    <thead>
+                                        <tr class="slds-line-height_reset">
+                                            <th class="slds-size_3-of-12 slds-text-align_center" scope="col">
+                                                <div class="slds-truncate" title="Type">Type</div>
+                                            </th>
+                                            <th class="slds-size_9-of-12 slds-text-align_center" scope="col">
+                                                 <div class="slds-truncate" title="Description">Example Resources</div>
+                                            </th>
+                                        </tr>
+                                    </thead>    
+                                    <tbody>
+                                        <tr class="slds-hint-parent">
+                                            <td>
+                                                <lightning-input type="checkbox" label="Supplies / Equipment" name="input1" data-field="SuppliesEquipment__c" checked={recordLocal.SuppliesEquipment__c} onchange={fieldChecked}></lightning-input>
+                                            </td>
+                                            <td class="slds-is-resizable slds-cell-wrap">
+                                                <span class="slds-form-element__label">N95 Respirators, Surgical Masks, Examination Gloves, Isolation Gowns</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="slds-hint-parent">
+                                            <td>
+                                                <lightning-input type="checkbox" label="Personnel" name="input2" data-field="Personnel__c" checked={recordLocal.Personnel__c} onchange={fieldChecked}></lightning-input>
+                                            </td>
+                                            <td class="slds-is-resizable slds-cell-wrap">
+                                                <span class="slds-form-element__label">Registered Nurses,Certified Nursing Assistants, Licensed Vocational Nurses, Vaccinators</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="slds-hint-parent">
+                                            <td>
+                                                <lightning-input type="checkbox" label="Other" name="input3" data-field="Type_Of_Resource_Other__c" checked={recordLocal.Type_Of_Resource_Other__c} onchange={fieldChecked}></lightning-input>
+                                            </td>
+                                            <td class="slds-is-resizable slds-cell-wrap">
+                                                <span class="slds-form-element__label">Other Resources that may not fall into Supplies/Equipment or Personnel</span>
+                                            </td>
+                                        </tr>
+                                     </tbody>
+                                  </table>
+                            </div>
+                           <!-- <template if:true={isPersonnel}>
+                                <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+                                    <div class="slds-p-vertical&#45;&#45;small">
+                                        <p class="custom-label slds-p-bottom_x-small">Once you submit this staffing request, please be sure to upload a Supplemental Staffing Information form to the "Files" section of the order "Details" page.</p>
+                                        <p class="custom-label slds-p-bottom_x-small">If you need a copy of the form, please reach out to <lightning-formatted-email class="emailText" value="jeocuser70@cdph.ca.gov" label="jeocuser70@cdph.ca.gov"></lightning-formatted-email>.</p>
+                                    </div>
+                                </div>
+                            </template>-->
+                        </div>    
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

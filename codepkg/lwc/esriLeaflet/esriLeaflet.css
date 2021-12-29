@@ -1,0 +1,14 @@
+/**
+ * Created by PREM on 12-10-2020.
+ */
+
+.map {
+    position: relative;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    height:500px;
+    border: 2px solid #CCCCCC;
+    z-index: 1;
+}

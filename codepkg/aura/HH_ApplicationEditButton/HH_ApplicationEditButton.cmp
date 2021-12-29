@@ -1,0 +1,4 @@
+<aura:component description="HMA_EditApplicationButtonCmp" controller="HH_EditRequestCtrl"
+ implements="force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride,force:hasRecordId,force:lightningQuickAction">
+		<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

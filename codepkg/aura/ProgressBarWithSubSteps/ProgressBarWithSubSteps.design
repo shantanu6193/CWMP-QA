@@ -1,0 +1,10 @@
+<!--
+ - Created by Prem Pal on 21-04-2020.
+ -->
+
+<design:component label="Multi Level - Progress Bar ">
+    <design:attribute name="fieldName" label="Field Name" datasource="Status__c"
+                      description="Name of field for steps" />
+    <design:attribute name="groupingJSON" label="Grouping JSON" description='Use the following format for grouping:
+        [{"Parent Status 1":["Child Status 1","Child Status 2]},{"Parent Status 2":["Child Status 1","Child Status 2"]}] '/>
+</design:component>

@@ -1,0 +1,66 @@
+/**
+ * Created by PREM on 09-09-2020.
+ */
+.card-header{
+     padding: 10px;
+     border: 1px solid rgb(212, 212, 212);
+     border-radius: 4px;
+     background: white;
+ }
+ .slds-card{
+     background:transparent;
+     border:none;
+ }
+ .slds-card__body_inner{
+     padding:0px;
+ }
+ /*.distribution-table{
+     padding:0px !important;
+ }*/
+ .slds-card__header-title {
+     font-size: 1.5rem;
+     line-height: 1.25;
+     text-transform: uppercase;
+     font-weight: 600;
+ }
+ .slds-button_brand{
+     background:#3f51b5;
+ }
+ .slds-button_brand:hover{
+     background-color:#143f74
+ }
+ .order-product-row th {
+     padding: 8px !important;
+     background: #375283 !important;
+     color: white !important;
+ }
+ .table-row {
+     background: rgba(20, 63, 116, 0.05);
+ }
+ .td {
+     padding:8px !important;
+ }
+
+ .table-row td {
+     border-top: 2px solid #375283;
+ }
+td{
+    padding:8px !important;
+}
+ .product-distribution-table {
+    border-top: 1px solid rgb(212, 212, 212);
+    border: 1px solid rgb(212, 212, 212);
+ }
+ .product-distribution-table thead tr th,
+ .product-distribution-table tbody tr td {
+   border-top: 1px solid rgb(212, 212, 212);
+   border: 1px solid rgb(212, 212, 212);
+   padding:8px !important;
+ }
+
+ .inner-table-div {
+     background: #3752833d;
+ }
+ .product-distribution-table tbody{
+     background:white;
+ }

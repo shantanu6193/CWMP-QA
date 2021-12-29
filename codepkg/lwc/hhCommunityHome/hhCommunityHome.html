@@ -1,0 +1,63 @@
+<template>
+    <div class="slds-grid slds-wrap home-page-container">
+        <div class="slds-col slds-size_12-of-12 phos-home">
+            <div class="slds-grid slds-wrap container">
+                <div class="slds-col slds-size_12-of-12 slds-align_absolute-center">
+                    <div class="slds-grid slds-wrap" style="width:100%">
+                        <div class="slds-col slds-size_12-of-12 slds-p-around_medium ">
+                            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                <div class="slds-col slds-large-size_12-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-p-bottom_xx-large">
+                                    <h1 class="h1 slds-text-color_inverse slds-text-align_center"><lightning-formatted-rich-text value={label.HH_EN_Landing_Page_Title}></lightning-formatted-rich-text></h1>
+                                </div>
+                                <div class="slds-grid slds-wrap slds-large-size_8-of-12 slds-align_absolute-center">
+                                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-small-size_10-of-12 slds-size_12-of-12 searchSection">
+                                        <lightning-input class="search-bar" type="text" variant="label-hidden" placeholder={label.HH_EN_Search} onchange={handleSearchChange} onkeypress={handleEnterPress}></lightning-input>
+                                        <button class="slds-button slds-button_brand" onclick={searchHandler}>{label.HH_EN_Search}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_10-of-12 slds-align_absolute-center slds-p-bottom_large">
+            <div class="slds-grid slds-wrap slds-size_12-of-12 slds-grid_align-center slds-grid_vertical-align-end slds-p-top_medium">
+                <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                    <div class="slds-p-bottom_medium">
+                        <p class="slds-text-align_center lower-heading">{label.HH_EN_Applications}</p>
+                    </div>
+                    <div class="tiles slds-text-align_center" onclick={navigateToApplicationListView}>
+                        <img class="tile-images image-div" src={orderLogo} alt="Projects">
+                    </div>
+                </div>
+                <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                    <div class="slds-p-bottom_medium">
+                        <p class="slds-text-align_center lower-heading">{label.HH_EN_Submit_Applications}</p>
+                    </div>
+                    <div class="tiles slds-text-align_center" onclick={navigateToSubmitApplication}>
+                        <img class="tile-images image-div" src={closeoutLogo} alt="Closeout Request">
+                    </div>
+                </div>
+                <template if:true={isNotHomeOwner}>
+                    <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                        <div class="slds-p-bottom_medium">
+                            <p class="slds-text-align_center lower-heading">{label.HH_EN_View_Reports}</p>
+                        </div>
+                        <div class="tiles slds-text-align_center" onclick={navigateToReports}>
+                            <img class="tile-images image-div" src={viewReportslogo} alt="Closeout Request">
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                        <div class="slds-p-bottom_medium">
+                            <p class="slds-text-align_center lower-heading">{label.HH_EN_View_Dashboards}</p>
+                        </div>
+                        <div class="tiles slds-text-align_center" onclick={navigateToDashboard}>
+                            <img class="tile-images image-div" src={viewDashboardslogo} alt="Closeout Request">
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,7 @@
+<aura:component description="ShipmentOrder_PageDecider" controller="ShipmentOrder_PageDeciderCtrl"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,lightning:isUrlAddressable,forceCommunity:availableForAllPageTypes,lightning:actionOverride"
+                access="global">>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="navService"/>
+    <lightning:pageReferenceUtils aura:id="pageRefUtils"/>
+</aura:component>

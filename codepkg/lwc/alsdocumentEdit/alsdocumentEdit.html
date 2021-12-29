@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Document Edit" ><!--icon-name="standard:account"-->
+        <div class="slds-p-around_x-large document_edit">
+            <lightning-record-form
+                    record-id={getidfromparent}
+                    object-api-name="Document__c"
+                    layout-type="Full"
+                    columns="2"
+                    mode="edit"
+                    onsubmit={handleSubmit}
+                    onsuccess={handleSuccess}
+                    oncancel={handleSuccess}>
+            </lightning-record-form>
+         </div>
+    </lightning-card>
+</template>

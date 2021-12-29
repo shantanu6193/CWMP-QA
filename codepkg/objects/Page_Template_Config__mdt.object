@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Page_Template_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Page Template Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>HMGP</fullName>
+                    <default>true</default>
+                    <label>HMGP</label>
+                </value>
+                <value>
+                    <fullName>BRIC</fullName>
+                    <default>false</default>
+                    <label>BRIC</label>
+                </value>
+                <value>
+                    <fullName>FMA</fullName>
+                    <default>false</default>
+                    <label>FMA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Page Template Config</label>
+    <listViews>
+        <fullName>All_Page_Templates</fullName>
+        <columns>DeveloperName</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Page Templates</label>
+    </listViews>
+    <pluralLabel>Page Template Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

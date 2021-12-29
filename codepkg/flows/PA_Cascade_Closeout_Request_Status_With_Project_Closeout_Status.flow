@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <decisions>
+        <description>At this step we check all the respective Project Closeout status is updated to Closeout Complete.
+As per our logic, previous step will issue Project Closeout records whose status will not be equal to Closeout Complete.
+So, if there are no rows issued from previous step we are good to update respective Closeout Request status to Closeout Complete.</description>
+        <name>Is_All_Respective_Project_Closeout_Status_Is_CloseoutComplete</name>
+        <label>Is All Respective Project Closeout Status Is CloseoutComplete</label>
+        <locationX>437</locationX>
+        <locationY>303</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>All_Respective_Project_Closeout_Status_Is_CloseoutComplete</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Project_Closeout_Records</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Closeout_Request_Status_To_CloseoutComplete</targetReference>
+            </connector>
+            <label>All Respective Project Closeout Status Is CloseoutComplete</label>
+        </rules>
+    </decisions>
+    <description>Closeout Request status is updated to Closeout Complete if all respective Project Closeout status is updated to Closeout Complete</description>
+    <interviewLabel>PA {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PA Cascade Closeout Request Status With Project Closeout Status</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>All the Project Closeout records those share the same Closeout Request as triggering Project Closeout record &amp; Status is not equal to Closeout Complete</description>
+        <name>Project_Closeout_Records</name>
+        <label>Project Closeout Records</label>
+        <locationX>143</locationX>
+        <locationY>332</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_All_Respective_Project_Closeout_Status_Is_CloseoutComplete</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Closeout_Request__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Closeout_Request__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closeout Complete</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Project_Closeout__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>If the previous step&apos;s All_Respective_Project_Closeout_Status_Is_CloseoutComplete outcome resolved to true Closeout Request status is updated to Closeout Complete.</description>
+        <name>Update_Closeout_Request_Status_To_CloseoutComplete</name>
+        <label>Update Closeout Request Status To CloseoutComplete</label>
+        <locationX>781</locationX>
+        <locationY>333</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Closeout_Request__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Closeout Complete</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Closeout_Request__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>334</locationX>
+        <locationY>27</locationY>
+        <connector>
+            <targetReference>Project_Closeout_Records</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closeout Complete</stringValue>
+            </value>
+        </filters>
+        <object>Project_Closeout__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This metadata is used to configure the Stage and Status field display based on the assigned Permission set to User in Home Hardening Application.</description>
+    <fields>
+        <fullName>Current_Stage__c</fullName>
+        <description>Current Stage of the HH Application record.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Current Stage of the HH Application record.</inlineHelpText>
+        <label>Current Stage</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Community Review</fullName>
+                    <default>true</default>
+                    <label>Community Review</label>
+                </value>
+                <value>
+                    <fullName>Community Decision</fullName>
+                    <default>false</default>
+                    <label>Community Decision</label>
+                </value>
+                <value>
+                    <fullName>Assessment</fullName>
+                    <default>false</default>
+                    <label>Assessment</label>
+                </value>
+                <value>
+                    <fullName>Assessment Decision</fullName>
+                    <default>false</default>
+                    <label>Assessment Decision</label>
+                </value>
+                <value>
+                    <fullName>CalOES Review</fullName>
+                    <default>false</default>
+                    <label>OES Review</label>
+                </value>
+                <value>
+                    <fullName>OES Decision</fullName>
+                    <default>false</default>
+                    <label>OES Decision</label>
+                </value>
+                <value>
+                    <fullName>FEMA Review</fullName>
+                    <default>false</default>
+                    <label>FEMA Review</label>
+                </value>
+                <value>
+                    <fullName>FEMA Decision</fullName>
+                    <default>false</default>
+                    <label>FEMA Decision</label>
+                </value>
+                <value>
+                    <fullName>Approved- Converted</fullName>
+                    <default>false</default>
+                    <label>Approved - Converted</label>
+                </value>
+                <value>
+                    <fullName>Rejected - Closed</fullName>
+                    <default>false</default>
+                    <label>Rejected - Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Current_Substage__c</fullName>
+        <description>Current Sub-Stage(Status) of the HH Application record.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Current Sub-Stage(Status) of the HH Application record.</inlineHelpText>
+        <label>Current Substage</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Community Review Pending</fullName>
+                    <default>true</default>
+                    <label>Community Review Pending</label>
+                </value>
+                <value>
+                    <fullName>Community Review In Progress</fullName>
+                    <default>false</default>
+                    <label>Community Review In Progress</label>
+                </value>
+                <value>
+                    <fullName>Community Review Complete</fullName>
+                    <default>false</default>
+                    <label>Community Review Complete</label>
+                </value>
+                <value>
+                    <fullName>Open Community RFI- Need more Info</fullName>
+                    <default>false</default>
+                    <label>Open Community RFI- Need more Info</label>
+                </value>
+                <value>
+                    <fullName>Community Decision Pending</fullName>
+                    <default>false</default>
+                    <label>Community Decision Pending</label>
+                </value>
+                <value>
+                    <fullName>Approved for Assessment</fullName>
+                    <default>false</default>
+                    <label>Approved for Assessment</label>
+                </value>
+                <value>
+                    <fullName>Rejected - Does not meet Criteria</fullName>
+                    <default>false</default>
+                    <label>Rejected - Does not meet Criteria</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <description>Allowed Stages to be visible to the User.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Allowed Stages to be visible to the User.</inlineHelpText>
+        <label>Allowed Stages</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Substage__c</fullName>
+        <description>Allowed Substage(Status) to be visible to the user.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Allowed Substage(Status) to be visible to the user.</inlineHelpText>
+        <label>Substage</label>
+        <length>32768</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>HH Stage Config</label>
+    <pluralLabel>HH Stage Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

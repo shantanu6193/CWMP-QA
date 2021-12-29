@@ -1,0 +1,98 @@
+<!--
+ - Created by hp on 13-05-2020.
+ -->
+
+<!-- Confirmation Popup -->
+<template>
+
+    <template if:true={visible}>
+        <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <div>
+                    <header class="slds-modal__header  slds-media slds-media_center slds-has-flexi-truncate">
+
+                        <div class="slds-media__body">
+                            <h2 id="modal-heading-01" class="slds-modal__title Heading-3 slds-hyphenate"><template if:true={title}>{title}</template></h2>
+                        </div>
+
+                        <div class="slds-no-flex">
+                            <lightning-button-icon icon-name="utility:close"  variant="bare" name="cancel" alternative-text="Close" size="large" onclick= {handleClick}></lightning-button-icon>
+                        </div>
+                    </header>
+                </div>
+
+                <div class="slds-modal__content" id="modal-content-id-1">
+                    <article class="slds-card">
+
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <div class="slds-size_12-of-12 slds-col Heading-3 slds-p-bottom_large slds-align_absolute-center">
+                                    <p class="grx-para-text">{message}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <footer class="slds-modal__footer">
+
+                    <div class="slds-grid slds-wrap slds-gutters slds-align_absolute-center">
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                            <button class="slds-button slds-button_neutral grx-button grx-button_neutral" name="cancel" title={cancelLabel} onclick={handleClick}>{cancelLabel}</button>
+                        </div>
+
+
+                        <div class="slds-col slds-large-size_4-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                            <button class="slds-button slds-button_brand grx-button grx-button_brand slds-align--absolute-center"  name="confirm" title={confirmLabel} onclick={handleClick}>{confirmLabel}</button>
+                        </div>
+                    </div>
+
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+
+
+
+
+    </template>
+
+    <!--<lightning-card if:true={visible}>
+        <div class="slds-container_small">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{title}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <p>{message}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+
+                        <div class="slds-grid slds-wrap slds-gutters slds-align_absolute-center">
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                                <button class="slds-button grx-button slds-button_brand grx-backbutton_brand" name="cancel" title={cancelLabel} onclick={handleClick}>{cancelLabel}</button>
+                            </div>
+
+
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                                <button class="slds-button slds-button_brand grx-button grx-button_brand slds-align&#45;&#45;absolute-center"  name="confirm" title={confirmLabel} onclick={handleClick}>{confirmLabel}</button>
+                            </div>
+                        </div>
+                       &lt;!&ndash; <lightning-button variant="neutral"
+                                          name="cancel"
+                                          label={cancelLabel}
+                                          title={cancelLabel}
+                                          onclick={handleClick} ></lightning-button>
+                        <lightning-button variant="brand"
+                                          name="confirm"
+                                          label={confirmLabel}
+                                          title={confirmLabel}
+                                          onclick={handleClick} ></lightning-button>&ndash;&gt;
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </lightning-card>-->
+
+</template>

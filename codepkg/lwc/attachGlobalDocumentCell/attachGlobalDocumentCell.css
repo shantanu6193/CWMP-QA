@@ -1,0 +1,7 @@
+/**
+ * Created by StackNexus Admin on 31-05-2021.
+ */
+.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}

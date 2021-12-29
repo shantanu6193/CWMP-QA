@@ -1,0 +1,115 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+  </template>
+  <template if:false={showLoader}>
+    <div class="slds-p-bottom_large table_light">
+      <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">{headerTitle}</h2>
+      <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 slds-p-bottom_medium slds-p-top_medium">
+      <p><b>A.</b> Please provide the hourly Salary Rate for each non-suppression classification for Suppression
+        Personnel. Instructions for
+        calculating the Salary Rate are provided in the <a target="blank"
+          href="https://www.caloes.ca.gov/FireRescueSite/Documents/Instructions_for_Completing_the_2021_Cal_OES_Salary_Survey.pdf">Instructions for Completing the Cal OES Salary Survey</a></p></br>
+      <b>B.</b> If “MOU/MOA/GBR or equivalent for Portal-to-Portal” is checked “Yes”, a complete copy of the relevant
+      document(s) must
+      be submitted with the salary survey for review. Failure to submit will prevent the classification(s) from being
+      considered for
+      portal-to-portal reimbursement. Please review the salary survey instructions regarding the MOU/MOA/GBR or equivalent
+      for timeline requirements.
+      </div>
+      </div>
+      <lightning-button slot="actions" variant="brand" label="Add Row" onclick={addRow} class="slds-float_right slds-p-right_small slds-p-bottom_medium"></lightning-button>
+      <div class="slds-card__body">
+          <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+              <thead>
+                    <tr class="slds-text-title_caps">
+                        <th class="" scope="col">
+                          <div class="slds-cell-wrap small_text" title="Classification Title">Classification Title</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-cell-wrap small_text" title="Salary Rate (ST)">Salary Rate (ST)</div>
+                      </th>
+                      <th class="" scope="col">
+                        <div class="slds-cell-wrap small_text" title="Portal-to-Portal">Portal-to-Portal</div>
+                      </th>
+                      <th class="" scope="col">
+                        <div class="slds-cell-wrap small_text" title="Action">Action</div>
+                      </th>
+                        <!--<template for:each={columnList} for:item="column">
+                            <th key={column.apiName}><div class="slds-truncate">{column.label}</div></th>
+                        </template>-->
+                    </tr>
+              </thead>
+              <tbody>
+                  <template for:each={rows} for:item="record" for:index="index">
+                      <tr key={record.uuid}>
+                          <td scope="col">
+                            <lightning-input data-id={index} data-name="classificationTitle" data-field="Classification_Title__c"
+                              value={record.Classification_Title__c} variant="label-hidden" name="classificationTitle" ></lightning-input>
+                          </td>
+                        <!-- <td scope="col">
+                            <lightning-input data-name="currentRate" data-index={index} type="currency" name="Current_Rate__c"
+                              value={record.Current_Rate__c} variant="label-hidden" ></lightning-input>
+                          </td>-->
+                          <td scope="col">
+                            <lightning-input data-name="revisedRate" data-id={index} type="number" data-field="Revised_Rate__c" formatter="currency"
+                              value={record.Revised_Rate__c} variant="label-hidden" name="revisedRate" step=".01" min="1" autocomplete="off">
+                            </lightning-input>
+                          </td>
+                          <td scope="col">
+                            <lightning-input data-name="portalToPortal" data-id={index} type="checkbox" name="MOU_MOA_GBR__c"
+                              checked={record.MOU_MOA_GBR__c} variant="label-hidden" disabled></lightning-input>
+                          </td>
+                          <td>
+                              <lightning-button-icon icon-name="utility:delete" value={index} variant="bare" onclick={removeRow}></lightning-button-icon>
+                          </td>
+                      </tr>
+                  </template>
+              </tbody>
+          </table>
+      </div>
+      <div class="slds">
+        <div class="slds-grid slds-wrap">
+            
+                <div class="slds-col  slds-size_1-of-1 slds-medium-size_5-of-12 slds-large-size_5-of-12 slds-p-bottom_medium">
+                    <c-signature data-id="signature"></c-signature>
+                </div>
+
+                <div class="slds-col  slds-size_1-of-1 slds-medium-size_7-of-12 slds-large-size_7-of-12 slds-p-bottom_medium">
+                    <div class="slds-text-align_right datepickerright">
+                        <lightning-input type="Date" label="Effective Date for the Rates Being Submitted"
+                            value={futureDate} min={minDate} required="true" class="input futuredate"
+                            message-when-range-underflow="Please select a future date"
+                            onchange={handleFutureDateChange}>
+                        </lightning-input>
+                    </div>
+                    <div class="toppaddin-div">
+                        <p class="boldtext">NOTE: These rates are not effective until the date they
+                            are received by Cal OES.
+                        </p>
+                        <p class="boldtext">The rates reported on this form constitutes direct salary costs for employees and are not
+                          contingent upon the CFAA for reimbursement.
+                        </p>
+                        <p>As an authorized representative of my agency/dept., I certify to the best of my
+                            knowledge and belief, and
+                            under penalty of perjury that this information
+                            is correct. Furthermore, my signature represents acceptance by my agency/dept., as a
+                            cooperator, to
+                            comply with the authorities, terms and
+                            conditions of the CFAA. I also agree to comply with all cooperator agency internal
+                            accounting and expense
+                            reimbursement standards.</p>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+    <div class="slds-col slds-size_12-of-12 slds-align-bottom slds-text-align_right datepickerright"> 
+      <lightning-button  variant="brand" label="Submit" onclick={saveData} disabled={disableSubmit}></lightning-button>
+    </div>    
+  </div> 
+  <c-mars-non-suppression-history record-id={recordId}></c-mars-non-suppression-history>
+  </template>
+   
+</template>

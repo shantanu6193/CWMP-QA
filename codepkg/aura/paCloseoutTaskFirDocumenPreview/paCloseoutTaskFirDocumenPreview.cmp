@@ -1,0 +1,36 @@
+<!--<aura:component  implements="lightning:isUrlAddressable, lightning:availableForFlowScreens, flexipage:availableForAllPageTypes, flexipage:availableForRecordHome, force:appHostable, force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global">
+       
+         <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+       
+</aura:component> -->
+
+<aura:component implements="lightning:availableForFlowScreens,lightning:availableForFlowActions,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="RecordId" type="String"/>  
+    <aura:attribute name="SignedFIRDocument" type="String"/> 
+    <aura:attribute name="FIRDocument" type="String"/>
+
+    <aura:attribute name="FirContentDocumentIdDetails" type="String"/>
+    <aura:attribute name="SignFirContentDocumentIdDetails" type="String"/> 
+
+    <aura:attribute name="isSignFirDocumentUrl" type="boolean" default="true"/>
+    <aura:attribute name="isFirDocumentUrl" type="boolean" default="true"/> 
+
+    <lightning:workspaceAPI aura:id="workspace" /> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <br/>
+    <aura:if  isTrue="{!and(v.isSignFirDocumentUrl, v.isFirDocumentUrl)}" >
+        <a onclick="{!c.handleSignedFirDocument }" >Signed FIR Document</a><br/><br/>
+        <a onclick="{!c.handleFirDocument }" >FIR Document</a><br/><br/>
+    </aura:if>
+    
+    
+    <aura:if isTrue="{!and(v.isSignFirDocumentUrl == false , v.isFirDocumentUrl)}" >      
+        <a onclick="{!c.handleFirDocument }" >FIR Document</a><br/><br/>
+    </aura:if>
+
+    <aura:if isTrue="{!and(v.isSignFirDocumentUrl, v.isFirDocumentUrl == false)}" >      
+        <a onclick="{!c.handleSignedFirDocument }" >Signed FIR Document</a><br/><br/>
+    </aura:if>
+   
+</aura:component>

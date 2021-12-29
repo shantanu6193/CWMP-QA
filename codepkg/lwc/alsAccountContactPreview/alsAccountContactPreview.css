@@ -1,0 +1,10 @@
+/**
+ * Created by PREM on 26-10-2020.
+ */
+.slds-card__header {
+    background:#f3f2f2;
+}
+.slds-content-body{
+    overflow: auto;
+    max-height: 35vh;
+}

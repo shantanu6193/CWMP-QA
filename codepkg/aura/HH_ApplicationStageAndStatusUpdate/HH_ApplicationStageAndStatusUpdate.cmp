@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride,lightning:isUrlAddressable">
+	<aura:handler event="force:refreshView" action="{!c.doInit}" />
+	<c:hhApplicationStageAndStatusUpdate aura:id="stage1" recordId="{!v.recordId}" />
+</aura:component>

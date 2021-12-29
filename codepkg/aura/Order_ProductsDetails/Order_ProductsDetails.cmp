@@ -1,0 +1,73 @@
+<!--
+ - Created by PREM on 30-04-2020.
+ -->
+
+<aura:component description="BPP_OrdersProducts_DetailList" controller="Order_ProductsViewCtrl" implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="orderId" type="String"/>
+    <aura:attribute name="orderItems" type="List" default="[]"/>
+    <aura:attribute name="configList" type="List" description="" default="[]"/>
+    <aura:attribute name="detailColumnsJSON" type="String" default='[      {      "APIName":"Product_Family__c",      "Label":"Product Family",      "Type":"STRING"   },   {      "APIName":"Product_Name__c",      "Label":"Item Type",      "Type":"STRING"   },   {      "APIName":"Quantity__c",      "Label":"Quantity Requested (ea)",      "Type":"NUMBER"   },   {      "APIName":"Quantity_Filled__c",      "Label":"Quantity Filled",      "Type":"NUMBER"   },   {      "APIName":"Quantity_Back_Ordered__c",      "Label":"Quantity Back Ordered",      "Type":"NUMBER"   },   {      "APIName":"Description__c",      "Label":"Item Description",      "Type":"STRING"   },   {      "APIName":"Equivalent_Substitutes_Acceptable__c",      "Label":"Substitutes OK?",      "Type":"STRING"   },   {      "APIName":"Warehouse_Info__c",      "Label":"Warehouse Info",      "Type":"STRING"   },  {      "APIName":"Status__c",      "Label":"Status"    },   {      "APIName":"Fulfilment_Entity_Warehouse__c",      "Label":"Fulfilment Entity / Warehouse",      "Type":"STRING"   },   {      "APIName":"Carrier_Tracking__c",      "Label":"Carrier Tracking # (i.e. UPS number)",      "Type":"STRING"   },   {      "APIName":"Date_Ordered__c",      "Label":"Delivered On Date",      "Type":"DATE"   },   {      "APIName":"Mission__c",      "Label":"Mission Task #",      "Type":"STRING"   }]' access="global"/>
+    <aura:attribute name="phosDetailColumnsJSON" type="String" default="" access="global"/>
+    <aura:attribute name="json" type="String" default=""/>
+    <aura:attribute name="IsCommunity" type="String" description=" yes if it is community" default="No"/>
+    <aura:attribute name="isEditable" type="Boolean" description="check if it is Editable" default="false"/>
+    <aura:attribute name="appName" type="String" description="" default=""/>
+    <aura:attribute name="disableEditBtn" type="Boolean" description="" default="false"/>
+    <aura:handler event="force:refreshView" action="{! c.doInit}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="navService"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <p class="slds-text-heading_medium"><b>Order Products</b></p>
+                        </div>
+                        <div class="slds-no-flex">
+                            <aura:if isTrue="{!v.isEditable}">
+                                <button disabled="{!v.disableEditBtn}" class="slds-button slds-button_neutral" onclick="{!c.redirectToEditRecord}">Add/Edit Products</button>
+                            </aura:if>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_12-of-12 slds-scrollable_x">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                                <thead>
+                                <tr class="slds-line-height_reset">
+                                    <aura:iteration items="{!v.configList}" var="config">
+                                        <th class="" scope="col">
+                                            <div class="slds-truncate">{!config.Label}</div>
+                                        </th>
+                                    </aura:iteration>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <aura:iteration items="{!v.orderItems}" indexVar="index" var="orderItem">
+                                    <tr>
+                                        <aura:iteration items="{!v.configList}" var="config">
+                                            <td>
+                                                <c:CustomFieldViewForList fieldLabel="{!config.Label}" orderItem="{!orderItem}" apiName="{!config.APIName}" configList="{!v.configList}"/>
+                                            </td>
+                                        </aura:iteration>
+                                    </tr>
+                                </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-card__footer">
+                    <button class="slds-button slds-button_brand" onclick="{!c.redirectToOrderDetail}">Back</button>
+                </footer>
+            </article>
+        </div>
+    </div>
+
+
+</aura:component>

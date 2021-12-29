@@ -1,0 +1,7 @@
+<!--
+ - Created by StackNexus Admin on 03-09-2021.
+ -->
+<aura:component description="HMA_EditApplicationButtonCmp"
+                implements="force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

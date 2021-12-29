@@ -1,0 +1,59 @@
+/**
+ * Created by hp on 2020-04-09.
+ */
+
+.THIS hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.THIS .heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+.THIS .slds-form-element__label{
+    font-weight: 400;
+    color: #5a5959;
+    font-size: .75rem;
+}
+.THIS .slds-input{
+    border-radius: 4px;
+    border: 1px solid #d4d4d4
+}
+.THIS .sub-text{
+    font-size: 0.65rem;
+    font-weight: 100;
+    font-style: italic;
+    color: #5a5959;
+}
+.THIS .slds-truncate{
+    white-space:normal;
+}
+.THIS .slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.THIS .slds-table_cell-buffer tr > th:first-child{
+    padding:8px;
+}
+.THIS .slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+.THIS th,
+.THIS td {
+    text-align: center;
+}
+.THIS .slds-table{
+    border:1px solid rgb(212,212,212);
+}
+.THIS .slds-form-element{
+    /*padding-left: 10px;*/
+}
+.THIS th .slds-form-element .slds-form-element__label,
+.THIS td .slds-form-element .slds-form-element__label{
+    display:none;
+}
+.THIS .fontBold{
+    font-weight: bold;
+}

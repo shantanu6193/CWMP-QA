@@ -1,0 +1,52 @@
+<!--
+ - Created by harsh on 27-01-2021.
+ -->
+
+<!-- Page Layout Section -->
+<template>
+
+    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p class="slds-card__header-link slds-text-title--caps" title="Request Details">
+                                    <span>{pageSection.Label}</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner ">
+                    <div class="slds-grid slds-wrap slds-gutters_direct-medium slds-grid_vertical-align-end">
+
+                        <template for:each={pageFieldsLocal} for:item="pageField">
+                            <div class={pageField.columnSizeDef} key={pageField.Id} if:false={pageField.isFieldHidden}>
+                                <c-page-field
+                                        data-custom="innerComponent"
+                                        data-field={pageField.DeveloperName}
+                                        page-field-details={pageField}
+                                        object-default-record-type-id={pageField.defaultRecordTypeId}
+                                        picklist-meta-info={pageField.picklistMetaInfo}
+                                        record={record}
+                                        record-id={recordId}
+                                        onfieldchanged={fieldChangedChild}
+                                        all-page-fields={pageFields}
+                                        field-changed={fieldChanged}
+                                        is-all-fields-read-only={isAllFieldsReadOnly}
+                                        program-template-page-id={programTemplatePageId}
+                                        page-layout-id={pageLayoutId}
+                                        logged-in-user-details={loggedInUserDetails}
+                                ></c-page-field>
+                            </div>
+                        </template>
+
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,286 @@
+<template>
+	<template if:true= {isLoading}>
+		<div class="slds-grid slds-wrap slds-align_absolute-center container ">
+				<div class="slds-col  slds-size_12-of-12">
+						<!--1.Header-->
+						<div class="slds-grid slds-wrap">
+								<div class="slds-col">
+										<h3 class="heading" style="text-transform: uppercase;">{label.HH_EN_Eligibility_Information_Page_Title}</h3>
+								</div>
+						</div>
+						<!--1.Main Form-->
+						<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<div class="slds-theme_shade"> 
+									{label.HH_EN_Eligibility_Information_Instruction}
+								</div>
+							</div>
+								<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+										<template if:true={propertOwnerPicklistValues.data}>
+												<lightning-combobox name="PropertyOwner"
+																	data-field="Property_Owner__c"
+																	value={recordLocal.Property_Owner__c}
+																	label={label.HH_EN_Property_Owner}
+																	onchange={fieldChanged}
+																	class="input"
+																	options={propertOwnerPicklistValues.data.values}
+																	required
+												>
+												</lightning-combobox>
+										</template>
+								</div>
+								<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+									<template if:true={primaryResidencePicklistValues}>
+										<template if:true={primaryResidencePicklistValues.data}>
+											<lightning-combobox name="PropertyOwner"
+											data-field="Primary_Residence__c"
+											value={recordLocal.Primary_Residence__c}
+											label={label.HH_EN_Primary_Residence}
+											onchange={fieldChanged}
+											class="input"
+											options={primaryResidencePicklistValues.data.values}
+											required
+											>
+											</lightning-combobox>
+										</template>
+									</template>
+								</div>
+								<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+									<template if:true={rentalPropertyPicklistValues}>
+										<template if:true={rentalPropertyPicklistValues.data}>
+											<lightning-combobox name="PropertyOwner"
+											data-field="Rental_Property__c"
+											value={recordLocal.Rental_Property__c}
+											label={label.HH_EN_Rental_Property}
+											onchange={handleRentalPropertyChange}
+											class="input"
+											options={rentalPropertyPicklistValues.data.values}
+											required
+											>
+											</lightning-combobox>
+										</template>
+									</template>
+								</div>
+								<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+									<template if:true={isRentalProperty}>
+									<template if:true={propertyOccupiedPicklistValues}>
+											<template if:true={propertyOccupiedPicklistValues.data}>
+												<lightning-combobox name="PropertyOwner"
+												data-field="Currently_Occupied__c"
+												value={recordLocal.Currently_Occupied__c}
+												label={label.HH_EN_Currently_Occupied} 
+												onchange={fieldChangedMap}
+												class="input"
+												options={propertyOccupiedPicklistValues.data.values}
+												required
+												>
+												</lightning-combobox>
+											</template>
+										</template>
+									</template>
+								</div>
+						</div>
+						
+					<!--1.Header-->
+					<div class="around_border">
+					<div class="slds-grid slds-wrap">
+						<div class="slds-col">
+								<h3 class="heading" >{label.HH_EN_Residents_Occupying_the_Property}</h3>
+						</div>
+					</div>
+						<!--1.Main Form-->
+						<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+							<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<div class="slds-theme_shade"> 
+									{label.HH_EN_Eligibility_Info_Static_Text}
+								</div>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={carOwnerShipPicklistValues}>
+									<template if:true={carOwnerShipPicklistValues.data}>
+										<lightning-combobox name="PropertyOwner"
+										data-field="Car_Ownership__c"
+										value={recordLocal.Car_Ownership__c}
+										label={label.HH_EN_Car_Ownership}
+										onchange={fieldChanged}
+										class="input"
+										options={carOwnerShipPicklistValues.data.values}
+										required
+										>
+										</lightning-combobox>
+									</template>
+								</template>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={anyoneoldPicklistValues}>
+									<template if:true={anyoneoldPicklistValues.data}>
+										<lightning-combobox name="AnyoneOld"
+										data-field="Is_Anyone_65__c"
+										value={recordLocal.Is_Anyone_65__c}
+										label={label.HH_EN_Is_Anyone_65}
+										onchange={fieldChanged}
+										class="input"
+										options={anyoneoldPicklistValues.data.values}
+										required
+										>
+										</lightning-combobox>
+									</template>
+								</template>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={anyoneChildPicklistValues}>
+									<template if:true={anyoneChildPicklistValues.data}>
+										<lightning-combobox name="AnyoneChild"
+										data-field="Is_Anyone_Age_5_and_Under__c"
+										value={recordLocal.Is_Anyone_Age_5_and_Under__c}
+										label={label.HH_EN_Is_Anyone_Age_5_and_Under}
+										onchange={fieldChanged}
+										class="input"
+										options={anyoneChildPicklistValues.data.values}
+										required
+										>
+										</lightning-combobox>
+									</template>
+								</template>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={notEngProficientPicklistValues}>
+									<template if:true={notEngProficientPicklistValues.data}>
+										<lightning-combobox name="PropertyOwner"
+										data-field="Anyone_Not_a_Proficient_English_Speaker__c"
+										value={recordLocal.Anyone_Not_a_Proficient_English_Speaker__c}
+										label={label.HH_EN_Anyone_Not_a_Proficient_English_Speaker}
+										onchange={fieldChanged}
+										class="input"
+										options={notEngProficientPicklistValues.data.values}
+										required
+										>
+										</lightning-combobox>
+									</template>
+								</template>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={ethnicitiesHHPicklistValues}>
+									<template if:true={ethnicitiesHHPicklistValues.data}>
+										<lightning-dual-listbox name="PropertyCurrentlyDamaged"
+																			value={ethnicitiesSelected}
+																			source-label={label.HH_EN_Available}
+																			selected-label={label.HH_EN_Selected}
+																			label={label.HH_EN_Ethnicities_of_Household_Members}
+																			options={ethnicitiesHHPicklistValues.data.values}
+																			onchange={ethnicitiesChanged}
+																			class="input">
+										</lightning-dual-listbox>
+									</template>
+								</template>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<template if:true={anyoneDisabledPicklistValues}>
+									<template if:true={anyoneDisabledPicklistValues.data}>
+										<lightning-combobox name="PropertyOwner"
+										data-field="Is_Anyone_has_Disabilities__c"
+										value={recordLocal.Is_Anyone_has_Disabilities__c}
+										label={label.HH_EN_Is_Anyone_has_Disabilities}
+										onchange={fieldChanged}
+										class="input"
+										options={anyoneDisabledPicklistValues.data.values}
+										required
+										>
+										</lightning-combobox>
+										<div class="slds-theme_shade"> 
+										<p>{label.HH_EN_Disability_Defination}</p>
+										</div>
+									</template>
+								</template>
+							</div>
+						</div>
+					</div>
+					<!--1.Header-->
+					<div class="around_border">
+					<div class="slds-grid slds-wrap">
+						<div class="slds-col">
+								<h3 class="heading" >{label.HH_EN_Household_Composition}</h3>
+						</div>
+					</div>
+
+					<!--1.Main Form-->
+					<div class="slds-grid slds-wrap slds-p-bottom_medium slds-gutters_direct-small">
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+								<div class="slds-theme_shade slds-scrollable_y" style="max-height: 20rem;">
+									<lightning-formatted-rich-text value={label.HH_EN_Household_members_Table}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Note}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_1}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_2}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_3}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_4}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_5}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_6}></lightning-formatted-rich-text>
+									<lightning-formatted-rich-text value={label.HH_EN_Household_Composition_of_the_Property_Owner_Para_7}></lightning-formatted-rich-text>
+								</div>
+						</div>
+						<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+							 <lightning-input type="text" onblur={checkZero} class="householdMember" label={label.HH_EN_Household_members} required value={noOfTableRows} onchange={editTableRows} ></lightning-input>
+						</div>
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium">
+							<div class="slds-grid slds-wrap">
+								<div class="slds-col slds-size_12-of-12 responsive_table"> 
+									<template if:true={showTable}>
+										<table class="">
+											<thead style="background-color:#2574a9; color:white">
+											<tr class="slds-line-height_reset">
+												<th class="slds-size_2-of-12" scope="col">
+													<div class="" title={label.HH_EN_Is_Head_of_Household}><span class="slds-required">*</span>{label.HH_EN_Is_Head_of_Household}</div>
+												</th>
+												<th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+													<div class="" title={label.HH_EN_First_Name}><span class="slds-required">*</span>{label.HH_EN_First_Name}</div>
+												</th>
+												<th class="slds-size_3-of-12" scope="col" style="width: 15%;">
+													<div class="" title={label.HH_EN_Last_Name}><span class="slds-required">*</span>{label.HH_EN_Last_Name}</div>
+												</th>
+												<th class="slds-size_2-of-12" scope="col">
+													<div class="" title={label.HH_EN_Relationship_to_Homeowner}><span class="slds-required">*</span>{label.HH_EN_Relationship_to_Homeowner}</div>
+												</th>
+												<th class="slds-size_3-of-12" scope="col" >
+													<div class="" title={label.HH_EN_Date_of_Birth}><span class="slds-required">*</span>{label.HH_EN_Date_of_Birth}</div>
+												</th>
+												<th class="slds-size_2-of-12" scope="col">
+													<div class="" title={label.HH_EN_Annual_Income}><span class="slds-required">*</span>{label.HH_EN_Annual_Income}</div>
+												</th>
+												<th class="slds-size_1-of-12" scope="col">
+													<div class="" title={label.HH_EN_Action}>{label.HH_EN_Action}</div>
+												</th>
+											</tr>
+											</thead>
+											<tbody>
+												<template for:each={recordLocal.contacts} for:item="contact" for:index="index">
+													<c-hh-application-edit-contact-row  key={contact.index}
+																						 record={contact}
+																						 ondeleted={handleDeleteContact}
+																						 onadded={handleAddContact}
+																						 index={index}
+																						 data-id={index}
+																						 data-custom="innerComponent"
+													 >
+													 </c-hh-application-edit-contact-row>
+											 </template>
+											</tbody>
+										</table>
+									</template>
+								</div>
+							</div>
+						</div>
+						<div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium slds-text-align_right">
+							<div class="slds-m-top_small">
+								<lightning-button variant="brand"
+											label={label.HH_EN_Add_Line_Item}
+											title={label.HH_EN_Add_Line_Item}
+											onclick={addLineItem}>
+								</lightning-button>
+							</div>
+						</div>
+					</div>
+				  </div>
+				</div>
+		</div>
+</template>
+</template>

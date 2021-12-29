@@ -1,0 +1,38 @@
+<template>
+    <div class="slds-scrollable">
+        <div class="slds-size_12-of-12">
+            <h2 class="slds-text-heading_small slds-p-top_medium slds-p-bottom_medium headingclass">Files</h2>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                    <tr class="slds-text-title_caps">
+                        <th class="" scope="col">
+                        <div class="slds-cell-wrap small_text" title="File Name">File Name</div>
+                        </th>
+                        <th class="" scope="col">
+                        <div class="slds-cell-wrap small_text" title={attachmentType}>{attachmentType}</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-cell-wrap small_text" title="Action">Action</div>
+                    </th>
+                    </tr>
+            </thead>
+            <tbody>
+                <template for:each={fileList} for:item="file" for:index="index">
+                    <tr key={file.ContentDocumentId}>
+                        <td scope="row" ><div class="slds-truncate grtx-description-text-v" title={file.Title}>{file.Title}</div></td>
+                        <td scope="row" ><div class="slds-truncate grtx-description-text-v" title={file.Type__c}>{file.Type__c}</div></td>
+                        <td>
+                            <a href={file.downloadUrl} class="grtx-file-dr">
+                                <span class="slds-form-element__static grtx-item_value grtx-respons">
+                                    <lightning-button-icon icon-name="utility:download"    variant="bare" alternative-text="Download"   class="slds-m-left_xx-small vieweye" title="Download"></lightning-button-icon>
+                                                <span class="slds-assistive-text">Download</span>
+                                </span>
+                            </a>    
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div> 
+</template>

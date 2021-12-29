@@ -1,0 +1,349 @@
+<!--
+- Created by Pankaj on 24-04-2020.
+-->
+
+<aura:component description="PHOS_Order_Products_Edit" controller="PHOS_Order_Products_EditCtrl">
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="orderRec" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="products" type="List" description="Available Product List" default="[]"/>
+    <aura:attribute name="otherproductId" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="loaded" type="Boolean" description="Is load done?" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="addreesLine2" type="String" description="delivery info address line 2"/>
+    <aura:attribute name="isQuantityEditable" type="Boolean" description="Edit quantity editable? " default="false"/>
+    <aura:attribute name="productFamily" type="List" description="Product Family for Product List" default="[]"/>
+    <aura:attribute name="bedToStaffOptions" type="List"/>
+    <aura:attribute name="keepICUOptions" type="List"/>
+    <aura:attribute name="totalBedsOccupiedOptions" type="List"/>
+    <aura:attribute name="transferPatientsOptions" type="List"/>
+    <aura:attribute name="cancelledSurgeriesOptions" type="List"/>
+    <aura:attribute name="diversionOptions" type="List"/>
+    <aura:attribute name="staffingWaiverOptions" type="List"/>
+    <aura:attribute name="acceptTransfersOptions" type="List"/>
+    <aura:attribute name="gachOptions" type="List"/>
+    <aura:attribute name="staffingRequestOptions" type="List"/>
+    <aura:attribute name="additionalMSTBedsOptions" type="List"/>
+    <aura:attribute name="ESICatOptions" type="List"/>
+    <aura:attribute name="showGACHQuestion" type="Boolean" default="false"/>
+    <aura:attribute name="showGACHSubQuestions" type="Boolean" default="false"/>
+
+    <aura:method name="checkValidation" action="{!c.checkValidation}" >
+        <aura:attribute name="isValid" type="boolean" default="false" />
+    </aura:method>
+
+    <aura:if isTrue="{!v.loaded == false}">
+        <div class="exampleHolder">
+            <lightning:spinner alternativeText="Loading" size="medium" />
+        </div>
+    <!-- todo - correct css. Remove inline css  -->
+        <aura:set attribute="else">
+            <div class="slds-grid slds-wrap slds-align_absolute-center container">
+                <div class="slds-col slds-size_12-of-12">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col">
+                            <p class="heading">Order Sheet</p>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                        <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                            <p class="custom-label slds-p-bottom_x-small">Please indicate the type of resource being requested:</p>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-size_1-of-1">
+                            <lightning:input type="checkbox" label="Supplies / Equipment" name="input1" aura:id="formFields" checked="{!v.orderRec.SuppliesEquipment__c}" />
+                        </div>
+                         <div class="slds-col slds-large-size_2-of-12 slds-size_1-of-1">
+                            <lightning:input type="checkbox" label="Personnel" name="input1" aura:id="formFields" onchange="{!c.handlePersonalChange}" checked="{!v.orderRec.Personnel__c}"/>
+                        </div>
+                        <div class="slds-col slds-large-size_2-of-12 slds-size_1-of-1">
+                            <lightning:input type="checkbox" label="Other" name="input1" aura:id="formFields" checked="{!v.orderRec.Type_Of_Resource_Other__c}"/>
+                        </div> 
+                        <aura:if isTrue="{!v.orderRec.Personnel__c}">
+                            <div class="slds-col slds-size_12-of-12">
+                                <div class="slds-p-vertical--small">
+                                    <p class="custom-label slds-p-bottom_x-small">Once you submit this staffing request, please be sure to upload a Supplemental Staffing Information form to the "Files" section of the order "Details" page.</p>
+                                    <p class="custom-label slds-p-bottom_x-small">If you need a copy of the form, please reach out to <lightning:formattedEmail class="emailText" value="jeocuser70@cdph.ca.gov" label="jeocuser70@cdph.ca.gov" />.</p>
+                                </div>
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col">
+                            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="slds-truncate" title="Product Name">Product Name</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col" style="width: 12%;">
+                                            <div class="slds-truncate" title="Quantity Requested (ea)">Quantity Requested (ea)</div>
+                                        </th>
+                                        <th class="slds-size_3-of-12" scope="col">
+                                            <div class="slds-truncate" title="Item Description">Item Description</div>
+                                        </th>
+                                        <th class="slds-size_2-of-12" scope="col" style="width: 8%;">
+                                            <div class="slds-truncate" title="Substitutes OK?">Substitutes OK?</div>
+                                        </th>
+                                        <th class="slds-size_1-of-12" scope="col">
+                                            <div class="slds-truncate" title="Action">Action</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:if isTrue="{!v.loaded}">
+                                        <aura:iteration items="{!v.orderItems}" indexVar="index" var="orderItem">
+                                            <c:PHOS_Order_Product_EditRow aura:id="order_row" index="{!index}" orderItems="{!v.orderItems}" orderItem="{!orderItem}" products="{!v.products}" productsMap="{!v.productsMap}" productFamily="{!v.productFamily}" isQuantityEditable="{!v.isQuantityEditable}" fulfilmentOptions="{!v.fulfilmentOptions}"/>
+                                        </aura:iteration>
+                                    </aura:if>
+                                </tbody>
+                            </table>
+                            <div class="slds-p-around--small">
+                                <p class="error">Note: Item Description cannot exceed 255 characters</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aura:if isTrue="{!v.orderRec.Personnel__c}">
+                        <div class="slds-col slds-size_12-of-12 slds-p-top_medium">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col">
+                                    <p class="heading">Medical Staffing Information</p>
+                                    <hr/>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_12-of-12">
+                                    <div class="slds-grid slds-wrap slds-gutters_x-small">
+                                        <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                            <lightning:radioGroup name="radioGroup1"
+                                                      label="Is this a Medical Staffing Request?"
+                                                      options="{!v.staffingRequestOptions }"
+                                                      value="{!v.orderRec.Is_this_a_Medical_Staffing_Request__c}"
+                                                      onchange="{!c.handleMedicalStaffingChange}"
+                                                      type="radio"
+                                                      aura:id="formFields"
+                                                      required="true"/>
+                                        </div>
+                                        <aura:if isTrue="{!v.showGACHQuestion}">
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning:radioGroup name="radioGroup2"
+                                                              label="Is this for a General Acute Care Hospital (GACH)?"
+                                                              options="{!v.gachOptions }"
+                                                              value="{!v.orderRec.Is_this_for_a_GACH__c}"
+                                                              onchange="{!c.handleGACHChange}"
+                                                              type="radio"
+                                                              aura:id="formFields"
+                                                              required="true"/>
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.orderRec.Is_this_for_a_GACH__c == 'No'}">
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning:radioGroup name="radioGroup12"
+                                                                      label="Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?"
+                                                                      options="{!v.gachOptions }"
+                                                                      value="{!v.orderRec.Have_you_attempted_to_transfer_patients__c}"
+                                                                      type="radio"
+                                                                      aura:id="formFields"
+                                                                      required="true"/>
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.showGACHSubQuestions}">
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <!--<lightning:radioGroup name="radioGroup3"
+                                                              label="How many additional beds can you provide with the staff requested?"
+                                                              options="{!v.bedToStaffOptions }"
+                                                              value="{!v.orderRec.Bed_to_staff_ratio_bed_staff__c}"
+                                                              type="radio"/>-->
+                                                <lightning:input type="number" aura:id="formFields" label="How many additional beds will be provided with the staff requested?" value="{!v.orderRec.Bed_to_staff_ratio_bed_staff__c}" required="true"/>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label">How many total staff are you requesting?</label>
+                                                        <p><lightning:helptext content="Should be same # as total staff requested"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:input type="number" aura:id="formFields" variant="label-hidden" value="{!v.orderRec.How_many_total_staff_are_you_requesting__c}" required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label">Does the requested staff allow additional ICU or M/S/T beds (above licensed capacity) to be opened?</label>
+                                                        <p><lightning:helptext content="Select the highest appropriate level"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup13"
+                                                                              variant="label-hidden"
+                                                                              options="{!v.additionalMSTBedsOptions }"
+                                                                              value="{!v.orderRec.Allows_additional_ICU_or_M_S_T_beds__c}"
+                                                                              type="radio"
+                                                                              aura:id="formFields"
+                                                                              required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning:radioGroup name="radioGroup4"
+                                                              label="Would requested personnel allow for additional ICU level beds to be opened for patients?"
+                                                              options="{!v.keepICUOptions }"
+                                                              value="{!v.orderRec.Does_site_need_personnel_to_keep_ICU__c}"
+                                                              type="radio"
+                                                              aura:id="formFields"
+                                                              required="true"/>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label">Total ICU beds occupied (%)?</label>
+                                                        <p><lightning:helptext content="Of the beds currently staffed in the facility's ICU, what is the percentage which are occupied?"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup5"
+                                                                      variant="label-hidden"
+                                                                      options="{!v.totalBedsOccupiedOptions }"
+                                                                      value="{!v.orderRec.Total_ICU_beds_occupied__c}"
+                                                                      type="radio"
+                                                                      aura:id="formFields"
+                                                                      required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning:radioGroup name="radioGroup6"
+                                                              label="Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?"
+                                                              options="{!v.transferPatientsOptions }"
+                                                              value="{!v.orderRec.Have_you_attempted_to_transfer_patients__c}"
+                                                              type="radio"
+                                                              aura:id="formFields"
+                                                              required="true"/>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label">Have you cancelled all non-urgent elective surgeries?</label>
+                                                        <p><lightning:helptext content="Including out-patient"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup7"
+                                                                      variant="label-hidden"
+                                                                      options="{!v.cancelledSurgeriesOptions }"
+                                                                      value="{!v.orderRec.Have_you_cancelled_all_surgeries__c}"
+                                                                      type="radio"
+                                                                      aura:id="formFields"
+                                                                      required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label">What is the average time of "triage-to- treatment" for ESI Category 3 patients in the ED over the last 72 hours?</label>
+                                                        <p><lightning:helptext content="ESI = Emergency Severity Index"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup14"
+                                                                              variant="label-hidden"
+                                                                              options="{!v.ESICatOptions }"
+                                                                              value="{!v.orderRec.Average_time_of_T_to_T_for_ESI_Cat_3__c}"
+                                                                              type="radio"
+                                                                              aura:id="formFields"
+                                                                              required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                &lt;!&ndash;<lightning:radioGroup name="radioGroup8"
+                                                              label="What is the current percentage of capacity in the Emergency Department?"
+                                                              options="{!v.diversionOptions }"
+                                                              value="{!v.orderRec.Is_your_emergency_dept_on_diversion__c}"
+                                                              type="radio"/>&ndash;&gt;
+                                                <lightning:input type="number" value="{!v.orderRec.Is_your_emergency_dept_on_diversion__c}" label="What is the current percentage of capacity in the Emergency Department?" aura:id="formFields" pattern="^[0-9]$|^[1-9][0-9]$|^(100)$" messageWhenPatternMismatch="Please enter percentage between 0 to 100"/>
+                                            </div>-->
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label" for="text-input-id-1">Do you have, or have you requested, an active Staffing Waiver for the service line you in which you are requesting staff?</label>
+                                                        <p><lightning:helptext content='If "Team Nursing" approach is in effect for ICU care, please select that option'/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup10"
+                                                                              variant="label-hidden"
+                                                                              options="{!v.staffingWaiverOptions }"
+                                                                              value="{!v.orderRec.Do_you_have_an_active_staffing_waiver__c}"
+                                                                              type="radio"
+                                                                              aura:id="formFields"
+                                                                              required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <div class="slds-form-element">
+                                                    <div class="helptext-div"><span class="slds-required reqired-span">*</span>
+                                                        <label class="slds-form-element__label" for="text-input-id-1">Would you be able to accept inter-facility patient transfers if you receive this staff?</label>
+                                                        <p><lightning:helptext content="New capability with this requested staff"/></p>
+                                                    </div>
+                                                    <div class="slds-form-element__control">
+                                                        <lightning:radioGroup name="radioGroup11"
+                                                                      variant="label-hidden"
+                                                                      options="{!v.acceptTransfersOptions }"
+                                                                      value="{!v.orderRec.Would_you_be_able_to_accept_transfers__c}"
+                                                                      type="radio"
+                                                                      aura:id="formFields"
+                                                                      required="true"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--<div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-bottom_small">
+                                                <lightning:input label="How many patients are currently holding in the ED, awaiting admittance to the facility, or transfer to another facility?" type="number" value="{!v.orderRec.Patients_in_ED_awaiting_admit_transfer__c}"/>
+                                            </div>-->
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+
+                    <div class="slds-grid slds-wrap slds-p-top_medium">
+                        <div class="slds-col">
+                            <p class="heading">Order Description</p>
+                            <hr/>
+                        </div>
+                    </div>
+
+                    <div class="slds-grid slds-wrap ">
+                        <div class="slds-col">
+                            <lightning:textarea  name="input1" aura:id="formFields" label="Describe Mission/Tasks:" value="{!v.orderRec.Description__c}" maxlength="32768"  required="true"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap ">
+                        <div class="slds-col">
+                            <lightning:textarea  name="input1" aura:id="formFields" label="Actions Taken On This Request So Far" value="{!v.orderRec.Actions_Taken_On_This_Request__c}" maxlength="20000" required="true"/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap ">
+                        <div class="slds-col">
+                            <p class="error slds-p-top_small">Note: Non-Governmental Organizations should use the Describe Mission/Tasks field to provide a justification for the
+                            requested amount of PPE, including the estimated amount of employees that will be using this PPE, and the estimated amount of shifts or working days that the PPE will be used.</p>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-p-top_x-large">
+                        <div class="slds-col">
+                            <p class="heading"></p>
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+                        <div class="slds-col">
+                            <p class="custom-label slds-p-bottom_x-small">OA/MHOAC must confirm that the verification question in the PH&amp;M EOM have been reviewed and answered.</p>
+                            <lightning:input type="checkbox" label="This request meets the submission criteria as stated in the PH&amp;M EOM" name="input1" checked="{!v.orderRec.PHM_EOM_Confirmed__c}" />
+                            <lightning:input type="checkbox" label="The creation of this request was in consultation with the RDMHC Program" name="input1" checked="{!v.orderRec.RDMHS_Program_Confirmed__c}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aura:set>
+    </aura:if>
+</aura:component>

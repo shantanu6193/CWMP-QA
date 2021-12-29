@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Request_For_Information_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Analyst_Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Analyst Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application</label>
+        <referenceTo>Application__c</referenceTo>
+        <relationshipLabel>Request For Informations</relationshipLabel>
+        <relationshipName>Request_For_Informations</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>CWMP_Applicant_Email__c</fullName>
+        <description>CWMP Application - Applicant Email.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>CWMP Application - Applicant Email.</inlineHelpText>
+        <label>CWMP Applicant Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CWMP_Applicant_First_Name__c</fullName>
+        <description>CWMP Application - Applicant First name</description>
+        <externalId>false</externalId>
+        <formula>CWMP_Application__r.Applicant_First_Name__c</formula>
+        <inlineHelpText>CWMP Application - Applicant First name</inlineHelpText>
+        <label>CWMP Applicant First Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CWMP_Applicant_Last_Name__c</fullName>
+        <description>CWMP Application - Applicant Last Name</description>
+        <externalId>false</externalId>
+        <formula>CWMP_Application__r.Applicant_Last_Name__c</formula>
+        <inlineHelpText>CWMP Application - Applicant Last Name</inlineHelpText>
+        <label>CWMP Applicant Last Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CWMP_Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CWMP Application</label>
+        <referenceTo>HH_Application__c</referenceTo>
+        <relationshipLabel>Request For Information</relationshipLabel>
+        <relationshipName>Request_For_Information</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cal_OES_Comment__c</fullName>
+        <description>Comment for RFI by Cal OES User.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Cal OES Comment</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Community_App_URL__c</fullName>
+        <description>URL of the Community for the CWMP App.</description>
+        <externalId>false</externalId>
+        <formula>$Label.HH_Community_BaseURL+&apos;request-for-information/&apos;</formula>
+        <inlineHelpText>URL of the Community for the CWMP App.</inlineHelpText>
+        <label>Community App URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Community_Comment__c</fullName>
+        <description>Comment for RFI by Community.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Community Comment</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FEMA_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>FEMA Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Homeowner_Comment__c</fullName>
+        <description>Comment for RFI by Homeowner User.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Homeowner Comment</label>
+        <length>2000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>RFI_Deadline__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>RFI Deadline</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RFI_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>RFI Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>OES BCA</fullName>
+                    <default>false</default>
+                    <label>OES BCA</label>
+                </value>
+                <value>
+                    <fullName>OES Programmatic</fullName>
+                    <default>false</default>
+                    <label>OES Programmatic</label>
+                </value>
+                <value>
+                    <fullName>FEMA Programmatic</fullName>
+                    <default>false</default>
+                    <label>FEMA Programmatic</label>
+                </value>
+                <value>
+                    <fullName>FEMA EHP</fullName>
+                    <default>false</default>
+                    <label>FEMA EHP</label>
+                </value>
+                <value>
+                    <fullName>FEMA OES Programmatic</fullName>
+                    <default>false</default>
+                    <label>FEMA OES Programmatic</label>
+                </value>
+                <value>
+                    <fullName>FEMA OES EHP</fullName>
+                    <default>false</default>
+                    <label>FEMA OES EHP</label>
+                </value>
+                <value>
+                    <fullName>CWMP</fullName>
+                    <default>false</default>
+                    <label>CWMP</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>RFI_Type__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Sent to Subapplicant</fullName>
+                    <default>false</default>
+                    <label>Sent to Subapplicant</label>
+                </value>
+                <value>
+                    <fullName>Time Extension Requested</fullName>
+                    <default>false</default>
+                    <label>Time Extension Requested</label>
+                </value>
+                <value>
+                    <fullName>Time Extension Accepted</fullName>
+                    <default>false</default>
+                    <label>Time Extension Accepted</label>
+                </value>
+                <value>
+                    <fullName>Time Extension Rejected</fullName>
+                    <default>false</default>
+                    <label>Time Extension Rejected</label>
+                </value>
+                <value>
+                    <fullName>Response Submitted</fullName>
+                    <default>false</default>
+                    <label>Response Submitted</label>
+                </value>
+                <value>
+                    <fullName>Response Accepted</fullName>
+                    <default>false</default>
+                    <label>Response Accepted</label>
+                </value>
+                <value>
+                    <fullName>Response Rejected</fullName>
+                    <default>false</default>
+                    <label>Response Rejected</label>
+                </value>
+                <value>
+                    <fullName>FEMA Draft</fullName>
+                    <default>false</default>
+                    <label>FEMA Draft</label>
+                </value>
+                <value>
+                    <fullName>Submitted to Cal OES Analyst</fullName>
+                    <default>false</default>
+                    <label>Submitted to Cal OES Analyst</label>
+                </value>
+                <value>
+                    <fullName>FEMA RFI Accepted</fullName>
+                    <default>false</default>
+                    <label>FEMA RFI Accepted</label>
+                </value>
+                <value>
+                    <fullName>FEMA RFI Rejected</fullName>
+                    <default>false</default>
+                    <label>FEMA RFI Rejected</label>
+                </value>
+                <value>
+                    <fullName>OES Analyst Review FEMA EHP RFI</fullName>
+                    <default>false</default>
+                    <label>OES Analyst Review FEMA EHP RFI</label>
+                </value>
+                <value>
+                    <fullName>OES Analyst Review FEMA Programmatic RFI</fullName>
+                    <default>false</default>
+                    <label>OES Analyst Review FEMA Programmatic RFI</label>
+                </value>
+                <value>
+                    <fullName>FEMA Time Extension Requested</fullName>
+                    <default>false</default>
+                    <label>FEMA Time Extension Requested</label>
+                </value>
+                <value>
+                    <fullName>FEMA Time Extension Accepted</fullName>
+                    <default>false</default>
+                    <label>FEMA Time Extension Accepted</label>
+                </value>
+                <value>
+                    <fullName>FEMA Time Extension Rejected</fullName>
+                    <default>false</default>
+                    <label>FEMA Time Extension Rejected</label>
+                </value>
+                <value>
+                    <fullName>Response Submitted by Cal OES Analyst</fullName>
+                    <default>false</default>
+                    <label>Response Submitted by Cal OES Analyst</label>
+                </value>
+                <value>
+                    <fullName>FEMA EHP RFI Accepted</fullName>
+                    <default>false</default>
+                    <label>FEMA EHP RFI Accepted</label>
+                </value>
+                <value>
+                    <fullName>FEMA EHP RFI Rejected</fullName>
+                    <default>false</default>
+                    <label>FEMA EHP RFI Rejected</label>
+                </value>
+                <value>
+                    <fullName>FEMA Programmatic RFI Accepted</fullName>
+                    <default>false</default>
+                    <label>FEMA Programmatic RFI Accepted</label>
+                </value>
+                <value>
+                    <fullName>FEMA Programmatic RFI Rejected</fullName>
+                    <default>false</default>
+                    <label>FEMA Programmatic RFI Rejected</label>
+                </value>
+                <value>
+                    <fullName>RFI Requested</fullName>
+                    <default>false</default>
+                    <label>RFI Requested</label>
+                </value>
+                <value>
+                    <fullName>Response Received</fullName>
+                    <default>false</default>
+                    <label>Response Received</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+                <value>
+                    <fullName>Withdrawal</fullName>
+                    <default>false</default>
+                    <label>Withdrawal</label>
+                </value>
+                <value>
+                    <fullName>Submitted to HMA Analyst</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Submitted to HMA Analyst</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Draft</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Sent to Subapplicant</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Time Extension Requested</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Time Extension Accepted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Time Extension Rejected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Response Submitted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Response Accepted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>OES BCA</controllingFieldValue>
+                <controllingFieldValue>OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA EHP</controllingFieldValue>
+                <valueName>Response Rejected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA Draft</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>Submitted to Cal OES Analyst</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <valueName>OES Analyst Review FEMA Programmatic RFI</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA Time Extension Requested</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA Time Extension Accepted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA Time Extension Rejected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>Response Submitted by Cal OES Analyst</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <valueName>FEMA Programmatic RFI Accepted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES Programmatic</controllingFieldValue>
+                <valueName>FEMA Programmatic RFI Rejected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>OES Analyst Review FEMA EHP RFI</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA EHP RFI Accepted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>FEMA OES EHP</controllingFieldValue>
+                <valueName>FEMA EHP RFI Rejected</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>CWMP</controllingFieldValue>
+                <valueName>RFI Requested</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>CWMP</controllingFieldValue>
+                <valueName>Response Received</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>CWMP</controllingFieldValue>
+                <valueName>Closed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>CWMP</controllingFieldValue>
+                <valueName>Withdrawal</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Subapplicant_Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Subapplicant Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Subapplicant_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(Status__c, &apos;Sent to Subapplicant&apos;), 
+			&apos;Open&apos;, IF( ISPICKVAL(Status__c, &apos;Response Submitted&apos;), 
+														&apos;Response Submitted&apos;, IF(ISPICKVAL(Status__c, &apos;Time Extension Requested&apos;), 
+																																		&apos;Time Extension Requested&apos;, IF(ISPICKVAL(Status__c, &apos;Response Accepted&apos;),
+																																																																	&apos;Response Submitted&apos;, IF(ISPICKVAL(Status__c, &apos;Response Rejected&apos;), 
+																																																																																									&apos;Response Submitted&apos;, &apos;&apos;)))))</formula>
+        <label>Subapplicant Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Request For Information</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>RFI-{00000}</displayFormat>
+        <label>Request For Information Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Request For Information</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CWMP</fullName>
+        <active>true</active>
+        <description>Record Type for CWMP RFI</description>
+        <label>CWMP</label>
+        <picklistValues>
+            <picklist>RFI_Type__c</picklist>
+            <values>
+                <fullName>CWMP</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RFI Requested</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Response Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Withdrawal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Default</fullName>
+        <active>true</active>
+        <label>Default</label>
+        <picklistValues>
+            <picklist>RFI_Type__c</picklist>
+            <values>
+                <fullName>FEMA EHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA OES EHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA OES Programmatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES BCA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Programmatic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA EHP RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA EHP RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Analyst Review FEMA EHP RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Analyst Review FEMA Programmatic RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Submitted by Cal OES Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Subapplicant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted to Cal OES Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Requested</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HMA</fullName>
+        <active>true</active>
+        <label>HMA</label>
+        <picklistValues>
+            <picklist>RFI_Type__c</picklist>
+            <values>
+                <fullName>FEMA EHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA OES EHP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA OES Programmatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES BCA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Programmatic</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Draft</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA EHP RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA EHP RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Programmatic RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA RFI Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FEMA Time Extension Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Analyst Review FEMA EHP RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OES Analyst Review FEMA Programmatic RFI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Submitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Response Submitted by Cal OES Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent to Subapplicant</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted to Cal OES Analyst</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Time Extension Requested</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>CWMP_Sharing__c</fullName>
+        <label>CWMP Sharing</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>CWMP_RFI_Prior_Date_Restriction</fullName>
+        <active>true</active>
+        <description>Restricting CWMP Application RFI from Entering Prior Date in RFI Deadline.</description>
+        <errorConditionFormula>AND( RecordType.DeveloperName = &apos;CWMP&apos;,  RFI_Deadline__c &lt; TODAY() )</errorConditionFormula>
+        <errorMessage>RFI Deadline must not be prior to today&apos;s date.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Change_RFI_Type_only_in_draft_stage</fullName>
+        <active>true</active>
+        <description>RFI type can only be changed if status is draft</description>
+        <errorConditionFormula>OR( $UserRole.Name = &apos;HMA Analyst&apos;, $UserRole.Name = &apos;HMA Manager&apos;)  &amp;&amp;
+NOT(ISPICKVAL(Status__c, &apos;Draft&apos;)) &amp;&amp;  ISCHANGED(RFI_Type__c)</errorConditionFormula>
+        <errorDisplayField>RFI_Type__c</errorDisplayField>
+        <errorMessage>You cannot change RFI Type after the RFI is sent to subapplicant.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FEMA_User_create_FEMA_RFI_Type</fullName>
+        <active>false</active>
+        <description>Only Fema user should be able to create FEMA related RFI type</description>
+        <errorConditionFormula>($UserRole.Name = &quot;HMA Analyst&quot; || $UserRole.Name = &quot;HMA Manager&quot;) &amp;&amp;  (ISPICKVAL( RFI_Type__c , &apos;FEMA OES Programmatic&apos;) ||  ISPICKVAL(RFI_Type__c, &apos;FEMA OES EHP&apos;))</errorConditionFormula>
+        <errorDisplayField>RFI_Type__c</errorDisplayField>
+        <errorMessage>You are not allowed to create FEMA OES EHP,  FEMA OES Programmatic RFI Types</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_Subapplicant_Comment_Change</fullName>
+        <active>true</active>
+        <description>Analyst and Manger cannot change the subapplicant comments.</description>
+        <errorConditionFormula>OR( $UserRole.Name = &apos;HMA Analyst&apos;, $UserRole.Name = &apos;HMA Manager&apos;) &amp;&amp;
+ISCHANGED( Subapplicant_Comment__c )</errorConditionFormula>
+        <errorDisplayField>Subapplicant_Comment__c</errorDisplayField>
+        <errorMessage>You do not have access to change Subapplicant comments.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_Time_Ext_Rej_or_Accp_If_Not_Req</fullName>
+        <active>true</active>
+        <description>Restrict Time extension Accepted and Rejected if Prior status not equal to Time extension Requested</description>
+        <errorConditionFormula>OR( $UserRole.Name = &apos;HMA Analyst&apos;, $UserRole.Name = &apos;HMA Manager&apos;) &amp;&amp;   
+	NOT(ISPICKVAL( PRIORVALUE(Status__c) , &apos;Time Extension Requested&apos;) ) &amp;&amp;  
+ OR( ISPICKVAL(Status__c, &apos;Time Extension Accepted&apos;) ,  ISPICKVAL(Status__c, &apos;Time Extension Rejected&apos;) )</errorConditionFormula>
+        <errorDisplayField>Status__c</errorDisplayField>
+        <errorMessage>Prior status should be Time Extension Requested</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Award_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Award_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Award_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Award_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Status__c</fields>
+        <fields>Project__c</fields>
+        <fields>AwardStartDate__c</fields>
+        <fields>AwardEndDate__c</fields>
+        <label>Award Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Amendment_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Amendment Request due to which this Award is created.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amendment Request due to which this Award is created.</inlineHelpText>
+        <label>Amendment Request</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Amendment_Request__c.Project__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.Project__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Amendment_Request__c</referenceTo>
+        <relationshipLabel>Awards</relationshipLabel>
+        <relationshipName>Awards</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AmountObligated__c</fullName>
+        <description>Amount Obligated for the Award (Total Project Award of the Project).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount Obligated for the Award (Total Project Award of the Project).</inlineHelpText>
+        <label>Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>AwardEndDate__c</fullName>
+        <description>End Date of the Award (End Date of the Project).</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>End Date of the Award (End Date of the Project).</inlineHelpText>
+        <label>Award End Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>AwardFundingType__c</fullName>
+        <externalId>false</externalId>
+        <label>Award Funding Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Obligation</fullName>
+                    <default>false</default>
+                    <label>Obligation</label>
+                </value>
+                <value>
+                    <fullName>De Obligation</fullName>
+                    <default>false</default>
+                    <label>De Obligation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AwardStartDate__c</fullName>
+        <description>Start Date of the Award (Start Date from Project).</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date of the Award (Start Date from Project).</inlineHelpText>
+        <label>Award Start Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>BudgetNumber__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Budget Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EMMIE_Batch_Unique_No__c</fullName>
+        <externalId>false</externalId>
+        <formula>SUBSTITUTE(SUBSTITUTE( FDSR__c, &apos;PW-&apos;, &apos;&apos;), &apos;DSR-&apos;, &apos;&apos;) &amp; &apos;-&apos; &amp;  Project__r.Declaration_Number__c</formula>
+        <label>EMMIE Batch Unique No</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FDSR__c</fullName>
+        <description>PW/DSR/PJ/PL Number version.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>PW/DSR/PJ/PL</inlineHelpText>
+        <label>Project Version (PW/DSR/PJ/PL)</label>
+        <length>15</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Obligated_Amount__c</fullName>
+        <description>Obligated Amount retrieved from EMMIE</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Obligated Amount retrieved from EMMIE</inlineHelpText>
+        <label>FEMA Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FEMA_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;FEMA Share %&quot; of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;FEMA Share %&quot; of the Project.</inlineHelpText>
+        <label>FEMA Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Amount_Available__c</fullName>
+        <description>Federal Amount Available [Federal Supplement Amount -(Federal Supplement Amount * Project.Federal Retention )]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Amount Available [Federal Supplement Amount -(Federal Supplement Amount * Project.Federal Retention )]</inlineHelpText>
+        <label>Supplement Federal Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Project_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;Federal Project Amount&quot; for this Award as per &quot;New Obigated Amount&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;Federal Project Amount&quot; for this Award as per &quot;New Obigated Amount&quot;.</inlineHelpText>
+        <label>Federal Project Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Retention_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Federal Retention% of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Retention% of the Project.</inlineHelpText>
+        <label>Federal Retention%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Retention__c</fullName>
+        <description>Federal Retention [Federal Supplement Amount * Federal Retention]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Retention [Federal Supplement Amount * Federal Retention]</inlineHelpText>
+        <label>Supplement Federal Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Supplement_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;Federal Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;Federal Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</inlineHelpText>
+        <label>Federal Supplement Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Manager_Approved_Date__c</fullName>
+        <description>This field shows the Manager Approved Date of the Project if the Award is Initial Award of the Project or else Manager Approved Date of the Amendment.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the Manager Approved Date of the Project if the Award is Initial Award of the Project or else Manager Approved Date of the Amendment.</inlineHelpText>
+        <label>Manager Approved Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Manager_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field shows the Manager Approver of the Project if the Award is Initial Award of the Project or else Manager Approver of the Amendment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the Manager Approver of the Project if the Award is Initial Award of the Project or else Manager Approver of the Amendment.</inlineHelpText>
+        <label>Manager User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Awards</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share_Flag__c</fullName>
+        <description>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of the Award&apos;s Project record is greater than or equal to $2500, or else should be Red.</description>
+        <externalId>false</externalId>
+        <formula>IMAGE ( IF( Obligated_State_Share__c = false, &quot;/img/samples/flag_red.gif&quot;, &quot;/img/samples/flag_green.gif&quot;),&quot;Status Flag&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of the Award&apos;s Project record is greater than or equal to $2500, or else should be Red.</inlineHelpText>
+        <label>Obligated State Share Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of this Award&apos;s Project record is greater than or equal to $2500, or else should be unchecked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of this Award&apos;s Project record is greater than or equal to $2500, or else should be unchecked.</inlineHelpText>
+        <label>Obligated State Share</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PR_Snapashot__c</fullName>
+        <description>JSON of all the Payment Requests and Payments, before Deactivating the Award and Moving PRs and Payments to new Award.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>JSON of all the Payment Requests and Payments, before Deactivating the Award and Moving PRs and Payments to new Award.</inlineHelpText>
+        <label>PR Snapashot</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Previous_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Amount Obligated of Previous Award Record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Amount Obligated of Previous Award Record.</inlineHelpText>
+        <label>Previous Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Federal_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Federal Amount Obligated for previous Award record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Amount Obligated for previous Award record. 
+[ Federal Project Amount - Federal Supplement Amount ]</inlineHelpText>
+        <label>Previous Federal Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Previous_State_Admin_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Admin Amount Obligated for previous Award record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Admin Amount Obligated for previous Award record. 
+[ State Admin Amount - State Admin Supplement Amount ]</inlineHelpText>
+        <label>Previous State Admin Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Previous_State_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Amount Obligated for previous Award record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Amount Obligated for previous Award record. 
+[ State Project Amount - State Supplement Amount ]</inlineHelpText>
+        <label>Previous State Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <description>Project for which this Award is created.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Project for which this Award is created.</inlineHelpText>
+        <label>Project</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipLabel>Awards</relationshipLabel>
+        <relationshipName>Awards</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>State_Admin_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Admin Amount&quot; for this Award as per &quot;New Obligated Amount&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Admin Amount&quot; for this Award as per &quot;New Obligated Amount&quot;.</inlineHelpText>
+        <label>State Admin Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Admin_Supplement_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Admin Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Admin Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</inlineHelpText>
+        <label>State Admin Supplement Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Admin__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Admin% of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Admin% of the Project.</inlineHelpText>
+        <label>State Admin%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>State_Amount_Available__c</fullName>
+        <description>State Amount Available [State Supplement Amount-(State Supplement Amount * Project.State Retention)]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Amount Available [State Supplement Amount-(State Supplement Amount * Project.State Retention)]</inlineHelpText>
+        <label>Supplement State Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Project_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Project Amount&quot; for this Award as per &quot;New Obigated Amount&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Project Amount&quot; for this Award as per &quot;New Obigated Amount&quot;.</inlineHelpText>
+        <label>State Project Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Retention_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Retention% of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Retention% of the Project.</inlineHelpText>
+        <label>State Retention%</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>State_Retention__c</fullName>
+        <description>State Retention [ State Supplement  Amount * State Retention ]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Retention [ State Supplement  Amount * State Retention ]</inlineHelpText>
+        <label>Supplement State Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Share %&quot; of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Share %&quot; of the Project.</inlineHelpText>
+        <label>State Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>State_Supplement_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Supplement Amount&quot; added to the Project from the current Award&apos;s Amendment.</inlineHelpText>
+        <label>State Supplement Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>Status of the Award (Active / Inactive).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the Award (Active / Inactive).</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>true</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Inactive</fullName>
+                    <default>false</default>
+                    <label>Inactive</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sum_of_State_and_Admin_Supplement__c</fullName>
+        <description>This field shows the &quot;Sum of State and Admin&quot; field of Project if the Award is not related to Amendment or else it shows &quot;Sum of State and Admin Supplement&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the &quot;Sum of State and Admin&quot; field of Project if the Award is not related to Amendment or else it shows &quot;Sum of State and Admin Supplement&quot;.</inlineHelpText>
+        <label>Sum of State and Admin Supplement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sum_of_State_and_Admin_to_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of &quot;State Project Amount&quot;  and &quot;State Admin Amount&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of &quot;State Project Amount&quot;  and &quot;State Admin Amount&quot;. 
+[ State Project Amount + State Admin Amount ]</inlineHelpText>
+        <label>Sum of State and Admin to Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sum_of_State_and_Federal__c</fullName>
+        <description>This field show &quot;Sum of State and Federal&quot; field of Project if the Award is not related to Amendment or else it shows &quot;Sum of State and Federal Supplement&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field show &quot;Sum of State and Federal&quot; field of Project if the Award is not related to Amendment or else it shows &quot;Sum of State and Federal Supplement&quot;.</inlineHelpText>
+        <label>Sum of State and Federal Supplement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sum_of_State_and_Federal_to_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Sum of &quot;Federal Project Amount&quot; and &quot;State Project Amount&quot;.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sum of &quot;Federal Project Amount&quot; and &quot;State Project Amount&quot;. 
+[ Federal Project Amount + State Project Amount ]</inlineHelpText>
+        <label>Sum of State and Federal to Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Supplement_Award__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Amount of Money Awarded in &quot;Additional Funding&quot; Amendment if the Award is crated due to Amendment or else Initial Award Amount from Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Amount of Money Awarded in &quot;Additional Funding&quot; Amendment if the Award is crated due to Amendment or else Initial Award Amount from Project.</inlineHelpText>
+        <label>Supplement Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Supplement_Number__c</fullName>
+        <description>Supplement Number provided by FEMA.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Sequential Numbering system related to FEMA Obligations for a given Incident.</inlineHelpText>
+        <label>Supplement Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Obligated_Amount__c</fullName>
+        <description>&quot;This field is sum of Federal Project Amount, State Project Amount and State Admin Amount.
+[ Federal Project Amount + State Project Amount + State Admin Amount ]&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;This field is sum of Federal Project Amount, State Project Amount and State Admin Amount.
+[ Federal Project Amount + State Project Amount + State Admin Amount ]&quot;</inlineHelpText>
+        <label>Total Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Obligated_Supplement_Amount__c</fullName>
+        <description>&quot;This field is sum of Federal Supplement Amount, State Supplement Amount and State Admin Supplement Amount.
+[ Federal Supplement Amount + State Supplement Amount + State Admin Supplement Amount ]&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;This field is sum of Federal Supplement Amount, State Supplement Amount and State Admin Supplement Amount.
+[ Federal Supplement Amount + State Supplement Amount + State Admin Supplement Amount ]&quot;</inlineHelpText>
+        <label>Total Obligated Supplement Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Award</label>
+    <nameField>
+        <displayFormat>AW-{000000}</displayFormat>
+        <label>Award Number</label>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Awards</pluralLabel>
+    <searchLayouts>
+        <searchResultsAdditionalFields>Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Award_Start_Date_And_End_Date</fullName>
+        <active>true</active>
+        <description>Award End Date should be greater than Award Start Date</description>
+        <errorConditionFormula>AND( ISBLANK(External_Id__c  ) ,AwardEndDate__c &lt;  AwardStartDate__c)</errorConditionFormula>
+        <errorDisplayField>AwardEndDate__c</errorDisplayField>
+        <errorMessage>Award End Date should be greater than Award Start Date</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

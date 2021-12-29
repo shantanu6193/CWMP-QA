@@ -1,0 +1,6 @@
+<aura:component description="HMANOI_EditRequestCmp" controller="HMANOI_EditRequestCtrl"
+                implements="force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="currentStage" type="String" default=""/>
+</aura:component>

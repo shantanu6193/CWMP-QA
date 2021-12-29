@@ -1,0 +1,8 @@
+<design:component >
+<design:attribute name="RecordId" label="Record Id" required="false"/>
+<design:attribute name="SignedFIRDocument" label="Signed FIR Document Url" required="false"/>
+<design:attribute name="FIRDocument" label="FIR Document Url" required="false"/>
+
+<design:attribute name="FirContentDocumentIdDetails" label="Fir ContentDocumentId Details" required="false"/>
+<design:attribute name="SignFirContentDocumentIdDetails" label="SignFir ContentDocumentId Details" required="false"/>
+</design:component>

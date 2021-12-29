@@ -1,0 +1,68 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+        <div class="slds-modal__container">
+            <div>
+                <header class="slds-modal__header slds-text-align_left slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{showHeader}</h2>
+                    </div>
+                    <div class="slds-no-flex">
+                        <lightning-button-icon icon-name="utility:close"  variant="bare" alternative-text="Close" title="Close" size="large" onclick= {closeButton}></lightning-button-icon>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-p-bottom_medium" >
+                    <article class="slds-card slds-card_boundary">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <p class="grx-color_brand"></p>
+                                    <h2 class="slds-card__header-title"></h2>
+                                </div>
+                            </header>
+                        </div>
+                        <template for:each={customMetadataList} for:item="checklist" for:index="index">
+                            <div class="slds-card__body slds-card__body_inner" key={checklist.Id}>
+                            <c-pa-request-project-closeout-review-modal  data-developername= {checklist.Show_Only_For_Yes_Value__c} data-id="checklist" record-id={recordId} custom-metadata={checklist} selected-checklist={selectedChecklistArray} onchecklistchangedaction={checkListChangedAction} onrendereddependantquestion={handleDependantQuestions}></c-pa-request-project-closeout-review-modal>
+                            </div>    
+                        </template>
+                    </article>
+                </div>
+            </div>
+            <footer class="slds-modal__footer">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-small-size_12-of-12" >
+                        <ul class="slds-button-group-row slds-align_absolute-center">
+                            <li class="slds-button-group-item">
+                                <button class="slds-button slds-button_brand slds-align--absolute-center" onclick={handleDone}>Submit</button>
+                            </li>
+                            <li class="slds-button-group-item slds-p-left_small">
+                                <button class="slds-button slds-button_brand slds-align--absolute-center" onclick={handleCancel}>Cancel</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+           <!-- <footer class="slds-modal__footer">
+                <div class="slds-grid slds-wrap slds-gutters slds-align_absolute-center">
+                    <div class="slds-col slds-large-size_4-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                        <button class="slds-button slds-button_brand grx-button grx-button_brand slds-align&#45;&#45;absolute-center" onclick={handleDone}>Submit</button>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters slds-align_absolute-center">
+                    <div class="slds-col slds-large-size_4-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                        <button class="slds-button slds-button_brand grx-button grx-button_brand slds-align&#45;&#45;absolute-center" onclick={handleCancel}>Cancel</button>
+                    </div>
+                </div>
+            </footer>-->
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+    <template if:true={showLoader}>
+        <div class="loadingIcon">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+    </template>
+</template>

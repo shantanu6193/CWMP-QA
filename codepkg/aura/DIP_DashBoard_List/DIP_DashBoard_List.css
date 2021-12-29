@@ -1,0 +1,43 @@
+/**
+ * Created by Neha on 10-04-2020.
+ */
+
+.THIS .slds-truncate{
+    white-space:normal;
+}
+.THIS .slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.THIS .slds-table_cell-buffer tr > th:first-child{
+    padding:8px;
+}
+.THIS .slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+.THIS th,
+.THIS td {
+    text-align: center;
+}
+.THIS .slds-table{
+    border:1px solid rgb(212,212,212);
+}
+.THIS .slds-form-element{
+    /*padding-left: 10px;*/
+}
+.THIS .slds-form-element__label{
+    display:none;
+}
+
+.THIS .custom-label{
+    font-weight: 500;
+    color: #7b96e8;
+    font-size: 1rem;
+}
+
+.THIS hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}

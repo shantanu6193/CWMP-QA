@@ -1,0 +1,13 @@
+<!--
+ - Created by PREM on 18-06-2020.
+ -->
+
+<aura:component description="HMA_Login_Template" implements="forceCommunity:themeLayout" access="global">
+
+    <div class="slds-grid content slds-align_absolute-center" id="hma-content">
+        <div class="slds-col slds-size_10-of-12 slds-medium-size_8-of-12 slds-large-size_6-of-12">
+            {!v.body}
+        </div>
+    </div>
+
+</aura:component>

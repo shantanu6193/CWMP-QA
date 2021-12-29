@@ -1,0 +1,28 @@
+.container{
+    background: white !important;
+}
+hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+.slds-form-element__label{
+    font-weight: 400;
+    color: #5a5959;
+    font-size: 0.75rem;
+}
+.slds-input{
+    border-radius: 4px;
+    border: 1px solid #d4d4d4
+}
+.sub-text{
+    font-size: 0.65rem;
+    font-weight: 100;
+    font-style: italic;
+    color: #5a5959;
+}
+.heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}

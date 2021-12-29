@@ -1,0 +1,39 @@
+<!--
+ - Created by Neha on 15-04-2020.
+ -->
+
+<aura:component description="DIP_Current_Priority_Detail"  implements="flexipage:availableForAllPageTypes,force:appHostable"
+              controller="DIP_Current_Priority_DetailCtrl">
+
+
+    <aura:attribute name="PriorityItem" type="Current_Priorities__c" access="public" description="Current Identified Resource Priorities"
+                    default="{'sobjectType':'Current_Priorities__c'}"/>
+    <aura:attribute name="sessionId" type="String" access="private" default=""/>
+    <ltng:require scripts="{!$Resource.cometd }" afterScriptsLoaded="{!c.doInit}" />
+
+    <div>
+        <div class="slds-card">
+            <div class="slds-grid slds-wrap slds-align_absolute-center container">
+                <div class="slds-col slds-size_12-of-12">
+
+                    <!--1.Header-->
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col">
+                            <p class="slds-align_absolute-center slds-p-vertical_x-small custom-label">Current Identified Resource Priorities</p>
+                            <hr/>
+                        </div>
+
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-table_structure">
+                                <!--<aura:unescapedHtml value='{!v.PriorityItem.Priority_Description__c}'></aura:unescapedHtml>-->
+                                <p class="slds-text-longform tile__title red-txt slds-p-around--small">
+                                    <aura:unescapedHtml value="{!v.PriorityItem.Priority_Description__c}"/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

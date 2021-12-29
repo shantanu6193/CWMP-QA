@@ -1,0 +1,96 @@
+<template>
+  <div class="slds-card__body">
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-var-m-bottom_large">
+      <thead>
+        <tr class="slds-text-title_caps">
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Name (Last First)">Name (Last First)</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="MACS ID">MACS ID</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Rank or Job Title">Rank or Job Title</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Last 4 SSN#">Last 4 SSN#</div>
+          </th>
+          <th class="" scope="col" style="width:20%">
+            <div class="slds-cell-wrap" title="StartDateTime">Start</div>
+          </th>
+          <th class="" scope="col" style="width:20%">
+            <div class="slds-cell-wrap" title="EndDateTime">End</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="CDF">CDF</div>
+          </th>
+          <th class="" scope="col">
+            <div class="slds-cell-wrap" title="Base">Portal to Portal</div>
+          </th>
+          <!--<template for:each={columnList} for:item="column">
+                    <th key={column.apiName}><div class="slds-truncate">{column.label}</div></th>
+                </template>-->
+        </tr>
+      </thead>
+      <tbody>
+        <template for:each={rows} for:item="record" for:index="index">
+          <tr key={record.uuid}>
+            <td scope="col">
+              <lightning-formatted-text value={record.Name} ></lightning-formatted-text>
+              <!--<lightning-input name="Name" value={record.Name} variant="label-hidden" read-only></lightning-input>-->
+            </td>
+            <td scope="col">
+              <lightning-formatted-text value={record.MACS_ID__c} ></lightning-formatted-text>
+              <!--<lightning-input name="MACS_ID__c" value={record.MACS_ID__c} variant="label-hidden" read-only>
+              </lightning-input>-->
+            </td>
+            <td scope="col">
+              <lightning-formatted-text value={record.Rank_Job_Title__c} ></lightning-formatted-text>
+              <!--<lightning-input name="Rank_Job_Title__c" value={record.Rank_Job_Title__c} variant="label-hidden"
+                read-only></lightning-input>-->
+            </td>
+            <td scope="col">
+              <lightning-formatted-text value={record.SSN__c} ></lightning-formatted-text>
+              <!--<lightning-input name="SSN__c" value={record.SSN__c} variant="label-hidden" read-only></lightning-input>-->
+            </td>
+            <td scope="col">
+              <lightning-formatted-date-time class="slds-m-right_xx-small outputfont" value={record.Start_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+              <lightning-formatted-text value={record.Start_Time__c} ></lightning-formatted-text>
+              
+              <!--<lightning-layout>
+              <lightning-layout-item>
+              <lightning-input type="date" date-style="short" name="Start_Date__c" value={record.Start_Date__c} variant="label-hidden" read-only>
+              </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item >
+              <lightning-input name="Start_Time__c" value={record.Start_Time__c} variant="label-hidden" read-only></lightning-input>
+            </lightning-layout-item>
+            </lightning-layout>-->
+            </td>
+            <td scope="col">
+              <lightning-formatted-date-time class="slds-m-right_xx-small outputfont" value={record.End_Date__c}  year="numeric" month="2-digit" day="2-digit" time-zone="UTC"></lightning-formatted-date-time>
+              <lightning-formatted-text value={record.End_Time__c} ></lightning-formatted-text>
+              <!--<lightning-layout>
+                <lightning-layout-item>
+              <lightning-input type="date" date-style="short" name="End_Date__c" value={record.End_Date__c} variant="label-hidden" read-only>
+              </lightning-input>
+              </lightning-layout-item>
+              <lightning-layout-item>
+              <lightning-input name="End_Time__c" value={record.End_Time__c} variant="label-hidden" read-only></lightning-input>
+              </lightning-layout-item>
+              </lightning-layout>-->
+            </td>
+            <td scope="col">
+              <lightning-input type="checkbox" name="CDF__c" checked={record.CDF__c} variant="label-hidden" disabled>
+              </lightning-input>
+            </td>
+            <td scope="col">
+              <lightning-input type="checkbox" name="Portal_To_Portal__c" checked={record.Portal_To_Portal__c}
+                variant="label-hidden" disabled></lightning-input>
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</template>

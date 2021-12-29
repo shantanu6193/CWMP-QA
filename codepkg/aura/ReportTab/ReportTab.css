@@ -1,0 +1,44 @@
+/**
+ * Created by PREM on 05-02-2020.
+ */
+
+.THIS .slds-radio [type="radio"]:checked + .slds-radio__label .slds-radio_faux::after{
+    background:#003466;
+}
+.THIS .slds-radio_faux{
+    border-color:#003466;
+}
+.THIS .slds-modal__header {
+    border-bottom: 2px solid #003466;
+}
+.THIS .button .slds-button{
+    width:100%;
+}
+.THIS .slds-border--top{
+    border-top:solid 1px #003466;
+}
+.THIS .select .slds-form-element__label{
+    display:none;
+}
+.THIS .slds-col_bump-left{
+    text-align: -webkit-right;
+}
+.THIS .viewReportButton{
+    background-color: #003466;
+    border-color: #003466;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 2.31;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+}
+
+.THIS button.viewReportButton:disabled {
+    background: rgb(201, 199, 197) !important;
+    border-color: rgb(201, 199, 197) !important;
+    color: rgb(255, 255, 255);
+}

@@ -1,0 +1,14 @@
+.table-data{
+    
+    overflow:hidden;
+    word-break:break-all;
+}
+.table-structure{
+    table-layout: absolute; 
+    width: 100%;
+}
+.heading-text{
+    text-align:center;
+    font-size:15px;
+    font-weight:bold;
+}

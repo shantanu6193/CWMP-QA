@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col">
+            <c-lookup
+                    data-custom="lookup"
+                    data-lookup="Product__c"
+                    onsearch={handleProductSearch}
+                    onselectionchange={handleProductChange}
+                    placeholder="Enter / Search Product (3 or more characters)"
+                    is-multi-entry={isMultiEntry}
+                    load-data-on-init = {loadDataOnLookup}
+                    local-search = {loadDataOnLookup}
+                    scroll-after-n-items = "10"
+                    errors={productRequired}
+                    selection={productSelection}
+                    default-local-search-result = "other"
+                    required>
+            </c-lookup>
+        </div>
+    </div>
+</template>

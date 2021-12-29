@@ -1,0 +1,140 @@
+.THIS .content{
+    background: white;
+    border-radius: 0.5rem;
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(163,145,163,1);
+    -moz-box-shadow: 0px 0px 5px 2px rgba(163,145,163,1);
+    box-shadow: 0px 0px 5px 2px rgb(181, 178, 181);
+}
+.THIS .page-header{
+    background: #656565;
+    color: white;
+    border-radius: 4px 4px 0px 0px;
+}
+.THIS .slds-wizard__progress-bar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	background: #3f6e99;
+	transition: width var(--lwc-durationPromptly,0.2s) ease;
+}
+.THIS .slds-page-header__title{
+    font-size:1.5rem;
+    font-weight:bold;
+    color:white;
+}
+.THIS .slds-wizard__item:first-child{
+}
+.THIS .slds-wizard__item:last-child{
+    text-align:right;
+}
+.THIS .titleStyle{
+    margin: auto;
+    color: #fff;
+    font-style: oblique;
+    text-align: center;
+}
+.THIS .slds-table_structure{
+    overflow:auto;
+}
+.THIS .slds-button_brand{
+     width: 8rem !important;
+}
+.THIS .neutral-button{
+    width: 8rem !important;
+    border: 2px solid #444240;
+}
+.THIS .widthFirstClass {
+    width : 0%;
+}
+.THIS .widthSecondClass {
+    width : 50%;
+    background-color:#3f6e99;
+}
+.THIS .widthThirdClass {
+    width : 100%;
+}
+
+.THIS .slds-wizard .slds-is-active .slds-wizard__marker {
+    background: #3f6e99!important
+}
+.THIS .slds-wizard__marker{
+    background: #D9DBDD;
+}
+.THIS .a:hover {
+    background: RGB(68, 66, 64) !important;
+}
+.THIS .slds-section-title--divider{
+    font-size:1rem;
+    font-weight:bold;
+    background: #848280;
+    color: #ffffff;
+}
+.THIS .slds-wizard{
+    z-index: 10;
+}
+.THIS .field-title{
+    margin-left: -1.1rem;
+    font-size: 1rem;
+    font-weight:bold;
+    line-height: 1.25;
+    color: rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem;
+    padding: 0.5rem 1rem;
+    background: rgb(255, 255, 255);
+}
+.THIS .slds-border_bottom{
+    border-bottom:1px solid #848280;
+}
+/*.THIS .slds-wizard__link_last-element{
+    margin-right:-7rem;
+}
+.THIS .slds-wizard__link_first-element{
+    margin-left:-7rem;
+}*/
+.THIS .note{
+    font-weight:bold;
+}
+
+/*form*/
+.THIS .border_div{
+    /*border:1px solid black;*/
+    background:#fff;
+}
+.THIS .header{
+    height:5rem;
+    border-bottom:1px solid black;
+    background:#D9DBDD;
+}
+
+.THIS .heading{
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+.THIS .form-header{
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: #3f6e99;
+}
+.THIS .loading-modal{
+    width: 20rem !important;
+}
+.THIS .loading-modal-div{
+    border-radius:0.25rem;
+    background-color: transparent;
+}
+.THIS .slds-spinner_container{
+    background-color: transparent !important;
+}
+/*.THIS .slds-form-element__legend{
+    font-weight:normal !important;
+}*/
+        
+
+.THIS .staffing label.slds-form-element__label {font-weight: var(--lwc-fontWeightBold,700); }
+        
+.THIS .personal-radio .slds-radio_faux {
+    margin-right:10px !important;
+}

@@ -1,0 +1,9 @@
+/**
+ * Created by ricky on 08-09-2021.
+ */
+.slds-card__header {
+    background: #2574a9;
+    padding: 10px;
+    color: white;
+    margin: -1px;
+ }

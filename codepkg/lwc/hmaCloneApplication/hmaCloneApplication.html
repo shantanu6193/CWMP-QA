@@ -1,0 +1,16 @@
+<template>
+    <template if:true={isLoading}>
+        <section aria-modal="true" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container ">
+                <div class="slds-modal__content modalBody">
+                    <div class="slds-m-around_large">
+                        <div class="slds-p-around_small slds-is-relative">
+                            <lightning-spinner alternative-text="Loading" size="medium" class="spinnerClass"></lightning-spinner>
+                       </div>
+                   </div>
+                </div>            
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>    
+</template>

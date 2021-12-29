@@ -1,0 +1,2423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Project_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>Project_Lookup_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Project_Lookup_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Program_Name__c</fields>
+        <fields>Funding_Opportunity_Name__c</fields>
+        <fields>Project_Number__c</fields>
+        <fields>FIPS_ID__c</fields>
+        <fields>Total_Project_Award__c</fields>
+        <label>Project Lookup Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>AdminAmountDisbursed__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Admin Amount Disbursed for the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total State Admin Amount Disbursed for the Project. Payment by State Controller&apos;s Office has been confirmed by Cal OES Accounting.</inlineHelpText>
+        <label>Admin Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Admin_Allowance_10_per__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Total_State_Amount_Available__c  / 10)  * 100</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Admin Allowance 10 per</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Allow_System_Calculation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Even if External Id is not null, it will allow the system calculations.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Even if External Id is not null, it will allow the system calculations.</inlineHelpText>
+        <label>Allow System Calculation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AmountAvailable__c</fullName>
+        <description>Amount available for this Project.</description>
+        <externalId>false</externalId>
+        <formula>Total_Project_Award__c  - TotalProjectLocalAward__c  -   TotalAmountDisbursed__c</formula>
+        <inlineHelpText>Amount available for this Project.
+[ Total Project Award - Total Project Local Award - Amount Disbursed ]</inlineHelpText>
+        <label>Total Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Approved_State_Payment_Amount__c</fullName>
+        <description>This field in sum of &quot;Total State Amount Approved&quot; and &quot;Total Admin Amount Approved&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_State_Amount_Approved__c +  Total_Admin_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field in sum of &quot;Total State Amount Approved&quot; and &quot;Total Admin Amount Approved&quot;. 
+[ Total State Amount Approved + Total Admin Amount Approved ]</inlineHelpText>
+        <label>Approved State Payment Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent_FirstName__c</fullName>
+        <description>The FirstName of Primary Authorized agent for Docusign Template</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The FirstName of Primary Authorized agent for Docusign Template</inlineHelpText>
+        <label>Authorized Agent FirstName</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent_LastName__c</fullName>
+        <description>The LastName of Primary Authorized agent for Docusign Template</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The LastName of Primary Authorized agent for Docusign Template</inlineHelpText>
+        <label>Authorized Agent LastName</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent_Salutation__c</fullName>
+        <description>The salutation of Primary Authorized agent for Docusign Template</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The salutation of Primary Authorized agent for Docusign Template</inlineHelpText>
+        <label>Authorized Agent Salutation</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Authorized_Agent_Title__c</fullName>
+        <description>The Title of Primary Authorized agent for Docusign Template</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The Title of Primary Authorized agent for Docusign Template</inlineHelpText>
+        <label>Authorized Agent Title</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AvailableAdminAmount__c</fullName>
+        <description>Total Admin Amount Available for this Project.</description>
+        <externalId>false</externalId>
+        <formula>TotalProjectStateAdminShare__c - AdminAmountDisbursed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Total Admin Amount Available for this Project.
+[ Total Project State Admin Share - Admin Amount Disbursed ]</inlineHelpText>
+        <label>Admin Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CalOES_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Obligating_Sub_Recipient__r.OES__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CalOES ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CalOES_Project_Number__c</fullName>
+        <description>Number assigned by CalOES to a project before it is approved by FEMA. This number is used internally to track projects across the application and payment steps of a given program.</description>
+        <displayFormat>PRN-{000000}</displayFormat>
+        <externalId>false</externalId>
+        <inlineHelpText>Automated number assigned by Cal OES and used internally by FPD to track projects and payments.</inlineHelpText>
+        <label>CalOES Project Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Cal_OES_ID__c</fullName>
+        <description>This field to identify if the Subrecipient is a regular Subrecipient, or a Child Subrecipient (i.e. funds are obligated to Parent Subrecipient entity).</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is to identify if the Subrecipient is a Parent Subrecipient or a Child Subrecipient. [ FIPS ID + 2 ]</inlineHelpText>
+        <label>Cal OES ID</label>
+        <length>12</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CloseOut_Task__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CloseOut Task</label>
+        <referenceTo>Closeout_Task__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Closeout_Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Closeout Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Closeout_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Closeout Request</label>
+        <referenceTo>Closeout_Request__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Cumulative_State_Cost_Share_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If the Sum of State Amount Requested and Admin Amount Requested of all the Projects of this Incident and Sub Recipient is greater than or equal to 2500 then this Checkbox will be checked or else unchecked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If the Sum of State Amount Requested and Admin Amount Requested of all the Projects of this Incident and Sub Recipient is greater than or equal to 2500 then this Checkbox will be checked or else unchecked.</inlineHelpText>
+        <label>Cumulative State Cost Share Flag</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Current_Date_for_Form__c</fullName>
+        <externalId>false</externalId>
+        <formula>TODAY()</formula>
+        <label>Current Date for Form</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>DUNS_Expiration_Date__c</fullName>
+        <description>DUNS Expiration Date of Obligating Sub Recipient.</description>
+        <externalId>false</externalId>
+        <formula>Obligating_Sub_Recipient__r.DUNS_Expiration_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Date when the DUNS registration expires on SAM.gov</inlineHelpText>
+        <label>SAM Registration Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Damage_Category__c</fullName>
+        <description>PA Project Damage Category</description>
+        <externalId>false</externalId>
+        <inlineHelpText>FEMA Category assigned to the Project</inlineHelpText>
+        <label>Damage Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A: Debris Removal</fullName>
+                    <default>false</default>
+                    <label>A: Debris Removal</label>
+                </value>
+                <value>
+                    <fullName>B: Emergency Protective Measures</fullName>
+                    <default>false</default>
+                    <label>B: Emergency Protective Measures</label>
+                </value>
+                <value>
+                    <fullName>C: Roads and Bridges</fullName>
+                    <default>false</default>
+                    <label>C: Roads and Bridges</label>
+                </value>
+                <value>
+                    <fullName>D: Water Control Facilities</fullName>
+                    <default>false</default>
+                    <label>D: Water Control Facilities</label>
+                </value>
+                <value>
+                    <fullName>E: Public buildings and contents</fullName>
+                    <default>false</default>
+                    <label>E: Public Buildings and Contents</label>
+                </value>
+                <value>
+                    <fullName>F: Public Utilities</fullName>
+                    <default>false</default>
+                    <label>F: Public Utilities</label>
+                </value>
+                <value>
+                    <fullName>G: Parks, Recreational and Other Facilities</fullName>
+                    <default>false</default>
+                    <label>G: Parks, Recreational and Other Facilities</label>
+                </value>
+                <value>
+                    <fullName>H: Fire Management</fullName>
+                    <default>false</default>
+                    <label>H: Fire Management</label>
+                </value>
+                <value>
+                    <fullName>Z: Management Costs</fullName>
+                    <default>false</default>
+                    <label>Z: Management Costs</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_Project_Marked_100_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date Project Marked 100% Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Declaration_Number__c</fullName>
+        <description>Declaration Number of the Incident.</description>
+        <externalId>false</externalId>
+        <formula>Incident_Name__r.Declaration_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Declaration Number assigned to a Disaster/Incident.</inlineHelpText>
+        <label>Declaration Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>A Description of the Project and its scope of work.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>A Description of the Project and its scope of work.</inlineHelpText>
+        <label>Description</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Disaster_Grant_FO_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Funding_Opportunity_Name__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Disaster Grant/FO Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>EligibleforStateAdminShare__c</fullName>
+        <description>If the Project is eligible for State Admin Share?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicates whether or not the project is eligible for State Admin Share</inlineHelpText>
+        <label>Eligible for State Admin Share</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Email_Template_NSPO__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( AND(FIPS_ID__c  !=null , CalOES_Project_Number__c !=null,  CalOES_ID__c !=null),
+   Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ FIPS_ID__c +&quot;/&quot;+ CalOES_Project_Number__c +&quot;/&quot;+ CalOES_ID__c,
+   
+   IF( AND(FIPS_ID__c  !=null , CalOES_Project_Number__c !=null,  CalOES_ID__c ==null),
+   Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ FIPS_ID__c +&quot;/&quot;+ CalOES_Project_Number__c , 
+   
+		IF( AND(FIPS_ID__c  !=null , CalOES_Project_Number__c ==null,  CalOES_ID__c !=null),
+		Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ FIPS_ID__c +&quot;/&quot;+ CalOES_ID__c , 
+		
+		IF( AND(FIPS_ID__c  ==null , CalOES_Project_Number__c !=null,  CalOES_ID__c !=null),
+		Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ CalOES_Project_Number__c +&quot;/&quot;+ CalOES_ID__c,
+		
+		IF( AND(FIPS_ID__c  !=null , CalOES_Project_Number__c ==null,  CalOES_ID__c ==null),
+        Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ FIPS_ID__c,
+		
+		IF( AND(FIPS_ID__c  ==null , CalOES_Project_Number__c !=null,  CalOES_ID__c ==null),
+        Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ CalOES_Project_Number__c, 
+		
+		IF( AND(FIPS_ID__c  ==null , CalOES_Project_Number__c ==null,  CalOES_ID__c !=null),
+        Obligated_Sub_Recipient_Formula__c+&quot;/&quot;+ CalOES_ID__c, Obligated_Sub_Recipient_Formula__c)
+         ))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Email Template NSPO</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>End_Date__c</fullName>
+        <description>End Date of Project Work Completed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>End Date of Project Work</inlineHelpText>
+        <label>End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Expenditure_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the highest amount in the Expenditures to Date field on the PR.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the up-to-date Total Project Costs the Subrecipient has submitted to Cal OES.</inlineHelpText>
+        <label>Cumulative Expenditures</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Approval_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>FEMA Approval Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FEMA_Project_Number__c</fullName>
+        <description>Project Name - FEMA</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Project Name - FEMA</inlineHelpText>
+        <label>FEMA Project Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>The FEMA Cost Share for this Project. The values are inherited from the Program Cost Share.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Percentage of the Project Amount ($) that will be paid by FEMA.  Equal to the Federal Share ($) divided by the Project Amount ($).</inlineHelpText>
+        <label>FEMA Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FFATA_Expiration_Date__c</fullName>
+        <description>FFATA Expiration Date of Obligating Sub Recipient.</description>
+        <externalId>false</externalId>
+        <formula>Obligating_Sub_Recipient__r.FFATAExpirationDate__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Date that the current FFATA expires for the Subrecipient. Must be renewed annually.</inlineHelpText>
+        <label>FFATA Expiration Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FIPS_ID__c</fullName>
+        <description>&quot;FIPS ID&quot; of the &quot;Obligated Sub Recipient&quot; of the Project.</description>
+        <externalId>false</externalId>
+        <formula>Obligating_Sub_Recipient__r.Sub_Recipient_FIPS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Cal OES-generated ID number for Subreceipeint, used by multiple State partners.</inlineHelpText>
+        <label>FIPS ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FederalAmountAvailable__c</fullName>
+        <description>Federal Amount available for this Project.</description>
+        <externalId>false</externalId>
+        <formula>Federal_Project_Award__c -  FederalAmountDisbursed__c</formula>
+        <inlineHelpText>Federal Amount available for this Project.
+[ Total Project Federal Award - Total Federal Amount Disbursed ]</inlineHelpText>
+        <label>Federal Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FederalAmountDisbursed__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total federal Amount Disbursed for this Project(Payment is Done).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Federal Amount Disbursed for the Project. Payment by State Controller&apos;s Office has been confirmed by Cal OES Accounting.</inlineHelpText>
+        <label>Federal Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Project_Award_W_O_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Federal Project Award - Total Federal Retention on Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Project Award - Total Federal Retention on Project</inlineHelpText>
+        <label>Federal Project Award W/O Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Project_Award__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Federal Amount awarded to the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the Total Amount of money FEMA has awarded for this Project.</inlineHelpText>
+        <label>Federal Project Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Retention_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Federal Retention To Date on Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Federal Retention To Date on Project</inlineHelpText>
+        <label>Federal Retention To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Federal_Retention__c</fullName>
+        <description>The Percent Amount withheld by CalOES as retention on Federal Funds. The standard is 0%.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Percent Amount withheld by CalOES as retention on Federal Funds. The standard is 0%. If this is a Large Project &lt; 100% complete, Project Funds will be paid on a reimbursement basis with 10% retention.</inlineHelpText>
+        <label>Federal Retention %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>FundingSource__c</fullName>
+        <description>Funding Source of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select &quot;Federal Only,&quot; &quot;State Only,&quot; or &quot;Federal and State&quot; according to Subrecipient, Incident, and Category eligibility.</inlineHelpText>
+        <label>Funding Source</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Federal and State</fullName>
+                    <default>false</default>
+                    <label>Federal and State</label>
+                </value>
+                <value>
+                    <fullName>Federal Only</fullName>
+                    <default>false</default>
+                    <label>Federal Only</label>
+                </value>
+                <value>
+                    <fullName>State Only</fullName>
+                    <default>false</default>
+                    <label>State Only</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Funding_Opportunity_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Funding Opportunity Name</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Specific Funding Opportunity for the Grant (Program+Incident+Declaration Number).</inlineHelpText>
+        <label>Disaster Grant/FO</label>
+        <referenceTo>Funding_Opportunity__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Name_Formula__c</fullName>
+        <description>This field is a formula field of Incident Name which would be visible to Portal Users</description>
+        <externalId>false</externalId>
+        <formula>Incident_Name__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incident_Name__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <description>The name of the Incident</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Disaster/Incident for which the project is related. Not all projects will have an associated Incident.</inlineHelpText>
+        <label>Incident Name</label>
+        <referenceTo>Incident__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Subrecipient_Summary__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Look Up to Incident Sub Recipient Summary which is having the same Sub Recipient and same Incident as the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Links to summary of all Projects within this Incident for this Subrecipient.</inlineHelpText>
+        <label>Incident Subrecipient Summary</label>
+        <referenceTo>Incident_Subrecipient_Stage__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Incident_Type__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( Incident_Name__r.Incident_Type__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Incident Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IsLargeProject__c</fullName>
+        <description>If the Project is a Large Project/Small Project?</description>
+        <externalId>false</externalId>
+        <formula>IF(ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;),
+      IF( Total_Project_Award__c &gt; Incident_Name__r.Federal_Small_Project_Threshold__c , True, False), 
+       IF(ISPICKVAL( FundingSource__c , &apos;State Only&apos;),
+        IF( Total_Project_Award__c &gt;  Incident_Name__r.State_Small_Project_Threshold__c , True, False), 
+         IF(ISPICKVAL(FundingSource__c , &apos;Federal And State&apos;),
+           IF(AND(  Federal_Project_Award__c &gt;Incident_Name__r.Federal_Small_Project_Threshold__c, State_Project_Award__c &gt;Incident_Name__r.State_Small_Project_Threshold__c), True, False) 
+            , False))
+
+)</formula>
+        <inlineHelpText>If checked, this project meets the FEMA Large Project threshold. The threshold applies to PA grants only and varies from year to year.</inlineHelpText>
+        <label>Is Large Project</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Last_Project__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Last Project</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Latest_Project_Version__c</fullName>
+        <description>The latest version of Project Number, driven from the Latest Amendment available on the Project.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The latest version of Project Number, driven from the Latest Amendment available on the Project.</inlineHelpText>
+        <label>Latest Project Version</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latest_Supplement_Number__c</fullName>
+        <description>The supplement Number of the Latest Amendment available on the Project.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The supplement Number of the Latest Amendment available on the Project.</inlineHelpText>
+        <label>Latest Supplement Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Legacy_OES_Project_Number__c</fullName>
+        <description>Legacy OES Project Number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Legacy OES Project Number for migrated records, if applicable.</inlineHelpText>
+        <label>Legacy OES Project Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Local_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Local Cost Share of the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Local Cost Share of the Project.
+[100 - (FEMA Share + State Share)]</inlineHelpText>
+        <label>Local Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Manager_Approved_Date__c</fullName>
+        <description>The Date on which Manager had Approved the Project for Initial Obligation.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The Date on which Manager had Approved the Project for Initial Obligation.</inlineHelpText>
+        <label>Manager Approved Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Manager_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Manger user who has approved the Project for Initial Obligation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Manger user who has approved the Project for Initial Obligation.</inlineHelpText>
+        <label>Manager User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Manually_Updated__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>If Migrated Record is Updated Manually then this field Should be checked</description>
+        <externalId>false</externalId>
+        <inlineHelpText>If Migrated Record is Updated Manually then this field Should be checked</inlineHelpText>
+        <label>Manually Updated</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Net_Admin_Amount_Available__c</fullName>
+        <description>Pending Admin Amount Available on the Project.</description>
+        <externalId>false</externalId>
+        <formula>TotalProjectStateAdminShare__c -  Total_Admin_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Pending Admin Amount Available on the Project.
+[ Total Project State Admin Share - Total Admin Amount Approved ]</inlineHelpText>
+        <label>Pending Admin Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Net_Federal_Amount_Available__c</fullName>
+        <description>Pending Federal Amount Available on the Project.</description>
+        <externalId>false</externalId>
+        <formula>Federal_Project_Award__c -  ( Total_Federal_Amount_Approved__c + Federal_Retention_To_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Pending Federal Amount Available on the Project.
+[ Total Project Federal Award -  (Total Federal Amount Approved + Federal Retention To Date) ]</inlineHelpText>
+        <label>Pending Federal Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Net_State_Amount_Available__c</fullName>
+        <description>Pending State Amount Available on the Project.</description>
+        <externalId>false</externalId>
+        <formula>State_Project_Award__c - ( Total_State_Amount_Approved__c + State_Retention_To_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Pending State Amount Available on the Project.
+[ Total Project State Award - (Total State Amount Approved + State Retention To Date)]</inlineHelpText>
+        <label>Pending State Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share_Flag__c</fullName>
+        <description>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of the Project record is greater than or equal to $2500, or else should be Red.</description>
+        <externalId>false</externalId>
+        <formula>IMAGE ( IF( Obligated_State_Share__c = false, &quot;/img/samples/flag_red.gif&quot;, &quot;/img/samples/flag_green.gif&quot;),&quot;Status Flag&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of the Project record is greater than or equal to $2500, or else should be Red.</inlineHelpText>
+        <label>Obligated State Share Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of this Project record is greater than or equal to $2500, or else should be unchecked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to the Incident Sub Recipient Summary of this Project record is greater than or equal to $2500, or else should be unchecked.</inlineHelpText>
+        <label>Obligated State Share</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Obligated_Sub_Recipient_Formula__c</fullName>
+        <description>This field is formula field of Obligated Sub - Recipient to show the data on Portal</description>
+        <externalId>false</externalId>
+        <formula>Obligating_Sub_Recipient__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Obligated Sub - Recipient</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Obligating_Sub_Recipient__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>This field is required because the documents 130 and 130SA creation depends upon Sub-recipient Entity Type.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The Subrecipient for which the project has been obligated.</inlineHelpText>
+        <label>Obligated Sub - Recipient</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Obligation_Date__c</fullName>
+        <description>Obligation Date of the Project.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Obligation Date of the Project.</inlineHelpText>
+        <label>Obligation Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Program_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Program_Name__r.Parent_Program__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Program Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PaytoStateAdmin__c</fullName>
+        <description>Eligible to pay State Admin or not?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Does this Project meet criteria making Eligible to pay State Admin or not?</inlineHelpText>
+        <label>Pay to State Admin</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>true</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pending_Admin_Amount_Disbursed__c</fullName>
+        <description>This field is subtraction of &quot;Total Admin Amount Requested&quot; and &quot;Total Admin Amount Approved&quot; on the Project.</description>
+        <externalId>false</externalId>
+        <formula>Total_Admin_Amount_Requested__c - Total_Admin_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is subtraction of &quot;Total Admin Amount Requested&quot; and &quot;Total Admin Amount Approved&quot; on the Project.
+[ Total Admin Amount Requested - Total Admin Amount Approved ]</inlineHelpText>
+        <label>Pending Admin Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Pending_Federal_Amount_Disbursed__c</fullName>
+        <description>This field is subtraction of the &quot;Total Federal Amount Requested&quot; and &quot;Total Federal Amount Approved&quot; on the Project.</description>
+        <externalId>false</externalId>
+        <formula>Total_Federal_Amount_Requested__c -  Total_Federal_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is subtraction of the &quot;Total Federal Amount Requested&quot; and &quot;Total Federal Amount Approved&quot; on the Project.
+[ Total Federal Amount Requested - Total Federal Amount Approved ]</inlineHelpText>
+        <label>Pending Federal Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Pending_State_Amount_Disbursed__c</fullName>
+        <description>This field is subtraction of the &quot;Total State Amount Requested&quot; and &quot;Total State Amount Approved&quot; on the Project.</description>
+        <externalId>false</externalId>
+        <formula>Total_State_Amount_Requested__c -  Total_State_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is subtraction of the &quot;Total State Amount Requested&quot; and &quot;Total State Amount Approved&quot; on the Project.
+[ Total State Amount Requested - Total State Amount Approved ]</inlineHelpText>
+        <label>Pending State Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Percent_Complete_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Editable field for Quarterly Report and monitoring purposes that the Subrecipient or OES can update.</inlineHelpText>
+        <label>Percent Complete To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percent_Complete__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>The Completion Percent of the Project. Request from Programs if not noted in the Obligating Documents.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The percentage of work completed for this Project. Request from Program if value is not noted on Obligating Documents.</inlineHelpText>
+        <label>Percent Complete</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Program_Name_For_Flow__c</fullName>
+        <externalId>false</externalId>
+        <formula>Funding_Opportunity_Name__r.Program_Name__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Name For Flow</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Name_Formula__c</fullName>
+        <description>This field captures the name of Program Name to show on external Portal</description>
+        <externalId>false</externalId>
+        <formula>Program_Name__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The Program Name, Derives from Disaster Grant/FO.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The grant program from which the Project originates. This field is used for reporting.</inlineHelpText>
+        <label>Program Name</label>
+        <referenceTo>Program__c</referenceTo>
+        <relationshipLabel>Projects</relationshipLabel>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Project_Completion_Date__c</fullName>
+        <description>Used for CDAA 4a report</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Subrecipient claimed project completion date on the P.4.</inlineHelpText>
+        <label>Project Completion Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Completion_Rate__c</fullName>
+        <externalId>false</externalId>
+        <label>Project Completion Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Project_Number__c</fullName>
+        <description>The Federal State Assigned Project Number - FDSR or PA State Project Number.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Project Identifer (PW/DSR/PJ/PL)</inlineHelpText>
+        <label>Project (PW/DSR/PJ/PL)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason_To_Withdraw__c</fullName>
+        <description>This field contains the reason for Project Withdrawal.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Reason for the Project Withdrawal.</inlineHelpText>
+        <label>Reason To Withdraw</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Reverse_Calculation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field is used to determine whether Cost Share Percentages would be calculated reverse from State Project Award and Federal Project Award.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if the automatic calculation within Salesforce does not match the FEMA values. Some projects may have non-standard cost-share percentage requirements dictated by FEMA.</inlineHelpText>
+        <label>Reverse Calculation</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reviewed_By_Manager__c</fullName>
+        <description>Is this Project Reviewed by the Manager?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this Project Reviewed by the Manager?</inlineHelpText>
+        <label>Reviewed By Manager</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <description>The Project Stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The current processing stage of the Project. (e.g. New, Obligated, Compliance Verification, Payment, etc.)</inlineHelpText>
+        <label>Stage</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New</fullName>
+                    <default>true</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Obligating</fullName>
+                    <default>false</default>
+                    <label>Obligated</label>
+                </value>
+                <value>
+                    <fullName>Compliance Verification</fullName>
+                    <default>false</default>
+                    <label>Compliance Verification</label>
+                </value>
+                <value>
+                    <fullName>Active Payment</fullName>
+                    <default>false</default>
+                    <label>Active Payment</label>
+                </value>
+                <value>
+                    <fullName>Closeout</fullName>
+                    <default>false</default>
+                    <label>Closeout</label>
+                </value>
+                <value>
+                    <fullName>Withdrawn</fullName>
+                    <default>false</default>
+                    <label>Withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Deobligation</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Deobligation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Start_Date__c</fullName>
+        <description>Start Date of Project Work Completed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date of Project Work</inlineHelpText>
+        <label>Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>StateAdmin__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Admin share of State Share%.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Admin share of the State Cost Share.</inlineHelpText>
+        <label>State Admin %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>StateAmountAvailable__c</fullName>
+        <description>State Amount Available for this Project.</description>
+        <externalId>false</externalId>
+        <formula>State_Project_Award__c -   StateAmountDisbursed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>State Amount Available for this Project.
+[ Total Project State Award -  Total State Amount Disbursed ]</inlineHelpText>
+        <label>State Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>StateAmountDisbursed__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total State Amount Disbursed for this Project(Payment is Done).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total State Amount Disbursed for the Project. Payment by State Controller&apos;s Office has been confirmed by Cal OES Accounting.</inlineHelpText>
+        <label>State Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Cost_Share_Flag__c</fullName>
+        <description>If the Sum of State Amount Requested and Admin Amount Requested of all the Projects of this Incident and Sub Recipient is greater than or equal to 2500 then this Flag will be Green or else Red.</description>
+        <externalId>false</externalId>
+        <formula>IF(OR( ISPICKVAL( FundingSource__c , &apos;State Only&apos;) ,ISPICKVAL( FundingSource__c , &apos;Federal and State&apos;)), IMAGE ( IF(  Cumulative_State_Cost_Share_Flag__c = false, &quot;/img/samples/flag_red.gif&quot;, &quot;/img/samples/flag_green.gif&quot;),&quot;Status Flag&quot;), null)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>If the Sum of State Amount Requested and Admin Amount Requested of all the Projects of this Incident and Sub Recipient is greater than or equal to 2500 then this Flag will be Green or else Red.</inlineHelpText>
+        <label>State Cost Share Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>State_Project_Award_W_O_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Project Award - Total State Retention on Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Project Award - Total State Retention on Project</inlineHelpText>
+        <label>State Project Award W/O Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Project_Award__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total State Amount awarded to the Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the portion of Total Project Award that the State will award to the Subrecipient.</inlineHelpText>
+        <label>State Project Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Retention_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Retention To Date on Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>State Retention To Date on Project</inlineHelpText>
+        <label>State Retention To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>State_Retention__c</fullName>
+        <description>The State retention percent on reimbursable funds of a project in the obligation/repayment phases. Standard is 10%.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The State retention percent on reimbursable funds of a project in the obligation/repayment phases. Standard is 10%.</inlineHelpText>
+        <label>State Retention %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>State_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>State Share Cost Component only applies to Non Disaster Grants or PA Projects</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Percentage of the Project Amount ($) that was not covered by FEMA that will be paid out by Cal OES as CDAA funds.</inlineHelpText>
+        <label>State Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>The Project&apos;s Active or Hold Status</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The current status of the Project (e.g. Active or Hold).</inlineHelpText>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>true</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>On Hold - Debt Recovery</fullName>
+                    <default>false</default>
+                    <label>On Hold - Debt Recovery</label>
+                </value>
+                <value>
+                    <fullName>On Hold - Compliance Documents</fullName>
+                    <default>false</default>
+                    <label>On Hold - Compliance Documents</label>
+                </value>
+                <value>
+                    <fullName>Offset Complete</fullName>
+                    <default>false</default>
+                    <label>Offset Complete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Recipient_Entity_Type__c</fullName>
+        <description>Entity Type of Obligating Sub Recipient.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Obligating_Sub_Recipient__r.Entity_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>The type of Subrecipient entity (e.g. State, City, County, Special District, Tribal, Private Non-Profit).</inlineHelpText>
+        <label>Sub Recipient Entity Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sub_Recipient_ID__c</fullName>
+        <description>ALS- Depricated
+The Sub Recipient FEMA Generated ID (FIPS ID)</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>ALS- Depricated
+The Sub Recipient FEMA Generated ID (FIPS ID)</inlineHelpText>
+        <label>Sub Recipient ID</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Supplement_Number__c</fullName>
+        <description>The PA State Project Number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the FEMA Amendment, Bundle, or Package number. Sequential numbering system related to FEMA Obligations for a given incident.</inlineHelpText>
+        <label>Supplement Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TotalAmountDisbursed__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Amount Disbursed for the Project(Payment is Done).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Amount Disbursed for the Project. Payment by State Controller&apos;s Office has been confirmed by Cal OES Accounting.</inlineHelpText>
+        <label>Total Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalProjectFederalAward__c</fullName>
+        <description>Project Amount Provided by Federal.</description>
+        <externalId>false</externalId>
+        <formula>IF( OR( ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;) ,ISPICKVAL( FundingSource__c , &apos;Federal and State&apos;)) ,( Total_Project_Award__c * FEMA_Share__c ), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Project Amount Provided by Federal.
+[ Total Project Award * FEMA Share %]</inlineHelpText>
+        <label>Total Project Federal Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalProjectLocalAward__c</fullName>
+        <description>Project Amount awarded from Local.</description>
+        <externalId>false</externalId>
+        <formula>Total_Project_Award__c * Local_Share__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the portion of the Project cost that is the Subrecipient entity&apos;s responsibility.</inlineHelpText>
+        <label>Total Project Local Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalProjectStateAdminShare__c</fullName>
+        <description>Project Amount awarded by State Admin.</description>
+        <externalId>false</externalId>
+        <formula>IF( AND( OR(ISPICKVAL( FundingSource__c , &apos;State Only&apos;), ISPICKVAL( FundingSource__c , &apos;Federal and State&apos;)) ,ISPICKVAL(  EligibleforStateAdminShare__c , &apos;Yes&apos;),ISPICKVAL(  PaytoStateAdmin__c , &apos;Yes&apos;)) ,   State_Project_Award__c  * StateAdmin__c , 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is an additional amount the State awards the Subrecipient to help with administrative costs. Admin Share = State Project Award x 0.10, or an additional 10% of the State Project Award</inlineHelpText>
+        <label>Total Project State Admin Share</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalProjectStateAward__c</fullName>
+        <description>Project Amount awarded from State.</description>
+        <externalId>false</externalId>
+        <formula>IF( OR( ISPICKVAL( FundingSource__c , &apos;State Only&apos;) ,ISPICKVAL( FundingSource__c , &apos;Federal and State&apos;)) ,( Total_Project_Award__c *  State_Share__c ), 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Project Amount awarded from State.
+[ Total Project Award *  State Share % ]</inlineHelpText>
+        <label>Total Project State Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>TotalStateAdminShare__c</fullName>
+        <description>Roll Up Summary of all the &quot;State Admin Share&quot; of Payment Request.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll Up Summary of all the &quot;State Admin Share&quot; of Payment Request.</inlineHelpText>
+        <label>Total State Admin Share</label>
+        <summarizedField>Payment_Request__c.StateAdminShare__c</summarizedField>
+        <summaryForeignKey>Payment_Request__c.Project__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Admin_Amount_Approved__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Admin Amount Approved on the Project. This field is the sum of the &quot;Total Admin Share Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Admin Share Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</inlineHelpText>
+        <label>Total Admin Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Admin_Amount_Requested__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Admin Amount Requested on the Project. This field is the sum of the &quot;Total Admin Share Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Admin Share Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</inlineHelpText>
+        <label>Total Admin Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_Approved__c</fullName>
+        <description>&quot;Total Amount Approved&quot; is sum of &quot;Total Federal Amount Approved&quot; and &quot;Total State Amount Approved&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_Federal_Amount_Approved__c + Total_State_Amount_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the value of the Payment Request the FPD Manager has approved for payment. &quot;Total Amount Approved&quot; is sum of &quot;Total Federal Amount Approved&quot; and &quot;Total State Amount Approved&quot;.</inlineHelpText>
+        <label>Total Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_Requested__c</fullName>
+        <description>&quot;Total Amount Requested&quot; is sum of &quot;Total Federal Amount Requested&quot; and &quot;Total State Amount Requested&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_Federal_Amount_Requested__c + Total_State_Amount_Requested__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the value of the Payment Request the FPD Analyst has processed. &quot;Total Amount Requested&quot; is sum of &quot;Total Federal Amount Requested&quot; and &quot;Total State Amount Requested&quot;.</inlineHelpText>
+        <label>Total Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Amount_Approved__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Federal Amount Approved on the Project. This field is the sum of the &quot;Approved Federal Payment Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Approved Federal Payment Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</inlineHelpText>
+        <label>Total Federal Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Amount_Requested__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Federal Amount Requested on the Project. This field is the sum of the &quot;Approved Federal Payment Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Approved Federal Payment Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</inlineHelpText>
+        <label>Total Federal Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Federal Retention.[ Federal Project Amount * Federal Retention% ]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Federal Retention.[ Federal Project Amount * Federal Retention% ]</inlineHelpText>
+        <label>Total Federal Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Net_Amount_Available__c</fullName>
+        <description>&quot;Total Pending Amount Available&quot; is the Subtraction of &quot;Total Project Award&quot; and &quot;Total Amount Approved&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_Project_Award__c - ( Total_Amount_Approved__c + TotalProjectLocalAward__c + Total_Retention_To_Date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>&quot;Total Pending Amount Available&quot; is the Subtraction of &quot;Total Project Award&quot; and &quot;Total Amount Approved&quot;.
+[ Total Project Award - (Total Amount Approved + Total Project Local Award + Total Retention To Date) ]</inlineHelpText>
+        <label>Total Pending Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Pending_Amount_Disbursed__c</fullName>
+        <description>This field is sum of the &quot;Pending Federal Amount Disbursed&quot; and &quot;Pending State Amount Disbursed&quot; on the Project.</description>
+        <externalId>false</externalId>
+        <formula>Pending_Federal_Amount_Disbursed__c +  Pending_State_Amount_Disbursed__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This is the value of the Payment Request Cal OES Accounting has received and will forward to SCO. This field is the sum of &quot;Pending Federal Amount Disbursed&quot; and &quot;Pending State Amount Disbursed&quot; on the Project.</inlineHelpText>
+        <label>Total Pending Amount Disbursed</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Award__c</fullName>
+        <description>The Total Amount Awarded by FEMA for the cost of the project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the total cost of the approved Project. Any cost share percentage calculations start from this value.</inlineHelpText>
+        <label>Total Project Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Retention_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Retention To Date on Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Retention To Date on Project</inlineHelpText>
+        <label>Total Retention To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Amount_Approved__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total State Amount Approved on the Project. This field is the sum of the &quot;Approved State Payment Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Approved State Payment Amount&quot; of all the PRs of this Project, which is in the &quot;Payment Processing / Returned Project Payment / Paid&quot; stage.</inlineHelpText>
+        <label>Total State Amount Approved</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Amount_Available__c</fullName>
+        <description>This field is Total State Project Award can be reimbursed excluding &quot;State Retention To Date&quot;.</description>
+        <externalId>false</externalId>
+        <formula>State_Project_Award__c - State_Retention_To_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is Total State Project Award can be reimbursed excluding &quot;State Retention To Date&quot;.
+[ State Project Award - State Retention To Date ]</inlineHelpText>
+        <label>Total State Amount Available</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Amount_Requested__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total State Amount Requested on the Project.This field is the sum of the &quot;Approved State Payment Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Approved State Payment Amount&quot; of all the PRs of this Project except the one which is in the &quot;Withdrawn&quot; stage.</inlineHelpText>
+        <label>Total State Amount Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;Total State Retention.
+[ State Project Amount * State Retention% ]&quot;</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;Total State Retention.
+[ State Project Amount * State Retention% ]&quot;</inlineHelpText>
+        <label>Total State Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Project</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Funding_Opportunity_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>IsLargeProject__c</columns>
+        <columns>Obligating_Sub_Recipient__c</columns>
+        <columns>Incident_Name__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Supplement_Number__c</columns>
+        <columns>Program_Name__c</columns>
+        <columns>Stage__c</columns>
+        <columns>CalOES_Project_Number__c</columns>
+        <columns>Percent_Complete_To_Date__c</columns>
+        <columns>Federal_Retention__c</columns>
+        <columns>External_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <sharedTo>
+            <group>GPU_users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AllPA</fullName>
+        <columns>Declaration_Number__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>IsLargeProject__c</columns>
+        <columns>Incident_Name__c</columns>
+        <columns>Obligating_Sub_Recipient__c</columns>
+        <columns>Total_Project_Award__c</columns>
+        <columns>Program_Name__c</columns>
+        <columns>Percent_Complete_To_Date__c</columns>
+        <columns>Stage__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Projects</label>
+        <sharedTo>
+            <group>Public_Assistance_All_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Project_list</fullName>
+        <columns>Declaration_Number__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>IsLargeProject__c</columns>
+        <columns>Obligated_Sub_Recipient_Formula__c</columns>
+        <columns>Incident_Name_Formula__c</columns>
+        <columns>Program_Name_Formula__c</columns>
+        <columns>Percent_Complete_To_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <sharedTo>
+            <allCustomerPortalUsers></allCustomerPortalUsers>
+            <role>HMA_Analyst</role>
+            <role>HMA_Manager</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Closeout_in_Progress</fullName>
+        <columns>Funding_Opportunity_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>IsLargeProject__c</columns>
+        <columns>Obligating_Sub_Recipient__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Supplement_Number__c</columns>
+        <columns>Program_Name__c</columns>
+        <columns>Stage__c</columns>
+        <columns>CalOES_Project_Number__c</columns>
+        <columns>Percent_Complete_To_Date__c</columns>
+        <columns>Federal_Retention__c</columns>
+        <columns>External_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Stage__c</field>
+            <operation>equals</operation>
+            <value>Closeout</value>
+        </filters>
+        <label>Closeout in Progress</label>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Closeout_in_Progress_list_view</fullName>
+        <columns>NAME</columns>
+        <columns>IsLargeProject__c</columns>
+        <columns>Disaster_Grant_FO_Name__c</columns>
+        <columns>Obligated_Sub_Recipient_Formula__c</columns>
+        <columns>Project_Number__c</columns>
+        <columns>Supplement_Number__c</columns>
+        <columns>Program_Name_Formula__c</columns>
+        <columns>Stage__c</columns>
+        <columns>CalOES_Project_Number__c</columns>
+        <columns>Percent_Complete_To_Date__c</columns>
+        <columns>Federal_Retention__c</columns>
+        <columns>External_Id__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Stage__c</field>
+            <operation>equals</operation>
+            <value>Closeout</value>
+        </filters>
+        <label>Closeout in Progress</label>
+        <sharedTo>
+            <allCustomerPortalUsers></allCustomerPortalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Created_Projects_Today</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>YESTERDAY</value>
+        </filters>
+        <label>Created Projects - Today</label>
+        <sharedTo>
+            <group>GPU_users</group>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Project Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Projects</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Funding_Opportunity_Name__c</fields>
+        <fields>Incident_Name__c</fields>
+        <fields>Obligating_Sub_Recipient__c</fields>
+        <fields>FundingSource__c</fields>
+        <fields>Program_Name__c</fields>
+        <fields>Stage__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>Funding_Opportunity_Name__c</fields>
+        <fields>Incident_Name__c</fields>
+        <fields>Obligating_Sub_Recipient__c</fields>
+        <fields>FundingSource__c</fields>
+        <fields>Program_Name__c</fields>
+        <fields>Stage__c</fields>
+        <fields>Status__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>CalOES Internal User</profileName>
+    </profileSearchLayouts>
+    <searchLayouts>
+        <searchResultsAdditionalFields>CalOES_Project_Number__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <sharingReasons>
+        <fullName>CloseoutTaskAssignment__c</fullName>
+        <label>CloseoutTaskAssignment</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>CloseoutTaskMoveProject__c</fullName>
+        <label>CloseoutTaskMoveProject</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>RoleSharing__c</fullName>
+        <label>RoleSharing</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>Admin_Share_Validation_for_CDAA</fullName>
+        <active>false</active>
+        <description>For Non - CDAA Programs State Admin% should always be Zero.</description>
+        <errorConditionFormula>AND( NOT( CONTAINS(  Program_Name__r.Master_Label_Program_Name__c  , &apos;CDAA&apos;) ) , StateAdmin__c != 0)</errorConditionFormula>
+        <errorDisplayField>StateAdmin__c</errorDisplayField>
+        <errorMessage>For Non - CDAA Programs State Admin% should always be Zero.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Declaration_Number_Field_Validation</fullName>
+        <active>true</active>
+        <description>Declaration Number is Required at Stage &quot;Obligating&quot;, If the Incident number field is not empty.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( 
+ OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) , NOT( ISBLANK( Incident_Name__c ) ),  ISBLANK( Declaration_Number__c )  ))</errorConditionFormula>
+        <errorDisplayField>Incident_Name__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Declaration Number&quot; for the Incident.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Eligible_for_State_Admin_Validation</fullName>
+        <active>false</active>
+        <description>Eligible for State Admin is applicable only for CDAA Program.</description>
+        <errorConditionFormula>AND( NOT( CONTAINS(Program_Name__r.Name, &apos;CDAA&apos;)) ,
+OR( ISPICKVAL( EligibleforStateAdminShare__c , &apos;Yes&apos;) ,
+ISPICKVAL( PaytoStateAdmin__c , &apos;Yes&apos;) ) )</errorConditionFormula>
+        <errorMessage>Eligible for State Admin is applicable only for CDAA Program.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>End_Date_Required</fullName>
+        <active>true</active>
+        <description>Please enter &quot;End Date&quot; for the Project.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) ,
+AND(OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) ,ISBLANK( End_Date__c)  ))</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>Please provide &quot;End Date&quot; for the Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FEMA_Share_Validation</fullName>
+        <active>false</active>
+        <description>FEMA Share % is mandatory if Stage is Obligating and Funding Source is Federal and State or Federal only</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND(OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ), OR( ISPICKVAL( FundingSource__c,&apos;Federal and State&apos;),ISPICKVAL( FundingSource__c,&apos;Federal Only&apos;) ), OR(ISBLANK( FEMA_Share__c ),FEMA_Share__c ==0) ))</errorConditionFormula>
+        <errorDisplayField>FEMA_Share__c</errorDisplayField>
+        <errorMessage>Please provide &quot;FEMA Share % &quot; for the Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Federal_Project_Threshold_Validation</fullName>
+        <active>true</active>
+        <description>When Funding Source is &quot;Federal and State&quot; or &quot;State Only&quot;, then Federal Small Project Threshold is required.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) , NOT( ISBLANK( Incident_Name__c ) ), OR(ISPICKVAL( FundingSource__c , &apos;Federal and State&apos;),ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;)) , ISBLANK( Incident_Name__r.Federal_Small_Project_Threshold__c ) ))</errorConditionFormula>
+        <errorDisplayField>Incident_Name__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Federal Small Project Threshold&quot; for the Incident.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Federal_Retention_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Federal Retention&quot; is not applicable for &quot;State Only&quot; Projects.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ),
+AND( ISPICKVAL( FundingSource__c , &apos;State Only&apos;) , AND(NOT( ISBLANK(  Federal_Retention__c ) ), Federal_Retention__c != 0)))</errorConditionFormula>
+        <errorDisplayField>Federal_Retention__c</errorDisplayField>
+        <errorMessage>&quot;Federal Retention %&quot; is not applicable for &quot;State Only&quot; Projects.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Federal_Share_Validation</fullName>
+        <active>true</active>
+        <description>Federal Share is not applicable for State Only Projects.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ),
+AND( ISPICKVAL( FundingSource__c , &apos;State Only&apos;) , OR( AND( NOT( ISBLANK(  FEMA_Share__c ) ) ,FEMA_Share__c != 0) , AND( NOT( ISBLANK( Federal_Project_Award__c ) ) ,Federal_Project_Award__c != 0) )))</errorConditionFormula>
+        <errorMessage>&quot;FEMA Share %&quot; or &quot;Federal Project Award&quot; is not applicable for &quot;State Only&quot; Projects.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Funding_Source_Field_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Funding Source&quot; is required at &quot;Obligating&quot; Stage.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( 
+OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) ,  ISPICKVAL( FundingSource__c , &quot;&quot;)  ))</errorConditionFormula>
+        <errorDisplayField>FundingSource__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Funding Source&quot; for the Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Obligated_Subrecipient_Email_Validation</fullName>
+        <active>false</active>
+        <description>Email Address is required for Obligating Subrecipient.</description>
+        <errorConditionFormula>AND(
+OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;)), ISBLANK(Obligating_Sub_Recipient__r.Email_Address__c) )</errorConditionFormula>
+        <errorDisplayField>Obligating_Sub_Recipient__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Email Address&quot; for the Obligated Sub Recipient.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Obligated_Subrecipients_Validation</fullName>
+        <active>false</active>
+        <description>When Stage is Obligating, SAM Registration Expiration Date, FFATA Expiration Date, DUNS Number,  Email Address, Entity Type and Sub Recipient FIPS must not be null</description>
+        <errorConditionFormula>AND(
+ NOT( ISPICKVAL( FundingSource__c , &apos;State Only&apos;) ),
+ OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),
+    ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,
+    ISPICKVAL( Stage__c , &apos;Active Payment&apos;)
+ ), 
+ OR(ISBLANK( Obligating_Sub_Recipient__r.Sub_Recipient_FIPS__c),
+    ISBLANK( TEXT(Obligating_Sub_Recipient__r.Entity_Type__c)), 
+    ISBLANK( Obligating_Sub_Recipient__r.DUNS_Expiration_Date__c ), 
+    ISBLANK( Obligating_Sub_Recipient__r.FFATAExpirationDate__c ),
+    ISBLANK( Obligating_Sub_Recipient__r.DUNS__c ) 
+ ) 
+)</errorConditionFormula>
+        <errorDisplayField>Obligating_Sub_Recipient__c</errorDisplayField>
+        <errorMessage>Please provide &quot;SAM Registration Expiration Date&quot;, &quot;FFATA Expiration Date&quot;, &quot;DUNS Number&quot;, &quot;Email Address&quot;, &quot;Entity Type&quot; and &quot;Sub Recipient FIPS&quot; for the Obligated Sub Recipient.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Percent_Complete_Field_Validation</fullName>
+        <active>true</active>
+        <description>Percent Complete should not be gretter than 100%</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+OR(AND( OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ), ISBLANK( Percent_Complete__c ) ),Percent_Complete__c &gt;1.0))</errorConditionFormula>
+        <errorDisplayField>Percent_Complete__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Percent Complete&quot; for the Project. &quot;Percent Complete&quot; should not be greater than 100%.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_Share_Percentage_Validation</fullName>
+        <active>false</active>
+        <description>Sum of &quot;FEMA Share %&quot;, &quot;State Share&quot; and &quot;Local Share&quot; should not exceed 100%.</description>
+        <errorConditionFormula>OR(( FEMA_Share__c + State_Share__c + Local_Share__c + (StateAdmin__c * State_Share__c ) ) &gt; 1.0,  Local_Share__c &lt; 0)</errorConditionFormula>
+        <errorMessage>Sum of &quot;Federal Share %&quot;, &quot;State Share&quot; ,&quot;Local Share&quot; and  &quot;Admin Share(If applicable)&quot;should not exceed 100%.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_Withdrawal_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Reason To Withdraw&quot; is required to mark the Project as &quot;Withdrawn&quot;.</description>
+        <errorConditionFormula>AND( ISCHANGED( Stage__c ) , ISPICKVAL( Stage__c , &apos;Withdrawn&apos;) , ISBLANK( Reason_To_Withdraw__c ) )</errorConditionFormula>
+        <errorDisplayField>Reason_To_Withdraw__c</errorDisplayField>
+        <errorMessage>&quot;Reason To Withdraw&quot; is required to mark the Project as &quot;Withdrawn&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reverse_Calculation_Checked_Validation</fullName>
+        <active>false</active>
+        <description>You cannot change &quot;FEMA Share %&quot; or &quot;State Share %&quot; when Reverse Calculation is allowed.</description>
+        <errorConditionFormula>AND( Reverse_Calculation__c = TRUE , OR( ISCHANGED( State_Share__c ) , ISCHANGED(  FEMA_Share__c )) )</errorConditionFormula>
+        <errorMessage>You cannot change &quot;FEMA Share %&quot; or &quot;State Share %&quot; when &quot;Reverse Calculation&quot; checkbox is checked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Reverse_Calculation_Unchecked_Validation</fullName>
+        <active>false</active>
+        <description>You cannot change &quot;FEMA Share %&quot; or &quot;State Share %&quot; when Reverse Calculation is allowed.</description>
+        <errorConditionFormula>AND( Reverse_Calculation__c = FALSE, OR( ISCHANGED(  State_Project_Award__c ) , ISCHANGED(   Federal_Project_Award__c )) )</errorConditionFormula>
+        <errorMessage>You cannot change &quot;Federal Project Award&quot; or &quot;State Project Award&quot; when &quot;Reverse Calculation&quot; checkbox is unchecked.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_Date_End_Date_Validation</fullName>
+        <active>true</active>
+        <description>End date should be greater than Start date</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) ,Start_Date__c &gt; End_Date__c)</errorConditionFormula>
+        <errorDisplayField>End_Date__c</errorDisplayField>
+        <errorMessage>&quot;End Date&quot; should be greater than &quot;Start Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_Date_required</fullName>
+        <active>true</active>
+        <description>Please enter &quot;Start Date&quot; for the Project.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND(OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) ,ISBLANK(Start_Date__c) ))</errorConditionFormula>
+        <errorDisplayField>Start_Date__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Start Date&quot; for the Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Admin_Change_Validation_Rule</fullName>
+        <active>true</active>
+        <description>If Entity Type is other than &quot;City&quot;, &quot;County&quot; or &quot;Special District&quot; , then State Admin should be 10%.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( NOT(OR( ISPICKVAL( Obligating_Sub_Recipient__r.Entity_Type__c , &apos;City&apos;) ,ISPICKVAL( Obligating_Sub_Recipient__r.Entity_Type__c , &apos;County&apos;), ISPICKVAL( Obligating_Sub_Recipient__r.Entity_Type__c , &apos;Special District&apos;))) , ISPICKVAL( PaytoStateAdmin__c , &apos;Yes&apos;) , StateAdmin__c != 0.1 ))</errorConditionFormula>
+        <errorDisplayField>StateAdmin__c</errorDisplayField>
+        <errorMessage>If Entity Type is not &quot;City&quot;, &quot;County&quot; or &quot;Special District&quot;, then State Admin should be 10%.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Project_Threshold_Validation</fullName>
+        <active>true</active>
+        <description>When Funding Source is &quot;Federal and State&quot; or &quot;State Only&quot;, then State Small Project Threshold is required.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) , NOT( ISBLANK( Incident_Name__c ) ),  OR(ISPICKVAL(  FundingSource__c , &apos;Federal and State&apos;),ISPICKVAL(  FundingSource__c , &apos;State Only&apos;))  , ISBLANK(  Incident_Name__r.State_Small_Project_Threshold__c )  ))</errorConditionFormula>
+        <errorDisplayField>Incident_Name__c</errorDisplayField>
+        <errorMessage>Please provide &quot;State Small Project Threshold&quot; to your &quot;Incident Record&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Retention_Validation</fullName>
+        <active>true</active>
+        <description>&quot;State Retention&quot; is not applicable for &quot;Federal Only&quot; Projects.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND( ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;) , AND(NOT( ISBLANK(  State_Retention__c ) ), State_Retention__c != 0)))</errorConditionFormula>
+        <errorDisplayField>State_Retention__c</errorDisplayField>
+        <errorMessage>&quot;State Retention %&quot; is not applicable for &quot;Federal Only&quot; Projects.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Share_Validation</fullName>
+        <active>true</active>
+        <description>State Share is not applicable for Federal Only Projects.</description>
+        <errorConditionFormula>AND( ISBLANK(External_Id__c ) , AND( ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;) , OR( AND( NOT( ISBLANK( State_Share__c ) ) ,State_Share__c != 0) , AND( NOT( ISBLANK(  State_Project_Award__c ) ) ,State_Project_Award__c != 0) ) ) )</errorConditionFormula>
+        <errorMessage>&quot;State Share %&quot; or &quot;State Project Award&quot; is not applicable for &quot;Federal Only&quot; Projects.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Share_Validation_Rule</fullName>
+        <active>false</active>
+        <description>State Share % is mandatory if Stage is Obligating and Funding Source is Federal and State or  State Only</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
+AND(
+OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ),
+OR( ISPICKVAL( FundingSource__c,&apos;Federal and State&apos;),ISPICKVAL( FundingSource__c,&apos;State Only&apos;) ), OR(ISBLANK(State_Share__c),State_Share__c==0) ))</errorConditionFormula>
+        <errorDisplayField>State_Share__c</errorDisplayField>
+        <errorMessage>Please provide &quot;State Share % &quot; for the Project.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Total_Project_Award_Validation</fullName>
+        <active>false</active>
+        <description>Please enter &quot;Total Project Award&quot; for the Project</description>
+        <errorConditionFormula>AND( OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ),  OR(ISBLANK( Total_Project_Award__c  ),Total_Project_Award__c  == 0)  )</errorConditionFormula>
+        <errorDisplayField>Total_Project_Award__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Total Project Award&quot; for the Project</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Payment_Request_Detail_Report</fullName>
+        <availability>online</availability>
+        <description>Payment Request Details</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Payment Request Detail Report</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://caloes.lightning.force.com/lightning/r/Report/00Ot0000000uuGVEAY/view?fv0={!Project__c.Name}</url>
+    </webLinks>
+</CustomObject>

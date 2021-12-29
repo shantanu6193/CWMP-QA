@@ -1,0 +1,37 @@
+<template>
+    <tr>
+        <td scope="col">
+            <lightning-input data-id={index} data-name="specialEquipmentType" data-field="Special_Equipment_Type__c" class="input" onchange={fieldChanged} required="true"
+                             value={recordLocal.Special_Equipment_Type__c}  variant="label-hidden" name="specialEquipmentType" >
+                            </lightning-input>
+        </td>
+        <td class="mob_code" scope="col">
+            <c-lookup
+                  data-custom="lookup"
+                  data-lookup="FEMA_CODE__c"
+                  onsearch={handleFemaCodeSearch}
+                  onselectionchange={handleFemaCodeChange}
+                  placeholder="SELECT/CHANGE FEMA Code"
+                  is-multi-entry={isMultiEntry}
+                  load-data-on-init = {loadLookupDataOnLoad}
+                  local-search = {loadLookupDataOnLoad}
+                  scroll-after-n-items = "10"
+                  selection = {FEMACodeSelection}
+                  >
+            </c-lookup>
+        </td>
+          <td scope="col">
+            <lightning-input data-name="revisedRate" data-id={index} type="currency" data-field="Revised_Rate__c" class="input" onchange={fieldChanged} required="true"
+                             value={recordLocal.Revised_Rate__c} variant="label-hidden" name="revisedRate" disabled={disableRevisedRate}>
+            </lightning-input>
+        </td>
+        <td scope="col">
+            <lightning-input data-id={index} data-name="description" type=text data-field="Description__c" name="description" class="input" onchange={fieldChanged} required="true"
+                             value={recordLocal.Description__c} variant="label-hidden"></lightning-input>
+        </td>
+
+        <td>
+            <lightning-button-icon icon-name="utility:delete" value={index} variant="bare" onclick={removeRow}></lightning-button-icon>
+        </td>
+    </tr> 
+</template>

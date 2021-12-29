@@ -1,0 +1,114 @@
+<!--
+ - Created by Prem Pal on 21-04-2020.
+ -->
+
+<aura:component description="ProgressBarWithSubSteps" controller="ProgressBarWithSubStepsCtrl"
+                implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName,forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="sObjectName" type="String" />
+    <aura:attribute access="global" type="String" description="Name of field for steps" name="fieldName" required="true" default="none"  />
+    <aura:attribute name="steps" type="List" />
+    <aura:attribute name="subSteps" type="List" />
+    <aura:attribute name="currentStep" type="Object" />
+    <aura:attribute name="updatedStep" type="Object" />
+    <aura:attribute name="currentSubStep" type="Object" />
+    <aura:attribute name="updatedSubStep" type="Object" />
+    <aura:attribute name="groupingJSON" type="String" />
+    <aura:attribute name="pathId" type="String" />
+    <aura:attribute name="pathContainer" type="String" />
+    <aura:attribute name="subStepsId" type="String" />
+    <aura:attribute name="ul_oId" type="String" />
+    <aura:attribute name="tooltipId" type="String" />
+    <aura:attribute name="showSubSteps" type="Boolean"  default="false"/>
+    <aura:attribute name="showLoader" type="Boolean"  default="false"/>
+    <aura:attribute name="hideFromCommunityUser" type="Boolean"  default="true"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+    <aura:attribute name="isDoneRendering" type="Boolean" default="false"/>
+    
+    <div>
+        <!--<aura:if isTrue="{!v.showLoader}">
+            <div class="exampleHolder">
+                <lightning:spinner alternativeText="Loading" size="small" />
+            </div>
+            <aura:set attribute="else">-->
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-1">
+                        <article class="slds-card">
+                            <div class="slds-p-around_small">
+                                <div class="slds-path" id="{!v.pathId}">
+                                    <div class="slds-grid slds-path__track">
+                                        <div class="slds-grid slds-path__scroller-container " id="{!v.pathContainer}">
+                                            <div class="slds-path__scroller" role="application">
+                                                <div class="slds-path__scroller_inner">
+                                                    <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal" id="{!v.ul_oId}">
+                                                        <aura:iteration items="{!v.steps}" indexVar="index" var="stepItem">
+                                                            <li class="{!stepItem.Class}" role="presentation">
+                                                                <a aria-selected="false" id="{!index}" onclick="{!c.getCurrentStepSubSteps}" class="slds-path__link" href="javascript:void(0);"
+                                                                   role="option" tabindex="-1">
+                                                                    <span class="slds-path__stage">
+                                                                        <lightning:icon iconName="utility:check" alternativeText="Check!" variant="warning" size="small"/>
+                                                                        <span class="slds-assistive-text">Stage Complete</span>
+                                                                    </span>
+                                                                    <span class="slds-path__title">{!stepItem.Name}</span>
+                                                                </a>
+                                                            </li>
+                                                        </aura:iteration>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <aura:if isTrue="{!v.hideFromCommunityUser}">
+                                            <div class="slds-grid slds-path__action">
+                                                <span class="slds-path__stage-name">Stage: {!v.currentSubStep.Name}</span>
+                                                <button onclick="{!c.updateRecordWithNewStep}" class="slds-button slds-button_brand slds-path__mark-complete slds-button_brand_size">
+                                                   <!--<aura:if isTrue="{!v.currentSubStep.Name == v.updatedSubStep.Name}">
+                                                        <span>Stage: "{!v.currentStep.Name} - {!v.currentSubStep.Name}"</span>
+                                                        <aura:set attribute="else">-->
+                                                            <span>Mark "{!v.updatedSubStep.Name}" as Current</span>
+                                                       <!--</aura:set>
+                                                    </aura:if>-->
+                                                    <aura:if isTrue="{!v.showLoader}">
+                                                        <lightning:spinner alternativeText="Loading" size="small" variant="inverse"/>
+                                                    </aura:if>
+                                                </button>
+                                            </div>
+                                        </aura:if>
+                                    </div>
+                                    <aura:if isTrue="{!v.showSubSteps}">
+                                        <div class="slds-popover slds-popover_tooltip slds-nubbin_top sub-popover tooltip" role="tooltip" id="{!v.tooltipId}"
+                                             style="top: 13px;width:100%">
+                                            <div class="slds-popover__body sub_stage_popover" id="{!v.subStepsId}">
+                                                <div class="slds-grid slds-path__track">
+                                                    <div class="slds-grid slds-path__scroller-container">
+                                                        <div class="slds-path__scroller" role="application">
+                                                            <div class="slds-path__scroller_inner">
+                                                                <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                                                    <aura:iteration items="{!v.subSteps}" indexVar="index" var="stepItem">
+                                                                        <li class="{!stepItem.Class}" role="presentation">
+                                                                            <a  aria-selected="false" id="{!index}" onclick="{!c.setCurrentStep}" class="slds-path__link" href="javascript:void(0);"
+                                                                               role="option" tabindex="-1">
+                                                                                <span class="slds-path__stage">
+                                                                                    <lightning:icon iconName="utility:check" alternativeText="Check!" variant="warning" size="small"/>
+                                                                                    <span class="slds-assistive-text">Stage Complete</span>
+                                                                                </span>
+                                                                                <span class="slds-path__title">{!stepItem.Name}</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </aura:iteration>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            <!--</aura:set>
+        </aura:if>-->
+    </div>
+</aura:component>

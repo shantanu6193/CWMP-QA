@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Program_Prefix__c</fullName>
+        <description>Program Name prefix for Project version.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Program Name prefix for Project version.</inlineHelpText>
+        <label>Program Prefix</label>
+        <length>5</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Program Config</label>
+    <pluralLabel>Program Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

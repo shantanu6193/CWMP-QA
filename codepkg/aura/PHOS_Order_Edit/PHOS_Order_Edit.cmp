@@ -1,0 +1,57 @@
+<!--
+ - Created by PREM on 28-03-2020.
+ --> 
+
+<aura:component description="PHOS_Order_Edit" controller="PHOS_Order_EditCtrl"
+                implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride"
+                access="global">
+
+    <!--<aura:attribute name="orderRec" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="addressLine2" type="String" description="Address line 2" access="public" />
+
+    <aura:attribute name="step1" type="Boolean" default="false"/>
+    <aura:attribute name="step2" type="Boolean" default="true"/>
+    <aura:attribute name="step3" type="Boolean" default="false"/>
+    <aura:attribute name="currentStep" type="String" default="step1"/>-->
+    <aura:attribute name="orderRecord" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="editRecordId" type="String" default=""/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <aura:attribute name="isCommunityUser" type="Boolean" default="false"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <lightning:navigation aura:id="navLink"/>
+    <aura:attribute name="isLoaded" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="force:refreshView" action="{! c.doInit}" />
+
+    <aura:if isTrue="{!v.isLoaded == false}">
+        <lightning:spinner alternativeText="Loading" size="large" />
+        <aura:set attribute="else">
+            <!--<aura:if isTrue="{!not(empty(v.recordId))}">-->
+            <c:phosEditOrder recordId="{!v.recordId}" orderRecord="{!v.orderRecord}" oncloseclicked="{!c.orderSubmitted}"></c:phosEditOrder>
+            <!--</aura:if>-->
+            <aura:if isTrue="{!v.isLoading}">
+                <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true"
+                         aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container loading-modal">
+                        <div class="slds-modal__content slds-p-around_medium loading-modal-div slds-align_absolute-center"
+                             id="modal-content-id-1">
+                            <div aura:id="spinnerId" class="slds-spinner_container">
+                                <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative"
+                                     role="alert">
+                                    <span class="slds-assistive-text">Loading</span>
+                                    <div class="slds-spinner__dot-a"></div>
+                                    <div class="slds-spinner__dot-b"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </aura:set>
+    </aura:if>
+
+</aura:component>

@@ -1,0 +1,27 @@
+.slds-form-element__label{
+    font-weight: 600;
+}
+.main-heading {
+    font-weight: bold;
+    font-size:32px;
+}
+.input_type:after{
+    content: '%';
+}
+
+
+.card_project {
+    background:#f9fafd;
+    box-shadow: 0 7px 14px 0 rgb(65 69 88 / 10%), 0 3px 6px 0 rgb(0 0 0 / 7%);
+    border-radius: .375rem;
+}
+
+span.slds-p-left--small.slds-truncate {
+    width: 420px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.custom-clickable-row {
+	cursor: pointer;
+}

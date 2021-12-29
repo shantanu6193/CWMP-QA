@@ -1,0 +1,218 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0" sidebar="false" renderAs="advanced_pdf" controller="MARS_ApprovedAgreementPDFCtrl">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+        <style>
+            body { 
+            /* margin: 0.1;*/
+                font-family: Dialog;
+                /*font-size: 0.80em;*/
+                font-size: 9.5pt;
+                /*line-height: 1.1;*/
+                color: #212529;
+                text-align: left;
+                background-color: #fff;
+            }
+
+            .trgray {
+                background-color: #b4b3b3;
+            }
+            #col1,#col2,#col3{width:33%;display:inline-block;}
+            @page {
+                size: portrait;
+                /*margin-top: 30px;
+                margin-left: 1px;
+                margin-right: 1px;
+                margin-bottom: 30px;*/
+                @bottom-center {
+                    content : element(footer);
+                    color : #808080;
+                }
+            }
+
+            div.footer{
+                text-align: center;
+                font-size:15px;                                
+                position: running(footer); 
+            }
+
+            .page-break {
+                display: block;
+                page-break-before: always;
+            }
+
+            /* Clear floats after the columns */
+
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .divclear {
+                clear: both;
+            }
+
+            .tableclass {
+                table-layout: fixed;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .tableboarder {
+                border-collapse: collapse;
+            }
+
+            .thtdclass {
+                /*border: 1px solid black;*/
+                border-collapse: collapse;
+                margin-top: 10px;
+                margin-top: 10px;
+            }
+
+            .thfloat {
+                text-align: right;
+            }
+            .textalign {
+                text-align: justify;
+            }
+            .textaligncenter {
+                text-align:center;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div style="row">
+                <div style="text-align:center">
+                    <div><p class="textaligncenter">California Governor’s Office of Emergency Services (Cal OES) - Fire and Rescue Division </p></div>
+                    <h2>APPROVED AGREEMENTS (MOU/MOA/GBR)</h2>
+                        <div><p class="textaligncenter">for</p></div>
+                        <div><p class="textaligncenter">AGREEMENT FOR LOCAL GOVERNMENT FIRE AND EMERGENCY ASSISTANCE TO</p></div> 
+                        <div><p class="textaligncenter">THE STATE OF CALIFORNIA AND FEDERAL FIRE AGENCIES</p></div>
+                        <div><p class="textaligncenter">(California Fire Assistance Agreement)</p></div>
+                        <div id="col1"><b>Start Date:</b>&nbsp;
+                            <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Rate_Agreement.Start_Date__c}" /> 
+                            </apex:outputText>
+                        </div> 
+                        <div id="col2"><b>End Date:</b>&nbsp;
+                          <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Rate_Agreement.End_Date__c}" /> 
+                          </apex:outputText>
+                        </div>
+                        <div id="col3"><b>Status:</b>&nbsp;
+                            {!agency_Rate_Agreement.Approval_Status__c}
+                        </div>
+                        <br />
+                        <table class="tableclass"  border="1px">
+                            <tr>
+                              <td>
+                                <b>Agency 3-Letter MACS I.D.:</b>
+                              </td>
+                              <td>
+                              <b> Agency / Department Name:</b>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:50%;">
+                                {!agency_Rate_Agreement.Agency__r.MACS_ID__c}
+                              </td>
+                              <td style="width:50%;">
+                                {!agency_Rate_Agreement.Agency__r.Name}
+                              </td>
+                            </tr>
+                          </table>
+                    <p>
+                        Upon evaluation of the Memorandum of Understanding (MOU), Memorandum of Agreement (MOA) or Governing Body Resolution (GBR) your agency submitted, the following position(s) have been approved for portal-to-portal reimbursement and/or overtime reimbursement for position(s) above the rank of Battalion Chief.
+                    </p>
+
+                    <table class="tableclass">
+                        <tr>
+                            <td style="width:20%;">
+                                <b>Agreement Type: </b>
+                            </td>
+                            <td style="width:30%;">
+                                {!agency_Rate_Agreement.Agreement_Type__c}
+                            </td>
+                            <td style="width:20%;">
+                                <b>Agreement Name: </b>
+                            </td>
+                            <td style="width:30%;">
+                                {!agency_Rate_Agreement.Name}
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="tableclass"  border="1px">
+                        <tr>
+                            <td style="width:60%;">
+                              <b>Classification Title</b>
+                            </td>
+                            <td style="width:20%;">
+                                <b>Overtime</b>
+                            </td>
+                            <td style="width:20%;">
+                                <b>Portal-to-Portal</b>
+                            </td>
+                          </tr>
+                          <apex:repeat value="{!agency_Rate_Agreement.Agency_Rate_Agreement_Line_Items__r}" var="record">
+                            <tr>
+                                <td style="width:60%;">
+                                    {!record.Name}
+                                </td>
+                                <td style="width:20%;">                                    
+                                    <apex:variable value="" var="a" rendered="{!IF(contains(record.name,'Chief'),IF(Not(contains(record.name,'Battalion Chief')),true,false),false)}">                                       
+                                        {!IF( record.OT__c ,'Yes','No')}                                         
+                                    </apex:variable>
+                                    <apex:variable value="" var="a" rendered="{!IF(contains(record.name,'Chief'),IF(Not(contains(record.name,'Battalion Chief')),false,true),true)}">                                        
+                                        <div style="width:100%;height:100%; background-color:silver;">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                        </div>
+                                    </apex:variable>
+                                </td>
+                                <td style="width:20%;">
+                                    {!IF(record.PTP__c,'Yes','No')}  
+                                </td>
+                              </tr>
+                          </apex:repeat>
+                    </table>
+                    <p>
+                        The California Fire Assistance Agreement (CFAA) Committee has determined that the documentaiton submitted by your agency meets the requirements as identified in Exhibit A clauses A-1, A-8.2, and A-9 of the CFAA.
+                    </p>
+                </div>
+                <table class="tableclass"  border="1px">
+                    <tr>
+                      <td>
+                        <b>Name</b>
+                      </td>
+                      <td>
+                      <b>Authorized Representative </b>
+                      </td>
+                      <td>
+                        <b>Date</b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {!agency_Rate_Agreement.CreatedBy.Name}
+                      </td>
+                      <td>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(signature))}">
+                          <apex:image url="{!signature}" style="height: 50px;width: 200px;"/>
+                        </apex:outputPanel>
+                      </td>
+                      <td>
+                        <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Rate_Agreement.Start_Date__c}" /></apex:outputText>
+                      </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            Printed at &nbsp;&nbsp;
+            <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}"> <apex:param value="{!CurrentDateTime}" /></apex:outputText>
+          </div>
+    </body>
+</apex:page>

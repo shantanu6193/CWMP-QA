@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send Email to HMA Analyst</description>
+        <name>Send_Email_to_HMA_Analyst</name>
+        <label>Send Email to HMA Analyst</label>
+        <locationX>474</locationX>
+        <locationY>312</locationY>
+        <actionName>Application__c.HMA_Sub_Application_Owner_Change_To_HMA_Analyst</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <description>Send Email on Status change</description>
+        <name>Status_Change_Apex_Execute</name>
+        <label>Status Change Apex Execute</label>
+        <locationX>477</locationX>
+        <locationY>445</locationY>
+        <actionName>HMA_Sub_Application_StatusEmail</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>ids</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <decisions>
+        <description>Checked Is Owner Changed or not</description>
+        <name>Is_Owner_Change</name>
+        <label>Is Owner Change</label>
+        <locationX>167</locationX>
+        <locationY>382</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Email_Send</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Owner:User.UserRole.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>HMA_Analyst</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_HMA_Analyst</targetReference>
+            </connector>
+            <label>Email Send</label>
+        </rules>
+        <rules>
+            <name>Status_Change</name>
+            <conditionLogic>(1 OR 2) AND 3</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status_Reason__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Status_Change_Apex_Execute</targetReference>
+            </connector>
+            <label>Status Change</label>
+        </rules>
+    </decisions>
+    <description>Common Flow for Update</description>
+    <interviewLabel>HMA Subapplication Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>HMA Subapplication Update Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>48</locationX>
+        <locationY>53</locationY>
+        <connector>
+            <targetReference>Is_Owner_Change</targetReference>
+        </connector>
+        <object>Application__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>HMA_Analyst</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>HMA Analyst</stringValue>
+        </value>
+    </variables>
+</Flow>

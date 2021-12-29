@@ -1,0 +1,72 @@
+<!--
+ - Created by Neha on 09-04-2020.
+ -->
+
+<aura:component description="DIP_DashBoard_List" controller="DIP_DashBoard_ListCtrl" access="global"
+                implements="flexipage:availableForAllPageTypes,force:appHostable">
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <aura:attribute name="dashBoardsList" type="List" description="Available dashBoard List" default="[]"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="true"/>
+
+    <div>
+    <div class="slds-card">
+        <div class="slds-grid slds-wrap slds-align_absolute-center container">
+            <div class="slds-col slds-size_12-of-12">
+
+                <!--1.Header-->
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col">
+                        <p class="slds-align_absolute-center slds-p-vertical_x-small custom-label"> Important Dashboards</p>
+                        <hr/>
+                    </div>
+
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-table_structure">
+                            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+
+                                <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="Label">Label</div>
+                                    </th>
+                                    <th class="slds-size_3-of-12" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <aura:if isTrue="{!v.showSpinner==false}">
+                                    <aura:iteration items="{!v.dashBoardsList}" indexVar="index" var="Item">
+                                        <tr >
+
+
+                                            <td data-label="Label" scope="row">
+                                                <div class="slds-truncate" title="">
+                                                    <a href="{! '/lightning/r/Dashboard/' + Item.Dashboard_Id__c + '/view'}"> {!Item.Dashboard_Label__c}</a>
+                                                </div>
+                                            </td>
+
+                                            <td data-label="Description" scope="row">
+                                                <div class="slds-truncate" title="">
+                                                    {!Item.Dashboard_Description__c}
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                    </aura:iteration>
+                                </aura:if>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>50.0</apiVersion>
+    <description>To Refresh Transmittal</description>
+    <interviewLabel>ALS_Transmittal_Refresh {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ALS_Transmittal_Refresh</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <description>Onclick update Record</description>
+        <name>Update_Transmittal_Record</name>
+        <label>Update Transmittal Record</label>
+        <locationX>173</locationX>
+        <locationY>194</locationY>
+        <connector>
+            <targetReference>Show_Success_Message</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>SupplierID__c</field>
+            <value>
+                <stringValue>123</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Transmittal__c</object>
+    </recordUpdates>
+    <screens>
+        <name>Show_Success_Message</name>
+        <label>Show Success Message</label>
+        <locationX>174</locationX>
+        <locationY>370</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>RefreshMessage</name>
+            <fieldText>&lt;p&gt;Transmittal Refreshed Successfully...&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Update_Transmittal_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Id of Transmittal Record</description>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Transmittal__c</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,549 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p class="slds-card__header-link" title="Request Details">
+                                    <span>GENERAL INFORMATION</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner ">
+                  <div class="slds-grid">
+                     <div class="slds-col">
+                         <div class="slds-p-around_medium">
+                            <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                <!--<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value="" label="Disaster#" data-field="Requested_Summary__c" name="RequestedSummary" type="text" onchange={fieldChanged}></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value="" label="Grant Type" data-field="Requested_Summary__c" name="RequestedSummary" type="text" onchange={fieldChanged}></lightning-input>
+                                </div>-->
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.First_Name_of_Person_Completing_NOI__c} label="First Name of Person Completing NOI" data-field="First_Name_of_Person_Completing_NOI__c" name="FirstName" type="text"  onchange={fieldChanged} max-length='80' required disabled></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Last_Name_of_Person_Completing_NOI__c} label="Last Name of Person Completing NOI" data-field="Last_Name_of_Person_Completing_NOI__c" name="LastName" type="text" onchange={fieldChanged} max-length='80' required disabled></lightning-input>
+                                </div>
+                                <!--<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.FIPS__c} label="Federal Information Processing Number (FIPS #)" data-field="FIPS__c" name="FIPS" type="text" onchange={fieldChanged} field-level-help="If you do not know your FIPS #, you can request it by emailing HMA@caloes.ca.gov." pattern="[0-9]{3}-[0-9]{5}" message-when-pattern-mismatch="Please enter in format: XX-XXXXXX"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                            
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.DUNS__c} label="Data Universal Numbering System (DUNS #)" data-field="DUNS__c" name="DUNS" type="text" onchange={fieldChanged} field-level-help="If you do not know your DUNS #, call Dun & Bradstreet (D&B) at 1-866-705-5711 for the information." pattern="[0-9]{9}" message-when-pattern-mismatch="Please enter in format: XXX-XXXXX"></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.EIN_For_Private_Non_Profits__c} label="EIN (For Private Non- Profits)" data-field="EIN_For_Private_Non_Profits__c" name="EINPrivateNonProfits" type="text" onchange={fieldChanged} required={getApplicantType} disabled = {getApplicant} field-level-help="The Employer Identification Number (EIN) is a federal nine-digit tax number that IRS assigns to non-profits, charities, organizations, and businesses in the following format: XXXXXXXXX" pattern="[0-9]{2}-[0-9]{6}" message-when-pattern-mismatch="Please enter in format: XXXXXXXXX"></lightning-input>
+                                </div>-->
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Applicant_Name_Entity__c} label="Subapplicant Name (Entity)" data-field="Applicant_Name_Entity__c" name="ApplicantNameEntity" type="text" onchange={fieldChanged} max-length="255" required disabled></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <!--<lightning-input class="input" value={recordLocal.Applicant_Type__c} label="Applicant Type" data-field="Applicant_Type__c" name="ApplicantType" type="text" onchange={fieldChanged} required ></lightning-input>-->
+                                    <template if:true={applicantPicklist.data}>
+                                        <lightning-combobox name="ApplicantType"
+                                                        data-field="Applicant_Type__c"
+                                                        value={recordLocal.Applicant_Type__c}
+                                                        label="Subapplicant Type"
+                                                        placeholder="Select Subapplicant Type"
+                                                        options={applicantPicklist.data.values}
+                                                        onchange={handleChangeCustom}
+                                                        class="input"
+                                                        required
+                                                        field-level-help="Subapplicant type should be based upon how the entity is identified in the Hazard Mitigation Plan, this excludes private non-profit."
+                                                        >
+                                        </lightning-combobox> 
+                                    </template>
+                                </div>
+                                <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Street_Address__c} label="Street Address" data-field="Street_Address__c" name="StreetAddress" type="text" onchange={fieldChanged} max-length='255' required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.City__c} label="City" data-field="City__c" name="City" type="text" onchange={fieldChanged} max-length='100' required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.Zip_Code__c} label="Zip" data-field="Zip_Code__c" name="ZipCode" type="text" onchange={fieldChanged} pattern="[0-9]{5}" message-when-pattern-mismatch="Please enter 5 digits" max-length='5' required></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                   <!--<lightning-input class="input" value="" label="County" data-field="County__c" name="County" type="text" onchange={fieldChanged} ></lightning-input>-->
+                                    <template if:true={countyPicklist.data}>
+                                        <lightning-combobox name="County"
+                                                        data-field="County__c"
+                                                        value={recordLocal.County__c}
+                                                        label="County"
+                                                        placeholder="Select County"
+                                                        options={countyPicklist.data.values}
+                                                        onchange={handleCountyChange}
+                                                        class="input"
+                                                        required
+                                                        field-level-help="Only use Multi-County if the project is located in more than one county.">
+                                        </lightning-combobox>
+                                    </template>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <!--<lightning-input class="input" value={recordLocal.Project_Type__c} data-field="Project_Type__c" label="Project Type" name="ProjectType" type="text" onchange={fieldChanged}></lightning-input>-->
+                                    <template if:true={regionValues}>
+                                        <lightning-combobox name="Region"
+                                                        data-field="Region__c"
+                                                        value={recordLocal.Region__c}
+                                                        label="Region"
+                                                        placeholder="Select Region"
+                                                        options={regionValues}
+                                                        onchange={fieldChanged}
+                                                        class="input"
+                                                        selected = {regionValues}
+                                                        required disabled
+                                                        >
+                                        </lightning-combobox>
+                                    </template>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <!--<lightning-input class="input" value={recordLocal.State__c} label="State" data-field="State__c" name="State" type="text" onchange={fieldChanged} required></lightning-input>-->
+                                    <template if:true={statePicklist.data}>
+                                        <lightning-combobox name="State"
+                                                        data-field="State__c"
+                                                        value={recordLocal.State__c}
+                                                        label="State"
+                                                        placeholder="Select State"
+                                                        options={statePicklist.data.values}
+                                                        onchange={fieldChanged}
+                                                        class="input"
+                                                        required>
+                                        </lightning-combobox>
+                                    </template>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.FIPS__c} label="Federal Information Processing Number (FIPS #)" data-field="FIPS__c" name="FIPS" type="text" onchange={fieldChanged} field-level-help="If you do not know your FIPS #, you can request it by emailing HMA@caloes.ca.gov." pattern="[0-9]{3}-[0-9]{5}" message-when-pattern-mismatch="Please enter in format: XXX-XXXXX" placeholder="Format: XXX-XXXXX" max-length='9'></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <lightning-input class="input" value={recordLocal.DUNS__c} label="Data Universal Numbering System (DUNS #)" data-field="DUNS__c" name="DUNS" type="text" onchange={fieldChanged} field-level-help="If you do not know your DUNS #, call Dun & Bradstreet (D&B) at 1-866-705-5711 for the information." pattern="[0-9]{9}" message-when-pattern-mismatch="Please enter in format: XXXXXXXXX" placeholder="Format: XXXXXXXXX" max-length='9' ></lightning-input>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <template if:true={showEINField}>
+                                        <lightning-input class="input" value={recordLocal.EIN_For_Private_Non_Profits__c} label="Employer Identification Number (For Private Non- Profits)" data-field="EIN_For_Private_Non_Profits__c" name="EINPrivateNonProfits" type="text" onchange={fieldChanged} required={getApplicantType} disabled = {getApplicant} field-level-help="The Employer Identification Number (EIN) is a federal nine-digit tax number that IRS assigns to non-profits, charities, organizations, and businesses in the following format: XX-XXXXXXX" pattern="[0-9]{2}-[0-9]{7}" message-when-pattern-mismatch="Please enter in format: XX-XXXXXXX" placeholder="Format: XX-XXXXXXX" max-length="10"></lightning-input>
+                                    </template>
+                                </div>
+                                <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                    <template if:true={recordTypeBRIC}>
+                                        <template if:true={subapplicantCommPicklist.data}>
+                                            <lightning-combobox name="SubapplicantSmallImpoverishedCommunity?"
+                                                                data-field="Subapplicant_a_small_community__c"
+                                                                value={recordLocal.Subapplicant_a_small_community__c}
+                                                                label="Is the subapplicant a small impoverished community?"
+                                                                placeholder="Select Yes/No"
+                                                                options={subapplicantCommPicklist.data.values}
+                                                                onchange={fieldChanged}
+                                                                class="input"
+                                                                field-level-help= "A small impoverished community is defined as community of 3,000 or fewer individuals that is economically disadvantaged, with residents having an average per capita annual income not exceeding 80 percent of the national per capita income."
+                                                                required>
+                                            </lightning-combobox>
+                                        </template>
+                                    </template>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+              </div>
+            </article>
+        </div>
+        <div class="slds-col slds-size_12-of-12 slds-p-top_large">
+            <article class="slds-card">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p  class="slds-card__header-link" title="Resource Delivery Information">
+                                    <span>SUBAPPLICATION INFORMATION</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner ">
+                  <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-p-around_medium">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                <template if:true = {recordTypeHMGP}>
+                                    <table>
+                                        <tr>
+                                            <th class="slds-p-around_small tableCol">Application Type</th>
+                                            <th class="slds-p-around_small">Examples:</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Planning</td>
+                                            <td>Activities include developing a new hazard mitigation plan or updating a current mitigation plan.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Planning Related</td>
+                                            <td>Activities include: Updating or enhancing sections of the current FEMA-approved mitigation plan, integrating information from mitigation plans with other planning efforts, building capacity through delivery of technical assistance and training, evaluating adoption and/or implementation of ordinances that reduce risk or increase resilience.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Project</td>
+                                            <td>Activities involve construction and/or physical work. Examples: acquisition demolition/relocation, debris basin, structural elevation, structural seismic retrofit, hazardous fuels reduction, defensible space, generator(s) (If benefit cost analysis (BCA) feasible).</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Advance Assistance</td>
+                                            <td>Activities can be used to develop mitigation strategies and obtain data to prioritize, select, and develop mitigation projects and complete applications. Examples: evaluation of facilities or areas to determine mitigation actions, collect data for BCA and environmental historical preservation compliance, conduct engineering designs and feasibility studies, conduct hydrologic and hydraulic studies and cost estimation.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5% Initiative</td>
+                                            <td>Activities are defined as mitigation actions that meet all HMGP requirements but may be difficult to evaluate against traditional program cost-effectiveness criteria. Examples such as, early warning systems, post-disaster building code enforcement, public awareness and education for mitigation campaigns, hazard identification or mapping, new techniques/methods of mitigation and generator(s) (if protecting a critical facilty and if there is insufficient data to evaluate a generator project using a standard HMA-approved Benefit-Cost Analysis (BCA) method).</td>
+                                        </tr>
+                                    </table>
+                                </template>
+                                <template if:true = {recordTypeBRIC}>
+                                    <table>
+                                        <tr>
+                                            <th class="slds-p-around_small tableCol">Subapplication Type</th>
+                                            <th class="slds-p-around_small">Examples:</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Capability and Capacity Building (C&CB)</td>
+                                            <td>Activities which enhance the knowledge, skills, expertise, etc., of the current workforce to expand or improve the administration of mitigation assistance. C&CB activities must result in a resource, strategy, or tangible mitigation product that will reduce or eliminate risk and damage from future natural hazards, increase resiliency, and promote a culture of preparedness. This includes activities in the following sub-categories: building codes activities, partnerships, project scoping, mitigation planning and planning-related activities, and other activities.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Project</td>
+                                            <td>Cost-effective, risk reduction projects designed to increase resilience and public safety; reduce injuries and loss of life; and reduce damage and destruction to property, critical services, facilities, and infrastructure; Activities involve construction and/or physical work. Examples: nature-based solutions/green infrastructure, acquisition demolition/relocation, debris basin, structural elevation, structural seismic retrofit, hazardous fuels reduction, defensible space, generator(s).</td>
+                                        </tr>
+                                    </table>
+                                </template>
+                                <template if:true = {recordTypeFMA}>
+                                    <table>
+                                        <tr>
+                                            <th class="slds-p-around_small tableCol">Subapplication Type</th>
+                                            <th class="slds-p-around_small">Examples:</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Flood Hazard Mitigation Planning</td>
+                                            <td>Planning subapplications for the flood hazard component of State, Local, Territory, and Tribal (SLTT) Hazard Mitigation Plans and plan updates.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Project Scoping</td>
+                                            <td>Activities include developing community flood mitigation projects and/or individual flood mitigation projects that will subsequently reduce flood claims against the National Flood Insurance Program (NFIP). Eligible activities must benefit NFIP insured properties. Examples include, but are not limited to: conducting meetings, outreach and coordination with subapplicants and community residents, developing or conducting engineering, environmental feasibility and/or benefit cost analyses, undertaking activities that lead to development of project applications, evaluating facilities to identify mitigation actions, and using staff or resources to develop cost share strategies.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Community Flood Mitigation Project</td>
+                                            <td>Projects that address community flood risk for the purpose of reducing NFIP flood claim payments. Eligible activities must benefit NFIP insured properties. Examples include, but are not limited to: localized flood control, floodwater storage and diversion, floodplain and stream restoration, stormwater management, and wetland restoration/creation.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Individual Flood Mitigation Project</td>
+                                            <td>Projects that mitigate the risk of flooding to individual NFIP insured structures. Projects must directly benefit and include SRL and RL properties.</td>
+                                        </tr>
+                                    </table>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                <!--<lightning-input class="input" value="" data-field="Application_Type__c" label="Application Type" name="ApplicationType" type="text" onchange={fieldChanged}></lightning-input>-->
+                                <template if:true={appTypePicklist.data}>
+                                    <lightning-combobox name="ApplicationType"
+                                                    data-field="Application_Type__c"
+                                                    value={recordLocal.Application_Type__c}
+                                                    label="Subapplication Type"
+                                                    placeholder="Select Subapplication Type"
+                                                    options={appTypePicklist.data.values}
+                                                    onchange={handleChange}
+                                                    class="input"
+                                                    dropdown-alignment= "auto"
+                                                    required
+                                                    >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                            <template if:true={projectType}>
+                             <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                    <table class="">
+                                        <tr>
+                                            <th class="slds-p-around_small tableCol">Project Type</th>
+                                            <th class="slds-p-around_small">Activities:</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Acquisition Demo-Relocation</td>
+                                            <td>Purchase of properties on a voluntary basis in order to remove structure(s) from natural hazards (flood/landslide/avalanche). Structures must be demolished or relocated outside hazard area.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Property Acquisition and Structure Demolition Projects, Property Acquisition and Structure Relocation Projects</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Drainage/Flood Control</td>
+                                            <td>Stormwater management projects, including the construction, installation, or improvement of culverts, drainpipes, pumping stations, floodgates, rock, straw and log dams, drainage dips, and detention or retention basins. <br /><br />Flood protection measures for water and sanitary sewer systems or other utility systems. Slope stabilization or grading to direct flood waters away from homes, schools, businesses, utilities, or governmental facilities. <br /><br />Flood protection and stabilization measures for roads and bridges construction, demolition, or rehabilitation of: Dams, Dikes, Levees, Floodwalls, Seawalls, Groins, Jetties, Breakwaters, Stabilized sand dunes, Large-scale channelization of a waterway <br /><br />Vegetation management for shoreline stabilization (coastal, riverine, riparian, and other littoral zones) Soil stabilization and erosion control activities. <br /><br />Drought mitigation activities.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Localized Flood Risk Reduction Projects, Non-Localized Flood Risk Reduction Projects, Soil Stabilization, Infrastructure Retrofit, Green Infrastructure</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Elevation-Floodproofing</td>
+                                            <td>Elevation: Construction to elevate structures above the base flood elevation. <br /><br />Dry Floodproofing: Implementation of techniques to seal the structure from floodwaters.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Elevation (Structure Elevation); Dry Floodproofing (Dry Floodproofing of Historical Residential Structures, Dry Floodproofing of Non-Residential Structures)</span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Seismic Retrofitting</td>
+                                            <td>Retrofitting homes or buildings structurally or non-structurally to reduce damages from earthquakes.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Structural Retrofitting of Existing Buildings, Non-Structural Retrofitting of Existing Buildings and Facilities</span></span></td>
+                                        </tr>
+                                            <tr>
+                                            <td>Wildfire & Vegetation Management</td>
+                                            <td>Creation of defensible space around homes, structures, and critical facilities by reduction of flammable vegetation. Hazardous fuel reduction which is the removal of vegetative fuels proximate to at-risk structures.  Implementation of ignition-resistant construction techniques utilizing non-combustible materials on new and existing structures.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Wildfire Mitigation</span></td>
+                                        </tr>
+                                            <tr>
+                                            <td>Mitigation Reconstruction</td>
+                                            <td>Construction of an improved, elevated building on the same site where an existing building and/or foundation has been partially or completely demolished or destroyed.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Mitigation Reconstruction</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Generator(s)/Other Power Source(s)</td>
+                                            <td>Installation of generator(s) or other power source(s) (such as a micro-grid) which provides a secondary source of power to a critical facility. Examples: police and fire station, hospitals, water and sewer treatment plant.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Generators</span></td>
+                                        </tr>
+                                            <tr>
+                                            <td>Tsunami Vertical Evacuation</td>
+                                            <td>Construction of an evacuation tower which is utilized during a tsunami event to escape the tsunami and debris wave.</td>
+                                        </tr>
+                                            <tr>
+                                            <td>Safe Room/Shelter</td>
+                                            <td>Construction of safe rooms to provide protection for people in public and private structures from tornado and severe wind events. This type of project includes retrofits of existing facilities or new safe room construction projects.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Safe Room Construction</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Utility and Infrastructure Protection</td>
+                                            <td>Measures to reduce risk to existing utility systems, roads, bridges and other critical infrastructure. Activities may include retrofitting, relocation, and / or other measures to protect utilities and infrastructure from natural hazard impacts. Other activities such as replacing or retrofitting electrical transmission or distribution utility pole structures, and replacing water systems that have been burned and have caused contamination may also be considered under this category.</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </template>
+                        <template if:true={initiative}>
+                            <div class="slds-grid slds-wrap">
+                               <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                        <table class="">
+                                            <tr>
+                                                <th class="slds-p-around_small tableCol">5% Initiative</th>
+                                                <th class="slds-p-around_small">Examples:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Generator(s)/Other Power Source(s)</td>
+                                                <td>Installation of generator(s) or other power source(s) (such as a micro-grid) which provides a secondary source of power to a critical facility. Examples: police and fire station, hospitals, water and sewer treatment plant.</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Post-Disaster Code Enforcement</td>
+                                                <td>Extraordinary post-disaster code enforcement projects to ensure disaster-resistant codes are implemented during disaster reconstruction after the normal costs of the building department are deducted. Example: Hiring staff to help process building permits to confirm post-disaster code is implemented, perform home construction plan review and field inspection of homes being built after a fire to ensure codes are followed.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Public Awareness and Education</td>
+                                                <td>Public awareness or education campaigns about mitigation. Example: Development of materials related to the various hazards that can impact a community and deliver trainings in the community.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Early Warning Systems</td>
+                                                <td>Equipment and systems for the purpose of warning citizens of impending hazards. Example: Installation of a camera system to detect and notify residents of fire risk.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hazard Identification or Mapping</td>
+                                                <td>Hazard identification or mapping and related equipment for the implementation of mitigation activities. Example: Development of maps and data to will assist in the identification of necessary erosion control measures, slope stabilization, structural protection, and flood and debris flow hazard and risk analyses.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GIS for Mitigation</td>
+                                                <td>Acquisition of GIS software, hardware, and data whose primary aim is mitigation.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>New Techniques Methods</td>
+                                                <td>The use, evaluation, and application of new, unproven mitigation techniques, technologies, methods, procedures, or products</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={projectTypeBRIC}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <table class="">
+                                            <tr>
+                                                <th class="slds-p-around_small tableCol">Project Type</th>
+                                                <th class="slds-p-around_small">Activities:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Acquisition Demo-Relocation</td>
+                                                <td>Purchase of properties on a voluntary basis in order to remove structure(s) from natural hazards (flood/landslide/avalanche). Structures must be demolished or relocated outside hazard area.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Property Acquisition and Structure Demolition Projects, Property Acquisition and Structure Relocation Projects</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Drainage/Flood Control</td>
+                                                <td>Stormwater management projects, including the construction, installation, or improvement of culverts, drainpipes, pumping stations, floodgates, rock, straw and log dams, drainage dips, and detention or retention basins. <br /><br />Flood protection measures for water and sanitary sewer systems or other utility systems. Slope stabilization or grading to direct flood waters away from homes, schools, businesses, utilities, or governmental facilities. <br /><br />Flood protection and stabilization measures for roads and bridges construction, demolition, or rehabilitation of: Dams, Dikes, Levees, Floodwalls, Seawalls, Groins, Jetties, Breakwaters, Stabilized sand dunes, Large-scale channelization of a waterway <br /><br />Vegetation management for shoreline stabilization (coastal, riverine, riparian, and other littoral zones) Soil stabilization and erosion control activities. <br /><br />Drought mitigation activities.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Localized Flood Risk Reduction Projects, Non-Localized Flood Risk Reduction Projects, Soil Stabilization, Infrastructure Retrofit, Green Infrastructure</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Elevation-Floodproofing</td>
+                                                <td>Elevation: Construction to elevate structures above the base flood elevation. <br /><br />Dry Floodproofing: Implementation of techniques to seal the structure from floodwaters.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Elevation (Structure Elevation); Dry Floodproofing (Dry Floodproofing of Historical Residential Structures, Dry Floodproofing of Non-Residential Structures)</span></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Seismic Retrofitting</td>
+                                                <td>Retrofitting homes or buildings structurally or non-structurally to reduce damages from earthquakes.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Structural Retrofitting of Existing Buildings, Non-Structural Retrofitting of Existing Buildings and Facilities</span></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Wildfire & Vegetation Management</td>
+                                                <td>Creation of defensible space around homes, structures, and critical facilities by reduction of flammable vegetation. Hazardous fuel reduction which is the removal of vegetative fuels proximate to at-risk structures.  Implementation of ignition-resistant construction techniques utilizing non-combustible materials on new and existing structures.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Wildfire Mitigation</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mitigation Reconstruction</td>
+                                                <td>Construction of an improved, elevated building on the same site where an existing building and/or foundation has been partially or completely demolished or destroyed.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Mitigation Reconstruction</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Generator(s)/Other Power Source(s)</td>
+                                                <td>Installation of generator(s) or other power source(s) (such as a micro-grid) which provides a secondary source of power to a critical facility. Examples: police and fire station, hospitals, water and sewer treatment plant.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Generators</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tsunami Vertical Evacuation</td>
+                                                <td>Construction of an evacuation tower which is utilized during a tsunami event to escape the tsunami and debris wave.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Safe Room/Shelter</td>
+                                                <td>Construction of safe rooms to provide protection for people in public and private structures from tornado and severe wind events. This type of project includes retrofits of existing facilities or new safe room construction projects.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Safe Room Construction</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nature-Based Solutions/Green Infrastructure</td>
+                                                <td>Land conservation, greenways, wetland restoration, stormwater parks, floodplain restoration, rain gardens, vegetated swales, green roofs, rainwater harvesting, permeable pavement, tree canopy, tree trenches, green streets, coastal wetlands, oyster reefs, dunes, waterfront parks, and living shorelines.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Utility and Infrastructure Protection</td>
+                                                <td>Measures to reduce risk to existing utility systems, roads, bridges and other critical infrastructure. Activities may include retrofitting, relocation, and / or other measures to protect utilities and infrastructure from natural hazard impacts. Other activities such as replacing or retrofitting electrical transmission or distribution utility pole structures, and replacing water systems that have been burned and have caused contamination may also be considered under this category.</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={bricCnCB}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <table class="">
+                                            <tr>
+                                                <th class="slds-p-around_small tableCol">Capability and Capacity Building (C&CB)</th>
+                                                <th class="slds-p-around_small">Examples:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Planning</td>
+                                                <td>Activities include developing a new hazard mitigation plan or updating a current mitigation plan.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Planning-Related</td>
+                                                <td>Activities include updating or enhancing sections of the current FEMA-approved mitigation plan, integrating information from mitigation plans with other planning efforts, building capacity through delivery of technical assistance and training, evaluating adoption and/or implementation of ordinances that reduce risk or increase resilience.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Project Scoping</td>
+                                                <td>Activities include engineering design and feasibility studies for larger or complex projects, Hydrologic and Hydraulic (H&H) studies, obtain staff or resources to develop cost-share strategy and identify potential match funding, evaluate facilities or areas to determine appropriate mitigation actions, incorporate environmental considerations early into program decisions, collect data for benefit cost analyses, environmental compliance and other program requirements, evaluation of potential solutions (i.e., alternative analysis), and project scoping across a wide variety of programs to incorporate sustainability, resilience and renewable building concepts.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Partnerships</td>
+                                                <td>Activities can include public and private stakeholders working together to identify funding sources, project goals, and to further identify risks/hazards for mitigation.</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Building Code</td>
+                                                <td>Activities can include evaluation/adoption and/or implementation of codes that reduce risk, enhance existing adopted codes to incorporate more current requirements or higher standards, and develop professional workforce capabilities through technical assistance and training.</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={projectTypeFMA}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <table class="">
+                                            <tr>
+                                                <th class="slds-p-around_small tableCol">Project Type</th>
+                                                <th class="slds-p-around_small">Activities:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Acquisition Demo-Relocation</td>
+                                                <td>Purchase of properties on a voluntary basis in order to remove structure(s) from natural hazards (flood/landslide/avalanche). <br />Structures must be demolished or relocated outside hazard area.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Property Acquisition and Structure Demolition Projects, Property Acquisition and Structure Relocation Projects</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Drainage/Flood Control</td>
+                                                <td>Stormwater management projects, including the construction, installation, or improvement of culverts, drainpipes, pumping stations, floodgates, rock, straw and log dams, drainage dips, and detention or retention basins. <br /><br />Flood protection measures for water and sanitary sewer systems or other utility systems. Slope stabilization or grading to direct flood waters away from homes, schools, businesses, utilities, or governmental facilities. <br /><br />Flood protection and stabilization measures for roads and bridges construction, demolition, or rehabilitation of: Dams, Dikes, Levees, Floodwalls, Seawalls, Groins, Jetties, Breakwaters, Stabilized sand dunes, Large-scale channelization of a waterway <br /><br />Vegetation management for shoreline stabilization (coastal, riverine, riparian, and other littoral zones) Soil stabilization and erosion control activities. <br /><br />Drought mitigation activities.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Localized Flood Risk Reduction Projects, Non-Localized Flood Risk Reduction Projects, Soil Stabilization, Infrastructure Retrofit, Green Infrastructure</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Elevation-Floodproofing</td>
+                                                <td>Elevation: Construction to elevate structures above the base flood elevation. Dry Floodproofing: Implementation of techniques to seal the structure from floodwaters. <br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Elevation (Structure Elevation); Dry Floodproofing (Dry Floodproofing of Historical Residential Structures, Dry Floodproofing of Non-Residential Structures)</span></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mitigation Reconstruction</td>
+                                                <td>Construction of an improved, elevated building on the same site where an existing building and/or foundation has been partially or completely demolished or destroyed.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Mitigation Reconstruction</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nature-Based Solutions/Green Infrastructure</td>
+                                                <td>Land conservation, greenways, wetland restoration, stormwater parks, floodplain restoration, rain gardens, vegetated swales, green roofs, rainwater harvesting, permeable pavement, tree canopy, tree trenches, green streets, coastal wetlands, oyster reefs, dunes, waterfront parks, and living shorelines</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Utility and Infrastructure Protection</td>
+                                                <td>Measures to reduce risk to existing utility systems, roads, bridges and other critical infrastructure. Activities may include retrofitting, relocation, and / or other measures to protect utilities and infrastructure from natural hazard impacts. Other activities such as replacing or retrofitting electrical transmission or distribution utility pole structures, and replacing water systems that have been burned and have caused contamination may also be considered under this category.</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template if:true={projectTypeFMATable}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-vertical_medium">
+                                        <table class="">
+                                            <tr>
+                                                <th class="slds-p-around_small tableCol">Project Type</th>
+                                                <th class="slds-p-around_small">Activities:</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Drainage/Flood Control</td>
+                                                <td>Stormwater management projects, including the construction, installation, or improvement of culverts, drainpipes, pumping stations, floodgates, rock, straw and log dams, drainage dips, and detention or retention basins. <br /><br />Flood protection measures for water and sanitary sewer systems or other utility systems. Slope stabilization or grading to direct flood waters away from homes, schools, businesses, utilities, or governmental facilities. <br /><br />Flood protection and stabilization measures for roads and bridges construction, demolition, or rehabilitation of: Dams, Dikes, Levees, Floodwalls, Seawalls, Groins, Jetties, Breakwaters, Stabilized sand dunes, Large-scale channelization of a waterway <br /><br />Vegetation management for shoreline stabilization (coastal, riverine, riparian, and other littoral zones) Soil stabilization and erosion control activities. <br /><br />Drought mitigation activities.<br /><br /><span class="reference">**As referenced in the Hazard Mitigation Assistance Guidance: Localized Flood Risk Reduction Projects, Non-Localized Flood Risk Reduction Projects, Soil Stabilization, Infrastructure Retrofit, Green Infrastructure</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nature-Based Solutions/Green Infrastructure</td>
+                                                <td>Land conservation, greenways, wetland restoration, stormwater parks, floodplain restoration, rain gardens, vegetated swales, green roofs, rainwater harvesting, permeable pavement, tree canopy, tree trenches, green streets, coastal wetlands, oyster reefs, dunes, waterfront parks, and living shorelines</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Utility and Infrastructure Protection</td>
+                                                <td>Measures to reduce risk to existing utility systems, roads, bridges and other critical infrastructure. Activities may include retrofitting, relocation, and / or other measures to protect utilities and infrastructure from natural hazard impacts. Other activities such as replacing or retrofitting electrical transmission or distribution utility pole structures, and replacing water systems that have been burned and have caused contamination may also be considered under this category.</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                <!--<lightning-input class="input" value={recordLocal.Project_Type__c} data-field="Project_Type__c" label="Project Type" name="ProjectType" type="text" onchange={fieldChanged}></lightning-input>-->
+                                <template if:true={projectValues}>
+                                    <lightning-combobox name="ProjectType"
+                                                    data-field="Project_Type__c"
+                                                    value={recordLocal.Project_Type__c}
+                                                    label="Project Type"
+                                                    placeholder="Select Project Type"
+                                                    options={projectValues}
+                                                    onchange={handleChangeProjectType}
+                                                    class="input"
+                                                    dropdown-alignment= "auto"
+                                                    disabled={isProjectTypeDisabled}
+                                                    required
+                                                    >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                            <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_12-of-12  slds-p-vertical_medium">
+                                <!--<lightning-input class="input" value={recordLocal.Hazard__c} data-field="Hazard__c" label="Hazard" name="Hazard" type="text" onchange={fieldChanged}></lightning-input>-->
+                                <template if:true={hazardValues}>
+                                    <lightning-combobox name="Hazard"
+                                                    data-field="Hazard__c"
+                                                    value={recordLocal.Hazard__c}
+                                                    label="Hazard"
+                                                    placeholder="Select Hazard"
+                                                    options={hazardValues}
+                                                    onchange={fieldChanged}
+                                                    class="input"
+                                                    dropdown-alignment= "auto"
+                                                    disabled={isHazardDisabled}
+                                                    required
+                                                    >
+                                    </lightning-combobox>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </article>
+        </div>
+    </div>
+
+</template>

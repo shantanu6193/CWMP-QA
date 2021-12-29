@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send English Email to Homeowner</description>
+        <name>Send_English_Email_to_Homeowner</name>
+        <label>Send English Email to Homeowner</label>
+        <locationX>478</locationX>
+        <locationY>462</locationY>
+        <actionName>Request_For_Information__c.CalOES_CWMP_Open_RFI_Notification_to_homeowner_from_Community_EN</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <description>Send Spanish Email to Homeowner</description>
+        <name>Send_Spanish_Email_to_Homeowner</name>
+        <label>Send Spanish Email to Homeowner</label>
+        <locationX>479</locationX>
+        <locationY>291</locationY>
+        <actionName>Request_For_Information__c.CalOES_CWMP_Open_RFI_Notification_to_homeowner_from_Community_ES</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <decisions>
+        <name>Condition_to_check_if_the_RFI_is_of_CWMP_Type</name>
+        <label>Condition to check if the RFI is of CWMP Type</label>
+        <locationX>167</locationX>
+        <locationY>364</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Condition_to_check_if_the_Applicant_Preferred_Language_is_Spanish</name>
+            <conditionLogic>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CWMP</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Preferred_Language__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Spanish</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Community Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Spanish_Email_to_Homeowner</targetReference>
+            </connector>
+            <label>Condition to check if the Applicant Preferred Language is Spanish</label>
+        </rules>
+        <rules>
+            <name>Condition_to_check_if_the_Applicant_Preferred_Language_is_Other_than_Spanish</name>
+            <conditionLogic>1 AND 2 AND 3 AND 4 AND 5 AND (6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CWMP</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Preferred_Language__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Spanish</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue></stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Applicant__r.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Community Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Assessment</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_English_Email_to_Homeowner</targetReference>
+            </connector>
+            <label>Condition to check if the Applicant Preferred Language is Other than Spanish</label>
+        </rules>
+    </decisions>
+    <description>CWMP Open RFI Notification from Community to homeowner</description>
+    <interviewLabel>CalOES CWMP Open RFI Notification from Community to homeowner {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CalOES CWMP Open RFI Notification from Community to homeowner</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Condition_to_check_if_the_RFI_is_of_CWMP_Type</targetReference>
+        </connector>
+        <object>Request_For_Information__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

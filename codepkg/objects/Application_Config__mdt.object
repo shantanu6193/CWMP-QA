@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Bypass_Trigger_Execution__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Disable trigger for entire application</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Bypass Trigger Execution</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Class_to_Execute__c</fullName>
+        <description>Name of the class which to be execute</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Class to Execute</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Is Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <description>Select All in this project only If functionality is required for all the projects.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Project</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Cal_OES_Public_Health_Ordering_System</fullName>
+                    <default>true</default>
+                    <label>Cal_OES_Public_Health_Ordering_System</label>
+                </value>
+                <value>
+                    <fullName>Cal_OES_Donation_Intake_Portal</fullName>
+                    <default>false</default>
+                    <label>Cal_OES_Donation_Intake_Portal</label>
+                </value>
+                <value>
+                    <fullName>CalOES_HMA</fullName>
+                    <default>false</default>
+                    <label>CalOES_HMA</label>
+                </value>
+                <value>
+                    <fullName>Cal_OES_Support</fullName>
+                    <default>false</default>
+                    <label>Cal_OES_Support</label>
+                </value>
+                <value>
+                    <fullName>All</fullName>
+                    <default>false</default>
+                    <label>All</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Sequence</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Application Config</label>
+    <pluralLabel>Application Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

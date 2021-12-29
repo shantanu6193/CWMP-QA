@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <description>Update all the respective Project Closeout status to Closeout Complete if Closeout Task is marked as Complete</description>
+    <interviewLabel>PA Cascade Project Closeout Status With Closeout Task Status {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>PA Cascade Project Closeout Status With Closeout Task Status</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update all the respective Project Closeout to Closeout Complete</description>
+        <name>Update_all_the_Project_Closeout_to_Closeout_Complete</name>
+        <label>Update all the Project Closeout to Closeout Complete</label>
+        <locationX>639</locationX>
+        <locationY>153</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Closeout_Task__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Closeout Complete</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Project_Closeout__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>93</locationX>
+        <locationY>65</locationY>
+        <connector>
+            <targetReference>Update_all_the_Project_Closeout_to_Closeout_Complete</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Transmittals</stringValue>
+            </value>
+        </filters>
+        <object>Closeout_Task__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

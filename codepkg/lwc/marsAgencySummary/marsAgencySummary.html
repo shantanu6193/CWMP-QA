@@ -1,0 +1,141 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+   <div class="table_light">
+        <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12 slds-p-top_x-small">
+                <lightning-input type="date" class="slds-p-left_medium" name="dateInput" label="Select a Date"  onchange={handleDateChange} required></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12 slds-p-top_x-small slds-text-align_right">
+                <lightning-button variant="brand" label="Retreive" title="Retreive" onclick={handleSearch} class="slds-var-m-left_medium slds-p-top_x-large"></lightning-button>
+            </div>    
+        </div>
+    </div>   
+    <template if:true={showTables}>
+        <div class="table_light"> 
+            <div class="slds-grid slds-wrap slds-gutters_direct">
+                <div class="slds-col">
+                    <div class="slds-p-top_small slds-align_absolute-center">
+                        Administrative Rate: {adminRateFactor}
+                    </div>
+                </div>
+            </div>
+        </div>    
+            <div class="table_light">
+                <div class="slds-size_12-of-12">
+                    <h2 class="slds-text-heading_small slds-p-top_medium">Salary Survey</h2>
+                </div>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout fire_box" id="Table2">
+                    <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="slds-size_3-of-12" scope="col">
+                            <div class="slds-truncate" title="Classification Title">Classification Title</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Salary Rate (ST)">Salary Rate (ST)</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="WC and or UI">Overtime</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Portal-to-Portal">Portal-to-Portal</div>
+                        </th> 
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <template  for:each={salarysurveylineItems} for:item="salarySurveyLineItem" for:index="index">
+                            <tr class="slds-hint-parent" key={salarySurveyLineItem.Id}>
+                                <td data-label="Classification Title" scope="row">
+                                    <div class="slds-truncate" title={salarySurveyLineItem.Classification_Title__c}>
+                                        {salarySurveyLineItem.ClassificationTitle}
+                                    </div>
+                                </td>
+                                <td data-label="Salary Rate (ST)" scope="row">
+                                    <div class="slds-truncate" title={salarySurveyLineItem.SalaryRate}>
+                                        <lightning-formatted-number value={salarySurveyLineItem.SalaryRate}  format-style="currency" currency-code="USD"></lightning-formatted-number>
+                                    </div>
+                                </td>
+                                <td data-label="Overtime" scope="row">
+                                    <div class="slds-truncate" title="">
+                                        {salarySurveyLineItem.Overtime}
+                                    </div>
+                                </td>
+                                <td data-label="Portal-to-Portal" scope="row">
+                                    <div class="slds-truncate" title="">
+                                        {salarySurveyLineItem.PortaltoPortal}
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </template>
+                        <template if:false={showSalarySurveyItem}>
+                        <tr><td scope="col" colspan="5" class="redtext">Salary Survey Item records are not found</td> </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>  
+            <div class="table_light">
+                <div class="slds-size_12-of-12">
+                    <h2 class="slds-text-heading_small slds-p-top_medium">Special Equipment</h2>
+                </div>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-size_1-of-4" scope="col">
+                                <div class="slds-truncate" title="Classification Title">Equipment Type</div>
+                            </th>
+                            <th class="slds-size_1-of-4" scope="col">
+                                <div class="slds-truncate" title="FEMA Code">FEMA Code</div>
+                            </th>
+                            <th class="slds-size_1-of-4" scope="col">
+                                <div class="slds-truncate" title="Rate">Rate</div>
+                            </th>
+                            <th class="slds-size_1-of-4" scope="col">
+                                <div class="slds-truncate" title="Description">Description</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={splEquipLineItemRecords} for:item="splEquipLineItem" for:index="index">
+                            <tr class="slds-hint-parent" key={splEquipLineItem.Id}>
+                                <td data-label="Classification Title" scope="row">
+                                    <div class="slds-truncate" title={splEquipLineItem.Special_Equipment_Type__c}>
+                                        {splEquipLineItem.Special_Equipment_Type__c}
+                                    </div>
+                                </td>
+                                <td data-label="FEMA Code" scope="row">
+                                    <div class="slds-truncate" title={splEquipLineItem.FEMA_CODE__c}>
+                                        {splEquipLineItem.FEMA_CODE__c}
+                                    </div>
+                                </td>
+                                <td data-label="Rate" scope="row">
+                                    <div class="slds-truncate" title={splEquipLineItem.Revised_Rate__c}>
+                                        <lightning-formatted-number value={splEquipLineItem.Revised_Rate__c}
+                                            format-style="currency" currency-code="USD">
+                                        </lightning-formatted-number>
+                                    </div>
+                                </td>
+                                <td data-label="CDescription" scope="row">
+                                    <div class="slds-truncate" title={splEquipLineItem.Description__c}>
+                                        {splEquipLineItem.Description__c}
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                        <template if:false={showSpecialEquipmentItem}>
+                            <tr><td scope="col" colspan="4" class="redtext">Special Equipment Item records are not found</td> </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+            <template if:true={showPrint}>
+                <div class="slds-grid slds-wrap slds-grid_vertical-align-end">
+                    <div class="slds-col slds-p-top_x-small slds-text-align_right">
+                        <lightning-button variant="brand" label="Print" title="Print" onclick={handlePrint} class="slds-var-m-left_medium slds-p-top_x-large"></lightning-button>
+                    </div>    
+                </div>
+            </template>
+        </template>
+    <!--</div>-->
+</template>

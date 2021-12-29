@@ -1,0 +1,90 @@
+<!--
+ - Created by hp on 2020-04-04.
+ - Updated by SP on 2020-04-22.
+ -->
+
+<aura:component description="Order_ProductsEdit" implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes"
+                controller="Order_ProductsEditCtrl" access="global">
+    <aura:attribute name="ColumnsToBeDisplay" type="String" default='[   {      "APIName":"Quantity__c",      "Label":"Quantity Requested",      "isRequired":true},  {      "APIName":"Unit_Price__c",      "Label":"Unit Price",      "isRequired":true}, {      "APIName":"UOM__c",      "Label":"Unit of Measure"},{      "APIName":"Description__c",      "Label":"Product Description"}]' description="Please provide JSON array for columns to display on Edit Products Layout."/>
+    <!--<aura:attribute name="ColumnsToBeDisplayOnPHOS" type="String" default='[   {      "APIName":"Quantity__c",      "Label":"Quantity Requested (ea)",      "isRequired":true,	  "OnChangeFormula":"Quantity_Back_Ordered__c=Quantity__c-Quantity_Filled__c" }, {      "APIName":"Quantity_Filled__c",      "Label":"Quantity Filled",	  "OnChangeFormula":"Quantity_Back_Ordered__c=Quantity__c-Quantity_Filled__c" },   {      "APIName":"Quantity_Back_Ordered__c",      "Label":"Quantity Back Ordered"},   {      "APIName":"Description__c",      "Label":"Item Description" },   {      "APIName":"Equivalent_Substitutes_Acceptable__c",      "Label":"Substitutes OK?" },   {      "APIName":"Warehouse_Info__c",      "Label":"Warehouse SKU" },  {      "APIName":"Fulfilment_Entity_Warehouse__c",      "Label":"Fulfilment Entity / Warehouse" },   {      "APIName":"Carrier_Tracking__c",      "Label":"Carrier Tracking # (i.e. UPS number)"   , "enablePostSent":true  },   {      "APIName":"Date_Ordered__c",      "Label":"Delivered On Date"    ,    "enablePostSent":true  },   {      "APIName":"Mission__c",      "Label":"Mission Task #"     ,    "enablePostSent":true  },  {      "APIName":"Status__c",      "Label":"Status",     "isDisabled":true   }]' description="Please provide JSON array for columns to display on Edit Products Layout fpr PHOS"/>-->
+    <aura:attribute name="ColumnsToBeDisplayOnPHOS" type="String" default='[ {      "APIName":"Fulfilment_Entity_Warehouse__c",      "Label":"Fulfilment Entity / Warehouse" },   {      "APIName":"Warehouse_Info__c",      "Label":"Warehouse SKU" },  {      "APIName":"Quantity__c",      "Label":"Quantity Requested (ea)",      "isRequired":true }, {      "APIName":"Quantity_Filled__c",      "Label":"Quantity Filled" },{      "APIName":"Quantity_Back_Ordered__c",      "Label":"Available Quantity" },   {      "APIName":"Description__c",      "Label":"Item Description" },   {      "APIName":"Equivalent_Substitutes_Acceptable__c",      "Label":"Substitutes OK?" },    {      "APIName":"Status__c",      "Label":"Status",     "isDisabled":true   }]' description="Please provide JSON array for columns to display on Edit Products Layout for PHOS"/>
+    <aura:attribute name="fieldDetailList" type="List" default="[]"/>
+    <aura:attribute name="orderId" type="String" description=""/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="products" type="List" description="Available Product List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="otherproductId" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="loaded" type="Boolean" description="Is load done?" default="false"/>
+    <aura:attribute name="isQuantityEditable" type="Boolean" description="Edit quantity editable? " default="false"/>
+    <aura:attribute name="IsCommunity" type="String" description=" yes if it is community" default="No"/>
+    <aura:attribute name="productFamily" type="List" description="Product Family for Product List" default="[]"/>
+    <aura:attribute name="fulfilmentOptions" type="List" description="fulfilment entity/warehouse" default="[]"/>
+    <aura:attribute name="appName" type="String" description="" default=""/>
+    <aura:attribute name="isLoadSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="isQuickSave" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <lightning:navigation aura:id="navLink"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+
+    <aura:if isTrue="{!v.isLoadSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 border_div">
+            <div class="slds-col slds-table_structure dummyClass">
+                <aura:if isTrue="{!v.loaded}">
+                    <table id="editProduct" class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+                        <thead>
+                        <tr class="slds-line-height_reset">
+                            <!--<th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Product Family">Product Family</div>
+                            </th>
+                            <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Item Type">Product Name</div>
+                            </th>
+                             <th class="slds-size_2-of-12" scope="col">
+                                <div class="slds-truncate" title="Product Code">Product Code</div>
+                            </th>-->
+                            <th class="slds-size_4-of-12" scope="col">
+                                <div class="slds-truncate" title="Product Name">Product Name</div>
+                            </th>
+                            <aura:iteration items="{!v.fieldDetailList}" var="fieldDetail">
+                                <aura:if isTrue="{!fieldDetail.APIName =='Warehouse_Info__c'}">
+                                    <th class="slds-size_3-of-12" scope="col">
+                                        <div class="slds-truncate" title="{!fieldDetail.Label}">{!fieldDetail.Label}</div>
+                                    </th>
+                                <aura:set attribute="else">
+                                    <th class="slds-size_2-of-12" scope="col">
+                                        <div class="slds-truncate" title="{!fieldDetail.Label}">{!fieldDetail.Label}</div>
+                                    </th>
+                                </aura:set>
+                            </aura:if>
+                            </aura:iteration>
+                            <th class="slds-size_1-of-12" scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:if isTrue="{!v.loaded}">
+                            <aura:iteration items="{!v.orderItems}" indexVar="index" var="orderItem">
+                                <c:Order_ProductsEditRow aura:id="rowRecord" index="{!index}" fieldDetailList="{!v.fieldDetailList}" orderItems="{!v.orderItems}" orderItem="{!orderItem}" products="{!v.products}" productsMap="{!v.productsMap}" productFamily="{!v.productFamily}" isQuantityEditable="{!v.isQuantityEditable}" rowDisabled="{!orderItem.Status__c == 'Sent' ? true : false}" IsCommunity="{!v.IsCommunity}"/>
+                            </aura:iteration>
+                        </aura:if>
+                        </tbody>
+                    </table>
+                    <div>
+                        <p class="error">Note: Item Description cannot exceed 255 characters</p>
+                    </div>
+                </aura:if>
+            </div>
+            <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-m-top_medium slds-m-bottom_small">
+                <lightning:button class="position-inherit" variant="brand" label="Cancel" title="Cancel" onclick="{!c.cancelToClose}" />
+                <lightning:button class="position-inherit" variant="brand" label="Save &amp; Close" title="Save &amp; Close" onclick="{!c.saveAndCloseProducts}" />
+                <lightning:button class="position-inherit" variant="brand" label="Quick Save" title="Quick Save" onclick="{!c.quickSaveProducts}" />
+            </div>
+        </div>
+    </div>
+
+</aura:component>

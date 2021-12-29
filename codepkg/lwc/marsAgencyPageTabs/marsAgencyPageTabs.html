@@ -1,0 +1,29 @@
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+   </template>
+    <template if:false={showLoader}>
+         <lightning-tabset active-tab-value="agency_profile">
+             <lightning-tab label="Agency Profile" value="agency_profile">
+                 <c-mars-vertical-navigation></c-mars-vertical-navigation>
+             </lightning-tab>
+             <lightning-tab label="F-42 Entries" value="f_42">
+                 <c-mars-F-42-entry></c-mars-F-42-entry>
+             </lightning-tab>
+             <lightning-tab label="F-42 Review" value="f_42_review">
+                 <c-mars-f42-review-additional-info-req></c-mars-f42-review-additional-info-req>
+             </lightning-tab>
+             <template if:true={getTabAccess}>
+                 <lightning-tab label="Invoices" value="invoices">
+                     <c-mars-invoice-list></c-mars-invoice-list>
+                 </lightning-tab>
+            </template>
+             <lightning-tab label="Expense Claim" value="reimbursement">
+                 <c-mars-reimbursement-form></c-mars-reimbursement-form>
+             </lightning-tab>
+             <lightning-tab label="Expense Claim Review" value="expense_claim_review">
+                <c-mars-reimbursement-review-list></c-mars-reimbursement-review-list>
+            </lightning-tab>
+         </lightning-tabset>
+    </template>
+</template>

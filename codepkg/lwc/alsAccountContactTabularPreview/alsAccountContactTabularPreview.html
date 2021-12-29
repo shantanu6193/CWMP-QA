@@ -1,0 +1,134 @@
+<!--
+ - Created by StackNexus Admin on 20-01-2021.
+ -->
+
+<!-- Als Account Contact Tabular Preview -->
+<template>
+    <article class="slds-card">
+        <!--Card Header-->
+        <div class="slds-card__header slds-grid slds-border_bottom">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate slds-p-bottom_x-small">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact" title="contact">
+                      <lightning-icon icon-name="action:add_contact" size="xx-small"></lightning-icon>
+                      <span class="slds-assistive-text">contact</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Account Contacts" onclick={navigateToContactsList}>
+                            <span>Account Contacts ({listLength})</span>
+                        </a>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <button class="slds-button slds-button_neutral" onclick={openModal}>New</button>
+                </div>
+            </header>
+        </div>
+        <!--Card Body-->
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12 slds-scrollable--x ">
+
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12 ">
+
+                    <table>
+                        <thead>
+                        <tr class="slds-line-height_reset ">
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Contact Name" style="">Contact Name</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="" title="Title" >Title</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="" title="Contact Role" >Contact Role</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="" title="Status" >Status</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="" title="Action" >Action</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <template for:each={accountContacts} for:item="accountContact" for:index="index">
+                            <tr key={accountContact.Id}>
+                                <td>
+                                    <a href="javascript:void(0);" data-value={accountContact.Contact_Name__c} onclick={navigateToContact}>{accountContact.Contact_Name__r.Name} </a>
+                                </td>
+                                <td>
+                                    <dd  title="Description for second label">{accountContact.Contact_Name__r.Title}</dd>
+                                </td>
+                                <td>
+                                    <dd  title="Description for Third Label">{accountContact.Contact_Role_Global_List__c}</dd>
+                                </td>
+                                <td>
+                                    <dd  title="Description for Third Label">{accountContact.Status__c}</dd>
+                                </td>
+                                <td>
+                                    <!--Drop Down Menu (Edit and Delete)-->
+                                    <div class="slds-shrink-none">
+                                        <div class="slds-dropdown-trigger slds-dropdown-trigger_click " data-dropdown-id={index} onclick={handleDropdownClick} onblur={handleDropdownBlur}>
+                                            <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="Show More">
+                                                <lightning-icon icon-name="utility:down" size="xx-small"></lightning-icon>
+                                                <span class="slds-assistive-text">Show More</span>
+                                            </button>
+                                            <div class="slds-dropdown slds-dropdown_right">
+                                                <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="javascript:void(0);" role="menuitem" tabindex="0" data-value={accountContact.Id} data-edit-id={accountContact.Id} onclick={openModal}>
+                                                            <span class="slds-truncate"  title="Edit">Edit</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul class="slds-dropdown__list" role="menu" aria-label="Show More">
+                                                    <li class="slds-dropdown__item" role="presentation">
+                                                        <a href="javascript:void(0);" role="menuitem" tabindex="0" data-value={accountContact.Id} data-delete-id={accountContact.Id} onclick={handleDelete}>
+                                                            <span class="slds-truncate" title="Delete" >Delete</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer class="slds-card__footer">
+            <a class="slds-card__footer-action" href="javascript:void(0);" onclick={navigateToJunctionList}>View All
+                <span class="slds-assistive-text">Contacts</span>
+            </a>
+        </footer>
+    </article>
+    <!--Modal Open-->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium"  >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" >
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium"></h3>
+                </header>
+                <c-als-acount-contact-edit onclosemodal={hanldeCloseModal} account-id={recordId} junction-id={accountContactId} ></c-als-acount-contact-edit>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

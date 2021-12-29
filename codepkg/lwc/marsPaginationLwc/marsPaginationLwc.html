@@ -1,0 +1,16 @@
+<!--  paginationNavigation.html  -->
+<template>
+  <lightning-layout>
+    <lightning-layout-item>
+  <lightning-button  label="Previous" icon-name="utility:chevronleft" title="Base action"
+    onclick={handlePrev} class="slds-m-left_x-small" disabled={disablePrevious}></lightning-button>
+  </lightning-layout-item>
+  <lightning-layout-item flexibility="grow" >
+    <p class="slds-grid_align-center slds-grid_vertical-align-center">Displaying {currentPage} of {totalPages} Pages</p>
+  </lightning-layout-item>
+  <lightning-layout-item>
+  <lightning-button  label="Next" icon-name="utility:chevronright" icon-position="right" title="Base action"
+    onclick={handleNext} class="slds-m-left_x-small" disabled={disableNext}></lightning-button>
+  </lightning-layout-item>
+  </lightning-layout>
+</template>

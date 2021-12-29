@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Hold info of Multiple docs generated through Doc Gen Template</description>
+    <fields>
+        <fullName>Attachment_for_Primary_Record__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Based on Check Document will get attach to Primary Record</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Attachment for Primary Record</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_for_Related_Object1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Based on Check attachments are render on Related Obj1</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Attachment for Related Object1</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_for_Related_Object2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Attachment for Related Object2</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Attachment_for_Related_Object3__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Based on Check box Attach Doc to Related Object3 through Documents.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Attachment for Related Object3</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Document_Generation_Config__c</fullName>
+        <description>An Induvial file to link to Docu Gen Config.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Document Generation Config</label>
+        <referenceTo>Document_Generation_Config__mdt</referenceTo>
+        <relationshipLabel>Docu Generation Individual Child Configs</relationshipLabel>
+        <relationshipName>Docu_Generation_Individual_Child_Configs</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Document Type</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Obligating</fullName>
+                    <default>false</default>
+                    <label>Obligating</label>
+                </value>
+                <value>
+                    <fullName>Compliance</fullName>
+                    <default>false</default>
+                    <label>Compliance</label>
+                </value>
+                <value>
+                    <fullName>Closeout</fullName>
+                    <default>false</default>
+                    <label>Closeout</label>
+                </value>
+                <value>
+                    <fullName>De Obligation</fullName>
+                    <default>false</default>
+                    <label>De Obligation</label>
+                </value>
+                <value>
+                    <fullName>Withdrawn</fullName>
+                    <default>false</default>
+                    <label>Withdrawn</label>
+                </value>
+                <value>
+                    <fullName>Reimbursement Request</fullName>
+                    <default>false</default>
+                    <label>Reimbursement Request</label>
+                </value>
+                <value>
+                    <fullName>Supplement</fullName>
+                    <default>false</default>
+                    <label>Supplement</label>
+                </value>
+                <value>
+                    <fullName>miscellaneous</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous</label>
+                </value>
+                <value>
+                    <fullName>Notification</fullName>
+                    <default>true</default>
+                    <label>Notification</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>New_File_Name__c</fullName>
+        <description>The Name to display on Document.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Document Title</label>
+        <length>200</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Original_File_Name__c</fullName>
+        <description>Holds Template Doc Name</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Original File Name</label>
+        <length>200</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Docu Generation Individual Child Config</label>
+    <pluralLabel>Docu Generation Individual Child Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

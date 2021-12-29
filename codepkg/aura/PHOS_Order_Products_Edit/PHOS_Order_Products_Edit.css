@@ -1,0 +1,76 @@
+/**
+ * Created by PREM on 28-03-2020.
+ */
+
+.THIS .slds-truncate{
+    white-space:normal;
+}
+.THIS .slds-table_cell-buffer tr > th:last-child{
+    padding:4px;
+}
+.THIS .slds-table_cell-buffer tr > th:first-child{
+    padding-left:8px;
+}
+.THIS .slds-table_cell-buffer tr>td:first-child{
+    padding-left:8px;
+}
+.THIS .slds-table th{
+    text-align:center;
+    background:#375283;
+    color: #fff;
+}
+.THIS th,
+.THIS td {
+    text-align: center;
+    padding:10px;
+}
+.THIS .slds-table{
+    border:1px solid rgb(212,212,212);
+}
+.THIS .slds-form-element{
+    /*padding-left: 10px;*/
+}
+/*.THIS .slds-form-element__label{
+    display:none;
+}*/
+
+.THIS .custom-label{
+    font-weight: 400;
+    color: #5a5959;
+    font-size: .75rem;
+}
+
+.THIS hr{
+    border-top: 2px solid #3f6e99;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.THIS .error{
+    font-size : 13px;
+    foreground-color: #ff0000;
+    background-color: #ffffff;
+    font-weight: normal;
+}
+
+.THIS .slds-textarea {
+    height:100px !important;
+}
+.THIS table{
+    border: 2px solid #CCCCCC;
+}
+.THIS .slds-table_resizable-cols thead th{
+    padding:10px;
+}
+.THIS .emailText a {
+    color:#006dcc;
+}
+.THIS .slds-form-element__label {
+    font-weight:normal;
+}
+.THIS .helptext-div{
+    display:flex;
+}
+.THIS .reqired-span{
+padding-top: 5px;
+}

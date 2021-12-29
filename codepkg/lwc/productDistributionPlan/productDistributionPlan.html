@@ -1,0 +1,101 @@
+<!--
+ - Created by Shivraj on 27-08-2020.
+ -->
+
+<!-- Product Distribution Plan -->
+<template>
+    <template if:true={showLoader}>
+        <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+        <div class="slds-grid">
+            <div class="slds-col slds-p-around--large">
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid slds-p-horizontal_x-large card-header">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <p class="slds-card__header-link slds-truncate" title="Accounts">
+                                        <span>Order Product Distribution Plan</span>
+                                    </p>
+                                </h2>
+                            </div>
+                            <div class="slds-no-flex">
+                                <button class="slds-button slds-button_brand"  onclick={quickSave}>Quick Save</button>
+                            </div>
+                            <div class="slds-no-flex slds-p-horizontal--small">
+                                <button class="slds-button slds-button_brand "  onclick={submit}>Save & Close</button>
+                            </div>
+                            <div class="slds-no-flex">
+                                <button class="slds-button slds-button_brand"  onclick={close}>Close</button>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <table class="slds-table slds-table_bordered slds-border_left slds-border_right">
+                            <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Product Family">Product Family</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Product Name">Product Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Product Code">Product Code</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Quantity Filled">Quantity Filled</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Item Description">Item Description</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Warehouse">Warehouse</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate ppp" title="Status">Status</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={recordLocal.Order_Products__r} for:item="orderProduct" for:index="index">
+                                    <c-product-distribution-plan-rows
+                                            key={orderProduct.index}
+                                            record={orderProduct}
+                                            index ={index}
+                                            data-id={index}
+                                            >
+                                    </c-product-distribution-plan-rows>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="slds-card__header slds-grid slds-p-horizontal_x-large card-header">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <p class="slds-card__header-link slds-truncate" title="Accounts">
+                                        <span></span>
+                                    </p>
+                                </h2>
+                            </div>
+                            <div class="slds-no-flex">
+                                <button class="slds-button slds-button_brand"  onclick={quickSave}>Quick Save</button>
+                            </div>
+                            <div class="slds-no-flex slds-p-horizontal--small">
+                                <button class="slds-button slds-button_brand "  onclick={submit}>Save & Close</button>
+                            </div>
+                            <div class="slds-no-flex">
+                                <button class="slds-button slds-button_brand"  onclick={close}>Close</button>
+                            </div>
+                        </header>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </template>
+</template>

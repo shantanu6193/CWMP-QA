@@ -1,0 +1,27 @@
+/* 
+.slds-file-selector__dropzone{ 
+    border: none;
+}
+.slds-file-selector__dropzone .slds-file-selector__text{ 
+    display: none !important;
+}  */
+/* @media (min-width: 48em) {
+    .slds-form_horizontal .slds-form-element .slds-form-element__control{
+        padding-left: 70% !important;
+    }
+    .slds-form_horizontal .slds-form-element .slds-form-element__label{
+        max-width: calc(70% - var(--lwc-squareIconUtilityMedium,1.25rem)) !important;
+    }
+} */
+.slds-error_msg{
+    color: red;
+}
+.slds-width_175px{
+    width: 175px;
+}
+.slds-width_55px{
+    width: 55px;
+}
+.th .td{
+    text-align: center !important;
+}

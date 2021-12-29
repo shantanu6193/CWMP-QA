@@ -1,0 +1,27 @@
+<!--
+ - Created by PREM on 10-09-2020.
+ -->
+
+<!-- Phos Requestor Agency Lookup -->
+<template>
+            <c-lookup
+                    data-custom="lookup"
+                    data-lookup="Agency__c"
+                    label="Requester Agency"
+                    onsearch={handleRequestorAgencySearch}
+                    onselectionchange={handleRequestorAgencyChange}
+                    placeholder="Enter / Search Product (3 or more characters)"
+                    is-multi-entry={isMultiEntry}
+                    load-data-on-init = {loadDataOnLookup}
+                    local-search = {loadDataOnLookup}
+                    scroll-after-n-items = "10"
+                    errors={agencyRequired}
+                    selection={agencySelection}
+                    search-term={recordLocal.Requestor_Agency_Text__c}
+	                create-new-account={createNewAccount}
+	                new-record-labels={newRecordLabels}
+	                object-name='Account'
+                is-disabled={isDisabled}
+                    required>
+            </c-lookup>
+</template>

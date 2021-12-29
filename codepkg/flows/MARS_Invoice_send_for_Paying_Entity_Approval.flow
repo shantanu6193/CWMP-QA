@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <name>Update_Status_of_Invoice</name>
+        <label>Update Status of Invoice</label>
+        <locationX>425</locationX>
+        <locationY>376</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Invoice_Record.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Pending For Paying Entity Approval</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Invoice_Record</targetReference>
+        </connector>
+    </assignments>
+    <interviewLabel>MARS - Invoice send for Paying Entity Approval {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MARS - Invoice send for Paying Entity Approval</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_Invoice_Record</name>
+        <label>Get Invoice Record</label>
+        <locationX>176</locationX>
+        <locationY>212</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Send_Invoice</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Invoice__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Invoice_Record</name>
+        <label>Update Invoice Record</label>
+        <locationX>648</locationX>
+        <locationY>381</locationY>
+        <connector>
+            <targetReference>Record_send_for_approver</targetReference>
+        </connector>
+        <inputReference>Get_Invoice_Record</inputReference>
+    </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <screens>
+        <name>Record_send_for_approver</name>
+        <label>Record send for approver</label>
+        <locationX>859</locationX>
+        <locationY>379</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Message</name>
+            <fieldText>&lt;p&gt;Record is successfully send for approval &lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Send_Invoice</name>
+        <label>Send Invoice</label>
+        <locationX>180</locationX>
+        <locationY>377</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Status_of_Invoice</targetReference>
+        </connector>
+        <fields>
+            <name>Invoice_Message</name>
+            <fieldText>&lt;p&gt;Send an Invoice  {!Get_Invoice_Record.Name} for Approval&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Invoice_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>RecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

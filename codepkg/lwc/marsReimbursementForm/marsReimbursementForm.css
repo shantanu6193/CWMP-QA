@@ -1,0 +1,54 @@
+.text_center input {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.slds-table_bordered,
+.slds-table--bordered {
+    border-top: 1px solid rgb(136, 135, 135);
+    border-left: 1px solid rgb(136, 135, 135);
+}
+
+.slds-table thead th {
+    border-right: 1px solid rgb(136, 135, 135);
+    /*text-align: center;*/
+    text-transform: uppercase;
+    border-bottom: 1px solid rgb(136, 135, 135);
+}
+
+.slds-table_bordered tbody td,
+.slds-table_bordered tbody th,
+.slds-table--bordered tbody td,
+.slds-table--bordered tbody th {
+    /*text-align: center;*/
+    border-right: 1px solid rgb(136, 135, 135);
+    text-transform: uppercase;
+    border-bottom: 1px solid rgb(136, 135, 135);
+}
+
+.sign_reim canvas.signCanvas {
+    width: 100%;
+}
+
+.attach_btn {
+    color: #000;
+    border: 1px solid #474646;
+    border-radius: 8px;
+}
+
+.mars_bg {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+.textareaheight {
+    height: 140px !important;
+}
+
+.slds-input {
+    text-align: center;
+ }
+ .outputfont{
+    font-weight: bold;
+}

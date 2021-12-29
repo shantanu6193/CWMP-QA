@@ -1,0 +1,153 @@
+<!--
+ - Created by PREM on 29-12-2020.
+ -->
+
+<!-- Phos Community Home -->
+<template>
+    <div class="slds-grid slds-wrap home-page-container">
+        <div class="slds-col slds-size_12-of-12 phos-home">
+            <div class="slds-grid slds-wrap container">
+                <div class="slds-col slds-size_12-of-12 slds-align_absolute-center">
+                    <div class="slds-grid slds-wrap" style="width:100%">
+                        <div class="slds-col slds-size_12-of-12 slds-p-around_medium ">
+                            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12">
+                                    <h1 class="slds-text-color_inverse slds-text-align_center">WELCOME TO</h1>
+                                </div>
+                                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_10-of-12 slds-size_12-of-12 slds-p-top_large slds-p-bottom_x-large">
+                                    <h1 class="slds-text-color_inverse slds-text-align_center">PUBLIC HEALTH ORDERING SYSTEM</h1>
+                                </div>
+                            </div>
+                            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                <div class="slds-col slds-large-size_8-of-12 slds-medium-size_8-of-12 slds-small-size_10-of-12 slds-size_12-of-12 searchSection">
+                                    <lightning-input class="search-bar" type="text" variant="label-hidden" placeholder="Search" onchange={handleSearchChange} onkeypress={handleEnterPress}></lightning-input>
+                                    <button class="slds-button slds-button_brand" onclick={searchHandler}>Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_10-of-12 slds-align_absolute-center  ">
+            <div class="slds-grid slds-wrap slds-size_12-of-12 slds-grid_align-center slds-grid_vertical-align-end slds-p-top_medium">
+                <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large"><!--slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12-->
+                    <div class="slds-p-bottom_medium">
+                        <p class="slds-text-align_center lower-heading">Resource Request/ Orders</p>
+                    </div>
+                    <div class="tiles slds-text-align_center" onclick={navigateToOrderListView}>
+                        <img class="tile-images image-div" src={orderLogo} alt="Resource Request/ Orders">
+                    </div>
+                </div>
+                <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                    <div class="slds-p-bottom_medium">
+                        <p class="slds-text-align_center lower-heading">Reports</p>
+                    </div>
+                    <div class="tiles slds-text-align_center" onclick={navigateToReportListView}>
+                        <img class="tile-images image-div" src={reportLogo} alt="Reports">
+                    </div>
+                </div>
+                <template if:true={userRegPermission}>
+                    <div class="slds-col slds-size_4-of-12 image-col slds-p-top_large">
+                        <div class="slds-p-bottom_medium">
+                            <p class="slds-text-align_center lower-heading">User Registration Requests</p>
+                        </div>
+                        <div class="tiles slds-text-align_center" onclick={navigateToUserRegistrationListView}>
+                            <img class="tile-images image-div" src={registrationLogo} alt="User Registration Requests">
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="slds-col slds-size_12-of-12 slds-p-top_large slds-m-top_medium">
+            <div class="slds-grid slds-wrap popularContents">
+                <div class="slds-col slds-size_12-of-12 slds-align_absolute-center slds-text-align_center slds-p-top_large slds-m-top_medium slds-p-horizontal_large announcement-heading">
+                    <h2 class="announcement-header">Document Repository</h2>
+                </div>
+                <div class="slds-col slds-size_10-of-12 slds-p-bottom_large slds-m-bottom_medium announcement-body">
+                    <div class="slds-grid slds-wrap slds-text-align--center slds-gutters_small slds-grid_align-space">
+                        <template for:each={docList} for:item="doc" for:index="index">
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_12-of-12  slds-p-top_large" key={doc.Id}>
+                                <div>
+                                    <img src={newsMedia} alt="docs" class="slds-p-bottom_medium announcement-image">
+                                </div>
+                                <div>
+                                    <a class="slds-link slds-text-color_inverse" href={doc.URL__c}>{doc.MasterLabel}</a>
+                                </div>
+                            </div>
+                        </template>
+                        <!--<div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12  slds-p-top_large">
+                            <div>
+                                <img src={newsMedia} class="slds-p-bottom_medium announcement-image">
+                            </div>
+                            <div>
+                                <a class="slds-link slds-text-color_inverse">Staffing - RFI - LTC_07_29_2020</a>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                            <div>
+                                <img src={newsMedia} class="slds-p-bottom_medium announcement-image">
+                            </div>
+                            <div>
+                                <a class="slds-link slds-text-color_inverse">Staffing - RFI - LTC_07_29_2020</a>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                            <div>
+                                <img src={newsMedia} class="slds-p-bottom_medium announcement-image">
+                            </div>
+                            <div>
+                                <a class="slds-link slds-text-color_inverse">Staffing - RFI - LTC_07_29_2020</a>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-small-size_6-of-12 slds-size_6-of-12 slds-p-top_large">
+                            <div>
+                                <img src={newsMedia} class="slds-p-bottom_medium announcement-image">
+                            </div>
+                            <div>
+                                <a class="slds-link slds-text-color_inverse">Staffing - RFI - LTC_07_29_2020</a>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-col slds-size_12-of-12  slds-p-bottom_large slds-p-top_large">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <div class="slds-col slds-size_10-of-12">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium">
+                            <h2 class="slds-text-align_center">Knowledge Articles</h2>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12 ">
+                            <div class="slds-grid slds-wrap ">
+                                <template for:each={knowledgeList} for:item="article" for:index="index">
+                                    <div class="slds-col slds-large-size_6-of-12 slds-size_12-of-12 slds-p-top_medium" key={article.Id}>
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-col slds-size_1-of-12 article-icon">
+                                                <lightning-icon icon-name="utility:knowledge_base" size="small" class="icon"></lightning-icon>
+                                            </div>
+                                            <div class="slds-col slds-large-size_11-of-12 slds-size_10-of-12 slds-p-right_small">
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-col slds-size_12-of-12 ">
+                                                        <a class="title" data-name={article.UrlName} onclick={redirectToKnowledge}>{article.Title}</a>
+                                                    </div>
+                                                    <div class="slds-col slds-size_12-of-12">
+                                                        <p class="summary">{article.Summary}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            <!--<template for:each={knowledgeList} for:item="article" for:index="index">
+                                <p class="slds-link slds-p-bottom_small" key={article.Id}>{article.Title}</p>
+                            </template>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

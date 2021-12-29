@@ -1,0 +1,9 @@
+.hidden_text {
+    position:relative;
+    z-index: 1;
+    }
+    
+    .datepickerright {width: 285px;}
+    .toppaddin-div{
+        padding-top: 60px
+    }

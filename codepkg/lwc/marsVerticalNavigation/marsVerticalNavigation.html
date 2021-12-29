@@ -1,0 +1,101 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 04-23-2021
+  @last modified by  : premjpal
+  Modifications Log
+  Ver   Date         Author                               Modification
+  1.0   03-21-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+
+<template>
+	<div class="slds-container">
+		<div class="slds-grid slds-gutters slds-gutters_direct slds-wrap">
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-large-size_3-of-12">
+				<lightning-vertical-navigation selected-item={selectedItem} onselect={handleSelect}
+					class="navigation table_light">
+					<lightning-vertical-navigation-section label="Agency Update Options">
+						<lightning-vertical-navigation-item-icon icon-name="utility:company" label="Agency Information"
+							name="agency_information">
+						</lightning-vertical-navigation-item-icon>
+						<template if:true={userAccess}>
+							<lightning-vertical-navigation-item-icon icon-name="utility:survey" label="Salary Survey"
+								name="salary_survey">
+							</lightning-vertical-navigation-item-icon>
+							<lightning-vertical-navigation-item-icon icon-name="utility:matrix"
+								label="Administrative Rate" name="admin_rate">
+							</lightning-vertical-navigation-item-icon>
+							<lightning-vertical-navigation-item-icon icon-name="utility:attach"
+								label="Attachment A. Non-Suppression Personnel" name="non_suppression_personnel">
+							</lightning-vertical-navigation-item-icon>
+							<lightning-vertical-navigation-item-icon icon-name="utility:lightning_extension"
+								label="Special Equipment" name="special_equipment">
+							</lightning-vertical-navigation-item-icon>
+							<lightning-vertical-navigation-item-icon icon-name="standard:partners"
+								label="Agreements (MOU/MOA/GBR)" name="resource_agreement_mou">
+							</lightning-vertical-navigation-item-icon>
+							<lightning-vertical-navigation-item-icon icon-name="utility:people"
+								label={agenyPendingLabel} name="agency_personnel_info">
+							</lightning-vertical-navigation-item-icon>
+							<!--<lightning-vertical-navigation-item-icon icon-name="utility:attach"
+								label="Attachment A. Non-Suppression Personnel Custom"
+								name="non_suppression_personnel_custom">
+							</lightning-vertical-navigation-item-icon>-->
+							<lightning-vertical-navigation-item-icon icon-name="utility:print"
+								label="Agency Summary" name="agency_summary">
+							</lightning-vertical-navigation-item-icon>	
+						</template>
+					</lightning-vertical-navigation-section>
+				</lightning-vertical-navigation>
+			</div>
+			<div class="slds-col slds-size_1-of-1 slds-medium-size_9-of-12 slds-large-size_9-of-12">
+				<template if:true={isAgencyScreen}>
+					<c-mars-agency-info-screen record-id={accountId}>
+					</c-mars-agency-info-screen>
+				</template>
+				<template if:true={isSalarySurvey}>
+					<c-mars-salary-survey record-id={accountId} object-name="Salary_Survey_Line_Items__c"
+						header-title="Salary Survey" field-set-name="Personnel_Survey_Line_Item_Fields">
+					</c-mars-salary-survey>
+					<!--<c-salary-survey record-id={accountId} object-name="Salary_Survey_Line_Items__c" header-title = "Salary Survey" field-set-name="Personnel_Survey_Line_Item_Fields"></c-salary-survey>-->
+				</template>
+				<template if:true={isAdminRate}>
+					<c-mars-administrative-rate-info-screen record-id={accountId} header-title="Administrative Rate">
+					</c-mars-administrative-rate-info-screen>
+				</template>
+				<template if:true={isNonSupp}>
+                    <c-mars-non-suppression-screen record-id={accountId}
+						header-title="Attachment A. Non-Suppression Personnel">
+					</c-mars-non-suppression-screen>
+					<!--<c-survey-screen record-id={accountId} object-name="Agency_Non_Suppression_Line_Item__c"
+						field-set-name="Non_Suppression_Survey_Line_Item_Fields"
+						header-title="Attachment A. Non-Suppression Personnel">
+					</c-survey-screen>-->
+				</template>
+				<template if:true={isSpcialEquip}>
+                    <c-mars-special-equipment-screen record-id={accountId}
+						header-title="Special Equipment">
+					</c-mars-special-equipment-screen>
+					<!--<c-survey-screen record-id={accountId} object-name="Agency_Special_Equipment_Line_Item__c"
+						field-set-name="Special_Equipment_Survey_Line_Item_Field" header-title="Special Equipment">
+					</c-survey-screen>-->
+				</template>
+				<template if:true={isAgreement}>
+					<c-mars-resource-agreement record-id={accountId} object-name="Agency_Rate_Agreement_Line_Item__c"
+						field-set-name="Resource_Agreement_Field" header-title="Agreements (MOU/MOA/GBR)">
+					</c-mars-resource-agreement>
+					<!--<c-survey-screen record-id={accountId}  object-name="Agency_Rate_Agreement_Line_Item__c" field-set-name="Resource_Agreement_Field" header-title = "Agreements (MOU/MOA/GBR)"></c-survey-screen>-->
+				</template>
+				<template if:true={isAgencyPersonnel}>
+					<c-mars-agency-personnel record-id={accountId}>
+					</c-mars-agency-personnel>
+				</template>
+				<template if:true={isAgencySummary}>
+					<c-mars-agency-summary record-id={accountId}>
+					</c-mars-agency-summary>
+				</template>
+			</div>
+		</div>
+	</div>
+</template>

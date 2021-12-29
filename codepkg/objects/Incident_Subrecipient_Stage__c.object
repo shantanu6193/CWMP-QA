@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Incident_Subrecipient_Summary_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Incident_Subrecipient_Summary_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <description>Sub - Recipient  to which this junction record is related.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Sub - Recipient  to which this junction record is related.</inlineHelpText>
+        <label>Sub Recipient</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Incident_Subrecipient_Stages</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Available_Federal_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Roll Up sum of &quot;Pending Federal Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll Up sum of &quot;Pending Federal Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</inlineHelpText>
+        <label>Available Federal Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Available_State_Admin_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Roll Up sum of &quot;Pending Admin Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll Up sum of &quot;Pending Admin Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</inlineHelpText>
+        <label>Available State Admin Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Available_State_Amount__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Roll Up sum of &quot;Pending State Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Roll Up sum of &quot;Pending State Amount Available&quot; of all the Project, which is having the same Incident And Sub Recipient as this Record.</inlineHelpText>
+        <label>Available State Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Cumulative_State_Cost_Share_Flag__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field value is checked when the $2,500 threshold has been met on a project and on a sub recipient for all PA projects within that disaster., or else should be unchecked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field value is checked when the $2,500 threshold has been met on a project and on a sub recipient for all PA projects within that disaster., or else should be unchecked.</inlineHelpText>
+        <label>Cumulative State Cost Share Flag</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cumulative_State_Cost_Share__c</fullName>
+        <description>This Flag is used to prevent a PR from being approved until the $2,500 threshold has been met on a project and on a sub recipient for all PA projects within that disaster.</description>
+        <externalId>false</externalId>
+        <formula>IMAGE ( IF(  Cumulative_State_Cost_Share_Flag__c = false, &quot;/img/samples/flag_red.gif&quot;, &quot;/img/samples/flag_green.gif&quot;),&quot;Status Flag&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This Flag is used to prevent a PR from being approved until the $2,500 threshold has been met on a project and on a sub recipient for all PA projects within that disaster.</inlineHelpText>
+        <label>Cumulative State Cost Share Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Declaration_Number__c</fullName>
+        <description>&quot;Declaration Number&quot; of the Incident.</description>
+        <externalId>false</externalId>
+        <formula>Incident__r.Declaration_Number__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>&quot;Declaration Number&quot; of the Incident.</inlineHelpText>
+        <label>Declaration Number</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FIPS__c</fullName>
+        <description>&quot;FIPS ID&quot; of the Sub Recipient.</description>
+        <externalId>false</externalId>
+        <formula>Account__r.Sub_Recipient_FIPS__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>&quot;FIPS ID&quot; of the Sub Recipient.</inlineHelpText>
+        <label>FIPS</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Incident__c</fullName>
+        <description>Incident to which this junction is related.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Incident to which this junction is related.</inlineHelpText>
+        <label>Incident</label>
+        <referenceTo>Incident__c</referenceTo>
+        <relationshipName>Incident_sub_recipient_stage</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share_Flag__c</fullName>
+        <description>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to This Incident Sub Recipient Summary record is greater than or equal to $2500, or else should be Red.</description>
+        <externalId>false</externalId>
+        <formula>IMAGE ( IF(  Obligated_State_Share__c = false, &quot;/img/samples/flag_red.gif&quot;, &quot;/img/samples/flag_green.gif&quot;),&quot;Status Flag&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field value is Green when the sum of &quot;State Project Award&quot; of all the Projects related to This Incident Sub Recipient Summary record is greater than or equal to $2500, or else should be Red.</inlineHelpText>
+        <label>Obligated State Share Flag</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Obligated_State_Share__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to This Incident Sub Recipient Summary record is greater than or equal to $2500, or else should be unchecked.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field value is checked when the sum of &quot;State Project Award&quot; of all the Projects related to This Incident Sub Recipient Summary record is greater than or equal to $2500, or else should be unchecked.</inlineHelpText>
+        <label>Obligated State Share</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PA_Federal_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field shows the sum of the &quot;Federal Project Award&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the sum of the &quot;Federal Project Award&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>PA Federal Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PA_State_Admin_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field shows the sum of the &quot;Total project State Admin Share&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the sum of the &quot;Total project State Admin Share&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>PA State Admin Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>PA_State_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field shows the sum of the &quot;State Project Award&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows the sum of the &quot;State Project Award&quot; of all the Projects under the &quot;Public Assistance&quot; Program for this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>PA State Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <description>This field represents the Stage of the Incident for a particular Sub - Recipient.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field represents the Stage of the Incident for a particular Sub - Recipient.</inlineHelpText>
+        <label>Stage</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>true</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Financial Closeout - FPU In Progress</fullName>
+                    <default>false</default>
+                    <label>Financial Closeout - FPU In Progress</label>
+                </value>
+                <value>
+                    <fullName>Financial Closeout FPU - Closed</fullName>
+                    <default>false</default>
+                    <label>Financial Closeout FPU - Closed</label>
+                </value>
+                <value>
+                    <fullName>Financial Closeout - In Review</fullName>
+                    <default>false</default>
+                    <label>Financial Closeout - In Review</label>
+                </value>
+                <value>
+                    <fullName>Financial Closeout - Awaiting FEMA Acknowledgement</fullName>
+                    <default>false</default>
+                    <label>Financial Closeout - Awaiting FEMA Acknowledgement</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sum_of_PA_State_and_Admin_Amount__c</fullName>
+        <description>This field is sum of &quot;PA State Amount Obligated&quot; and &quot;PA State Admin Amount Obligated&quot; of the Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <formula>PA_State_Amount_Obligated__c + PA_State_Admin_Amount_Obligated__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is sum of &quot;PA State Amount Obligated&quot; and &quot;PA State Admin Amount Obligated&quot; of the Incident Sub Recipient Summary.
+[ PA State Amount Obligated + PA State Admin Amount Obligated ]</inlineHelpText>
+        <label>Sum of PA State and Admin Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Sum_of_State_and_Admin_Amount_Obligated__c</fullName>
+        <description>This field shows sum of &quot;Total State Amount Obligated&quot; and &quot;Total Admin Amount Obligated&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_State_Amount_Obligated__c + Total_Admin_Amount_Obligated__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field shows sum of &quot;Total State Amount Obligated&quot; and &quot;Total Admin Amount Obligated&quot;. 
+[ Total State Amount Obligated + Total Admin Amount Obligated ]</inlineHelpText>
+        <label>Sum of State and Admin Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Admin_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total Project Admin Share&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Project Admin Share&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total Admin Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total project Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total project Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total Project Federal Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Project Federal Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total Federal Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Award_W_O_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total Federal Award - Total Federal Retention</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total Federal Award - Total Federal Retention</inlineHelpText>
+        <label>Total Federal Award W/O Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total Federal Retention&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Federal Retention&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total Federal Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Federal_Retention_to_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Federal Retention to Date&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Federal Retention to Date&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total Federal Retention to Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_PA_Amount_Obligated__c</fullName>
+        <description>This field is sum of &quot;PA Federal Amount Obligated&quot;, &quot;PA State Amount Obligated&quot;, and &quot;PA State Admin Amount Obligated&quot; of the Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <formula>PA_Federal_Amount_Obligated__c + PA_State_Amount_Obligated__c + PA_State_Admin_Amount_Obligated__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field is sum of &quot;PA Federal Amount Obligated&quot;, &quot;PA State Amount Obligated&quot;, and &quot;PA State Admin Amount Obligated&quot; of the Incident Sub Recipient Summary. 
+[ PA Federal Amount Obligated + PA State Amount Obligated + PA State Admin Amount Obligated ]</inlineHelpText>
+        <label>Total PA Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Retention_To_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the roll-up sum of &quot;Total Retention to Date&quot; of all the Projects related to this Incident Sub-Recipient Summary record.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the roll-up sum of &quot;Total Retention to Date&quot; of all the Projects related to this Incident Sub-Recipient Summary record.</inlineHelpText>
+        <label>Total Retention To Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Amount_Obligated__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total Project State Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total Project State Award&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total State Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Award_W_O_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Total State Award - Total State Retention</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Total State Award - Total State Retention</inlineHelpText>
+        <label>Total State Award W/O Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Retention__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;Total State Retention&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;Total State Retention&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total State Retention</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_State_Retention_to_Date__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This field is the sum of the &quot;State Retention to Date&quot; of all the Projects related to this Incident Sub Recipient Summary.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is the sum of the &quot;State Retention to Date&quot; of all the Projects related to this Incident Sub Recipient Summary.</inlineHelpText>
+        <label>Total State Retention to Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Sum_Amount_Obligated__c</fullName>
+        <description>This field shows sum of &quot;Total Federal Amount Obligated&quot;, &quot;Total State Amount Obligated&quot;, and &quot;Total Admin Amount Obligated&quot;.</description>
+        <externalId>false</externalId>
+        <formula>Total_Federal_Amount_Obligated__c + Total_State_Amount_Obligated__c + Total_Admin_Amount_Obligated__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>This field shows sum of &quot;Total Federal Amount Obligated&quot;, &quot;Total State Amount Obligated&quot;, and &quot;Total Admin Amount Obligated&quot;. 
+[ Total Federal Amount Obligated + Total State Amount Obligated + Total Admin Amount Obligated ]</inlineHelpText>
+        <label>Total Sum Amount Obligated</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Incident Subrecipient Summary</label>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Incident Subrecipient Summary Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Incident Subrecipient summaries</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Incident__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Account__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Stage__c</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Project_Obligation_Report</fullName>
+        <availability>online</availability>
+        <description>This report shows all the Project related to the Incident Sub Recipient Summary with its related Obligations(Amendment Requests).</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Project Obligation Report</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://caloes.lightning.force.com/lightning/r/Report/00Ot0000000c2LmEAI/view?fv0={!Incident_Subrecipient_Stage__c.Name}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Project_Payment_Detail_Report</fullName>
+        <availability>online</availability>
+        <description>This report shows all the Project related to the Incident Sub Recipient Summary with its related Payment Requests and Payments.</description>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Project Payment Detail Report</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>https://caloes.lightning.force.com/lightning/r/Report/00Ot0000000c2LhEAI/view?fv0={!Incident_Subrecipient_Stage__c.Name}</url>
+    </webLinks>
+</CustomObject>

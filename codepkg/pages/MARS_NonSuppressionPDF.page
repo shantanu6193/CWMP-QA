@@ -1,0 +1,196 @@
+<apex:page showHeader="false" applyHtmlTag="false" docType="html-5.0" sidebar="false" renderAs="advanced_pdf" controller="MARS_NonSuppressionPDFCtrl">
+    <head>
+        <style>
+            body { 
+            /* margin: 0.1;*/
+                font-family: Dialog;
+                /*font-size: 0.80em;*/
+                font-size: 9.5pt;
+                /*line-height: 1.1;*/
+                color: #212529;
+                text-align: left;
+                background-color: #fff;
+            }
+
+            .trgray {
+                background-color: #b4b3b3;
+            }
+            #col1,#col2,#col3{width:33%;display:inline-block;}
+            @page {
+                size: portrait;
+                /*margin-top: 30px;
+                margin-left: 1px;
+                margin-right: 1px;
+                margin-bottom: 30px;*/
+                @bottom-center {
+                    content : element(footer);
+                    color : #808080;
+                }
+            }
+
+            div.footer{
+                text-align: center;
+                font-size:15px;                                
+                position: running(footer); 
+            }
+
+            .page-break {
+                display: block;
+                page-break-before: always;
+            }
+
+            /* Clear floats after the columns */
+
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            .divclear {
+                clear: both;
+            }
+
+            .tableclass {
+                table-layout: fixed;
+                width: 100%;
+                border: 1px solid black;
+            }
+
+            .tableboarder {
+                border-collapse: collapse;
+            }
+
+            .thtdclass {
+                /*border: 1px solid black;*/
+                border-collapse: collapse;
+                margin-top: 10px;
+                margin-top: 10px;
+            }
+
+            .thfloat {
+                text-align: right;
+            }
+            .textalign {
+                text-align: justify;
+            }
+            .textaligncenter {
+                text-align:center;
+            }
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div style="row">
+                <div style="text-align:center">
+                    <div>
+                        <p class="textaligncenter">California Governor’s Office of Emergency Services (Cal OES) - Fire and Rescue Division </p>
+                    </div>
+                    <h2>ATTACHMENT A. NON-SUPPRESSION PERSONNEL</h2>
+                    <div><p class="textaligncenter">for</p></div>
+                    <div><p class="textaligncenter">AGREEMENT FOR LOCAL GOVERNMENT FIRE AND EMERGENCY ASSISTANCE TO</p></div> 
+                    <div><p class="textaligncenter">THE STATE OF CALIFORNIA AND FEDERAL FIRE AGENCIES</p></div>
+                    <div><p class="textaligncenter">(California Fire Assistance Agreement)</p></div>
+                    <div id="col1"><b>Start Date:</b>&nbsp;
+                        <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Non_Suppression_Personnel.Start_Date__c}" /> 
+                        </apex:outputText>
+                    </div> 
+                    <div id="col2"><b>End Date:</b>&nbsp;
+                      <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Non_Suppression_Personnel.End_Date__c}" /> 
+                      </apex:outputText>
+                    </div>
+                    <div id="col3"><b>Status:</b>&nbsp;
+                        {!agency_Non_Suppression_Personnel.Approval_Status__c}
+                    </div>
+                    <br/>
+                    <table class="tableclass"  border="1px">
+                        <tr>
+                          <td>
+                            <b>Agency 3-Letter MACS I.D.:</b>
+                          </td>
+                          <td>
+                          <b> Agency / Department Name:</b>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="width:50%;">
+                            {!agency_Non_Suppression_Personnel.Agency__r.MACS_ID__c}
+                          </td>
+                          <td style="width:50%;">
+                            {!agency_Non_Suppression_Personnel.Agency__r.Name}
+                          </td>
+                        </tr>
+                    </table>
+                    <p>
+                        A. The chart below reflects the hourly Salary Rate submitted for each non-suppression classification for Suppression Personnel.
+                    </p>
+                    <p>
+                        B.  If “MOU/MOA/GBR or equivalent for Portal-to-Portal” is checked “Yes”, a complete copy of the relevant document(s) must be submitted with the salary survey for review. Failure to submit will prevent the classification(s) from being considered for portal-to-portal reimbursement. Please review the salary survey instructions regarding the MOU/MOA/GBR or equivalent for timeline requirements.
+                    </p>
+                    <table class="tableclass"  border="1px">
+                        <tr>
+                            <td style="width:70%;">
+                              <b>Classification Title</b>
+                            </td>
+                            <td style="width:30%;">
+                                <b>Salary Rate (ST)</b>
+                            </td>
+                          </tr>
+                          <apex:repeat value="{!agency_Non_Suppression_Personnel.Agency_Non_Suppression_Line_Items__r}" var="record">
+                            <tr>
+                                <td style="width:70%;">
+                                    {!record.Classification_Title__c}
+                                </td>
+                                <td style="width:30%;">
+                                    <apex:outputText rendered="{!IF(agency_Non_Suppression_Personnel.Approval_Status__c ='Pending Review' || agency_Non_Suppression_Personnel.Approval_Status__c ='Rejected' ,true,false)}" >{!record.Revised_Rate__c}</apex:outputText>
+                                    <apex:outputText rendered="{!IF(agency_Non_Suppression_Personnel.Approval_Status__c !='Pending Review' || agency_Non_Suppression_Personnel.Approval_Status__c !='Rejected' ,true,false)}" >{!record.Current_Rate__c}</apex:outputText>
+                                </td>
+                              </tr>
+                          </apex:repeat>
+                    </table>
+                    <br />
+                    <p>
+                        NOTE: These rates are not effective until the date they are received by Cal OES. THE RATES REPORTED ON THIS FORM CONSTITUTE DIRECT SALARY COSTS FOR EMPLOYEES AND ARE NOT CONTINGENT UPON THE CFAA FOR REIMBURSEMENT. 
+                    </p>
+                    <p>
+                        As an authorized representative of my agency/dept., I certify to the best of my knowledge and belief, and under penalty of perjury that this information is correct. Furthermore, my signature below represents acceptance by my agency/dept., as a cooperator, to comply with the authorities, terms and conditions of the CFAA. I also agree to comply with all cooperator agency internal accounting and expense reimbursement standards.
+                    </p>
+                </div>
+                <table class="tableclass"  border="1px">
+                    <tr>
+                      <td>
+                        <b>Name</b>
+                      </td>
+                      <td>
+                      <b>Authorized Representative </b>
+                      </td>
+                      <td>
+                        <b>Date</b>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {!agency_Non_Suppression_Personnel.CreatedBy.Name}
+                      </td>
+                      <td>
+                        <apex:outputPanel layout="none" rendered="{!NOT(ISBLANK(signature))}">
+                          <apex:image url="{!signature}" style="height: 50px;width: 200px;"/>
+                        </apex:outputPanel>
+                      </td>
+                      <td>
+                        <apex:outputText value="{0,date,MM/dd/yyyy}"> <apex:param value="{!agency_Non_Suppression_Personnel.Start_Date__c}" /></apex:outputText>
+                      </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer">
+            Printed at &nbsp;&nbsp;
+            <apex:outputText value="{0,date,MM/dd/yyyy HH:mm}"> <apex:param value="{!currentDateTime}" /></apex:outputText>
+        </div>
+    </body>
+</apex:page>

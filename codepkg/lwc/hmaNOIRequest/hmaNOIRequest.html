@@ -1,0 +1,107 @@
+<template>
+    <template if:true={showLoader}>
+         <lightning-spinner alternative-text="Loading" variant="brand" size="large"></lightning-spinner>
+    </template>
+    <template if:false={showLoader}>
+        <template if:false={showModal}>
+            <div class="slds-grid slds-align_absolute-center">
+                <div class="slds-col slds-size_10-of-12">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 slds-p-bottom_medium slds-p-top_large">
+                            <h1 class="form-header slds-text-heading--large">{selectedRecordTypeName} Notice of Interest</h1>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <c-hma-n-o-i-path list-of-status={stagesList} selected-status={currentStage}></c-hma-n-o-i-path>
+                        </div>
+                        <div class="slds-col slds-size_12-of-12">
+                            <template if:true={isGeneralInfoStage}>
+                                <c-hma-n-o-i-general-info data-custom="innerComponent" record-type-id={selectedRecordTypeId} record-type-name={selectedRecordTypeName} record ={record}></c-hma-n-o-i-general-info>
+                            </template>
+
+                            <template if:true={isProjectInfoStage}>
+                                <c-hma-n-o-i-project-info data-custom="innerComponent" record ={record}></c-hma-n-o-i-project-info>
+                            </template>
+
+                            <template if:true={isActivityInfoStage}>
+                                <c-hma-n-o-i-activity-info data-custom="innerComponent" record ={record}></c-hma-n-o-i-activity-info>
+                            </template>
+
+                            <template if:true={isAdditionalInfoStage}>
+                                <c-hma-n-o-i-additional-info data-custom="innerComponent" record ={record}></c-hma-n-o-i-additional-info>
+                            </template>
+
+                            <template if:true={isPreviewStage}>
+                                <c-hma-n-o-i-preview data-custom="innerComponent" record ={record}></c-hma-n-o-i-preview>
+                            </template>
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_12-of-12 slds-p-top_small">
+                                    <template if:false= {isGeneralInfoStage} >
+                                        <span class="">
+                                            <!--<lightning-button variant="brand-outline" label="Previous" title="Previous" onclick={redirectToPrevious} class=" slds-p-left_large slds-p-bottom&#45;&#45;large"></lightning-button>-->
+                                            <button onclick={redirectToPrevious} class="slds-button slds-button_brand slds-float--left">Previous</button>
+                                        </span>
+                                    </template>
+                                    <template if:false= {isPreviewStage}>
+                                        <div class ="slds-float--right">
+                                            <span class="slds-p-right_large">
+                                                <!--<lightning-button variant="brand" label="Next" title="Create Order" onclick={redirectToNext} class=" slds-float&#45;&#45;right slds-p-right_large slds-p-bottom&#45;&#45;large"></lightning-button>-->
+                                                <button onclick={quickSave} class="slds-button slds-button_brand">Save</button>
+                                            </span>
+
+                                            <span class="slds-p-right_large ">
+                                                <!--<lightning-button variant="brand" label="Next" title="Create Order" onclick={redirectToNext} class=" slds-float&#45;&#45;right slds-p-right_large slds-p-bottom&#45;&#45;large"></lightning-button>-->
+                                                <button onclick={redirectToNext} class="slds-button slds-button_brand">Save & Continue</button>
+                                            </span>
+
+                                            <span class="">
+                                                <!--<lightning-button variant="brand" label="Next" title="Create Order" onclick={redirectToNext} class=" slds-float&#45;&#45;right slds-p-right_large slds-p-bottom&#45;&#45;large"></lightning-button>-->
+                                                <button onclick={cancelRequest} class="slds-button slds-button_brand">Exit</button>
+                                            </span>
+                                        </div>
+
+                                    </template>
+                                    <template if:true= {isPreviewStage}>
+                                        <span class="">
+                                            <button onclick={submit} class="slds-button slds-button_brand slds-float--right">Submit</button>
+                                        </span>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </template>
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Notice of Interest</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <template for:each={recordTypeList} for:item="recordType">
+                        <div key={recordType.Id} class="slds-p-bottom--small">
+                            <lightning-input class="input" type="radio" name="radioGroup" value={recordType.RecordType_Id__c} onchange={recordTypeChange} label={recordType.MasterLabel}></lightning-input>
+                            <p class="slds-radio"><label class="slds-p-top_xx-small slds-p-left_large slds-form-element__label">{recordType.Description__c}</label></p>
+                        </div>
+                    </template>
+                    <!--<lightning-radio-group
+                            name="radioButtonGroup"
+                            variant="label-hidden"
+                            options={recordTypeOptions}
+                            value={recordTypeId}
+                            onchange={recordTypeChecked}
+                            class="input"
+                            required>
+                    </lightning-radio-group>-->
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick={redirectToListView}>Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick={closeModal}>Continue</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

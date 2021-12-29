@@ -1,0 +1,47 @@
+<template >
+    <template if:true={showComponent}>
+        <template if:true={showLoader}>
+            <lightning-spinner  variant="brand" size="large"></lightning-spinner>
+        </template>
+        <template if:false={showLoader}>
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12">
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <h2 class="slds-card__header-title">
+                                        <span>{label.HH_EN_Update_Application_Lead}</span>
+                                    </h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner slds-size_12-of-12">
+                            <div class=" slds-wrap  slds-p-vertical_small ">
+                                    <c-lookup
+                                    data-custom="lookup"
+                                    label="Application Lead" 
+                                    data-lookup="Application_Lead__c" 
+                                    onsearch={handleUserSearch}
+                                    onselectionchange={handleUserChange}
+                                    placeholder="Search Application Lead"
+                                    is-multi-entry={isMultiEntry}
+                                    load-data-on-init = {loadLookupDataOnLoad}
+                                    local-search = {loadLookupDataOnLoad}
+                                    scroll-after-n-items = "10"
+                                    errors={leadRequired}
+                                    required>
+                                    </c-lookup>
+                                    <div if:true={showRequiredError} class="slds-has-error slds-form-element__help" style="color: red;">Complete this field.</div>
+                            </div>
+                        </div>
+                        <footer class="slds-card__footer">
+                            <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_StageAndStatusUpdate_Component_SaveButton}</button>
+                           
+                        </footer>
+                    </article>
+                </div>
+            </div>
+        </template>
+    </template>
+</template>

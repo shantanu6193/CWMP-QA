@@ -1,0 +1,191 @@
+<template>
+<div class="slds-scrollable">
+<div class="table_light">
+    <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium"> Agency Personnel Pending Approval</h2>
+    <div>
+        <lightning-datatable key-field="Id"  
+        data={usersReq}  
+        columns={pendcolumns}  
+        hide-checkbox-column="true"  
+        show-row-number-column="true"  
+        onrowaction={callPendRowAction}>  
+    </lightning-datatable>  
+    </div>
+</div>
+</div>
+<div class="slds-scrollable">
+<div class="table_light">
+    <h2 class="slds-text-heading_small slds-p-bottom_medium slds-p-top_medium">Agency Personnel</h2>
+<div>
+    <lightning-datatable key-field="Id"  
+    data={usersNew}  
+    columns={columns}  
+    hide-checkbox-column="true"  
+    show-row-number-column="true"  
+    onrowaction={callRowAction}>  
+</lightning-datatable>  
+</div>
+</div>
+</div>
+<template if:true={isUpdateAccessToLevel1ModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeUpdateAccessToLevel1Modal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-03" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Primary Access">
+                    <p class="slds-p-horizontal_small">Primary Access is for personnel responsible for the agency's reimbursement including submittal of rates.</p>
+                    <p class="slds-p-horizontal_small">Do you wish to Proceed? </p>
+                </lightning-card>
+            </div>
+          
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Primary" onclick={submitChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+<template if:true={isUpdateAccessToLevel2ModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeUpdateAccessToLevel2Modal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-04" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Secondary Access">
+                    <p class="slds-p-horizontal_small">Secondary Access is for responding personnel that submit F-42s and travel only.</p>
+                    <p class="slds-p-horizontal_small">Do you wish to Proceed?</p>
+                </lightning-card>
+            </div>
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+
+
+<template if:true={isRemoveAccessModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeRemoveAccessModal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-05" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Remove Access">
+                    <p class="slds-p-horizontal_small">Are you sure you want to remove users access?</p>
+                </lightning-card>
+            </div>
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitRemoveChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+<template if:true={isAddAccessModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeAddAccessModal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-06" class="modal-header slds-hyphenate slds-p-horizontal_medium">Update Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Add Access">
+                    <p class="slds-p-horizontal_small">Are you sure you want to add users access?</p>
+                </lightning-card>
+            </div>
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitAddChangeDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+<template if:true={isApprovePendingAccessModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeApprovePendingAccessModal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-07" class="modal-header slds-hyphenate slds-p-horizontal_medium">Approve Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Approve Access">
+                    <p class="slds-p-horizontal_small">Are you sure you want to Approve users access?</p>
+                </lightning-card>
+            </div>
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitApprovePendingDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+<template if:true={isRejectPendingAccessModalOpen}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeRejectPendingAccessModal}>
+                    <lightning-icon icon-name="utility:close"
+                                    alternative-text="close"
+                                    variant="inverse"
+                                    size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+               <h3 id="modal-heading-08" class="modal-header slds-hyphenate slds-p-horizontal_medium">Reject Access for Agency</h3>
+            </header>
+            <div class="slds-modal__content slds-p-around_small">
+                <lightning-card  variant="Narrow"  title="Reject Access">
+                    <p class="slds-p-horizontal_small">Are you sure you want to Reject users access?</p>
+                </lightning-card>
+            </div>
+            <footer class="slds-modal__footer"> 
+                <button class="slds-button slds-button_brand" name="Secondary" onclick={submitRejectPendingDetails} title="Yes" disabled={buttonDisabled}>Yes</button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+</template>

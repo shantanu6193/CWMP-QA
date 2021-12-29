@@ -1,0 +1,119 @@
+﻿<!--
+ - Created by Sushant Patil on 13-08-2021.
+ -->
+<!-- Hh Community Landing Page -->
+<template>
+    <template if:true={isIE}>
+        <section
+                role="dialog"
+                tabindex="-1"
+                aria-labelledby="modal-heading-01"
+                aria-modal="true"
+                aria-describedby="modal-content-id-1"
+                class="slds-modal slds-fade-in-open"
+        >
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h1 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                        <p class="slds-text-align--center slds-text-heading--large">{label.HH_EN_Unsupported_Browser}</p>
+                    </h1>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <p class="slds-text-align--center slds-text-heading--small">{label.HH_EN_Internet_Explorer_not_supported_Error}</p>
+                </div>
+    
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:false={isIE}>
+    <div>
+        <div class="slds-content-body slds-grid slds-wrap slds-p-vertical_x-large">
+            <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                <article class="slds-card header-card">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-size_12-of-12 slds-size_1-of-1">
+                            <div class="slds-grid slds-wrap sign-header slds-grid_vertical-align-center">
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_7-of-12 slds-large-size_7-of-12">
+                                    <div class="slds-grid slds-wrap">
+                                        <div class="slds-col slds-size_12-of-12 slds-size_1-of-1 align_center">
+                                           <h1><lightning-formatted-rich-text class="" value={label.HH_EN_Landing_Page_Title}></lightning-formatted-rich-text></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-size_12-of-12 slds-medium-size_5-of-12 slds-large-size_5-of-12">
+                                    <a href={landingPageUrl} ><div class="slds-grid slds-grid_align-end align_center">
+                                        <div class="slds-col slds-p-right_large">
+                                            <img src={loginLogo} class="sub-logo" alt="caloes-logo">
+                                        </div>
+                                        <div class="slds-col slds-p-right_large">
+                                            <img src={hhFire} alt="hh-fireLogo" class="sub-logo">
+                                        </div>
+                                        <div class="slds-col ">
+                                            <img src={hhLogo} alt="hh-logo" class="sub-logo">
+                                        </div>
+                                    </div></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="slds-grid slds-wrap" style="background-color:white">
+                            <div class="slds-p-around_large slds-col slds-size_12-of-12">
+                                <div>
+                                    <div class="slds-grid slds-wrap slds-gutters slds-p-bottom_small">
+                                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                            <template if:true={TranslationLanguage.data}>
+                                                <lightning-combobox name={label.HH_EN_Select_Language}
+                                                                    label={label.HH_EN_Select_Language}
+                                                                    placeholder="Select Language"
+                                                                    value={language}
+                                                                    options={TranslationLanguage.data.values}
+                                                                    onchange={languageFieldChanged}
+                                                                    class="input"
+                                                                    dropdown-alignment="auto"
+                                                >
+                                                </lightning-combobox>
+                                            </template>
+                                        </div>
+                                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-top_medium">
+                                            <button class="slds-button slds-button_brand slds-float_right" onclick={navigateButtonSignIn}>{label.HH_EN_Sign_In}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-p-around_small slds-text-heading--small" style="border: 1px solid #dedede;">
+                                   <div class="slds-p-vertical_medium" style="border-bottom: 1px solid #dedede;">
+                                        <span>
+                                            <lightning-formatted-rich-text class="" value={label.HH_EN_Landing_Page_Para_1}></lightning-formatted-rich-text>
+                                        </span>
+                                   </div>
+                                    <div class="slds-p-vertical_medium">
+                                        <span>
+                                            <lightning-formatted-rich-text class="" value={label.HH_EN_Landing_Page_Para_2}></lightning-formatted-rich-text>
+                                        </span>
+                                        <span>
+                                            <div class="slds-p-top_small"> {label.HH_EN_Already_have_an_Account}&nbsp;<a href={navigateSignIn}>{label.HH_EN_Sign_In}</a></div>
+                                            <div class="slds-p-bottom_small"> {label.HH_EN_Do_not_have_an_Account}&nbsp;<a href={navigateSignUp}>{label.HH_EN_Register}</a></div>
+                                        </span>
+                                        <span>
+                                            <lightning-formatted-rich-text class="" value={label.HH_EN_Landing_Page_Para_3}></lightning-formatted-rich-text>
+                                        </span>
+                                        <span>
+                                            &nbsp;<lightning-formatted-rich-text class="" value={label.HH_EN_contact_local_jurisdiction}></lightning-formatted-rich-text>
+                                            <br>
+                                        </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <footer class="slds-card__footer slds-p-around_medium">
+                            <div class="slds-col slds-size_12-of-12 footer-copyright copy_right">{label.HH_EN_Copyright_2021_State_of_California}</div>    
+                            </footer>
+                </article>
+                
+            </div>
+            
+        </div>
+    </div>
+</template>
+</template>

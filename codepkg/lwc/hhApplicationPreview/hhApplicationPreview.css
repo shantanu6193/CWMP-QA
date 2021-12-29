@@ -1,0 +1,15 @@
+/**
+* Created by StackNexus Admin on 03-09-2021.
+*/
+.table-row {
+    background: rgba(20, 63, 116, 0.05);
+}
+table, th, td {
+    border-top: 1px solid rgb(212, 212, 212);
+    border: 1px solid rgb(212, 212, 212);
+    text-align: center;
+    padding: 10px;
+}
+td {
+    padding:8px;
+}

@@ -1,0 +1,43 @@
+<aura:component controller="MARS_Process_CFAA_Ctrl" 
+                        implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" 
+                        access="global">
+
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="selectedDate" type="Date" />
+    <aura:attribute name="showProceed" type="Boolean" default="false" />
+    <aura:attribute name="infoMessage" type="string" />
+    <aura:attribute name="errorMessage" type="string" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.initialize}" />
+
+    <aura:if isTrue="{!!empty(v.infoMessage)}">
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                <h2>{!v.infoMessage}</h2>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!!empty(v.errorMessage)}">
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--error slds-theme--alert-texture">
+                <h2>{!v.errorMessage}</h2>
+            </div>
+        </div>
+    </aura:if>
+
+    <aura:if isTrue="{!v.showProceed}" >
+        <div class="slds-p-bottom--medium">
+            <div class="slds-notify slds-notify--alert slds-theme--success slds-theme--alert-texture">
+                <h2>Attention: Clicking Proceed here will clone the CFAA record and CFAA line Items. You can then update the rates in the CFAA line item level. <br/>
+                    You can also delete or add rows to the CFAA line Items depending on the need. Please make sure to add end date to the current CFAA before cloning a new one <br/>
+                    Please make sure to select the start date for new cfaa that is not overlapping with any existing one.
+                </h2>
+            </div>
+        </div>
+
+        <lightning:input type="date" value="{!v.selectedDate}" label="Start Date for New CFAA" required="true" />
+
+        <br/>
+        <lightning:button variant="brand" label="Clone CFAA and Line Items" title="Proceed" onclick="{! c.proceed }" />
+    </aura:if>
+</aura:component>

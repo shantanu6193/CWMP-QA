@@ -1,0 +1,2 @@
+<apex:page controller="CommunityLoginFlow" action="{!FinishLoginFlowHome}">
+</apex:page>

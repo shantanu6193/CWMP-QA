@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This object contains information about the source object from which we have to clone the document and paste it on the destination object document record</description>
+    <fields>
+        <fullName>Destination_To_Source_Relationship__c</fullName>
+        <description>Relationship Name of Source object on Destination Object</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Relationship Name of Source object on Destination Object (__r)</inlineHelpText>
+        <label>Destination To Source Relationship</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_Name_On_Source_Object__c</fullName>
+        <description>Name of Document on Source Object</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Name of Document on Source Object</inlineHelpText>
+        <label>Document Name On Source Object</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Document_Source_Relationship_Name__c</fullName>
+        <description>Relationship Name of Source object on Document Object</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>Relationship Name of Source object on Document Object (__c)</inlineHelpText>
+        <label>Document-Source Relationship Name</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fields_To_Get_From_Source_Objects__c</fullName>
+        <description>To get other field info from source object</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>To get other field info from source object (Ex: Account__r.County__c)</inlineHelpText>
+        <label>Fields To Get From Source Objects</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Document_Configuration__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Global Document Configuration</label>
+        <referenceTo>Global_Document_Configuration__mdt</referenceTo>
+        <relationshipLabel>Global Document Source Configurations</relationshipLabel>
+        <relationshipName>Global_Document_Source_Configurations</relationshipName>
+        <required>true</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_Universal__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>The document is Universal or Not</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>The document is Universal or Not</inlineHelpText>
+        <label>Is Universal</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>Global Document Source Configuration</label>
+    <pluralLabel>Global Document Source Configurations</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

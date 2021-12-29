@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Applicable_Trigger_Handlers__c</fullName>
+        <description>All the trigger handlers that will be created on the object are entered here as semicolon separated value</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <inlineHelpText>All the trigger handlers that will be created on the object are entered here as semicolon separated value</inlineHelpText>
+        <label>Applicable Trigger Handlers</label>
+        <length>1000</length>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Bypass_Trigger_Execution__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Bypass Trigger Execution</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ObjectApiName__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>ObjectApiName</label>
+        <length>30</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Skip_Validation_Rules__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox to bypass validation rules for particular sobject.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Skip Validation Rules</label>
+        <type>Checkbox</type>
+    </fields>
+    <label>SObject</label>
+    <pluralLabel>SObjects</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

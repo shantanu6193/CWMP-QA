@@ -1,0 +1,428 @@
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 1.2rem;
+}
+
+.img-div {
+	height: 250px;
+}
+
+
+/*New Home Design*/
+
+.appLogo {
+	border-radius: 50%;
+	height: 250px;
+}
+
+.popularContents {
+    background: #003466;
+}
+
+.appbox:hover {
+	padding-top: 0px;
+	background-color: #ffffff;
+	-webkit-border-radius: 8px 8px 8px 8px;
+	border-width: 0px 0px 4px 0px;
+	border-style: solid;
+	border-color: #034580 !important;
+	-webkit-box-shadow: 0px 20px 40px rgba(55, 94, 239, 0.15);
+	box-shadow: 0px 20px 40px rgba(55, 94, 239, 0.15);
+	transition: all 0.1s linear;
+}
+
+.appbox {
+	padding-top: 24px;
+	border: none;
+	transition: all 0.1s linear;
+}
+
+.header {
+	font-size: 26px;
+	color: #003F78;
+}
+
+.sub-header {
+	font-size: 22px;
+}
+
+.announcement-logo {
+	max-width: 80px;
+}
+
+.announcement-para-header {
+	font-size: 18px;
+	color: white;
+	font-weight: bold;
+}
+
+.announcement-para-subheader {
+	font-size: 16px;
+	color: white;
+	padding-bottom: 10px;
+}
+
+.announcement-box {
+	background: #034580;
+}
+
+.slds-border_top,
+.slds-border_bottom {
+	border-color: white;
+	padding-top: 5px;
+}
+
+.name {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.text-heading {
+	font-size: 18px;
+}
+
+.footer {
+	background: #003466;
+	border: 1 px solid;
+    border-top: solid 3px #fbad23;
+    height:120px;
+    width:100%;
+    height:100%;
+}
+
+.announcement-header {
+	color: white;
+    font-size: 30px;
+    padding:0 0 10px 0;
+}
+
+.footer-links {
+	font-weight: bold;
+	color: white;
+	text-decoration: underline;
+}
+
+.contact-button {
+	background: transparent;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	border-radius: 20%/50%;
+	border-style: solid;
+	border-color: white;
+}
+
+.slds-align-center {
+	justify-content: center;
+}
+
+.link a:hover{
+    text-decoration:underline;
+    text-decoration-color:#fbad23;
+}
+
+.copyright {
+	color: white;
+	font-size: 14px;
+}
+
+.container {
+	position: relative;
+}
+
+.main-content {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.hover-content {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.container:hover .main-content {
+	opacity: 0;
+}
+
+.container:hover .hover-content {
+	opacity: 10;
+}
+
+.appName {
+	font-size: 24px;
+}
+
+.Description {
+	font-size: 18px;
+}
+.Appbutton{
+    font-size: 18px;
+}
+
+.logolink {
+	color: black;
+}
+
+.picture {
+	border-radius: 50%;
+    height: 125px;
+    width:125px;
+}
+
+.mobile-content {
+	display: none;
+}
+
+.footer-li li {
+	list-style: none !important;
+}
+
+li:last-child {
+	border-right: none !important;
+}
+
+.listcontainer {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 10px;
+	margin: 5px 0;
+	border-right: 1px solid white;
+}
+.footer-copyright{
+    padding-top:0;
+}
+
+.announcement-body{
+    padding-bottom:60px;
+}
+.announcement-heading{
+    padding-top:60px;
+    padding-bottom:24px;
+}
+.announcement-textsize{
+    font-size:15px;
+    color:white;
+}
+.modal-header{
+    font-size:25px;
+}
+@media screen and (min-width:500px) and (max-width: 800px) {
+    .alignment {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    .footer {
+        background: #003466;
+        border: 1 px solid;
+        border-top: solid 3px #fbad23;
+        width:100%;
+        height:100%;
+    }
+}
+@media screen and (min-width:500px) and (max-width: 768px) {
+    .alignment {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+		margin: auto;
+	}
+	.space {
+        padding-top: 1.5rem;
+    }
+    .announcement-content {
+        width: 100%;
+    }
+    .logo-section {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    LI:nth-child(odd) {
+        border-right: solid 1px #ffffff;
+        text-align: right;
+    }
+    LI:nth-child(even) {
+        border-right: none;
+        text-align: left;
+    }
+    li {
+        display: inline-block;
+        box-sizing: border-box;
+        padding: 0 10px;
+        margin: 5px 0;
+        width: 45%;
+    }
+   .footer {
+	background: #003466;
+	border: 1 px solid;
+    border-top: solid 3px #fbad23;
+    width:100%;
+    height:100%;
+}
+}
+
+@media screen and (min-width:1250px){
+    .footer {
+        background: #003466;
+        border: 1 px solid;
+        border-top: solid 3px #fbad23;
+        height:120px;
+    }
+    .header {
+        font-size: 30px;
+        color: #003F78;
+    }
+    .announcement-header {
+        color: white;
+        font-size: 26px;
+        padding:0 0 10px 0;
+    }
+}
+@media screen and (min-width:500px) and (max-width: 1200px){
+    .appLogo {
+        border-radius: 50%;
+        height: 200px;
+    }
+}
+@media screen and (min-width:500px) and (max-width: 768px){
+    li:last-child {
+        width:100% !important;
+        text-align:center;
+    }
+    .listcontainer {
+        width:50%;
+    }
+}
+@media screen and (min-width:320px) and (max-width: 500px) {
+    .Name {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .text-heading {
+        font-size: 14px;
+    }
+    .slds-float_left {
+        float: none;
+    }
+    .content-image{
+        width:70px;
+        padding-bottom:10px;
+    }
+    .picture {
+        border-radius: 50%;
+        height: 135px;
+    }
+    .appLogo {
+        border-radius: 50%;
+        height: 200px;
+    }
+    .appbox {
+        background-color: #ffffff;
+        -webkit-border-radius: 8px 8px 8px 8px;
+        border-width: 0px 0px 4px 0px;
+        border-style: solid;
+        border-color: #034580 !important;
+        -webkit-box-shadow: 0px 20px 40px rgba(55, 94, 239, 0.15);
+        box-shadow: 0px 20px 40px rgba(55, 94, 239, 0.15);
+    }
+    .Description {
+        font-size: 14px;
+    }
+    .logoName {
+        font-size: 18px;
+    }
+    .container:hover .hover-content {
+        opacity: 0;
+    }
+    .container:hover .main-content {
+        opacity: 1;
+    }
+    .announcement-para-subheader {
+        font-size: 14px;
+        color: white;
+        padding-bottom: 10px;
+    }
+    .Announcements {
+        font-weight: bold;
+        color: #003F78;
+        font-size: 18px;
+    }
+    .announcement-para-header {
+        font-size: 16px;
+        color: white;
+        font-weight: bold;
+    }
+    .header {
+        font-size: 22px;
+        color: #003F78;
+    }
+    .sub-header {
+        font-size: 18px;
+    }
+    .alignment {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin: auto;
+        
+    }
+    .mobile-content {
+        display: block !important;
+    }
+    .announcement-logo {
+        max-width: 100px;
+    }
+    .space {
+        padding-top: 1.5rem;
+    }
+    .announcement-content {
+        width: 100%;
+    }
+    .logo-section {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    LI:nth-child(odd) {
+        border-right: none;
+        text-align: center;
+    }
+    LI:nth-child(even) {
+        border-right: none;
+        text-align: center;
+    }
+    li {
+        padding: 0 10px;
+        margin: 5px 0;
+        width: 100%;
+    }
+    .announcment-image{
+        width:70px;
+    }
+    .footer-copyright{
+        padding-top:20px;
+    }
+    
+}

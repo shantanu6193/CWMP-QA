@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>51.0</apiVersion>
+    <assignments>
+        <name>Update_Status_to_Expired</name>
+        <label>Update Status to Expired</label>
+        <locationX>590</locationX>
+        <locationY>118</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Expired</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Agency_Record</targetReference>
+        </connector>
+    </assignments>
+    <description>This will get executed daily at 12 AM and will look for records with status approved or Revised as well End date is less than today and will expire them.</description>
+    <interviewLabel>MARS -Expired Agency Salary Survey Batch {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MARS -Expired Agency Salary Survey Batch</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Agency_Record</name>
+        <label>Update Agency Record</label>
+        <locationX>811</locationX>
+        <locationY>119</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>49</locationY>
+        <connector>
+            <targetReference>Update_Status_to_Expired</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2 ) AND 3</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EndsWith</operator>
+            <value>
+                <stringValue>Reviewed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Revised</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_End_Date_Less_Than_Today__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Agency_Salary_Survey__c</object>
+        <schedule>
+            <frequency>Daily</frequency>
+            <startDate>2021-04-08</startDate>
+            <startTime>00:01:00.000Z</startTime>
+        </schedule>
+        <triggerType>Scheduled</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

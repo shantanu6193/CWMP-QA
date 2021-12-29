@@ -1,0 +1,186 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-label="Meaningful description of the modal content" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container popup_close">
+            <div>
+                <header class="slds-modal__header slds-text-align_left slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Please complete the following checklist items: </h2>
+                    </div>
+                    <div class="slds-no-flex">
+                        <lightning-button-icon icon-name="utility:close"  variant="bare" alternative-text="Close" title="Close" size="large" onclick= {closeButton}></lightning-button-icon>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-p-bottom_medium" >
+                    <article class="slds-card slds-card_boundary">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__body">
+                                    <p class="grx-color_brand"></p>
+                                    <h2 class="slds-card__header-title"></h2>
+                                </div>
+                            </header>
+                        </div>
+                        <div class="slds-card__body slds-card__body_inner">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label1"
+                                                           label={question1}
+                                                           options={options}
+                                                           value={radioValue1}
+                                                           data-field="radioValue1"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+                            <template if:true={renderComment1}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment1" class="inputCmp" onchange={handleCommentChange}  value={commentsVal1}  label="Comments" variant="label-hidden"></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label2"
+                                                           label={question2}
+                                                           options={options1}
+                                                           value={radioValue2}
+                                                           data-field="radioValue2"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+
+                            <template if:true={renderComment2}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment2" class="inputCmp" onchange={handleCommentChange}  value={commentsVal2}  label="Comments" variant="label-hidden"></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label3"
+                                                           label={question3}
+                                                           options={options2}
+                                                           value={radioValue3}
+                                                           data-field="radioValue3"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+
+                            <template if:true={renderComment3}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment3" class="inputCmp" onchange={handleCommentChange}  value={commentsVal3}  label="Comments" variant="label-hidden"></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label4"
+                                                           label={question4}
+                                                           options={options3}
+                                                           value={radioValue4}
+                                                           data-field="radioValue4"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+
+                            <template if:true={renderComment4}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment4" class="inputCmp" onchange={handleCommentChange}  value={commentsVal4}  variant="label-hidden" label="Comments" ></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label5"
+                                                           label={question5}
+                                                           options={options4}
+                                                           value={radioValue5}
+                                                           data-field="radioValue5"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+
+                            <template if:true={renderComment5}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment5" class="inputCmp" onchange={handleCommentChange}  value={commentsVal5} variant="label-hidden"  label="Comments" ></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label6"
+                                                           label={question6}
+                                                           options={options5}
+                                                           value={radioValue6}
+                                                           data-field="radioValue6"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+
+                            <template if:true={renderComment6}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment16" class="inputCmp" onchange={handleCommentChange}  value={commentsVal6}  label="" variant="label-hidden" ></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-1">
+                                    <lightning-radio-group name="Label7"
+                                                           label={question7}
+                                                           options={options6}
+                                                           value={radioValue7}
+                                                           data-field="radioValue7"
+                                                           onchange={handleRadioChange}
+                                                           type="radio"></lightning-radio-group>
+                                </div>
+                            </div>
+                            <template if:true={renderComment7}>
+                                <div class="slds-grid slds-wrap">
+                                    <div class="slds-col slds-size_1-of-1">
+                                        <lightning-textarea name="comment7" class="inputCmp" onchange={handleCommentChange}  value={commentsVal7}  variant="label-hidden"></lightning-textarea>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </article>
+                </div>
+
+            </div>
+            <footer class="slds-modal__footer">
+                <div class="slds-grid slds-wrap slds-gutters slds-align_absolute-center">
+                    <div class="slds-col slds-large-size_4-of-12 slds-medium-size_3-of-12 slds-small-size_12-of-12">
+                        <button class="slds-button slds-button_brand grx-button grx-button_brand slds-align--absolute-center" onclick={handleDone}>Submit</button>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+    <template if:true={showLoader}>
+        <div class="loadingIcon">
+            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+        </div>
+    </template>
+</template>

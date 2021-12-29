@@ -1,0 +1,7 @@
+.docu_generate {
+    display: contents;
+}
+.docu_generate button.slds-button.slds-button_neutral {
+    background: #395c96;
+    color: #fff;
+}

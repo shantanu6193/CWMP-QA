@@ -1,0 +1,9 @@
+<!--
+ - Created by PREM on 07-07-2020.
+ -->
+
+<design:component>
+    <design:attribute name="IsCommunity" default="No" label="Is Community?" datasource="Yes,No"  description="Please indicate which environment this component is hosted on."/>
+    <design:attribute name="ColumnsToBeDisplay" default="" label="Columns To Be Display" description="Please provide JSON array for columns to display on Edit Products Layout."/>
+    <design:attribute name="ColumnsToBeDisplayOnPHOS" default="" label="Columns To Be Display On PHOS" description="Please provide JSON array for columns to display on Edit Products Layout for PHOS."/>
+</design:component>

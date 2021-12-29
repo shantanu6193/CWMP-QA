@@ -1,0 +1,11 @@
+/* .th {
+    background: #375283!important;
+} */
+.slds-table th,
+.slds-table td {
+    white-space: normal !important;
+}
+.slds-input {
+    border-color:red;
+    background-color:red;
+}

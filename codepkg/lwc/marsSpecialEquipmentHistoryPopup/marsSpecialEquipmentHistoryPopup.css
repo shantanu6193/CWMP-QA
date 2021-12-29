@@ -1,0 +1,31 @@
+.slds-col.approved .slds-size_6-of-12 {
+    display: inline-block;
+}
+svg.slds-icon.slds-icon-text-default.slds-icon_small {
+    width: 15px;
+    height: auto;
+}
+.outputfont{
+    font-weight: bold;
+    /*font-size: medium;*/
+}
+@media print 
+{
+    @page { 
+        margin: 0cm;
+        size: A3 portrait;
+     }
+    body  { 
+        margin: 0.01cm;
+    }
+    imgclass {
+        -webkit-print-color-adjust: exact !important;
+    }
+    ::-webkit-scrollbar {
+        position: fixed;
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+        z-index: 100000;
+    }
+}

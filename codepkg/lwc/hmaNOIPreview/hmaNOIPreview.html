@@ -1,0 +1,893 @@
+<template>
+    <!-- GENERAL INFORMATION-->
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">GENERAL INFORMATION</h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">First Name of Person Completing NOI</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.First_Name_of_Person_Completing_NOI__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Last Name of Person Completing NOI</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Last_Name_of_Person_Completing_NOI__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Subapplicant Name (Entity)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Applicant_Name_Entity__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Subapplicant Type</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Applicant_Type__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Street Address</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Street_Address__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">City</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.City__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Zip</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Zip_Code__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">County</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.County__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">State</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.State__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Federal Information Processing Number (FIPS #)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.FIPS__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Data Universal Numbering System (DUNS #)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.DUNS__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <template if:true={isPrivateNonProfit}>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Employer Identification Number (For Private Non- Profits)</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    {record.EIN_For_Private_Non_Profits__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <template if:true={recordTypeBRIC}>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the subapplicant a small impoverished community?</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    {record.Subapplicant_a_small_community__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </article>
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">SUBAPPLICATION INFORMATION</h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Subapplication Type</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Application_Type__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Project Type</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Project_Type__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Hazard</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Hazard__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </article>
+     <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">PROJECT / PLAN INFORMATION</h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Activity Title/Name</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Activity_TitleName__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Activity Location</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Activity_Location__Latitude__s},&nbsp;{record.Activity_Location__Longitude__s}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Brief Summary</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Brief_Summary__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Describe the problem to be mitigated</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Describe_the_problem_to_be_mitigated__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Project Duration (in Months)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Project_Duration_in_Months__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Describe the scope of work</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                               {record.Describe_the_scope_of_work__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Has a full subapplication for this project been submitted to OES previously?</label>
+                        <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                {record.Subapplication_for_project_submitted__c}
+                                </span>
+                        </div>
+                    </div>
+                </div>
+
+                <template if:true={showProgramField}>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Program</label>
+                            <div class="slds-form-element__control">
+                                <template if:true={record.Program__r}>
+                                        <span class="slds-form-element__static">
+                                        {record.Program__r.Name}
+                                        </span>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Project Number</label>
+                            <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Project_Number__c}
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <template if:true={showAllCards}>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Does another Federal entity have primary funding authority for this project?</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                {record.Federal_entity_have_funding_authority__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <template if:true={showIdentifyTheProgramField}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes, identify the program</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.If_yes_identify_the_program__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={showPhysicalWorkField}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Has physical project work already started?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Physical_project_work_already_started__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showWorkStartedField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Please explain in detail what work has been started/completed?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.Work_started_completed_in_detail__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+
+                    <template if:true={showForBRICandFMA}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the subapplicant responsible for the operations and maintenance of this infrastructure?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Subapplicant_for_infrastructure__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={showEntityResponsibleField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Name the entity responsible for operation and maintenance of this infrastructure</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.Entity_Responsible_For_Operation__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is this an independent mitigation activity?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Independent_mitigation_activity__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={showMitigationDependentField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">What activity is this mitigation dependent on?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.Mitigation_Dependent_On__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Do you have planning studies or feasibility reports?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Planning_studies_or_feasibility_reports__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showWhatIsAvailableField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes, what is available?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.If_yes_planning_studies__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Do you have design documents for this project?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Design_documents_for_this_project__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showPercentageCompleteAreTheDesignsField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes, what is available?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.Percentage_complete_are_the_designs__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the project related to repair, replacement, rehabilitation, or maintenance of an asset?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Project_related_to_asset__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showProtectionForThatAssetField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes, does this project increase the level of protection for that asset?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.Protection_for_that_asset__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:true={showConformanceFields}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the project in conformance with the latest published building codes?</label>
+                                <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">{record.Project_in_conformance_with_latest_codes__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={showProjectNotInConformance}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Please explain why the project will not be in conformance with the latest building codes.</label>
+                                    <div class="slds-form-element__control">
+                                            <span class="slds-form-element__static">{record.Explain_why_project_not_in_conformance__c}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    <template if:true={hideSpecialFloodHazardArea}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the project located in a Special Flood Hazard Area?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{record.Project_in_a_Special_Flood_Hazard_Area__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={showFloodInsuranceProgram}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is the project located in a jurisdiction that is in good standing with the National Flood Insurance Program (NFIP)?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{record.Project_located_in_NFIP__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Provide the National Flood Insurance Program (NFIP) community number</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{record.National_Flood_Insurance_Program_NFIP__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Are all the structures to be included in the subapplication insured under the National Flood Insurance Program (NFIP)?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{record.Structures_included_in_subapplication__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:true={showProjectMitigateField}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Does the project mitigate Severe Repetitive Loss or Repetitive Loss properties?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{record.Project_mitigate_Severe_Repetitive_Loss__c}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+        </div>
+    </article>
+
+    <template if:true={showCardsForPlanningRelated}>
+        <template if:true={hideForProblemMitigation}>
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">PROBLEM STATEMENT</h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Describe the problem to be mitigated</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Describe_the_problem_to_be_mitigated__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--<div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">What is the future hazard event trigger to initiate analysis to determine if losses have been avoided due to success of this mitigation measure?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Future_Hazard_Event_Trigger__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>-->
+
+                    </div>
+                </div>
+            </article>
+
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">SOLUTION DESCRIPTION</h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">What is the mitigation action?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.What_is_the_mitigation_action__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">How will this action provide protection from future natural hazards?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Protection_From_Future_Natural_Hazards__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">What is the implementation plan for this mitigation effort?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Implementation_Plan_For_Mitigation__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Have all specific sites where project work will be conducted been identified?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Is_Project_Site_Identified__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">What is the percentage level of design?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Percentage_Level_Of_Design__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is this project phased?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Is_this_project_phased__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </article>
+        </template>
+    </template>
+
+    <template if:true ={getApplicationType}>
+        <template if:true={hideFieldsForBRICAndFMA}>
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">BENEFIT COST ANALYSIS</h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Does the proposed project area have a documented history of significant damages, loss of service/function, or other loss/disruption?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.Proposed_project_area_documented__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showProposedProjectField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes, what is available?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                            {record.If_yes_proposed_project__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Do you have data and/or studies documenting the extent, severity, and/or current risk of the hazard?</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                    {record.Project_location_have_the_hazard__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <template if:true={showProjectlocationField}>
+                            <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                                <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">If yes,what is available?</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">
+                                        {record.If_yes_project_location__c}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </article>
+        </template>
+    </template>
+        
+
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">ACTIVITY COSTS</h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner ">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Total Activity Cost</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                <p><lightning-formatted-number value={record.Total_Activity_Cost__c} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Non-Federal Cost Share ($)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                <p><lightning-formatted-number value={record.Applicant_Match__c} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Federal Share Request($)</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                            <p><lightning-formatted-number value={record.Federal_Request_Share__c} format-style="currency" currency-code="USD"></lightning-formatted-number></p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Percentage of Non-Federal Cost Share</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Percentage_of_Applicant_Match__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Percentage of Federal Request Share</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                                {record.Percentage_of_Federal_Request_Share__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                    <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Source of Non-Federal Cost Share</label>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">
+                            {record.Source_of_applicant_match__c}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <template if:true ={getApplicantType}>
+        <article class="slds-card slds-card_boundary">
+            <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title">LOCAL HAZARD MITIGATION PLAN INFORMATION</h2>
+                    </div>
+                </header>
+            </div>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Does your entity have an active LHMP?</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    {record.Does_your_entity_have_an_active_LHMP__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <template if:true ={activeLHMP}>
+                        <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                            <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">LHMP Approval Date</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">
+                                        {record.LHMP_Approval_Date__c}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">LHMP Development Status</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    {record.LHMP_Development_Status__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-large-size_3-of-12 slds-medium-size_6-of-12 slds-size_12-of-12 slds-p-top_small slds-p-bottom_x-small">
+                        <div class="slds-form-element slds-p-left_x-small"> <label class="slds-text-title_bold slds-form-element__label">Is this activity addressed in your Local Hazard Mitigation Plan?</label>
+                            <div class="slds-form-element__control">
+                                <span class="slds-form-element__static">
+                                    {record.Activity_in_Mitigation_Plan__c}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">CONTACT INFORMATION</h2>
+                </div>
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="First Name">First Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Last Name">Last Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Entity">Entity</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Entity ID">Entity ID</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="E-mail Address">Email</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Phone #">Phone</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Alt Phone">Alt Phone</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Role">Role</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Type">Type</div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <template for:each={record.Contact_Roles__r} for:item="contactRole" for:index="index">
+                        <tr class="slds-hint-parent" key={contactRole.Contact__r.Email}>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Contact__r.FirstName}</div>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Contact__r.LastName}</div>
+                        </td>
+                        <td role="gridcell">
+                            <template if:true={contactRole.Contact__r.Account}>
+                                <div class="slds-truncate">{contactRole.Contact__r.Account.Name}</div>
+                            </template>
+                        </td>
+                        <td role="gridcell">
+                            <template if:true={contactRole.Contact__r.Account}>
+                                <div class="slds-truncate">{contactRole.Contact__r.Account.Entity_Id__c}</div>
+                            </template>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Contact__r.Email}</div>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Contact__r.Phone}</div>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Contact__r.MobilePhone}</div>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Role__c}</div>
+                        </td>
+                        <td role="gridcell">
+                            <div class="slds-truncate">{contactRole.Type__c}</div>
+                        </td>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+    </article>
+</template>

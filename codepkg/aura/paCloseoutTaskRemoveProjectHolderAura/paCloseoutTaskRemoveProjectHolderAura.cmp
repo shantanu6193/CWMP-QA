@@ -1,0 +1,12 @@
+<aura:component controller="PACloseoutTaskRemoveProjectController" implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,force:hasRecordId" access="global">
+        <lightning:workspaceAPI aura:id="workspace" />        
+        <lightning:navigation aura:id="navigation"/>
+       
+        <aura:attribute name="sbaseUrl" type="String" default=""/>
+        <aura:attribute name="recId" type="String" default=""/>
+        <aura:attribute name="sourceCloseoutTaskTabId" type="String" default=""/>
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        
+             <c:paCloseoutTaskRemoveProject recordId ="{!v.recId}"  oncloseclicked="{!c.onTabClosed}" ></c:paCloseoutTaskRemoveProject> 
+        
+</aura:component>

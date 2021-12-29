@@ -1,0 +1,458 @@
+<!--
+ - Created by PREM on 28-03-2020.
+ -->
+
+<aura:component description="PHOS_Order_EditReview">
+    <aura:attribute name="orderRec" type="Order__c" description="order record instance" default="{}"/>
+    <aura:attribute name="orderItems" type="List" description="order Items List" default="[]"/>
+    <aura:attribute name="productsMap" type="Object" description="Available Product Map" default="{}"/>
+    <aura:attribute name="addressLine2" type="String" description="Address line 2" />
+    <aura:attribute name="showAdditionalProductColumns" type="Boolean" default="false" description="If true then show additional attributes"/>
+    <aura:attribute name="showQuantityFilledField" type="Boolean" default="false" description="Show quantity filled field when component called from Order Version"/>
+    <aura:attribute name="orderVersion" type="Order_Version__c" description="order version record instance" default="null" required="false"/>
+    <aura:attribute name="showGACHQuestion" type="Boolean" default="false"/>
+    <aura:attribute name="showGACHSubQuestions" type="Boolean" default="false"/>
+
+    <div class="slds-grid slds-wrap slds-align_absolute-center">
+        <div class="slds-col slds-size_12-of-12">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col">
+                    <p class="heading">Incident Information</p>
+                    <hr/>
+                </div>
+            </div>
+            <div class="slds-col slds-size_12-of-12 ">
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Incident Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Incident_Name__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Other Request # (If Applicable)</p>
+                        <p><ui:outputText value="{!v.orderRec.Other_Request_Number_If_Applicable__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Priority Of Request</p>
+                        <p><ui:outputText value="{!v.orderRec.Priority_for_Requests__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Mission ID (If Applicable)</p>
+                        <p><ui:outputText value="{!v.orderRec.Mission_Request_Number_If_Applicable__c}"/></p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-p-top_small">
+                <div class="slds-col">
+                    <p class="heading">Requester Information</p>
+                    <hr/>
+                </div>
+            </div>
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester First Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_First_Name_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester Last Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_Last_Name_Text__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester Title</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_Title_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester Agency</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_Agency_Text__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester Email</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_Email_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Requester Phone</p>
+                        <p><ui:outputText value="{!v.orderRec.Requestor_Phone_Text__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Operational Area</p>
+                        <p><ui:outputText value="{!v.orderRec.County__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Industry</p>
+                        <p><ui:outputText value="{!v.orderRec.Industry__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Sub Industry</p>
+                        <p><ui:outputText value="{!v.orderRec.Sub_Industry__c}"/></p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-p-top_small">
+                <div class="slds-col">
+                    <p class="heading">Delivery Information</p>
+                    <hr/>
+                </div>
+            </div>
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient First Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_First_Name_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient Last Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_Last_Name_Text__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient Title</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_Title_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient Entity Name</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_Entity_Name__c}"/></p>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient Email</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_Email_Text__c}"/></p>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Delivery Recipient Phone</p>
+                        <p><ui:outputText value="{!v.orderRec.Delivery_Recipient_Phone_Text__c}"/></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Address Line 1</p>
+                    <p><ui:outputText value="{!v.orderRec.Shipping_Street__c}"/></p>
+                </div>
+            </div><div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Address Line 2</p>
+                    <p><ui:outputText value="{!v.orderRec.Shipping_Street_2__c}"/></p>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">City</p>
+                    <p><ui:outputText value="{!v.orderRec.Shipping_City__c}"/></p>
+                </div>
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">State</p>
+                    <p><ui:outputText value="{!v.orderRec.Shipping_State__c}"/></p>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Zip</p>
+                    <p><ui:outputText value="{!v.orderRec.Shipping_ZipPostal_Code__c}"/></p>
+                </div>
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1" style="padding:0">
+                            <p class="slds-form-element__label">Latitude</p>
+                            <p><ui:outputText value="{!v.orderRec.Address_Geolocation__Latitude__s}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1" style="padding:0">
+                            <p class="slds-form-element__label">Longitude</p>
+                            <p><ui:outputText value="{!v.orderRec.Address_Geolocation__Longitude__s}"/></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Delivery Notes</p>
+                    <p><ui:outputText value="{!v.orderRec.Delivery_Notes__c}"/></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--1.Header-->
+    <div class="slds-grid slds-wrap slds-p-top_x-large">
+        <div class="slds-col">
+            <p class="heading">Order Sheet</p>
+            <hr/>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1">
+        <p class="custom-label slds-p-bottom_x-small">Please indicate the type of resource being requested:</p>
+       </div>
+        <div class="slds-col slds-large-size_3-of-12 slds-size_1-of-1">
+            <lightning:input type="checkbox" label="Supplies / Equipment" name="input1" disabled="true" checked="{!v.orderRec.SuppliesEquipment__c}" />
+        </div>
+        <div class="slds-col slds-large-size_2-of-12 slds-size_1-of-1">
+            <lightning:input type="checkbox" label="Personnel" name="input1" disabled="true" checked="{!v.orderRec.Personnel__c}"/>
+        </div>
+        <div class="slds-col slds-large-size_2-of-12 slds-size_1-of-1">
+            <lightning:input type="checkbox" label="Other" name="input1" disabled="true" checked="{!v.orderRec.Type_Of_Resource_Other__c}"/>
+        </div>
+
+    </div>
+    <!--<div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col">
+            <p class="custom-label slds-p-bottom_x-small">Please indicate the type of resource being requested:</p>
+            <lightning:input type="checkbox" label="Supplies / Equipment" name="input1" disabled="true" checked="{!v.orderRec.SuppliesEquipment__c}" />
+            <lightning:input type="checkbox" label="Personnel" name="input1" disabled="true" checked="{!v.orderRec.Personnel__c}"/>
+            <lightning:input type="checkbox" label="Other" name="input1" disabled="true" checked="{!v.orderRec.Type_Of_Resource_Other__c}"/>
+        </div>
+    </div>-->
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-table_structure">
+            <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_col-bordered slds-table_fixed-layout slds-table_resizable-cols slds-table_bordered">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Product Family">Product Family</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Product Name">Product Name</div>
+                    </th>
+                    <th class="slds-size_2-of-12" scope="col">
+                        <div class="slds-truncate" title="Quantity Requested (ea)">Quantity Requested (ea)</div>
+                    </th>
+                    <aura:if isTrue="{!v.showQuantityFilledField}">
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Quantity Filled">Quantity Filled</div>
+                        </th>
+                    </aura:if>
+                    <aura:if isTrue="{!v.showAdditionalProductColumns}">
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Quantity Filled">Quantity Filled</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Warehouse Info">Warehouse Info</div>
+                        </th>
+                    </aura:if>
+                    <th class="slds-size_3-of-12" scope="col">
+                        <div class="slds-truncate" title="Item Description">Item Description</div>
+                    </th>
+                    <th class="slds-size_3-of-12" scope="col" style="width: 12%">
+                        <div class="slds-truncate" title="Substitutes OK?">Substitutes OK?</div>
+                    </th>
+                    <aura:if isTrue="{!v.showAdditionalProductColumns}">
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Fulfillment Entity / Warehouse">Fulfillment Entity / Warehouse</div>
+                        </th>
+                        <th class="slds-size_2-of-12" scope="col">
+                            <div class="slds-truncate" title="Mission Task#">Mission Task #</div>
+                        </th>
+                    </aura:if>
+                </tr>
+                </thead>
+                <tbody>
+                <aura:iteration items="{!v.orderItems}" var="orderItem">
+                    <tr class="slds-hint-parent">
+                        <td data-label="Product Family" scope="row">
+                            <div class="slds-truncate" title="">
+                                <c:ValueBinder record="{!v.productsMap}" key="{!orderItem.Product__c}" field="Family"/>
+                            </div>
+                        </td>
+                        <td data-label="Item Type" scope="row">
+                            <div class="slds-truncate" title="">
+                                <c:ValueBinder record="{!v.productsMap}" key="{!orderItem.Product__c}" field="Name"/>
+                            </div>
+                        </td>
+                        <td data-label="Quantity Requested">
+                            <ui:outputText value="{!orderItem.Quantity__c}"/>
+                        </td>
+                        <aura:if isTrue="{!v.showQuantityFilledField}">
+                            <td data-label="Quantity Filled">
+                                <div class="slds-truncate" title="">
+                                    <ui:outputText value="{!orderItem.Quantity_Filled__c}"/>
+                                </div>
+                            </td>
+                        </aura:if>
+                        <aura:if isTrue="{!v.showAdditionalProductColumns}">
+                            <td data-label="Fulfillment Entity / Warehouse">
+                                <div class="slds-truncate" title="">
+                                    <ui:outputText value="{!orderItem.Quantity_Filled__c}"/>
+                                </div>
+                            </td>
+                            <td data-label="Warehouse Info">
+                                <div class="slds-truncate" title="">
+                                    <ui:outputText value="{!orderItem.Warehouse_Info__c}"/>
+                                </div>
+                            </td>
+                        </aura:if>
+                        <td data-label="Item Description">
+                            <div class="slds-truncate" title="">
+                                <ui:outputText value="{!orderItem.Description__c}"/>
+                            </div>
+                        </td>
+                        <td data-label="Substitutes OK?">
+                            <div class="slds-truncate" title="">
+                                <ui:outputCheckbox value="{!orderItem.Equivalent_Substitutes_Acceptable__c}"/>
+                            </div>
+                        </td>
+                        <aura:if isTrue="{!v.showAdditionalProductColumns}">
+                            <td data-label="Fulfillment Entity / Warehouse">
+                                <div class="slds-truncate" title="">
+                                    <ui:outputText value="{!orderItem.Fulfilment_Entity_Warehouse__c}"/>
+                                </div>
+                            </td>
+                            <td data-label="Mission Task #">
+                                <div class="slds-truncate" title="">
+                                    <ui:outputText value="{!orderItem.Mission__c}"/>
+                                </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.orderRec.Personnel__c}">
+        <div class="slds-grid slds-wrap slds-p-top_small">
+            <div class="slds-col">
+                <p class="heading">Medical Staffing Information</p>
+                <hr/>
+            </div>
+            <div class="slds-col slds-size_12-of-12">
+                <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                    <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                        <p class="slds-form-element__label">Is this a Medical Staffing Request?</p>
+                        <p><ui:outputText value="{!v.orderRec.Is_this_a_Medical_Staffing_Request__c}"/></p>
+                    </div>
+                    <aura:if isTrue="{!v.orderRec.Is_this_a_Medical_Staffing_Request__c == 'Yes'}">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Is this for a General Acute Care Hospital (GACH)?</p>
+                            <p><ui:outputText value="{!v.orderRec.Is_this_for_a_GACH__c}"/></p>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.orderRec.Is_this_for_a_GACH__c == 'No'}">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</p>
+                            <p><ui:outputText value="{!v.orderRec.Have_you_attempted_to_transfer_patients__c}"/></p>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!and(v.orderRec.Is_this_a_Medical_Staffing_Request__c == 'Yes',v.orderRec.Is_this_for_a_GACH__c == 'Yes')}">
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">How many additional beds will be provided with the staff requested?</p>
+                            <p><ui:outputText value="{!v.orderRec.Bed_to_staff_ratio_bed_staff__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">How many total staff are you requesting?</p>
+                            <p><ui:outputText value="{!v.orderRec.How_many_total_staff_are_you_requesting__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Does the requested staff allow additional ICU or M/S/T beds (above licensed capacity) to be opened?</p>
+                            <p><ui:outputText value="{!v.orderRec.Allows_additional_ICU_or_M_S_T_beds__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Would requested personnel allow for additional ICU level beds to be opened for patients?</p>
+                            <p><ui:outputText value="{!v.orderRec.Does_site_need_personnel_to_keep_ICU__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Total ICU beds occupied (%)?</p>
+                            <p><ui:outputText value="{!v.orderRec.Total_ICU_beds_occupied__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Has the facility transferred, or attempted to transfer, patients out of the facility within the last 24 hours because there is not enough properly trained staff to care for them?</p>
+                            <p><ui:outputText value="{!v.orderRec.Have_you_attempted_to_transfer_patients__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Have you cancelled all non-urgent elective surgeries?</p>
+                            <p><ui:outputText value="{!v.orderRec.Have_you_cancelled_all_surgeries__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">What is the average time of "triage-to- treatment" for ESI Category 3 patients in the ED over the last 72 hours?</p>
+                            <p><ui:outputText value="{!v.orderRec.Average_time_of_T_to_T_for_ESI_Cat_3__c}"/></p>
+                        </div>
+                        <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">What is the current percentage of capacity in the Emergency Department?</p>
+                            <p><ui:outputText value="{!v.orderRec.Is_your_emergency_dept_on_diversion__c}"/></p>
+                        </div>-->
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Do you have, or have you requested, an active Staffing Waiver for the service line you in which you are requesting staff?</p>
+                            <p><ui:outputText value="{!v.orderRec.Do_you_have_an_active_staffing_waiver__c}"/></p>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">Would you be able to accept inter-facility patient transfers if you receive this staff?</p>
+                            <p><ui:outputText value="{!v.orderRec.Would_you_be_able_to_accept_transfers__c}"/></p>
+                        </div>
+                        <!--<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-bottom_medium">
+                            <p class="slds-form-element__label">How many patients are currently holding in the ED, awaiting admittance to the facility, or transfer to another facility?</p>
+                            <p><ui:outputText value="{!v.orderRec.Patients_in_ED_awaiting_admit_transfer__c}"/></p>
+                        </div>-->
+                    </aura:if>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+
+    <div class="slds-grid slds-wrap slds-p-top_x-large">
+        <div class="slds-col">
+            <p class="heading">Order Description</p>
+            <hr/>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+        <div class="slds-col">
+            <p class="custom-label slds-p-bottom_x-small fontBold">Describe Mission/Tasks:</p>
+            <ui:outputText value="{!v.orderRec.Description__c}"/>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-p-bottom_x-large">
+        <div class="slds-col">
+            <p class="custom-label slds-p-bottom_x-small fontBold">Actions Taken On This Request So Far:</p>
+            <ui:outputText value="{!v.orderRec.Actions_Taken_On_This_Request__c}"/>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-wrap slds-p-top_x-large">
+        <div class="slds-col">
+            <p class="heading"></p>
+            <hr/>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col">
+            <p class="custom-label slds-p-bottom_x-small">OA/MHOAC must confirm that the verification question in the PH&amp;M EOM have been reviewed and answered.</p>
+            <lightning:input type="checkbox" label="This request meets the submission criteria as stated in the PH&amp;M EOM" name="input1" disabled="true" checked="{!v.orderRec.PHM_EOM_Confirmed__c}" />
+            <lightning:input type="checkbox" label="The creation of this request was in consultation with the RDMHC Program" name="input1" disabled="true" checked="{!v.orderRec.RDMHS_Program_Confirmed__c}"/>
+        </div>
+    </div>
+
+    <aura:if isTrue="{!v.orderVersion != null}">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col">
+                <p class="heading">System Information</p>
+                <hr/>
+            </div>
+        </div>
+        <div class="slds-col slds-size_12-of-12 ">
+            <div class="slds-grid slds-wrap slds-gutters_xx-large slds-p-bottom_medium">
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Created By</p>
+                    <p><ui:outputText value="{!v.orderVersion.CreatedBy.Name}"/></p>
+                </div>
+                <div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1">
+                    <p class="slds-form-element__label">Created Date</p>
+                    <p><ui:outputDate value="{!v.orderVersion.CreatedDate}" format="yyyy/MM/dd"/></p>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

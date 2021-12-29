@@ -1,0 +1,198 @@
+<template>
+    <div>
+    <lightning-button label="New" onclick={createNewDoc} class="slds-float_right slds-p-right_medium"></lightning-button>
+</div>
+    <br/>
+    <div class="slds-grid slds-wrap" style="width:100%">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card">
+                
+                <!--<div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title slds-align_absolute-center slds-p-vertical_medium">
+                                <p class="slds-card__header-link slds-truncate" title="Project">
+                                    <span>{currentProjectName} - Documents</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>-->
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-p-around--medium">
+                        <div class="slds-col slds-size_12-of-12 slds-scrollable--x">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                <thead>
+                                <tr class="slds-line-height_reset ">
+                                    
+                                    <th class="" scope="col" onclick={sortName} data-id="Document_Name__c" onmouseout={hideSortArrow} onmouseover={showSortArrow} title="click to sort">
+                                        <div class="slds-truncate table-heading" title="Document" style="display:flex; justify-content:center;">Name
+                                            <div if:true = {displaySortArrow}>
+                                            <div if:true={issortName}>
+                                                <div if:true={isAsc} style="color:white;">
+                                                    <!-- <lightning-icon icon-name="arrowup" style="color:white;"></lightning-icon> -->
+                                                    &#9650;
+                                                </div>
+                                                <div if:true={isDsc} style="color:white;">
+                                                    <!-- <lightning-icon icon-name="arrowdown" style="color:white;"></lightning-icon> -->
+                                                    &#9660;
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </th>
+                                    
+                                    <th class="" scope="col" onclick={sortType} data-id="Document_Type__c" onmouseout={hideSortArrow} onmouseover={showSortArrow}>
+                                        <div class="slds-truncate table-heading" title="Type" style="display:flex; justify-content:center;">Category
+                                           <div if:true = {displaySortArrow}>
+                                            <div if:true={issortType}>
+                                                <div if:true={isAsc} style="color:white;">
+                                                    &#9650;
+                                                </div>
+                                                <div if:true={isDsc} style="color:white;">
+                                                    &#9660;
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        
+                                        <!-- <div class="slds-truncate table-heading" title="Type">Category</div> -->
+                                    </th>
+                                    <th class="" scope="col" onclick={sortStatus} data-id="Document_Type__c" onmouseout={hideSortArrow} onmouseover={showSortArrow}>
+                                        <div class="slds-truncate table-heading" title="Status" style="display:flex; justify-content:center;">Status
+                                            <div if:true = {displaySortArrow}>
+                                                <div if:true={isSortStaus}>
+                                                    <div if:true={isAsc} style="color:white;">
+                                                        &#9650;
+                                                    </div>
+                                                    <div if:true={isDsc} style="color:white;">
+                                                        &#9660;
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="slds-truncate table-heading" title="Type">Category</div> -->
+                                    </th>
+
+                                    <th class="" scope="col" onclick={sortStage} data-id="Stage__c" onmouseout={hideSortArrow} onmouseover={showSortArrow}>
+                                        <div class="slds-truncate table-heading" title="File Type" style="display:flex; justify-content:center;">Stage
+                                            <div if:true = {displaySortArrow}>
+                                            <div if:true={issortStage}>
+                                                <div if:true={isAsc} style="color:white;">
+                                                    &#9650;
+                                                </div>
+                                                <div if:true={isDsc} style="color:white;">
+                                                    &#9660;
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate table-heading" title="File Type">Versions</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate table-heading fixed-width" title="File Type">Action</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <template for:each={DocumentsWithProgramDocument} for:item="doc" for:index="index">
+                                    <tr class="slds-hint-parent" key={doc.documentRecord.Document_Name__c}>
+                                        <td>
+                                            <template if:true={doc.contentDocumentLink}>
+                                                <a class="slds-truncate" title="Document" data-value= {doc.contentDocumentLink.ContentDocumentId} onclick={navigateToFilePreview}>{doc.documentRecord.Document_Name__c}</a>
+                                            </template>
+                                            <template if:false= {doc.contentDocumentLink}>
+                                                <div class="slds-truncate" title="Document">{doc.documentRecord.Document_Name__c}</div>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            <!--&lt;!&ndash;<div class="slds-truncate" title="Document">Type A</div>&ndash;&gt;-->
+                                            <!-- <lightning-helptext content={doc.documentRecord.Comments__c}></lightning-helptext> -->
+                                            <div class="slds-truncate" title="Category">{doc.documentRecord.Document_Type__c}</div>
+                                        </td>
+                                        <td>
+                                            <div class="slds-truncate" title="Status">{doc.documentRecord.Status__c}</div>
+                                        </td>
+
+
+                                        <td>
+                                            <div class="slds-truncate" title="Stage">{doc.documentRecord.Stage__c}</div>
+                                        </td>
+                                        <td>
+                                            <template if:true={doc.contentDocumentLink}>
+                                                <a><p data-value={doc.contentDocumentLink.ContentDocumentId} onclick={navigateToFileDetail}>{doc.versionCount}</p></a>
+                                            </template>
+                                        </td>
+                                        <td>
+                                            
+                                            <div class="slds-grid">
+
+                                                <div class="slds-col">
+                                                    <lightning-file-upload
+                                                            name="fileUploader"
+                                                            accept = {doc.documentRecord.Document_Format__c}
+                                                            record-id={doc.documentRecord.Id}
+                                                            onuploadfinished={handleUploadFinished}
+                                                            class="file-upload"
+                                                            data-value= {doc.documentRecord.Id}
+                                                    >
+                                                    </lightning-file-upload>
+                                                </div>
+
+                                                <template if:true={doc.contentDocumentLink}>
+                                                <!--<div class="slds-col">
+                                                    <button class="slds-button slds-button_brand" data-value= {doc.contentDocumentLink.ContentDocumentId} onclick={navigateToFileDetail}>All Versions</button>
+                                                </div>-->
+                                                </template>
+                                                <div class="slds-col" >
+                                                    <lightning-icon data-value= {doc.documentRecord.Id} icon-name="utility:edit" size="small" alternative-text="Edit Page" title="Edit Page" onclick={navigateToDocumentEditPage}></lightning-icon>
+                                                </div>
+
+                                                <!--<div class="slds-col" >
+                                                    <lightning-icon  icon-name="utility:delete" size="small" alternative-text="Delete Version" title="Delete Version"></lightning-icon>
+                                                </div>-->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </template>
+                                </tbody>
+                            </table>
+                           
+                           <!--<lightning-icon data-value= {doc.documentRecord.Id} icon-name="utility:edit" size="small" alternative-text="Edit Page" title="Edit Page" onclick={navigateToDocumentEditPage}></lightning-icon>-->
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <template if:true={isModalOpen}>
+                                 
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header slds-modal__header_empty">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close"
+                                        alternative-text="close"
+                                        variant="inverse"
+                                        size="small" ></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                   <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium"></h3>
+                </header>
+                <template if:true={isedit}>
+                <c-alsdocument-edit onprogressvaluechange={hanldeProgressValueChange} getidfromparent={childRecordId}></c-alsdocument-edit>
+            </template>
+            <template if:true={iscreate}>
+                <c-als-document-create availabledocuments={DocumentsWithProgramDocument} onprogressvaluechange={hanldeProgressValueChange} parentfieldname={lookupField} parentfieldvalue={recordId}></c-als-document-create>
+            </template>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>To Call related Apex class from Document Upload Controller</description>
+    <fields>
+        <fullName>Apex_Class_Name__c</fullName>
+        <description>Name of Apex Class which we have to call from Document Upload Controller</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Apex Class Name</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Object_API_Name__c</fullName>
+        <description>Name of the object on which we have to call Apex class</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Object API Name</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Document Controller Config</label>
+    <pluralLabel>Document Controller Configs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

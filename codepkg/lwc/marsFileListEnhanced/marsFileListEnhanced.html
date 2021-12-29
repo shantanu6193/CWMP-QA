@@ -1,0 +1,61 @@
+<!--
+ - Created by hp on 2020-06-15.
+ -->
+
+<!-- File List -->
+<template>
+    
+
+    <!-- <div class="grtx-table-title">
+       <h2 class="grtx-table-title-content">{header}</h2> 
+        <h2 class="grtx-table-title-content">Documents</h2>
+    </div> -->
+    <div class="grtx-table-wrapper">
+        <div class="grtx-table-box">
+            
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+                <thead>
+                <tr class="slds-text-heading_label grtx-border-bottom">
+                    <th scope="col" style="width:25%" class="grtx-table-header"><div title="File Name">File Name</div></th>
+                    <th scope="col" class="grtx-table-header" style="width: 35%;"><div  title="Agreement Type">Agreement Type</div></th>
+                    <th scope="col" style="width:15%" class="grtx-table-header"><div class="grtx-date-text-update"  title="Action">Action</div></th>
+                </tr>
+                </thead>
+                <template if:true={hasFiles}>
+                    <tbody>
+                        <template for:each={fileList} for:item="file" for:index="index">
+                            <tr key={file.ContentDocumentId}>
+                                <td scope="row" ><div class="slds-truncate grtx-description-text-v" title={file.Title}>{file.Title}</div></td>
+                                <td scope="row" ><div class="slds-truncate grtx-description-text-v" title={file.Type__c}>{file.Type__c}</div></td>
+                                <td>
+                                    <a href={file.downloadUrl} class="grtx-file-dr">
+                                        <span class="slds-form-element__static grtx-item_value grtx-respons">
+                                            <lightning-button-icon icon-name="utility:download"    variant="bare" alternative-text="Download"   class="slds-m-left_xx-small vieweye" title="Delete"></lightning-button-icon>
+                                                        <span class="slds-assistive-text">Download</span>
+                                        </span>
+                                    </a>    
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </template>
+                <!---  Files Present-->
+                <template if:false={hasFiles}>
+                    <tbody>
+                        <tr>
+                            <td scope="row" ><div class="slds-truncate grtx-description-text-v" ><span>&mdash; &mdash; &mdash; &mdash; &mdash;</span></div></td>
+                            <td><div class="slds-truncate grtx-description-text-v" ><span>&mdash; &mdash; &mdash; &mdash; &mdash;</span></div></td>
+                            <td>
+                                <div class="grtx-date-text">
+                                    <span>&mdash; &mdash; &mdash; &mdash; &mdash;</span>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </template>
+            </table>
+        </div>
+    </div>
+
+</template>

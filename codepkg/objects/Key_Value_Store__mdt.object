@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>App__c</fullName>
+        <description>This field is used to identify the App that this metadata is used for.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>App</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>PHOS</fullName>
+                    <default>true</default>
+                    <label>PHOS</label>
+                </value>
+                <value>
+                    <fullName>MARS</fullName>
+                    <default>false</default>
+                    <label>MARS</label>
+                </value>
+                <value>
+                    <fullName>HMA</fullName>
+                    <default>false</default>
+                    <label>HMA</label>
+                </value>
+                <value>
+                    <fullName>PA</fullName>
+                    <default>false</default>
+                    <label>PA</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Text_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Text Value</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Key Value Store</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Text_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Split_Order_Config</fullName>
+        <columns>MasterLabel</columns>
+        <columns>DeveloperName</columns>
+        <columns>Text_Value__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>MasterLabel</field>
+            <operation>startsWith</operation>
+            <value>PHOS Split</value>
+        </filters>
+        <label>Split Order Config</label>
+    </listViews>
+    <pluralLabel>Key Value Stores</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

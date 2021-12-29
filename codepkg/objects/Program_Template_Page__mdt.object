@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Page_Layout_Config__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Page Layout Config</label>
+        <referenceTo>Page_Layout__mdt</referenceTo>
+        <relationshipLabel>Program Template Pages</relationshipLabel>
+        <relationshipName>Program_Template_Pages</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Page_Previous_Next_Button__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Page Previous Next Button</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>First Page</fullName>
+                    <default>true</default>
+                    <label>First Page</label>
+                </value>
+                <value>
+                    <fullName>Last Page</fullName>
+                    <default>false</default>
+                    <label>Last Page</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Program_Template__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Program Template</label>
+        <referenceTo>Program_Template__mdt</referenceTo>
+        <relationshipLabel>Program Template Pages</relationshipLabel>
+        <relationshipName>Program_Template_Pages</relationshipName>
+        <required>false</required>
+        <type>MetadataRelationship</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_FieldAPI_Name_1_Operator__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria FieldAPI Name 1 Operator</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Equal</fullName>
+                    <default>true</default>
+                    <label>Equal</label>
+                </value>
+                <value>
+                    <fullName>Not Equal</fullName>
+                    <default>false</default>
+                    <label>Not Equal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_FieldAPI_Name_2_Operator__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria FieldAPI Name 2 Operator</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Equal</fullName>
+                    <default>true</default>
+                    <label>Equal</label>
+                </value>
+                <value>
+                    <fullName>Not Equal</fullName>
+                    <default>false</default>
+                    <label>Not Equal</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_Field_API_Name_1_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria Field API Name 1 Value</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_Field_API_Name_1__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria Field API Name 1</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_Field_API_Name_2_Value__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria Field API Name 2 Value</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Render_Criteria_Field_API_Name_2__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Render Criteria Field API Name 2</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Sequence__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Sequence</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Submit_Confirmation_Message__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Submit Confirmation Message</label>
+        <required>false</required>
+        <type>TextArea</type>
+    </fields>
+    <label>Program Template Page</label>
+    <listViews>
+        <fullName>All_Page_Template_Pages</fullName>
+        <columns>MasterLabel</columns>
+        <columns>Program_Template__c</columns>
+        <columns>DeveloperName</columns>
+        <columns>Sequence__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Page Template Pages</label>
+    </listViews>
+    <pluralLabel>Program Template Pages</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

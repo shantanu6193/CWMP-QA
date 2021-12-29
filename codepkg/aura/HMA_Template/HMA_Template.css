@@ -1,0 +1,36 @@
+.THIS .profileName{
+    color:black;
+}
+.THIS .header-component{
+    border-bottom:solid 3px #fbad23;
+    background-color:#003466;
+    height: 120px;
+}
+.THIS .trigger-link {
+    background: #003466;
+    padding: 12px 12px 15px 11px!important;
+    border-radius: 46px;
+}
+.THIS .profileName{
+    color:white;
+}
+@media screen and (min-width:320px) and (max-width:500px){
+    .THIS.image{
+            max-width:60%;
+            height:auto;
+    }
+}
+.THIS .caloes-logo{
+    height: 50px;
+}
+
+.THIS .inputelement label abbr {
+    display:none;
+}
+.THIS .profile.uiMenuItem{
+    display: none;
+}
+.THIS .myAccount.uiMenuItem{
+    display: none;
+}
+.THIS .slds-form-element_horizontal .slds-form-element__control, .slds-form_horizontal .slds-form-element .slds-form-element__control, .slds-form_stacked .slds-form-element_horizontal .slds-form-element__control {padding-left:0;}

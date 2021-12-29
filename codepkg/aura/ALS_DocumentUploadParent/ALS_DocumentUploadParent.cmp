@@ -1,0 +1,10 @@
+<aura:component description="ALS_DocumentUploadParent" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:actionOverride,lightning:isUrlAddressable"
+access="global">
+    <aura:attribute name="projectId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" description="Handler for valueInit event fired when the component has been initialised"/>
+    <aura:handler event="lightning:tabRefreshed" action="{!c.onTabRefreshed}"/>
+    <lightning:workspaceAPI aura:id="workspace"/>
+    
+    <c:alsDocumentUpload recordId="{!v.projectId}" aura:id="alsDocumentUpload"/>
+    <!--<c:alsDocumentUpload aura:id="alsDocumentUpload"></c:alsDocumentUpload>-->
+</aura:component>

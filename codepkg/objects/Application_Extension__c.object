@@ -1,0 +1,2227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Action_involves_herbicides_biologicals__c</fullName>
+        <externalId>false</externalId>
+        <label>Action involves herbicides/biologicals?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Action_involves_seeding_replanting__c</fullName>
+        <externalId>false</externalId>
+        <label>Action involves seeding/replanting?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Action_involves_vegitation_fuel_removal__c</fullName>
+        <externalId>false</externalId>
+        <label>Action involves vegitation/fuel removal?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Annual_Maintenance_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Annual Maintenance Amount</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Any_road_construction_or_vehicle_access__c</fullName>
+        <externalId>false</externalId>
+        <label>Any road construction or vehicle access?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Application__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application</label>
+        <referenceTo>Application__c</referenceTo>
+        <relationshipLabel>Application Extensions</relationshipLabel>
+        <relationshipName>Application_Extensions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Benefit_Cost_Ratio__c</fullName>
+        <externalId>false</externalId>
+        <label>Benefit Cost Ratio</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cite_codes_and_attach__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Cite codes and attach</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Codes_building_land_use_development__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Codes (building, land use, development)</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Confirm_ineligible_activity_to_be_ID_d__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Confirm ineligible activity to be ID&apos;d</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Confirm_only_eligible_mitigation_measure__c</fullName>
+        <externalId>false</externalId>
+        <label>Confirm only eligible mitigation measure</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Consult_w_Historic_Prsrvtion_conducted__c</fullName>
+        <externalId>false</externalId>
+        <label>Consult w/ Historic Prsrvtion conducted?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Converting_or_Impacting_Farmland__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If important farmland may be present on the site per item and where project activities may affect land use the Natural Resource Conservation Service (NCRS) Form AD 1006 should be downloaded and submitted to NRCS for review and rating.  The form is available on the NRCS web site.</inlineHelpText>
+        <label>Converting or Impacting Farmland?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cost_Effectiveness_Determined__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost Effectiveness Determined</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cost_estimate_includes_eligible_costs__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost estimate includes eligible costs</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Critical_facilities_to_be_protected__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Critical facilities to be protected</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_of_Market_Value__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The subapplicant must establish a date for all  property valuations for consistency among all project owners (appraisal or tax assessor information based on the same point in time).</inlineHelpText>
+        <label>Date of Market Value</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Defensble_Space_meet_criteria_for_CATEX__c</fullName>
+        <externalId>false</externalId>
+        <label>Defensble Space meet criteria for CATEX?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Describe_Def_Space_treatment_distance__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe Def Space treatment &amp; distance</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_aquisition_activity__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate how many properties, the valuation method , personnel  managing the project and completing the tasks involved. Timeline of acquiring the properties along with demolition/relocation, and priority of selected properties.
+
+All structures must be demolished or removed within 90 days. Thought should be put into meeting the 90 requirement with projects that have multiple structures. Local, State, and Federal procurement requirements must be followed 
+
+Reference: 2015 HMA Guidance Part IV H.11;2015</inlineHelpText>
+        <label>Describe aquisition activity</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_hzardous_toxic_subsances__c</fullName>
+        <externalId>false</externalId>
+        <label>Describe hzardous/toxic subsances</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Describe_mitigation_solution__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe mitigation solution</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_other_activities__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe other activities</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_plan_priorities__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe plan priorities</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_process_roles_responsibilities__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Reference: 44 CFR 201.6 (C)(1)</inlineHelpText>
+        <label>Describe process, roles/responsibilities</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_proposed_land_use__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Allowable land uses for open space generally include parks for outdoor recreational activities, wetlands management, nature reserves, cultivation, grazing, camping (except where adequate warning time is not available to allow for evacuation), unpaved surfaces, and other uses that FEMA determines are compatible with the award and deed restrictions. 
+
+Reference: 2015 HMA Guidance Addendum, A.4.4 &amp; A.6.1.</inlineHelpText>
+        <label>Describe proposed land use</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_source_of_hazard_in_the_area__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe source of hazard in the area</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Describe_the_plan_adoption_process__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Describe the plan adoption process.</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Design_meets_International_Building_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Design meets International Building Code</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Doc_of_Risk_Determiniation_Imminent_Risk__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If the acquisition is flood-related select N/A.
+
+Reference: 2015 HMA Guidance, Part IV I.9</inlineHelpText>
+        <label>Doc of Risk Determiniation/Imminent Risk</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ESL_community_direction_program__c</fullName>
+        <externalId>false</externalId>
+        <label>ESL community direction program?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Endngrd_ThreatndSpecies_CriticalHabitat__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The USFWS Information for Planning and Consultation web site (https://ecos.fws.gov/ipac/) can be used to search for Federally-listed threatened and endangered species on the project site.</inlineHelpText>
+        <label>Endngrd/ThreatndSpecies/CriticalHabitat?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Entity_Responsible__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Entity Responsible</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Existing_Habitat_description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Existing Habitat description</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Federal_Share_Request__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Federal Share Request</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Funding_Type__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Funding Type</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Future_Cost_of_Maintenance__c</fullName>
+        <externalId>false</externalId>
+        <label>Future Cost of Maintenance</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Future_Maintenance_Schedule__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Future Maintenance Schedule</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Future_Maintenance_Tasks_Involved__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Future Maintenance Tasks Involved</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Have_all_specific_sites__c</fullName>
+        <externalId>false</externalId>
+        <label>Is Project Site Identified</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Historic_and_Cultural_Resources__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Records searches are the primary means through which California Historical Resources Information System (CHRIS) information is disseminated. A records search consists of a review of historical resources data on file at an Information Center (IC) regarding a specific geographic area.  A records search may be conducted by filling out a CHRIS Data Request Form. The form can be obtained for the State of California Department of Parks and Recreation&apos;s website.</inlineHelpText>
+        <label>Historic and Cultural Resources?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>How_action_meets_purpose_and_need__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>How action meets purpose and need</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_activity_will_be_coordinated__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Information should be included about the planning process for participating jurisdictions.  The final document must include information concerning how it was prepared (e.g the time period to complete the plan, the type and outcome of meetings), who was involved in the planning process (e.g., the composition of the planning team), and how the public was involved.  The plan should also document how the planning team was formed and how each party represented contributed to the process.
+
+• Does each jurisdi</inlineHelpText>
+        <label>How activity will be coordinated</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_generator_deploy_time_handled_in_BCA__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>How generator deploy time handled in BCA</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_planning_team_to_coord_w_contractor__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>How planning team to coord w/ contractor</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_structural_protecion_is_provided__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>How structural protecion is provided</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_will_project_protect_structures__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>How will project protect structures?</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>How_will_vulnerabiltiy_be_reduced__c</fullName>
+        <externalId>false</externalId>
+        <label>How will vulnerabiltiy be reduced?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>If_yes_URA_costs_estimates_in_budget__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>URA applies to tenants (displaced involuntarily) only, not homewowners (displaced voluntarily) 
+
+Reference: 2015 HMA Guidance Addendum, A.6.10</inlineHelpText>
+        <label>If yes, URA costs estimates in budget?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>In_or_adjacent_to_historic_district__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>For sites located within a residential or historic district, a Visual Impact Assessment (VIA) should be performed by a qualified landscape architect. Information on VIAs and guidance for developing them is provided on the California Department of Transportation (DOT)’s web site (http://www.dot.ca.gov/design/lap/landscape-design/via/).</inlineHelpText>
+        <label>In or adjacent to historic district?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Indicate_if_a_contractor_will_be_used__c</fullName>
+        <externalId>false</externalId>
+        <label>Indicate if a contractor will be used.</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Invasive_Species_Will_the_project_incl__c</fullName>
+        <externalId>false</externalId>
+        <label>Invasive Species – Will the project incl</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_Document_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Document Created</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Project_Budget_Created__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Project Budget Created</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_cost_less_than_5_250_acre__c</fullName>
+        <externalId>false</externalId>
+        <label>Is cost less than $5,250/acre?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_plan_encompass_multiple_jurisdictions__c</fullName>
+        <externalId>false</externalId>
+        <label>Is plan encompass multiple jurisdictions</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_planint_re_veg_or_grading_requried__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Eligible items include grading, leveling, and site stabilization
+
+Aesthetic improvements and landscaping are not eligible
+
+Reference: 2015 HMA Guidance Addendum,  A.3.3 . A.3.3 Table 1 &amp; 6.1</inlineHelpText>
+        <label>Is planint, re-veg, or grading requried?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_there_an_expiration_date_of_the_Non__c</fullName>
+        <externalId>false</externalId>
+        <label>Is there an expiration date of the Non-</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_this_a_stand_alone_project__c</fullName>
+        <externalId>false</externalId>
+        <label>Is this a stand-alone project?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Is_this_project_phased__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Application__r.Is_this_project_phased__c)</formula>
+        <label>Is this project phased?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Is_wildfire_mitigation_method_eligible__c</fullName>
+        <externalId>false</externalId>
+        <label>Is wildfire mitigation method eligible?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>List_participants_with_letters_of_intent__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Plan Adoption: The narrative describes the plan drafting process, including State and
+FEMA reviews (i.e., approval pending adoption), adoption by participating jurisdictions, and
+final approval by FEMA.
+
+Reference: 2015 HMA Guidance, Part IV H.3.1</inlineHelpText>
+        <label>List participants with letters of intent</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Date_Docusign__c</fullName>
+        <description>This field is used for Docusign purpose</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Maintenance_Date__c), &apos;&apos;, text(MONTH( Maintenance_Date__c )) +&apos;/&apos;+  text(DAY( Maintenance_Date__c )) +&apos;/&apos;+  text(YEAR( Maintenance_Date__c )))</formula>
+        <label>Maintenance Date Docusign</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Maintenance_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Maintenance Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Match_Commitment_Date_Docusign__c</fullName>
+        <description>This field is used for Docusign purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Match_Commitment_Date__c), &apos;&apos;, text(MONTH( Match_Commitment_Date__c  )) +&apos;/&apos;+  text(DAY( Match_Commitment_Date__c  )) +&apos;/&apos;+  text(YEAR( Match_Commitment_Date__c  )))</formula>
+        <label>Match Commitment Date Docusign</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Match_Commitment_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Match Commitment Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Maximum_Eligible_Management_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>(  Federal_Share_Request__c  / 0.75 )  * 0.05</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Maximum Eligible Management Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Meet_local_fire_codes_and_standards__c</fullName>
+        <externalId>false</externalId>
+        <label>Meet local fire codes and standards?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Methods_of_demolition_debris_managment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Methods of demolition include deconstruction,  bull dozing, burning, etc. Include any other site elements that may require demolition such as well decommissioning, septic tank removal, and utility termination. 
+
+All demolition debris and household hazardous wastes are required to be discarded at an approved landfill (including debris from the demolition of houses, garages, driveways, sidewalks, and above-grade concrete slabs).
+
+Reference: 2015 HMA Guidance Addendum,  A 3.3 Table 1</inlineHelpText>
+        <label>Methods of demolition / debris managment</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Migratory_Flyway_Barrier_of_30_or_highe__c</fullName>
+        <externalId>false</externalId>
+        <label>Migratory Flyway Barrier of 30&apos; or highe</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Name_of_Funding_Source_s__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Name of Funding Source(s)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Narrative_for_Project_Cost_Effectiveness__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Narrative for Project Cost Effectiveness</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Non_Fed_Share_Avail_Start_Date_Docusign__c</fullName>
+        <description>This field is for docusign purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Non_Federal_Share_Match_Availability_S__c), &apos;&apos;, text(MONTH( Non_Federal_Share_Match_Availability_S__c )) +&apos;/&apos;+  text(DAY( Non_Federal_Share_Match_Availability_S__c )) +&apos;/&apos;+  text(YEAR( Non_Federal_Share_Match_Availability_S__c )))</formula>
+        <label>Non-Fed Share Avail Start Date Docusign</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Fed_Share_Exp_Date_Docusign__c</fullName>
+        <description>This field is for docusign purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Non_Federal_Share_Match_Expiration_Dat__c), &apos;&apos;, text(MONTH( Non_Federal_Share_Match_Expiration_Dat__c )) +&apos;/&apos;+  text(DAY( Non_Federal_Share_Match_Expiration_Dat__c )) +&apos;/&apos;+  text(YEAR( Non_Federal_Share_Match_Expiration_Dat__c )))</formula>
+        <label>Non-Fed Share Exp Date Docusign</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Cost_Share_Match_Percentage__c</fullName>
+        <defaultValue>0.25</defaultValue>
+        <externalId>false</externalId>
+        <label>Non-Federal Cost Share(Match) Percentage</label>
+        <precision>8</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Cost_Share_Match__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Non-Federal Cost Share (Match)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Cost_Share_Source__c</fullName>
+        <externalId>false</externalId>
+        <label>Non-Federal Cost Share Source</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Local Agency Funding</fullName>
+                    <default>false</default>
+                    <label>Local Agency Funding</label>
+                </value>
+                <value>
+                    <fullName>Private Non-Profit Funding</fullName>
+                    <default>false</default>
+                    <label>Private Non-Profit Funding</label>
+                </value>
+                <value>
+                    <fullName>State Agency Funding</fullName>
+                    <default>false</default>
+                    <label>State Agency Funding</label>
+                </value>
+                <value>
+                    <fullName>Other Agency Funding</fullName>
+                    <default>false</default>
+                    <label>Other Agency Funding</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Share_Match_Availability_S__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Non-Federal Share (Match) Availability S</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Non_Federal_Share_Match_Expiration_Dat__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Non-Federal Share (Match) Expiration Dat</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_years_of_maintenance__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of years of maintenance</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Operation_maint_plan__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Operation &amp;  maint plan</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Operations_Maintenance_Plan_in_SOW__c</fullName>
+        <externalId>false</externalId>
+        <label>Operations/Maintenance Plan in SOW</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Other_proposed_mitigation_activities__c</fullName>
+        <externalId>false</externalId>
+        <label>Other proposed mitigation activities?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Page_Layout_Developer_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Page Layout Developer Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Page_Layout_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Page Layout Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Past_Maintenance_Tasks_Involved__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Past Maintenance Tasks Involved</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Percentage_Level_Of_Design__c</fullName>
+        <externalId>false</externalId>
+        <label>Percentage Level Of Design</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Phase_1_Project_Costs__c</fullName>
+        <externalId>false</externalId>
+        <label>Phase 1 Project Costs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Phase_2_Project_Costs__c</fullName>
+        <externalId>false</externalId>
+        <label>Phase 2 Project Costs</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Planning_related_activity_deliverables__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Examples of planning-related activities that are eligible for funding under HMGP    
+• Update the mitigation strategy to reflect current mitigation and/or disaster recovery goals
+• Update or enhance sections of the current FEMA-approved hazard mitigation plan
+• Develop and deliver planning related training
+• Provide technical assistance to subrecipients on mitigation planning
+• Evaluate the adoption and/or implementation of ordinances  increase resilience
+• Integrate information from current mitig</inlineHelpText>
+        <label>Planning related activity, deliverables</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Pre_Calculated_Benefit_Approach__c</fullName>
+        <externalId>false</externalId>
+        <label>Pre-Calculated Benefit Approach</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Acquisitions and Elevations in the SFHA</fullName>
+                    <default>false</default>
+                    <label>Acquisitions and Elevations in the SFHA</label>
+                </value>
+                <value>
+                    <fullName>Mitigation Reconstruction in the SFHA</fullName>
+                    <default>false</default>
+                    <label>Mitigation Reconstruction in the SFHA</label>
+                </value>
+                <value>
+                    <fullName>Residential Hurricane Wind Retrofits</fullName>
+                    <default>false</default>
+                    <label>Residential Hurricane Wind Retrofits</label>
+                </value>
+                <value>
+                    <fullName>Non-Residential Hurricane Wind Retrofits</fullName>
+                    <default>false</default>
+                    <label>Non-Residential Hurricane Wind Retrofits</label>
+                </value>
+                <value>
+                    <fullName>Individual Tornado Safe Rooms</fullName>
+                    <default>false</default>
+                    <label>Individual Tornado Safe Rooms</label>
+                </value>
+                <value>
+                    <fullName>Post Wildfire</fullName>
+                    <default>false</default>
+                    <label>Post Wildfire</label>
+                </value>
+                <value>
+                    <fullName>Post Wildfire Stabilization/Reforestation</fullName>
+                    <default>false</default>
+                    <label>Post Wildfire Stabilization/Reforestation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pre_Event_or_Current_Market_Value__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Pre-event market value is defined as the market value of the property immediately before the relevant event affecting the property. Pre-event valuation can only be used if a disaster has taken place. The relevant event for assistance is the major disaster under which funds are available. A property owner who is not a National of the United States or a qualified alien is not eligible for a pre-event market value determination of property value. The property value must be based on the current market value.</inlineHelpText>
+        <label>Pre-Event or Current Market Value?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Pre-Event</fullName>
+                    <default>false</default>
+                    <label>Pre-Event</label>
+                </value>
+                <value>
+                    <fullName>Current Market Values</fullName>
+                    <default>false</default>
+                    <label>Current Market Values</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pre_calc_for_all_elevated_structures__c</fullName>
+        <externalId>false</externalId>
+        <label>Pre-calc for all elevated structures?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Pre_calculated_benefits_used__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Precalculated benefit can be used for structures  costing $175,000 or less and  located in the 100-year floodplain. No BCA is required. 
+
+
+Reference: 2015 HMA Guidance, I.7</inlineHelpText>
+        <label>Pre-calculated benefits used?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Previ_s_deficiencies_corrective_action__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Previ&apos;s deficiencies &amp; corrective action</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_Building_Facility_Area__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Project Building/Facility/Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Type_Formula__c</fullName>
+        <description>This formula field is used in application extension trigger</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Application__r.Project_Type__c)</formula>
+        <label>Project Type Formula</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_details__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Structure elevation activities generally involve physically raising an existing structure to an elevation at  BFE or higher if required by FEMA or local ordinance. Structure elevation may be achieved through  variety  methods, including elevating on continuous foundation walls; elevating on open foundations, such as piles, piers, posts, or columns; and elevating on fill.
+
+Reference: 2015 HMA Addendum Guidance, E.1
+
+Dry Floodproofing of Historic Residential Structures is permissible only when
+other t</inlineHelpText>
+        <label>Project details</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Project_within_or_modifies_floodplain__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To download Flood Insurance Rate Map, go to the FEMA Flood Map Service Center https://msc.fema.gov/portal/search and click on the button for “Map Image – Download FIRM Panel”</inlineHelpText>
+        <label>Project within or modifies floodplain?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Prpty_Owner_Appeal_Reconsider_re_value__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>An appeal or reconsideration process must be documented and followed for property owners who dispute the purchase offer property valuation. For example, if a homeowner if not happy with the appraisal value of their property, they may seek their own appraisal, and the original appraisal and homeowner appraisal will be averaged.
+
+Reference: 2015 HMA Guidance Addendum, A.4.3</inlineHelpText>
+        <label>Prpty Owner Appeal/Reconsider re value</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Public_Engagement_process_quantities__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Reference: 44 CFR 201.6 (B) (1-2) &amp;                        2015 HMA Guidance, Part IV H.3.1</inlineHelpText>
+        <label>Public Engagement process &amp; quantities</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Related_planning_activities_paid_for__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Related planning activities paid for?</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Relocation_outside_SFHA_or_other_hzrds__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Reference: 2015 HMA Guidance Addendum, A.2</inlineHelpText>
+        <label>Relocation outside SFHA or other hzrds</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Required_elements_included_as_in_guidanc__c</fullName>
+        <externalId>false</externalId>
+        <label>Required elements included as in guidanc</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requires_Sec10_of_FHA_or_CWA_404_permit__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>For sites with wetlands, to download NWI Map, go to the USFWS wetlands mapper https://www.fws.gov/wetlands/data/Mapper.html, click on the wetlands mapper link, click on “Find Location” and search by address Click “Print” to download the NWI map.</inlineHelpText>
+        <label>Requires Sec10 of FHA or CWA 404 permit?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Result_in_FEMA_approved_adopted_LHMP__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Reference: 44 CFR Section 201.6 (local), or 201.7 (tribal)</inlineHelpText>
+        <label>Result in FEMA approved &amp; adopted LHMP?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Risk_assessment_process__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Risk assessment process</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>S_P_design_code_performance_level__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>S/P design code performance level</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Seed_type_and_brand_and_methods__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Seed type and brand and methods</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Seismic_design_code_performance_level__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Seismic design code performance level</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Select_Project_Type__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>physically raising a structure, choose elevation. If applying techniques to seal a structure or elevation certain components, choose floodproofing. 
+
+Dry Floodproofing can only be applied to:  Historical residential structures only when other techniques that would mitigate to the Base Flood Elevation (BFE) would cause the structure to lose its status as a Historical Structure. 
+
+Dry floodproofing on non-residential structures include: watertight closures, walls
+ floors that are adequately reinforced</inlineHelpText>
+        <label>Select Project Type:</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Elevation</fullName>
+                    <default>false</default>
+                    <label>Elevation</label>
+                </value>
+                <value>
+                    <fullName>Floodproofing</fullName>
+                    <default>false</default>
+                    <label>Floodproofing</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Select_applicable_project_type_s__c</fullName>
+        <externalId>false</externalId>
+        <label>Select applicable project type(s)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Ignition Resistant Construction</fullName>
+                    <default>false</default>
+                    <label>Ignition Resistant Construction</label>
+                </value>
+                <value>
+                    <fullName>Defensible Space</fullName>
+                    <default>false</default>
+                    <label>Defensible Space</label>
+                </value>
+                <value>
+                    <fullName>Hazardous Fuels Reduction</fullName>
+                    <default>false</default>
+                    <label>Hazardous Fuels Reduction</label>
+                </value>
+                <value>
+                    <fullName>Post-Wildfire Revegetation</fullName>
+                    <default>false</default>
+                    <label>Post-Wildfire Revegetation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Source_of_Future_Maintenance_Funds__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Source of Future Maintenance Funds</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Statement_OMP_to_be_provided_at_close__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Statement OMP to be provided at close?</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Structures_occupied_by_tenants__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The tenant occupied structures should be identified on the property(ies) list.
+
+Reference: 2015 HMA Guidance Addendum, A.6.10</inlineHelpText>
+        <label>Structures occupied by tenants?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Sub_Application_Type_f__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Application__r.Application_Type__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sub-Application Type(f)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Acreage_treated__c</fullName>
+        <description>What is the total combined acreage for all treatment areas included in the project area?</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Total Acreage treated</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Benefits_in_the_BCA__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Benefits in the BCA</label>
+        <precision>9</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Cost_in_the_BCA__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Cost in the BCA</label>
+        <precision>11</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Management_Cost_Requested__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Management Cost Requested</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Cost__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Project Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Treatment_method_type_of_equipement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Treatment method &amp; type of equipement</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Type_of_Aquisition__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>If the acquired structure will be destroyed, select demolition
+
+If the acquired structure will be moved to a separate parcel outside the hazard area, select relocation</inlineHelpText>
+        <label>Type of Aquisition</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Acquistion-demolition</fullName>
+                    <default>false</default>
+                    <label>Acquistion-demolition</label>
+                </value>
+                <value>
+                    <fullName>Acquisition-relocation</fullName>
+                    <default>false</default>
+                    <label>Acquisition-relocation</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Was_the_Current_Version_of_FEMA_BCA_Used__c</fullName>
+        <externalId>false</externalId>
+        <label>Was the Current Version of FEMA BCA Used</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>What_type_will_be_developed__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The subapplicant will not be eligible to receive project grant funds unless FEMA approves the plan to be in compliance with the Federal hazard mitigation planning standards identified in 44 CFR 201.6.  The application must state that the objective is to create a plan that is compliant with these regulations.  In addition, the timeline for the grant should include at least  45 days for FEMA to review and approve the plan.
+
+
+
+Reference: 44 CFR 201.6</inlineHelpText>
+        <label>What type will be developed?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New single plan</fullName>
+                    <default>false</default>
+                    <label>New single plan</label>
+                </value>
+                <value>
+                    <fullName>Update single plan</fullName>
+                    <default>false</default>
+                    <label>Update single plan</label>
+                </value>
+                <value>
+                    <fullName>New multi jurisdictional plan</fullName>
+                    <default>false</default>
+                    <label>New multi jurisdictional plan</label>
+                </value>
+                <value>
+                    <fullName>Update multi jurisdictional plan</fullName>
+                    <default>false</default>
+                    <label>Update multi jurisdictional plan</label>
+                </value>
+                <value>
+                    <fullName>Planning-related</fullName>
+                    <default>false</default>
+                    <label>Planning-related</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Who_implement_financial_responsibility__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Who implement, financial responsibility</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Who_implement_who_financial_authority__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>example 
+• will the subapplicant be performing the work via direct contract or government staff? 
+• Will building owners or other parties be contracting the work and filing with the subapplicant for reimbursement? Or will there be a combination of activities and responsibilities? How will the subapplicant be involved in design and monitoring of project activities? 
+• Will the subapplicant be approving individual structural elevation plans and contract bids that the private owners will implement? 
+• W</inlineHelpText>
+        <label>Who implement, who financial authority?</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Why_this_Mitigation_Recon_activity__c</fullName>
+        <description>Describe why Mitigation Reconstruction was selected as the mitigation strategy.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Why this Mitigation Recon activity?</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Will_impact_Minority_or_Low_Income_Pop__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To determine if the project is located in a high percent minority population, use the Environmental Justice Screening Tool. The tool will indicate if the project site is located in a high percent minority population area and will have possible detrimental environmental impacts, The U.S. Environmental Protection Agency (USEPA) Technical Guidance for Assessing Environmental Justice in Regulatory Analysis should be used to perform an analysis of environmental justice. This Guidance is provided on the USEPA w</inlineHelpText>
+        <label>Will impact Minority or Low Income Pop?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>Yes_No</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>natr_l_hzrd_plnng_prcss_for_other_plans__c</fullName>
+        <externalId>false</externalId>
+        <label>natr&apos;l hzrd plnng prcss for other plans?</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>structures_to_receive_defensible_space__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label># structures to receive defensible space</label>
+        <length>2500</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <label>Application Extension</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AE-{00000}</displayFormat>
+        <label>Application Extension Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Application Extensions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

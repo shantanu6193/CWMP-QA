@@ -1,0 +1,293 @@
+<template>
+    <div class="slds-form-element">
+        <label if:true={label} class="slds-form-element__label" for="combobox">
+            <abbr if:true={required} title="required" class="slds-required">*</abbr>
+            {label}
+        </label>
+        <div class="slds-form-element__control">
+            <div class={getContainerClass}>
+                <div class={getDropdownClass} aria-expanded={isExpanded} aria-haspopup="listbox" role="combobox">
+                    <!-- Search input start -->
+                    <div class={getComboboxClass} role="none">
+                        <template if:false={isMultiEntry}>
+                            <lightning-icon
+                                icon-name={getSelectIconName}
+                                size="small"
+                                alternative-text="Selected item icon"
+                                class={getSelectIconClass}
+                            >
+                            </lightning-icon>
+                        </template>
+                        <!-- Text input -->
+                        <!--<div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                            <lightning-input  type="text"
+                                              class={getInputClass}
+                                              aria-autocomplete="list"
+                                              aria-controls="listbox"
+                                              autocomplete="off"
+                                              role="textbox"
+                                              id="combobox"
+                                              placeholder={placeholder}
+                                              value={getInputValue}
+                                              title={getInputTitle}
+                                              readonly={isInputReadonly}
+                                              onfocus={handleFocus}
+                                              onblur={handleBlur}
+                                              oninput={handleInput}></lightning-input>
+                            <lightning-icon
+                                    icon-name="utility:search"
+                                    size="x-small"
+                                    alternative-text="Search icon"
+                                    class={getSearchIconClass}
+                            ></lightning-icon>
+                        </div>-->
+                        <form autocomplete=off>
+                            <input
+                                type="text"
+                                class={getInputClass}
+                                aria-autocomplete="list"
+                                aria-controls="listbox"
+                                autocomplete="off"
+                                role="textbox"
+                                id="combobox"
+                                placeholder={placeholder}
+                                value={getInputValue}
+                                title={getInputTitle}
+                                readonly={isInputReadonly}
+                                onfocus={handleFocus}
+                                onblur={handleBlur}
+                                oninput={handleInput}
+                                onchange={handleChange}
+                                disabled={isDisabled}
+                            />
+                        </form>
+                        <lightning-icon
+                            icon-name="utility:search"
+                            size="x-small"
+                            alternative-text="Search icon"
+                            class={getSearchIconClass}
+                        ></lightning-icon>
+
+                        <!-- Clear selection button icon for single entry lookups -->
+                        <template if:false={isMultiEntry}>
+                            <button
+                                title="Remove selected option"
+                                type="button"
+                                onclick={handleClearSelection}
+                                class={getClearSelectionButtonClass}
+                            >
+                                <lightning-icon
+                                    icon-name="utility:close"
+                                    size="x-small"
+                                    alternative-text="Remove selected option"
+                                    class="slds-button__icon"
+                                ></lightning-icon>
+                            </button>
+                        </template>
+                    </div>
+                    <!-- Search input end -->
+
+                    <!-- Result list box start -->
+                    <div id="listbox" role="listbox" onclick={handleComboboxClick} onmousedown={handleComboboxMouseDown} onmouseup={handleComboboxMouseUp}>
+                        <ul class={getListboxClass} role="presentation" style="max-height: 200px;">
+                            <!-- Spinner to display when waiting for results of search -->
+                            <div if:true={loading}>
+                                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                            </div>
+
+                            <!-- Display if results are present -->
+                            <template for:each={searchResult} for:item="result" if:true={isExpanded}>
+                                <li key={result.id} role="presentation" class="slds-listbox__item" title={result.title}>
+                                    <span
+                                        class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                                        role="option"
+                                        onclick={handleResultClick}
+                                        data-recordid={result.id}
+                                    >
+                                        <span class="slds-media__figure">
+                                            <lightning-icon
+                                                icon-name={result.icon}
+                                                size="small"
+                                                alternative-text="Result item icon"
+                                            ></lightning-icon>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <lightning-formatted-rich-text
+                                                    value={result.titleFormatted}
+                                                    disable-linkify
+                                                >
+                                                </lightning-formatted-rich-text>
+                                            </span>
+                                            <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">
+                                                <lightning-formatted-rich-text
+                                                    value={result.subtitleFormatted}
+                                                    disable-linkify
+                                                >
+                                                </lightning-formatted-rich-text>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </template>
+                            <!--Create New Account-->
+                            <template if:true={createNewAccount}>
+                                <!--<li role="presentation" class="slds-listbox__item">
+                                    <a class="slds-media slds-listbox__option_entity"
+                                          role="option"
+                                          onclick={handleNewRecordClick}>
+                                        Create New
+                                    </a>
+                                </li>-->
+                                <li role="presentation" class="slds-listbox__item">
+                                    <div id="option1" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option" onclick={handleNewRecordClick}>
+                                        <span class="slds-media__figure slds-listbox__option-icon">
+                                          <span class="slds-icon_container">
+                                              <lightning-icon icon-name="utility:add" size="x-small"></lightning-icon>
+                                          </span>
+                                        </span>
+                                        <span class="slds-media__body">
+                                          <span class="slds-listbox__option-text slds-listbox__option-text_entity" style="margin-top:4px">Create New</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                            <!-- Display that there are no results -->
+                            <template if:false={isExpanded}>
+                                <li role="presentation" class="slds-listbox__item">
+                                    <span class="slds-media slds-listbox__option_entity" role="option">
+                                        <span if:false={loading} class="slds-media__body">
+                                            No results.
+                                        </span>
+                                        <span if:true={loading} class="slds-media__body">
+                                            Loading...
+                                        </span>
+                                    </span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    <!-- Result list box end -->
+                </div>
+            </div>
+
+            <!-- Multi-selection start -->
+            <template if:true={isMultiEntry}>
+                <div id="selection" role="listbox" aria-orientation="horizontal">
+                    <ul
+                        class="slds-listbox slds-listbox_inline slds-var-p-top_xxx-small"
+                        role="group"
+                        aria-label="Selected Options:"
+                    >
+                        <template for:each={curSelection} for:item="item">
+                            <li key={item.id} role="presentation" class="slds-listbox__item">
+                                <lightning-pill
+                                    label={item.title}
+                                    title={item.title}
+                                    onremove={handleRemoveSelectedItem}
+                                    name={item.id}
+                                >
+                                    <lightning-icon icon-name={item.icon}></lightning-icon>
+                                </lightning-pill>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+            <!-- Multi-selection end -->
+
+            <!-- Errors start -->
+            <template for:each={errors} for:item="error">
+                <label key={error.id} role="alert" class="slds-form-element__label form-error"
+                    >{error.message}</label
+                >
+            </template>
+            <!-- Errors end -->
+        </div>
+    </div>
+
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                        <span>Create Organization</span>
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close" alternative-text="Close" title="Close" variant="error">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                    </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <template for:each={newRecordLabels} for:item="newRec">
+                        <div key={newRec} class="slds-grid slds-align_absolute-center slds-gutters">
+                            <div  class="slds-col slds-medium-size_1-of-2 slds-size_1-of-2 slds-p-vertical_xx-small">
+                                <template if:true={newRec.isText}>
+                                    <lightning-input type="text"
+                                                     label={newRec.label}
+                                                     onchange={handleLabelOneChange}
+                                                     data-label={newRec.label}
+                                                     required={newRec.req}
+                                                     class="modalInput"
+                                                     field-level-help={newRec.fieldLevelHelp}
+                                                    >
+                                    </lightning-input>
+                                </template>
+                                <template if:true={newRec.isPicklist}>
+                                    <lightning-combobox label={newRec.label}
+                                            data-label={newRec.label}
+                                            required={newRec.req}
+                                            value={value}
+                                            placeholder="Select"
+                                            options={newRec.values}
+                                            onchange={handleLabelOneChange}
+                                            class="modalInput"
+                                                        field-level-help={newRec.fieldLevelHelp}
+                                            >
+                                    </lightning-combobox>
+                                </template>
+                                <template if:true={newRec.isNumber}>
+                                    <lightning-input type="text"
+                                                     label={newRec.label}
+                                                     onchange={handleLabelOneChange}
+                                                     data-label={newRec.label}
+                                                     required={newRec.req}
+                                                     class="modalInput"
+                                                     pattern={newRec.pattern}
+                                                     maxlength={newRec.maxLength}
+                                                     message-when-pattern-mismatch="Please Enter Valid Value Ex:55555"
+                                                     field-level-help={newRec.fieldLevelHelp}
+                                    >
+                                    </lightning-input>
+                                </template>
+                                <!--Todo create child component to handle multiple phone fields-->
+                                <template if:true={newRec.isPhone}>
+                                    <lightning-input type="text"
+                                                     label={newRec.label}
+                                                     onchange={handleLabelOneChange}
+                                                     data-label={newRec.label}
+                                                     required={newRec.req}
+                                                     class="phoneInput modalInput"
+                                                     value={phoneValue}
+                                                     onblur={handlePhoneValidation}
+                                                     message-when-value-missing="Complete this field"
+                                                     field-level-help={newRec.fieldLevelHelp}
+                                    >
+                                    </lightning-input>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" onclick={saveRecord}>Save</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>

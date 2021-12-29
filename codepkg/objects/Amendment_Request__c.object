@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Amendment_Request_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Amendment_Request_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>Amendment_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>Amendment_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Project__c</fields>
+        <fields>AmendmentType__c</fields>
+        <label>Amendment Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>AmendmentType__c</fullName>
+        <description>For what reason Amendment is requested for Project?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>For what reason Amendment is requested for Project?</inlineHelpText>
+        <label>Amendment Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Time Extension</fullName>
+                    <default>false</default>
+                    <label>Time Extension</label>
+                </value>
+                <value>
+                    <fullName>Money Extension</fullName>
+                    <default>false</default>
+                    <label>Additional Funding</label>
+                </value>
+                <value>
+                    <fullName>FEMA Percentage Change</fullName>
+                    <default>false</default>
+                    <label>FEMA Percentage Change</label>
+                </value>
+                <value>
+                    <fullName>Additional Funding and Time Extension</fullName>
+                    <default>false</default>
+                    <label>Additional Funding and Time Extension</label>
+                </value>
+                <value>
+                    <fullName>Additional Funding and FEMA Percentage Change</fullName>
+                    <default>false</default>
+                    <label>Additional Funding and FEMA Percentage Change</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Comments__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Comments</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>true</caseSensitive>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>FDSR__c</fullName>
+        <description>PW/DSR/PJ/PL Number  version</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>PW/DSR/PJ/PL</inlineHelpText>
+        <label>Project Version (PW/DSR/PJ/PL)</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FEMA_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>The &quot;FEMA Cost Share&quot; to be Amended for this Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The &quot;FEMA Cost Share&quot; to be Amended for this Project.</inlineHelpText>
+        <label>FEMA Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Manager_Approved_Date__c</fullName>
+        <description>Date when User Updates Reviewed by Manger field to Yes</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when User Updates Reviewed by Manger field to Yes</inlineHelpText>
+        <label>Manager Approved Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Manager_User__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>User Detail Who updated Reviewed by Manager Picklist to Yes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>User Detail Who updated Reviewed by Manager Picklist to Yes</inlineHelpText>
+        <label>Manager User</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Amendment_Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>NewObligatedAmount__c</fullName>
+        <description>New Supplement Award is the Sum of the Previous Obligated Amount and New Supplement Amount.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>New Supplement Award is the Sum of the Previous Obligated Amount and New Supplement Amount.</inlineHelpText>
+        <label>New Obligated Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Obligation_Date__c</fullName>
+        <description>Date the obligation was created by FEMA</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date the obligation was created by FEMA</inlineHelpText>
+        <label>Obligation Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Project to which the Amendment is requested.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Project to which the Amendment is requested.</inlineHelpText>
+        <label>Project</label>
+        <referenceTo>Project__c</referenceTo>
+        <relationshipLabel>Amendment Requests</relationshipLabel>
+        <relationshipName>Amendment_Requests</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Reviewed_By_Manager__c</fullName>
+        <description>Is this Amendment Reviewed by the Manager?</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this Amendment Reviewed by the Manager?</inlineHelpText>
+        <label>Reviewed By Manager</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>State_Share__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>&quot;State Cost Share&quot; percentage to Amended for this Project.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>&quot;State Cost Share&quot; percentage to Amended for this Project.</inlineHelpText>
+        <label>State Share %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>SupplementAward__c</fullName>
+        <description>This amount is the supplement that is awarded in addition to the original Obligated amount</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This amount is the supplement that is awarded in addition to the original Obligated amount</inlineHelpText>
+        <label>Supplement Award</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>SupplementNumber__c</fullName>
+        <description>Sequential numbering system related to FEMA Obligations for a given Incident.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Sequential numbering system related to FEMA Obligations for a given Incident.</inlineHelpText>
+        <label>Supplement Number</label>
+        <length>10</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>TimeExtensionEndDate__c</fullName>
+        <description>The typical time extension length for an HMA project is 6 - 12 months.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The typical time extension length for an HMA project is 6 - 12 months.</inlineHelpText>
+        <label>Time Extension End Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>TimeExtensionStartDate__c</fullName>
+        <description>The typical time extension length for an HMA project is 6 - 12 months.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The typical time extension length for an HMA project is 6 - 12 months.</inlineHelpText>
+        <label>Time Extension Start Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <label>Amendment Request</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Project__c</columns>
+        <columns>AmendmentType__c</columns>
+        <columns>TimeExtensionStartDate__c</columns>
+        <columns>TimeExtensionEndDate__c</columns>
+        <columns>NewObligatedAmount__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>External_Id__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>AMN-{000000}</displayFormat>
+        <label>Amendment Request Number</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Amendment Requests</pluralLabel>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>AmendmentType__c</fields>
+        <fields>Project__c</fields>
+        <fields>TimeExtensionStartDate__c</fields>
+        <fields>TimeExtensionEndDate__c</fields>
+        <fields>NewObligatedAmount__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>System Administrator</profileName>
+    </profileSearchLayouts>
+    <profileSearchLayouts>
+        <fields>NAME</fields>
+        <fields>AmendmentType__c</fields>
+        <fields>Project__c</fields>
+        <fields>TimeExtensionStartDate__c</fields>
+        <fields>TimeExtensionEndDate__c</fields>
+        <fields>NewObligatedAmount__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>UPDATEDBY_USER</fields>
+        <fields>LAST_UPDATE</fields>
+        <profileName>CalOES Internal User</profileName>
+    </profileSearchLayouts>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>AdditionalFundAndCostShare_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Time Extension Start Date&quot; and &quot;Time Extension End Date&quot; are not applicable for the &quot;Additional Funding and FEMA Percentage Change&quot; Amendment.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) , ISPICKVAL( AmendmentType__c , &apos;Additional Funding and FEMA Percentage Change&apos;) , OR(NOT( ISBLANK( TimeExtensionStartDate__c ) ) , NOT( ISBLANK( TimeExtensionEndDate__c ))))</errorConditionFormula>
+        <errorMessage>&quot;Time Extension Start Date&quot; and &quot;Time Extension End Date&quot; are not applicable for the &quot;Additional Funding and FEMA Percentage Change&quot; Amendment.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>AdditionalFundAndTimeExtensionValidation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) , ISPICKVAL( AmendmentType__c , &apos;Additional Funding and Time Extension&apos;), OR(AND( NOT( ISBLANK(FEMA_Share__c) ) ,FEMA_Share__c != 0) ,AND( NOT( ISBLANK( State_Share__c ) ),State_Share__c != 0)))</errorConditionFormula>
+        <errorMessage>&quot;FEMA Share%&quot; and &quot;State Share%&quot; are not applicable for the &quot;Additional Funding and Time Extension&quot; Amendment.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Additional_Funding_Validation</fullName>
+        <active>true</active>
+        <description>Time Extension Start Date, Time Extension End Date, FEMA Share%, and State Share% are not applicable for the &quot;Additional Funding&quot; Amendment.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) , ISPICKVAL( AmendmentType__c , &apos;Money Extension&apos;) , OR( NOT( ISBLANK( TimeExtensionStartDate__c ) ) , NOT( ISBLANK( TimeExtensionEndDate__c )) , AND( NOT( ISBLANK(FEMA_Share__c) ) ,FEMA_Share__c != 0) ,AND( NOT( ISBLANK( State_Share__c ) ),State_Share__c != 0)))</errorConditionFormula>
+        <errorMessage>Time Extension Start Date, Time Extension End Date, FEMA Share%, and State Share% are not applicable for the &quot;Additional Funding&quot; Amendment.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Amendment_Type_Validation</fullName>
+        <active>true</active>
+        <description>Amendment Type is Required</description>
+        <errorConditionFormula>ISPICKVAL(AmendmentType__c , &quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>AmendmentType__c</errorDisplayField>
+        <errorMessage>Please provide Amendment Type.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FEMA_Percentage_Change_Validation</fullName>
+        <active>true</active>
+        <description>Time Extension Start Date, Time Extension End Date, and Supplement Award are not applicable for the &quot;FEMA PErcentage Change&quot; Amendment.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) , ISPICKVAL( AmendmentType__c , &apos;FEMA Percentage Change&apos;) , OR(  AND( NOT( ISBLANK( SupplementAward__c ) )  ,SupplementAward__c != 0) , NOT( ISBLANK(  TimeExtensionStartDate__c ) ) , NOT( ISBLANK(  TimeExtensionEndDate__c ))))</errorConditionFormula>
+        <errorMessage>Time Extension Start Date, Time Extension End Date, and Supplement Award are not applicable for the &quot;FEMA PErcentage Change&quot; Amendment.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>New_Obligated_Amount_Validation</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND( ISPICKVAL( AmendmentType__c , &apos;Money Extension&apos;) , ISBLANK( NewObligatedAmount__c )))</errorConditionFormula>
+        <errorDisplayField>NewObligatedAmount__c</errorDisplayField>
+        <errorMessage>Please provide &quot;New Obligated Amount&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Project_Validation</fullName>
+        <active>true</active>
+        <description>Please select a Project for Amendment Request.</description>
+        <errorConditionFormula>ISBLANK( Project__c )</errorConditionFormula>
+        <errorDisplayField>Project__c</errorDisplayField>
+        <errorMessage>Please select a Project for Amendment Request.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Restrict_Time_Extension</fullName>
+        <active>false</active>
+        <errorConditionFormula>$Permission.PA_Amendment_Request_Restriction = true &amp;&amp;
+(NOT(ISPICKVAL( AmendmentType__c ,&quot;Time Extension&quot;)))</errorConditionFormula>
+        <errorDisplayField>AmendmentType__c</errorDisplayField>
+        <errorMessage>You don&apos;t have access to request any amendment request except Time Extension</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_Date_End_Date_Validation</fullName>
+        <active>true</active>
+        <description>Please provide &quot;Time Extension Start Date&quot; and &quot;Time Extension End Date&quot;.</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND( OR(ISPICKVAL( AmendmentType__c, &apos;Time Extension&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and Time Extension&apos;)) ,  OR(ISBLANK(  TimeExtensionStartDate__c ), ISBLANK( TimeExtensionEndDate__c ))   ))</errorConditionFormula>
+        <errorMessage>Please provide &quot;Time Extension Start Date&quot; and &quot;Time Extension End Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>State_Federal_Cost_Share_validation</fullName>
+        <active>true</active>
+        <description>Please provide &quot;State Share%&quot; and &quot;FEMA Share%&quot;.</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND(OR(ISPICKVAL( AmendmentType__c, &apos;FEMA Percentage Change&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and FEMA Percentage Change&apos;)),  OR(ISBLANK(  State_Share__c ),ISBLANK(   FEMA_Share__c ))  ))</errorConditionFormula>
+        <errorMessage>Please provide &quot;State Share%&quot; and &quot;FEMA Share%&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Suuplement_Award_Validation</fullName>
+        <active>true</active>
+        <description>When the &quot;Amendment Type&quot; is &quot;Money Extension&quot;, We need to select the &quot;Supplement Award&quot;.</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND( OR(ISPICKVAL( AmendmentType__c , &apos;Money Extension&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and FEMA Percentage Change&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and Time Extension&apos;))  , ISBLANK(  SupplementAward__c )))</errorConditionFormula>
+        <errorDisplayField>SupplementAward__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Supplement Award&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Time_Extension_End_Date_Validation</fullName>
+        <active>false</active>
+        <description>Time Extension End Date is mandatory when Amendment Type is Time Extension</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND( OR(ISPICKVAL( AmendmentType__c, &apos;Time Extension&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and Time Extension&apos;)) ,ISBLANK( TimeExtensionEndDate__c ) ))</errorConditionFormula>
+        <errorDisplayField>TimeExtensionEndDate__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Time Extension End Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Time_Extension_Start_Date_And_End_Date</fullName>
+        <active>true</active>
+        <description>Time Extension End Date should be greater than Time Extension Start Date</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),TimeExtensionEndDate__c &lt; TimeExtensionStartDate__c)</errorConditionFormula>
+        <errorDisplayField>TimeExtensionEndDate__c</errorDisplayField>
+        <errorMessage>&quot;Time Extension End Date&quot; should be greater than &quot;Time Extension Start Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Time_Extension_Start_Date_Validation</fullName>
+        <active>false</active>
+        <description>Time Extension Start Date is mandatory when Amendment Type is Time Extension</description>
+        <errorConditionFormula>AND(ISBLANK(External_Id__c ),AND(OR(ISPICKVAL( AmendmentType__c, &apos;Time Extension&apos;), ISPICKVAL( AmendmentType__c , &apos;Additional Funding and Time Extension&apos;)),ISBLANK( TimeExtensionStartDate__c )))</errorConditionFormula>
+        <errorDisplayField>TimeExtensionStartDate__c</errorDisplayField>
+        <errorMessage>Please provide &quot;Time Extension Start Date&quot;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Time_Extension_Validation</fullName>
+        <active>true</active>
+        <description>Supplement Award, FEMA Share%, and State Share% are not applicable for the &quot;Time Extension&quot; Amendment.</description>
+        <errorConditionFormula>AND( ISBLANK( External_Id__c ) , ISPICKVAL( AmendmentType__c , &apos;Time Extension&apos;) , OR(  AND( NOT( ISBLANK(  SupplementAward__c ) ) ,SupplementAward__c != 0) , AND(  NOT( ISBLANK(FEMA_Share__c) ) ,FEMA_Share__c != 0) ,AND(  NOT( ISBLANK( State_Share__c ) ),State_Share__c != 0)))</errorConditionFormula>
+        <errorMessage>Supplement Award, FEMA Share%, and State Share% are not applicable for the &quot;Time Extension&quot; Amendment.</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

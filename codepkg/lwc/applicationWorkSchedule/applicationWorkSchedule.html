@@ -1,0 +1,334 @@
+<template>
+    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p class="slds-card__header-link" title="Request Details">
+                                    <span>WORK SCHEDULE</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner ">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <div class="slds-p-around_medium">
+                                <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                    <div class="slds-col slds-size_12-of-12 slds-text-align_center">
+                                        <p>
+                                            The intent of the work schedule is to provide a realistic appraisal of the time and components required to complete the project.
+                                            <br/>The work schedule should mirror the Scope of Work and Cost Estimate.
+                                            <br/>
+                                            <br/>-Describe each of the major work elements and milestones in the description.
+                                            <br/>-Project Close-Out should be included which must be 3 months in duration.
+                                            <br/>-A GANTT chart may be provided as supplemental documentation.
+                                            <br/>-Total project duration must not exceed a 36 month period of performance.
+                                            <br/>
+                                            <br/>
+                                        </p>
+                                        <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                            <div class="slds-col slds-size_12-of-12 slds-p-around_x-small slds-text-align_center">
+                                                <div class="slds-grid slds-wrap slds-align_absolute-center">
+                                                    <div class="slds-col slds-size_12-of-12">
+                                                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                                                            <thead>
+                                                                <tr class="slds-line-height_reset slds-text-title_caps">
+                                                                    <th scope="col" class="slds-width_55px">
+                                                                        <div class="slds-truncate" title="#">#</div>
+                                                                    </th>
+                                                                    <template if:false={isProjectPhasedNo}>
+                                                                        <th scope="col" class="slds-width_175px">
+                                                                           <!--<div class="slds-truncate" title={phaseColumnTitle}>{phaseColumnTitle}</div>-->
+                                                                           <div class="slds-truncate" title="Phase">Phase</div>
+                                                                        </th>
+                                                                    </template>
+                                                                    <th scope="col" class="slds-width_175px">
+                                                                        <div class="slds-truncate" title="Task Name">Task Name</div>
+                                                                    </th>
+                                                                    <th scope="col">
+                                                                        <div class="slds-truncate" title="Description">Description</div>
+                                                                    </th>
+                                                                    <th scope="col" class="slds-width_175px">
+                                                                        <div class="slds-truncate" title="Start Month">Start Month</div>
+                                                                    </th>
+                                                                    <th scope="col" class="slds-width_175px">
+                                                                        <div class="slds-truncate" title="Duration">Duration (Months)</div>
+                                                                    </th>
+                                                                    <template if:false={isSubAppTypePlanning}>
+                                                                        <th scope="col" class="slds-width_55px">
+                                                                            <div class="slds-truncate" title="Action">Action</div>
+                                                                        </th>
+                                                                    </template>                                                            
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <template for:each={workScheduleLineItems} for:item="record" for:index="index">
+                                                    
+                                                                    <tr key={keyIndex}>
+                                                                        <td>{record.TableIndex}</td>
+                                                                        <template if:false={isProjectPhasedNo}>
+                                                                            <td>
+                                                                                <!-- <lightning-input name='Phase__c' access-key={index} id={index} type='text' onchange={fieldChangeHandler}  value={record.Phase__c}></lightning-input> -->
+                                                                                <template if:true={picklistValues}>
+                                                                                    <lightning-combobox name="Phase__c"
+                                                                                                        access-key={index}
+                                                                                                        data-field={record.Phase__c}
+                                                                                                        value={record.Phase__c}
+                                                                                                        variant="label-hidden"
+                                                                                                        placeholder="Select Option"
+                                                                                                        options={picklistValues}
+                                                                                                        onchange={fieldChangeHandler}
+                                                                                                        class="input"
+                                                                                                        required="true"
+                                                                                                        read-only={isSubAppTypePlanning}
+                                                                                                        >
+                                                                                    </lightning-combobox>
+                                                                                </template>                                                                    
+                                                                            </td>
+                                                                        </template>
+                                                                        <td>
+                                                                            <lightning-input class="input" name='Task_Name__c' variant='label-hidden' access-key={index} id={index} type='text' onchange={fieldChangeHandler}  value={record.Task_Name__c} required="true"></lightning-input>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- <lightning-input name='Description__c' variant='label-hidden' access-key={index} id={index} type='text' onchange={fieldChangeHandler}   value={record.Description__c}></lightning-input> -->
+                                                                            <lightning-textarea class="input" name='Description__c' variant='label-hidden' access-key={index} id={index} type='text' onchange={fieldChangeHandler} value={record.Description__c} required="true"></lightning-textarea>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- <lightning-input name='Start_Month__c' variant='label-hidden' access-key={index} type='number' id={index}  onchange={fieldChangeHandler} value={record.Start_Month__c}></lightning-input> -->
+                                                                            <template if:true={startMonthPicklistValues.values}>
+                                                                                <lightning-combobox name="Start_Month__c"
+                                                                                                    access-key={index}
+                                                                                                    data-field={record.Start_Month__c}
+                                                                                                    value={record.Start_Month__c}
+                                                                                                    variant="label-hidden"
+                                                                                                    placeholder="Select Option"
+                                                                                                    options={startMonthPicklistValues.values}
+                                                                                                    onchange={fieldChangeHandler}
+                                                                                                    class="input"
+                                                                                                    required="true"
+                                                                                                    >
+                                                                                </lightning-combobox>
+                                                                            </template>
+                                                                        </td>
+                                                                        <td>
+                                                                            <!-- <lightning-input name='Duration_Months__c' variant='label-hidden' access-key={index} type='number' id={index}  onchange={fieldChangeHandler} value={record.Duration_Months__c}></lightning-input> -->
+                                                                            <template if:true={durationMonthPicklistValues.values}>
+                                                                                <lightning-combobox name="Duration_Months__c"
+                                                                                                    access-key={index}
+                                                                                                    data-field={record.Duration_Months__c}
+                                                                                                    value={record.Duration_Months__c}
+                                                                                                    variant="label-hidden"
+                                                                                                    placeholder="Select Option"
+                                                                                                    options={durationMonthPicklistValues.values}
+                                                                                                    onchange={fieldChangeHandler}
+                                                                                                    class="input"
+                                                                                                    required="true"
+                                                                                                    >
+                                                                                </lightning-combobox>
+                                                                            </template>
+                                                                        </td>
+                                                                        <template if:false={isSubAppTypePlanning}>
+                                                                            <td class="slds-text-align_center">
+                                                                                <lightning-icon icon-name="utility:delete" variant='label-hidden' access-key={index} id={index} alternative-text="Click to Call" size="x-small" title="Delete Line Item" onclick={handleRemoveLineItemClick}>
+                                                                                </lightning-icon>
+                                                                            </td>
+                                                                        </template>
+                                                                    </tr>
+                                                                    
+                                                                </template>
+                                                                <tr>
+                                                                    <td>{getDisbleIndex}</td>
+                                                                    <template if:false={isProjectPhasedNo}>
+                                                                        <td>
+                                                                            {closeoutLineItem.Phase__c}
+                                                                            <!-- <lightning-input name='Phase__c' variant='label-hidden' type='text' value="Closeout" disabled></lightning-input> -->
+                                                                        </td>
+                                                                    </template>
+                                                                    <td>
+                                                                        {closeoutLineItem.Task_Name__c}
+                                                                        <!-- <lightning-input name='Task_Name__c' variant='label-hidden' type='text' value="Closeout" disabled></lightning-input> -->
+                                                                    </td>
+                                                                    <td>
+                                                                        {closeoutLineItem.Description__c}
+                                                                        <!-- <lightning-input name='Description__c' variant='label-hidden' type='text' value="Project Closeout line item" disabled></lightning-input> -->
+                                                                    </td>
+                                                                    <td>
+                                                                        {closeoutLineItem.Start_Month__c}
+                                                                        <!-- <lightning-input name='Start_Month__c' variant='label-hidden' type='text' value="" disabled></lightning-input> -->
+                                                                    </td>
+                                                                    <td>
+                                                                        {closeoutLineItem.Duration_Months__c}
+                                                                        <!-- <lightning-input name='Duration_Months__c' variant='label-hidden' type='text' value="3" disabled></lightning-input> -->
+                                                                    </td>
+                                                                    <template if:false={isSubAppTypePlanning}>
+                                                                        <td></td>
+                                                                    </template>                                                            
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="slds-col slds-size_12-of-12 slds-text-align--right slds-p-top_medium">
+                                                <template if:false={isSubAppTypePlanning}>
+                                                    <lightning-button variant="brand" label="Add Schedule Line Item" title="addLineItem" onclick={addLineItemRow} class="" disabled={isDurationLimitError}></lightning-button>
+                                                </template>                                                
+                                            </div>
+                                            <div class="slds-col slds-size_8-of-12 slds-p-top_medium">
+                                                <div class="slds-grid slds-wrap">
+                                                    <div class="slds-col slds-size_4-of-12 slds-text-align--right">
+                                                        <label class="slds-form-element__label slds-p-top_x-small">Project / Plan Duration (In Months)</label>
+                                                    </div>
+                                                    <div class="slds-col slds-size_2-of-12">
+                                                        <lightning-input name='Project_Plan_Duration_In_Months__c' variant='label-hidden' type='number' value={calculatedDuration} readonly="true"></lightning-input>
+                                                    </div>
+                                                    <template if:true={isDurationLimitError}>
+                                                        <div class="slds-col slds-size_4-of-12 slds-text-align--left">
+                                                            <p class="slds-p-top_x-small slds-error_msg">{durationLimitError}</p>
+                                                        </div>
+                                                    </template>                                                    
+                                                </div>                                                
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+                      
+
+
+
+    <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <div class="slds-col slds-size_12-of-12">
+            <article class="slds-card slds-card_boundary">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <p class="slds-card__header-link" title="Request Details">
+                                    <span>WORK SCHEDULE DOCUMENTATION</span>
+                                </p>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <hr>
+                <div class="slds-card__body slds-card__body_inner ">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <div class="slds-p-around_medium">
+                                <div class="slds-grid slds-wrap slds-gutters_medium slds-grid_vertical-align-end">
+                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-border_right slds-border_left">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Document Name">Document Name</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Description">Description</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Action">Action</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center" title="File Name">File Name</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="slds-hint-parent">
+                                                <th data-label="file" scope="row">
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Document Name">
+                                                        <span>
+                                                            <p>GANTT Chart</p>
+                                                        </span>
+                                                    </div>
+                                                </th>                                            
+                                                <td>
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Description">
+                                                        <span>
+                                                            <p>Please provide your GANTT Chart for this work schedule if needed</p>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate slds-align_absolute-center" title="Action">
+                                                        <span>
+                                                            <template if:false={isFileUploaded}>
+                                                                <lightning-file-upload
+                                                                        variant="label-hidden"
+                                                                        name="fileUploader"
+                                                                        accept={acceptedFormats}
+                                                                        record-id={workScheduleId}
+                                                                        onuploadfinished={handleUploadFinished}
+                                                                        >
+                                                                </lightning-file-upload>
+                                                            </template>
+                                                            <template if:true={isFileUploaded}>
+                                                                <p>
+                                                                    <span><a onclick={handleRemoveFileClick}>Remove</a></span>
+                                                                </p>
+                                                            </template>
+                                                        </span>
+                                                        
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate slds-align_absolute-center" title="File Name">
+                                                        <span>
+                                                            <template for:each={uploadedFiles} for:item="file">
+                                                                <p key={file.value}>
+                                                                    <a href={file.url} target="_blank" download>{file.Title}.{file.FileType}</a>
+                                                                </p>
+                                                            </template>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>                                              
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-p-top_small slds-p-buttom_large">
+            <div class ="slds-float--left">
+                <span>
+                    <button onclick={redirectToPrevious} class="slds-button slds-button_brand">Previous</button>
+                </span>
+            </div>
+            <div class ="slds-float--right">
+                <span class="slds-p-left_large">
+                    <button onclick={quickSave} class="slds-button slds-button_brand">Save</button>
+                </span>
+                
+                <span class="slds-p-left_large">
+                    <button onclick={saveAndContinue} class="slds-button slds-button_brand">Save & Continue</button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <template if:true={visibleFileConfirmationModal}>
+        <c-confirmation-popup visible={visibleFileConfirmationModal} title="" name="" original-message="" message="Are you sure you want to delete File?" confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleFileConfirmationClick}></c-confirmation-popup>
+    </template>
+    <template if:true={visibleLineItemConfirmationModal}>
+        <c-confirmation-popup visible={visibleLineItemConfirmationModal} title="" name="" original-message={LineItemConfirmationModalOriMessage} message="Are you sure you want to delete work schedule line item?" confirm-label="Confirm" cancel-label="Cancel" onclickevent={handleLineItemConfirmationClick}></c-confirmation-popup>
+    </template>
+    
+</template>

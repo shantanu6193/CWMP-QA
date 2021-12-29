@@ -1,0 +1,68 @@
+<!--
+ - Created by Sushant Patil on 20-01-2021.
+ -->
+<!-- Als Account Contact Tabular Preview -->
+<template>
+    <article class="slds-card">
+        <!--Card Header-->
+        <div class="slds-card__header slds-grid slds-border_bottom">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate slds-p-bottom_x-small">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-contact">
+                      <lightning-icon icon-name="action:add_contact" size="xx-small"></lightning-icon>
+                      <span class="slds-assistive-text">contact</span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span title = {heading}>{heading} ({listLength})</span>
+                        <span class="slds-p-left_small">
+                            <a onclick={handleRefresh}>
+                                <lightning-icon
+                                        icon-name="utility:refresh"
+                                        class="slds-icon slds-icon_small"
+                                        title={label.HH_EN_Refresh}
+                                        size="x-small"
+                                        alternative-text="icon">
+                                </lightning-icon>
+                            </a>
+                        </span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+        <!--Card Body-->
+        <template if:true={showTable}>
+            <div class="slds-card__body slds-card__body_inner">
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 ">
+                        <table>
+                            <thead>
+                            <tr class="slds-line-height_reset ">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title={label.HH_EN_First_Name} style="">{label.HH_EN_First_Name}</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="" title={label.HH_EN_Last_Name}>{label.HH_EN_Last_Name}</div>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <template for:each={applicationContacts} for:item="appCon" for:index="index">
+                                <tr key={appCon.Id}>
+                                    <td>
+                                        <dd  title="Description for second label">{appCon.First_Name__c}</dd>
+                                    </td>
+                                    <td>
+                                        <dd  title="Description for second label">{appCon.Last_Name__c}</dd>
+                                    </td>
+                                </tr>
+                            </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </article>
+</template>

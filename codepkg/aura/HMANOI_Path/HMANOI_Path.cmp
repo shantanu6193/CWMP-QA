@@ -1,0 +1,6 @@
+<aura:component description="HMANOI_Path" implements="flexipage:availableForAllPageTypes,force:hasRecordId,forceCommunity:availableForAllPageTypes">
+    <lightning:path aura:id="path" recordId="{!v.recordId}"
+                    variant="linear"
+                    hideUpdateButton="true"
+                    onselect="{!c.handleSelect}"/>
+</aura:component>

@@ -1,0 +1,7 @@
+<!--
+ - Created by Chandrabhan on 2021-12-10.
+ -->
+
+ <aura:component description="MARS_SalarySurveyPDFQuickAction" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+</aura:component>

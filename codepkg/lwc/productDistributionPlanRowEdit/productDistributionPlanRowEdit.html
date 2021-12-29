@@ -1,0 +1,93 @@
+<!--
+ - Created by Shivraj on 27-08-2020.
+ -->
+
+<!-- Product Distribution Plan Row Edit -->
+
+    <!--<table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered slds-table_fixed-layout" role="grid">-->
+<template>
+    <div class="slds-grid slds-align_absolute-center">
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small inner-table-div">
+            <table role="grid">
+                <thead>
+                <tr class="slds-line-height_reset">
+                    <!--<th class="" scope="col">
+                        <div class="slds-truncate" title="Facility Name">Facility Name</div>
+                    </th>-->
+                    <th data-sort-name="Facility_Name__c" onclick={sortName}>
+                        <a href="javascript:void(0);" class="slds-th__action slds-text-link--reset">
+                            <span class="slds-assistive-text">Sort</span>
+                            <span class="slds-truncate" title="Name">Facility Name</span>
+                            <div if:true={isAsc}>
+                                <!--&#9650;--><lightning-icon icon-name="utility:arrowdown" size="x-small" class="slds-p-left_x-small"></lightning-icon>
+                            </div>
+                            <div if:true={isDsc}>
+                                <!--&#9660;--><lightning-icon icon-name="utility:arrowup" size="x-small" class="slds-p-left_x-small"></lightning-icon>
+                            </div>
+                        </a>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Facility Category">Facility Category</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Facility Code">Facility Code</div>
+                    </th>
+                    <!--<th class="" scope="col">
+                        <div class="slds-truncate" title="Facility Type">Facility Type</div>
+                    </th>-->
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="County">County</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Proposed Quantity Distribution">Proposed Quantity Distribution</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Actual Quantity Distribution">Actual Quantity Distribution</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Distribution Notes">Distribution Notes</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Action">Action</div>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <template if:true={hasData} for:each={recordLocal.Product_Distribution_Plans__r} for:item="planData" for:index="index">
+                        <c-product-distribution-plan-row key={planData.index}
+                                                         record={planData}
+                                                         ondeleted={handleDeletePlan}
+                                                         onadded={handleAddPlan}
+                                                         index ={index}
+                                                         data-id={index}
+                                                         requested-quantity={recordLocal.Quantity__c}
+                                                         facility-category-picklist-values= {facilityCategoryPicklistValues}
+                                                         county-options={countyOptions}
+                                                         onactualquantityupdated={handleActualQuantityChange}
+                                                         onproposedquantityupdated={handleProposedQuantityChange}
+                                                         data-custom="innerComponent"
+                                                         >
+                        </c-product-distribution-plan-row>
+                    </template>
+                    <template if:false= {hasData}>
+                        <tr>
+                            <td colspan="100">
+                                <p class="slds-p-around_x-small">No record found. <a onclick={addFirstPlan}>Click here</a> to create distribution plan.</p>
+                            </td>
+                        </tr>
+                    </template>
+
+                <template if:true= {hasData}>
+                    <tr>
+                        <th colspan="4" scope="col"><b>Total</b></th>
+                        <th scope="col"><b>{recordLocal.Total_Proposed_Quantity__c}</b></th>
+                        <th scope="col"><b>{recordLocal.Total_Actual_Quantity__c}</b></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
