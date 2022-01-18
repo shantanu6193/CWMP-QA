@@ -1412,6 +1412,7 @@
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
         <valueSet>
+            <controllingField>Project_Type__c</controllingField>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
@@ -1490,6 +1491,413 @@
                     <label>Heat</label>
                 </value>
             </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Drought</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Dam/Levee Break</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Earthquake</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Fire</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Flood</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Hurricane</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Mud/Landslide</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Sea Level Rise</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Winter Storm</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Tornado</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Tsunami</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Windstorm</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>New Plan</controllingFieldValue>
+                <controllingFieldValue>Plan Update</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Multi Hazard</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Multi-Hazard (Generator Only)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Planning-New Plan</controllingFieldValue>
+                <controllingFieldValue>Partnerships</controllingFieldValue>
+                <controllingFieldValue>Building Code</controllingFieldValue>
+                <controllingFieldValue>Planning-Plan Update</controllingFieldValue>
+                <controllingFieldValue>Utility and Infrastructure Protection</controllingFieldValue>
+                <controllingFieldValue>Generator(s)/Other Power Source(s)</controllingFieldValue>
+                <controllingFieldValue>Mitigation Reconstruction</controllingFieldValue>
+                <controllingFieldValue>Tsunami Vertical Evacuation</controllingFieldValue>
+                <controllingFieldValue>Advance Assistance</controllingFieldValue>
+                <controllingFieldValue>Post-Disaster Code Enforcement</controllingFieldValue>
+                <controllingFieldValue>Public Awareness and Education</controllingFieldValue>
+                <controllingFieldValue>Early Warning Systems</controllingFieldValue>
+                <controllingFieldValue>Hazard Identification or Mapping</controllingFieldValue>
+                <controllingFieldValue>GIS for Mitigation</controllingFieldValue>
+                <controllingFieldValue>New Techniques/Methods</controllingFieldValue>
+                <controllingFieldValue>Planning-Related Activities</controllingFieldValue>
+                <controllingFieldValue>Acquisition Demo-Relocation</controllingFieldValue>
+                <controllingFieldValue>Drainage/Flood Control</controllingFieldValue>
+                <controllingFieldValue>Elevation-Floodproofing</controllingFieldValue>
+                <controllingFieldValue>Safe Room/Shelter</controllingFieldValue>
+                <controllingFieldValue>Seismic Retrofitting</controllingFieldValue>
+                <controllingFieldValue>Wildfire &amp; Vegetation Management</controllingFieldValue>
+                <controllingFieldValue>Project Scoping</controllingFieldValue>
+                <controllingFieldValue>Nature-Based Solutions/Green Infrastructure</controllingFieldValue>
+                <valueName>Heat</valueName>
+            </valueSettings>
         </valueSet>
     </fields>
     <fields>

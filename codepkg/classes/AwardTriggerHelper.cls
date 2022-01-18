@@ -1,9 +1,19 @@
 public with sharing class AwardTriggerHelper extends TriggerHelper{
-    public override void processBeforeInsert(){
+    public override void processBeforeInsert() {
         //copyAwardPeriodFromProject();
     }
-    public override void processAfterUpdate(){
+
+    public override void processAfterInsert() {
+        updateWasEverLargeFieldOfRelatedProject();
+    }
+
+    public override void processAfterUpdate() {
         updateAwardsOfPendingPayments();
+        updateWasEverLargeFieldOfRelatedProject();
+    }
+
+    public override void processBeforeDelete() {
+        updateWasEverLargeFieldOfRelatedProject();
     }
 
     private void updateAwardsOfPendingPayments(){
@@ -127,4 +137,67 @@ public with sharing class AwardTriggerHelper extends TriggerHelper{
         }
         return selectFields;
     }*/
+
+    /*********************************************
+	* Method Name : updateWasEverLargeFieldOfRelatedProject
+	* Called From Method : AfterInsert, AfterUpdate
+	* Author : Ricky
+	* Inputs : -
+	* Description: This method is used to update the Was Ever large field on Project. "Was Ever large" field of Project is used in PA Project Closeout. */
+    private void updateWasEverLargeFieldOfRelatedProject() {
+        Set<Id> awardIdsToBeDeleted = new Set<Id>();
+        Set<Id> projectIds = new Set<Id>();
+        if(Trigger.isInsert || Trigger.isUpdate) {
+            for(Award__c awardToProcess : (List<Award__c>)Trigger.new) {
+                Award__c oldRecord = new Award__c();
+                if(Trigger.isUpdate) {
+                    oldRecord = (Award__c)Trigger.oldMap.get(awardToProcess.Id);
+                }
+    
+                if((Trigger.isInsert 
+                        || (Trigger.isUpdate 
+                            && oldRecord.AmountObligated__c != awardToProcess.AmountObligated__c)) 
+                    && awardToProcess.Project__c != null) {
+                        projectIds.add(awardToProcess.Project__c);
+                }
+            }
+        }
+
+        if(Trigger.isDelete) {
+            for(Award__c awardToProcess : (List<Award__c>)Trigger.old) {
+                if(awardToProcess.Project__c != null) {
+                    projectIds.add(awardToProcess.Project__c);
+                }
+                awardIdsToBeDeleted.add(awardToProcess.Id);
+            }
+        }
+        
+        if(projectIds?.size() > 0) {
+            List<Project__c> projectRecordWithLaregAwardList = [SELECT Id, Name, Was_Ever_Large__c, 
+                                                                    (SELECT Id, Name fROM Awards__r 
+                                                                        WHERE Large_Award__c = true AND Id NOT IN : awardIdsToBeDeleted) 
+                                                                FROM Project__c WHERE Id IN : projectIds];
+            if(projectRecordWithLaregAwardList?.size() > 0) {
+                List<Project__c> projectRecordToUpdatelist = new List<Project__c>();
+                for(Project__c projectRecord : projectRecordWithLaregAwardList) {
+                    List<Award__c> awardRecordList = new List<Award__c>();
+                    if(projectRecord?.Awards__r?.size() > 0) {
+                        awardRecordList = projectRecord?.Awards__r;
+                    }
+                    if(awardRecordList?.size() > 0 && projectRecord.Was_Ever_Large__c == false) {
+                        projectRecord.Was_Ever_Large__c = true;
+                        projectRecordToUpdatelist.add(projectRecord);
+                    }
+                    else if(awardRecordList?.size() == 0 && projectRecord.Was_Ever_Large__c == true) {
+                        projectRecord.Was_Ever_Large__c = false;
+                        projectRecordToUpdatelist.add(projectRecord);
+                    }
+                }
+
+                if(projectRecordToUpdatelist?.size() > 0) {
+                    update projectRecordToUpdatelist;
+                }        
+            }                                                   
+        }
+    }
  }

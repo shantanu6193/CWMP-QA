@@ -356,9 +356,17 @@ export default class AlsProjectJunctionEdit extends LightningElement {
           }
     }
     onOutSideLookupClick(){
-        this.template.querySelector('[data-lookup="Account_Lookup"]').hideDropDownList();
-        this.template.querySelector('[data-lookup="Contact_Lookup"]').hideDropDownList();
-        this.template.querySelector('[data-lookup="NewContact_Lookup"]').hideDropDownList();
+        if(this.template.querySelector('[data-lookup="Account_Lookup"]')){
+            this.template.querySelector('[data-lookup="Account_Lookup"]').hideDropDownList();
+        }
+
+        if(this.template.querySelector('[data-lookup="Contact_Lookup"]')){
+            this.template.querySelector('[data-lookup="Contact_Lookup"]').hideDropDownList();
+        }
+
+        if(this.template.querySelector('[data-lookup="NewContact_Lookup"]')){
+            this.template.querySelector('[data-lookup="NewContact_Lookup"]').hideDropDownList();
+        }
     }
     //Checking validation for required fields
     validation(){

@@ -547,8 +547,8 @@ public without sharing class MARSInvoiceHelper {
                 ivoiceObj.apparatusRateList = apparatusRateList;
                 ivoiceObj.mileRate = String.valueOf(mileRateByF42.get(lastestF42));
             }
-
-            Set<String> overTimeCheckForClasTitle = new Set<String>{'Battalion Chief', 'Co. Officer/Capt./Lt.','App. Officer/Eng','Firefighter/FF-PMedic'};
+            String overTimeCheckForClasTitle = KeyValueHelper.getTextValue('MARS_Salary_Survey_Overtime_Titles');
+            //Set<String> overTimeCheckForClasTitle = new Set<String>{'Battalion Chief', 'Co. Officer/Capt./Lt.','App. Officer/Eng','Firefighter/FF-PMedic'};
             Map<String, List<Agency_Rate_Agreement_Line_Item__c>> agencyAgreementMap = getAgreementLineItemMap(agencyId);
             // get agency salary Survey
             List<Agency_Salary_Survey__c> agencySalarySurveyLineItem = getAgencySalarySurvey(agencyId, f42MinDate);
@@ -569,9 +569,16 @@ public without sharing class MARSInvoiceHelper {
                                 if(!salarySurveyPaidRateMap.containsKey(salSurLineItem.Classification_Title__c) && salSurLineItem.Current_Rate__c != null) {
                                     // check with Agreement records
                                     Boolean isovertime = false;
-                                    if(overTimeCheckForClasTitle.contains(salSurLineItem.Classification_Title__c)) {
+                                    if(overTimeCheckForClasTitle != null) {
+                                        for(String element:overTimeCheckForClasTitle.split(',')){
+                                            if(element == salSurLineItem.Classification_Title__c) {
+                                                isovertime = true;
+                                            }    
+                                        }    
+                                    }
+                                    /*if(overTimeCheckForClasTitle.contains(salSurLineItem.Classification_Title__c)) {
                                         isovertime = true;
-                                    } else if(agencyAgreementMap.containsKey(salSurLineItem.Classification_Title__c)) {
+                                    } else*/ if(agencyAgreementMap.containsKey(salSurLineItem.Classification_Title__c)) {
                                         for(Agency_Rate_Agreement_Line_Item__c lineItem : agencyAgreementMap.get(salSurLineItem.Classification_Title__c)) {
                                            if(lineItem.OT__c) {
                                                 isovertime = lineItem.OT__c;
@@ -599,9 +606,16 @@ public without sharing class MARSInvoiceHelper {
                                     if(sfaaRecord.RecordType.Name == 'Personnel Base Rate') {
                                         // check with Agreement records
                                         Boolean isovertime = false;
-                                        if(overTimeCheckForClasTitle.contains(sfaaRecord.Personnel_Role__c)) {
+                                        if(overTimeCheckForClasTitle != null) {
+                                            for(String element:overTimeCheckForClasTitle.split(',')){
+                                                if(element == sfaaRecord.Personnel_Role__c) {
+                                                    isovertime = true;
+                                                }    
+                                            }    
+                                        }
+                                       /* if(overTimeCheckForClasTitle.contains(sfaaRecord.Personnel_Role__c)) {
                                             isovertime = true;
-                                        } else if(agencyAgreementMap.containsKey(sfaaRecord.Personnel_Role__c)) {
+                                        } else*/ if(isovertime == false && agencyAgreementMap.containsKey(sfaaRecord.Personnel_Role__c)) {
                                             for(Agency_Rate_Agreement_Line_Item__c lineItem : agencyAgreementMap.get(sfaaRecord.Personnel_Role__c)) {
                                                if(lineItem.OT__c) {
                                                     isovertime = lineItem.OT__c;
@@ -647,7 +661,8 @@ public without sharing class MARSInvoiceHelper {
                             for(Agency_Non_Suppression_Line_Item__c nonSuppLineItem : salNonSuppRec.Agency_Non_Suppression_Line_Items__r) {
                                 if(!nonSuppressionRateMap.containsKey(nonSuppLineItem.Classification_Title__c)){
                                     if(nonSuppLineItem.Classification_Title__c != null && nonSuppLineItem.Current_Rate__c != null) {
-                                        nonSuppressionRateMap.put(nonSuppLineItem.Classification_Title__c,nonSuppLineItem.Current_Rate__c);
+                                         nonSuppressionRateMap.put(nonSuppLineItem.Classification_Title__c,nonSuppLineItem.Current_Rate__c);
+                                        //nonSuppressionRateMap.put(nonSuppLineItem.Classification_Title__c,(nonSuppLineItem.Current_Rate__c * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP));
                                     }
                                 }
                             }
@@ -717,7 +732,7 @@ public without sharing class MARSInvoiceHelper {
             }
             ivoiceObj.incidentName = f42List[0].Incident__r.Name;
             ivoiceObj.incidentOrderNo = f42List[0].Incident_Order__c;
-            ivoiceObj.firstCharWithYearForInvoiceNo = createInvoicePrefix(fundingRules);
+            ivoiceObj.firstCharWithYearForInvoiceNo = createInvoicePrefix(fundingRules,maxDate);
             ivoiceObj.MACSDesignator = f42List[0].Account__r.MACS_ID__c;
             ivoiceObj.remitToName = f42List[0].Account__r.Name;
             ivoiceObj.remitToStreet = f42List[0].Account__r.ShippingStreet;
@@ -727,7 +742,7 @@ public without sharing class MARSInvoiceHelper {
             ivoiceObj.federalTaxId = f42List[0].Account__r.Federal_Tax_ID__c;
             ivoiceObj.supplierNo = f42List[0].Account__r.Fiscal_Supplier_ID__c;
             ivoiceObj.addressNo = String.valueOf(f42List[0].Account__r.Fiscal_Address_Id__c);
-            ivoiceObj.summaryInformationList = createSummaryData(f42List, salarySurveyPaidRateMapByF42, apparatusRateMapByF42, vechicleRateMapByF42, adminRateMapByF42, salarySurveyHourlyRateMapBy42, mileRateByF42, speicalEquipmentRateMapByF42, femaCodeRateMapByF42, nonSuppressionRateMapByF42, salarySurveyPaidBaseRateMapByF42);
+            ivoiceObj.summaryInformationList = createSummaryData(f42List, salarySurveyPaidRateMapByF42, apparatusRateMapByF42, vechicleRateMapByF42, adminRateMapByF42, salarySurveyHourlyRateMapBy42, mileRateByF42, speicalEquipmentRateMapByF42, femaCodeRateMapByF42, nonSuppressionRateMapByF42, salarySurveyPaidBaseRateMapByF42,paidRateFactor);
             if(ivoiceObj.summaryInformationList != null) {
                 Decimal personnelTotal = 0.0;
                 Decimal engReimbTotal = 0.0;
@@ -792,13 +807,13 @@ public without sharing class MARSInvoiceHelper {
                 ivoiceObj.equipmentHoursTotal = String.valueOf(equipmentHoursTotal);
                 ivoiceObj.supportVehicleDaysTotal = String.valueOf(supportVehicleDaysTotal);
                 ivoiceObj.summaryHoursTotal = String.valueOf(summaryHrsTotal);
-                ivoiceObj.f24RecordsList = createF42Record(f42List, salarySurveyPaidRateMapByF42, apparatusRateMapByF42, vechicleRateMapByF42, adminRateMapByF42, nonSuppressionRateMapByF42, salarySurveyHourlyRateMapBy42, mileRateByF42, speicalEquipmentRateMapByF42, femaCodeRateMapByF42, nonSuppressionRateMapByF42, salarySurveyPaidBaseRateMapByF42, f42History, f42PersonnelHistory, f42ActualHrsHistory, expenseClaimList, expenseClaimHistory, expenseClaimLineItemHistory);
+                ivoiceObj.f24RecordsList = createF42Record(f42List, salarySurveyPaidRateMapByF42, apparatusRateMapByF42, vechicleRateMapByF42, adminRateMapByF42, nonSuppressionRateMapByF42, salarySurveyHourlyRateMapBy42, mileRateByF42, speicalEquipmentRateMapByF42, femaCodeRateMapByF42, nonSuppressionRateMapByF42, salarySurveyPaidBaseRateMapByF42, f42History, f42PersonnelHistory, f42ActualHrsHistory, expenseClaimList, expenseClaimHistory, expenseClaimLineItemHistory, paidRateFactor);
             }
         }
         return ivoiceObj;
     }
 
-    public static List<F24Records> createF42Record(List<F42__c> f42List, Map<Id, Map<String,Decimal>> salarySurveyPaidRateMapByF42, Map<Id,Map<String,Decimal>> apparatusRateMapByF42, Map<Id,Map<String,Decimal>> vechicleRateMapByF42, Map<String, Decimal> administrativeRate, Map<Id, Map<String,Decimal>> nonSuppressionRateMapBy42, Map<Id, Map<String,Decimal>> salarySurveyHourlyRateMapBy42, Map<String,Decimal> mileRateByF42,  Map<Id, Map<String,Decimal>> speicalEquipmentRateMapByF42, Map<Id,Map<String,Decimal>> femaCodeRateMapByF42, Map<Id,Map<String,Decimal>> nonSuppressionRateMapByF42,Map<Id, Map<String,Decimal>> salarySurveyPaidBaseRateMapByF42, Map<String,List<FieldHistory>> f42History, Map<String,List<FieldHistory>> f42PersonnelHistory, Map<String,List<FieldHistory>> f42ActualHrsHistory, Map<String,ExpenseClaim> expenseClaimList, Map<String,List<FieldHistory>> expenseClaimHistory, Map<String,List<FieldHistory>> expenseClaimLineItemHistory) {
+    public static List<F24Records> createF42Record(List<F42__c> f42List, Map<Id, Map<String,Decimal>> salarySurveyPaidRateMapByF42, Map<Id,Map<String,Decimal>> apparatusRateMapByF42, Map<Id,Map<String,Decimal>> vechicleRateMapByF42, Map<String, Decimal> administrativeRate, Map<Id, Map<String,Decimal>> nonSuppressionRateMapBy42, Map<Id, Map<String,Decimal>> salarySurveyHourlyRateMapBy42, Map<String,Decimal> mileRateByF42,  Map<Id, Map<String,Decimal>> speicalEquipmentRateMapByF42, Map<Id,Map<String,Decimal>> femaCodeRateMapByF42, Map<Id,Map<String,Decimal>> nonSuppressionRateMapByF42,Map<Id, Map<String,Decimal>> salarySurveyPaidBaseRateMapByF42, Map<String,List<FieldHistory>> f42History, Map<String,List<FieldHistory>> f42PersonnelHistory, Map<String,List<FieldHistory>> f42ActualHrsHistory, Map<String,ExpenseClaim> expenseClaimList, Map<String,List<FieldHistory>> expenseClaimHistory, Map<String,List<FieldHistory>> expenseClaimLineItemHistory, String paidRateFactor) {
         List<F24Records>  f24RecordsList = new List<F24Records>();
         for(F42__c record : f42List) {
             Map<String,Decimal> salarySurveyPaidRateMap = salarySurveyPaidRateMapByF42.get(record.Id);
@@ -812,7 +827,7 @@ public without sharing class MARSInvoiceHelper {
             String mileRate = String.valueOf(mileRateByF42.get(record.Id));
             F24Records f42Record = new F24Records();
             String adminRateFactor = String.valueOf(administrativeRate.get(record.Id));
-            f42Record.f42Details = createf42DetailsList(new List<F42__c>{record}, salarySurveyPaidRateMap, apparatusRateMap, vechicleRateMap, adminRateFactor, salarySurveyHourlyRateMap, mileRate, speicalEquipmentRateMap, femaCodeRateMap, nonSuppressionRateMap, salarySurveyPaidBaseRateMap);
+            f42Record.f42Details = createf42DetailsList(new List<F42__c>{record}, salarySurveyPaidRateMap, apparatusRateMap, vechicleRateMap, adminRateFactor, salarySurveyHourlyRateMap, mileRate, speicalEquipmentRateMap, femaCodeRateMap, nonSuppressionRateMap, salarySurveyPaidBaseRateMap, paidRateFactor);
             f42Record.f42DetailsUI = createf42DetailsUIList(new List<F42__c>{record});
             f42Record.expenseClaim = expenseClaimList.get(record.Id);//getExpenseClaim(record.Id,null);Map<String,ExpenseClaim> 
             f42Record.fieldHistExpClaim = expenseClaimHistory.get(record.Id); //getFieldHistExpClaim(record.Id, '');
@@ -974,7 +989,7 @@ public without sharing class MARSInvoiceHelper {
         return commentList;
     }
     //create F-42s details for PDF 2nd page
-    public static F42Details createf42DetailsList(List<F42__c> f42List, Map<String,Decimal> salarySurveyPaidRateMap, Map<String,Decimal> apparatusRateMap, Map<String,Decimal> vechicleRateMap, String adminRateFactor, Map<String,Decimal> salarySurveyHourlyRateMap, String mileRate, Map<String,Decimal> speicalEquipmentRateMap, Map<String,Decimal> femaCodeRateMap, Map<String,Decimal> nonSuppressionRateMap, Map<String,Decimal> salarySurveyPaidBaseRateMap) {
+    public static F42Details createf42DetailsList(List<F42__c> f42List, Map<String,Decimal> salarySurveyPaidRateMap, Map<String,Decimal> apparatusRateMap, Map<String,Decimal> vechicleRateMap, String adminRateFactor, Map<String,Decimal> salarySurveyHourlyRateMap, String mileRate, Map<String,Decimal> speicalEquipmentRateMap, Map<String,Decimal> femaCodeRateMap, Map<String,Decimal> nonSuppressionRateMap, Map<String,Decimal> salarySurveyPaidBaseRateMap,String paidRateFactor) {
         //List<F42Details> f42DetailsList = new List<F42Details>();
         F42Details f42Record = new F42Details();
         for(F42__c record : f42List) {
@@ -1110,7 +1125,7 @@ public without sharing class MARSInvoiceHelper {
             f42sId.add(record.Id);
             Decimal personnelTotal = 0;
             
-            List<StrikeTeamExpenses> strikeTeamExpensesList = getStrikeTeamExpenseList(record.F_42_Personnel_Info__r, salarySurveyPaidRateMap, salarySurveyHourlyRateMap, nonSuppressionRateMap, salarySurveyPaidBaseRateMap, record.F_42_Actual_Hours__r);
+            List<StrikeTeamExpenses> strikeTeamExpensesList = getStrikeTeamExpenseList(record.F_42_Personnel_Info__r, salarySurveyPaidRateMap, salarySurveyHourlyRateMap, nonSuppressionRateMap, salarySurveyPaidBaseRateMap, record.F_42_Actual_Hours__r,paidRateFactor);
             f42Record.strikeTeamExpensesList = strikeTeamExpensesList;
             if(strikeTeamExpensesList.size() > 0) {
                 for(StrikeTeamExpenses strikeRecord : strikeTeamExpensesList) {
@@ -1151,7 +1166,7 @@ public without sharing class MARSInvoiceHelper {
         return f42Record; 
     }
     // get Strike Team Expense List data
-    public static List<StrikeTeamExpenses> getStrikeTeamExpenseList(List<F_42_Personnel_Info__c> perssonelList, Map<String,Decimal> salarySurveyPaidRateMap, Map<String,Decimal> salarySurveyHourlyRateMap, Map<String,Decimal> nonSuppressionRateMap, Map<String,Decimal> salarySurveyPaidBaseRateMap, List<F_42_Actual_Hours__c> actualHoursList) {
+    public static List<StrikeTeamExpenses> getStrikeTeamExpenseList(List<F_42_Personnel_Info__c> perssonelList, Map<String,Decimal> salarySurveyPaidRateMap, Map<String,Decimal> salarySurveyHourlyRateMap, Map<String,Decimal> nonSuppressionRateMap, Map<String,Decimal> salarySurveyPaidBaseRateMap, List<F_42_Actual_Hours__c> actualHoursList, String paidRateFactor) {
         Map<String,StrikeTeamExpenses> StrikeTeamExpensesMap = new Map<String,StrikeTeamExpenses>();
         if(perssonelList != null && !perssonelList.isEmpty()) {
             for(F_42_Personnel_Info__c personnelRec : perssonelList) {
@@ -1175,6 +1190,7 @@ public without sharing class MARSInvoiceHelper {
                 }
                 
                 Decimal paidRates = 0.00;
+                Decimal hourlyRates = 0.00;
                 if(salarySurveyPaidRateMap != null && salarySurveyPaidBaseRateMap != null && salarySurveyPaidBaseRateMap.containsKey(personnelRec.Rank_Job_Title__c) && salarySurveyPaidRateMap.containsKey(personnelRec.Rank_Job_Title__c)) {
                     if(StrikeTeamExpensesMap.containsKey(personnelRec.Rank_Job_Title__c)) {
                         if(personnelRec.Base_Rate__c) {
@@ -1204,9 +1220,13 @@ public without sharing class MARSInvoiceHelper {
                 } else if(nonSuppressionRateMap != null && nonSuppressionRateMap.containsKey(personnelRec.Rank_Job_Title__c) && salarySurveyPaidRateMap != null) {
                     if(StrikeTeamExpensesMap.containsKey(personnelRec.Rank_Job_Title__c)) {
                         if(personnelRec.Base_Rate__c) {
+                            hourlyRates = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
                             paidRates = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
+                            //paidRates = (salarySurveyPaidRateMap.get('Firefighter/FF-PMedic') * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
                         } else if(nonSuppressionRateMap != null && nonSuppressionRateMap.containsKey(personnelRec.Rank_Job_Title__c)) {
-                            paidRates = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
+                            //paidRates = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c;
+                            paidRates = (nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c) * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
+                            hourlyRates =  nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
                         }
                         StrikeTeamExpensesMap.get(personnelRec.Rank_Job_Title__c).onThisF42 = String.valueOf((Integer.valueOf(StrikeTeamExpensesMap.get(personnelRec.Rank_Job_Title__c).onThisF42)) + 1);
                         Decimal total = (Decimal.valueOf(StrikeTeamExpensesMap.get(personnelRec.Rank_Job_Title__c).totalForThisF42) + (hours * paidRates));
@@ -1215,11 +1235,15 @@ public without sharing class MARSInvoiceHelper {
                     } else {
                         if(personnelRec.Base_Rate__c ) {
                             paidRates = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
+                            hourlyRates =  salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
+                            //paidRates = (salarySurveyPaidRateMap.get('Firefighter/FF-PMedic') * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
                         } else {
-                            paidRates = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
+                            //paidRates = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
+                            paidRates = (nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c) * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
+                            hourlyRates =  nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
                         }
                         obj.personnelType = personnelRec.Rank_Job_Title__c;
-                        obj.hourlyRate = String.valueOf(paidRates);
+                        obj.hourlyRate = String.valueOf(hourlyRates);
                         obj.paidRate = String.valueOf(paidRates);
                         obj.onThisF42 = '1';
                         Decimal total = (hours * paidRates * Decimal.valueOf(obj.onThisF42));
@@ -1265,7 +1289,7 @@ public without sharing class MARSInvoiceHelper {
     }
 
     //Create invoice summary data from list in F-42's
-    public static List<SummaryInformation> createSummaryData(List<F42__c> f42List, Map<Id, Map<String,Decimal>> salarySurveyPaidRateMapByF42, Map<Id, Map<String,Decimal>> apparatusRateMapByF42, Map<Id, Map<String,Decimal>> vechicleRateMapByF42, Map<String, Decimal> administrativeRate, Map<Id, Map<String,Decimal>> salarySurveyHourlyRateMap, Map<String,Decimal> mileRateByF42, Map<Id, Map<String,Decimal>> specicalEquipmentRateMapByF42, Map<Id, Map<String,Decimal>> femaCodeRateMapByF42,Map<Id,Map<String,Decimal>> nonSuppressionRateMapByF42, Map<Id,Map<String,Decimal>> salarySurveyPaidBaseRateMapByF42){
+    public static List<SummaryInformation> createSummaryData(List<F42__c> f42List, Map<Id, Map<String,Decimal>> salarySurveyPaidRateMapByF42, Map<Id, Map<String,Decimal>> apparatusRateMapByF42, Map<Id, Map<String,Decimal>> vechicleRateMapByF42, Map<String, Decimal> administrativeRate, Map<Id, Map<String,Decimal>> salarySurveyHourlyRateMap, Map<String,Decimal> mileRateByF42, Map<Id, Map<String,Decimal>> specicalEquipmentRateMapByF42, Map<Id, Map<String,Decimal>> femaCodeRateMapByF42,Map<Id,Map<String,Decimal>> nonSuppressionRateMapByF42, Map<Id,Map<String,Decimal>> salarySurveyPaidBaseRateMapByF42, String paidRateFactor){
         List<SummaryInformation> summaryInformationList = new List<SummaryInformation>();
         Map<String,List<F_42_Personnel_Info__c>> perssonelMap = new  Map<String,List<F_42_Personnel_Info__c>>();
         for(F42__c record : f42List) {
@@ -1335,9 +1359,11 @@ public without sharing class MARSInvoiceHelper {
                     }
                 } else if(nonSuppressionRateMap != null && salarySurveyPaidRateMap != null && nonSuppressionRateMap.containsKey(personnelRec.Rank_Job_Title__c)) {
                     if(personnelRec.Base_Rate__c && salarySurveyPaidRateMap.containsKey('Firefighter/FF-PMedic')) {
-                        paidRate = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
+                       paidRate = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
+                        //paidRate = (salarySurveyPaidRateMap.get('Firefighter/FF-PMedic') * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
                     } else if(nonSuppressionRateMap.containsKey(personnelRec.Rank_Job_Title__c)) {
-                        paidRate = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
+                        //paidRate = nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c);
+                        paidRate = (nonSuppressionRateMap.get(personnelRec.Rank_Job_Title__c) * Decimal.valueOf(paidRateFactor)).setScale(2,System.RoundingMode.HALF_UP);
                     }
                 } else if(salarySurveyPaidRateMap != null && salarySurveyPaidRateMap.containsKey('Firefighter/FF-PMedic')){
                     paidRate = salarySurveyPaidRateMap.get('Firefighter/FF-PMedic');
@@ -1414,13 +1440,13 @@ public without sharing class MARSInvoiceHelper {
     //Get Expense claim Amount
     public static String getExpenseAmount(List<Reimbursement__c> expanseClaimList) {
         String expanseAmount = '0.00';
-        //List<Reimbursement__c> expanseClaimList = [SELECT Id,Total_Reimbursement_Amount__c,Status__c FROM Reimbursement__c WHERE F_42__c=:f42Id];
+        //List<Reimbursement__c> expanseClaimList = [SELECT Id,Total_Reimbursement_Amount_Rollup__c,Status__c FROM Reimbursement__c WHERE F_42__c=:f42Id];
         if(expanseClaimList.size() > 0) {
             if(expanseClaimList[0].Status__c != 'Approved') {
                 throw new AuraHandledException('Please Approve the Expense Claim related to F42');
             }
-            if(expanseClaimList[0].Total_Reimbursement_Amount__c != null) {
-                expanseAmount = String.valueOf(expanseClaimList[0].Total_Reimbursement_Amount__c);
+            if(expanseClaimList[0].Total_Reimbursement_Amount_Rollup__c != null) {
+                expanseAmount = String.valueOf(expanseClaimList[0].Total_Reimbursement_Amount_Rollup__c);
             }
         }
         return expanseAmount;
@@ -1518,7 +1544,7 @@ public without sharing class MARSInvoiceHelper {
     }
 
     // Create Invoice Number
-    public static String createInvoicePrefix(List<Funding_Rule__c> fundingRule) {
+    public static String createInvoicePrefix(List<Funding_Rule__c> fundingRule, Date f42Year) {
         String fundingSourceName = '';
         String invoiceNumber = '';
         if(fundingRule != null && !fundingRule.isEmpty()) {
@@ -1526,8 +1552,8 @@ public without sharing class MARSInvoiceHelper {
             String payingAgency_U = KeyValueHelper.getTextValue('MARS_U_Paying_Agency');
             String payingAgency_F = KeyValueHelper.getTextValue('MARS_F_Paying_Agency');
             String payingAgency_I = KeyValueHelper.getTextValue('MARS_I_Paying_Agency');
-            Date dt = System.today();
-            Integer year = dt.Year();
+           // Date dt = System.today();
+            Integer year = f42Year.Year();
             if(String.isNotBlank(payingAgency_U) && payingAgency_U.contains(fundingSourceName.toUpperCase())) {
                 invoiceNumber = 'U-';
             } else if(String.isNotBlank(payingAgency_F) && payingAgency_F.contains(fundingSourceName.toUpperCase())) {
@@ -1787,7 +1813,7 @@ public without sharing class MARSInvoiceHelper {
         /*List<Date> expenseClaimMinDate = new List<Date>();
         String lastestF42; 
         Date maxDate;*/
-          
+        Date maxDate = System.today();  
         if(expClaimList.size() > 0) {
             /*for(Reimbursement__c record : expClaimList) {
                 if(record.Submission_Date__c < expClaimMinDate) {
@@ -1838,7 +1864,7 @@ public without sharing class MARSInvoiceHelper {
 
             ivoiceObj.incidentName = expClaimList[0].Incident__r.Name;
             ivoiceObj.incidentOrderNo = expClaimList[0].Incident_Order_Number__c;
-            ivoiceObj.firstCharWithYearForInvoiceNo = createInvoicePrefix(fundingRule);
+            ivoiceObj.firstCharWithYearForInvoiceNo = createInvoicePrefix(fundingRule,expClaimList[0].Submission_Date__c);
             ivoiceObj.MACSDesignator = expClaimList[0].Account__r.MACS_ID__c;
             ivoiceObj.remitToName = expClaimList[0].Account__r.Name;
             ivoiceObj.remitToStreet = expClaimList[0].Account__r.ShippingStreet;
@@ -1927,7 +1953,7 @@ public without sharing class MARSInvoiceHelper {
             summdayData.reqNo = record.Incident_Request_Number__c;
             summdayData.strikeTeam = record.Strike_Team__c;
             summdayData.personnelTotal = '0.00';
-            summdayData.expenseReiumb = String.valueOf(record.Total_Reimbursement_Amount__c);
+            summdayData.expenseReiumb = String.valueOf(record.Total_Reimbursement_Amount_Rollup__c);
             summdayData.adminSurcharge = String.valueOf(((Decimal.valueOf(summdayData.personnelTotal) + Decimal.valueOf(summdayData.engineReimb) + Decimal.valueOf(summdayData.supportVehicle) + Decimal.valueOf(summdayData.expenseReiumb)) * Decimal.valueOf(adminRateFactor)).setScale(2));
             summaryInformationList.add(summdayData);
         }
@@ -1988,7 +2014,7 @@ public without sharing class MARSInvoiceHelper {
                 Decimal personnelTotal = 0;
                 f42Record.totalPersonnel ='0.00';
                 f42Record.surchargePersonnel = '0.00';
-                f42Record.expenseClaim = String.valueOf(record.Total_Reimbursement_Amount__c);
+                f42Record.expenseClaim = String.valueOf(record.Total_Reimbursement_Amount_Rollup__c);
                 f42Record.surchargeExpenseClaim = String.valueOf((Decimal.valueOf(f42Record.expenseClaim) * Decimal.valueOf(adminRateFactor)).setScale(2));
                 f42Record.totalForThisF42 = String.valueOf(personnelTotal + Decimal.valueOf(f42Record.totleEngineHours) + Decimal.valueOf(f42Record.vehicleCost) + Decimal.valueOf(f42Record.surchargeEngine) + Decimal.valueOf(f42Record.surchargePersonnel) + Decimal.valueOf(f42Record.surchargeVehicle) + Decimal.valueOf(f42Record.expenseClaim) + Decimal.valueOf(f42Record.surchargeExpenseClaim));
                 f42Record.expenseClaim = String.valueOf(formatCurrency(Decimal.valueOf(f42Record.expenseClaim).setScale(2)));
@@ -2198,7 +2224,7 @@ public without sharing class MARSInvoiceHelper {
                     record.lodging = String.valueOf(formatCurrency(lineItem.Lodging__c));
                     record.MISC = String.valueOf(formatCurrency(lineItem.MISC__c));
                     record.description = lineItem.Description__c;
-                    record.amount = String.valueOf(formatCurrency(lineItem.Amount__c));
+                    record.amount = String.valueOf(formatCurrency(lineItem.Tot_Amount__c));
                     record.name = lineItem.Name;
                     expenseClaimLineItems.add(record);
                 }
@@ -2222,15 +2248,15 @@ public without sharing class MARSInvoiceHelper {
                 expenseRecord.incidentOrderNumber = expenseCalimRecord.Incident_Order_Number__c;
                 expenseRecord.incidentRequestNumber = expenseCalimRecord.Incident_Request_Number__c;
                 expenseRecord.localAgencyComments = expenseCalimRecord.Approver_Comments__c;
-                expenseRecord.lodgingTotal = String.valueOf(formatCurrency(expenseCalimRecord.Lodging_Total__c));
+                expenseRecord.lodgingTotal = String.valueOf(formatCurrency(expenseCalimRecord.Lodging_Total_Rollup__c));
                 expenseRecord.MACIDs = String.valueOf(expenseCalimRecord.MACIDs__c);
-                expenseRecord.mealTotal = String.valueOf(formatCurrency(expenseCalimRecord.Meal_Total__c));
-                expenseRecord.MISCTotal = String.valueOf(formatCurrency(expenseCalimRecord.MISC_Total__c));
+                expenseRecord.mealTotal = String.valueOf(formatCurrency(expenseCalimRecord.Meal_Total_Rollup__c));
+                expenseRecord.MISCTotal = String.valueOf(formatCurrency(expenseCalimRecord.MISC_Total_Rollup__c));
                 expenseRecord.mutualAidStaffComments = expenseCalimRecord.Mutual_Aid_Staff_Comments__c;
                 expenseRecord.printedName = expenseCalimRecord.Printed_Name__c;
                 expenseRecord.name = expenseCalimRecord.Name;
                 expenseRecord.strikeTeam = expenseCalimRecord.Strike_Team__c;
-                expenseRecord.totalReimbursementAmount = String.valueOf(formatCurrency(expenseCalimRecord.Total_Reimbursement_Amount__c));
+                expenseRecord.totalReimbursementAmount = String.valueOf(formatCurrency(expenseCalimRecord.Total_Reimbursement_Amount_Rollup__c));
                 expenseRecord.unitNumber = expenseCalimRecord.Unit_Number__c;
                 expenseRecord.F_42Name = expenseCalimRecord.F_42__r.Name;
                 expenseRecord.attachmentType = expenseCalimRecord.Attachment_Type__c;
@@ -2487,17 +2513,17 @@ public without sharing class MARSInvoiceHelper {
                                 Start_Time__c,End_Date__c,End_Time__c,CDF__c,Portal_To_Portal__c,SSN__c,Base_Rate__c FROM F_42_Personnel_Info__r),  
                                 (SELECT Id,Name,Date__c,End_Time__c,Hours__c,Start_Time__c FROM F_42_Actual_Hours__r),
                                 (SELECT Id,Name, Comment__c,Comment_By__c,Date__c,Time__c FROM F_42_Comments__r),
-                                (SELECT Id,Total_Reimbursement_Amount__c,Status__c,F_42__c FROM Reimbursements__r)
+                                (SELECT Id,Total_Reimbursement_Amount_Rollup__c,Status__c,F_42__c FROM Reimbursements__r)
                                 FROM F42__c WHERE Id =:f42Ids];
         return f42List;
     }
 
     private static List<Reimbursement__c> getExpensClaimList(List<String> expClaimIds, List<String> f42Ids) { 
-        String query = 'SELECT Id, Name,Total_Reimbursement_Amount__c,Printed_Name__c,Submission_Date__c,Status__c,Approver_Comments__c,F_42__r.Name,F_42__c,'+
+        String query = 'SELECT Id, Name,Total_Reimbursement_Amount_Rollup__c,Printed_Name__c,Submission_Date__c,Status__c,Approver_Comments__c,F_42__r.Name,F_42__c,'+
                     'MACIDs__c,Strike_Team__c,Incident_Order_Number__c,Incident_Request_Number__c,Unit_Number__c,Incident__r.Name,Mutual_Aid_Staff_Comments__c,'+
                     'Account__r.MACS_ID__c,Account__r.ShippingStreet,Account__r.ShippingCity,Account__r.ShippingState,Account__r.ShippingPostalCode,Account__r.Federal_Tax_ID__c,Account__r.Fiscal_Supplier_ID__c,Account__r.Fiscal_Address_Id__c,Account__r.Name,'+
-                    'Comments__c,Meal_Total__c,MISC_Total__c,Lodging_Total__c,Attachment_Type__c,Account__c,Incident__r.Incident_Type__c,Account__r.Chief_Name__c,Account__r.Phone,Account__r.Fax,'+
-                    '(SELECT Id,Name,Date__c, City__c,Meal__c, Lodging__c, MISC__c, Description__c, Amount__c FROM Reimbursement_Line_Items__r) FROM Reimbursement__c WHERE ';
+                    'Comments__c,Meal_Total_Rollup__c,MISC_Total_Rollup__c,Lodging_Total_Rollup__c,Attachment_Type__c,Account__c,Incident__r.Incident_Type__c,Account__r.Chief_Name__c,Account__r.Phone,Account__r.Fax,'+
+                    '(SELECT Id,Name,Date__c, City__c,Meal__c, Lodging__c, MISC__c, Description__c, Tot_Amount__c FROM Reimbursement_Line_Items__r) FROM Reimbursement__c WHERE ';
       
         if(expClaimIds != null && !expClaimIds.isEmpty()) {
             query += ' Id IN: expClaimIds';

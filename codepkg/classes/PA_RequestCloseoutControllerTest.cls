@@ -318,7 +318,7 @@ public class PA_RequestCloseoutControllerTest {
         List<String>  selectedSmallProjectsIdList = new List<String>();
         Integer selectedLargeProjectCount = 0;
         for(Project__c project : projectDetailList){           
-            if(project.IsLargeProject__c == true){
+            if(project.Was_Ever_Large__c == true){
                 selectedLargeProjectCount = selectedLargeProjectCount + 1;
             }else{
                 selectedSmallProjectsIdList.add(project.Id);

@@ -33,38 +33,48 @@ public without sharing class MARS_AgencySummaryCtrl {
                             Agency_Salary_Survey__r.Name, Agency_Salary_Survey__r.CreatedBy.LastName, Agency_Salary_Survey__r.CreatedBy.FirstName
                         FROM Salary_Survey_Line_Items__c 
                         WHERE Agency_Salary_Survey__c = :parentId];
-                
+                String classiTitleSequence = KeyValueHelper.getTextValue('MARS_Classification_Title_Sequence');
+                List<String> classiTitleSequenceList = classiTitleSequence.split(',');
                 Map<String, List<Agency_Rate_Agreement_Line_Item__c>> agencyAgreementMap = getAgreementLineItemMap(accountId,dayOfRecord);
-                for(Salary_Survey_Line_Items__c lineItem: salarySurveyLineItems) {
-                    SalaryAndNonSuppresionPersonnel item = new SalaryAndNonSuppresionPersonnel();
-                    String isovertime = 'No';
-                    String isPTP = 'No';
-                    if(defaultOverTime != null && defaultOverTime.contains(lineItem.Classification_Title__c)) {
-                        isovertime = 'Yes';
-                    }
-                    if(agencyAgreementMap.containsKey(lineItem.Classification_Title__c)) {
-                        for(Agency_Rate_Agreement_Line_Item__c aRALineItem : agencyAgreementMap.get(lineItem.Classification_Title__c)) {
-                           if(aRALineItem.OT__c) {
-                                isovertime = 'Yes';
-                            } 
-                            if(aRALineItem.PTP__c) {
-                                isPTP =  'Yes';
+                for(String itemTitle :classiTitleSequenceList) {
+                    for(Salary_Survey_Line_Items__c lineItem: salarySurveyLineItems) {
+                        if(itemTitle == lineItem.Classification_Title__c) {
+                            SalaryAndNonSuppresionPersonnel item = new SalaryAndNonSuppresionPersonnel();
+                            String isovertime = 'No';
+                            String isPTP = 'No';
+                            if(defaultOverTime != null) {
+                                for(String element:defaultOverTime.split(',')){
+                                    if(element == lineItem.Classification_Title__c) {
+                                        isovertime = 'Yes';
+                                    }
+                                }
                             }
+                            if(agencyAgreementMap != null && agencyAgreementMap.containsKey(lineItem.Classification_Title__c)) {
+                                for(Agency_Rate_Agreement_Line_Item__c aRALineItem : agencyAgreementMap.get(lineItem.Classification_Title__c)) {
+                                   if(aRALineItem.OT__c) {
+                                        isovertime = 'Yes';
+                                    } 
+                                    if(aRALineItem.PTP__c) {
+                                        isPTP =  'Yes';
+                                    }
+                                }
+                            }
+                            item.ClassificationTitle = lineItem.Classification_Title__c;
+                            item.SalaryRate = String.valueOf(lineItem.Revised_Rate__c);
+                            item.Overtime = isovertime;
+                            item.PortaltoPortal = isPTP;
+                            salarayAndNonSuppPersonelList.add(item);
                         }
                     }
-                    item.ClassificationTitle = lineItem.Classification_Title__c;
-                    item.SalaryRate = String.valueOf(lineItem.Revised_Rate__c);
-                    item.Overtime = isovertime;
-                    item.PortaltoPortal = isPTP;
-                    salarayAndNonSuppPersonelList.add(item);
                 }
+               
                 List<Agency_Non_Suppression_Line_Item__c> nonUspperssionList = getNonsupressionItems(accountId, dayOfRecord);
                 for(Agency_Non_Suppression_Line_Item__c nonSupLineItem: nonUspperssionList) {
                     String isovertime = 'No';
                     String isPTP = 'No';
                     SalaryAndNonSuppresionPersonnel item = new SalaryAndNonSuppresionPersonnel();
                    
-                    if(agencyAgreementMap.containsKey(nonSupLineItem.Classification_Title__c)) {
+                    if(agencyAgreementMap != null && agencyAgreementMap.containsKey(nonSupLineItem.Classification_Title__c)) {
                         for(Agency_Rate_Agreement_Line_Item__c aRALineItem : agencyAgreementMap.get(nonSupLineItem.Classification_Title__c)) {
                            if(aRALineItem.OT__c) {
                                 isovertime = 'Yes';

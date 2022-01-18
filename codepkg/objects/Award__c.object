@@ -400,6 +400,18 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Large_Award__c</fullName>
+        <description>If the Award is a Award Project/Small Project?</description>
+        <externalId>false</externalId>
+        <formula>IF( OR ( ISPICKVAL(  Project__r.FundingSource__c , &apos;State Only&apos;), AND( OR(ISPICKVAL( Project__r.FundingSource__c , &apos;Federal Only&apos;), ISPICKVAL(Project__r.FundingSource__c , &apos;Federal And State&apos;)),  AmountObligated__c &gt;=  Project__r.Incident_Name__r.Federal_Small_Project_Threshold__c )), true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>If checked, this Award meets the FEMA Large Project threshold. The threshold applies to PA grants only and varies from year to year.</inlineHelpText>
+        <label>Large Award</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Manager_Approved_Date__c</fullName>
         <description>This field shows the Manager Approved Date of the Project if the Award is Initial Award of the Project or else Manager Approved Date of the Amendment.</description>
         <encryptionScheme>None</encryptionScheme>

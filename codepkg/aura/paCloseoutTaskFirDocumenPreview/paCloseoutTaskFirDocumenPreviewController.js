@@ -28,11 +28,21 @@
     *******************************************************************************/
     handleSignedFirDocument : function(component, event, helper) {
 
-        var workspaceAPI = component.find("workspace");
+       /* var workspaceAPI = component.find("workspace");
         workspaceAPI.openTab({           
             url: component.get("v.SignedFIRDocument"),
             focus: true
-        });    
+        }); */  
+        
+        var workspaceAPI = component.find("workspace");
+        workspaceAPI.getFocusedTabInfo().then(function(response) {
+            var focusedTabId = response.tabId;
+            workspaceAPI.openSubtab({
+                parentTabId: focusedTabId,
+                url: component.get("v.SignedFIRDocument"),
+                focus: true
+            }); 
+        })
      
     },
 
@@ -45,11 +55,21 @@
     *******************************************************************************/
     handleFirDocument : function(component, event, helper) {
         
-        var workspaceAPI = component.find("workspace");
+        /*var workspaceAPI = component.find("workspace");
         workspaceAPI.openTab({           
             url: component.get("v.FIRDocument"),
             focus: true
-        });    
+        });*/
+
+        var workspaceAPI = component.find("workspace");
+        workspaceAPI.getFocusedTabInfo().then(function(response) {
+            var focusedTabId = response.tabId;
+            workspaceAPI.openSubtab({
+                parentTabId: focusedTabId,
+                url: component.get("v.FIRDocument"),
+                focus: true
+            }); 
+        })
      
     }
 })

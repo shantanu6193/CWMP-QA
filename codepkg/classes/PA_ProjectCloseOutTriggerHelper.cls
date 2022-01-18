@@ -209,7 +209,7 @@ public without sharing class PA_ProjectCloseOutTriggerHelper extends TriggerHelp
 
     private  void projectCloseOutRequestAmountCalculation(Set<Id> closeOutIDSet, List<Project_Closeout__c> projectCloseOutList){
         AggregateResult[] groupedResults =  [SELECT Closeout_Request__c, sum(Total_Project_Award__c)totalProjectAward , sum(Total_Amount_Claimed__c)totalAmountSpent
-        FROM Project_Closeout__c where  Closeout_Request__c  In:closeOutIDSet and Project_Name__r.IsLargeProject__c = false and Project_Name__r.Funding_Opportunity_Name__r.Program_Name__r.Name =: PA_CONSTANTS.PA_PROGRAM_FEDERAL group by Closeout_Request__c];
+        FROM Project_Closeout__c where  Closeout_Request__c  In:closeOutIDSet and Project_Name__r.Was_Ever_Large__c = false and Project_Name__r.Funding_Opportunity_Name__r.Program_Name__r.Name =: PA_CONSTANTS.PA_PROGRAM_FEDERAL group by Closeout_Request__c];
 
         Map <Id, Closeout_Request__c> closeoutRequestMap = new Map <Id, Closeout_Request__c>();
         for (Id closeoutId : closeOutIDSet) {
@@ -252,7 +252,7 @@ public without sharing class PA_ProjectCloseOutTriggerHelper extends TriggerHelp
 
     private  void projectCloseOutTaskAmountCalculation(Set<Id> closeOutTaskIDSet){
         AggregateResult[] groupedResults =  [SELECT Closeout_Task__c, sum(Total_Project_Award__c)totalProjectAward , sum(Total_Amount_Claimed__c)totalAmountSpent
-          FROM Project_Closeout__c where  Closeout_Task__c  In:closeOutTaskIDSet and Project_Name__r.IsLargeProject__c = false and Project_Name__r.Funding_Opportunity_Name__r.Program_Name__r.Name =: PA_CONSTANTS.PA_PROGRAM_FEDERAL group by Closeout_Task__c];
+          FROM Project_Closeout__c where  Closeout_Task__c  In:closeOutTaskIDSet and Project_Name__r.Was_Ever_Large__c = false and Project_Name__r.Funding_Opportunity_Name__r.Program_Name__r.Name =: PA_CONSTANTS.PA_PROGRAM_FEDERAL group by Closeout_Task__c];
         AggregateResult[] groupedResult =  [SELECT Closeout_Task__c,COUNT(Id)totalNoOfProjects
         FROM Project_Closeout__c where  Closeout_Task__c  In:closeOutTaskIDSet group by Closeout_Task__c];
         Map <Id, Closeout_Task__c> closeOutTaskMap = new Map <Id, Closeout_Task__c>();
@@ -302,7 +302,7 @@ public without sharing class PA_ProjectCloseOutTriggerHelper extends TriggerHelp
       private void calculateTotalSmallProjectAwardsANDProjectAmountClaimed(Set<Id> closeOutTaskID){ 
 
         AggregateResult[] groupedResults =  [SELECT Closeout_Task__c, sum(Total_Project_Award__c)totalProjectAward , sum(Total_Amount_Claimed__c)totalAmountSpent
-        FROM Project_Closeout__c where  Closeout_Task__c  In:closeOutTaskID and Project_Name__r.IsLargeProject__c = false group by Closeout_Task__c]; 
+        FROM Project_Closeout__c where  Closeout_Task__c  In:closeOutTaskID and Project_Name__r.Was_Ever_Large__c = false group by Closeout_Task__c]; 
         List <Closeout_Task__c> closeOutTaskList = new List <Closeout_Task__c>();
         
         for (AggregateResult ar : groupedResults)  {

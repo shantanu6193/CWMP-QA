@@ -99,7 +99,7 @@ public without sharing class PA_SystemContextHelper {
     public static void checkPercentageOfFederalProjects(List<Project__c> projectList,Set<Id> incidentIds,Set<Id> subRecipientIds,String fundingSourceType) {
         List<User> userList = [SELECT ContactId,Contact.Email FROM User WHERE id =: UserInfo.getUserId()];
         List<Project__c> projectAllList = [SELECT id,Percent_Complete_To_Date__c FROM Project__c
-        Where Incident_Name__c IN:incidentIds AND Obligating_Sub_Recipient__c IN:subRecipientIds And (Percent_Complete_To_Date__c < 100 Or Percent_Complete_To_Date__c = null) AND IsLargeProject__c = false];
+        Where Incident_Name__c IN:incidentIds AND Obligating_Sub_Recipient__c IN:subRecipientIds And (Percent_Complete_To_Date__c < 100 Or Percent_Complete_To_Date__c = null) AND Was_Ever_Large__c = false];
         system.debug('projectAllList'+projectAllList);
         system.debug('userList'+userList);
         set<String> projectIdsUpdated = new set<String>();

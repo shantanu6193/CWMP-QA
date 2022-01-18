@@ -77,7 +77,7 @@ export default class PaInitCloseoutTask extends Utility {
         if(this.selectedProjectType == 'Small Projects') {
             let projectToReturn = [];
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c != true) {
+                if(this.projectData[i].Was_Ever_Large__c != true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }
@@ -85,7 +85,7 @@ export default class PaInitCloseoutTask extends Utility {
         } else if(this.selectedProjectType == 'Large Projects') {
             let projectToReturn = [];
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c == true) {
+                if(this.projectData[i].Was_Ever_Large__c == true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }
@@ -119,7 +119,7 @@ export default class PaInitCloseoutTask extends Utility {
             this.selectedSmallProjects = [];
             this.selectedLargeProjects = [];
             for (let i = 0; i < selectedRows.length; i++) {
-                if(selectedRows[i].IsLargeProject__c == true) {
+                if(selectedRows[i].Was_Ever_Large__c == true) {
                     this.selectedLargeProjects.push(selectedRows[i]);
                 } else {
                     this.selectedSmallProjects.push(selectedRows[i]);
@@ -369,7 +369,7 @@ export default class PaInitCloseoutTask extends Utility {
                 },
                 {
                     label: 'Large Project',
-                    fieldName: 'IsLargeProject__c',
+                    fieldName: 'Was_Ever_Large__c',
                     type: 'boolean'
                 },
                 {
@@ -472,7 +472,7 @@ export default class PaInitCloseoutTask extends Utility {
         
         for(let i=0; i < selectedProjects.length; i++) {
             idsToReturn.push(selectedProjects[i].Id);
-            if(!selectedProjects[i].IsLargeProject__c){
+            if(!selectedProjects[i].Was_Ever_Large__c){
                 selectedSmallProjectsId.push(selectedProjects[i].Id);
             }
         }
@@ -514,7 +514,7 @@ export default class PaInitCloseoutTask extends Utility {
 
             if(this.selectedSmallProjects.length>0) {
                 for (let i = 0; i < this.projectData.length; i++) {
-                    if(this.projectData[i].IsLargeProject__c == false && idsToReturn.includes(this.projectData[i].Id) == false){
+                    if(this.projectData[i].Was_Ever_Large__c == false && idsToReturn.includes(this.projectData[i].Id) == false){
                         this.showErrorNotification('Error', 'Please select all small projects');
                         return;
                     }

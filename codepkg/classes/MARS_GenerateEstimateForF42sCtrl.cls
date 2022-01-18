@@ -619,13 +619,13 @@ public without sharing class MARS_GenerateEstimateForF42sCtrl {
     //Get Expense claim Amount
     private static String getExpenseAmount(String f42Id) {
         String expanseAmount = '0.00';
-        List<Reimbursement__c> expanseClaimList = [SELECT Id,Total_Reimbursement_Amount__c,Status__c FROM Reimbursement__c WHERE F_42__c=:f42Id];
+        List<Reimbursement__c> expanseClaimList = [SELECT Id,Total_Reimbursement_Amount_Rollup__c,Status__c FROM Reimbursement__c WHERE F_42__c=:f42Id];
         if(expanseClaimList.size() > 0) {
             if(expanseClaimList[0].Status__c != 'Approved') {
                 throw new AuraHandledException('Please Approve the Expense Claim related to F42');
             }
-            if(expanseClaimList[0].Total_Reimbursement_Amount__c != null) {
-                expanseAmount = String.valueOf(expanseClaimList[0].Total_Reimbursement_Amount__c);
+            if(expanseClaimList[0].Total_Reimbursement_Amount_Rollup__c != null) {
+                expanseAmount = String.valueOf(expanseClaimList[0].Total_Reimbursement_Amount_Rollup__c);
             }
         }
         return expanseAmount;

@@ -194,15 +194,10 @@ private class MARS_GenerateEstimateForF42sCtrl_Test {
         remb.Incident__c = incident.Id;
         remb.Account__c = testAccount.Id;
         remb.F_42__c = f42Rec.Id;
-        remb.Lodging_Total__c = 100.00;
-        remb.MISC_Total__c = 100.00;
-        remb.Total_Reimbursement_Amount__c = 300.00;
-        remb.Meal_Total__c = 100.00;
         remb.Submission_Date__c = DateTime.Now().AddDays(-3).date();
         remb.Status__c = 'Approved';
         insert remb;
         Reimbursement_Line_Item__c item = new Reimbursement_Line_Item__c();
-        item.Amount__c = 300.00;
         item.Lodging__c = 100.00;
         item.Meal__c = 100.00;
         item.MISC__c = 100.00;

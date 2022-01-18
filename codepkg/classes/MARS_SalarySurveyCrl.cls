@@ -21,15 +21,20 @@ public without sharing class MARS_SalarySurveyCrl {
 
     private static List<Salary_Survey_Line_Items__c> getSalarySurveyLines(String accountId) {
         List<Salary_Survey_Line_Items__c> salarySurveyLineItems = new List<Salary_Survey_Line_Items__c>();
-        Set<String> overTimeCheckForClasTitle = new Set<String>{'Battalion Chief', 'Co. Officer/Capt./Lt.','App. Officer/Eng','Firefighter/FF-PMedic'};
+        //Set<String> overTimeCheckForClasTitle = new Set<String>{'Battalion Chief', 'Co. Officer/Capt./Lt.','App. Officer/Eng','Firefighter/FF-PMedic'};
+        String overTimeCheckForClasTitle = KeyValueHelper.getTextValue('MARS_Salary_Survey_Overtime_Titles');
         Map<String, List<Agency_Rate_Agreement_Line_Item__c>> agencyAgreementMap = getAgreementLineItemMap(accountId);
         Map<String, Salary_Survey_Line_Items__c> currentRateMap = getSalarySurveyWithCurrentDate(accountId);
         Map<String, Salary_Survey_Line_Items__c> pendingRateMap = getSalarySurveyWithPendingApproval(accountId);
         for (CFAA_Line_Items__c cfaaLineItems : getCFAALineItems()) {
             Boolean isovertime = false;
             Boolean isPTP = false;
-            if(overTimeCheckForClasTitle.contains(cfaaLineItems.Personnel_Role__c)) {
-                isovertime = true;
+            if(overTimeCheckForClasTitle != null) {
+                for(String element:overTimeCheckForClasTitle.split(',')){
+                    if(element == cfaaLineItems.Personnel_Role__c) {
+                        isovertime = true;
+                    }    
+                }    
             }
             if(agencyAgreementMap.containsKey(cfaaLineItems.Personnel_Role__c)) {
                 for(Agency_Rate_Agreement_Line_Item__c lineItem : agencyAgreementMap.get(cfaaLineItems.Personnel_Role__c)) {

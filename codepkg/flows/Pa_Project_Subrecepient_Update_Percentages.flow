@@ -991,7 +991,7 @@
             <name>Check_Project</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Get_Project_Records.IsLargeProject__c</leftValueReference>
+                <leftValueReference>Get_Project_Records.Was_Ever_Large__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -1522,7 +1522,7 @@
             </value>
         </filters>
         <filters>
-            <field>IsLargeProject__c</field>
+            <field>Was_Ever_Large__c</field>
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -1867,7 +1867,7 @@
             </value>
         </filters>
         <filters>
-            <field>IsLargeProject__c</field>
+            <field>Was_Ever_Large__c</field>
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>false</booleanValue>
@@ -1916,7 +1916,7 @@
             </value>
         </filters>
         <filters>
-            <field>IsLargeProject__c</field>
+            <field>Was_Ever_Large__c</field>
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>false</booleanValue>

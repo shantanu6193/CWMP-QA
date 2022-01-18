@@ -921,17 +921,10 @@
         <fullName>IsLargeProject__c</fullName>
         <description>If the Project is a Large Project/Small Project?</description>
         <externalId>false</externalId>
-        <formula>IF(ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;),
-      IF( Total_Project_Award__c &gt; Incident_Name__r.Federal_Small_Project_Threshold__c , True, False), 
-       IF(ISPICKVAL( FundingSource__c , &apos;State Only&apos;),
-        IF( Total_Project_Award__c &gt;  Incident_Name__r.State_Small_Project_Threshold__c , True, False), 
-         IF(ISPICKVAL(FundingSource__c , &apos;Federal And State&apos;),
-           IF(AND(  Federal_Project_Award__c &gt;Incident_Name__r.Federal_Small_Project_Threshold__c, State_Project_Award__c &gt;Incident_Name__r.State_Small_Project_Threshold__c), True, False) 
-            , False))
-
-)</formula>
+        <formula>IF( OR ( ISPICKVAL( FundingSource__c , &apos;State Only&apos;), AND( OR(ISPICKVAL( FundingSource__c , &apos;Federal Only&apos;), ISPICKVAL(FundingSource__c , &apos;Federal And State&apos;)),  Total_Project_Award__c &gt;= Incident_Name__r.Federal_Small_Project_Threshold__c)), true, false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <inlineHelpText>If checked, this project meets the FEMA Large Project threshold. The threshold applies to PA grants only and varies from year to year.</inlineHelpText>
-        <label>Is Large Project</label>
+        <label>Large Project</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -2016,6 +2009,18 @@ The Sub Recipient FEMA Generated ID (FIPS ID)</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
     </fields>
+    <fields>
+        <fullName>Was_Ever_Large__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field shows if the Project was ever a Large Project in its lifecycle.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field shows if the Project was ever a Large Project in its lifecycle.</inlineHelpText>
+        <label>Was Ever Large</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <label>Project</label>
     <listViews>
         <fullName>All</fullName>
@@ -2364,7 +2369,7 @@ AND( NOT(OR( ISPICKVAL( Obligating_Sub_Recipient__r.Entity_Type__c , &apos;City&
     </validationRules>
     <validationRules>
         <fullName>State_Project_Threshold_Validation</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>When Funding Source is &quot;Federal and State&quot; or &quot;State Only&quot;, then State Small Project Threshold is required.</description>
         <errorConditionFormula>AND( ISBLANK( External_Id__c ), 
 AND( OR(ISPICKVAL( Stage__c , &apos;Obligating&apos;),ISPICKVAL( Stage__c , &apos;Compliance Verification&apos;) ,ISPICKVAL( Stage__c , &apos;Active Payment&apos;), ISPICKVAL( Stage__c , &apos;Deobligation&apos;) ) , NOT( ISBLANK( Incident_Name__c ) ),  OR(ISPICKVAL(  FundingSource__c , &apos;Federal and State&apos;),ISPICKVAL(  FundingSource__c , &apos;State Only&apos;))  , ISBLANK(  Incident_Name__r.State_Small_Project_Threshold__c )  ))</errorConditionFormula>

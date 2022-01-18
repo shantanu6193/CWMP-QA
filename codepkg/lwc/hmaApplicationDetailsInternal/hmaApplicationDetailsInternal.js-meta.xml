@@ -7,10 +7,18 @@
         <target>lightning__AppPage</target>
         <target>lightning__RecordPage</target>
         <target>lightning__HomePage</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage">
             <property name="programTemplatePageId" type="String"/>
         </targetConfig>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="programTemplatePageId" type="String"/>
+            <property name="recordId" type="String"
+                      label="Record ID" description="The value should be {!recordId}."/>
+        </targetConfig>
+
     </targetConfigs>
 </LightningComponentBundle>

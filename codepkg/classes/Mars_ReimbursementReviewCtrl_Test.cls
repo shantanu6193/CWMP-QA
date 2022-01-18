@@ -14,7 +14,6 @@ private class Mars_ReimbursementReviewCtrl_Test {
         reimburse.Account__c = acc.Id;
         reimburse.Incident__c = inci.Id;
         //reimburse.Name = 'testReimburse';
-        reimburse.Total_Reimbursement_Amount__c = 20;
         reimburse.Comments__c = 'test';
         reimburse.Status__c = 'Agency Review';
         insert reimburse;

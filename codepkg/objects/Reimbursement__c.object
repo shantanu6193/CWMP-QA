@@ -255,6 +255,17 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Lodging_Total_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>Lodging Total Rollup</label>
+        <summarizedField>Reimbursement_Line_Item__c.Lodging__c</summarizedField>
+        <summaryForeignKey>Reimbursement_Line_Item__c.Reimbursement__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Lodging_Total__c</fullName>
         <externalId>false</externalId>
         <label>Lodging Total</label>
@@ -278,6 +289,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>MISC_Total_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>MISC Total Rollup</label>
+        <summarizedField>Reimbursement_Line_Item__c.MISC__c</summarizedField>
+        <summaryForeignKey>Reimbursement_Line_Item__c.Reimbursement__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>MISC_Total__c</fullName>
         <externalId>false</externalId>
         <label>MISC Total</label>
@@ -287,6 +309,17 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Meal_Total_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>Meal Total Rollup</label>
+        <summarizedField>Reimbursement_Line_Item__c.Meal__c</summarizedField>
+        <summaryForeignKey>Reimbursement_Line_Item__c.Reimbursement__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Meal_Total__c</fullName>
@@ -378,6 +411,17 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Reimbursement_Amount_Rollup__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Reimbursement Amount Rollup</label>
+        <summarizedField>Reimbursement_Line_Item__c.Tot_Amount__c</summarizedField>
+        <summaryForeignKey>Reimbursement_Line_Item__c.Reimbursement__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Reimbursement_Amount__c</fullName>

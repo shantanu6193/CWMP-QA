@@ -104,6 +104,7 @@ export default class MarsGenerateInvoice extends Utility {
                 elt.CreatedByName =  element.CreatedBy.Name;
                 elt.AccountName =  element.Account__r.Name;
                 elt.AccountId = element.Account__c;
+                elt.DI_Committed_to_Incident_Date = element.DI_Committed_to_Incident_Date__c;
                 f42data.push(elt);
             });
             this.f42Data = f42data;
@@ -118,6 +119,7 @@ export default class MarsGenerateInvoice extends Utility {
                 elt.CreatedByName =  element.CreatedBy.Name;
                 elt.AccountName =  element.Account__r.Name;
                 elt.AccountId =  element.Account__c;
+                elt.Submission_Date = element.Submission_Date__c;
                 expenseClaimData.push(elt);
             });
             this.expenseClaimData = expenseClaimData;
@@ -185,6 +187,11 @@ export default class MarsGenerateInvoice extends Utility {
                 label:'Agency',
                 fieldName:'AccountName'
             }
+            ,
+            {
+                label:'Committed To Incident Date',
+                fieldName:'DI_Committed_to_Incident_Date'
+            }
        ];
     }
 
@@ -194,15 +201,24 @@ export default class MarsGenerateInvoice extends Utility {
         this.selectedF42Details = [];
         console.log('-----seleted project ---------',selectedRows);
         // Display that fieldName of the selected rows
-        for (let i = 0; i < selectedRows.length; i++) {
-            this.selectedF42IdLst.push(selectedRows[i].Id);
-            this.selectedF42Details.push(selectedRows[i]);
-            //if one small project select then all small project also select
-            /*if(selectedRows[i].Total_Project_Award__c < 1000){
-                this.selectAllSmallProject();
-            }*/
-        }
-        this.selectedF42IdLst = this.getUniqueList(this.selectedF42IdLst);
+       // if(selectedRows.length > 0) {
+            //var d = new Date(selectedRows[0].DI_Committed_to_Incident_Date);
+            //let year = d.getFullYear();
+
+            for (let i = 0; i < selectedRows.length; i++) {
+                this.selectedF42IdLst.push(selectedRows[i].Id);
+                this.selectedF42Details.push(selectedRows[i]);
+               /* let dt = new Date(selectedRows[i].DI_Committed_to_Incident_Date);
+                let year1 = dt.getFullYear();
+                if(year !== year1) {
+                    this.showErrorNotification('Error', 'Please select F-42s of same year');
+                    return;
+                }*/
+                
+            }
+            this.selectedF42IdLst = this.getUniqueList(this.selectedF42IdLst);
+        //}
+
     }
 
     getSelectedExpenseClaim(event){
@@ -236,12 +252,25 @@ export default class MarsGenerateInvoice extends Utility {
             return;
         }
         let paramsByAccount = {};
+        let year;
         for (let i = 0; i < this.selectedF42Details.length; i++) {
+
             let selectedF42 = this.selectedF42Details[i];
+            console.log('Record==>',selectedF42)
+            if(i===0){
+                let dt = new Date(selectedF42.DI_Committed_to_Incident_Date);
+                year = dt.getFullYear();
+            }
+            let dt1 = new Date(selectedF42.DI_Committed_to_Incident_Date);
+            let year1 = dt1.getFullYear();
+            if(year !== year1) {
+                this.showErrorNotification('Error', 'Please select F-42s of same year');
+                return;
+            }
             if(paramsByAccount[selectedF42.AccountId]) {
                 paramsByAccount[selectedF42.AccountId].f42s.push(selectedF42.Id);
-                if(paramsByAccount[selectedF42.AccountId].f42s.length >= 13) {
-                    this.showErrorNotification('Error', 'Please select up to 12 F-42s per Agency');
+                if(paramsByAccount[selectedF42.AccountId].f42s.length >= 11) {
+                    this.showErrorNotification('Error', 'Please select up to 10 F-42s per Agency');
                     return;
                 }
             } else {
@@ -256,13 +285,23 @@ export default class MarsGenerateInvoice extends Utility {
                 paramsByAccount[selectedF42.AccountId] = paramMap;
             }
         }
-
+        let expYear;
         for (let i = 0; i < this.selectedExpClaimDetails.length; i++) {
             let selectedExpClaim = this.selectedExpClaimDetails[i];
+            if(i===0){
+                let dt = new Date(selectedExpClaim.Submission_Date);
+                expYear = dt.getFullYear();
+            }
+            let dt1 = new Date(selectedExpClaim.Submission_Date);
+            let year1 = dt1.getFullYear();
+            if(expYear !== year1) {
+                this.showErrorNotification('Error', 'Please select Expense Claims of same year');
+                return;
+            }
             if(paramsByAccount[selectedExpClaim.AccountId]) {
                 paramsByAccount[selectedExpClaim.AccountId].expenseClaims.push(selectedExpClaim.Id);
-                if(paramsByAccount[selectedExpClaim.AccountId].expenseClaims.length >= 13) {
-                    this.showErrorNotification('Error', 'Please select up to 12 Expense Claim per Agency');
+                if(paramsByAccount[selectedExpClaim.AccountId].expenseClaims.length >= 11) {
+                    this.showErrorNotification('Error', 'Please select up to 10 Expense Claim per Agency');
                     return;
                 }
             } else {
@@ -341,6 +380,10 @@ export default class MarsGenerateInvoice extends Utility {
             {
                 label:'Agency',
                 fieldName:'AccountName'
+            },
+            {
+                label:'Submission Date',
+                fieldName:'Submission_Date'
             }
        ];
     }

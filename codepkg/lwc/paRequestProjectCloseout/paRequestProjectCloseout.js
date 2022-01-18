@@ -372,7 +372,7 @@ export default class PaRequestProjectCloseout extends Utility {
                 },
                 {
                     label: 'Large Project',
-                    fieldName: 'IsLargeProject__c',
+                    fieldName: 'Was_Ever_Large__c',
                     type: 'boolean'
                 },                
                 {
@@ -756,7 +756,7 @@ export default class PaRequestProjectCloseout extends Utility {
                     }
 
                  //caculate sum of all total project award and total amount spent 
-                if(this.selectedProjectDetails[i].IsLargeProject__c == false ){
+                if(this.selectedProjectDetails[i].Was_Ever_Large__c == false ){
                     smallProjectSelected = true;               
                     totalAwardAmountSmall = totalAwardAmountSmall + this.selectedProjectDetails[i].Total_Project_Award__c;
                     totalAmountClaimedSmall = totalAmountClaimedSmall + parseInt(this.selectedProjectDetails[i].Total_Amount_Claimed__c);
@@ -809,7 +809,7 @@ export default class PaRequestProjectCloseout extends Utility {
 
             if(smallProjectSelected) {
                 for (let i = 0; i < this.projectData.length; i++) {
-                    if(this.projectData[i].IsLargeProject__c == false && selectedProjectIds.includes(this.projectData[i].Id) == false){
+                    if(this.projectData[i].Was_Ever_Large__c == false && selectedProjectIds.includes(this.projectData[i].Id) == false){
                         this.showErrorNotification('Error', 'Please select all small projects');
                         return;
                     }
@@ -1022,7 +1022,7 @@ export default class PaRequestProjectCloseout extends Utility {
          if(hasAdded == true) {
              for(let i=0; i < projectsOnUI.length; i++) {
                   if(projectsOnUI[i].Id == selectedProjectId) {
-                      if(projectsOnUI[i].IsLargeProject__c == true) {
+                      if(projectsOnUI[i].Was_Ever_Large__c == true) {
                           this.selectedLargeProjects.push(projectsOnUI[i]);
                       } else {
                           this.selectedSmallProjects.push(projectsOnUI[i]);
@@ -1140,9 +1140,9 @@ export default class PaRequestProjectCloseout extends Utility {
         this.isLargeProjectSelect = false;
         this.isSmallProjectSelect = false;
         for (let i = 0; i < selectedProjectDetails.length; i++){
-            if( selectedProjectDetails[i].IsLargeProject__c == true){
+            if( selectedProjectDetails[i].Was_Ever_Large__c == true){
                this.isLargeProjectSelect =true; 
-            }else if( selectedProjectDetails[i].IsLargeProject__c == false){
+            }else if( selectedProjectDetails[i].Was_Ever_Large__c == false){
                this.isSmallProjectSelect =true; 
             }		
        }       
@@ -1242,13 +1242,13 @@ export default class PaRequestProjectCloseout extends Utility {
         if(this.selectedProjectType == 'Small Projects') {
 
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c != true) {
+                if(this.projectData[i].Was_Ever_Large__c != true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }
         } else if(this.selectedProjectType == 'Large Projects') {
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c == true) {
+                if(this.projectData[i].Was_Ever_Large__c == true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }

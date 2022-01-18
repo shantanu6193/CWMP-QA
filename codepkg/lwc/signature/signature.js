@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import SystemModstamp from '@salesforce/schema/Account.SystemModstamp';
 import { LightningElement, api } from 'lwc';
 
 //declaration of variables for calculations
@@ -13,9 +14,11 @@ let x = "#0000A0"; //blue color
 let y = 1.5; //weight of line width and dot.       
 let canvasElement, ctx; //storing canvas context
 let dataURL, convertedDataURI; //holds image data
+let drawing=false;
+let pos = { x: 0, y: 0 };
 
 export default class Signature extends LightningElement {
-    @api signLabel='Please sign here';
+    @api signLabel='PLEASE SIGN HERE';
     //event listeners added for drawing the signature within shadow boundary
     constructor() {
         super();
@@ -23,10 +26,19 @@ export default class Signature extends LightningElement {
         this.template.addEventListener('mousedown', this.handleMouseDown.bind(this));
         this.template.addEventListener('mouseup', this.handleMouseUp.bind(this));
         this.template.addEventListener('mouseout', this.handleMouseOut.bind(this));
+
         //Sravan - touch events for i-pad
-        this.template.addEventListener('touchstart', this.handleMouseDown.bind(this));
-        this.template.addEventListener('touchmove', this.handleMouseMove.bind(this));
-        this.template.addEventListener('touchend', this.handleMouseUp.bind(this));
+        // this.template.addEventListener('touchstart', this.handleMouseDown.bind(this));
+        // this.template.addEventListener('touchmove', this.handleMouseMove.bind(this));
+        // this.template.addEventListener('touchend', this.handleMouseUp.bind(this));
+        
+        this.template.addEventListener("touchstart", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+        this.template.addEventListener("touchend", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+        this.template.addEventListener("touchmove", function(e){ if (e.target.nodeName == 'CANVAS') { e.preventDefault(); } }, false);
+
+        this.template.addEventListener('touchstart', this.handleTouchStart.bind(this));
+        this.template.addEventListener('touchmove', this.handleTouchMove.bind(this));
+        this.template.addEventListener('touchend', this.handleTouchEnd.bind(this));
     }
 
     //retrieve canvase and context
@@ -34,10 +46,36 @@ export default class Signature extends LightningElement {
         canvasElement = this.template.querySelector('.signCanvas');
         ctx = canvasElement.getContext("2d");
     }
+ 
+    handleTouchStart(e){
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });       
+        this.searchCoordinatesForEvent('down', mouseEvent);
+    }
+
+    handleTouchMove(e){
+
+        drawing=true;       
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        this.searchCoordinatesForEvent('move', mouseEvent);
+    }
+
+    handleTouchEnd(e){
+        drawing=false;
+        var mouseEvent = new MouseEvent("mouseup", {});
+        this.searchCoordinatesForEvent('up', mouseEvent);
+    }
 
     //handler for mouse move operation
-    handleMouseMove(event) {
-        this.searchCoordinatesForEvent('move', event);
+    handleMouseMove(event) {                
+        this.searchCoordinatesForEvent('move', event);      
     }
 
     //handler for mouse down operation

@@ -128,7 +128,7 @@ export default class paCloseoutTaskRemoveProject extends Utility{
                 },
                 {
                     label: 'Large Project',
-                    fieldName: 'IsLargeProject__c',
+                    fieldName: 'Was_Ever_Large__c',
                     type: 'boolean'
                 },
                 {
@@ -234,7 +234,7 @@ export default class paCloseoutTaskRemoveProject extends Utility{
         if(this.selectedProjectType == 'Small Projects' && this.projectData.length>0) {
             let projectToReturn = [];
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c != true) {
+                if(this.projectData[i].Was_Ever_Large__c != true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }
@@ -242,7 +242,7 @@ export default class paCloseoutTaskRemoveProject extends Utility{
         } else if(this.selectedProjectType == 'Large Projects' && this.projectData.length>0) {
             let projectToReturn = [];
             for(let i=0; i<this.projectData.length; i++) {
-                if(this.projectData[i].IsLargeProject__c == true) {
+                if(this.projectData[i].Was_Ever_Large__c == true) {
                     projectToReturn.push(this.projectData[i]);
                 }
             }
@@ -294,7 +294,7 @@ export default class paCloseoutTaskRemoveProject extends Utility{
             this.selectedSmallProjects = [];
             this.selectedLargeProjects = [];
             for (let i = 0; i < selectedRows.length; i++) {
-                if(selectedRows[i].IsLargeProject__c == true) {
+                if(selectedRows[i].Was_Ever_Large__c == true) {
                     this.selectedLargeProjects.push(selectedRows[i]);
                 } else {
                     this.selectedSmallProjects.push(selectedRows[i]);
@@ -338,14 +338,14 @@ export default class paCloseoutTaskRemoveProject extends Utility{
 
         //Get count of small projects in selected projects
         for (let i = 0; i < selectedProjects.length; i++) {
-            if(selectedProjects[i].IsLargeProject__c == false ){
+            if(selectedProjects[i].Was_Ever_Large__c == false ){
                 selectedSmallProjectsId.push(selectedProjects[i].Id);
                 smallProjectCountInSelectedProjects++;
             }
         }
         //Get count of small projects in all projects
         for (let i = 0; i < this.projectData.length; i++) {
-            if(this.projectData[i].IsLargeProject__c == false ){
+            if(this.projectData[i].Was_Ever_Large__c == false ){
                 smallProjectCountInAllProjects++;
             }
         }

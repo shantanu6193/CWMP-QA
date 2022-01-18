@@ -14,7 +14,8 @@ public without sharing class Mars_ReimbursementCtrl {
         //searchTerm += '*';
         String query = 'Select Id,Name,Declaration_Number__c,Order_No__c From Incident__c Where Name != null AND Available_for_Application__c INCLUDES (\'MARS\')';
         if(String.isNotEmpty(searchTerm)) {
-            query += ' AND (Name like\'%' + searchTerm + '%\')';
+            query += ' AND ( Name like\'%' + searchTerm + '%\' OR Order_No__c  like\'%' + searchTerm + '%\' )';
+            //query += ' AND (Name like\'%' + searchTerm + '%\')';
         }
         query += ' Limit 200';
         system.debug('query===='+query);
@@ -31,7 +32,8 @@ public without sharing class Mars_ReimbursementCtrl {
                         'Incident__c',
                         IncidentIcon,
                         opProductReference.Name,
-                        '',
+                        'Order #'+opProductReference.Order_No__c,
+                        //(opProductReference.Order_No__c != null ? opProductReference.Order_No__c  : ''),
                         opProductReference
                 )
             );

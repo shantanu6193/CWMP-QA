@@ -32,7 +32,7 @@ public without sharing class paInitCloseoutTaskController {
             throw new AuraHandledException('Please select Sub Recipient and Incident and program type');
         }
        
-        List<Project__c> projList = [Select Id, (SELECT Closeout_Request__r.Name FROM CloseOuts__r), Name, Project_Number__c, Damage_Category__c,IsLargeProject__c, Total_Project_Award__c
+        List<Project__c> projList = [Select Id, (SELECT Closeout_Request__r.Name FROM CloseOuts__r), Name, Project_Number__c, Damage_Category__c,Was_Ever_Large__c, Total_Project_Award__c
                                         from Project__c
                                         where Id IN (SELECT Project_Name__c
                                         FROM Project_Closeout__c
@@ -476,14 +476,14 @@ public without sharing class paInitCloseoutTaskController {
     public static Boolean apexCheckNSPO(List<String>  selectedSmallProjectsIdList, Integer selectedLargeProjectCount, String selectedCloseoutTaskId){
         if(String.isNotEmpty(selectedCloseoutTaskId)){
             
-            List<Project__c> targetCloseoutTaskSmallProject = [SELECT Id, Name FROM Project__c WHERE IsLargeProject__c = false AND Closeout_Task__c =: selectedCloseoutTaskId];
-            List<Project__c> targetCloseoutTaskLargeProject = [SELECT Id, Name FROM Project__c WHERE IsLargeProject__c = true AND Closeout_Task__c =: selectedCloseoutTaskId];
+            List<Project__c> targetCloseoutTaskSmallProject = [SELECT Id, Name FROM Project__c WHERE Was_Ever_Large__c = false AND Closeout_Task__c =: selectedCloseoutTaskId];
+            List<Project__c> targetCloseoutTaskLargeProject = [SELECT Id, Name FROM Project__c WHERE Was_Ever_Large__c = true AND Closeout_Task__c =: selectedCloseoutTaskId];
            
             if((selectedSmallProjectsIdList.size() + targetCloseoutTaskSmallProject.size()) > 0 && (selectedLargeProjectCount + targetCloseoutTaskLargeProject.size()) > 0){
                
                 AggregateResult[] groupedResults =  [SELECT sum(Total_Project_Award__c)totalProjectAward , sum(Total_Amount_Claimed__c)totalAmountSpent
                                                     FROM Project_Closeout__c 
-                                                    where  Project_Name__r.IsLargeProject__c = false
+                                                    where  Project_Name__r.Was_Ever_Large__c = false
                                                         AND (Project_Name__c In:selectedSmallProjectsIdList
                                                         OR Closeout_Task__c =:selectedCloseoutTaskId)
                                                     ];

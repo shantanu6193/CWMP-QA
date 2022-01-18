@@ -53,7 +53,7 @@ public without sharing class PA_RequestCloseoutController {
         if(AppUtils.isLoggedInUserPortal() == false) {
 
             projList = [Select Id, Name, Project_Number__c, Declaration_Number__c,
-                IsLargeProject__c, Total_Project_Award__c, Percent_Complete_To_Date__c
+            Was_Ever_Large__c, Total_Project_Award__c, Percent_Complete_To_Date__c
                     from Project__c where Id Not IN (SELECT Project_Name__c
                         FROM Project_Closeout__c
                         WHERE Project_Name__r.Obligating_Sub_Recipient__c =:selectedSRRecordId
@@ -398,13 +398,13 @@ public without sharing class PA_RequestCloseoutController {
         //Insert sharing records and capture save result
         // The false parameter allows for partial processing if multiple records are passed into the operation
 
-        List<Project__c> projectDetailsList =  [Select Id, Name, IsLargeProject__c from  Project__c where Id In: projectIdSet];
+        List<Project__c> projectDetailsList =  [Select Id, Name, Was_Ever_Large__c from  Project__c where Id In: projectIdSet];
     
         Integer IsLargeProject = 0;
         Integer IsSmallProject = 0;
         for(Project__c project : projectDetailsList) {
           
-            if(project.IsLargeProject__c == true){
+            if(project.Was_Ever_Large__c == true){
 
                 IsLargeProject = IsLargeProject + 1;
                
@@ -681,8 +681,8 @@ public without sharing class PA_RequestCloseoutController {
       
 
         list<Project__c> projectList = [Select Id, Name, Project_Number__c, Declaration_Number__c,
-                                  IsLargeProject__c, Total_Project_Award__c, Percent_Complete_To_Date__c
-                                 from Project__c where Closeout_Request__c =:closeoutRequestId];
+                                        Was_Ever_Large__c, Total_Project_Award__c, Percent_Complete_To_Date__c
+                                        from Project__c where Closeout_Request__c =:closeoutRequestId];
 
         mapData.put('projectList',projectList);   
 

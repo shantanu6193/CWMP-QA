@@ -113,7 +113,7 @@
                                         {record.Description__c}
                                     </td>
                                     <td class="" scope="col">
-                                        {record.Amount__c}
+                                        {record.Tot_Amount__c}
                                     </td>
                                 </tr>
                             </template>
@@ -123,17 +123,17 @@
                                     </td>
                                     <td>
                                         <lightning-formatted-number class="outputfont"
-                                        value={reimbursRecord.Meal_Total__c} format-style="currency"
+                                        value={reimbursRecord.Meal_Total_Rollup__c} format-style="currency"
                                         currency-code="USD"></lightning-formatted-number>
                                     </td>
                                     <td>
                                         <lightning-formatted-number class="outputfont"
-                                        value={reimbursRecord.Lodging_Total__c} format-style="currency"
+                                        value={reimbursRecord.Lodging_Total_Rollup__c} format-style="currency"
                                         currency-code="USD"></lightning-formatted-number>
                                     </td>
                                     <td>
                                         <lightning-formatted-number class="outputfont"
-                                        value={reimbursRecord.MISC_Total__c} format-style="currency"
+                                        value={reimbursRecord.MISC_Total_Rollup__c} format-style="currency"
                                         currency-code="USD"></lightning-formatted-number>
                                     </td>
                                     <td>
@@ -141,7 +141,7 @@
                                     </td>
                                     <td colspan="2">
                                         <lightning-formatted-number class="outputfont"
-                                        value={reimbursRecord.Total_Reimbursement_Amount__c} format-style="currency"
+                                        value={reimbursRecord.Total_Reimbursement_Amount_Rollup__c} format-style="currency"
                                         currency-code="USD"></lightning-formatted-number>
                                     </td>
                                 </tr>

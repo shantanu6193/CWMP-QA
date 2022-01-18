@@ -10,7 +10,7 @@ public with sharing class MarsGenerateInvoiceCtrl {
         if(String.isEmpty(selectedIncidentRecordId)) {
             throw new AuraHandledException('Please select Incident');
         }
-        String query = 'SELECT Id,Strike_Team__c,Name,Status__c,CreatedBy.Name,Account__r.Name FROM F42__c WHERE Incident__c=:selectedIncidentRecordId AND Status__c =\'APPROVED\' AND Id NOT IN(Select F_42__c From F_42_Invoices__c)';
+        String query = 'SELECT Id,Strike_Team__c,Name,Status__c,CreatedBy.Name,Account__r.Name,DI_Committed_to_Incident_Date__c FROM F42__c WHERE Incident__c=:selectedIncidentRecordId AND Status__c =\'APPROVED\' AND Id NOT IN(Select F_42__c From F_42_Invoices__c)';
         if(String.isNotEmpty(selectedSRRecordId)) {
             query += ' AND Account__c=:selectedSRRecordId ';
         }
@@ -22,7 +22,7 @@ public with sharing class MarsGenerateInvoiceCtrl {
         
         returnMap.put('fundingRules', fundingRules);
 
-        String query1 = 'SELECT Id,Strike_Team__c,Name,Status__c,CreatedBy.Name,Account__r.Name FROM Reimbursement__c WHERE Incident__c=:selectedIncidentRecordId AND F_42__c = null AND Status__c =\'Approved\' AND Id NOT IN(Select Expense_Claim__c From F_42_Invoices__c)';
+        String query1 = 'SELECT Id,Strike_Team__c,Name,Status__c,CreatedBy.Name,Account__r.Name,Submission_Date__c FROM Reimbursement__c WHERE Incident__c=:selectedIncidentRecordId AND F_42__c = null AND Status__c =\'Approved\' AND Id NOT IN(Select Expense_Claim__c From F_42_Invoices__c)';
         if(String.isNotEmpty(selectedSRRecordId)) {
             query1 += ' AND Account__c=:selectedSRRecordId ';
         }
@@ -44,7 +44,8 @@ public with sharing class MarsGenerateInvoiceCtrl {
         //searchTerm += '*';
         String query = 'Select Id,Name,Declaration_Number__c,Order_No__c From Incident__c Where Name != null AND Available_for_Application__c INCLUDES (\'MARS\')';
         if(String.isNotEmpty(searchTerm)) {
-            query += ' AND (Name like\'%' + searchTerm + '%\')';
+            //query += ' AND (Name like\'%' + searchTerm + '%\')';
+            query += ' AND ( Name like\'%' + searchTerm + '%\' OR Order_No__c  like\'%' + searchTerm + '%\' )';
         }
         query += ' Limit 200';
         system.debug('query===='+query);
@@ -61,7 +62,8 @@ public with sharing class MarsGenerateInvoiceCtrl {
                         'Account',
                         productIcon,
                         opProductReference.Name,
-                        (opProductReference.Order_No__c != null ? opProductReference.Order_No__c  : ''),
+                        'Order #'+opProductReference.Order_No__c,
+                        //(opProductReference.Order_No__c != null ? opProductReference.Order_No__c  : ''),
                         opProductReference
                 )
             );
@@ -116,5 +118,6 @@ public with sharing class MarsGenerateInvoiceCtrl {
         System.debug('IncidentNumber=='+incidentNumber+' agencyId=='+agencyId+'  f42s=='+f42s);
         String parentInvoiceId = null;
         return MARSInvoiceHelper.createInvoiceStaging(incidentNumber, agencyId, f42s, fundingRuleId, parentInvoiceId, 'Invoice', expenseClaims);
+        //return MarsGenerateInvoiceHelper.createStagingInvoice(incidentNumber, agencyId, f42s, fundingRuleId, parentInvoiceId, 'Invoice', expenseClaims);
     }
 }

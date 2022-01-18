@@ -1372,7 +1372,7 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
 	* Author : Ricky
 	* Inputs : -
 	* Description: This method is used to assign the retention value on Project whenever the Project is created/Updated. */
-    private void projectRetention(){
+    private void projectRetention() {
         Set<Id> incidentIds = new Set<Id>(); //To collect the Incident Ids...
         Set<Id> programIds = new Set<Id>(); //To collect the Program Ids....
         Set<Id> subRecipientIds = new Set<Id>(); //To collect the Sub Recipient Ids....
@@ -1430,22 +1430,28 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
                                                                     Parent_Program__r.Name, Parent_Program__r.Master_Label_Program_Name__c
                                                     FROM Program__c WHERE Id IN : programIds]);
 
-            for (Project__c projectRecordToProcess : projectListToProcess){ //Iterating Project to process field....
+            for (Project__c projectRecordToProcess : projectListToProcess) { //Iterating Project to process field....
                 Account subRecipient = idToAccountMap.get(projectRecordToProcess.Obligating_Sub_Recipient__c); //Fetching Sub Recipient info from map collection....
                 Program__c programToProcess = programMap.get(projectRecordToProcess.Program_Name__c); //Fetching Program info from map collection....
+                Incident__c incidentToProcess = incidentMap.get(projectRecordToProcess.Incident_Name__c); //Fetching the Incident record from Map collection.....
+                
+                Decimal federalSmallProjectThreshold = incidentToProcess?.Federal_Small_Project_Threshold__c == null ? 0.00 : incidentToProcess?.Federal_Small_Project_Threshold__c;
+                //updateWasEverLargeFieldOnProject(projectRecordToProcess, federalSmallProjectThreshold);
+
                 /** Updated for Ticket No - 569 - Start */
                 //Fetching Retention for "Cal OES" Sub Recipient...
                 List<ALS_Cal_OES_FIPS__mdt> calOESFIPS = new List<ALS_Cal_OES_FIPS__mdt>();
                 if(subRecipient?.Sub_Recipient_FIPS__c != null) {
-                    calOESFIPS =[SELECT Id__c FROM ALS_Cal_OES_FIPS__mdt WHERE Type__c = 'FIPS'
+                    calOESFIPS = [SELECT Id__c FROM ALS_Cal_OES_FIPS__mdt WHERE Type__c = 'FIPS'
                                                          AND Id__c = :subRecipient.Sub_Recipient_FIPS__c];
                 }
                 if (calOESFIPS?.size()>0) { //Condition to check if the FIPS Id of the Sub Recipient is Of Cal OES....
-
-                    if (projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState || projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalOnly) {
+                    if (projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState 
+                            || projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalOnly) {
                         projectRecordToProcess.Federal_Retention__c = 0;
                     }
-                    if (projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState || projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_StateOnly) {
+                    if (projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState 
+                            || projectRecordToProcess.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_StateOnly) {
                         projectRecordToProcess.State_Retention__c = 0;
                     }
                 }
@@ -1493,7 +1499,6 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
                 }
                 //Retention based on Large/Small Projects...
                 else if (projectRecordToProcess.Incident_Name__c != null) {
-                    Incident__c incidentToProcess = incidentMap.get(projectRecordToProcess.Incident_Name__c); //Fetching the Incident record from Map collection.....
                     //Calling another method to decide whether the Project is Small/Large....
                     //False indicates - Small Project and True indicate - Large Project.....
                     Boolean isLarge = isLargeProject(projectRecordToProcess, incidentToProcess);
@@ -1543,9 +1548,27 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
     }
 
     //This method is used to decide whether the Project is Large/Small....
-    private Boolean isLargeProject(Project__c project, Incident__c incident){
-        Decimal projectAwardState;
+    /** Condition to check the Large Project is been chnage as per Requested by Client.
+     * Code is been added to update the Was Ever Large Field on the Project as per the requirement from PA Project Closeout requirement. */
+    private Boolean isLargeProject(Project__c project, Incident__c incident) {
+        Decimal  totalProjectAward = project.Total_Project_Award__c == null ? 0.00 : project.Total_Project_Award__c;
+        Decimal  federalProjectThreshold = incident.Federal_Small_Project_Threshold__c == null ? 0.00 : incident.Federal_Small_Project_Threshold__c;
+
+        if(project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_StateOnly) {
+            return true;
+        }
+        else if((project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState 
+                    || project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalOnly) 
+                && totalProjectAward >= federalProjectThreshold) {
+            return true;
+        }
+        else { 
+            return false;
+        }
+
+        /*Decimal projectAwardState;
         Decimal projectAwardFederal;
+
         //Calculating Federal Project Award and State Project Award.....
         if (project.State_Share__c != null && project.Total_Project_Award__c != null) {
             projectAwardState = ((project.Total_Project_Award__c * project.State_Share__c)/100).setScale(2,system.RoundingMode.DOWN);
@@ -1583,8 +1606,23 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
                 isLargeProject = false;
             }
         }
-        return isLargeProject; //Variable to return the value about Large/Small Project....
+        return isLargeProject; //Variable to return the value about Large/Small Project.... */
     }
+
+    /*private void updateWasEverLargeFieldOnProject(Project__c project, Decimal federalSmallProjectThreshold) {
+        Decimal  totalProjectAward = project.Total_Project_Award__c == null ? 0.00 : project.Total_Project_Award__c;
+        Decimal  federalProjectThreshold = federalSmallProjectThreshold == null ? 0.00 : federalSmallProjectThreshold;
+
+        if(project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_StateOnly) {
+            project.Was_Ever_Large__c = true;
+        }
+        else if((project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalAndState 
+                    || project.FundingSource__c == ALS_CONSTANTS.Project_FundingSource_FederalOnly) 
+                && totalProjectAward >= federalProjectThreshold 
+                && project.Was_Ever_Large__c == false) {
+            project.Was_Ever_Large__c = true;
+        }
+    }*/
 
     /*********************************************
 	* Method Name : customRollUpOnIncidentSubRecipientSummary
@@ -2540,7 +2578,7 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
 
                 system.debug('fundingSourceType'+fundingSourceType);
                 Project__c oldRecord = (Project__c) Trigger.oldMap.get(projectRecord.Id);
-                    if(oldRecord.Percent_Complete_To_Date__c != 100 && projectRecord.Percent_Complete_To_Date__c == 100 && projectRecord.Program_Name_For_Flow__c == 'PA - Federal' && projectRecord.IsLargeProject__c == false){
+                    if(oldRecord.Percent_Complete_To_Date__c != 100 && projectRecord.Percent_Complete_To_Date__c == 100 && projectRecord.Program_Name_For_Flow__c == 'PA - Federal' && projectRecord.Was_Ever_Large__c == false){
                         projectsPercentagValueChanged.add(projectRecord.Id);
                         incidentIds.add(projectRecord.Incident_Name__c);
                         subRecipientIds.add(projectRecord.Obligating_Sub_Recipient__c);
@@ -2681,6 +2719,5 @@ PaymentToProcess.In_Review_State_Amount_Approved__c = stateAmountApprovedToDate?
                 }                  
         }   
         
-    }
-        
+    }        
 }

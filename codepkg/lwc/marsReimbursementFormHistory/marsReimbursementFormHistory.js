@@ -19,7 +19,7 @@ export default class MarsReimbursementFormHistory extends Utility {
                     let expenseClaim = {};
                     expenseClaim.Id = element.Id;
                     expenseClaim.Name = element.Name;
-                    expenseClaim.Total_Reimbursement_Amount = element.Total_Reimbursement_Amount__c;
+                    expenseClaim.Total_Reimbursement_Amount = element.Total_Reimbursement_Amount_Rollup__c;
                     expenseClaim.Printed_Name = element.Printed_Name__c;
                     expenseClaim.Submission_Date = element.Submission_Date__c;
                     expenseClaim.Status =  element.Status__c;
@@ -47,7 +47,7 @@ export default class MarsReimbursementFormHistory extends Utility {
                     let expenseClaim = {};
                     expenseClaim.Id = result.Reimbursement.Id;
                     expenseClaim.Name = result.Reimbursement.Name;
-                    expenseClaim.Total_Reimbursement_Amount = result.Reimbursement.Total_Reimbursement_Amount__c;
+                    expenseClaim.Total_Reimbursement_Amount = result.Reimbursement.Total_Reimbursement_Amount_Rollup__c;
                     expenseClaim.Printed_Name = result.Reimbursement.Printed_Name__c;
                     expenseClaim.Submission_Date = result.Reimbursement.Submission_Date__c;
                     expenseClaim.Status =  result.Reimbursement.Status__c ;
@@ -59,9 +59,9 @@ export default class MarsReimbursementFormHistory extends Utility {
                     expenseClaim.Unit_Number = result.Reimbursement.Unit_Number__c;
                     expenseClaim.IncidentName = result.Reimbursement.Incident__r.Name;
                     expenseClaim.Comments = result.Reimbursement.Comments__c;
-                    expenseClaim.Meal_Total = result.Reimbursement.Meal_Total__c;
-                    expenseClaim.MISC_Total =  result.Reimbursement.MISC_Total__c;
-                    expenseClaim.Lodging_Total =  result.Reimbursement.Lodging_Total__c;
+                    expenseClaim.Meal_Total = result.Reimbursement.Meal_Total_Rollup__c;
+                    expenseClaim.MISC_Total =  result.Reimbursement.MISC_Total_Rollup__c;
+                    expenseClaim.Lodging_Total =  result.Reimbursement.Lodging_Total_Rollup__c;
                     expenseClaim.Mutual_Aid_Staff_Comments = result.Reimbursement.Mutual_Aid_Staff_Comments__c;
             this.reimbursRecord = expenseClaim;
         });

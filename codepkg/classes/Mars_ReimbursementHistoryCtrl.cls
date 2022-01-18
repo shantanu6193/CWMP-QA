@@ -1,13 +1,13 @@
 public without sharing class Mars_ReimbursementHistoryCtrl {
     @AuraEnabled
     public static List<Reimbursement__c> getReimbursementHistory(String accountId) {
-        return [SELECT Id, Name,Total_Reimbursement_Amount__c,Printed_Name__c,Submission_Date__c,Strike_Team__c,
+        return [SELECT Id, Name,Total_Reimbursement_Amount_Rollup__c,Printed_Name__c,Submission_Date__c,Strike_Team__c,
                 Account__r.Name,Incident__r.Name,Comments__c,Status__c,Incident_Order_Number__c,Incident_Request_Number__c,Mutual_Aid_Staff_Comments__c
                 FROM Reimbursement__c WHERE Account__c=:accountId ORDER BY CreatedDate DESC NULLS FIRST LIMIT 10];
     } 
     @AuraEnabled
     public static List<Reimbursement_Line_Item__c > getReimbursementLineItems(String reimbursemenId) {
-        return [SELECT Id,Date__c, City__c,Meal__c, Lodging__c, MISC__c, Description__c, Amount__c
+        return [SELECT Id,Date__c, City__c,Meal__c, Lodging__c, MISC__c, Description__c, Tot_Amount__c
                FROM Reimbursement_Line_Item__c  WHERE Reimbursement__c=:reimbursemenId];
     }
     @AuraEnabled
@@ -16,9 +16,9 @@ public without sharing class Mars_ReimbursementHistoryCtrl {
         String signature='';
         returnMap.put('ReimbursementLineItems', getReimbursementLineItems(reimbursemenId));
 
-        Reimbursement__c reimbursement = [SELECT Id, Name,Total_Reimbursement_Amount__c,Printed_Name__c,Submission_Date__c,Status__c,Approver_Comments__c,
+        Reimbursement__c reimbursement = [SELECT Id, Name,Total_Reimbursement_Amount_Rollup__c,Printed_Name__c,Submission_Date__c,Status__c,Approver_Comments__c,
                                             MACIDs__c,Strike_Team__c,Incident_Order_Number__c,Incident_Request_Number__c,Unit_Number__c,Incident__r.Name,Mutual_Aid_Staff_Comments__c,
-                                            Comments__c,Meal_Total__c,MISC_Total__c,Lodging_Total__c FROM Reimbursement__c WHERE Id=:reimbursemenId LIMIT 1];
+                                            Comments__c,Meal_Total_Rollup__c,MISC_Total_Rollup__c,Lodging_Total_Rollup__c FROM Reimbursement__c WHERE Id=:reimbursemenId LIMIT 1];
         returnMap.put('Reimbursement', reimbursement);
         returnMap.put('contentVersions', getContentVersions(new List<String>{reimbursemenId}));
         List<ContentVersion> signDco = getSignContentVersions(new List<String>{reimbursemenId});

@@ -43,30 +43,55 @@
     <assignments>
         <name>Assign_Member_Id</name>
         <label>Assign Member Id</label>
-        <locationX>50</locationX>
-        <locationY>150</locationY>
+        <locationX>54</locationX>
+        <locationY>55</locationY>
         <assignmentItems>
             <assignToReference>notificationIds</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>Iterate_Over_Group_Members.UserOrGroupId</elementReference>
+                <elementReference>Filter_Active_Users.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
             <targetReference>Iterate_Over_Group_Members</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>Check_Active_User_is_not_Null</name>
+        <label>Check Active User is not Null</label>
+        <locationX>204</locationX>
+        <locationY>168</locationY>
+        <defaultConnector>
+            <targetReference>Iterate_Over_Group_Members</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_User_Active</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Filter_Active_Users</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Member_Id</targetReference>
+            </connector>
+            <label>Is User Active</label>
+        </rules>
+    </decisions>
     <interviewLabel>MARS- Invoice Notify Internal People {!$Flow.CurrentDateTime}</interviewLabel>
     <label>MARS- Invoice Notify Internal People From Local Agency</label>
     <loops>
         <name>Iterate_Over_Group_Members</name>
         <label>Iterate Over Group Members</label>
-        <locationX>51</locationX>
-        <locationY>346</locationY>
+        <locationX>45</locationX>
+        <locationY>439</locationY>
         <collectionReference>Get_Group_Members</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>Assign_Member_Id</targetReference>
+            <targetReference>Filter_Active_Users</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>Iterate_Over_Groups</targetReference>
@@ -106,6 +131,34 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
+        <name>Filter_Active_Users</name>
+        <label>Filter Active Users</label>
+        <locationX>216</locationX>
+        <locationY>342</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Active_User_is_not_Null</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Iterate_Over_Group_Members.UserOrGroupId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Account_Record</name>
         <label>Get Account Record</label>
         <locationX>936</locationX>
@@ -129,8 +182,8 @@
     <recordLookups>
         <name>Get_Group_Members</name>
         <label>Get Group Members</label>
-        <locationX>319</locationX>
-        <locationY>381</locationY>
+        <locationX>321</locationX>
+        <locationY>441</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Iterate_Over_Group_Members</targetReference>

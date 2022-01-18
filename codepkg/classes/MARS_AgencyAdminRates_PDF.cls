@@ -1,6 +1,7 @@
-public with sharing class MARS_AgencyAdminRates_PDF {
+public without sharing class MARS_AgencyAdminRates_PDF {
     public String signature {get; set;}
     public Agency_Admin_Rates__c  agencyAdminRate {get; set;}
+    public list<string> programNames {get; set;}
     public MARS_AgencyAdminRates_PDF() {
         agencyAdminRate = [SELECT Id, Start_Date__c, END_Date__c, Approval_Status__c, Name, Agency__r.MACS_ID__c,Agency__r.Name,Administrative_Rate_Indirect_Cost_Direct__c,CreatedBy.Name,
                                 Data_For_Use_In__c, Total_Direct_Amount__c,FY_From__c, FY_To__c, Administrative_Total_Indirect_Direct__c, Total_Indirect_Amount__c,
@@ -9,8 +10,25 @@ public with sharing class MARS_AgencyAdminRates_PDF {
                             FROM Agency_Admin_Rates__c WHERE Id =:ApexPages.currentPage().getParameters().get('id')];
        
         List<ContentVersion> signDco = getContentVersions(new List<String>{ApexPages.currentPage().getParameters().get('id')});
-        if(signDco.size() > 0)
-            signature ='/sfc/servlet.shepherd/version/download/'+signDco[0].Id;
+        if(signDco.size() > 0){
+            signature ='/sfc/servlet.shepherd/version/download/'+signDco[0].Id ;
+        }
+        programNames = new list<string>{'Emergency Medical Services','General Administration','Information Technology','Logistics/Procurement/Supply/Minor Fire Equipment',
+                                        'Public Information Office',
+                                        'Telecommunications',
+                                        'Arson Investigation', 
+                                        'Community Education',
+                                        'Facilities',
+                                        'Fire Comm. Center/Dispatch/Comm. & Control Center',
+                                        'Fire Hazard Reduction Program',
+                                        'Fleet',
+                                        'Hazardous Materials Response Program',
+                                        'Mapping',
+                                        'Operations',
+                                        'Prevention',
+                                        'Training',
+                                        'Urban Search and Rescue'
+                                    };
     }
 
    

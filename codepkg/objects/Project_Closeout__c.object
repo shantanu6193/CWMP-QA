@@ -420,7 +420,7 @@ IF( AND(FIPS__c ==null, CalOES_ID__c ==null),
     <fields>
         <fullName>IsSmallProject__c</fullName>
         <externalId>false</externalId>
-        <formula>NOT(Project_Name__r.IsLargeProject__c)</formula>
+        <formula>NOT(Project_Name__r.Was_Ever_Large__c)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IsSmallProject</label>
         <trackHistory>false</trackHistory>
@@ -552,7 +552,7 @@ IF(CONTAINS(Project_Name__r.Latest_Project_Version__c, &apos;DSR &apos;), RIGHT(
     <fields>
         <fullName>Project_Size__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( Project_Name__r.IsLargeProject__c  = True, &apos;L&apos;, &apos;S&apos;)</formula>
+        <formula>IF( Project_Name__r.Was_Ever_Large__c  = True, &apos;L&apos;, &apos;S&apos;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Project Size</label>
         <required>false</required>

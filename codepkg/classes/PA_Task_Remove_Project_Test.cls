@@ -199,7 +199,7 @@ public  class PA_Task_Remove_Project_Test {
         List<String>  selectedSmallProjectsRemoveIdList = new List<String>();
         Integer selectedLargeProjectRemoveCount = 0;
         for(Project__c project1 : getProjectsForRemoveList){           
-            if(project1.IsLargeProject__c == true){
+            if(project1.Was_Ever_Large__c == true){
                 selectedLargeProjectRemoveCount = selectedLargeProjectRemoveCount + 1;
             }else{
                 selectedSmallProjectsRemoveIdList.add(project1.Id);
@@ -349,7 +349,7 @@ public  class PA_Task_Remove_Project_Test {
         List<String>  selectedSmallProjectsRemoveIdList = new List<String>();
         Integer selectedLargeProjectRemoveCount = 0;
         for(Project__c projects1 : getProjectsForRemoveList){           
-            if(projects1.IsLargeProject__c == true){
+            if(projects1.Was_Ever_Large__c == true){
                 selectedLargeProjectRemoveCount = selectedLargeProjectRemoveCount + 1;
             }else{
                 selectedSmallProjectsRemoveIdList.add(projects1.Id);

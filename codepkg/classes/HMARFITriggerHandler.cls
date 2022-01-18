@@ -219,7 +219,8 @@ public without sharing class HMARFITriggerHandler extends TriggerHandler impleme
     /**This is only used for Record Type = HMA */
     public void validateBeforeInsert(){
         
-        Id RFIRecordTypeId = Schema.SObjectType.Request_For_Information__c.getRecordTypeInfosByName().get('HMA').getRecordTypeId();        
+        Id RFIRecordTypeId = Schema.SObjectType.Request_For_Information__c.getRecordTypeInfosByName().get('HMA').getRecordTypeId(); 
+        if(String.isEmpty(System.userInfo.getUserRoleId())) return;       
         String roleId = System.userInfo.getUserRoleId();
         UserRole singleRole = [SELECT Id, Name FROM UserRole WHERE Id = :roleId];
         if(singleRole.Name.equals('HMA Manager') || singleRole.Name.equals('HMA Analyst')){

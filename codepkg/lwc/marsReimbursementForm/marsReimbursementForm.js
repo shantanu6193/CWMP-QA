@@ -26,6 +26,10 @@ export default class MarsReimbursementForm extends Utility {
     StrikeTeam;
     f42Id;
     incidentId;
+    Meal_Total;;
+    Lodging_Total;
+    MISC_Total;
+    Total_Reimbursement_Amount;
     //strikeTeamRequired  = [];
     incidentRequired = [];
     hasErrorForFile = false;
@@ -79,8 +83,8 @@ export default class MarsReimbursementForm extends Utility {
                         if (tableRow.MISC__c != undefined) {
                             totalMISC = totalMISC + Number(tableRow.MISC__c);
                         }
-                        if (tableRow.Amount__c != undefined) {
-                            totalAmount = totalAmount + Number(tableRow.Amount__c);
+                        if (tableRow.Amount != undefined) {
+                            totalAmount = totalAmount + Number(tableRow.Amount);
                         }
                     }
                     currentIndex = currentIndex + 1;
@@ -92,11 +96,10 @@ export default class MarsReimbursementForm extends Utility {
                 this.currentIndex++;
 
             }
-            
-            this.recordLocal.Meal_Total__c = totalMeal;
-            this.recordLocal.Lodging_Total__c = totalLodging;
-            this.recordLocal.MISC_Total__c = totalMISC;
-            this.recordLocal.Total_Reimbursement_Amount__c = totalAmount;
+            this.Meal_Total = totalMeal;
+            this.Lodging_Total = totalLodging;
+            this.MISC_Total = totalMISC;
+            this.Total_Reimbursement_Amount = totalAmount;
     }
         /*
          * Searches Incidents 
@@ -204,16 +207,16 @@ export default class MarsReimbursementForm extends Utility {
                 if (tableRow.MISC__c != undefined) {
                     totalMISC = totalMISC + Number(tableRow.MISC__c);
                 }
-                if (tableRow.Amount__c != undefined) {
-                    totalAmount = totalAmount + Number(tableRow.Amount__c);
+                if (tableRow.Amount != undefined) {
+                    totalAmount = totalAmount + Number(tableRow.Amount);
                 }
             }
             //currentIndex = currentIndex + 1;
         });
-        this.recordLocal.Meal_Total__c = totalMeal;
-        this.recordLocal.Lodging_Total__c = totalLodging;
-        this.recordLocal.MISC_Total__c = totalMISC;
-        this.recordLocal.Total_Reimbursement_Amount__c = totalAmount;
+        this.Meal_Total = totalMeal;
+        this.Lodging_Total = totalLodging;
+        this.MISC_Total = totalMISC;
+        this.Total_Reimbursement_Amount = totalAmount;
     }
 
     handleUploadFinished(event) {
@@ -228,7 +231,7 @@ export default class MarsReimbursementForm extends Utility {
             console.log('Error Uplaod file===>', e);
         }
     }
-    saveRecord() {
+    saveRecord() { 
         this.hasError = false;
         this.incidentRequired = [];
         if(this.recordLocal.Incident__c == undefined || this.recordLocal.Incident__c == '') {
@@ -272,10 +275,10 @@ export default class MarsReimbursementForm extends Utility {
             this.showSuccessNotification('Records Submitted Successfully.');
             this.showFilesTable = false;
             this.uploadedFiles = [];
-            this.recordLocal.Meal_Total__c = undefined;
-            this.recordLocal.Lodging_Total__c = undefined;
-            this.recordLocal.MISC_Total__c = undefined;
-            this.recordLocal.Total_Reimbursement_Amount__c = undefined;
+            this.Meal_Total = undefined;
+            this.Lodging_Total = undefined;
+            this.MISC_Total = undefined;
+            this.Total_Reimbursement_Amount = undefined;
             this.recordLocal.Incident_Request_Number__c = undefined;
             this.recordLocal.Unit_Number__c = undefined;
             this.incidentOrderNumber = undefined;

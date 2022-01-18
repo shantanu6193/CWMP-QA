@@ -571,6 +571,15 @@ export default class EntityTypeAgencySignUpLwc extends Utility {
     }
     return number;
   }
+
+  handlePrint(event){
+    console.log('this.recordId');
+    console.log(this.recordId);
+    event.preventDefault();
+    if (this.recordId){
+      window.open('/mars/apex/MARS_AgencyInformationPDF?id=' + this.recordId);
+    }    
+  }
   /* setOtherVisible(value) {
      if (value === 'Yes') {
        this.isOtherVisible = true;
