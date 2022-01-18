@@ -100,7 +100,10 @@ public without sharing class ApexUtils {
         Approval.lock(recordIds);
     }
 
-
+    public static String getObjectNameByRecordId(String recordId) {
+        Id masterRecordId = recordId;
+        return masterRecordId.getSObjectType().getDescribe().getName();
+    }
     public static Id getRecordTypeIdbyName(String objectName, String recordTypeName){
         return  Schema.getGlobalDescribe().get(objectName).getDescribe().getRecordTypeInfosByName().get(recordTypeName).getRecordTypeId();
     }

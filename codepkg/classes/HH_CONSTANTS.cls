@@ -54,6 +54,7 @@ public without sharing class HH_CONSTANTS {
     public static final String HHApplication_Stage_OESDecision = 'OES Decision';
     public static final String HHApplication_Stage_FEMAReview = 'FEMA Review';
     public static final String HHApplication_Stage_FEMADecision = 'FEMA Decision';
+    public static final String HHApplication_Stage_HomeownerAgreement = 'Homeowner Agreement';
     public static final String HHApplication_Stage_ApprovedConverted = 'Approved- Converted'; 
     public static final String HHApplication_Stage_RejectedClosed = 'Rejected - Closed';
 
@@ -83,6 +84,10 @@ public without sharing class HH_CONSTANTS {
     public static final String HHApplication_Status_FEMAReviewOpenRFI = 'FEMA RFI- Need more Info';
     public static final String HHApplication_Status_FEMADecisionApprovedForProjectConversion = 'Approved for Project Conversion';
     public static final String HHApplication_Status_FEMADecisionRejected = 'Rejected';
+    public static final String HHApplication_Status_ContractorQuoteReadyToBeRequested = 'Contractor Quote Ready to Be Requested';
+    public static final String HHApplication_Status_ContractorQuoteRequested = 'Contractor Quote Requested';
+    public static final String HHApplication_Status_ContractorQuoteReceived = 'Contractor Quote Received';
+    public static final String HHApplication_Status_TriPartyAgreementFinalized = 'Tri-Party Agreement Finalized';
 
     public static final String RFI_RFIStatus_Requested = 'RFI Requested';
     public static final String RFI_RFIStatus_Received = 'Response Received';
@@ -126,6 +131,12 @@ public without sharing class HH_CONSTANTS {
     public static final String Rfi_CWMPRecordType_APIName = 'CWMP';
     public static final String Rfi_RFIType_CWMP = 'CWMP';
 
+    /** HH "Account Role" Object Constant. */
+    public static final String AccountRole_CWMPRecordType_APIName = 'CWMP';
+    public static final String AccountRole_ShareObject_APIName = 'Account_Role__Share';
+    public static final String AccountRole_Object_APIName = 'Account_Role__c';
+    public static final String AccountRole_ShareObject_AccessLevel_Edit = 'Edit';
+
     /** Email Templates API Names Constants. */
     public static final String HH_Assessor_Email_Template_APINames = 'HH_Assessor_Email_Template';
     public static final String HH_Assessor_Email_Template_DisplayName = 'No Reply - Cal OES';
@@ -168,4 +179,25 @@ public without sharing class HH_CONSTANTS {
     /* Application Contact Object Relationship to Homeowner*/ 
     public static final String Relationship_to_Homeowner_Self = 'Self';
 
+    /** CWMP Project Object Constants. **/
+    public static final String CWMPProject_Stage_NewProjectCreated = 'New Project Created';
+    public static final String CWMPProject_Stage_SiteWork = 'Site Work';
+    public static final String CWMPProject_Stage_PostAssessment = 'Post-Assessment';
+    public static final String CWMPProject_Stage_ProjectComplete = 'Project Complete';
+    public static final String CWMPProject_API_Name = 'CWMP_Project__c';
+
+
+    public static final String CWMPProject_Status_NewProject = 'New Project';
+    public static final String CWMPProject_Status_SiteWorReady = 'Site Work Ready';
+    public static final String CWMPProject_Status_SiteWorkInProgress = 'Site Work In Progress';
+    public static final String CWMPProject_Status_SiteWorkComplete = 'Site Work Complete';
+    public static final String CWMPProject_Status_ReadyForPostAssessment = 'Ready for Post Assessment';
+    public static final String CWMPProject_Status_PostAssessmentPending = 'Post Assessment Pending';
+    public static final String CWMPProject_Status_PostAssessmentIsCompleted = 'Post Assessment is Completed';
+    public static final String CWMPProject_Status_ProjectReadyForCloseout = 'Project Ready for Closeout';
+    public static final String CWMPProject_Status_ProjectCloseoutComplete = 'Project Closeout Complete';
+
+    /** Account Role Object Constants. **/
+    public static final String AccountRole_Status_Active = 'Active';
+    public static final String AccountRole_Role_Contractor = 'Contractor';
 }
