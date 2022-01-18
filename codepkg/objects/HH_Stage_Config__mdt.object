@@ -60,6 +60,11 @@
                     <label>FEMA Decision</label>
                 </value>
                 <value>
+                    <fullName>Homeowner Agreement</fullName>
+                    <default>false</default>
+                    <label>Homeowner Agreement</label>
+                </value>
+                <value>
                     <fullName>Approved- Converted</fullName>
                     <default>false</default>
                     <label>Approved - Converted</label>

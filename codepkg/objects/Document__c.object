@@ -224,6 +224,19 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>CWMP_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CWMP Project</label>
+        <referenceTo>CWMP_Project__c</referenceTo>
+        <relationshipLabel>Documents</relationshipLabel>
+        <relationshipName>Documents</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Closeout_Request__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -514,6 +527,36 @@
                     <fullName>Homeowner Appeal Form</fullName>
                     <default>false</default>
                     <label>Homeowner Appeal Form</label>
+                </value>
+                <value>
+                    <fullName>Change Order</fullName>
+                    <default>false</default>
+                    <label>Change Order</label>
+                </value>
+                <value>
+                    <fullName>Punch List</fullName>
+                    <default>false</default>
+                    <label>Punch List</label>
+                </value>
+                <value>
+                    <fullName>Invoices</fullName>
+                    <default>false</default>
+                    <label>Invoices</label>
+                </value>
+                <value>
+                    <fullName>Reimbursement Requested</fullName>
+                    <default>false</default>
+                    <label>Reimbursement Requested</label>
+                </value>
+                <value>
+                    <fullName>Reimbursement Received</fullName>
+                    <default>false</default>
+                    <label>Reimbursement Received</label>
+                </value>
+                <value>
+                    <fullName>Executed Tri-Party Agreement</fullName>
+                    <default>false</default>
+                    <label>Executed Tri-Party Agreement</label>
                 </value>
                 <value>
                     <fullName>BCA Technical Review Memo</fullName>
