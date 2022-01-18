@@ -2098,6 +2098,30 @@
                     <default>false</default>
                     <label>Greater than 200%</label>
                 </value>
+                <value>
+                    <fullName>120-200% AMI</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>120-200% AMI</label>
+                </value>
+                <value>
+                    <fullName>&lt; 120% AMI</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>&lt; 120% AMI</label>
+                </value>
+                <value>
+                    <fullName>&lt; 80%</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>&lt; 80%</label>
+                </value>
+                <value>
+                    <fullName>&gt; 200% AMI</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>&gt; 200% AMI</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -3897,6 +3921,15 @@ Disability Definition: A physical or mental impairment that substantially limits
             <group>HH_Cal_OES_Internal_Analyst</group>
             <group>HH_Community_San_Diego_County_Group</group>
             <group>HH_Community_Shasta_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>HH_Community_FEMA_Analyst_HH_Application</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CWMP Community FEMA Analyst</label>
+        <queue>HH_Community_FEMA_Analyst</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>

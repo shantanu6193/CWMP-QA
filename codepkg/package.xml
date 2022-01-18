@@ -29,6 +29,10 @@
         <name>CompactLayout</name>
     </types>
     <types>
+        <members>User_Registration__c.User_Registration_Compact_Layout</members>
+        <name>CompactLayout</name>
+    </types>
+    <types>
         <members>*</members>
         <name>CustomObject</name>
     </types>

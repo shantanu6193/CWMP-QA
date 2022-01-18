@@ -16,7 +16,7 @@ public without sharing class HH_UpdateApplicationLeadCtrl {
     @AuraEnabled
     public static Map<String,Object>  getQueueName(String applicationId) {
         Map<String,Object> returnMap = new Map<String,Object>();
-        List<HH_Application__c> apps = [SELECT Id,County__c,Application_Lead__c,Application_Lead__r.Name,Stage__c,Status__c FROM HH_Application__c WHERE Id=:applicationId];
+        List<HH_Application__c> apps = [SELECT Id,County__c,Application_Lead__c,Stage__c,Status__c FROM HH_Application__c WHERE Id=:applicationId];
         String countyQueueAPIName = getCountyQueueAPIName();
         if(countyQueueAPIName == null && apps.get(0).County__c != null) {
             List<County_Config__mdt> countyconfigs = [SELECT Id,Queue_API_Name__c FROM County_Config__mdt WHERE Label =: apps.get(0).County__c];
@@ -28,7 +28,6 @@ public without sharing class HH_UpdateApplicationLeadCtrl {
         }
        
         returnMap.put('applicationLeadId', apps.get(0).Application_Lead__c);
-        returnMap.put('applicationLeadName', apps.get(0).Application_Lead__r.Name);
         returnMap.put('showComponent', true);
         return returnMap;
     }

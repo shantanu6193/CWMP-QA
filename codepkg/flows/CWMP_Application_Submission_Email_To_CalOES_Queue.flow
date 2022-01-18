@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Email to CWMP Cal OES User Queue</description>
+        <name>Email_to_CWMP_Cal_OES_User_Queue</name>
+        <label>Email to CWMP Cal OES User Queue</label>
+        <locationX>422</locationX>
+        <locationY>366</locationY>
+        <actionName>HH_Application__c.CalOES_CWMP_Application_Ready_for_Cal_OES_Review</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <decisions>
+        <name>Condition_to_check_if_the_Stage_is_changed_to_CalOes_Review</name>
+        <label>Condition to check if the Stage is changed to CalOes Review</label>
+        <locationX>168</locationX>
+        <locationY>369</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Stage_and_Status_Check</name>
+            <conditionLogic>1 AND 2 AND (3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CalOES Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending Cal OES Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Owner:Group.Email</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Owner:Group.DoesSendEmailToMembers</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Email_to_CWMP_Cal_OES_User_Queue</targetReference>
+            </connector>
+            <label>Stage and Status Check</label>
+        </rules>
+    </decisions>
+    <description>CWMP_Application_Submission_Email_To_CalOES_Queue</description>
+    <interviewLabel>CWMP_Application_Submission_Email_To_CalOES_Queue {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CWMP_Application_Submission_Email_To_CalOES_Queue</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Condition_to_check_if_the_Stage_is_changed_to_CalOes_Review</targetReference>
+        </connector>
+        <object>HH_Application__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

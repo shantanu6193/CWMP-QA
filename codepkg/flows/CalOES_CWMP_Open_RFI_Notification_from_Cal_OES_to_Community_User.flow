@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>CalOES CWMP Open RFI Notification from Cal OES to Community and Application Lead</description>
+        <name>CalOES_CWMP_Open_RFI_Notification_from_Cal_OES_to_Community_and_Application_Lead</name>
+        <label>CalOES CWMP Open RFI Notification from Cal OES to Community and Application Lead</label>
+        <locationX>481</locationX>
+        <locationY>374</locationY>
+        <actionName>Request_For_Information__c.CalOES_CWMP_Open_RFI_Notification_from_Cal_OES_to_Community_User</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>53.0</apiVersion>
+    <decisions>
+        <name>To_Check_the_CWMP_RFI_And_CWMP_Application_Stage</name>
+        <label>To Check the CWMP RFI And CWMP Application Stage</label>
+        <locationX>168</locationX>
+        <locationY>381</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Check_the_CWMP_RFI_And_CWMP_Application_Stage</name>
+            <conditionLogic>1 AND 2 AND 3 AND 4 AND (5 OR 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CWMP</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Stage__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CalOES Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application__r.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>OES RFI- Need more Info</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Community_County_Queue_Email__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CWMP_Application_Lead_Email__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>CalOES_CWMP_Open_RFI_Notification_from_Cal_OES_to_Community_and_Application_Lead</targetReference>
+            </connector>
+            <label>Check the CWMP RFI And CWMP Application Stage</label>
+        </rules>
+    </decisions>
+    <description>CalOES CWMP Open RFI Notification from Cal OES to Community User</description>
+    <interviewLabel>CalOES CWMP Open RFI Notification from Cal OES to Community User {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>CalOES CWMP Open RFI Notification from Cal OES to Community User</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>To_Check_the_CWMP_RFI_And_CWMP_Application_Stage</targetReference>
+        </connector>
+        <object>Request_For_Information__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
