@@ -168,6 +168,31 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Assessor_Email__c</fullName>
+        <description>Assessor Email</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Assessor Email</inlineHelpText>
+        <label>Assessor Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Building_Inspector_Final_inspection_Date__c</fullName>
+        <description>Date the building inspector completed their final inspection</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date the building inspector completed their final inspection</inlineHelpText>
+        <label>Building Inspector Final inspection Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>CWMP_Application__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -180,9 +205,232 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+    <fields>
+        <fullName>Date_site_work_commenced__c</fullName>
+        <description>Date of site work commenced</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date of site work commenced</inlineHelpText>
+        <label>Date site work commenced</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_the_permit_was_pulled__c</fullName>
+        <description>Date the permit was pulled</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date the permit was pulled</inlineHelpText>
+        <label>Date the permit was pulled</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Have_required_permits_been_pulled__c</fullName>
+        <description>Have the required permits been pulled</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Have the required permits been pulled</inlineHelpText>
+        <label>Have required permits been pulled?</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Stage__c</fullName>
+        <description>Stage of the Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Stage of the Project</inlineHelpText>
+        <label>Project Stage</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New Project Created</fullName>
+                    <default>false</default>
+                    <label>New Project Created</label>
+                </value>
+                <value>
+                    <fullName>Site Work</fullName>
+                    <default>false</default>
+                    <label>Site Work</label>
+                </value>
+                <value>
+                    <fullName>Post-Assessment</fullName>
+                    <default>false</default>
+                    <label>Post-Assessment</label>
+                </value>
+                <value>
+                    <fullName>Project Complete</fullName>
+                    <default>false</default>
+                    <label>Project Complete</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Project_Status__c</fullName>
+        <description>Status of the Project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Status of the Project</inlineHelpText>
+        <label>Project Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Project_Stage__c</controllingField>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>New Project</fullName>
+                    <default>false</default>
+                    <label>New Project</label>
+                </value>
+                <value>
+                    <fullName>Site Work Ready</fullName>
+                    <default>false</default>
+                    <label>Site Work Ready</label>
+                </value>
+                <value>
+                    <fullName>Site Work In Progress</fullName>
+                    <default>false</default>
+                    <label>Site Work In Progress</label>
+                </value>
+                <value>
+                    <fullName>Site Work Complete</fullName>
+                    <default>false</default>
+                    <label>Site Work Complete</label>
+                </value>
+                <value>
+                    <fullName>Ready for Post Assessment</fullName>
+                    <default>false</default>
+                    <label>Ready for Post Assessment</label>
+                </value>
+                <value>
+                    <fullName>Post Assessment Pending</fullName>
+                    <default>false</default>
+                    <label>Post Assessment Pending</label>
+                </value>
+                <value>
+                    <fullName>Post Assessment is Completed</fullName>
+                    <default>false</default>
+                    <label>Post Assessment is Completed</label>
+                </value>
+                <value>
+                    <fullName>Project Ready for Closeout</fullName>
+                    <default>false</default>
+                    <label>Project Ready for Closeout</label>
+                </value>
+                <value>
+                    <fullName>Project Closeout Complete</fullName>
+                    <default>false</default>
+                    <label>Project Closeout Complete</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>New Project Created</controllingFieldValue>
+                <valueName>New Project</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Site Work</controllingFieldValue>
+                <valueName>Site Work Ready</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Site Work</controllingFieldValue>
+                <valueName>Site Work In Progress</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Site Work</controllingFieldValue>
+                <valueName>Site Work Complete</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Post-Assessment</controllingFieldValue>
+                <valueName>Ready for Post Assessment</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Post-Assessment</controllingFieldValue>
+                <valueName>Post Assessment Pending</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Post-Assessment</controllingFieldValue>
+                <valueName>Post Assessment is Completed</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Project Complete</controllingFieldValue>
+                <valueName>Project Ready for Closeout</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Project Complete</controllingFieldValue>
+                <valueName>Project Closeout Complete</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>SOW_Completion_Verified_Date__c</fullName>
+        <description>SOW Completion Verified Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>SOW Completion Verified Date</inlineHelpText>
+        <label>SOW Completion Verified Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Site_Visit_Date__c</fullName>
+        <description>Site Visit Date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Site Visit Date</inlineHelpText>
+        <label>Site Visit Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
     <label>CWMP Project</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CWMP_Application__c</columns>
+        <columns>Applicant__c</columns>
+        <columns>Project_Stage__c</columns>
+        <columns>Project_Status__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -193,7 +441,29 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>CWMP Projects</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>CWMP_Application__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Applicant__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Stage__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Project_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <sharingReasons>
+        <fullName>Cal_OES_User__c</fullName>
+        <label>Cal OES User</label>
+    </sharingReasons>
+    <sharingReasons>
+        <fullName>Community_User__c</fullName>
+        <label>Community User</label>
+    </sharingReasons>
+    <validationRules>
+        <fullName>Assessor_Email_Validation</fullName>
+        <active>true</active>
+        <description>Assessor Email is required before moving the Project to Post Assessment Stage.</description>
+        <errorConditionFormula>AND(  OR( AND(ISPICKVAL( Project_Stage__c , &apos;Post-Assessment&apos;), OR(ISPICKVAL(  Project_Status__c , &apos;Post Assessment Pending&apos;), ISPICKVAL( Project_Status__c , &apos;Post Assessment is Completed&apos;))),ISPICKVAL( Project_Stage__c , &apos;Project Complete&apos;)) , ISBLANK( Assessor_Email__c ) )</errorConditionFormula>
+        <errorMessage>Please complete &apos;Assessor Email&apos; prior to updating the Project Stage to ‘Post-Assessment’ and Project Status to &apos;Post Assessment Pending&apos;.</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
