@@ -478,6 +478,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>CWMP_MainPortal_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.CalOES_Main_Portal_Base_URL</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CWMP-MainPortal-URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cal_OES_Approver_s_Email__c</fullName>
         <description>Cal OES User who approved the application for FEMA review.</description>
         <encryptionScheme>None</encryptionScheme>
@@ -2065,9 +2077,9 @@
     </fields>
     <fields>
         <fullName>Income_Bracket__c</fullName>
-        <description>What income bracket does the Homeowner&apos;s household fall into?</description>
+        <description>What area median income bracket does the Homeowner&apos;s household fall into?</description>
         <externalId>false</externalId>
-        <inlineHelpText>What income bracket does the Homeowner&apos;s household fall into?</inlineHelpText>
+        <inlineHelpText>What area median income bracket does the Homeowner&apos;s household fall into?</inlineHelpText>
         <label>Homeowner&apos;s Income Bracket</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -3120,7 +3132,7 @@ Disability Definition: A physical or mental impairment that substantially limits
                 <value>
                     <fullName>Approved for Project Conversion</fullName>
                     <default>false</default>
-                    <label>Approved for Project Conversion</label>
+                    <label>FEMA Approved</label>
                 </value>
                 <value>
                     <fullName>Rejected - Does not meet Criteria</fullName>
@@ -3679,7 +3691,7 @@ Disability Definition: A physical or mental impairment that substantially limits
         <columns>Submission_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
-        <columns>Community_County_Queue_Email__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

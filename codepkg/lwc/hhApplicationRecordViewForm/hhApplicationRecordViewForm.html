@@ -1,0 +1,74 @@
+<template>
+	<div class="slds-var-m-around_medium">
+			<lightning-record-view-form
+					object-api-name={objectApiName}
+					record-id={recordId}
+			>
+			<div class="slds-grid slds-wrap" style="padding-left: 12px;">
+				<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+					<lightning-output-field
+							field-class="slds-border_bottom"
+							field-name={name}
+					></lightning-output-field>
+				</div>
+				<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+				</div>
+				<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+					<lightning-output-field
+							field-class="slds-border_bottom"
+							field-name={stage}
+					></lightning-output-field>
+				</div>
+				<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+					<lightning-output-field
+							field-class="slds-border_bottom"
+							field-name={status}
+					></lightning-output-field>
+				</div>
+				</div>
+
+				<lightning-accordion allow-multiple-sections-open active-section-name="A" class="acc-cwmp" onsectiontoggle={handleToggleSection}>
+					<lightning-accordion-section name="A" label="Residence and Property Information">
+						<div class="slds-grid slds-wrap">
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={propertyAddress}
+								></lightning-output-field>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={city}
+								></lightning-output-field>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={state}
+								></lightning-output-field>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={county}
+								></lightning-output-field>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={zipcode}
+								></lightning-output-field>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-size_1-of-1 slds-p-top_medium">
+								<lightning-output-field
+										field-class="slds-border_bottom"
+										field-name={yoc}
+								></lightning-output-field>
+							</div>	
+						</div>
+					</lightning-accordion-section>
+				</lightning-accordion>
+			</lightning-record-view-form>
+	</div>
+</template>

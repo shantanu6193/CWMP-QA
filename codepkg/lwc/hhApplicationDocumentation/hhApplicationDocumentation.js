@@ -133,15 +133,16 @@ export default class HhPrHhApplicationDocumentationopertyInfo extends Utility {
 //        }
 //    }
         getDocumentTypePicklistTitle(event){
-            if(this.DocumentType.data.values) {
-                this.DocumentType.data.values.forEach(selectionList => {
-                    if(selectionList.value == this.documentType) {
-                        this.title = selectionList.label;
-                    }else if(event.target.getAttribute("data-value") == null){
-                         this.title ='';
-                }
-            });
-        }
+            this.title = this.documentType == undefined ? this.label.HH_EN_Document_Type : this.documentType;
+        //     if(this.DocumentType.data.values) {
+        //         this.DocumentType.data.values.forEach(selectionList => {
+        //             if(selectionList.value == this.documentType) {
+        //                 this.title = selectionList.label;
+        //             }else if(event.target.getAttribute("data-value") == null){
+        //                  this.title ='';
+        //         }
+        //     });
+        // }
     }
 
 //    getStageTitle(event){

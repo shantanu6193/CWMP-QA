@@ -65,11 +65,16 @@ public without sharing class DocumentUploadCtrl {
             Id recordId = masterRecordId;
             String objName = recordId.getSObjectType().getDescribe().getName();
             if(objName == HH_CONSTANTS.HHApplication_Object_APIName){
-                List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName AND Assignee.Id =:UserInfo.getUserId()];
-                if(permissionSetAssignments.size() >0){
+                List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id,PermissionSet.Name FROM PermissionSetAssignment WHERE (PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName OR PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) AND Assignee.Id =:UserInfo.getUserId() LIMIT 1];
+                for(PermissionSetAssignment hhPermission :permissionSetAssignments){
+                if(hhPermission.PermissionSet.Name == HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName){
                     queryDocs += ' AND Document_Type__c IN(\''+HH_CONSTANTS.Document_DocumentType_Rental+'\',\''+HH_CONSTANTS.Document_DocumentType_PropertyOwnerID+'\',\''+HH_CONSTANTS.Document_DocumentType_ProofOfOwnership+'\')';
                 }
+                if(hhPermission.PermissionSet.Name == HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName){
+                    queryDocs += ' AND Document_Type__c IN(\''+HH_CONSTANTS.Document_DocumentType_EnvironmentalChecklist+'\',\''+HH_CONSTANTS.Document_DocumentType_HomeAssessmentReport+'\')';
+                }
                 queryDocs+= 'ORDER BY Document_Name__c';
+            }
             }
 
             System.debug('Doc-queryDocs--------: '+queryDocs);

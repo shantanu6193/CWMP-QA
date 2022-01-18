@@ -149,6 +149,7 @@ public  without sharing class SystemContextProvider {
             grpAPIToLabelMap.put(countyConfig.Public_Group_API_Name__c, countyConfig.Label);
         }
         grpAPIToLabelMap.put(HH_CONSTANTS.HH_CalOESInternal_User_Group_APIName, 'CalOES');
+        grpAPIToLabelMap.put(HH_CONSTANTS.HH_FEMA_User_Group_APIName,'FEMA');
         List<Group> groups = [SELECT Id,DeveloperName FROM Group WHERE DeveloperName IN :grpAPIToLabelMap.keySet() AND Type != 'Queue'];
         Map<String,String> groupLabelToIdMap = new Map<String,String>();
         for( Group group1 : groups) {
@@ -161,6 +162,7 @@ public  without sharing class SystemContextProvider {
         List<Document__Share> dShares = new List<Document__Share>();
         for (Document__c doc : docs) {
             HH_Application__c app = appMap.get(doc.HH_Application__c);
+            String femaGroupId = groupLabelToIdMap.get('FEMA');
             String caloesGroupId = groupLabelToIdMap.get('CalOES');
             String countyGroupId = groupLabelToIdMap.get(app.County__c);
             String userId = applicantMap.get(app.Applicant__c);
@@ -179,6 +181,11 @@ public  without sharing class SystemContextProvider {
                 Document__Share dShare = new Document__Share(ParentId=doc.Id, UserOrGroupId=userId, AccessLevel='Edit', RowCause = Document__Share.RowCause.HH_Document__c);
                 dShares.add(dShare);
             }
+            //fema
+            if(femaGroupId != null ) {
+                Document__Share dShare = new Document__Share(ParentId=doc.Id, UserOrGroupId=femaGroupId, AccessLevel='Edit', RowCause = Document__Share.RowCause.HH_Document__c);
+                dShares.add(dShare);
+            }
         }
         System.debug('doc shares: '+dshares);
         if(dShares.size() > 0) {
@@ -187,4 +194,6 @@ public  without sharing class SystemContextProvider {
     }
 
    }
+
+   
 }

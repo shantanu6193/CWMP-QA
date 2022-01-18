@@ -4304,6 +4304,15 @@
         <label>Approved</label>
     </listViews>
     <listViews>
+        <fullName>HH_Cal_OES_Internal_Analyst_User_Registration</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CWMP Cal OES Internal Analyst</label>
+        <queue>HH_Cal_OES_Internal_Analyst</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>HH_Community_FEMA_Analyst_User_Registration</fullName>
         <filterScope>Queue</filterScope>
         <label>CWMP Community FEMA Analyst</label>
