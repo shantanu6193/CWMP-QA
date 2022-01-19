@@ -10,7 +10,7 @@ import NAME_FIELD from '@salesforce/schema/User.Name';
 import EMAIL_FIELD from '@salesforce/schema/User.Email';
 import fromAddressOptions from '@salesforce/apex/SendEmailController.getCWMPFromAddressOptions';
 
-import getApplicationData from '@salesforce/apex/HH_ApplicationCtrl.getApplicationRecord';
+import getApplicationDetail from '@salesforce/apex/HH_ApplicationCtrl.getApplicationDetail';
 
 
 const fieldsVal = [];
@@ -72,15 +72,13 @@ export default class HhSendEmailComponent extends Utility {
     
         /* Retrieve Application and related Data*/
         retrieveData() {
-           
-            console.log('retrieveData:----- ');
-            console.log(this.recordId);
-
-            this.executeAction(getApplicationData, {'applicationId' : this.recordId}, 
+            console.log('retrieveData:----- ',this.recordId);
+            this.executeAction(getApplicationDetail, {'recordId' : this.recordId}, 
                 (response) => {
                     console.log('retrieveData Success:----- GET APP');
-                        this.handleGetDataResponse(response);
-  
+                    console.log(response);
+                    this.preferredLanguage = response.preferredLanguage;
+                    this.relatedRecordName = response.name;
                 },(error)=>{
                     if(error.body != undefined && error.body.message != undefined) {
                         this.showErrorNotification('Error Fetching Data',error.body.message);
@@ -90,26 +88,6 @@ export default class HhSendEmailComponent extends Utility {
             });
         }
     
-
-        handleGetDataResponse(response) {
-            console.log(response.application.Applicant__r.Email);
-            //this.toAddress = response.application.Applicant__r.Email;
-
-            this.preferredLanguage = response.application.Applicant__r.Preferred_Language__c;
-            
-            console.log(response);
-
-
-            this.relatedRecordName = response.application.Name;
-
-
-
-        }
-
-
-
-
-
     
     @wire(fromAddressOptions, {'fromEmail':'$defaultFromEmail','applicationId':'$recordId'})
     fromAddressOptionVal({

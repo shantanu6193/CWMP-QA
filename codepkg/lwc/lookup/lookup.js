@@ -94,7 +94,6 @@ export default class Lookup extends Utility {
         this.isDirty = false;
     }
     
-    @api
     set selection(initialSelection) {
         if(initialSelection == undefined) return;
         this.curSelection = Array.isArray(initialSelection) ? initialSelection : [initialSelection];

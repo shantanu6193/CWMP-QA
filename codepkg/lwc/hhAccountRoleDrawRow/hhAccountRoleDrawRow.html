@@ -1,0 +1,43 @@
+<template>
+	<tr class="slds-hint-parent" key={index}>
+		<td data-field="required" data-label="Date" role="gridcell">
+				<lightning-input 	class="input"
+									value={recordLocal.Date__c}
+									variant="label-hidden"
+									max={todaysDate}
+									min={minDate}
+									message-when-range-overflow = {label.HH_EN_Prior_Date_Validaton}  
+									data-field="Date__c"
+									name="Date of Birth"
+									type="date"
+									title={title}
+									onmouseover={setTitle}
+									onchange={fieldChanged}
+									required>
+				</lightning-input>
+		</td>
+		<td data-field="required" data-label="Amount" role="gridcell">
+				<lightning-input type="currency" 
+												class="input" 
+												data-field="Amount__c" 
+												required 
+												variant="label-hidden" 
+												value={recordLocal.Amount__c} 
+												title={title}
+												formatter="currency"
+												max-length="16"
+												onchange={fieldChanged}>
+				</lightning-input>
+		</td>
+		<td data-label="Action" role="gridcell">
+			<!-- <a data-id={index} onclick={addNewRow} class="slds-p-right_small">
+					<lightning-icon icon-name="utility:add" class="slds-icon slds-icon_small" size="small" alternative-text="add"></lightning-icon>
+					<span class="slds-assistive-text">Add Icon</span>
+			</a> -->
+			<a data-id={index} onclick={deleteRow} class="slds-align_absolute-center">
+					<lightning-icon variant="error" icon-name="utility:delete" class="slds-icon slds-icon_small" size="small" alternative-text="icon"></lightning-icon>
+					<span class="slds-assistive-text">Delete Icon</span>
+			</a>
+		</td>
+	</tr>
+</template>

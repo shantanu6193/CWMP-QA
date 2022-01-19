@@ -7,3 +7,7 @@
     color: white;
     margin: -1px;
  }
+
+ .selectedContractorFieldHeight {
+    --sds-c-textarea-sizing-min-height: 115px;
+ }

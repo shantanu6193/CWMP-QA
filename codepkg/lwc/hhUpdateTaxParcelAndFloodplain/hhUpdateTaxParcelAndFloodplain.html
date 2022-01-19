@@ -108,6 +108,47 @@
                                         </div>
                                     </div>
                                 </template>
+                                <template if:true={isContractInfoVisible}>
+                                    <div class="slds-grid slds-gutters slds-wrap slds-p-vertical_small">
+                                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                            <span>
+                                                <template if:true={HomeownerContributionCheckPayment.data}>
+                                                    <lightning-combobox
+                                                            name={label.HH_Application_HOContributionCheckPayment}
+                                                            label={label.HH_Application_HOContributionCheckPayment}
+                                                            value={recordLocal.Homeowner_contribution_check_payment__c}
+                                                            options={HomeownerContributionCheckPayment.data.values}
+                                                            data-field="Homeowner_contribution_check_payment__c"
+                                                            onchange={fieldChanged}
+                                                            class="input"
+                                                            title=""
+                                                            required>
+                                                    </lightning-combobox>
+                                                </template> 
+                                            </span>
+                                        </div>
+                                        <template if:true={isHomeOwnerCheckPaymentAmountVisible}>
+                                            <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12 slds-large-size_6-of-12">
+                                                <span>
+                                                    <lightning-input label={label.HH_Application_HOContributionCheckPaymentAmount} 
+                                                                class="input"
+                                                                value={recordLocal.Homeowner_Contribution_Amount__c}
+                                                                data-field="Homeowner_Contribution_Amount__c"
+                                                                name="input1"
+                                                                type="number"
+                                                                formatter="currency"
+                                                                step=".01" 
+                                                                max-length="16" 
+                                                                message-when-bad-input={label.HH_EN_Value_must_be_numeric_0_9}
+                                                                onchange={fieldChanged} 
+                                                                hidden={isHomeOwnerCheckPaymentAmountVisible}
+                                                                required>
+                                                    </lightning-input>
+                                                </span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
                             </div>
                             <footer class="slds-card__footer">
                                 <button class="slds-button slds-button_brand slds-align_absolute-center" onclick={handleSubmit}>{label.HH_TexParcelUpdate_Component_SaveButton}</button>

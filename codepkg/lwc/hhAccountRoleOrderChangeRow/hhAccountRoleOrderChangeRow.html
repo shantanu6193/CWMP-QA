@@ -1,0 +1,43 @@
+<template>
+	<tr class="slds-hint-parent" key={index}>
+		<td data-field="required" data-label="Homeowner Check Payment" role="gridcell">
+			<template if:true={hasHomeownerProvidedPaymentValues}>
+				<lightning-combobox name="HomeownerCheckPayment"
+						data-field="Has_Homeowner_provided_check_payment__c"
+						data-value={recordLocal.Has_Homeowner_provided_check_payment__c}
+						value={recordLocal.Has_Homeowner_provided_check_payment__c}
+						variant="label-hidden"
+						onchange={fieldChanged}
+						class="input"
+						title={recordLocal.Has_Homeowner_provided_check_payment__c}
+						placeholder ={label.HH_EN_Select_an_Option}
+						options={hasHomeownerProvidedPaymentValues.values}
+						required>
+				</lightning-combobox>
+			</template>
+		</td>
+		<td data-field="required" data-label="Homeowner check/payment amount" role="gridcell">
+				<lightning-input type="currency" 
+												class="input" 
+												data-field="Homeowner_check_payment_amount__c" 
+												required 
+												variant="label-hidden" 
+												value={recordLocal.Homeowner_check_payment_amount__c} 
+												title={recordLocal.Homeowner_check_payment_amount__c}
+												formatter="currency"
+												max-length="16"
+												onchange={fieldChanged}>
+				</lightning-input>
+		</td>
+		<td data-label="Action" role="gridcell">
+			<!-- <a data-id={index} onclick={addNewRow} class="slds-p-right_small">
+					<lightning-icon icon-name="utility:add" class="slds-icon slds-icon_small" size="small" alternative-text="add"></lightning-icon>
+					<span class="slds-assistive-text">Add Icon</span>
+			</a> -->
+			<a data-id={index} onclick={deleteRow} class="slds-align_absolute-center">
+					<lightning-icon variant="error" icon-name="utility:delete" class="slds-icon slds-icon_small" size="small" alternative-text="icon"></lightning-icon>
+					<span class="slds-assistive-text">Delete Icon</span>
+			</a>
+		</td>
+	</tr>
+</template>

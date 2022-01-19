@@ -1,0 +1,103 @@
+<template>
+	<article class="slds-card">
+	   <div class="slds-card__header slds-grid slds-border_bottom rfi-table">
+		  <header class="slds-media slds-media_center slds-has-flexi-truncate slds-p-bottom_x-small">
+			 <div class="slds-media__figure">
+				<span class="slds-icon_container slds-icon-standard-contact">
+				   <lightning-icon icon-name="standard:care_request_reviewer" size="small"></lightning-icon>
+				   <span class="slds-assistive-text">Contractors</span>
+				</span>
+			 </div>
+			 <div class="slds-media__body">
+				<h2 class="slds-card__header-title">
+				   <span title = {heading}>{header} ({recordLocal.totalAccountRoles})</span>
+				   <span class="slds-p-left_small">
+					  <a onclick={initData}>
+						 <lightning-icon
+							icon-name="utility:refresh"
+							class="slds-text-link_reset"
+							title={label.HH_EN_Refresh}
+							size="x-small"
+							alternative-text="icon">
+						 </lightning-icon>
+					  </a>
+				   </span>
+				</h2>
+			 </div>
+			 <template if:true={showNewButton}>
+				<div class="slds-no-flex">
+				   <button class="slds-button slds-button_neutral" onclick={createNewContractor}>{label.HH_EN_New}</button>
+				</div>
+			 </template>
+		  </header>
+	   </div>
+	   <!--Card Body-->
+	   <template if:true={showTable}>
+		  <div class="slds-card__body slds-card__body_inner">
+			 <div class="slds-grid slds-wrap">
+				<div class="slds-col slds-size_12-of-12 slds-scrollable--x rfi_scrollable scrollable">
+				   <table class="rfi-table">
+					  <thead>
+						 <tr class="slds-line-height_reset ">
+							<th class="" scope="col" >
+							   <div class="" title="Name" style="">Name</div>
+							</th>
+							<th class="" scope="col" >
+							   <div class="" title="Email">Email</div>
+							</th>
+							<th class="" scope="col">
+							   <div class="" title="Point of Contact" data-id="Point_of_Contact__c">
+								  Point of Contact
+							   </div>
+							</th>
+							<th class="" scope="col">
+								<div class="" title="Point of Contact" data-id="Status__c">
+								 Status
+								</div>
+						 </th>
+							<th class="" scope="col" style="width: 10%;">
+								<div class="" title="Action" data-id="Action">
+									Action
+								</div>
+						 </th>
+						 </tr>
+					  </thead>
+					  <tbody>
+						 <template for:each={recordLocal.accountRoles} for:item="ar" for:index="index">
+							<tr key={ar.Id}>
+							   <td>
+								  <dd  title={ar.Name}>{ar.Account__r.Name}</dd>
+							   </td>
+							   <td>
+								  <dd  title={ar.Email_Address__c}>{ar.Account__r.Email_Address__c}</dd>
+							   </td>
+							   <td>
+								  <dd  title={ar.Point_of_Contact__c}>{ar.Point_of_Contact__c}</dd>
+							   </td>
+								 <td>
+								  <dd  title={ar.Point_of_Contact__c}>{ar.Status__c}</dd>
+							   </td>
+								 <td>
+								  <lightning-icon icon-name="utility:edit" class="slds-text-link_reset" alternative-text="Edit" size="x-small"
+            				title="Edit" data-selected-id={ar.Id} onclick={editAccountRole}>
+									</lightning-icon>
+							   </td>
+							</tr>
+						 </template>
+					  </tbody>
+				   </table>
+				</div>
+			 </div>
+		  </div>
+	   </template>
+	</article>
+	<template if:true={openModal}>
+		  Modal Open
+		  <c-hh-Create-Update-Account-Role
+			 parent-record-id={recordId}
+			 select-record-id={selectedRecordId}
+			 onclosemodal={closeModal}
+			 >
+		  </c-hh-Create-Update-Account-Role>
+	</template>
+ </template>

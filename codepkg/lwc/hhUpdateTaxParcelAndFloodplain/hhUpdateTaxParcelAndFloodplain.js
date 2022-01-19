@@ -11,6 +11,7 @@ import UId from '@salesforce/user/Id';
 import UR_OBJECT from '@salesforce/schema/HH_Application__c';
 import Is_the_property_in_the_floodplain from '@salesforce/schema/HH_Application__c.Is_the_property_in_the_floodplain__c';
 import Income_Bracket from '@salesforce/schema/HH_Application__c.Income_Bracket__c';
+import Homeowner_contribution_check_payment from '@salesforce/schema/HH_Application__c.Homeowner_contribution_check_payment__c';
 import { getRecord, getRecordNotifyChange } from 'lightning/uiRecordApi';
 import getRecordDetails from '@salesforce/apex/HH_UpdateTaxParcelAndFloodplain_Ctrl.getRecordDetails';
 import updateTaxParcelAndFloodPlain from '@salesforce/apex/HH_UpdateTaxParcelAndFloodplain_Ctrl.updateTaxParcelAndFloodPlain';
@@ -31,6 +32,9 @@ import HH_EN_HERE from  '@salesforce/label/c.HH_EN_HERE';
 import HH_Information_PDF from  '@salesforce/label/c.HH_Information_PDF';
 import HH_Application_HomeownerHouseholdIncomeBracket from  '@salesforce/label/c.HH_Application_HomeownerHouseholdIncomeBracket';
 import HH_EN_Value_must_be_numeric_0_9 from  '@salesforce/label/c.HH_EN_Value_must_be_numeric_0_9';
+import HH_Application_Stage_HomeownerAgreement from  '@salesforce/label/c.HH_Application_Stage_HomeownerAgreement'; 
+import HH_Application_HOContributionCheckPayment from  '@salesforce/label/c.HH_Application_HOContributionCheckPayment';
+import HH_Application_HOContributionCheckPaymentAmount from  '@salesforce/label/c.HH_Application_HOContributionCheckPaymentAmount';
 
 import HH_Application_Stage_Assessment from  '@salesforce/label/c.HH_Application_Stage_Assessment';
 import HH_Application_Stage_CalOESReview from  '@salesforce/label/c.HH_Application_Stage_CalOESReview';
@@ -74,13 +78,17 @@ export default class HhUpdateTaxParcelAndFloodplain extends Utility {
         HH_Application_Status_CommunityRFI,
         HH_Application_Status_CalOESRFI,
         HH_Application_Stage_CommunityReview,
-        HH_Application_Stage_CommunityDecision
+        HH_Application_Stage_CommunityDecision,
+        HH_Application_Stage_HomeownerAgreement,
+        HH_Application_HOContributionCheckPayment,
+        HH_Application_HOContributionCheckPaymentAmount
     }
 
     /** Wire method to get the object information and "Is YOu property in 100-Year Floodplain?" picklist values. */
     @wire(getObjectInfo, { objectApiName: UR_OBJECT }) objectInfo;
     @wire(getPicklistValues, {recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: Is_the_property_in_the_floodplain}) PropertyFloodplainOptions;
     @wire(getPicklistValues, {recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: Income_Bracket}) HomeownerHouseholdIncomeBracketOptions;
+    @wire(getPicklistValues, {recordTypeId: '$objectInfo.data.defaultRecordTypeId', fieldApiName: Homeowner_contribution_check_payment}) HomeownerContributionCheckPayment;
 
     /** API method to get the updated record from Parent Component "Stage and Status Component". */
     @api
@@ -104,6 +112,8 @@ export default class HhUpdateTaxParcelAndFloodplain extends Utility {
                 this.isEditable = response.isEdit;
                 this.userType = response.userType;
 
+                console.log('this.userType --> ', this.userType);
+                console.log('this.isEditable --> ', this.isEditable);
                 /* Updating the Tax Parcel and EMail component visibility variable based on Current Stage of the Record. */
                 //this.componentVisibility(this.recordLocal);
                 this.showLoader = false;
@@ -181,7 +191,7 @@ export default class HhUpdateTaxParcelAndFloodplain extends Utility {
     }*/
 
     get isComponentVisible() {
-        if(this.isAdditionalInfoFieldsVisible || this.isAssessorEmailFieldVisible) {
+        if((this.isAdditionalInfoFieldsVisible || this.isAssessorEmailFieldVisible || this.isContractInfoVisible) && this.isEditable == true) {
             return true;
         }
         return false;
@@ -199,6 +209,21 @@ export default class HhUpdateTaxParcelAndFloodplain extends Utility {
 
     get isAssessorEmailFieldVisible() {
         if(this.recordLocal != undefined && this.recordLocal.Stage__c == this.label.HH_Application_Stage_CommunityDecision && this.isEditable == true) {
+            return true;
+        }
+        return false;
+    }
+
+    /** Sprint 9 Change */
+    get isContractInfoVisible() {
+        if(this.recordLocal != undefined && this.recordLocal.Stage__c == this.label.HH_Application_Stage_HomeownerAgreement) {
+            return true;
+        }
+        return false; 
+    }
+
+    get isHomeOwnerCheckPaymentAmountVisible() {
+        if(this.recordLocal.Homeowner_contribution_check_payment__c == 'Yes') {
             return true;
         }
         return false;

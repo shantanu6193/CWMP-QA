@@ -1,0 +1,457 @@
+<template>
+   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+      <div class="slds-modal__container ">
+         <header class="slds-modal__header slds-modal__header_empty">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={fireEventTocloseModal}>
+               <lightning-icon icon-name="utility:close"
+                  alternative-text="close"
+                  variant="inverse"
+                  size="small" >
+               </lightning-icon>
+               <span class="slds-assistive-text">Close</span>
+            </button>
+            <h3 id="modal-heading-01" class="modal-header slds-hyphenate slds-p-horizontal_medium"></h3>
+         </header>
+         <div class="slds-p-around_large slds-scrollable container" >
+            <template if:false={isEdit}>
+               <h3 style="font-weight:bold; text-align:center; font-size: large; ">New Contractor</h3>
+            </template>
+            <template if:true={isEdit}>
+               <h3 style="font-weight:bold; text-align:center; font-size: large; ">Edit Contractor</h3>
+            </template>
+            <div class="slds-p-around_small">
+               <div class="slds-section slds-is-open">
+                  <h3 class="slds-section__title slds-p-bottom_x-small">
+                     <button aria-controls="expando-unique-id" style="background-color:rgb(194, 194, 194)" aria-expanded="true" class="slds-button slds-section__title-action">
+                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                           <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                        </svg>
+                        <span class="slds-truncate" title="Document Details">Contractor Details</span>
+                     </button>
+                  </h3>
+                  <div class="slds-grid slds-wrap ">
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_12-of-12 slds-p-bottom_x-small slds-p-right_large">
+                        <lightning-record-view-form record-id={parentRecordId}
+                        object-api-name="CWMP_Project__c"
+                        density = compact >
+                        <div class="slds-col slds-size_12-of-12">
+                           <lightning-output-field field-name="Name">
+                           </lightning-output-field>
+                        </div>
+                     </lightning-record-view-form>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_12-of-12 slds-p-bottom_x-small slds-p-right_large">
+                        <lightning-record-view-form record-id={parentRecordId}
+                           object-api-name="HH_Application__c"
+                           density = compact >
+                           <div class="slds-col slds-size_12-of-12">
+                              <lightning-output-field field-name="Name">
+                              </lightning-output-field>
+                           </div>
+                        </lightning-record-view-form>
+                     </div>
+                     <template if:false={isEdit}>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_8-of-12 slds-p-bottom_x-small">
+                           <c-lookup
+                              data-custom="lookup"
+                              label="Select an Existing Contractor " 
+                              data-lookup="Account__c" 
+                              onsearch={handleAccountRoleSearch}
+                              onselectionchange={handleContractorChange}
+                              placeholder="Search Existing Contractor"
+                              is-multi-entry={isMultiEntry}
+                              load-data-on-init = {loadLookupDataOnLoad}
+                              local-search = {loadLookupDataOnLoad}
+                              scroll-after-n-items = "10"
+                              errors={contractorRequired}
+                              required>
+                           </c-lookup>
+                           <div if:true={showRequiredError} class="slds-has-error slds-form-element__help" style="color: red;">Complete this field.</div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_12-of-12 slds-large-size_12-of-12 slds-p-bottom_x-small slds-p-top_large slds-p-bottom_large">
+                           <div> OR Create a New Contractor </div>
+                        </div>
+                     </template>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                     </div>
+                     <template if:true={isEdit}>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                           <template if:true={accRoleStatus.data}>
+                              <lightning-combobox 
+                                 label="Status"
+                                 required
+                                 onblur={nullCheckValidation}
+                                 value={accountRoleDetail.Status__c}
+                                 data-field ="Status__c"
+                                 name="input1"
+                                 onchange={handleAccountRoleDetail}
+                                 class="input"
+                                 options={accRoleStatus.data.values}
+                                 dropdown-alignment="auto"
+                                 >
+                              </lightning-combobox>
+                           </template>
+                        </div>
+                     </template>
+                  </div>
+                  <div class="slds-grid slds-wrap slds-box">
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Selected Contractor"
+                           value={accountDetail.Name}
+                           onchange={handleAccountDetail} 
+                           data-field="Name"
+                           required
+                           onblur={nullCheckValidation}
+                           max-length="1000"
+                           min-length="1"
+                           class="input"
+                           disabled ={isEdit}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Point of Contact Name"
+                           value={accountRoleDetail.Point_of_Contact__c}
+                           onchange={handleAccountRoleDetail} 
+                           data-field="Point_of_Contact__c"
+                           required
+                           onblur={nullCheckValidation}
+                           max-length="80"
+                           min-length="1"
+                           class="input"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Physical Address"
+                           value={accountDetail.ShippingStreet}
+                           onchange={handleAccountDetail} 
+                           required
+                           onblur={nullCheckValidation}
+                           max-length="100"
+                           min-length="1"
+                           data-field="ShippingStreet"
+                           class="input"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="City"
+                           value={accountDetail.ShippingCity}
+                           onchange={handleAccountDetail} 
+                           class="input"
+                           required
+                           onblur={nullCheckValidation}
+                           max-length="50"
+                           min-length="1"
+                           data-field="ShippingCity"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={uSStateCodes.data}>
+                           <lightning-combobox 
+                              label="State"
+                              required
+                              onblur={nullCheckValidation}
+                              value={accountDetail.ShippingState}
+                              data-field ="ShippingState"
+                              name="input1"
+                              onchange={handleAccountDetail}
+                              class="input"
+                              options={uSStateCodes.data.values}
+                              dropdown-alignment="auto"
+                              >
+                           </lightning-combobox>
+                        </template>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Zip"
+                           value={accountDetail.ShippingPostalCode}
+                           onchange={handleAccountDetail} 
+                           data-field="ShippingPostalCode"
+                           required
+                           onblur={nullCheckValidation}
+                           message-when-pattern-mismatch="Only numbers are allowed!"
+                           max-length="9"
+                           min-length="5"
+                           pattern="[0-9]+"
+                           class="input"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <template if:true={showMailingAddress}>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Mailing Address"
+                           value={accountDetail.BillingStreet}
+                           onchange={handleAccountDetail} 
+                           data-field="BillingStreet"
+                           max-length="100"
+                           min-length="1"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Mailing City"
+                           value={accountDetail.BillingCity}
+                           onchange={handleAccountDetail} 
+                           data-field="BillingCity"
+                           max-length="50"
+                           min-length="1"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={uSStateCodes.data}>
+                           <lightning-combobox 
+                              label="Maling State"
+                              class="input" 
+                              value={accountDetail.BillingState}
+                              data-field ="BillingState"
+                              name="input1"
+                              max-length="50"
+                              min-length="1"
+                              onchange={handleAccountDetail}
+                              options={uSStateCodes.data.values}
+                              dropdown-alignment="auto"
+                              >
+                           </lightning-combobox>
+                        </template>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="text"
+                           label="Mailing Zip"
+                           value={accountDetail.BillingPostalCode}
+                           onchange={handleAccountDetail} 
+                           data-field="BillingPostalCode"
+                           max-length="9"
+                           min-length="5"
+                           pattern="[0-9]+"
+                           message-when-pattern-mismatch="Only numbers are allowed!"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                  </template>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="phone"
+                           label="Phone Number"
+                           pattern="[0-9.+-]+"
+                           max-length="15"
+                           min-length="4"
+                           value={accountDetail.Phone}
+                           onchange={handleAccountDetail} 
+                           data-field="Phone"
+                           required
+                           onblur={nullCheckValidation}
+                           message-when-pattern-mismatch={label.HH_EN_Phone_pattern_validation}
+                           class="input"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="email"
+                           label="Email Address"
+                           value={accountDetail.Email_Address__c}
+                           onchange={handleAccountDetail} 
+                           data-field="Email_Address__c"
+                           required
+                           onblur={validateEmail}
+                           class="emailField"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                  </div>
+               </div>
+               <h3 class="slds-section__title slds-p-bottom_x-small slds-p-top_x-small">
+                  <button aria-controls="expando-unique-id" style="background-color:rgb(194, 194, 194)" aria-expanded="true" class="slds-button slds-section__title-action">
+                     <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                     </svg>
+                     <span class="slds-truncate" title="Document Details">Other Details</span>
+                  </button>
+               </h3>
+               <div class="slds-grid slds-wrap ">
+                  <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                     <lightning-input    
+                        type="number"
+                        label="Original Contract Amount"
+                        value={accountRoleDetail.Original_Contract_Amount__c}
+                        onchange={handleAccountRoleDetail} 
+                        data-field="Original_Contract_Amount__c"
+                        required
+                        onblur={nullCheckValidation}
+                        formatter="currency"
+                        max-length="16"
+                        step ="0.01"
+                        message-when-bad-input={label.HH_EN_Value_must_be_numeric_0_9}
+                        class="input"
+                        disabled ={showDetails}>
+                     </lightning-input>
+                  </div>
+                  <template if:true={showDetails}>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="number"
+                           label="Current Contract Amount"
+                           value={accountRoleDetail.Current_Contract_Amount__c}
+                           onchange={handleAccountRoleDetail} 
+                           data-field="Current_Contract_Amount__c"
+                           required
+                           formatter="currency"
+                           message-when-bad-input={label.HH_EN_Value_must_be_numeric_0_9}
+                           class="input"
+                           disabled ={isEdit}>
+                        </lightning-input>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={yesNoValues}>
+                           <lightning-combobox 
+                              label="Was a draw requested?"
+                              class="input" 
+                              value={accountRoleDetail.Was_a_draw_requested__c}
+                              data-field ="Was_a_draw_requested__c"
+                              name="input1"
+                              onchange={handleAccountRoleDetail}
+                              options={yesNoValues}
+                              dropdown-alignment="auto"
+                              required
+                              >
+                           </lightning-combobox>
+                        </template>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={recordLocal.showDrawTable}>
+                           <div class="slds-scrollable_y responsive_table" style="max-height:150px;">
+                              <table>
+                                 <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                       <th class="slds-size_5-of-12" scope="col">
+                                          <div class="" title="Date"><span class="slds-required">*</span>Date</div>
+                                       </th>
+                                       <th class="slds-size_5-of-12" scope="col">
+                                          <div class="" title="Amount"><span class="slds-required">*</span>Amount</div>
+                                       </th>
+                                       <th class="slds-size_2-of-12" scope="col" style="width: 20%;">
+                                          <div class="" title="Action"></span>Action</div>
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <template for:each={recordLocal.draws} for:item="d" for:index="index">
+                                       <c-hh-account-role-draw-row key={d.index} 
+                                                                  record={d}
+                                                                  ondelete={handleDeleteDraw} 
+                                                                  index={index} 
+                                                                  data-id={d.index} 
+                                                                  data-custom="innerComponent">
+                                       </c-hh-account-role-draw-row>
+                                    </template>
+                                 </tbody>
+                              </table>
+                           </div>
+                              <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium slds-text-align_right">
+                                 <button class="slds-button slds-button_brand" onclick={handleAddDraw}>Add Line Item</button>
+                              </div>
+                        </template> 
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={yesNoValues}>
+                           <lightning-combobox 
+                              label="Was a change order requested?"
+                              class="input" 
+                              value={accountRoleDetail.Was_a_change_order_requested__c}
+                              data-field ="Was_a_change_order_requested__c"
+                              name="input1"
+                              onchange={handleAccountRoleDetail}
+                              options={yesNoValues}
+                              dropdown-alignment="auto"
+                              required
+                              >
+                           </lightning-combobox>
+                        </template>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={recordLocal.showChangeOrderTable}>
+                           <div class="slds-scrollable_y responsive_table" style="max-height:230px;">
+                              <table >
+                                 <thead style="background-color:#2574a9; color:white">
+                                    <tr class="slds-line-height_reset">
+                                       <th class="slds-size_5-of-12" scope="col">
+                                          <div class="" title="Date"><span class="slds-required">*</span>Has the Homeowner provided contribution check/payment for the change order?</div>
+                                       </th>
+                                       <th class="slds-size_5-of-12" scope="col">
+                                          <div class="" title="Amount"><span class="slds-required">*</span>Change Order Homeowner Contribution Check/Payment Amount</div>
+                                       </th>
+                                       <th class="slds-size_2-of-12" scope="col" style="width: 20%;">
+                                          <div class="" title="Action"></span>Action</div>
+                                       </th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <template for:each={recordLocal.orderChanges} for:item="o" for:index="index">
+                                       <c-hh-account-role-order-change-row key={o.index} 
+                                                                  record={o}
+                                                                  ondelete={handleDeleteOrder} 
+                                                                  index={index} 
+                                                                  data-id={o.index} 
+                                                                  data-custom="innerComponent">
+                                       </c-hh-account-role-order-change-row>
+                                    </template>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <div class="slds-col slds-large-size_12-of-12 slds-size_1-of-1 slds-p-top_medium slds-text-align_right">
+                              <button class="slds-button slds-button_brand" onclick={handleAddOrder}>Add Line Item</button>
+                           </div>
+                        </template> 
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <lightning-input    
+                           type="Date"
+                           label="Date Contractor Reported SOW was Completed"
+                           value={accountRoleDetail.SOW_Completed_Date__c}
+                           onchange={handleAccountRoleDetail} 
+                           data-field="SOW_Completed_Date__c"
+                           required
+                           class="input"
+                           disabled ={isDisable}>
+                        </lightning-input>
+                     </div>
+                  </template>
+               </div>
+            </div>
+            <div class="slds-align_absolute-center" >
+               <lightning-layout>
+                  <lightning-layout-item padding="around-small">
+                     <button class="slds-button slds-button_neutral" onclick={handleClear} >Clear</button>
+                  </lightning-layout-item>
+                  <lightning-layout-item padding="around-small">
+                     <button class="slds-button slds-button_neutral" onclick={fireEventTocloseModal} >Cancel</button>
+                  </lightning-layout-item>
+                  <lightning-layout-item padding="around-small">
+                     <button class="slds-button slds-button_brand" disabled={disableSave} onclick={handleSave} >Save</button>
+                  </lightning-layout-item>
+               </lightning-layout>
+            </div>
+         </div>
+      </div>
+      </div>
+   </section>
+   <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

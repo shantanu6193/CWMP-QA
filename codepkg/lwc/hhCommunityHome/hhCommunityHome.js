@@ -37,6 +37,7 @@
         HH_EN_View_Dashboards
     }
     @track isNotHomeOwner;
+    @track isNotFEMAUser
 
     navigateToSubmitApplication() {
         window.location.href = this.label.HH_Community_Relative_Url+'/s/check-draft-applications';

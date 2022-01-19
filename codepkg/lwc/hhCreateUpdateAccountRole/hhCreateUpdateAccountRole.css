@@ -1,0 +1,42 @@
+.container {
+    min-height: 350px;
+    background-color:white;
+    overflow:auto;
+    max-height: 80vh;
+    position: center;
+}
+
+table, th, td {
+	border-top: 1px solid rgb(212, 212, 212);
+	border: 1px solid rgb(212, 212, 212);
+	text-align: center;
+	padding: 10px;
+}
+td {
+    padding:8px;
+}
+th {
+	background: #375283 !important;
+	color:#f3f2f2 !important;
+}
+@media screen and (max-width: 800px) {
+    .responsive_table table {
+       border: 0;
+     }
+   
+    .responsive_table table thead {
+       border: none;
+       clip: rect(0 0 0 0);
+       height: 1px;
+       margin: -1px;
+       overflow: hidden;
+       padding: 0;
+       position: absolute;
+       width: 1px;
+     }
+}
+
+.table-div span.slds-truncate {
+    overflow: visible;
+    white-space: normal;
+}
