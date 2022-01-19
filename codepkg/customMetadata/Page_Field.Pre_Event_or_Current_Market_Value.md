@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Pre-Event or Current Market Value?</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Channel_Event_Config__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Channel_Event_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Column_Size__c</field>
+        <value xsi:type="xsd:string">2</value>
+    </values>
+    <values>
+        <field>Controller_Field__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Display_Label__c</field>
+        <value xsi:type="xsd:string">Is the proposed purchase valuation using Pre-Event Market Value or Current Market Values?</value>
+    </values>
+    <values>
+        <field>Document_Table_Columns__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Document_Upload_Additional_Config__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Enable_Channel_Message__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Enable_Field_Formula__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Enable_Field_Specific_Doc__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Enabled_Maximum_Value__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Enabled_Minimum_Value__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Field_API_Name__c</field>
+        <value xsi:type="xsd:string">Pre_Event_or_Current_Market_Value__c</value>
+    </values>
+    <values>
+        <field>Field_Criteria_value__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Field_Formula_Configuration__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Field_Specific_Value__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Field_Type__c</field>
+        <value xsi:type="xsd:string">Picklist</value>
+    </values>
+    <values>
+        <field>Filter_Document_Types__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Help_Text__c</field>
+        <value xsi:type="xsd:string">Pre-event market value is defined as the market value of the property immediately before the relevant event affecting the property. Pre-event valuation can only be used if a disaster has taken place. The relevant event for assistance is the major disaster under which funds are available. A property owner who is not a National of the United States or a qualified alien is not eligible for a pre-event market value determination of property value. The property value must be based on the current market value.
+
+Reference: 2015 HMA Guidance Addendum, A.3.1 &amp; A.6.9</value>
+    </values>
+    <values>
+        <field>Hide_Field_API_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Hide_Field_Custom_Attribute__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Hide_Field_Operator__c</field>
+        <value xsi:type="xsd:string">Equal</value>
+    </values>
+    <values>
+        <field>Hide_Field_Value__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Is_Read_Only__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Max_Length__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Maximum_Value_Configuration__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Minimum_Value_Configuration__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Multiple_Table_Query__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Page_Section__c</field>
+        <value xsi:type="xsd:string">Property_Valuation</value>
+    </values>
+    <values>
+        <field>Placeholder__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Related_To_Object_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Required__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Search_Class_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Sequence__c</field>
+        <value xsi:type="xsd:double">5.0</value>
+    </values>
+    <values>
+        <field>Static_Content__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Additional_Config__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Columns__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Name__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Object__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Parent_Relationship_Field_API__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Table_Record_Limit__c</field>
+        <value xsi:type="xsd:string">5</value>
+    </values>
+    <values>
+        <field>Table_Where_Clause__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>User_Defined_Picklist_Values__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Validation_Error_Message__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Validation_Pattern__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>
