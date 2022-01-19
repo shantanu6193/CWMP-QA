@@ -45,7 +45,7 @@ public with sharing class DocumentActionCtrl {
             return docWrapperList;
         }
         /** To check current user is home owner on not **/
-        List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id,PermissionSet.Name FROM PermissionSetAssignment WHERE (PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName OR PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) AND Assignee.Id =:UserInfo.getUserId()];
+        List<PermissionSetAssignment> permissionSetAssignments = [SELECT Id FROM PermissionSetAssignment WHERE PermissionSet.Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName AND Assignee.Id =:UserInfo.getUserId()];
             /** If current user is homeOwner then hide all actions**/
             if(permissionSetAssignments.size() > 0){
                 hideEdit = true;

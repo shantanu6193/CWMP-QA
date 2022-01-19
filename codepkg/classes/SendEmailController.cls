@@ -141,7 +141,6 @@ public without sharing class SendEmailController {
         System.debug('fromEmail---'+fromEmail);
         String userEmail = UserInfo.getUserEmail();
         List<FromEmailOptionsWrapper> formAddressOption = new List<FromEmailOptionsWrapper>();
-        List<HH_Application__c> applications = [SELECT Id,County__c FROM HH_Application__c WHERE Id =:applicationId];
         String query = 'SELECT Id, Address, Displayname FROM OrgWideEmailAddress WHERE DisplayName = \''+fromEmail+'\'';
         County_Config__mdt countyConfig = getCountyConfig();
         List<String> countyEmails = new List<String>();

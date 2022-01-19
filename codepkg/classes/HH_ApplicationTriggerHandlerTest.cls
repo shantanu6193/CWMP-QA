@@ -144,7 +144,7 @@ public without sharing class HH_ApplicationTriggerHandlerTest {
         hhApplication1.Is_the_property_in_the_floodplain__c = HH_CONSTANTS.PickList_Yes;
         hhApplication1.Agreement_Disclosure__c = true;
             hhApplication1.Application_Lead__c = communityUserId;
-            hhApplication1.Income_Bracket__c = '< 80%';
+                hhApplication1.Income_Bracket__c = 'Less than 80%';
             hhApplication1.Assessed_Value_of_the_Property__c = 1400000;
         update hhApplication1;
             try{
@@ -189,29 +189,30 @@ public without sharing class HH_ApplicationTriggerHandlerTest {
         hhApplication1.Status__c = null;
         update hhApplication1;
 
-            // Request_For_Information__c rfiRecord = new Request_For_Information__c(CWMP_Application__c = hhApplication1.Id, RFI_Deadline__c = System.today()+1, RecordTypeId = Schema.SObjectType.Request_For_Information__c?.getRecordTypeInfosByDeveloperName()?.get(HH_CONSTANTS.Rfi_CWMPRecordType_APIName)?.getRecordTypeId(), Status__c = HH_CONSTANTS.RFI_RFIStatus_Requested);
-            // insert rfiRecord;
+            hhApplication1.Status__c = HH_CONSTANTS.HHApplication_Status_OESOpenRFI;
+            update hhApplication1; 
     
-//            hhApplication1.Stage__c = HH_CONSTANTS.HHApplication_Stage_OESDecision;
-//            hhApplication1.Status__c = HH_CONSTANTS.HHApplication_Status_ApprovedForFEMAReview;
-//            update hhApplication1;
+
+
+            /*hhApplication1.Stage__c = HH_CONSTANTS.HHApplication_Stage_FEMADecision; 
+            hhApplication1.Status__c = HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion;  
+            update hhApplication1;*/ 
         }
 
-
-
-        // try {
-        //     hhApplication1.Stage__c = HH_CONSTANTS.HHApplication_Stage_FEMAReview;
-        //     hhApplication1.Status__c = HH_CONSTANTS.HHApplication_Status_FEMAReviewPending;
-        //     update hhApplication1;
-        // }
-        // catch (Exception e){}
+        System.runAs(new User(Id=communityUserId)) { 
+			//hhApplication1.Stage__c = HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement; 
+            //hhApplication1.Status__c = HH_CONSTANTS.HHApplication_Status_ContractorQuoteReadyToBeRequested;
+            hhApplication1.Homeowner_contribution_check_payment__c = HH_CONSTANTS.Picklist_Yes; 
+            hhApplication1.Homeowner_Contribution_Amount__c = 120000;
+            update hhApplication1; 
+        } 
         
-        // try {
-        //     delete hhApplication1;
-        // }
-        // catch (Exception e) {
+        System.runAs(caloesInternalUser) {  
+            hhApplication1.Stage__c = HH_CONSTANTS.HHApplication_Stage_FEMAReview; 
+            hhApplication1.Status__c = null;
+            update hhApplication1;
+        }
 		
-        // }
         Test.stopTest();
     }
 }

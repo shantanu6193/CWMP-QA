@@ -31,7 +31,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application.Tax_Parcel_Number__c = '234234';
         application.Is_the_property_in_the_floodplain__c = 'No';
         application.Assessed_Value_of_the_Property__c = 1200000;
-        application.Income_Bracket__c = '< 80%';
+        application.Income_Bracket__c = 'Less than 80%';
         application.Application_Lead__c = uu?.Id;
         insert application;
        
@@ -71,7 +71,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application.Tax_Parcel_Number__c = '234234';
         application.Is_the_property_in_the_floodplain__c = 'Yes';
         application.Assessed_Value_of_the_Property__c = 1200000;
-        application.Income_Bracket__c = '< 80%';
+        application.Income_Bracket__c = 'Less than 80%';
         application.Application_Lead__c = uu?.Id;
         applistToInsert.add(application);
 
@@ -82,7 +82,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application2.Tax_Parcel_Number__c = '234234';
         application2.Is_the_property_in_the_floodplain__c = 'No';
         application2.Assessed_Value_of_the_Property__c = 1300000;
-        application2.Income_Bracket__c = '< 120% AMI';
+        application2.Income_Bracket__c = '80% through 120%';
         application2.Application_Lead__c = uu?.Id;
         applistToInsert.add(application2);
 
@@ -93,7 +93,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application3.Tax_Parcel_Number__c = '234234';
         application3.Is_the_property_in_the_floodplain__c = 'Yes';
         application3.Assessed_Value_of_the_Property__c = 1400000;
-        application3.Income_Bracket__c = '120-200% AMI';
+        application3.Income_Bracket__c = 'Above 120% to 200%';
         application3.Application_Lead__c = uu?.Id;
         applistToInsert.add(application3);
 
@@ -104,7 +104,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application4.Tax_Parcel_Number__c = '234234';
         application4.Is_the_property_in_the_floodplain__c = 'No';
         application4.Assessed_Value_of_the_Property__c = 1500000;
-        application4.Income_Bracket__c = '> 200% AMI';
+        application4.Income_Bracket__c = 'Greater than 200%';
         application4.Application_Lead__c = uu?.Id;
         applistToInsert.add(application4);
 
@@ -115,7 +115,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application5.Tax_Parcel_Number__c = '234234';
         application5.Is_the_property_in_the_floodplain__c = 'No';
         application5.Assessed_Value_of_the_Property__c = 1500000;
-        application5.Income_Bracket__c = '> 200% AMI';
+        application5.Income_Bracket__c = 'Greater than 200%';
         application5.Application_Lead__c = uu?.Id;
         applistToInsert.add(application5);
 
@@ -126,9 +126,33 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application6.Tax_Parcel_Number__c = '234234';
         application6.Is_the_property_in_the_floodplain__c = 'No';
         application6.Assessed_Value_of_the_Property__c = 1500000;
-        application6.Income_Bracket__c = '> 200% AMI';
+        application6.Income_Bracket__c = 'Greater than 200%';
         application6.Application_Lead__c = uu?.Id;
         applistToInsert.add(application6);
+
+        HH_Application__c application7 = new HH_Application__c();
+        application7.Stage__c = HH_CONSTANTS.HHApplication_Stage_FEMADecision;
+        application7.Status__c = HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion;
+        application7.Assessor_Email__c = 'ashjkhasf@gmail.com';
+        application7.Tax_Parcel_Number__c = '234234';
+        application7.Is_the_property_in_the_floodplain__c = 'No';
+        application7.Assessed_Value_of_the_Property__c = 1500000;
+        application7.Income_Bracket__c = 'Greater than 200%';
+        application7.Application_Lead__c = uu?.Id;
+        applistToInsert.add(application7);
+        
+        HH_Application__c application8 = new HH_Application__c();
+        application8.Stage__c = HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement;
+        application8.Status__c = HH_CONSTANTS.HHApplication_Status_TriPartyAgreementFinalized;
+        application8.Assessor_Email__c = 'ashjkhasf@gmail.com';
+        application8.Tax_Parcel_Number__c = '234234';
+        application8.Is_the_property_in_the_floodplain__c = 'No';
+        application8.Assessed_Value_of_the_Property__c = 1500000;
+        application8.Income_Bracket__c = 'Greater than 200%';
+        application8.Application_Lead__c = uu?.Id;
+        application8.Homeowner_contribution_check_payment__c = 'Yes';
+        application8.Homeowner_Contribution_Amount__c = 120000;
+        applistToInsert.add(application8);
 
         insert applistToInsert;
 
@@ -139,6 +163,8 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         String newApplicationJson4 = JSON.serialize(applistToInsert[3]);
         String newApplicationJson5 = JSON.serialize(applistToInsert[4]);
         String newApplicationJson6 = JSON.serialize(applistToInsert[5]);
+        String newApplicationJson7 = JSON.serialize(applistToInsert[6]);
+        String newApplicationJson8 = JSON.serialize(applistToInsert[7]);
         String userId = UserInfo.getUserId();
 
         Test.startTest();
@@ -165,6 +191,20 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         catch (Exception e) {
 
         }
+        try {
+            result = HH_ApplicationStageAndStatusUpdate_Ctrl.updateStageAndStatus(newApplicationJson7, userId);
+            System.assert(result != null);
+        }
+        catch (Exception e) {
+
+        }
+        try {
+            result = HH_ApplicationStageAndStatusUpdate_Ctrl.updateStageAndStatus(newApplicationJson8, userId);
+            System.assert(result != null);
+        }
+        catch (Exception e) {
+
+        }
         Test.stopTest();
     }
 
@@ -181,7 +221,7 @@ public class HH_ApplicationStageAndStatusUpdateTest {
         application.Tax_Parcel_Number__c = '234234';
         application.Is_the_property_in_the_floodplain__c = 'No';
         application.Assessed_Value_of_the_Property__c = 1200000;
-        application.Income_Bracket__c = '< 80%';
+        application.Income_Bracket__c = 'Less than 80%';
         application.Application_Lead__c = uu?.Id;
         appListToInsert.add(application);
         insert appListToInsert;

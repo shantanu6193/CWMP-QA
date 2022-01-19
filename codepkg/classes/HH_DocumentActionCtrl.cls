@@ -10,7 +10,10 @@ public without sharing class HH_DocumentActionCtrl implements DocumentUploadInte
         String masterObjectName = recordId.getSObjectType().getDescribe().getName();
         /** Check if current record object name is HH_Application__c if yes continue or return document details **/
         if(masterObjectName == HH_CONSTANTS.HHApplication_Object_APIName) {
-            return handleHHApplicationActions(masterRecordId,docWrapperList);
+            return handleHHApplicationActions(masterObjectName,masterRecordId,docWrapperList);
+        }
+        if(masterObjectName == HH_CONSTANTS.CWMPProject_API_Name) {
+            return handleHHApplicationActions(masterObjectName,masterRecordId,docWrapperList);
         }
         return docWrapperList;
     }
@@ -21,14 +24,15 @@ public without sharing class HH_DocumentActionCtrl implements DocumentUploadInte
     * Inputs :
     * Description: to check current user type and give access as per permission set.
     ************************************************/
-    public List<DocumentUploadCtrl.DocumentMetaInfoWrapper> handleHHApplicationActions(String masterRecordId, List<DocumentUploadCtrl.DocumentMetaInfoWrapper> docWrapperList) {
+    public List<DocumentUploadCtrl.DocumentMetaInfoWrapper> handleHHApplicationActions(String masterObjectName, String masterRecordId, List<DocumentUploadCtrl.DocumentMetaInfoWrapper> docWrapperList) {
         Boolean hideEdit = false;/** by default user can see edit icon on document upload component **/
         Boolean hideUpload = false ;/** by default user can see Upload icon on document upload component **/
         Boolean hideDelete = false ;/** by default user can see Delete icon on document upload component **/
         Boolean hideNew = false ;/** by default user can see New button on document upload component **/
         /** Get current record data to get details about stage and status **/
-        List<HH_Application__c> app = [SELECT Stage__c,Status__c FROM HH_Application__c WHERE Id=:masterRecordId];
-        if(app.size() == 0) {
+        String query = 'SELECT Id FROM '+masterObjectName+' WHERE Id=:masterRecordId';
+        List<Object> lst = Database.query(query);
+        if(lst.size() == 0) {
             return docWrapperList;
         }
         /** To check current user is home owner/FEMA User on not **/

@@ -12,7 +12,7 @@ public with sharing class HH_EventTriggerHandlerTest {
         application.Tax_Parcel_Number__c = '234234';
         application.Is_the_property_in_the_floodplain__c = 'Yes';
         application.Assessed_Value_of_the_Property__c = 1200000;
-        application.Income_Bracket__c = '< 80%';
+        application.Income_Bracket__c = 'Less than 80%';
         insert application;
     }
 

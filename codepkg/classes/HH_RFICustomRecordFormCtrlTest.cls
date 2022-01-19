@@ -4,22 +4,28 @@ private  class HH_RFICustomRecordFormCtrlTest {
     @IsTest(SeeAllData=true)
     public static void test1() {
         Id communityUserId = null;
+        User homeownerUser = new User();
         System.runAs(new User(Id=UserInfo.getUserId())) {
             User communityUser = HH_TestHelper.createCaloesPortalUser('community@xyz.com');
             communityUserId = communityUser.Id;
+            homeownerUser = HH_TestHelper.createCaloesPortalUser('homeowner@xyz.com');
         } 
         User caloesUser = HH_TestHelper.createCaloesUser();  
         PermissionSet permissionSet2 =  [SELECT Id,Name FROM PermissionSet WHERE Name =: HH_CONSTANTS.HH_PermissionSet_CommunityUser_APIName LIMIT 1];
         insert new PermissionSetAssignment(AssigneeId = communityUserId, PermissionSetId = permissionSet2.Id);
+        PermissionSet permissionSet3 =  [SELECT Id,Name FROM PermissionSet WHERE Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName LIMIT 1];
+        insert new PermissionSetAssignment(AssigneeId = homeownerUser.Id, PermissionSetId = permissionSet3.Id);
         Test.startTest();
         String applicationId = null;
+        HH_Application__c application = new HH_Application__c();
+        Request_For_Information__c req = new Request_For_Information__c();
         System.runAs(new User(Id=communityUserId)) {
             User u = [SELECT Id,ContactId FROM User WHERE Id=:communityUserId];
             Contact c = [SELECT Id,Email FROM Contact WHERE Id=:u.ContactId];
             c.Preferred_Language__c = 'English';
             update c;
             System.debug('Contact: '+c);
-            HH_Application__c application = new HH_Application__c();
+            //HH_Application__c application = new HH_Application__c();
             application.Stage__c = HH_CONSTANTS.HHApplication_Stage_Draft;
             application.Assessor_Email__c = 'ashjkhasf@gmail.com';
             application.Tax_Parcel_Number__c = '234234';
@@ -34,18 +40,19 @@ private  class HH_RFICustomRecordFormCtrlTest {
             insertDocuments(applicationId);
         }
         System.runAs(new User(Id=communityUserId)) {
-            HH_Application__c application = new HH_Application__c(Id=applicationId);
+            //HH_Application__c application = new HH_Application__c(Id=applicationId);
             application.Stage__c = HH_CONSTANTS.HHApplication_Stage_CommunityReview;
             application.Status__c = HH_CONSTANTS.HHApplication_Status_OpenRFINeedMoreInfo;
             application.Assessed_Value_of_the_Property__c = 1234;
-            application.Income_Bracket__c = '< 120% AMI';
+            application.Income_Bracket__c = '80% through 120%';
             application.Tax_Parcel_Number__c = '123434';
             application.Is_the_property_in_the_floodplain__c = HH_CONSTANTS.PickList_Yes;
             application.Application_Lead__c = communityUserId;
             update application;
+            
             HH_RFICustomRecordFormCtrl.getInitDetails(application.Id, null, communityUserId, 'Edit');
             HH_RFICustomRecordFormCtrl.isEditable(application.Id);
-            Request_For_Information__c req = new Request_For_Information__c();
+            //Request_For_Information__c req = new Request_For_Information__c();
             req.RecordTypeId = ApexUtils.getRecordTypeIdbyName('Request_For_Information__c','CWMP');
             req.Status__c = 'RFI Requested';
             req.Description__c = 'Description';
@@ -81,6 +88,12 @@ private  class HH_RFICustomRecordFormCtrlTest {
             HH_RFICustomRecordFormCtrl.deleteRFI(rfiInserted.Id);
         }
 
+        System.runAs(homeownerUser) { 
+            try {
+            	HH_RFICustomRecordFormCtrl.getInitDetails(application.Id, req.Id, homeownerUser.Id, 'Edit');
+            }
+            catch(Exception e) {}
+        }
       
         Test.stopTest();
     }

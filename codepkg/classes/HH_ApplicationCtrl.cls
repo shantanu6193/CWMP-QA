@@ -600,6 +600,30 @@ public with sharing class HH_ApplicationCtrl {
         new SystemContextProvider().insertAccountShares(ashares);
     }
   
+     /***********************************************
+    * Method Name : getApplicationDetailForEmailing
+    * Author : Shantanu
+    * Description: This method will provide Application Detail for  Send Email component
+    **************************************************/
+    @AuraEnabled
+    public static Map<String,Object> getApplicationDetail(String recordId) {
+        Map<String,String> result = new Map<String,String>();
+        String objectName = ApexUtils.getObjectNameByRecordId(recordId);
+        if(objectName == HH_CONSTANTS.HHApplication_Object_APIName) {
+            List<HH_Application__c> apps = [SELECT Id,Name,Applicant__r.Preferred_Language__c FROM HH_Application__c WHERE Id=:recordId];
+            if(apps.size() > 0) {
+                result.put('name', apps.get(0).Name);
+                result.put('preferredLanguage',apps.get(0).Applicant__r.Preferred_Language__c);
+            }
+        } else if (objectName == HH_CONSTANTS.CWMPProject_API_Name) {
+            List<CWMP_Project__c> projects = [SELECT Id,Name, CWMP_Application__r.Applicant__r.Preferred_Language__c FROM CWMP_Project__c WHERE Id=:recordId];
+            if(projects.size() > 0) {
+                result.put('name', projects.get(0).Name);
+                result.put('preferredLanguage',projects.get(0).CWMP_Application__r.Applicant__r.Preferred_Language__c);
+            }
+        }
+        return result;
+    }
 
 
     public  without sharing class SystemContextProvider {

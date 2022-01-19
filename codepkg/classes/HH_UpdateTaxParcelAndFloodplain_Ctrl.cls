@@ -26,7 +26,9 @@ public without sharing class HH_UpdateTaxParcelAndFloodplain_Ctrl {
 
         /** Fetching Application record whose Id has been passes to the method. */
         List<HH_Application__c> applicationRecord = [SELECT Id, Name, Stage__c, Status__c, Tax_Parcel_Number__c,
-                Is_the_property_in_the_floodplain__c, Assessor_Email__c, Income_Bracket__c,Assessed_Value_of_the_Property__c FROM HH_Application__c WHERE Id =: masterRecordId LIMIT 1];
+                Is_the_property_in_the_floodplain__c, Assessor_Email__c, Income_Bracket__c, Assessed_Value_of_the_Property__c,
+                Homeowner_contribution_check_payment__c, Homeowner_Contribution_Amount__c 
+                FROM HH_Application__c WHERE Id =: masterRecordId LIMIT 1]; 
 
         /** Checking if the Application record/Data is available. */
         if (applicationRecord?.size() == 1) {
@@ -35,7 +37,7 @@ public without sharing class HH_UpdateTaxParcelAndFloodplain_Ctrl {
             /** Second element in the return map is User Permission, That is If the Component needs to be displayed to user or not? */
             resultMap.putAll(getUserPermissionForComponent(userId));
             /** Third element in the return map is Is the details in component is editable in current stage of the record? */
-            resultMap.put('isEdit', isDetailsEditable(applicationRecord[0]));
+            //resultMap.put('isEdit', isDetailsEditable(applicationRecord[0]));
         }
         /** Returning the result map to LWC component. */
         return resultMap;
@@ -83,6 +85,12 @@ public without sharing class HH_UpdateTaxParcelAndFloodplain_Ctrl {
                 else if (currentUserPermissionSet?.contains(HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName)) {
                     returnMap.put('userType', 'CalOES');
                 }
+                else {
+                    returnMap.put('isEdit', false);
+                }
+            }
+            else {
+                returnMap.put('isEdit', false);
             }
 
             /*if (userRecord?.size() == 1
@@ -110,18 +118,15 @@ public without sharing class HH_UpdateTaxParcelAndFloodplain_Ctrl {
     * Author : Ricky
     * Description: This method is used to decide whether the details in the component is editable for the current stage of Application?
     *********************************************/
-    public static Boolean isDetailsEditable(HH_Application__c applicationRecord) {
-        /** Variable to store the boolean value for return Type. */
+    /*public static Boolean isDetailsEditable(HH_Application__c applicationRecord) {
         Boolean isEdit = true;
-        /** Condition to check if the Current record Stage-Reason is Community Rejection/OES Rejection/FEMA Rejection,
-         * then only setting the return type to true. */
         if (applicationRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria
                 || applicationRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESDecisionRejected
                 || applicationRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMADecisionRejected) {
             isEdit = false;
         }
         return isEdit;
-    }
+    }*/
 
     /***********************************************
     * Method Name : updateTaxParcelAndFloodPlain
@@ -142,6 +147,15 @@ public without sharing class HH_UpdateTaxParcelAndFloodplain_Ctrl {
         applicationRecord.Assessor_Email__c = applicationRecordDeserialized.Assessor_Email__c;
         applicationRecord.Assessed_Value_of_the_Property__c = applicationRecordDeserialized.Assessed_Value_of_the_Property__c;
         applicationRecord.Income_Bracket__c = applicationRecordDeserialized.Income_Bracket__c;
+
+        /** Chnages for Sprint 9 */
+        applicationRecord.Homeowner_contribution_check_payment__c = applicationRecordDeserialized.Homeowner_contribution_check_payment__c == null ? null : applicationRecordDeserialized.Homeowner_contribution_check_payment__c;
+        if(applicationRecord.Homeowner_contribution_check_payment__c == HH_CONSTANTS.PickList_Yes) {
+            applicationRecord.Homeowner_Contribution_Amount__c = applicationRecordDeserialized.Homeowner_Contribution_Amount__c == null ? null : applicationRecordDeserialized.Homeowner_Contribution_Amount__c;
+        }
+        else {
+            applicationRecord.Homeowner_Contribution_Amount__c = null;
+        }
         /** Updating the Application record,
          * 1. If its success - Then returning the result map.
          * 2. If Error - then Passing the Error message to component. */

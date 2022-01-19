@@ -259,6 +259,27 @@ public without sharing class HH_ApplicationStageAndStatusUpdate_Ctrl {
                 applicationRecord.Stage__c = HH_CONSTANTS.HHApplication_Stage_FEMAReview;
                 applicationRecord.Status__c = HH_CONSTANTS.HHApplication_Status_FEMAReviewPending;
 
+                TriggerHandler.skipFieldHistoryTrigger = false; 
+                update applicationRecord;
+            }
+            /** Sprint 9 Changes */
+            /** Upon marking the FEMA decision as FEMA Approved,
+            * changing the Stage - Homeowner Agreement and Status - Contractor Quote Ready to Be Requested. */
+            /*else if (applicationRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
+                    && applicationRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion) {
+                applicationRecord.Stage__c = HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement;
+                applicationRecord.Status__c = HH_CONSTANTS.HHApplication_Status_ContractorQuoteReadyToBeRequested;
+
+                TriggerHandler.skipFieldHistoryTrigger = false;
+                update applicationRecord;
+            }*/
+            /** Upon marking the Homeowner Agreement as TriPartyAgreementFinalized,
+            * changing the Stage - Approved-Converted. */
+            else if (applicationRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement
+                    && applicationRecord.Status__c == HH_CONSTANTS.HHApplication_Status_TriPartyAgreementFinalized) {
+                applicationRecord.Stage__c = HH_CONSTANTS.HHApplication_Stage_ApprovedConverted;
+                applicationRecord.Status__c = null;
+
                 TriggerHandler.skipFieldHistoryTrigger = false;
                 update applicationRecord;
             }

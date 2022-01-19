@@ -19,7 +19,7 @@ public class HH_EditRequestCtrlTest {
         	application.Assessor_Email__c = 'ashjkhasf@gmail.com';
         	application.Tax_Parcel_Number__c = '234234';
         	application.Is_the_property_in_the_floodplain__c = 'No';
-            application.Income_Bracket__c = '< 80%';
+            application.Income_Bracket__c = 'Less than 80%';
             application.Assessed_Value_of_the_Property__c = 1000.00;
             application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
             insert application;
@@ -44,7 +44,7 @@ public class HH_EditRequestCtrlTest {
         	application.Assessor_Email__c = 'ashjkhasf@gmail.com';
         	application.Tax_Parcel_Number__c = '234234';
         	application.Is_the_property_in_the_floodplain__c = 'No';
-            application.Income_Bracket__c = '< 80%';
+            application.Income_Bracket__c = 'Less than 80%';
             application.Assessed_Value_of_the_Property__c = 1000.00;
             //application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
             insert application;
@@ -66,7 +66,7 @@ public class HH_EditRequestCtrlTest {
         	application.Assessor_Email__c = 'ashjkhasf@gmail.com';
         	application.Tax_Parcel_Number__c = '234234';
         	application.Is_the_property_in_the_floodplain__c = 'No';
-            application.Income_Bracket__c = '< 80%';
+            application.Income_Bracket__c = 'Less than 80%';
             application.Assessed_Value_of_the_Property__c = 1000.00;
             application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
             insert application;
@@ -87,7 +87,7 @@ public class HH_EditRequestCtrlTest {
                 application.Assessor_Email__c = 'ashjkhasf@gmail.com';
                 application.Tax_Parcel_Number__c = '234234';
                 application.Is_the_property_in_the_floodplain__c = 'No';
-               application.Income_Bracket__c = '< 80%';
+               application.Income_Bracket__c = 'Less than 80%';
                application.Assessed_Value_of_the_Property__c = 1000.00;
                application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
                 insert application;
@@ -114,7 +114,7 @@ public class HH_EditRequestCtrlTest {
                 application.Assessor_Email__c = 'ashjkhasf@gmail.com';
                 application.Tax_Parcel_Number__c = '234234';
                 application.Is_the_property_in_the_floodplain__c = 'No';
-                application.Income_Bracket__c = '< 80%';
+                application.Income_Bracket__c = 'Less than 80%';
                 application.Assessed_Value_of_the_Property__c = 1000.00;
                application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
                 insert application;
@@ -141,7 +141,7 @@ public class HH_EditRequestCtrlTest {
                 application.Assessor_Email__c = 'ashjkhasf@gmail.com';
                 application.Tax_Parcel_Number__c = '234234';
                 application.Is_the_property_in_the_floodplain__c = 'No';
-                application.Income_Bracket__c = '< 80%';
+                application.Income_Bracket__c = 'Less than 80%';
                 application.Assessed_Value_of_the_Property__c = 1000.00;
                application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
                 insert application;
@@ -169,7 +169,7 @@ public class HH_EditRequestCtrlTest {
                 application.Assessor_Email__c = 'ashjkhasf@gmail.com';
                 application.Tax_Parcel_Number__c = '234234';
                 application.Is_the_property_in_the_floodplain__c = 'No';
-                application.Income_Bracket__c = '< 80%';
+                application.Income_Bracket__c = 'Less than 80%';
                 application.Assessed_Value_of_the_Property__c = 1000.00;
                application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
                 insert application;
@@ -197,7 +197,7 @@ public class HH_EditRequestCtrlTest {
                 application.Assessor_Email__c = 'ashjkhasf@gmail.com';
                 application.Tax_Parcel_Number__c = '234234';
                 application.Is_the_property_in_the_floodplain__c = 'No';
-                application.Income_Bracket__c = '< 80%';
+                application.Income_Bracket__c = 'Less than 80%';
                 application.Assessed_Value_of_the_Property__c = 1000.00;
                application.Application_Lead__c = [SELECT Id from User WHERE Username = 'community+1@xyz.com' AND email = 'community+1@xyz.com' limit 1].Id;
                 insert application;

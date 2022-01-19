@@ -55,7 +55,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
     public override void afterUpdate() {
         /** This method is used to create the related Document upon Application creation. */
         shareRecordWithUserBasedOnStage();
-        //convertCWMPApplicationToCWMPProject();
+        convertCWMPApplicationToCWMPProject();
     }
 
     public override void beforeDelete() {
@@ -81,10 +81,9 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
              * 2. While Update - Updating only those Application Status whose Stage is changed and Status is not one of the Dependent value of Stage. */
             if (Trigger.isInsert || (Trigger.isUpdate && hhApplicationToProcess.Stage__c != oldRecord.Stage__c)) {
                 if(hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Draft
-                        && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_New
+                        && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_New
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_AppealApprovalResubmit
-                                    && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                                || hhApplicationToProcess.Status__c == null)) {
+                                    && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_New;
                 }
                 /** This condition is to update the Status to Community Review Pending,
@@ -95,55 +94,50 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                     || hhApplicationToProcess.Agreement_Disclosure__c != oldRecord.Agreement_Disclosure__c)))
                         && hhApplicationToProcess.Agreement_Disclosure__c == true
                         && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityReview
-                        && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_CommunityReviewPending
+                        && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_CommunityReviewPending
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_CommunityReviewInProgress
                             && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OpenRFINeedMoreInfo
-                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                            || hhApplicationToProcess.Status__c == null)) {
+                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_CommunityReviewPending;
                 }
                 /** This condition is to update the Status to Community Decision Pending,
                 * when the Stage moved to Community Decision from Community Review Stage and Status Community Review In Progress. */
                 else if (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_CommunityDecision
-                        && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_CommunityDecisionPending
+                        && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_CommunityDecisionPending
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_ApprovedForAssessment
                             && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria
-                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                                || hhApplicationToProcess.Status__c == null)) {
+                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     //hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_CommunityDecisionPending;
                 }
                 /** This condition is to update the Status to Assessment Pending,
                 * when the Stage moved to Assessment after getting Approved from Community. */
                 else if (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
-                            && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_AssessmentPending
+                            && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_AssessmentPending
                                         && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_AssessmentInProgress
                             && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OpenRFINeedMoreInfo
                             && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_AssessmentComplete
-                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                                    || hhApplicationToProcess.Status__c == null)) {
+                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_AssessmentPending;
                 }
                 /** This condition is to update the Status to OES Review Pending,
                 * when the Stage moved to OES Review after Assessment gets complete. */
                 else if (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
-                        && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OESReviewPending
+                        && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OESReviewPending
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OESReviewInProgress
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OESReviewComplete
                             && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_OESOpenRFI
-                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                                || hhApplicationToProcess.Status__c == null)) {
+                            && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_OESReviewPending;
                 }
                 /** This condition is to update the Status to FEMA Review Pending,
                 * when the Stage moved to FEMA Review after gets approved for FEMA Review. */
                 else if (hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                         && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
-                        && ((hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_FEMAReviewPending
+                        && (hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_FEMAReviewPending
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_FEMAReviewInProgress
                                     && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_FEMAReviewComplete
                         && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_FEMAReviewOpenRFI
-                        && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)
-                                || hhApplicationToProcess.Status__c == null)) {
+                        && hhApplicationToProcess.Status__c != HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.Status__c = HH_CONSTANTS.HHApplication_Status_FEMAReviewPending;
                 }
             }
@@ -300,6 +294,10 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                     && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_ReadyForCalOesReview
                                     && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
                                     && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewPending)
+                                || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement 
+                                || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement
+                                    && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_TriPartyAgreementFinalized
+                                    && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_ApprovedConverted)
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
                                 || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
                     hhApplicationToProcess.addError('Application not editable.');
@@ -324,7 +322,9 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                             || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_Assessment
                             || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_AssessmentDecision
                             || (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
-                                    && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI))
+                                    && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI) 
+                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement 
+                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_ApprovedConverted)
                             || hhApplicationToProcess.Application_Lead__c != oldRecord.Application_Lead__c)) {
                     hhApplicationToProcess.addError('Application not editable.');
                 }
@@ -352,7 +352,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                  *      - This condition is to check if the user has HH CalOES User Permission.
                  * This Condition is added to prevent CalOES User from changing Application Stage and Status,
                  * after the submitting for FEMA Review except Open RFI and to Withdraw the Application. */
-                /*else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName)
+                else if (userIdToPermissionSetApiNameListMap.get(UserInfo.getUserId()).contains(HH_CONSTANTS.HH_PermissionSet_CalOESUser_APIName)
                         && !(((hhApplicationToProcess.Stage__c != oldRecord.Stage__c
                                     || hhApplicationToProcess.Status__c != oldRecord.Status__c)
                                 && ((oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
@@ -367,12 +367,16 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                     || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_AssessmentDecision
                                     || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESReview
                                     || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESDecision
-                                    || (hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
-                        && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending)
+                                    || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview 
+                                    || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
+                                    || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
+                                            && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion 
+                                            && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement 
+                                            && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_ContractorQuoteReadyToBeRequested)
                                 || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
                                 || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn))) {
                     hhApplicationToProcess.addError('Application not editable.');
-                } */
+                } 
 
                 /** Post MVP - After FEMA User Gets Introduce - To remove the above three Else If block and uncomment the below. */
                 /** Condition Criteria - (1 OR 2) AND !(3 OR 4) AND 5
@@ -387,11 +391,7 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                 || hhApplicationToProcess.Status__c != oldRecord.Status__c)
                         && !(hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
                             || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
-                            || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
-                                && oldRecord.Status__c ==  HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion
-                                && hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_ApprovedConverted)
-                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed
-                            || hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn)) {
+                            || hhApplicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_RejectedClosed)) {
                     hhApplicationToProcess.addError('Application not editable.');
                 }
             }
@@ -1069,7 +1069,13 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                  * Condition Criteria - 1 AND 2 AND
                  *                      NOT((3 AND 4) || (5 AND 6) || (7 AND 8) || (9 AND 10) || (11 AND 12) || (13 AND 14))
                  *                      AND NOT(15)  */
-                if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
+                if(oldRecord.Status__c != hhApplicationToProcess.Status__c
+                    && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn
+                    && userIdToAssignedPermissionSetsMap.get(UserInfo.getUserId())?.contains(HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName)) {
+                        hhApplicationToProcess.addError(System.Label.HH_Application_FEMAWithdrawnError);   
+                } 
+
+                else if (userIdToUserRecordMap.get(UserInfo.getUserId())?.Profile.Name != HH_CONSTANTS.HH_Profile_SystemAdmin
                         && oldRecord.Status__c != hhApplicationToProcess.Status__c
                         && hhApplicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_Withdrawn
                         && (userIdToAssignedPermissionSetsMap.get(UserInfo.getUserId())?.contains(HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName) 
@@ -1095,7 +1101,17 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                     || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESReviewInProgress
                                     || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_OESOpenRFI))
                             || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_OESDecision
-                                        && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria))))) {
+                                        && oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria) 
+                                || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMAReview
+                                    && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewPending
+                                        || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMAReviewInProgress)) 
+                                || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_FEMADecision
+                                    && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_FEMADecisionApprovedForProjectConversion 
+                                        || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_RejectedDoesNotMeetCriteria)) 
+                                || (oldRecord.Stage__c == HH_CONSTANTS.HHApplication_Stage_HomeownerAgreement
+                                    && (oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_ContractorQuoteReadyToBeRequested
+                                        || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_ContractorQuoteRequested
+                                        || oldRecord.Status__c == HH_CONSTANTS.HHApplication_Status_ContractorQuoteReceived)))))) {
                     hhApplicationToProcess.addError('Application not editable.');
                 }
             }
@@ -1107,39 +1123,66 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
     * Author : Sushant
     * Description: This method is used to Create CWMP Project when the changes the Stage into Approved Converted
     *********************************************/
-    // private void convertCWMPApplicationToCWMPProject() {
-    //     /** Map to store Application Id with Application record **/
-    //      Map<Id, HH_Application__c> appIdToApplicationToProcessMap = new Map<Id, HH_Application__c>();
-    //     /** list of projects needs to be inserted **/
-    //     List<CWMP_Project__c> projectsToInsert = new List<CWMP_Project__c>();
-    //     for (HH_Application__c applicationToProcess : (List<HH_Application__c>) Trigger.new) {
-    //      HH_Application__c oldRecord = (HH_Application__c) Trigger.oldMap.get(applicationToProcess.Id);
-    //      /** If stage and status is changed and new stage is Approved Converted then add then Application id to Map **/
-    //         if ((applicationToProcess.Stage__c != oldRecord.Stage__c
-    //              || applicationToProcess.Status__c != oldRecord.Status__c)
-    //          && (applicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_ApprovedConverted)) {
-    //             appIdToApplicationToProcessMap.put(applicationToProcess.Id, applicationToProcess);
-    //         }
-    //     }
-    //      if(appIdToApplicationToProcessMap?.size() > 0){
-    //          /** get all data related to CWMP Application and CWMP Project **/
-    //          Map<Id, HH_Application__c> appIdToApplicationMap = new Map<Id, HH_Application__c>([SELECT Id,Status__c,Stage__c,Applicant__c,(SELECT Id from CWMP_Projects__r) from HH_Application__c where Id IN:appIdToApplicationToProcessMap.keySet()]);
-    //         for(HH_Application__c hh:appIdToApplicationToProcessMap.values()){
-    //             HH_Application__c cwmpApp = appIdToApplicationMap.get(hh.Id);
-    //             /** if the project is not created then create new project with CWMP Application Id and Applicant Id **/
-    //             if(cwmpApp.CWMP_Projects__r.size() == 0){
-    //                 CWMP_Project__c pr = new CWMP_Project__c();
-    //                 pr.CWMP_Application__c = cwmpApp.Id;
-    //                 pr.Applicant__c = cwmpApp.Applicant__c;
-    //                 projectsToInsert.add(pr);
-    //             }
-    //         }
-    //      }
-    //      if(projectsToInsert?.size() > 0){
-    //          /** insert created Projects **/
-    //          insert projectsToInsert;
-    //      }
-    // }
+    private void convertCWMPApplicationToCWMPProject() {
+        /** Map to store Application Id with Application record **/
+         Map<Id, HH_Application__c> appIdToApplicationToProcessMap = new Map<Id, HH_Application__c>();
+
+         Map<Id, Id> applicationIdToRelatedProjectIdMap = new Map<Id, Id>();
+
+
+        /** list of projects needs to be inserted **/
+        List<CWMP_Project__c> projectToInsertList = new List<CWMP_Project__c>();
+        for (HH_Application__c applicationToProcess : (List<HH_Application__c>) Trigger.new) {
+         HH_Application__c oldRecord = (HH_Application__c) Trigger.oldMap.get(applicationToProcess.Id);
+         /** If stage and status is changed and new stage is Approved Converted then add then Application id to Map **/
+            if ((applicationToProcess.Stage__c != oldRecord.Stage__c
+                 || applicationToProcess.Status__c != oldRecord.Status__c)
+             && (applicationToProcess.Stage__c == HH_CONSTANTS.HHApplication_Stage_ApprovedConverted)) {
+                appIdToApplicationToProcessMap.put(applicationToProcess.Id, applicationToProcess);
+            }
+        }
+        if(appIdToApplicationToProcessMap?.size() > 0) {
+            List<Account_Role__c> accountRoles = new List<Account_Role__c>();
+            /** get all data related to CWMP Application and CWMP Project **/
+            Map<Id, HH_Application__c> appIdToApplicationMap = new Map<Id, HH_Application__c>([SELECT Id,Status__c,Stage__c,Applicant__c, 
+                                                                    (SELECT Id from CWMP_Projects__r), 
+                                                                    (SELECT Id, Name, CWMP_Application__c, CWMP_Project__c FROM Account_Roles__r) 
+                                                                    FROM HH_Application__c WHERE Id IN:appIdToApplicationToProcessMap.keySet()]);
+            for(HH_Application__c hhApplicationToProcess :appIdToApplicationToProcessMap.values()){
+                HH_Application__c cwmpApp = appIdToApplicationMap.get(hhApplicationToProcess.Id);
+                /** if the project is not created then create new project with CWMP Application Id and Applicant Id **/
+                if(cwmpApp.CWMP_Projects__r?.size() == 0) {
+                    CWMP_Project__c projectToInsert = new CWMP_Project__c();
+                    projectToInsert.CWMP_Application__c = cwmpApp.Id;
+                    projectToInsert.Applicant__c = cwmpApp.Applicant__c;
+                    projectToInsertList.add(projectToInsert);
+                }
+                /** Condition to check if there are any availabel Contractors, 
+                 * then collecting it in a collection in order to relate it with the Project. */
+                if(cwmpApp.Account_Roles__r?.size() > 0) {
+                    accountRoles.addAll(cwmpApp.Account_Roles__r);
+                }
+            }
+
+            /** Condition to check there are any project reocrds to be inserted in the List. */
+            if(projectToInsertList?.size() > 0) {
+                /** insert created Projects **/
+                insert projectToInsertList;
+                /** Collecting the inserted Project records Id in Map Collection with the related Application ID as Key. */
+                for(CWMP_Project__c insertedProject : projectToInsertList) {
+                    applicationIdToRelatedProjectIdMap.put(insertedProject.CWMP_Application__c, insertedProject.Id);
+                }
+            }
+            /** Condition to check if there are any available Contractors, 
+             * then updating the Project field in order to relate it with the Project. */
+            if(accountRoles?.size() > 0) {
+                for(Account_Role__c accRole : accountRoles) {
+                    accRole.CWMP_Project__c = applicationIdToRelatedProjectIdMap.get(accRole.CWMP_Application__c);
+                }
+                update accountRoles;
+            }
+        }
+    }
     
     /***********************************************
     * Method Name : updateApproverEmail

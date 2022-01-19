@@ -4,17 +4,21 @@ private  class HH_CustomRelatedListRFICtrlTest {
     public static void test1() {
         Id homownerId = null;
         Id communityUserId = null;
+        User femaUser = new User();
         System.runAs(new User(Id=UserInfo.getUserId())) {
             User homeowner = HH_TestHelper.createCaloesPortalUser('homeowner@xyz.com');
             homownerId = homeowner.Id;
             User communityUser = HH_TestHelper.createCaloesPortalUser('community@xyz.com');
             communityUserId = communityUser.Id;
+            femaUser = HH_TestHelper.createCaloesPortalUser('fema@xyz.com');
         }
         User caloesInternalUser = HH_TestHelper.createCaloesUser();
         PermissionSet permissionSet =  [SELECT Id,Name FROM PermissionSet WHERE Name =: HH_CONSTANTS.HH_PermissionSet_HomeOwner_APIName LIMIT 1];
         insert new PermissionSetAssignment(AssigneeId = homownerId, PermissionSetId = permissionSet.Id);
         PermissionSet permissionSet2 =  [SELECT Id,Name FROM PermissionSet WHERE Name =: HH_CONSTANTS.HH_PermissionSet_CommunityUser_APIName LIMIT 1];
         insert new PermissionSetAssignment(AssigneeId = communityUserId, PermissionSetId = permissionSet2.Id);
+        PermissionSet permissionSet3 =  [SELECT Id,Name FROM PermissionSet WHERE Name =: HH_CONSTANTS.HH_PermissionSet_FemaUser_APIName LIMIT 1];
+        insert new PermissionSetAssignment(AssigneeId = femaUser.Id, PermissionSetId = permissionSet3.Id);
         Id applicationId = null;
         Test.startTest(); 
         System.runAs(new User(Id=communityUserId)) {
@@ -33,7 +37,7 @@ private  class HH_CustomRelatedListRFICtrlTest {
             application.Stage__c = HH_CONSTANTS.HHApplication_Stage_CommunityReview;
             application.Status__c = HH_CONSTANTS.HHApplication_Status_OpenRFINeedMoreInfo;
             application.Assessed_Value_of_the_Property__c = 1234;
-            application.Income_Bracket__c = '< 120% AMI';
+            application.Income_Bracket__c = '80% through 120%';
             application.Tax_Parcel_Number__c = '123434';
             application.Is_the_property_in_the_floodplain__c = HH_CONSTANTS.PickList_Yes;
             application.Application_Lead__c = u.Id;
@@ -55,6 +59,9 @@ private  class HH_CustomRelatedListRFICtrlTest {
             HH_CustomRelatedListRFICtrl.getRFIRecords(applicationId);
         }
         System.runAs(caloesInternalUser) {
+            HH_CustomRelatedListRFICtrl.getRFIRecords(applicationId);
+        }
+        System.runAs(femaUser) {
             HH_CustomRelatedListRFICtrl.getRFIRecords(applicationId);
         }
         System.runAs(new User(Id=UserInfo.getUserId())) {
