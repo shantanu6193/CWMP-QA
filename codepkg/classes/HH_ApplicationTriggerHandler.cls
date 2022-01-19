@@ -50,6 +50,8 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
 
         /** This method is used to create the related Document upon Application creation. */
         updateRecordOwnerToHhCountyQueueBasedOnStage();
+
+        checkContractorsBeforeTriPartyAgreementFinalized();
     }
 
     public override void afterUpdate() {
@@ -1286,6 +1288,49 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
     private void updateRecordOwnerFieldUponInsert() {
         for (HH_Application__c applicationToProcess : (List<HH_Application__c>) Trigger.new) {
             applicationToProcess.Owner_Name__c = UserInfo.getName();
+        }
+    }
+
+   
+    /***********************************************
+    * Method Name : checkContractorsBeforeTriPartyAgreementFinalized
+    * Author : Ricky
+    * Description: This method is used to prevent the User from Updating the Application Status to "Tri Party Agreement Finalized", 
+    *              When the Selected Contractors is missing.
+    *********************************************/
+    private void checkContractorsBeforeTriPartyAgreementFinalized() { 
+        /** Map collection to collect the Applications whose Status are updated to Tri Party Agreement Finalized. */
+        Map<Id, HH_Application__c> appIdToAppToProcessMap = new Map<Id, HH_Application__c>();
+        /** Itearting the Trigger.new Collection in order to check for the Applicatiosn whose Status are updated to Tri Party Agreement Finalized. */
+        for(HH_Application__c applicationToProcess : (List<HH_Application__c>) Trigger.new) {
+            HH_Application__c oldRecord = (HH_Application__c) Trigger.oldMap.get(applicationToProcess.Id);
+            if(oldRecord.Status__c != applicationToProcess.Status__c 
+                && applicationToProcess.Status__c == HH_CONSTANTS.HHApplication_Status_TriPartyAgreementFinalized) {
+                    appIdToAppToProcessMap.put(applicationToProcess.Id, applicationToProcess);
+            }
+        } 
+
+        /** Checking for null pointer exception. */
+        if(appIdToAppToProcessMap?.size() > 0) {
+            /** Fetching teh Application record and its related Contractor records. */
+            Map<Id, HH_Application__c> appIdToAppToProcessWithContractorMap = new Map<Id, HH_Application__c>([SELECT Id, Name, 
+                                                                (SELECT Id, Name FROM Account_Roles__r WHERE Status__c = 'Active') 
+                                                                FROM HH_Application__c WHERE Id IN : appIdToAppToProcessMap.keySet()]);
+            
+            /** Iterating appIdToAppToProcessMap collection in orderto check for the related Contractor records. */
+             for(HH_Application__c applicationToProcess : appIdToAppToProcessMap.values()) {
+                List<Account_Role__c> contractors = new List<Account_Role__c>();
+
+
+                /** Checking the related Contractor records for the Application, If the size is not greater than 0, Then throwing Error.  */
+                if(appIdToAppToProcessWithContractorMap?.get(applicationToProcess.Id)?.Account_Roles__r?.size() > 0) {
+                    contractors.addAll(appIdToAppToProcessWithContractorMap?.get(applicationToProcess.Id)?.Account_Roles__r);
+                } 
+
+                if(!(contractors?.size() > 0)) {
+                    applicationToProcess.addError(System.Label.HH_Application_ContractorInfoMissingError);
+                } 
+            }
         }
     }
 }

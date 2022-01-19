@@ -7480,6 +7480,20 @@ Disability Definition: A physical or mental impairment that substantially limits
         <errorMessage>Please complete the &apos;Assessor Email&apos; prior to updating the Application Stage to &apos;Assessment&apos; and Status to &apos;Assessment Pending&apos;.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>HO_CheckPaymentAmount_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Homeowner Contribution Check/Payment Amount&quot; is required if the &quot;Homeowner Contribution to Check/Payment Amount?&quot; selected as &quot;Yes&quot; before updating the Application Stage to &apos;Homeowner Agreement&apos; and Status to &apos;Tri-Party Agreement Finalized</description>
+        <errorConditionFormula>AND( ISPICKVAL( Stage__c , &apos;Homeowner Agreement&apos;) ,ISPICKVAL( Status__c , &apos;Tri-Party Agreement Finalized&apos;), ISPICKVAL(  Homeowner_contribution_check_payment__c , &apos;Yes&apos;),  OR( ISBLANK( Homeowner_Contribution_Amount__c ) ,Homeowner_Contribution_Amount__c = 0) )</errorConditionFormula>
+        <errorMessage>Please complete the &apos;Homeowner Contribution Amount&apos; prior to updating the Application Stage to &apos;Homeowner Agreement&apos; and Status to &apos;Tri-Party Agreement Finalized&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>HO_Contribution_CheckPayment_Validation</fullName>
+        <active>true</active>
+        <description>&quot;Homeowner Contribution Check/Payment&quot; must be selected as &quot;Yes&quot; before updating the Application Stage to &apos;Homeowner Agreement&apos; and Status to &apos;Tri-Party Agreement Finalized</description>
+        <errorConditionFormula>AND( ISPICKVAL( Stage__c , &apos;Homeowner Agreement&apos;) ,ISPICKVAL( Status__c , &apos;Tri-Party Agreement Finalized&apos;), NOT(ISPICKVAL(  Homeowner_contribution_check_payment__c , &apos;Yes&apos;)))</errorConditionFormula>
+        <errorMessage>If required, the HO must provide their contribution check/payment prior to signing the tri-party agreement.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Reason_to_Withdraw_Validation</fullName>
         <active>true</active>
         <description>Reason for the Withdrawal of the Application is required upon Application Withdrawal.</description>
