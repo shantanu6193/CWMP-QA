@@ -189,7 +189,6 @@
                            disabled ={isDisable}>
                         </lightning-input>
                      </div>
-                     <template if:true={showMailingAddress}>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
                         <lightning-input    
                            type="text"
@@ -199,6 +198,7 @@
                            data-field="BillingStreet"
                            max-length="100"
                            min-length="1"
+                           onblur={nullCheckValidation}
                            disabled ={isDisable}>
                         </lightning-input>
                      </div>
@@ -211,7 +211,8 @@
                            data-field="BillingCity"
                            max-length="50"
                            min-length="1"
-                           disabled ={isDisable}>
+                           class="input"
+                           required ={isMailingAddressRequired}>
                         </lightning-input>
                      </div>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
@@ -224,6 +225,7 @@
                               name="input1"
                               max-length="50"
                               min-length="1"
+                              required ={isMailingAddressRequired}
                               onchange={handleAccountDetail}
                               options={uSStateCodes.data.values}
                               dropdown-alignment="auto"
@@ -240,12 +242,12 @@
                            data-field="BillingPostalCode"
                            max-length="9"
                            min-length="5"
+                           class="input"
                            pattern="[0-9]+"
-                           message-when-pattern-mismatch="Only numbers are allowed!"
-                           disabled ={isDisable}>
+                           required ={isMailingAddressRequired}
+                           message-when-pattern-mismatch="Only numbers are allowed!">
                         </lightning-input>
                      </div>
-                  </template>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
                         <lightning-input    
                            type="phone"
@@ -272,7 +274,7 @@
                            data-field="Email_Address__c"
                            required
                            onblur={validateEmail}
-                           class="emailField"
+                           class="input"
                            disabled ={isDisable}>
                         </lightning-input>
                      </div>
@@ -336,6 +338,22 @@
                         </template>
                      </div>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                        <template if:true={yesNoValues}>
+                           <lightning-combobox 
+                              label="Was a change order requested?"
+                              class="input" 
+                              value={accountRoleDetail.Was_a_change_order_requested__c}
+                              data-field ="Was_a_change_order_requested__c"
+                              name="input1"
+                              onchange={handleAccountRoleDetail}
+                              options={yesNoValues}
+                              dropdown-alignment="auto"
+                              required
+                              >
+                           </lightning-combobox>
+                        </template>
+                     </div>
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small slds-p-top_large slds-p-right_large">
                         <template if:true={recordLocal.showDrawTable}>
                            <div class="slds-scrollable_y responsive_table" style="max-height:150px;">
                               <table>
@@ -370,23 +388,7 @@
                               </div>
                         </template> 
                      </div>
-                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
-                        <template if:true={yesNoValues}>
-                           <lightning-combobox 
-                              label="Was a change order requested?"
-                              class="input" 
-                              value={accountRoleDetail.Was_a_change_order_requested__c}
-                              data-field ="Was_a_change_order_requested__c"
-                              name="input1"
-                              onchange={handleAccountRoleDetail}
-                              options={yesNoValues}
-                              dropdown-alignment="auto"
-                              required
-                              >
-                           </lightning-combobox>
-                        </template>
-                     </div>
-                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small  slds-p-right_large">
+                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small slds-p-top_large slds-p-right_large">
                         <template if:true={recordLocal.showChangeOrderTable}>
                            <div class="slds-scrollable_y responsive_table" style="max-height:230px;">
                               <table >
@@ -438,9 +440,11 @@
             </div>
             <div class="slds-align_absolute-center" >
                <lightning-layout>
+                  <template if:false={isEdit}>
                   <lightning-layout-item padding="around-small">
                      <button class="slds-button slds-button_neutral" onclick={handleClear} >Clear</button>
                   </lightning-layout-item>
+               </template>
                   <lightning-layout-item padding="around-small">
                      <button class="slds-button slds-button_neutral" onclick={fireEventTocloseModal} >Cancel</button>
                   </lightning-layout-item>

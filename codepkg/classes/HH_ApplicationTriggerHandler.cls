@@ -45,13 +45,17 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
         /** This method is used to prevent the user from submitting the Application to Cal OES Review, before uploading all the required Documents. */
         preventCalOesSubmissionWithoutDocumentUpload();
 
+        /** This method is used to prevent the User from Updating the Application Status to "Tri Party Agreement Finalized",
+        When the Selected Contractors is missing. */
+        checkContractorsBeforeTriPartyAgreementFinalized();
+
         /** This method is used to prevent Homeowner/Community user from updating the Application based on Stage ans Status of the Application record. */
         StageBasedUpdateAccessToUser();
 
         /** This method is used to create the related Document upon Application creation. */
         updateRecordOwnerToHhCountyQueueBasedOnStage();
 
-        checkContractorsBeforeTriPartyAgreementFinalized();
+        //checkContractorsBeforeTriPartyAgreementFinalized();
     }
 
     public override void afterUpdate() {
@@ -497,8 +501,8 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
                                 && queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Id != null) {
                             hhApplicationToChangeOwner.OwnerId = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Id;
                             if(countyNameToCountyConfigRecord?.get(hhApplicationToChangeOwner?.County__c)?.Emails__c != null) {
-                                //hhApplicationToChangeOwner.Community_County_Queue_Email__c = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Email;
-                                List<String> emails = countyNameToCountyConfigRecord?.get(hhApplicationToChangeOwner?.County__c)?.Emails__c.split(';');
+                                string emailString = countyNameToCountyConfigRecord?.get(hhApplicationToChangeOwner?.County__c)?.Emails__c?.replace(',', ';');
+                                List<String> emails = emailString?.split(';');
                                 hhApplicationToChangeOwner.Community_County_Queue_Email__c = emails[0];
                             } 
                             hhApplicationToChangeOwner.Owner_Name__c = queueDeveloperNameToQueueRecordMap?.get(countyNameToQueueApiNameMap?.get(hhApplicationToChangeOwner?.County__c))?.Name;
@@ -1291,7 +1295,6 @@ public without sharing class HH_ApplicationTriggerHandler extends TriggerHandler
         }
     }
 
-   
     /***********************************************
     * Method Name : checkContractorsBeforeTriPartyAgreementFinalized
     * Author : Ricky

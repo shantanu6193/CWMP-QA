@@ -18,6 +18,7 @@ import HH_EN_Home_Assessment_Report from '@salesforce/label/c.HH_EN_Home_Assessm
 import HH_EN_Homeowner_Paper_Application from '@salesforce/label/c.HH_EN_Homeowner_Paper_Application';
 import HH_EN_Homeowner_Appeal_Form from '@salesforce/label/c.HH_EN_Homeowner_Appeal_Form';
 import HH_EN_Other from '@salesforce/label/c.HH_EN_Other';
+import HH_EN_Executed_Tri_Party_Agreement from '@salesforce/label/c.HH_EN_Executed_Tri_Party_Agreement';
 
 export default class  RecordEditFormProject extends Utility {
 
@@ -35,7 +36,9 @@ export default class  RecordEditFormProject extends Utility {
     @api documentname;
     @api parentfieldvalue;
     @api docDetail;
+    isCWMP = false;
     isHHApplication = false;
+    isCWMPProject = false;
     @track label = {
             HH_EN_Proof_of_Rental,
             HH_EN_Proof_of_Ownership,
@@ -44,21 +47,27 @@ export default class  RecordEditFormProject extends Utility {
             HH_EN_Home_Assessment_Report,
             HH_EN_Homeowner_Paper_Application,
             HH_EN_Homeowner_Appeal_Form,
-            HH_EN_Other
+            HH_EN_Other,
+            HH_EN_Executed_Tri_Party_Agreement
     }
     initData(){
         if(this.parentfieldname == 'HH_Application__c'){
             this.isHHApplication = true;
+            this.isCWMP = true;
+        }
+        if(this.parentfieldname == 'CWMP_Project__c'){
+            this.isCWMPProject =true;
+            this.isCWMP = true;
         }
         if(this.documentrecordid != null){
             this.recordLocal = JSON.parse(JSON.stringify(this.docDetail));
-            console.log('this.documentrecordid-----'+this.documentrecordid+'  this.parentfieldvalue---- '+this.parentfieldvalue+' this.documentname----'+this.documentname)
             this.isEdit = true;
             this.recordLabel ='Edit Document';
         }
     }
 
     get docTypeValues() {
+        if(this.isHHApplication){
         return [
             {label:this.label.HH_EN_Proof_of_Rental, value:'Proof of Rental'},
             {label:this.label.HH_EN_Property_Owner_ID, value:'Property Owner ID'},
@@ -67,9 +76,21 @@ export default class  RecordEditFormProject extends Utility {
             {label:this.label.HH_EN_Environmental_Checklist, value:'Environmental Checklist'},
             {label:this.label.HH_EN_Homeowner_Paper_Application, value:'Homeowner Paper Application'},
             {label:this.label.HH_EN_Homeowner_Appeal_Form, value:'Homeowner Appeal Form'},
+                {label:this.label.HH_EN_Executed_Tri_Party_Agreement, value:'Executed Tri-Party Agreement'},
             {label:this.label.HH_EN_Other, value:'Other'}
 
         ];
+    }
+        if(this.isCWMPProject){
+            return [
+                {label:'Change Order', value:'Change Order'},
+                {label:'Punch List', value:'Punch List'},
+                {label:'Invoices', value:'Invoices'},
+                {label:'Reimbursement Requested', value:'Reimbursement Requested'},
+                {label:'Reimbursement Received', value:'Reimbursement Received'},
+                {label:this.label.HH_EN_Other, value:'Other'}
+            ];
+        }
     }
 
     get docStageValue(){
@@ -123,7 +144,7 @@ export default class  RecordEditFormProject extends Utility {
             this.isDisable = false;
             return false;
         }else if(this.recordLocal['Document_Type__c'] == null || this.recordLocal['Document_Type__c'] == '' || this.recordLocal['Document_Type__c'] == undefined){
-            if(this.isHHApplication ==true){
+            if(this.isCWMP ==true){
                     let emailFieldCmp = this.template.querySelector('.docTypeField');
                     emailFieldCmp.setCustomValidity('Please select Document type');
                     emailFieldCmp.reportValidity();

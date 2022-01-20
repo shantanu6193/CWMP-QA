@@ -155,7 +155,11 @@ export default class HhUpdateTaxParcelAndFloodplain extends Utility {
                     this.showNotification('Success', this.label.HH_DetailsUpdatedSuccessfullMessage, 'success','dismissible');
             },(error)=>{
                 console.log('error----',error);
-                if(error.body != undefined && error.body.message != undefined) {
+                    if(error.body != undefined && error.body.message != undefined && error.body.message.includes('Application not editable')) {
+                        this.showNotificationwithMessageData('',this.label.HH_EN_Application_Already_Submitted, 'info', 'dismissible', this.label.HH_Information_PDF, this.label.HH_EN_HERE);
+                        this.retrieveData(this.recordId);
+                    }
+                    else if(error.body != undefined && error.body.message != undefined) {
                         this.showNotification('Error', error.body.message, 'error', 'dismissible');
                 } else {
                         this.showNotification('Error', error, 'error', 'dismissible');

@@ -22,7 +22,6 @@ export default class HhCreateUpdateAccountRole extends Utility {
 @track accountRoleDetail={};
 @track accountDetail={};
 @track showDetails = false;
-@track showMailingAddress = true;
 @track label = {
     HH_EN_Value_must_be_numeric_0_9,
     HH_EN_MissingFieldValueError,
@@ -47,6 +46,7 @@ loadLookupDataOnLoad =true;
 isMultiEntry=false;
 drawIndex = 0;
 orderChangeIndex = 0;
+@track isMailingAddressRequired = false;
 
 
 
@@ -115,8 +115,7 @@ handleAccountRoleSearch(event) {
     /** This method is for validating the Email field format - Standard was not working properly. */
     validateEmail() {
 
-        let emailFieldCmp = this.template.querySelector('.emailField');
-
+        let emailFieldCmp = this.template.querySelector('[data-field="Email_Address__c"]');
         let mailRegex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         let emailAddress =  this.accountDetail.Email_Address__c;
         let allValid = true;
@@ -242,10 +241,17 @@ nullCheckValidation(event){
         let contactField = this.template.querySelector('[data-field="'+event.target.getAttribute('data-field')+'"]');
         contactField.setCustomValidity('');
         contactField.reportValidity();
-        if(checkNullString.length == 0) {
+        if(checkNullString.length == 0 && event.target.getAttribute('data-field') != 'BillingStreet') {
             event.target.value = null;
             contactField.setCustomValidity(this.label.HH_EN_MissingFieldValueError);
             contactField.reportValidity();
+        }else if(event.target.getAttribute('data-field') == 'BillingStreet'){
+            if(checkNullString.length == 0){
+                event.target.value = null;
+                this.isMailingAddressRequired = false;
+            }else{
+                this.isMailingAddressRequired = true;
+            }
         }
 }
 
@@ -320,30 +326,19 @@ handleAccountDetail(e){
     let inputField = this.template.querySelector('[data-field="'+e.target.getAttribute('data-field')+'"]');
     inputField.setCustomValidity('');
     inputField.reportValidity();
+    if(e.target.getAttribute('data-field') == 'BillingStreet'){
+           if(e.target.value){
+                this.isMailingAddressRequired = true;
+           } else{
+                this.isMailingAddressRequired = false;
+           }
+    }
 }
 
 handleClear(e){
-    if(!this.isEdit){
         this.accountDetail = {};
         this.accountRoleDetail = {};
         this.template.querySelector('[data-lookup="Account__c"]').handleClearSelection();
-    }else{
-        this.accountDetail['ShippingStreet'] =null;
-        this.accountDetail['ShippingCity'] = null;
-        this.accountDetail['ShippingState'] =null;
-        this.accountDetail['ShippingPostalCode'] = null;
-        this.accountDetail['BillingStreet'] = null;
-        this.accountDetail['BillingCity'] = null;
-        this.accountDetail['BillingState'] = null;
-        this.accountDetail['BillingPostalCode'] = null;
-        this.accountDetail['Phone'] = null;
-        this.accountDetail['Email_Address__c'] = null;
-        this.accountRoleDetail['Point_of_Contact__c'] = null;
-        this.accountRoleDetail['Status__c'] = 'Active';
-        this.accountRoleDetail['SOW_Completed_Date__c'] = null;
-        this.accountRoleDetail['Was_a_draw_requested__c'] = null;
-        this.accountRoleDetail['Was_a_change_order_requested__c'] = null;
-    }
 }
 
 get yesNoValues() {
@@ -400,7 +395,11 @@ handleSave(){
         this.executeAction(saveDetails , {'parentRecordId':this.parentRecordId,'accountRoleDetail':JSON.stringify(this.accountRoleDetail),'accountDetail':JSON.stringify(this.accountDetail)},
         (response) => {
             console.log('results----', response);
+            if(!this.isEdit){
             this.showSuccessNotification('Success','Record created successfully !');
+            }else{
+                this.showSuccessNotification('Success','Record updated successfully !');
+            }
             this.fireEventTocloseModal();
         },(error)=>{
             if(error.body != undefined && error.body.message != undefined) {

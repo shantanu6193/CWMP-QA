@@ -25,7 +25,7 @@
                             </lightning-input>
                           </div>
                       </div>
-                    <template if:false={isHHApplication}>
+                    <template if:false={isCWMP}>
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
                                 <template if:true={StagePicklistValues.data}>
                                     <lightning-combobox
@@ -40,7 +40,7 @@
                                 </template>
                             </div>
                     </template>
-                    <template if:false={isHHApplication}>
+                    <template if:false={isCWMP}>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
                           <div class="slds-p-right_large">
                             <template if:true={IsRequiredPicklistValues.data}>
@@ -57,7 +57,7 @@
                           </div>
                         </div>
                     </template>
-                    <template if:false={isHHApplication}>
+                    <template if:false={isCWMP}>
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
                                 <template if:true={StatusPicklistValues.data}>
                                     <lightning-combobox
@@ -74,7 +74,7 @@
                     </template>
                     <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
                             <div class="slds-p-right_large">
-                                <template if:true={isHHApplication}>
+                                <template if:true={isCWMP}>
                                     <template if:true={DocumentTypePicklistValues.data}>
                                         <lightning-combobox
                                                 name="New"
@@ -91,7 +91,7 @@
                                         </lightning-combobox>
                                     </template>
                                 </template>
-                                <template if:false={isHHApplication}>
+                                <template if:false={isCWMP}>
                                 <template if:true={DocumentTypePicklistValues.data}>
                                     <lightning-combobox
                                             name="New"
@@ -106,7 +106,7 @@
                                 </template>
                             </div>
                         </div>
-                    <template if:false={isHHApplication}>
+                    <template if:false={isCWMP}>
                      <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_6-of-12 slds-p-bottom_x-small">
                             <template if:true={DocumentFormatPicklistValues.data}>
                               <lightning-combobox
@@ -150,7 +150,7 @@
                           </div>
                   </div>
             </div>
-            <template if:false={isHHApplication}>
+            <template if:false={isCWMP}>
              <div class="slds-section slds-is-open">
                   <h3 class="slds-section__title slds-p-bottom_x-small">
                     <button aria-controls="expando-unique-id" style="background-color:rgb(194, 194, 194)" aria-expanded="true" class="slds-button slds-section__title-action">
